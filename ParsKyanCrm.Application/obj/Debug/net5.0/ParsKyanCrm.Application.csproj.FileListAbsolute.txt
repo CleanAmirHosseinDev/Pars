@@ -17,3 +17,22 @@ D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Application\bin\Debu
 D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.dll
 D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
 D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Application.deps.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Application.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ref\ParsKyanCrm.Application.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Application.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Common.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Domain.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Domain.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.csproj.AssemblyReference.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.GeneratedMSBuildEditorConfig.editorconfig
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.AssemblyInfoInputs.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.AssemblyInfo.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.csproj.CoreCompileInputs.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.csproj.CopyComplete
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ref\ParsKyanCrm.Application.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Application\obj\Debug\net5.0\ParsKyanCrm.Application.pdb

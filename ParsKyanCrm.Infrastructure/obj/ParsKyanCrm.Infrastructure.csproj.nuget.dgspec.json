@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj": {}
+    "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {
+    "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
+        "projectUniqueName": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
         "projectName": "ParsKyanCrm.Common",
-        "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
-        "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-        "outputPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\obj\\",
+        "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -72,26 +75,29 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj": {
+    "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj",
+        "projectUniqueName": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj",
         "projectName": "ParsKyanCrm.Infrastructure",
-        "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-        "outputPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\obj\\",
+        "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -104,8 +110,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {
-                "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj"
+              "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {
+                "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj"
               }
             }
           }
@@ -144,7 +150,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

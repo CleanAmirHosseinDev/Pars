@@ -6147,12 +6147,11 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "X7IdhILzr4ROXd8mI1BUCQMSHSQwelUlBjF1JyTKCjXaOGn2fB4EKBxQbCK2VjO3WaWIdlXZL3W6TiIVnrhX4g==",
+      "sha512": "/p8IQT2brFMDa7BHMH71LV+w5Tb3OxoLHxhn6+MGqN5xeqhM2HRHmj+7xQGJnaRn73d7ZTvp6yRCFMvolws4wA==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -6175,12 +6174,11 @@
       ]
     },
     "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "ytoewC6wGorL7KoCAvRfsgoJPJbNq+64k2SqW6JcOAebWsFUvCCYgfzQMrnpvPiEl4OrblUlhF2ji+Q1+SVLrQ==",
+      "sha512": "JGc0pAWRE8lB4Ucygk2pYSKbUPLlAIq6Bczf5/WF2D/VKJEPtYlVUMxk8fbl1zRfTWzSHi+VcFZlaPlWiNxeKg==",
       "type": "package",
       "path": "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -6613,12 +6611,11 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
+      "sha512": "NoPBj0ykejqAWW4p4gGtrrL+3c84ZLSvGnHgq422ew1Rj4WKj1FA8/BCybqC111EtgcqUl6ZJNFYYS22HLgbjA==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6801,12 +6798,11 @@
       ]
     },
     "System.ComponentModel.Primitives/4.3.0": {
-      "sha512": "j8GUkCpM8V4d4vhLIIoBLGey2Z5bCkMVNjEZseyAlm4n5arcsJOeI3zkUP+zvZgzsbLTYh4lYeP/ZD/gdIAPrw==",
+      "sha512": "KMVuoQ+8bMQ/Z59M3s64num5AD74X5YSqVc7ibwGkPTfmmkl2W8VuSxLRJtpw4KzQrSKUgR0BLbF0adPfcTSGQ==",
       "type": "package",
       "path": "system.componentmodel.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -10923,25 +10919,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HOME\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programmings\\ParsKyanCrm_Git\\EndPoint.Api\\EndPoint.Api.csproj",
+      "projectUniqueName": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\EndPoint.Api\\EndPoint.Api.csproj",
       "projectName": "EndPoint.Api",
-      "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\EndPoint.Api\\EndPoint.Api.csproj",
-      "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-      "outputPath": "D:\\Programmings\\ParsKyanCrm_Git\\EndPoint.Api\\obj\\",
+      "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\EndPoint.Api\\EndPoint.Api.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\EndPoint.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -10954,14 +10955,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Application\\ParsKyanCrm.Application.csproj": {
-              "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Application\\ParsKyanCrm.Application.csproj"
+            "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Application\\ParsKyanCrm.Application.csproj": {
+              "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Application\\ParsKyanCrm.Application.csproj"
             },
-            "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Domain\\ParsKyanCrm.Domain.csproj": {
-              "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Domain\\ParsKyanCrm.Domain.csproj"
+            "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Domain\\ParsKyanCrm.Domain.csproj": {
+              "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Domain\\ParsKyanCrm.Domain.csproj"
             },
-            "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj": {
-              "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj"
+            "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj": {
+              "projectPath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\ParsKyanCrm.Infrastructure\\ParsKyanCrm.Infrastructure.csproj"
             }
           }
         }
@@ -11021,6 +11022,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.13, 5.0.13]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11029,7 +11036,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

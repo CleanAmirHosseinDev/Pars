@@ -10,3 +10,15 @@ D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net
 D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ref\ParsKyanCrm.Common.dll
 D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.pdb
 D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.AssemblyReference.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.deps.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ref\ParsKyanCrm.Common.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.AssemblyReference.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.GeneratedMSBuildEditorConfig.editorconfig
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.AssemblyInfoInputs.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.AssemblyInfo.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.CoreCompileInputs.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ref\ParsKyanCrm.Common.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.pdb

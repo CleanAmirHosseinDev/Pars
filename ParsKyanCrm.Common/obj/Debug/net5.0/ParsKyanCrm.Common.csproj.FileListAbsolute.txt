@@ -1,0 +1,12 @@
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.deps.json
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ref\ParsKyanCrm.Common.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.AssemblyInfoInputs.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.AssemblyInfo.cs
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.CoreCompileInputs.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ref\ParsKyanCrm.Common.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.AssemblyReference.cache

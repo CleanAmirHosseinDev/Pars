@@ -34,6 +34,7 @@
       "EndPoint.Api/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "5.0.1",
+          "BuildBundlerMinifier": "3.2.449",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.0",
           "Microsoft.AspNetCore.SpaServices.Extensions": "5.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.0",
@@ -364,6 +365,7 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "BuildBundlerMinifier/3.2.449": {},
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -4475,6 +4477,13 @@
       "sha512": "sha512-7MIq6D/ax3964iHXbL1L2ldUvl6IlKp0p1GZFzr6vlIhEVyp4CgJwOpisRLvIO7dP+kDtbY3Hb9yuPNCkfyBFg==",
       "path": "automapper.extensions.microsoft.dependencyinjection/5.0.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512"
+    },
+    "BuildBundlerMinifier/3.2.449": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uA9sYDy4VepL3xwzBTLcP2LyuVYMt0ZIT3gaSiXvGoX15Ob+rOP+hGydhevlSVd+rFo+Y+VQFEHDuWU8HBW+XA==",
+      "path": "buildbundlerminifier/3.2.449",
+      "hashPath": "buildbundlerminifier.3.2.449.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

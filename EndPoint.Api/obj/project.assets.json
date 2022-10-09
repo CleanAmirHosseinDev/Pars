@@ -27,6 +27,12 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "BuildBundlerMinifier/3.2.449": {
+        "type": "package",
+        "build": {
+          "build/BuildBundlerMinifier.targets": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -3652,6 +3658,34 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.pdb"
+      ]
+    },
+    "BuildBundlerMinifier/3.2.449": {
+      "sha512": "uA9sYDy4VepL3xwzBTLcP2LyuVYMt0ZIT3gaSiXvGoX15Ob+rOP+hGydhevlSVd+rFo+Y+VQFEHDuWU8HBW+XA==",
+      "type": "package",
+      "path": "buildbundlerminifier/3.2.449",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/BuildBundlerMinifier.targets",
+        "buildbundlerminifier.3.2.449.nupkg.sha512",
+        "buildbundlerminifier.nuspec",
+        "tools/net46/BundlerMinifier.dll",
+        "tools/net46/NUglify.dll",
+        "tools/net46/Newtonsoft.Json.dll",
+        "tools/netcoreapp2.0/BundlerMinifier.dll",
+        "tools/netcoreapp2.0/NUglify.dll",
+        "tools/netcoreapp2.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp3.0/BundlerMinifier.dll",
+        "tools/netcoreapp3.0/NUglify.dll",
+        "tools/netcoreapp3.0/Newtonsoft.Json.dll",
+        "tools/netcoreapp3.1/BundlerMinifier.dll",
+        "tools/netcoreapp3.1/NUglify.dll",
+        "tools/netcoreapp3.1/Newtonsoft.Json.dll",
+        "tools/netstandard1.3/BundlerMinifier.dll",
+        "tools/netstandard1.3/NUglify.dll",
+        "tools/netstandard1.3/Newtonsoft.Json.dll"
       ]
     },
     "Humanizer.Core/2.8.26": {
@@ -10906,6 +10940,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 5.0.1",
+      "BuildBundlerMinifier >= 3.2.449",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.0",
       "Microsoft.AspNetCore.SpaServices.Extensions >= 5.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.0",
@@ -10980,6 +11015,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[5.0.1, )"
+          },
+          "BuildBundlerMinifier": {
+            "target": "Package",
+            "version": "[3.2.449, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

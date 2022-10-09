@@ -5,15 +5,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
+    <Compile Remove="Areas\Admin\Data\**" />
+    <Compile Remove="Areas\Admin\Models\**" />
+    <Compile Remove="FileUpload\**" />
+    <Content Remove="Areas\Admin\Data\**" />
+    <Content Remove="Areas\Admin\Models\**" />
+    <Content Remove="FileUpload\**" />
+    <EmbeddedResource Remove="Areas\Admin\Data\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="FileUpload\**" />
+    <None Remove="Areas\Admin\Data\**" />
+    <None Remove="Areas\Admin\Models\**" />
+    <None Remove="FileUpload\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\api\customer\" />
     <Folder Include="Controllers\api\superVisor\" />
-    <Folder Include="FileUpload\" />
+    <Folder Include="wwwroot\Content\js\Admin\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />

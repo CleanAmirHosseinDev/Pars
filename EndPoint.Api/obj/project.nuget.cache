@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "roGOTd6osOoHIgexnZ7rI2wa4J8eWjAHJMfMsJQuzEYLUunPPA9S9lC6pEXeM11/pKWUPUlzEHyWZSaXSqKhvA==",
+  "dgSpecHash": "mZbVEfeP412SKuwk7nVd/S7G0vCwcwlL/QJc6cs83p/eUh56pk+oIqtXZ6vTh87gsPG7No9X0zsN9Y7l9rSavw==",
   "success": true,
   "projectFilePath": "J:\\WorkSpase\\Hamid Sarafrazi\\ParsKyanCrm\\EndPoint.Api\\EndPoint.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\automapper\\7.0.1\\automapper.7.0.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\5.0.1\\automapper.extensions.microsoft.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

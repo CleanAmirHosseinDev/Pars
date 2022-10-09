@@ -324,7 +324,6 @@ J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\staticweb
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.input.cache
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.output.cache
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorCoreGenerate.cache
-J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Default\Index.cshtml.g.cs
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorTargetAssemblyInfo.cache
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorTargetAssemblyInfo.cs
@@ -334,3 +333,10 @@ J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\ref\EndPoint.Api.dll
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.pdb
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.genruntimeconfig.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Header.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Menu.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\bundleconfig.json

@@ -1,0 +1,33 @@
+[
+
+  {
+
+    "outputFileName": "wwwroot/css/style.min.css",
+
+    "inputFiles": [
+      "wwwroot/Content/app-assets/vendors/css/vendors-rtl.min.css"
+    ]
+
+  },
+
+  {
+
+    "outputFileName": "wwwroot/js/script.min.js",
+
+    "inputFiles": [
+   
+      "wwwroot/Content/js/login.js"
+
+    ],
+
+    "minify": {
+
+      "enabled": true
+
+    },
+
+    "sourceMap": true
+
+  }
+
+]

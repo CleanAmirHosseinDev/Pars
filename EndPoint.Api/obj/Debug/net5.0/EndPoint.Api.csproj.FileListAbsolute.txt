@@ -340,3 +340,13 @@ J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Are
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Menu.cshtml.g.cs
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\bundleconfig.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Shared\_Header.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Shared\_Layout.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Shared\_Menu.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\_ViewStart.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Header.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Layout.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Menu.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\_ViewStart.cshtml.g.cs

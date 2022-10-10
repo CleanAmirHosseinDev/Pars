@@ -26,6 +26,15 @@ namespace EndPoint.Api.Controllers
                 {
                     result = "/Admin/Home/Index";
                 }
+                else if (model.Userneme == "2" && model.Password == "2")
+                {
+                    result = "/Supervisor/Home/Index";
+                }
+                else if (model.Userneme == "3" && model.Password == "3")
+                {
+                    result = "/Customer/Home/Index";
+                }
+                
                 return Ok(new JsonResultViewModel()
                 {
                     ResultCode = 200,
@@ -34,7 +43,7 @@ namespace EndPoint.Api.Controllers
             }
             else
             {
-               
+
                 return BadRequest(new JsonResultViewModel()
                 {
                     ResultCode = 404,

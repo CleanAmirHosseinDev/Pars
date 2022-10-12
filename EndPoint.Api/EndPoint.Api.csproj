@@ -28,6 +28,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Content\Sweet\sweet-alerts.js" />
+    <None Include="wwwroot\Content\Sweet\sweet-alerts.min.js" />
+    <None Include="wwwroot\Content\Sweet\sweetalert2.all.min.js" />
+    <None Include="wwwroot\Content\Sweet\swiper.js" />
+    <None Include="wwwroot\Content\Sweet\swiper.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />

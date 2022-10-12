@@ -9,61 +9,51 @@ $(document).ready(function () {
 
     $('form').on('submit', function (event) {
         event.preventDefault();
-        var formData = new FormData();
-        formData.append("Userneme", $("#username").val());
-        formData.append("Password", $("#password").val());
 
-        $.ajax({
-            type: 'POST',
-            url: '/Home/LoginRequest',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            traditional: true,
-            beforeSend: function () {
+        AjaxCall('/api/Securitys/Login', JSON.stringify(
+            {
+                'Username': $("#username").val(),
+                'Password': $("#password").val()
 
-            },
-            complete: function () {
+            }), 'POST').done(function (response) {
 
-            },
-            success: function (response) {
-                if (response.resultCode === 200) {
+                if (response.isSuccess === true) {
 
-                    window.location.href = response.data;
-                    this.submit(); //now submit the form
+                    setlstor("token", !GetNullEmpetyUndefined(response.data.token) ? response.data.token : "");
+                    setlstor("menu", !GetNullEmpetyUndefined(response.data.menus) && response.data.menus.length > 0 ? JSON.stringify(response.data.menus) : "");
+                    setlstor("fullName", !GetNullEmpetyUndefined(response.data.fullName) ? response.data.fullName : "فاقد نام");
+                    setlstor("userID", !GetNullEmpetyUndefined(response.data.userID) ? response.data.userID : "0");
+                    setlstor("customerID", !GetNullEmpetyUndefined(response.data.customerID) ? response.data.customerID : "");
+
+                    window.location.href = response.message;
                 }
                 else {
-                    debugger;
+                    Swal.fire({
+                        title: "خطا!",
+                        text: response.message,
+                        type: "error",
+                        confirmButtonClass: 'btn btn-primary',
+                        buttonsStyling: false,
+                    }).then(function () {
+
+                    });
+
 
                 }
-            },
-            error: function (response) {
+            }).fail(function (error) {
 
-            }
-        })
+                Swal.fire({
+                    title: "خطا!",
+                    text: "خطای غیر منتظره!",
+                    type: "error",
+                    confirmButtonClass: 'btn btn-primary',
+                    buttonsStyling: false,
+                }).then(function () {
 
-
+                });
+            });
 
         event.stopPropagation();
     });
 
 });
-AjaxCall = function (url, data, type) {
-    return $.ajax({
-        processData: false,
-        url: url,
-        type: type ? type : 'GET',
-        data: data,
-        async: false,
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        beforeSend: function () {
-
-
-        },
-        complete: function () {
-
-
-        }
-    });
-};

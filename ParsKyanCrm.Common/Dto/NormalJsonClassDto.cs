@@ -12,7 +12,6 @@ namespace ParsKyanCrm.Common.Dto
         public string Value { get; set; }
         public bool Selected { get; set; }
         public string Group { get; set; }
-
         public string LabelGroup { get; set; }
 
         public string Link { get; set; }

@@ -34,6 +34,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         {
             try
             {
+                string LoginName = string.Empty;
 
                 var res_ResultLoginDto = new ResultLoginDto();
 
@@ -50,23 +51,24 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 else
                 {
 
-                    qCheckUserRole = await CheckUserRole(request.LoginName, user.UserID);
+                    qCheckUserRole = await CheckUserRole(user.UserID);
                     if (qCheckUserRole != null)
                     {
 
-                        if (request.LoginName != "Customer")
-                        {
-                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
-                            res_ResultLoginDto.UserID = user.UserID;
-                            res_ResultLoginDto.CustomerID = null;
-                        }
-                        else
-                        {
-                            res_ResultLoginDto.UserID = 0;
-                            res_ResultLoginDto.CustomerID = "Diane";
-                            res_ResultLoginDto.FullName = "Diane";
-                            //FullName Customers Get In Table
-                        }
+                        //if (request.LoginName != "Customer")
+                        //{
+                        //    res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
+                        //    res_ResultLoginDto.UserID = user.UserID;
+                        //    res_ResultLoginDto.CustomerID = null;
+                        //}
+                        //else
+                        //{
+                        //    res_ResultLoginDto.UserID = 0;
+                        //    res_ResultLoginDto.CustomerID = "Diane";
+                        //    res_ResultLoginDto.FullName = "Diane";
+                        //    //FullName Customers Get In Table
+                        //}
+                        LoginName = qCheckUserRole.Role.RoleTitle;
 
                     }
                     else
@@ -84,23 +86,24 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
-                    {                        
-                        new Claim(ClaimTypes.Role,request.LoginName)
+                    {
+                        new Claim(ClaimTypes.Role,LoginName)
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 
                 if (!string.IsNullOrEmpty(res_ResultLoginDto.CustomerID)) tokenDescriptor.Subject.AddClaim(new Claim("CustomerID", res_ResultLoginDto.CustomerID));
-                if(res_ResultLoginDto.UserID != 0) tokenDescriptor.Subject.AddClaim(new Claim("UserID", res_ResultLoginDto.UserID.ToString()));
+                if (res_ResultLoginDto.UserID != 0) tokenDescriptor.Subject.AddClaim(new Claim("UserID", res_ResultLoginDto.UserID.ToString()));
 
                 List<NormalJsonClassDto> obj_fillUserRoleCustomerRoles = null;
 
-                switch (request.LoginName)
+                switch (LoginName)
                 {
                     case "Admin":
 
-                        obj_fillUserRoleCustomerRoles = user.UserName != "admin" ?
+                        obj_fillUserRoleCustomerRoles = 
+                            user.UserName != "admin" ?
                             _basicInfoFacad.FillUserRoleAdminRolesService.Execute(qCheckUserRole.Roles).Where(p => p.Selected).ToList() :
                             _basicInfoFacad.FillUserRoleAdminRolesService.Execute();
 
@@ -129,7 +132,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 {
                     Data = res_ResultLoginDto,
                     IsSuccess = true,
-                    Message = string.Empty,
+                    Message = "/" + LoginName + "/Home/Index",
                 };
 
             }
@@ -139,13 +142,13 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             }
         }
 
-        private async Task<UserRolesDto> CheckUserRole(string Role, int UserID)
+        private async Task<UserRolesDto> CheckUserRole(int UserID)
         {
             try
             {
-                var qRole = await _context.Roles.FirstOrDefaultAsync(p => p.RoleTitle == Role);
-                var qUserRole = await _context.UserRoles.FirstOrDefaultAsync(p => p.RoleID == qRole.RoleID && p.UserID == UserID);
-                return _mapper.Map<UserRolesDto>(qUserRole);
+                var qRole = await _context.UserRoles.FirstOrDefaultAsync(p => p.UserID == UserID);
+                var qUserRole = await _context.Roles.FirstOrDefaultAsync(p => p.RoleID == qRole.RoleID);
+                return _mapper.Map<UserRolesDto>(qRole);
             }
             catch (Exception ex)
             {

@@ -15,8 +15,28 @@
     "outputFileName": "wwwroot/js/script.min.js",
 
     "inputFiles": [
-   
-      "wwwroot/Content/js/login.js"
+
+      "wwwroot/Content/js/login.js",
+      "wwwroot/Content/js/Utils.js"
+
+    ],
+
+    "minify": {
+
+      "enabled": true
+
+    },
+
+    "sourceMap": true
+
+  },
+  {
+
+    "outputFileName": "Users/js/Index.min.js",
+
+    "inputFiles": [
+
+      "wwwroot/Content/Admin/Users/Index.js"
 
     ],
 

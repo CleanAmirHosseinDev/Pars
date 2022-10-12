@@ -350,3 +350,4 @@ J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Are
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Layout.cshtml.g.cs
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Menu.cshtml.g.cs
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\_ViewStart.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs

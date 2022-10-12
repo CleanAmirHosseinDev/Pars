@@ -13,7 +13,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public string Password { get; set; }
 
-        public string LoginName { get; set; }
+        //public string LoginName { get; set; }
 
     }
 }

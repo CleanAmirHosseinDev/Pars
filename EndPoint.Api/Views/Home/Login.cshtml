@@ -34,12 +34,38 @@
     <link rel="stylesheet" type="text/css" href="~/content/assets/css/style-rtl.css">
     <!-- end: custom css-->
 
+      <style>
+        .overflowDiv {
+            width: auto;
+            height: 350px;
+            overflow: scroll;
+        }
 
+        .alert-success {
+            color: #212d28;
+            background-color: #beeed9;
+        }
+
+        .centered {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -100px;
+            z-index: 50000;
+            display:none;
+        }
+
+
+    </style>
 </head>
 <!-- END: Head-->
 <!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+    <div id="divProcessing" class="centered">
+        <p><img src="~/Content/Gif/4.gif" width="150" height="150"></p>
+    </div>
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -133,7 +159,11 @@
     <script src="~/Content/app-assets/js/core/app-menu.js"></script>
     <script src="~/Content/app-assets/js/core/app.js"></script>
     <script src="~/Content/app-assets/js/scripts/components.js"></script>
+    <script src="~/Content/js/Utils.js"></script>
+
     <script src="~/Content/js/login.js"></script>
+    <script src="~/Content/Sweet/sweetalert2.all.min.js"></script>
+    <script src="~/Content/Sweet/sweet-alerts.js"></script>
     <!-- END: Theme JS-->
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->

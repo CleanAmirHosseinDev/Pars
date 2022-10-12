@@ -18,7 +18,7 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("SystemStructure")]
         [DisplayFiledAttribute(Name = "ساختار سیستم")]
-        [DisplayFiledAttribute1(Name = "/area/users/index")]
+        [DisplayFiledAttribute1(Name = "/Admin/Users/Index")]
         [DisplayFiledAttribute2(Name = "fa fa-users")]
         [DisplayFiledAttribute3(Name = "کاربران سیستم")]
         [OrderAttribute(Order = 1)]

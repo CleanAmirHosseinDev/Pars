@@ -304,3 +304,4 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+.EndPoint.Api.csproj.AssemblyReference.cache

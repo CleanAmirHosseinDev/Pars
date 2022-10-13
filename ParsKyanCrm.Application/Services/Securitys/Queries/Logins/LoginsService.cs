@@ -55,20 +55,22 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     if (qCheckUserRole != null)
                     {
 
-                        //if (request.LoginName != "Customer")
-                        //{
-                        //    res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
-                        //    res_ResultLoginDto.UserID = user.UserID;
-                        //    res_ResultLoginDto.CustomerID = null;
-                        //}
-                        //else
-                        //{
-                        //    res_ResultLoginDto.UserID = 0;
-                        //    res_ResultLoginDto.CustomerID = "Diane";
-                        //    res_ResultLoginDto.FullName = "Diane";
-                        //    //FullName Customers Get In Table
-                        //}
                         LoginName = qCheckUserRole.Role.RoleTitle;
+
+                        if (LoginName != "Customer")
+                        {
+                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
+                            res_ResultLoginDto.UserID = user.UserID;
+                            res_ResultLoginDto.CustomerID = null;
+                        }
+                        else
+                        {
+                            res_ResultLoginDto.UserID = 0;
+                            res_ResultLoginDto.CustomerID = "Diane";
+                            res_ResultLoginDto.FullName = "Diane";
+                            //FullName Customers Get In Table
+                        }
+                        
 
                     }
                     else

@@ -82,6 +82,8 @@ AjaxCall = function (url, data, type, key = "", val = "") {
             if (!GetNullEmpetyUndefined(key) && !GetNullEmpetyUndefined(val)) {
                 xhr.setRequestHeader(key, val);
             }
+
+
             $("#divProcessing").show();
         },
         complete: function () {

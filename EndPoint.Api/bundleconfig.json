@@ -1,0 +1,53 @@
+[
+
+  {
+
+    "outputFileName": "wwwroot/css/style.min.css",
+
+    "inputFiles": [
+      "wwwroot/Content/app-assets/vendors/css/vendors-rtl.min.css"
+    ]
+
+  },
+
+  {
+
+    "outputFileName": "wwwroot/js/script.min.js",
+
+    "inputFiles": [
+
+      "wwwroot/Content/js/login.js",
+      "wwwroot/Content/js/Utils.js"
+
+    ],
+
+    "minify": {
+
+      "enabled": true
+
+    },
+
+    "sourceMap": true
+
+  },
+  {
+
+    "outputFileName": "Users/js/Index.min.js",
+
+    "inputFiles": [
+
+      "wwwroot/Content/Admin/Users/Index.js"
+
+    ],
+
+    "minify": {
+
+      "enabled": true
+
+    },
+
+    "sourceMap": true
+
+  }
+
+]

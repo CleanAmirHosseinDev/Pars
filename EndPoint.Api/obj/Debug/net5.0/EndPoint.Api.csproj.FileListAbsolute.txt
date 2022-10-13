@@ -1,0 +1,353 @@
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\appsettings.Development.json
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\appsettings.json
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.exe
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.deps.json
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.runtimeconfig.json
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.runtimeconfig.dev.json
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ref\EndPoint.Api.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\AutoMapper.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Humanizer.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Data.SqlClient.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Application.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Common.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Domain.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Application.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Domain.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.csproj.AssemblyReference.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.AssemblyInfoInputs.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.AssemblyInfo.cs
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.csproj.CoreCompileInputs.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.MvcApplicationPartsAssemblyInfo.cs
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.MvcApplicationPartsAssemblyInfo.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\staticwebassets\EndPoint.Api.StaticWebAssets.Manifest.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\staticwebassets\EndPoint.Api.StaticWebAssets.xml
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\scopedcss\bundle\EndPoint.Api.styles.css
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorTargetAssemblyInfo.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.csproj.CopyComplete
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\ref\EndPoint.Api.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.genruntimeconfig.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.Views.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.Views.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorAssemblyInfo.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorAssemblyInfo.cs
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.input.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.output.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorCoreGenerate.cache
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorTargetAssemblyInfo.cs
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.Views.pdb
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\dotnet-aspnet-codegenerator-design.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.AttributedModel.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.Convention.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.Hosting.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.Runtime.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.TypedParts.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+D:\Programmings\ParsKyanCrm\Servers\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Default\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\appsettings.Development.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\appsettings.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.StaticWebAssets.xml
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.exe
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.deps.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.runtimeconfig.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.runtimeconfig.dev.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ref\EndPoint.Api.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.Views.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\EndPoint.Api.Views.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\AutoMapper.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Humanizer.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\dotnet-aspnet-codegenerator-design.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.AttributedModel.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.Convention.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.Hosting.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.Runtime.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Composition.TypedParts.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Data.SqlClient.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Runtime.Caching.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Application.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Common.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Domain.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Application.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Domain.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Infrastructure.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.csproj.AssemblyReference.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.GeneratedMSBuildEditorConfig.editorconfig
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.AssemblyInfoInputs.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.AssemblyInfo.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.csproj.CoreCompileInputs.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.MvcApplicationPartsAssemblyInfo.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.MvcApplicationPartsAssemblyInfo.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorAssemblyInfo.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorAssemblyInfo.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\scopedcss\bundle\EndPoint.Api.styles.css
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\staticwebassets\EndPoint.Api.StaticWebAssets.Manifest.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.input.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.output.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorCoreGenerate.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorTargetAssemblyInfo.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorTargetAssemblyInfo.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.Views.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.csproj.CopyComplete
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\ref\EndPoint.Api.dll
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.pdb
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.genruntimeconfig.cache
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Header.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Menu.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\bin\Debug\net5.0\bundleconfig.json
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Shared\_Header.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Shared\_Layout.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\Shared\_Menu.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Supervisor\Views\_ViewStart.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\Index.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Header.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Layout.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Shared\_Menu.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\_ViewStart.cshtml.g.cs
+J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs

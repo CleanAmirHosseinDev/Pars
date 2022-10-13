@@ -21,6 +21,7 @@ fillMenu = function () {
         $('.user-name').html(getlstor("fullName"));
         var menu = JSON.parse(getlstor("menu"));
         var tempMenu = [];
+        deb();
         menu.forEach(function (item, i) {
             tempMenu.push({ "group": item.group, "labelGroup": item.labelGroup });
         });
@@ -42,8 +43,8 @@ fillMenu = function () {
             srt += '<li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">' + item.labelGroup + '</span></a>';
             srt += '<ul class="menu-content">';
             for (var i = 0; i < menu.length; i++)
-                if (item.group === menu[i].group)
-                    srt += '<li><a href="' + menu[i].link + '"><i class="feather icon-circle"></i><span id="' + menu[i].value + '" class="menu-item" data-i18n="List">' + menu[i].text + '</span></a></li>';
+                if (item.group === menu[i].group && !GetNullEmpetyUndefined(menu[i].link))
+                    srt += '<li><a href="' + menu[i].link + '"><i class="feather icon-circle"></i><span id="' + menu[i].value + '" class="menu-item" data-i18n="List">' + menu[i].group_Item + '</span></a></li>';
 
             srt += '</ul>';
             srt += '</li>';

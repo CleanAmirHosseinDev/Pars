@@ -49,7 +49,7 @@ namespace EndPoint.Api
 
             services.AddControllersWithViews();
 
-            //services.AddCors();
+            services.AddCors();
 
             // configure jwt authentication            
             var key = Encoding.ASCII.GetBytes(VaribleForName.Secret);
@@ -89,8 +89,8 @@ namespace EndPoint.Api
 
                 //app.UseSwagger();
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EndPoint.Api v1"));
-
-                //app.UseCors(p => p.WithOrigins("http://127.0.0.1:4200").AllowAnyMethod().AllowAnyHeader());
+                
+                app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             }
             else
             {

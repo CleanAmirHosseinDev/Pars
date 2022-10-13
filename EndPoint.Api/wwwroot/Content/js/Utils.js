@@ -78,12 +78,8 @@ AjaxCall = function (url, data, type, key = "", val = "") {
         processData: false,
         traditional: true,
         contentType: 'application/json',
+        headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
         beforeSend: function (xhr) {
-            if (!GetNullEmpetyUndefined(key) && !GetNullEmpetyUndefined(val)) {
-                xhr.setRequestHeader(key, val);
-            }
-
-
             $("#divProcessing").show();
         },
         complete: function () {

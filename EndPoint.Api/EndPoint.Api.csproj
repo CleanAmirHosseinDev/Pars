@@ -7,23 +7,29 @@
   <ItemGroup>
     <Compile Remove="Areas\Admin\Data\**" />
     <Compile Remove="Areas\Admin\Models\**" />
+    <Compile Remove="Controllers\api\customer\**" />
+    <Compile Remove="Controllers\api\superVisor\**" />
     <Compile Remove="FileUpload\**" />
     <Content Remove="Areas\Admin\Data\**" />
     <Content Remove="Areas\Admin\Models\**" />
+    <Content Remove="Controllers\api\customer\**" />
+    <Content Remove="Controllers\api\superVisor\**" />
     <Content Remove="FileUpload\**" />
     <EmbeddedResource Remove="Areas\Admin\Data\**" />
     <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="Controllers\api\customer\**" />
+    <EmbeddedResource Remove="Controllers\api\superVisor\**" />
     <EmbeddedResource Remove="FileUpload\**" />
     <None Remove="Areas\Admin\Data\**" />
     <None Remove="Areas\Admin\Models\**" />
+    <None Remove="Controllers\api\customer\**" />
+    <None Remove="Controllers\api\superVisor\**" />
     <None Remove="FileUpload\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Customer\Controllers\" />
     <Folder Include="Areas\Customer\Views\" />
-    <Folder Include="Controllers\api\customer\" />
-    <Folder Include="Controllers\api\superVisor\" />
     <Folder Include="wwwroot\Content\js\Admin\" />
   </ItemGroup>
 

@@ -1,16 +1,19 @@
 ﻿$(document).ready(function () {
-    if (false) {
-        AjaxCall('/api/admin/Users/Get_Userss',
-            {
-                'PageIndex': 0,
-                'PageSize': 1,
-                'Search': ""
+    if (true) {
+        
+        AjaxCall('/api/admin/Users/Get_Userss/',
+            
+            JSON.stringify(
+                {
+                    'PageIndex': 1,
+                    'PageSize': 10
 
-            }, 'POST', key = "Authorization", val = "Bearer" + getlstor("token")).done(function (response) {
+                })
+            , 'POST', key = "", val = "").done(function (response) {
 
                 if (response.isSuccess === true) {
 
-                    alert("sdfgsdg");
+                    alert("از ای پی آی با موفقیت کال شد تبریک می گوییم به شما دینه ها");
                 }
                 else {
                     Swal.fire({

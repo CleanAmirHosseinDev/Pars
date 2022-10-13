@@ -9,7 +9,6 @@
     ]
 
   },
-
   {
 
     "outputFileName": "wwwroot/js/script.min.js",
@@ -20,7 +19,7 @@
 
     "minify": {
 
-      "enabled": true
+      "enabled": false
 
     },
 
@@ -47,7 +46,7 @@
   },
   {
 
-    "outputFileName": "Users/js/Index.min.js",
+    "outputFileName": "wwwroot/js/Admin/Users/Index.min.js",
 
     "inputFiles": [
 
@@ -57,12 +56,11 @@
 
     "minify": {
 
-      "enabled": true
+      "enabled": false
 
     },
 
     "sourceMap": true
 
   }
-
 ]

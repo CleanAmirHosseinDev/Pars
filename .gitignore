@@ -29,7 +29,8 @@ bld/
 /.vs/ParsKyanCrm/v17
 /.vs
 /EndPoint.Api/obj/Debug/net5.0
-
+/obj/
+/bin/
 
 # Files built by Visual Studio
 *_i.c

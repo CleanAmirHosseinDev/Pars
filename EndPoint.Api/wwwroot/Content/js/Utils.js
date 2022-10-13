@@ -1,5 +1,7 @@
-﻿$(document).ready(function () {
-    
+﻿
+$(document).ready(function () {
+
+
     $('.logoff').on('click', function (e) {
         e.preventDefault();
         dellstor("token");
@@ -41,7 +43,7 @@ fillMenu = function () {
             srt += '<ul class="menu-content">';
             for (var i = 0; i < menu.length; i++)
                 if (item.group === menu[i].group)
-                    srt += '<li><a href="' + menu[i].link+'"><i class="feather icon-circle"></i><span id="' + menu[i].value + '" class="menu-item" data-i18n="List">' + menu[i].text + '</span></a></li>';
+                    srt += '<li><a href="' + menu[i].link + '"><i class="feather icon-circle"></i><span id="' + menu[i].value + '" class="menu-item" data-i18n="List">' + menu[i].text + '</span></a></li>';
 
             srt += '</ul>';
             srt += '</li>';
@@ -142,4 +144,115 @@ decrypt = function (text, key, revert = false) {
         newText += String.fromCharCode(text.charCodeAt(i) - (revert ? key.charCodeAt(Math.abs(key.length - i) % key.length) : key.charCodeAt(i % key.length)));
 
     return newText;
+};
+fillGrid = function (Data, columnDefs, columnCountShow = 10, nameGrid = "myGrid") {
+    try {
+        if (document.getElementById("myGrid")) {
+
+            /*** GRID OPTIONS ***/
+            var gridOptions = {
+                defaultColDef: {
+                    sortable: true
+                },
+                enableRtl: true,
+                columnDefs: columnDefs,
+                rowSelection: "multiple",
+                floatingFilter: true,
+                filter: true,
+                pagination: true,
+                paginationPageSize: columnCountShow,
+                pivotPanelShow: "always",
+                colResizeDefault: "shift",
+                animateRows: true,
+                resizable: true
+            };
+
+            /*** DEFINED TABLE VARIABLE ***/
+            var gridTable = document.getElementById(nameGrid);
+            /*** FILTER TABLE ***/
+            function updateSearchQuery(val) {
+                gridOptions.api.setQuickFilter(val);
+            }
+
+            $(".ag-grid-filter").on("keyup", function () {
+                updateSearchQuery($(this).val());
+            });
+
+            /*** CHANGE DATA PER PAGE ***/
+            function changePageSize(value) {
+                gridOptions.api.paginationSetPageSize(Number(value));
+            }
+
+            $(".sort-dropdown .dropdown-item").on("click", function () {
+                var $this = $(this);
+                changePageSize($this.text());
+                $(".filter-btn").text("1 - " + $this.text() + " of 50");
+            });
+
+            /*** EXPORT AS CSV BTN ***/
+            $(".ag-grid-export-btn").on("click", function (params) {
+                gridOptions.api.exportDataAsCsv();
+            });
+
+            //  filter data function
+            var filterData = function agSetColumnFilter(column, val) {
+                var filter = gridOptions.api.getFilterInstance(column)
+                var modelObj = null
+                if (val !== "all") {
+                    modelObj = {
+                        type: "equals",
+                        filter: val
+                    }
+                }
+                filter.setModel(modelObj)
+                gridOptions.api.onFilterChanged()
+            }
+            //  filter inside role
+            $("#users-list-role").on("change", function () {
+                var usersListRole = $("#users-list-role").val();
+                filterData("role", usersListRole)
+            });
+            //  filter inside verified
+            $("#users-list-verified").on("change", function () {
+                var usersListVerified = $("#users-list-verified").val();
+                filterData("is_verified", usersListVerified)
+            });
+            //  filter inside status
+            $("#users-list-status").on("change", function () {
+                var usersListStatus = $("#users-list-status").val();
+                filterData("status", usersListStatus)
+            });
+            //  filter inside department
+            $("#users-list-department").on("change", function () {
+                var usersListDepartment = $("#users-list-department").val();
+                filterData("department", usersListDepartment)
+            });
+            // filter reset
+            $(".users-data-filter").click(function () {
+                $('#users-list-role').prop('selectedIndex', 0);
+                $('#users-list-role').change();
+                $('#users-list-status').prop('selectedIndex', 0);
+                $('#users-list-status').change();
+                $('#users-list-verified').prop('selectedIndex', 0);
+                $('#users-list-verified').change();
+                $('#users-list-department').prop('selectedIndex', 0);
+                $('#users-list-department').change();
+            });
+            /*** GET TABLE DATA FROM URL ***/
+            agGrid
+                .simpleHttpRequest({
+                    url: "/Content/app-assets/data/users-list.json"
+                })
+                .then(function (data) {
+                    if (!GetNullEmpetyUndefined(Data)) {
+                        gridOptions.api.setRowData(Data);
+                    }
+                });
+            new agGrid.Grid(gridTable, gridOptions);
+
+
+        }
+    } catch (e) {
+
+    }
 };

@@ -67,7 +67,7 @@ deb = function () {
 
     }
 };
-AjaxCall = function (url, data, type, key = "", val = "") {
+AjaxCall = function (url, data, type) {
     return $.ajax({
         processData: false,
         url: url,
@@ -78,7 +78,7 @@ AjaxCall = function (url, data, type, key = "", val = "") {
         processData: false,
         traditional: true,
         contentType: 'application/json',
-        headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
+        headers: { "Authorization": 'Bearer ' + getlstor("token") },
         beforeSend: function (xhr) {
             $("#divProcessing").show();
         },

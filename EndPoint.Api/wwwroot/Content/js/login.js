@@ -19,8 +19,7 @@ $(document).ready(function () {
 
                 if (response.isSuccess === true) {
 
-                    /*setlstor("token", !GetNullEmpetyUndefined(response.data.token) ? response.data.token : "");*/
-                    localStorage.setItem("token", response.data.token);
+                    setlstor("token", !GetNullEmpetyUndefined(response.data.token) ? response.data.token : "");
                     setlstor("menu", !GetNullEmpetyUndefined(response.data.menus) && response.data.menus.length > 0 ? JSON.stringify(response.data.menus) : "");
                     setlstor("fullName", !GetNullEmpetyUndefined(response.data.fullName) ? response.data.fullName : "فاقد نام");
                     setlstor("userID", !GetNullEmpetyUndefined(response.data.userID) ? response.data.userID : "0");

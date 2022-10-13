@@ -9,7 +9,7 @@
                     'PageSize': 10
 
                 })
-            , 'POST', key = "", val = "").done(function (response) {
+            , 'POST').done(function (response) {
 
                 if (response.isSuccess === true) {
 

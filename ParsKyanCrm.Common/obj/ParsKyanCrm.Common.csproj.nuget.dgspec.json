@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {}
+    "D:\\Workspase\\Sarfarazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {}
   },
   "projects": {
-    "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {
+    "D:\\Workspase\\Sarfarazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
+        "projectUniqueName": "D:\\Workspase\\Sarfarazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
         "projectName": "ParsKyanCrm.Common",
-        "projectPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
-        "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-        "outputPath": "D:\\Programmings\\ParsKyanCrm_Git\\ParsKyanCrm.Common\\obj\\",
+        "projectPath": "D:\\Workspase\\Sarfarazi\\ParsKyanCrm\\ParsKyanCrm.Common\\ParsKyanCrm.Common.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "D:\\Workspase\\Sarfarazi\\ParsKyanCrm\\ParsKyanCrm.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.110\\RuntimeIdentifierGraph.json"
         }
       }
     }

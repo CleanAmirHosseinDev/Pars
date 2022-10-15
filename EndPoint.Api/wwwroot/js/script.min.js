@@ -21,7 +21,6 @@ fillMenu = function () {
         $('.user-name').html(getlstor("fullName"));
         var menu = JSON.parse(getlstor("menu"));
         var tempMenu = [];
-        deb();
         menu.forEach(function (item, i) {
             tempMenu.push({ "group": item.group, "labelGroup": item.labelGroup });
         });

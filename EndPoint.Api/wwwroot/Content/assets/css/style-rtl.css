@@ -9,3 +9,18 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 98%;
+        margin: 1.75rem auto;
+    }
+}
+
+.modal .modal-footer {
+
+    direction: ltr;
+    background-color: #F8F8F8;
+}
+.modal-body {
+    background-color: #efefef;
+}

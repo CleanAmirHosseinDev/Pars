@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Securitys\Commands\" />
+    <Compile Remove="Services\Securitys\Commands\**" />
+    <EmbeddedResource Remove="Services\Securitys\Commands\**" />
+    <None Remove="Services\Securitys\Commands\**" />
   </ItemGroup>
 
   <ItemGroup>

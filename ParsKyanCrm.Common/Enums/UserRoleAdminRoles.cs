@@ -15,7 +15,7 @@ namespace ParsKyanCrm.Common.Enums
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-        [Display(Name = "مشاهده")]
+        [Display(Name = "مشاهده")] 
         [Category("SystemStructure")]
         [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "/Admin/Users/Index")]
@@ -56,7 +56,7 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("BasicDefinitions")]
         [DisplayFiledAttribute(Name = "تعاریف پایه")]
-        [DisplayFiledAttribute1(Name = "/area/state/index")]
+        [DisplayFiledAttribute1(Name = "/Admin/State/index")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف استان")]
         [OrderAttribute(Order = 2)]
@@ -76,7 +76,7 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("BasicDefinitions")]
         [DisplayFiledAttribute(Name = "تعاریف پایه")]
-        [DisplayFiledAttribute1(Name = "/area/city/index")]
+        [DisplayFiledAttribute1(Name = "#")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف شهر")]
         [OrderAttribute(Order = 2)]
@@ -96,7 +96,7 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("BasicDefinitions")]
         [DisplayFiledAttribute(Name = "تعاریف پایه")]
-        [DisplayFiledAttribute1(Name = "/area/systemSeting/index")]
+        [DisplayFiledAttribute1(Name = "#")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تنظیمات سیستم")]
         [OrderAttribute(Order = 2)]

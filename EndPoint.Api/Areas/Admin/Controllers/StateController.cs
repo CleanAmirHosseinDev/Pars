@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace EndPoint.Api.Areas.Customer.Controllers
+namespace EndPoint.Api.Areas.Admin.Controllers
 {
-    public class HomeController : BaseController
+    public class StateController : BaseController
     {
         public IActionResult Index()
         {
             return View();
         }
-       
     }
 }

@@ -1,7 +1,6 @@
 ﻿
 $(document).ready(function () {
-
-
+   
     $('.logoff').on('click', function (e) {
         e.preventDefault();
         dellstor("token");
@@ -43,7 +42,7 @@ fillMenu = function () {
             srt += '<ul class="menu-content">';
             for (var i = 0; i < menu.length; i++)
                 if (item.group === menu[i].group && !GetNullEmpetyUndefined(menu[i].link))
-                    srt += '<li><a href="' + menu[i].link + '"><i class="feather icon-circle"></i><span id="' + menu[i].value + '" class="menu-item" data-i18n="List">' + menu[i].group_Item + '</span></a></li>';
+                    srt += '<li><a  href="' + menu[i].link + '"><i class="feather icon-circle"></i><span id="' + menu[i].value + '" class="menu-item" data-i18n="List">' + menu[i].group_Item + '</span></a></li>';
 
             srt += '</ul>';
             srt += '</li>';

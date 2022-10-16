@@ -1,0 +1,158 @@
+﻿
+<div class="content-wrapper">
+    <div class="content-body">
+
+        <section class="users-list-wrapper">
+
+            @*<div class="card">
+                <div class="card-header">
+                <h4 class="card-title">Filters</h4>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
+                <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
+
+                </ul>
+                </div>
+                </div>
+                <div class="card-content collapse show">
+                <div class="card-body">
+                <div class="users-list-filter">
+                <form>
+                <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                <label for="users-list-role">Role</label>
+                <fieldset class="form-group">
+                <select class="form-control" id="users-list-role">
+                <option value="">All</option>
+                <option value="user">User</option>
+                <option value="staff">Staff</option>
+                </select>
+                </fieldset>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                <label for="users-list-status">Status</label>
+                <fieldset class="form-group">
+                <select class="form-control" id="users-list-status">
+                <option value="">All</option>
+                <option value="Active">Active</option>
+                <option value="Blocked">Blocked</option>
+                <option value="deactivated">Deactivated</option>
+                </select>
+                </fieldset>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                <label for="users-list-verified">Verified</label>
+                <fieldset class="form-group">
+                <select class="form-control" id="users-list-verified">
+                <option value="">All</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+                </select>
+                </fieldset>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                <label for="users-list-department">Department</label>
+                <fieldset class="form-group">
+                <select class="form-control" id="users-list-department">
+                <option value="">All</option>
+                <option value="Sales">Sales</option>
+                <option value="Devlopment">Devlopment</option>
+                <option value="Management">Management</option>
+                </select>
+                </fieldset>
+                </div>
+                </div>
+                </form>
+                </div>
+                </div>
+                </div>
+                </div>*@
+
+            <div id="basic-examples">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="ag-grid-btns d-flex justify-content-between flex-wrap mb-1">
+
+                                        <div class="ag-btns d-flex flex-wrap">
+                                            <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box" style="width: 100% !important;" placeholder="جستجو...." />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myGrid" class="aggrid ag-theme-material"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<div class="col-md-4 col-sm-12" id="modelUser" style="display:none;">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <input type="hidden" id="id-User" value="" />
+                <input type="hidden" id="roles-user" value="" />
+
+                <!-- Modal -->
+                <div class="modal fade bd-example-modal-xl" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalScrollableTitle">مدیریت استان</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Content types section start -->
+                                <section id="content-types">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <input type="hidden" id="ID" value="" />
+                                                            <div class="col-sm-6 col-12">
+                                                                <fieldset class="form-group">
+                                                                    <label for="roundText">نام استان</label>
+                                                                    <input type="text" id="roundText" class="form-control round" required placeholder="نام استان">
+                                                                    <div class="invalid-feedback">
+                                                                       
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="conferm" class="btn btn-warning" data-dismiss="modal">ثبت</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/js/jquery.min.js" type="text/javascript"></script>
+<script src="~/js/Admin/State/Index.min.js"></script>

@@ -67,5 +67,17 @@
 
     },
     "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Admin/City/Index.min.js",
+    "inputFiles": [
+      "wwwroot/Content/Admin/City/Index.js"
+    ],
+    "minify": {
+
+      "enabled": false
+
+    },
+    "sourceMap": true
   }
 ]

@@ -10,3 +10,4 @@ namespace EndPoint.Api.Areas.Admin.Controllers
         }
     }
 }
+

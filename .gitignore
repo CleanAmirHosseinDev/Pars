@@ -721,3 +721,6 @@ ParsKyanCrm.Infrastructure/obj/Debug/net5.0/ParsKyanCrm.Infrastructure.Generated
 ParsKyanCrm.Infrastructure/obj/Debug/net5.0/ParsKyanCrm.Infrastructure.pdb
 ParsKyanCrm.Infrastructure/obj/Debug/net5.0/ref/ParsKyanCrm.Infrastructure.dll
 ParsKyanCrm.Infrastructure/obj/project.nuget.cache
+*.dll
+*.pdb
+*.cache

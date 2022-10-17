@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Domain.Entities.BasicInfo
         public int CityID { get; set; }
 
         [ForeignKey("State")]
-        public int? stateID { get; set; }
+        public int? StateID { get; set; }
 
         [StringLength(50)]
         public string CityName { get; set; }        

@@ -722,3 +722,4 @@ D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.dll
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\ref\EndPoint.Api.dll
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.pdb
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.genruntimeconfig.cache
+D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\State\Index.cshtml.g.cs

@@ -306,3 +306,7 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 .EndPoint.Api.csproj.AssemblyReference.cache
+*.dll
+EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.dll
+EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.dll
+*.dll

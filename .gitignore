@@ -724,3 +724,8 @@ ParsKyanCrm.Infrastructure/obj/project.nuget.cache
 *.dll
 *.pdb
 *.cache
+*.json
+*.json
+*.dll
+*.exe
+*.xml

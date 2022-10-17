@@ -76,7 +76,7 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("BasicDefinitions")]
         [DisplayFiledAttribute(Name = "تعاریف پایه")]
-        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute1(Name = "/Admin/City/index")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف شهر")]
         [OrderAttribute(Order = 2)]

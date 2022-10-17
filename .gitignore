@@ -442,3 +442,12 @@ EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.Views.dll
 *.dll
 *.pdb
 *.dll
+EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.dll
+EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.pdb
+EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.Views.dll
+EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.Views.pdb
+EndPoint.Api/obj/Debug/net5.0/EndPoint.Api.csproj.AssemblyReference.cache
+EndPoint.Api/obj/Debug/net5.0/EndPoint.Api.dll
+EndPoint.Api/obj/Debug/net5.0/EndPoint.Api.pdb
+EndPoint.Api/obj/Debug/net5.0/EndPoint.Api.Views.dll
+EndPoint.Api/obj/Debug/net5.0/EndPoint.Api.Views.pdb

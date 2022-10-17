@@ -440,3 +440,5 @@ About
 EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.Views.dll
 EndPoint.Api/bin/Debug/net5.0/EndPoint.Api.Views.dll
 *.dll
+*.pdb
+*.dll

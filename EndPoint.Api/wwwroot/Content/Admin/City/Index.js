@@ -9,17 +9,17 @@
     onSetting = function (e) {
 
 
-        AjaxCall('/api/admin/State/Get_State/' + e.data("id"),
+        AjaxCall('/api/admin/City/Get_City/' + e.data("id"),
             null
             , 'GET').done(function (response) {
-
-                if (!GetNullEmpetyUndefined(response) && response.stateID > 0) {
-                    deb();
+            
+                if (!GetNullEmpetyUndefined(response) && response.cityID > 0) {
+                    
                     $('#modelUser').show();
-                   
-                    $("#ID").val(encrypt(response.stateID.toString(), keyMaker()));
-                    $("#roundText").val(response.stateName)
 
+                    $("#ID").val(encrypt(response.cityID.toString(), keyMaker()));
+                    $("#roundText").val(response.cityName);
+                    //stateID
                 }
                 else {
                     Swal.fire({
@@ -67,10 +67,10 @@
         if (GetNullEmpetyUndefined($("#roundText").val())) {
             $("#roundText")[0].className = "form-control round is-invalid";
             $(".invalid-feedback").html("فیلد نام استان  اجباری است");
-          
+
         }
-     
-        
+
+
         AjaxCall('/api/admin/State/Save_State/',
 
             JSON.stringify(
@@ -89,7 +89,7 @@
                         confirmButtonText: 'متوجه شدم!',
                     }).then(function () {
 
-                        
+
                         $('#exampleModalScrollable').modal('hide');
                         location.reload();
                     });
@@ -133,7 +133,7 @@
 
 });
 fillGridUser = function () {
-    AjaxCall('/api/admin/State/Get_States/',
+    AjaxCall('/api/admin/City/Get_Citys/',
 
         JSON.stringify(
             {
@@ -141,11 +141,12 @@ fillGridUser = function () {
                 'PageSize': 100
             })
         , 'POST').done(function (response) {
+            deb();
             if (response.isSuccess === true) {
                 var temp = [];
 
                 response.data.forEach(function (item, i) {
-                    temp.push({ "id": item.stateID, "name": item.stateName, });
+                    temp.push({ "id": item.cityID, "name": item.cityName, "statename": item.state.stateName, "stateid": item.stateID });
                 });
 
                 var columnDefs = [{
@@ -158,9 +159,17 @@ fillGridUser = function () {
                      headerCheckboxSelection: true,*/
 
                 },
+
+                {
+                    headerName: 'نام شهر',
+                    field: 'name',
+                    filter: true,
+                    width: 200,
+
+                },
                 {
                     headerName: 'نام استان',
-                    field: 'name',
+                    field: 'statename',
                     filter: true,
                     width: 200,
                     //cellRenderer: customAvatarHTML,
@@ -171,8 +180,8 @@ fillGridUser = function () {
                     filter: true,
                     width: 200,
                     cellRenderer: function (params) {
-
-                        return '<div class="d-flex justify-content-center"><a href="#" style="font-size: 26px;" class="nav-link" data-id="' + params.data.id + '" data-name="' + params.data.name + '" onclick="onSetting($(this))" data-toggle="modal" data-target="#exampleModalScrollable" > <i class="ficon feather icon-check-square"></i></a> </div>';
+                        deb();
+                        return '<div class="d-flex justify-content-center"><a href="#" style="font-size: 26px;" class="nav-link" data-id="' + params.data.id + '" data-stateid="' + params.data.stateid + '" onclick="onSetting($(this))" data-toggle="modal" data-target="#exampleModalScrollable" > <i class="ficon feather icon-check-square"></i></a> </div>';
                     }
                 }
                 ];
@@ -202,7 +211,31 @@ fillGridUser = function () {
                 buttonsStyling: false,
                 confirmButtonText: 'متوجه شدم!',
             }).then(function () {
-                $('.logoff').click();
+
             });
+        });
+
+    AjaxCall('/api/admin/City/Get_States_Combo/',
+
+        JSON.stringify(
+            {
+                'PageIndex': 1,
+                'PageSize': 100
+            })
+        , 'POST').done(function (response) {
+            deb();
+            if (response.isSuccess === true) {
+                var srt = '';
+                for (var i = 0; i < response.data.length; i++) {
+                    srt += '<option value="' + response.data[i].stateID + '">' + response.data[i].stateName + '</option>';
+                }
+                $("#select2-customize-result").html(srt);
+
+
+            }
+
+        }).fail(function (error) {
+
+
         });
 };

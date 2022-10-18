@@ -69,7 +69,7 @@
                 </div>
                 </div>
                 </div>*@
-
+            <button type="button" id="confermAddOrEdit" class="btn btn-primary waves-effect waves-light">ایجاد</button>
             <div id="basic-examples">
                 <div class="card">
                     <div class="card-content">
@@ -77,16 +77,13 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="ag-grid-btns d-flex justify-content-between flex-wrap mb-1">
-
                                         <div class="ag-btns d-flex flex-wrap">
                                             <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box" style="width: 100% !important;" placeholder="جستجو...." />
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div id="myGrid" class="aggrid ag-theme-material"></div>
-
                         </div>
                     </div>
                 </div>
@@ -97,16 +94,17 @@
     </div>
 </div>
 
-<div class="col-md-4 col-sm-12" id="modalG" style="display:none;">
+<div class="col-md-4 col-sm-12" id="modelG" style="display:none;">
     <div class="card">
         <div class="card-content">
             <div class="card-body">
+
                 <!-- Modal -->
                 <div class="modal fade bd-example-modal-xl" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalScrollableTitle">مدیریت استان</h5>
+                                <h5 class="modal-title" id="exampleModalScrollableTitle">مدیریت تنظیمات سیستم</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -121,26 +119,43 @@
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <input type="hidden" id="ID" value="" />
-                                                            <input type="hidden" id="StateIDH" value="" />
-                                                            <div class="col-sm-6 col-12">
+                                                            <input type="hidden" id="Label" value="" />
+                                                            <input type="hidden" id="LabelCode" value="" />
+                                                            <input type="hidden" id="BaseAmount" value="" />
+                                                            <input type="hidden" id="FromAmount" value="" />
+                                                            <input type="hidden" id="ToAmount" value="" />
+
+                                                            <div class="col-sm-6 col-12" id="for-Add" style="display:none;">
                                                                 <div class="text-bold-600 font-medium-2">
                                                                     استان
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <select id="StateId" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                                    <select id="SeystemId" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6 col-12">
                                                                 <fieldset class="form-group">
-                                                                    <label for="roundText">نام شهر</label>
+                                                                    <label for="roundText">مقدار </label>
                                                                     <input type="text" id="roundText" class="form-control round" required placeholder="نام استان">
                                                                     <div class="invalid-feedback">
                                                                     </div>
                                                                 </fieldset>
                                                             </div>
-
+                                                            <div class="col-sm-6 col-12">
+                                                                <fieldset style="margin-top: 25px;">
+                                                                    <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                        <input id="isActive" type="checkbox" value="false">
+                                                                        <span class="vs-checkbox">
+                                                                            <span class="vs-checkbox--check">
+                                                                                <i class="vs-icon feather icon-check"></i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="">وضعیت</span>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,7 +163,6 @@
                                         </div>
                                     </div>
                                 </section>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" id="conferm" class="btn btn-warning" data-dismiss="modal">ثبت</button>
@@ -162,4 +176,4 @@
 </div>
 
 <script src="~/Content/js/jquery.min.js" type="text/javascript"></script>
-<script src="~/js/Admin/City/Index.min.js"></script>
+<script src="~/js/Admin/SystemSeting/Index.min.js"></script>

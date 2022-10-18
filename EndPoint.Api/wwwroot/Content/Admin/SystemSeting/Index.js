@@ -1,24 +1,72 @@
 ﻿$(document).ready(function () {
 
-
-
     fillGridUser();
 
-
-
     onSetting = function (e) {
+        if (false) {
+            AjaxCall('/api/admin/SystemSeting/Get_SystemSetings/',
 
 
-        AjaxCall('/api/admin/State/Get_State/' + e.data("id"),
+                JSON.stringify(
+                    {
+                        'PageIndex': 0,
+                        'PageSize': 0
+                        /*'LabeCode': e.data('labecode')*/
+                    })
+                , 'POST').done(function (response) {
+                    deb();
+                    if (response.isSuccess === true) {
+                        var str = '';
+                        for (var i = 0; i < response.data.length; i++) {
+                            str += '<option value="' + response.data[i].systemSetingID + '" >' + response.data[i].value + '</option>';
+                        }
+                        $('#SeystemId').html(str);
+                    }
+                    else {
+                        Swal.fire({
+                            title: "خطا!",
+                            text: response.message,
+                            type: "error",
+                            confirmButtonClass: 'btn btn-primary',
+                            buttonsStyling: false,
+                            confirmButtonText: 'متوجه شدم!',
+                        }).then(function () {
+                            window.location.href = "/Admin/Home/index";
+                        });
+
+                    }
+                }).fail(function (error) {
+
+                    Swal.fire({
+                        title: "خطا!",
+                        text: "خطای غیر منتظره!",
+                        type: "error",
+                        confirmButtonClass: 'btn btn-primary',
+                        buttonsStyling: false,
+                        confirmButtonText: 'متوجه شدم!',
+                    }).then(function () {
+                        window.location.href = "/Admin/Home/index";
+                    });
+                });
+        }
+        AjaxCall('/api/admin/SystemSeting/Get_SystemSeting/' + e.data("id"),
             null
             , 'GET').done(function (response) {
 
-                if (!GetNullEmpetyUndefined(response) && response.stateID > 0) {
+                if (!GetNullEmpetyUndefined(response) && response.systemSetingID > 0) {
                     deb();
-                    $('#modelUser').show();
-                   
-                    $("#ID").val(encrypt(response.stateID.toString(), keyMaker()));
-                    $("#roundText").val(response.stateName)
+                    $('#isActive').prop('checked', response.isActive === 15 ? true : false);
+                    $("#ID").val(encrypt(response.systemSetingID.toString(), keyMaker()));
+                    $('#Label').val(response.label);
+                    $('#LabelCode').val(response.labeCode);
+
+                    $('#BaseAmount').val(response.baseAmount);
+                    $('#FromAmount').val(response.fromAmount);
+                    $('#ToAmount').val(response.toAmount);
+
+                    $("#roundText").val(response.value);
+                    $('#modelG').show();
+
 
                 }
                 else {
@@ -48,7 +96,12 @@
                     $('#exampleModalScrollable').modal('hide');
                 });
             });
+
+
+
+
     }
+
     $('#roundText').on('keyup', function (e) {
         e.preventDefault();
         if (!GetNullEmpetyUndefined($("#roundText").val())) {
@@ -57,26 +110,34 @@
 
         } else {
             $("#roundText")[0].className = "form-control round is-invalid";
-            $(".invalid-feedback").html("فیلد نام استان  اجباری است");
+            $(".invalid-feedback").html("فیلد مقدار  اجباری است");
         }
         e.stopPropagation();
     });
+
     $('#conferm').on('click', function (e) {
         e.preventDefault();
 
         if (GetNullEmpetyUndefined($("#roundText").val())) {
             $("#roundText")[0].className = "form-control round is-invalid";
-            $(".invalid-feedback").html("فیلد نام استان  اجباری است");
-          
+            $(".invalid-feedback").html("فیلد مقدار اجباری است");
+
         }
-     
-        
-        AjaxCall('/api/admin/State/Save_State/',
+
+
+        AjaxCall('/api/admin/SystemSeting/Save_SystemSeting/',
 
             JSON.stringify(
                 {
-                    'StateID': decrypt($("#ID").val(), keyMaker()),
-                    'StateName': $("#roundText").val()
+                    'SystemSetingID': decrypt($("#ID").val(), keyMaker()),
+                    'IsActive': ($('#isActive')[0].checked ? 15 : 14),
+                    'Label': $("#Label").val(),
+                    'LabeCode': $("#LabelCode").val(),
+                    'Value': $("#roundText").val(),
+                    'BaseAmount': !GetNullEmpetyUndefined($("#BaseAmount").val()) ? parseInt($("#BaseAmount").val()) : null,
+                    'FromAmount': !GetNullEmpetyUndefined($("#FromAmount").val()) ? parseFloat($("#FromAmount").val()) : null ,
+                    'ToAmount': !GetNullEmpetyUndefined($("#ToAmount").val()) ? parseFloat($("#ToAmount").val()) : null
+
                 })
             , 'POST').done(function (response) {
                 if (response.isSuccess === true) {
@@ -89,7 +150,7 @@
                         confirmButtonText: 'متوجه شدم!',
                     }).then(function () {
 
-                        
+
                         $('#exampleModalScrollable').modal('hide');
                         location.reload();
                     });
@@ -123,17 +184,23 @@
                     $('#exampleModalScrollable').modal('hide');
                 });
             });
-
-
-
         e.stopPropagation();
     });
-
-
+    $('#confermAddOrEdit').on('click', function (e) {
+        alert("kjfdshj")
+    });
 
 });
+
+
+var customHTML = function (params) {
+
+    return '<div data-id="' + params.data.id + '" data-name="' + params.data.name + '" data-labeCode="' + params.data.labeCode + '" data-isActive="' + params.data.isActive + '" onclick="onSetting($(this))" data-toggle="modal" data-target="#exampleModalScrollable"  style="width: 100% !important;height: inherit !important;min-width: 50px !important;" >' + params.value + '</div>';
+
+};
+
 fillGridUser = function () {
-    AjaxCall('/api/admin/State/Get_States/',
+    AjaxCall('/api/admin/SystemSeting/Get_SystemSetings/',
 
         JSON.stringify(
             {
@@ -141,40 +208,44 @@ fillGridUser = function () {
                 'PageSize': 100
             })
         , 'POST').done(function (response) {
+            deb();
             if (response.isSuccess === true) {
                 var temp = [];
 
                 response.data.forEach(function (item, i) {
-                    temp.push({ "id": item.stateID, "name": item.stateName, });
+                    temp.push({ "row": (i + 1), "id": item.systemSetingID, "isActive": item.isActive, "isActiveStr": item.isActiveStr, "value": item.value, "labeCode": item.labeCode, "name": item.label, "baseAmount": item.baseAmount, "fromAmount": item.fromAmount, "toAmount": item.toAmount });
                 });
 
                 var columnDefs = [{
-                    headerName: 'شناسه',
-                    field: 'id',
+                    headerName: 'ردیف',
+                    field: 'row',
                     width: 200,
                     filter: true,
-                    /* checkboxSelection: true,
-                     headerCheckboxSelectionFilteredOnly: true,
-                     headerCheckboxSelection: true,*/
-
+                    cellRenderer: customHTML
                 },
                 {
-                    headerName: 'نام استان',
+                    headerName: 'نام ',
                     field: 'name',
                     filter: true,
                     width: 200,
-                    //cellRenderer: customAvatarHTML,
+                    cellRenderer: customHTML
                 },
                 {
-                    headerName: 'عملیات',
-                    field: 'setting_',
+                    headerName: 'مقدار ',
+                    field: 'value',
                     filter: true,
                     width: 200,
-                    cellRenderer: function (params) {
+                    cellRenderer: customHTML
+                },
+                {
+                    headerName: 'وضعیت',
+                    field: 'isActiveStr',
+                    filter: true,
+                    width: 200,
+                    cellRenderer: customHTML
 
-                        return '<div class="d-flex justify-content-center"><a href="#" style="font-size: 26px;" class="nav-link" data-id="' + params.data.id + '" data-name="' + params.data.name + '" onclick="onSetting($(this))" data-toggle="modal" data-target="#exampleModalScrollable" > <i class="ficon feather icon-check-square"></i></a> </div>';
-                    }
                 }
+
                 ];
 
                 fillGrid(temp, columnDefs, columnCountShow = 10, nameGrid = "myGrid");
@@ -188,7 +259,7 @@ fillGridUser = function () {
                     buttonsStyling: false,
                     confirmButtonText: 'متوجه شدم!',
                 }).then(function () {
-                    window.location.href ="/Admin/Home/index";
+                    window.location.href = "/Admin/Home/index";
                 });
 
             }
@@ -205,4 +276,6 @@ fillGridUser = function () {
                 window.location.href = "/Admin/Home/index";
             });
         });
+
+
 };

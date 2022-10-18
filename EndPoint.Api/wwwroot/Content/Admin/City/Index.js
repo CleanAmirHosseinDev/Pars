@@ -147,6 +147,7 @@ fillGridUser = function () {
                 'PageSize': 100
             })
         , 'POST').done(function (response) {
+            deb();
             if (response.isSuccess === true) {
                 var temp = [];
                 deb();
@@ -161,12 +162,13 @@ fillGridUser = function () {
                     filter: true,
                     cellRenderer: customHTML
                 },
+
                 {
                     headerName: 'نام شهر',
                     field: 'name',
                     filter: true,
                     width: 200,
-                    cellRenderer: customHTML
+                    //cellRenderer: customAvatarHTML,
                 },
                 {
                     headerName: 'نام استان',
@@ -212,8 +214,32 @@ fillGridUser = function () {
                 buttonsStyling: false,
                 confirmButtonText: 'متوجه شدم!',
             }).then(function () {
-                $('.logoff').click();
+
             });
+        });
+
+    AjaxCall('/api/admin/City/Get_States_Combo/',
+
+        JSON.stringify(
+            {
+                'PageIndex': 1,
+                'PageSize': 100
+            })
+        , 'POST').done(function (response) {
+            deb();
+            if (response.isSuccess === true) {
+                var srt = '';
+                for (var i = 0; i < response.data.length; i++) {
+                    srt += '<option value="' + response.data[i].stateID + '">' + response.data[i].stateName + '</option>';
+                }
+                $("#select2-customize-result").html(srt);
+
+
+            }
+
+        }).fail(function (error) {
+
+
         });
 
     AjaxCall('/api/admin/City/Get_States_Combo/',

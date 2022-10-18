@@ -76,6 +76,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\js\Admin\City\" />
     <Folder Include="wwwroot\js\Admin\State\" />
     <Folder Include="wwwroot\js\Admin\Users\" />
   </ItemGroup>

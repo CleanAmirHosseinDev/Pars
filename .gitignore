@@ -730,3 +730,4 @@ ParsKyanCrm.Infrastructure/obj/project.nuget.cache
 *.exe
 *.xml
 *.cache
+/EndPoint.Api/wwwroot/js/Admin/SystemSeting

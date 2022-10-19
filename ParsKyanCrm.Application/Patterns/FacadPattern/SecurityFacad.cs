@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ParsKyanCrm.Application.Services.Securitys.Base.Queries.AuthenticationJwt;
+using ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode;
 using ParsKyanCrm.Application.Services.Securitys.Queries.Logins;
 using ParsKyanCrm.Domain.Contexts;
 using System;
@@ -13,6 +14,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
     public interface ISecurityFacad
     {
         ILoginsService LoginsService { get; }
+
+        IAutenticatedCodeService AutenticatedCodeService { get; }
     }
 
     public class SecurityFacad : ISecurityFacad
@@ -36,6 +39,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _loginsService = _loginsService ?? new LoginsService(_context,_mapper,_basicInfoFacad,_baseSecurityFacad);
+            }
+        }
+
+        private IAutenticatedCodeService _autenticatedCodeService;
+        public IAutenticatedCodeService AutenticatedCodeService
+        {
+            get
+            {
+                return _autenticatedCodeService = _autenticatedCodeService ?? new AutenticatedCodeService(_context, _mapper, _basicInfoFacad, _baseSecurityFacad);
             }
         }
 

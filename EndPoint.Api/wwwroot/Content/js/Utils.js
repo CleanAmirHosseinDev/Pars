@@ -255,3 +255,6 @@ fillGrid = function (Data, columnDefs, columnCountShow = 10, nameGrid = "myGrid"
 
     }
 };
+setSelect = function (e, v, t) {
+    $(e).append('<option value="' + v + '">' + t + '</option>');
+};

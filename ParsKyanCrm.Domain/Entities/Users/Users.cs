@@ -34,5 +34,7 @@ namespace ParsKyanCrm.Domain.Entities.Users
 
         public virtual ICollection<UserRoles> UserRoles { get; set; }
 
+        public virtual ICollection<RequestForReating> RequestForReatings { get; set; }
+
     }
 }

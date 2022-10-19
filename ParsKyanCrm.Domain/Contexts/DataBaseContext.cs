@@ -24,8 +24,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
         DbSet<Customers> Customers { get; set; }
 
-        DbSet<SystemSeting> SystemSetings { get; set; }
-
+        DbSet<SystemSeting> SystemSetings { get; set; }        
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
@@ -39,6 +38,8 @@ namespace ParsKyanCrm.Domain.Contexts
         {
         }
 
+        public virtual DbSet<Customers> Customers { get; set; }
+
         public virtual DbSet<City> City { get; set; }
 
         public virtual DbSet<State> States { get; set; }
@@ -48,8 +49,6 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<UserRoles> UserRoles { get; set; }
 
         public virtual DbSet<Roles> Roles { get; set; }
-
-        public virtual DbSet<Customers> Customers { get; set; }
 
         public virtual DbSet<SystemSeting> SystemSetings { get; set; }
 

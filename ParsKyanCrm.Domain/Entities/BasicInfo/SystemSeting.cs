@@ -31,7 +31,7 @@ namespace ParsKyanCrm.Domain.Entities.BasicInfo
 
         public double? FromAmount { get; set; }
 
-        public double? ToAmount { get; set; }
+        public double? ToAmount { get; set; }        
 
         public virtual ICollection<Customers> Customers { get; set; }
 

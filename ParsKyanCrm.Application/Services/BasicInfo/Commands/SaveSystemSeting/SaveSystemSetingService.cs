@@ -31,6 +31,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
                 EntityEntry<SystemSeting> q_Entity;
                 if (request.SystemSetingID == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     q_Entity = _context.SystemSetings.Add(_mapper.Map<SystemSeting>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<SystemSetingDto>(q_Entity.Entity);
@@ -47,9 +48,6 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
                         },
                         {
                             nameof(q_Entity.Entity.Value),request.Value
-                        },
-                        {
-                            nameof(q_Entity.Entity.IsActive),request.IsActive
                         },
                         {
                             nameof(q_Entity.Entity.FromAmount),request.FromAmount

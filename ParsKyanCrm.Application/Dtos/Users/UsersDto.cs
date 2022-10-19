@@ -1,4 +1,5 @@
-﻿using ParsKyanCrm.Common;
+﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
     }
 
-    public class UsersDto
+    public class UsersDto : BaseEntityDto
     {
 
         public int UserID { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParsKyanCrm.Domain.Entities.BasicInfo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace ParsKyanCrm.Domain.Entities.Users
 {
     [Table("Users")]
-    public class Users
+    public class Users : BaseEntity
     {
 
         [Key]

@@ -5,7 +5,9 @@ using Newtonsoft.Json;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
+using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Domain.Contexts;
+using ParsKyanCrm.Domain.Entities.Users;
 using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
@@ -30,6 +32,20 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
             _baseSecurityFacad = baseSecurityFacad;
+        }
+
+        private string MaxAllRequestNo()
+        {
+            try
+            {
+                List<RequestForReatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForReatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForReating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNo"));
+                if (q != null) return q.FirstOrDefault().RequestNo.ToString();
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         //هنوز کامل نشده فقط مبین روی این قسمت کار کند
@@ -109,12 +125,19 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     }
                     else
                     {
-                        var resCus = _context.Customers.Add(new Domain.Entities.Users.Customers()
+                        var resCus = _context.RequestForReating.Add(new Domain.Entities.Users.RequestForReating()
                         {
-                            AgentMobile = request.Mobile,
-                            IsActive = (byte)Common.Enums.TablesGeneralIsActive.InActive,
-                            SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+                            Customer = new Domain.Entities.Users.Customers()
+                            {
+                                AgentMobile = request.Mobile,
+                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.InActive,
+                                SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+                            },
+                            RequestNo = int.Parse(MaxAllRequestNo()),
+                            DateOfRequest = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
+                            Status = (int)RequestForReatingStatus.UnderInvestigation
                         });
+                        await _context.SaveChangesAsync();
 
                         res_ResultLoginDto.FullName = string.Empty;
                         res_ResultLoginDto.UserID = 0;
@@ -150,7 +173,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             {
                 throw ex;
             }
-        }        
+        }
 
         private async Task<UserRolesDto> CheckUserRole(int UserID)
         {

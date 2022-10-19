@@ -12,8 +12,6 @@ namespace ParsKyanCrm.Common.Enums
     public enum UserRoleAdminRoles : int
     {
         #region ساختار سیستم
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         [Display(Name = "مشاهده")] 
         [Category("SystemStructure")]
@@ -33,7 +31,7 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 1)]
         Users_Save = 103,
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
         [Display(Name = "مشاهده و ویرایش و افزودن")]
         [Category("SystemStructure")]
@@ -44,18 +42,11 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 1)]
         SetAccessLevels = 104,
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        #endregion
-
-        #region تعاریف پایه
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
         [Display(Name = "مشاهده")]
-        [Category("BasicDefinitions")]
-        [DisplayFiledAttribute(Name = "تعاریف پایه")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "/Admin/State/index")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف استان")]
@@ -63,19 +54,17 @@ namespace ParsKyanCrm.Common.Enums
         State = 105,
 
         [Display(Name = "ویرایش و افزودن")]
-        [Category("BasicDefinitions")]
-        [DisplayFiledAttribute(Name = "تعاریف پایه")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف استان")]
         [OrderAttribute(Order = 2)]
         State_Save = 106,
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
         [Display(Name = "مشاهده")]
-        [Category("BasicDefinitions")]
-        [DisplayFiledAttribute(Name = "تعاریف پایه")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "/Admin/City/index")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف شهر")]
@@ -83,19 +72,17 @@ namespace ParsKyanCrm.Common.Enums
         City = 107,
 
         [Display(Name = "ویرایش و افزودن")]
-        [Category("BasicDefinitions")]
-        [DisplayFiledAttribute(Name = "تعاریف پایه")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تعریف شهر")]
         [OrderAttribute(Order = 2)]
         City_Save = 108,
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         [Display(Name = "مشاهده")]
-        [Category("BasicDefinitions")]
-        [DisplayFiledAttribute(Name = "تعاریف پایه")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "/Admin/SystemSeting/index")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تنظیمات سیستم")]
@@ -103,17 +90,15 @@ namespace ParsKyanCrm.Common.Enums
         SystemSeting = 109,
 
         [Display(Name = "ویرایش و افزودن")]
-        [Category("BasicDefinitions")]
-        [DisplayFiledAttribute(Name = "تعاریف پایه")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تنظیمات سیستم")]
         [OrderAttribute(Order = 2)]
         SystemSeting_Save = 110,
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
         #endregion
+
     }
 }

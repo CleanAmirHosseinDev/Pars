@@ -47,3 +47,4 @@ log/
 #wwwroot/
 
 /EndPoint.Api/wwwroot/js
+/EndPoint.Api/[obj/Debug/net5.0/].cache

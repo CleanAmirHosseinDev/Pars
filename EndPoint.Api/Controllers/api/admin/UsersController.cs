@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Api.Controllers.api.admin
 {
-   
+
     [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.Users })]
     public class UsersController : BaseController
     {
@@ -33,6 +33,7 @@ namespace EndPoint.Api.Controllers.api.admin
         {
             try
             {
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 return await _userFacad.GetUserssService.Execute(request);
             }
             catch (Exception ex)
@@ -48,7 +49,7 @@ namespace EndPoint.Api.Controllers.api.admin
         {
             try
             {
-                return await _userFacad.GetUsersService.Execute(id);
+                return await _userFacad.GetUsersService.Execute(new RequestUserRolesDto() { UserID = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {

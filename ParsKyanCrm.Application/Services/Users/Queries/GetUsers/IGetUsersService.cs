@@ -5,6 +5,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUsers
 {
     public interface IGetUsersService
     {
-        Task<UserRolesDto> Execute(int? id = null);
+        Task<UserRolesDto> Execute(RequestUserRolesDto request);
     }
 }

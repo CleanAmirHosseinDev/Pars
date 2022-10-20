@@ -33,7 +33,9 @@ namespace ParsKyanCrm.Domain.Entities.BasicInfo
 
         public double? ToAmount { get; set; }
 
-        public virtual ICollection<Customers> Customers { get; set; }
+        public virtual ICollection<Customers> CustomerHowGetKnowCompanies { get; set; }
+        public virtual ICollection<Customers> CustomerKindOfCompanies { get; set; }
+        public virtual ICollection<Customers> CustomerTypeServiceRequesteds { get; set; }
 
     }
 }

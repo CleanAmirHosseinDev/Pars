@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
             {
                 throw ex;
             }
-        }       
+        }
 
         private string Validation_Execute(UserRolesDto request)
         {
@@ -77,7 +77,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                 if (!Check_Remote(new UserRolesDto() { UserID = request.UserID, User = new UsersDto() { UserName = request.User.UserName } }))
                 {
                     return "نام کاربری مورد نظر ار قبل موجود می باشد لطفا نام کاربری دیگری وارد نمایید";
-                }                
+                }
 
                 return string.Empty;
             }
@@ -116,12 +116,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                         RoleID = request.RoleID,
                         User = new Domain.Entities.Users.Users()
                         {
+                            IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
                             Email = request.User.Email,
                             Ip = request.User.Ip,
                             Mobile = request.User.Mobile,
                             Password = request.User.Password,
                             Status = request.User.Status,
-                            UserName = request.User.UserName,                            
+                            UserName = request.User.UserName,
                         }
                     });
                     await _context.SaveChangesAsync();

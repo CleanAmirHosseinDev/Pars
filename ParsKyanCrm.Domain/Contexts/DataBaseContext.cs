@@ -26,6 +26,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
         DbSet<SystemSeting> SystemSetings { get; set; }
 
+        DbSet<RequestForReating> RequestForReating { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
@@ -39,6 +40,8 @@ namespace ParsKyanCrm.Domain.Contexts
         {
         }
 
+        public virtual DbSet<Customers> Customers { get; set; }
+
         public virtual DbSet<City> City { get; set; }
 
         public virtual DbSet<State> States { get; set; }
@@ -49,15 +52,28 @@ namespace ParsKyanCrm.Domain.Contexts
 
         public virtual DbSet<Roles> Roles { get; set; }
 
-        public virtual DbSet<Customers> Customers { get; set; }
-
         public virtual DbSet<SystemSeting> SystemSetings { get; set; }
 
+        public virtual DbSet<RequestForReating> RequestForReating { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            
+            modelBuilder.Entity<Customers>(entity =>
+            {
+
+                entity.HasOne(d => d.HowGetKnowCompany)
+                    .WithMany(p => p.CustomerHowGetKnowCompanies)
+                    .HasForeignKey(d => d.HowGetKnowCompanyID);
+
+                entity.HasOne(d => d.KindOfCompany)
+                    .WithMany(p => p.CustomerKindOfCompanies)
+                    .HasForeignKey(d => d.KindOfCompanyID);
+
+                entity.HasOne(d => d.TypeServiceRequested)
+                    .WithMany(p => p.CustomerTypeServiceRequesteds)
+                    .HasForeignKey(d => d.TypeServiceRequestedID);
+            });
 
         }
 

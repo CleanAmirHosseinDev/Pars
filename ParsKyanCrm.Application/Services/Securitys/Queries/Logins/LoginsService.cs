@@ -5,7 +5,10 @@ using Newtonsoft.Json;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
+using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Domain.Contexts;
+using ParsKyanCrm.Domain.Entities.Users;
+using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
@@ -22,11 +25,27 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
-        public LoginsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IBaseSecurityFacad _baseSecurityFacad;
+        public LoginsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IBaseSecurityFacad baseSecurityFacad)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
+            _baseSecurityFacad = baseSecurityFacad;
+        }
+
+        private string MaxAllRequestNo()
+        {
+            try
+            {
+                List<RequestForReatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForReatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForReating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNo"));
+                if (q != null) return q.FirstOrDefault().RequestNo.ToString();
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         //هنوز کامل نشده فقط مبین روی این قسمت کار کند
@@ -38,97 +57,109 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                 var res_ResultLoginDto = new ResultLoginDto();
 
-                string strPassword = Infrastructure.EncryptDecrypt.Encrypt(request.Password);
                 UserRolesDto qCheckUserRole = null;
-                var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == request.Username && x.Password == strPassword && x.Status == true);
-                if (user == null)
-                    return new ResultDto<ResultLoginDto>
-                    {
-                        Data = null,
-                        IsSuccess = false,
-                        Message = "نام کاربری یا کلمه عبور یافت نشد",
-                    };
-                else
+                Domain.Entities.Users.Users user = null;
+
+                if (string.IsNullOrEmpty(request.Mobile))
                 {
+                    //Admin And Supervisor
+                    string strPassword = Infrastructure.EncryptDecrypt.Encrypt(request.Password);
 
-                    qCheckUserRole = await CheckUserRole(user.UserID);
-                    if (qCheckUserRole != null)
-                    {
-
-                        LoginName = qCheckUserRole.Role.RoleTitle;
-
-                        if (LoginName != "Customer")
-                        {
-                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
-                            res_ResultLoginDto.UserID = user.UserID;
-                            res_ResultLoginDto.CustomerID = null;
-                        }
-                        else
-                        {
-                            res_ResultLoginDto.UserID = 0;
-                            res_ResultLoginDto.CustomerID = "Diane";
-                            res_ResultLoginDto.FullName = "Diane";
-                            //FullName Customers Get In Table
-                        }
-                        
-
-                    }
-                    else
+                    user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == request.Username && x.Password == strPassword && x.Status == true);
+                    if (user == null)
                         return new ResultDto<ResultLoginDto>
                         {
                             Data = null,
                             IsSuccess = false,
-                            Message = "شما به پنل دسترسی ندارید",
+                            Message = "نام کاربری یا کلمه عبور یافت نشد",
                         };
-                }
-
-                // authentication successful so generate jwt token
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(VaribleForName.Secret);
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
+                    else
                     {
-                        new Claim(ClaimTypes.Role,LoginName)
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
 
-                if (!string.IsNullOrEmpty(res_ResultLoginDto.CustomerID)) tokenDescriptor.Subject.AddClaim(new Claim("CustomerID", res_ResultLoginDto.CustomerID));
-                if (res_ResultLoginDto.UserID != 0) tokenDescriptor.Subject.AddClaim(new Claim("UserID", res_ResultLoginDto.UserID.ToString()));
+                        qCheckUserRole = await CheckUserRole(user.UserID);
+                        if (qCheckUserRole != null)
+                        {
 
-                List<NormalJsonClassDto> obj_fillUserRoleCustomerRoles = null;
+                            LoginName = qCheckUserRole.Role.RoleTitle;
 
-                switch (LoginName)
+                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
+                            res_ResultLoginDto.UserID = user.UserID;
+                            res_ResultLoginDto.CustomerID = null;
+
+
+                        }
+                        else
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "شما به پنل دسترسی ندارید",
+                            };
+                    }
+                }
+                else
                 {
-                    case "Admin":
+                    //Customer
+                    LoginName = "Customer";
+                    bool needSms = false;
 
-                        obj_fillUserRoleCustomerRoles = 
-                            user.UserName != "admin" ?
-                            _basicInfoFacad.FillUserRoleAdminRolesService.Execute(qCheckUserRole.Roles).Where(p => p.Selected).ToList() :
-                            _basicInfoFacad.FillUserRoleAdminRolesService.Execute();
+                    var cusUser = await _context.Customers.FirstOrDefaultAsync(p => p.AgentMobile == request.Mobile);
+                    if (cusUser != null)
+                    {
+                        if (cusUser.IsActive == (byte)Common.Enums.TablesGeneralIsActive.InActive)
+                        {
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "اکانت شما توسط مدیران سامانه غیر فعال شده است لطفا برای استفاده مجدد از اکانت به قسمت پشتیبانی سامانه تماس حاصل فرمایید",
+                            };
+                        }
 
-                        tokenDescriptor.Subject.AddClaim(new Claim("Menus", JsonConvert.SerializeObject(obj_fillUserRoleCustomerRoles)));
+                        res_ResultLoginDto.FullName = cusUser.AgentName;
+                        res_ResultLoginDto.UserID = 0;
+                        res_ResultLoginDto.CustomerID = cusUser.CustomerID.ToString().Encrypt_Advanced_For_Number();
 
-                        break;
+                        needSms = true;
 
-                    case "Supervisor":
+                    }
+                    else
+                    {
+                        var resCus = _context.RequestForReating.Add(new Domain.Entities.Users.RequestForReating()
+                        {
+                            Customer = new Domain.Entities.Users.Customers()
+                            {
+                                AgentMobile = request.Mobile,
+                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.InActive,
+                                SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+                            },
+                            RequestNo = int.Parse(MaxAllRequestNo()),
+                            DateOfRequest = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
+                            Status = (int)RequestForReatingStatus.UnderInvestigation
+                        });
+                        await _context.SaveChangesAsync();
+
+                        res_ResultLoginDto.FullName = string.Empty;
+                        res_ResultLoginDto.UserID = 0;
+                        res_ResultLoginDto.CustomerID = resCus.Entity.CustomerID.ToString().Encrypt_Advanced_For_Number();
+
+                        needSms = true;
 
 
+                    }
 
-                        break;
 
-                    default:
+                    //Send Sms
+                    //Use Field needSms In Condition Under
+                    if (true)
+                    {
 
-                        break;
+                    }
+
                 }
 
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-
-                res_ResultLoginDto.Token = tokenHandler.WriteToken(token);
-
-                if (obj_fillUserRoleCustomerRoles != null) res_ResultLoginDto.Menus = obj_fillUserRoleCustomerRoles;
+                // authentication successful so generate jwt token           
+                if (LoginName != "Customer") _baseSecurityFacad.AuthenticationJwtService.Execute(LoginName, res_ResultLoginDto, qCheckUserRole, user);
 
                 return new ResultDto<ResultLoginDto>
                 {

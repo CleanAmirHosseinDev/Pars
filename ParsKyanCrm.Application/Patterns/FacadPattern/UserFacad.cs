@@ -12,6 +12,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveUsers;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRoless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetAccessLevels;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAccessLevels;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -28,6 +29,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetAccessLevelsService GetAccessLevelsService { get; }
 
         ISaveAccessLevelsService SaveAccessLevelsService { get; }
+
+        ISaveBasicInformationCustomersService SaveBasicInformationCustomersService { get; }
 
     }
 
@@ -50,7 +53,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getUserssService = _getUserssService ?? new GetUserssService(_context, _mapper,_basicInfoFacad);
+                return _getUserssService = _getUserssService ?? new GetUserssService(_context, _mapper, _basicInfoFacad);
             }
         }
 
@@ -96,6 +99,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveAccessLevelsService = _saveAccessLevelsService ?? new SaveAccessLevelsService();
+            }
+        }
+
+        private ISaveBasicInformationCustomersService _saveBasicInformationCustomersService;
+        public ISaveBasicInformationCustomersService SaveBasicInformationCustomersService
+        {
+            get
+            {
+                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad);
             }
         }
 

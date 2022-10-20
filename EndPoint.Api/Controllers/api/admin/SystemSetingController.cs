@@ -29,6 +29,7 @@ namespace EndPoint.Api.Controllers.api.admin
         {
             try
             {
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 return await _basicInfoFacad.GetSystemSetingsService.Execute(request);
             }
             catch (Exception ex)
@@ -44,7 +45,7 @@ namespace EndPoint.Api.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetSystemSetingService.Execute(new RequestSystemSetingDto() { SystemSetingID = id });
+                return await _basicInfoFacad.GetSystemSetingService.Execute(new RequestSystemSetingDto() { SystemSetingID = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {

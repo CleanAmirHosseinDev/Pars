@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode;
 using ParsKyanCrm.Application.Services.Securitys.Queries.Logins;
 using ParsKyanCrm.Common.Dto;
 using System;
@@ -29,6 +30,20 @@ namespace EndPoint.Api.Controllers.api
             try
             {
                 return await _securityFacad.LoginsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<ResultLoginDto>> AutenticatedCode([FromBody] RequestAutenticatedCodeDto request)
+        {
+            try
+            {
+                return await _securityFacad.AutenticatedCodeService.Execute(request);
             }
             catch (Exception ex)
             {

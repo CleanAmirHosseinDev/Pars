@@ -72,9 +72,13 @@ namespace EndPoint.Api
             });
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
+            
             services.AddScoped<IUserFacad, UserFacad>();
+
+            services.AddScoped<IBaseSecurityFacad, BaseSecurityFacad>();
             services.AddScoped<ISecurityFacad, SecurityFacad>();
-            services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();
+
+            services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();            
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(VaribleForName.MainConnectionString));
            

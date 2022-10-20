@@ -22,18 +22,6 @@ J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\Par
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.dll
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ref\ParsKyanCrm.Common.dll
 J:\WorkSpase\Hamid Sarafrazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.pdb
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.deps.json
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.dll
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ref\ParsKyanCrm.Common.dll
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.pdb
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.AssemblyReference.cache
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.GeneratedMSBuildEditorConfig.editorconfig
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.AssemblyInfoInputs.cache
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.AssemblyInfo.cs
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.csproj.CoreCompileInputs.cache
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.dll
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ref\ParsKyanCrm.Common.dll
-D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Common\obj\Debug\net5.0\ParsKyanCrm.Common.pdb
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.deps.json
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Common\bin\Debug\net5.0\ParsKyanCrm.Common.dll
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Common\bin\Debug\net5.0\ref\ParsKyanCrm.Common.dll

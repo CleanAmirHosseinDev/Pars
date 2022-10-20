@@ -39,7 +39,14 @@ bld/
 bin/
 obj/
 log/
-
+[Ee]nd[Pp]oint.[Aa]pi\obj
+[Pp]ars[kk]yan[Cc]rm.[Aa]pplication\obj
+[Ppars[kk]yan[Cc]rm.[Cc]ommon\obj\[Dd]ebug\net5.0
+[Ppars[kk]yan[Cc]rm.[Dd]omain\obj
+[Ppars[kk]yan[Cc]rm.[Ii]nfrastructure\obj\[Dd]ebug\net5.0
+*.cache
+*.txt
+*.dll
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot

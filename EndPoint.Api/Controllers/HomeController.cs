@@ -16,6 +16,10 @@ namespace EndPoint.Api.Controllers
         {
             return View();
         }
+        public IActionResult LoginOTP()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult LoginRequest(ModelLoginView model)
         {

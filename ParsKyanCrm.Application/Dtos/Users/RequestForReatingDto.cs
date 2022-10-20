@@ -11,6 +11,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
 
         public int RequestId { get; set; }
+        public string RequestNoStr { get; set; }
         public int? RequestNo { get; set; }
         public int? CustomerId { get; set; }
         public int? UserId { get; set; }

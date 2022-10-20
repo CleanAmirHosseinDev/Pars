@@ -35,9 +35,9 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 var res_ResultLoginDto = new ResultLoginDto();
                 string LoginName = "Customer";
 
-                //int borrowerID = int.Parse(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number());
+                res_ResultLoginDto.CustomerID = request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number();
 
-                if (request.Code == "09351347696")
+                if (request.Code == "1234")
                 {
                     //True 1
 

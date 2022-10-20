@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /ShppaingPart/wwwroot/js/OpratorService
 /EndPoint.Api/wwwroot/js/Admin/SystemSeting
+/EndPoint.Api/wwwroot/js/loginOTP.min.js
+/EndPoint.Api/wwwroot/js/Customer/Customers

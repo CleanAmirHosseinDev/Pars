@@ -30,7 +30,7 @@ namespace EndPoint.Api.Controllers.api.customer
         {
             try
             {
-                return await _userFacad.GetCustomersService.Execute(new RequestCustomersDto() { CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value.Decrypt_Advanced_For_Number()), IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetCustomersService.Execute(new RequestCustomersDto() { CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value), IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception ex)
             {

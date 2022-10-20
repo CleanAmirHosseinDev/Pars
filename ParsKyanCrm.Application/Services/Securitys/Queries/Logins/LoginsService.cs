@@ -38,8 +38,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         {
             try
             {
-                List<RequestForReatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForReatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForReating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNo"));
-                if (q != null) return q.FirstOrDefault().RequestNo.ToString();
+                List<RequestForReatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForReatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForReating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNoStr"));
+                if (q != null) return q.FirstOrDefault().RequestNoStr.ToString();
                 return "1";
             }
             catch (Exception ex)
@@ -130,7 +130,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             Customer = new Domain.Entities.Customers()
                             {
                                 AgentMobile = request.Mobile,
-                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.InActive,
+                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
                                 SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
                             },
                             RequestNo = int.Parse(MaxAllRequestNo()),

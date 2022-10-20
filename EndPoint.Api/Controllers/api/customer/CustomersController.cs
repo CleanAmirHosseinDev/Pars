@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
+using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,19 @@ namespace EndPoint.Api.Controllers.api.customer
             _userFacad = userFacad;
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<CustomersDto> Get_Customers()
+        {
+            try
+            {
+                return await _userFacad.GetCustomersService.Execute(new RequestCustomersDto() { CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value.Decrypt_Advanced_For_Number()), IsActive = (byte)TablesGeneralIsActive.Active });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         [Route("[action]")]

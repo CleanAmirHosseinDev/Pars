@@ -1,4 +1,5 @@
 ﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Dtos.Users
 {
+
+    public class RequestCustomersDto : PageingParamerDto
+    {
+        public int? CustomerId { get; set; }
+    }
+
     public class CustomersDto : BaseEntityDto
     {
         public int CustomerId { get; set; }

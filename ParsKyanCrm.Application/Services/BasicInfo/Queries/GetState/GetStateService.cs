@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetState
 
                 if (id != null && id != 0)
                 {
-                    var q_Find = await _context.States.FindAsync(id);
+                    var q_Find = await _context.State.FindAsync(id);
                     res = _mapper.Map<StateDto>(q_Find);
                 }
 

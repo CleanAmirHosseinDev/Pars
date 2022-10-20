@@ -4,7 +4,7 @@ using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
+using ParsKyanCrm.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCitys
             {
 
                 var lists = (from s in _context.City
-                             where (s.StateID == request.StateID || request.StateID == null)
+                             where (s.StateId == request.StateId || request.StateId == null)
                              select s).Include(p => p.State).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.CityName.Contains(request.Search) || p.State.StateName.Contains(request.Search));
@@ -38,13 +38,13 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCitys
                 switch (request.SortOrder)
                 {
                     case "CityID_D":
-                        lists = lists.OrderByDescending(s => s.CityID);
+                        lists = lists.OrderByDescending(s => s.CityId);
                         break;
                     case "CityID_A":
-                        lists = lists.OrderBy(s => s.CityID);
+                        lists = lists.OrderBy(s => s.CityId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.CityID);
+                        lists = lists.OrderByDescending(s => s.CityId);
                         break;
                 }
 

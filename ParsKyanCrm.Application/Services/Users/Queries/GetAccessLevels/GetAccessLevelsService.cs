@@ -28,7 +28,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetAccessLevels
         {
             try
             {
-                var q_Find = await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserID == id);
+                var q_Find = await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == id);
                 if (q_Find != null)
                 {
                     return q_Find.Role.RoleTitle == "Admin" ? _basicInfoFacad.FillUserRoleAdminRolesService.Execute(q_Find.Roles) : new List<NormalJsonClassDto>();

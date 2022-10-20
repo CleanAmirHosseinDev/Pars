@@ -5,7 +5,7 @@ using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.Users;
+using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.Users.Users).Name, "*", strCondition + " AND " + nameof(request.UserID) + " != " + request.UserID);
+                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.Users).Name, "*", strCondition + " AND " + nameof(request.UserId) + " != " + request.UserId);
                     return q != null && q.Rows.Count > 0 ? false : true;
                 }
                 return true;
@@ -64,17 +64,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
         {
             try
             {
-                if (!Check_Remote(new UserRolesDto() { UserID = request.UserID, User = new UsersDto() { Mobile = request.User.Mobile } }))
+                if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { Mobile = request.User.Mobile } }))
                 {
                     return "موبایل مورد نظر ار قبل موجود می باشد لطفا موبایل دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new UserRolesDto() { UserID = request.UserID, User = new UsersDto() { Email = request.User.Email } }))
+                if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { Email = request.User.Email } }))
                 {
                     return "پست الکترونیکی مورد نظر ار قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new UserRolesDto() { UserID = request.UserID, User = new UsersDto() { UserName = request.User.UserName } }))
+                if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { UserName = request.User.UserName } }))
                 {
                     return "نام کاربری مورد نظر ار قبل موجود می باشد لطفا نام کاربری دیگری وارد نمایید";
                 }
@@ -107,14 +107,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                 #endregion
 
                 EntityEntry<UserRoles> q_Entity;
-                if (request.UserID == 0)
+                if (request.UserId == 0)
                 {
                     request.User.Ip = Utility.GetUserHostAddress();
                     request.User.Password = EncryptDecrypt.Encrypt(request.User.Password);
                     q_Entity = _context.UserRoles.Add(new UserRoles()
                     {
-                        RoleID = request.RoleID,
-                        User = new Domain.Entities.Users.Users()
+                        RoleId = request.RoleId,
+                        User = new Domain.Entities.Users()
                         {
                             IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
                             Email = request.User.Email,
@@ -130,7 +130,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                 }
                 else
                 {
-                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users.Users).Name, new Dictionary<string, object>()
+                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users).Name, new Dictionary<string, object>()
                     {
                         {
                             nameof(q_Entity.Entity.User.UserName),request.User.UserName
@@ -147,7 +147,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                         {
                             nameof(q_Entity.Entity.User.Email),request.User.Email
                         },
-                    }, string.Format(nameof(q_Entity.Entity.UserID) + " = {0} ", request.UserID));
+                    }, string.Format(nameof(q_Entity.Entity.UserId) + " = {0} ", request.UserId));
                 }
 
                 return new ResultDto<UserRolesDto>()

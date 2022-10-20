@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,29 +9,21 @@ namespace ParsKyanCrm.Application.Dtos.Users
 {
     public class RequestForReatingDto
     {
-        
-        public int RequestID { get; set; }
 
+        public int RequestId { get; set; }
         public int? RequestNo { get; set; }
-
-        
-        public int? CustomerID { get; set; }
-
-        
-        public int? UserID { get; set; }
-
+        public int? CustomerId { get; set; }
+        public int? UserId { get; set; }
         public DateTime? DateOfRequest { get; set; }
-
         public DateTime? DateOfAssignUsers { get; set; }
-
         public DateTime? DateOfAcceptRequest { get; set; }
-
         public DateTime? DateOfConfirmed { get; set; }
-
         public int? Status { get; set; }
+        public int? KindOfRequest { get; set; }
 
         public CustomersDto Customer { get; set; }
-
+        public SystemSetingDto KindOfRequestNavigation { get; set; }
         public UsersDto User { get; set; }
+
     }
 }

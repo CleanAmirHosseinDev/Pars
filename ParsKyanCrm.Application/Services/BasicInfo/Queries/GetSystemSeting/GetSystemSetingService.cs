@@ -27,10 +27,10 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSeting
             {
                 SystemSetingDto res = new SystemSetingDto();
 
-                if (request.SystemSetingID != null && request.SystemSetingID != 0)
+                if (request.SystemSetingId != null && request.SystemSetingId != 0)
                 {
 
-                    var q_Find = await _context.SystemSetings.FirstOrDefaultAsync(p => p.SystemSetingID == request.SystemSetingID.Value && (p.IsActive == request.IsActive || request.IsActive == null));
+                    var q_Find = await _context.SystemSeting.FirstOrDefaultAsync(p => p.SystemSetingId == request.SystemSetingId.Value && (p.IsActive == request.IsActive || request.IsActive == null));
 
                     res = _mapper.Map<SystemSetingDto>(q_Find);
 

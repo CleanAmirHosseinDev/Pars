@@ -536,6 +536,7 @@ D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.dl
 D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\ref\EndPoint.Api.dll
 D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.pdb
 D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.genruntimeconfig.cache
+D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\State\Index.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\bin\Debug\net5.0\appsettings.Development.json
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\bin\Debug\net5.0\appsettings.json
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\bin\Debug\net5.0\bundleconfig.json
@@ -695,11 +696,13 @@ D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\scopedcss\bundle\E
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.input.cache
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.TagHelpers.output.cache
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.RazorCoreGenerate.cache
+D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\City\Index.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Header.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Menu.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\State\Index.cshtml.g.cs
+D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\SystemSeting\Index.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\Index.cshtml.g.cs
@@ -722,4 +725,3 @@ D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.dll
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\ref\EndPoint.Api.dll
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.pdb
 D:\Programmings\ParsKyanCrm_Git\EndPoint.Api\obj\Debug\net5.0\EndPoint.Api.genruntimeconfig.cache
-D:\Workspase\Sarfarazi\ParsKyanCrm\EndPoint.Api\obj\Debug\net5.0\Razor\Areas\Admin\Views\State\Index.cshtml.g.cs

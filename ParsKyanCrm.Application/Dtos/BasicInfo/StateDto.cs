@@ -16,8 +16,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
     public class StateDto
     {
 
-        public int StateID { get; set; }
-        
+        public int StateId { get; set; }
         public string StateName { get; set; }
 
     }

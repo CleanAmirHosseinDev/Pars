@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
-using ParsKyanCrm.Domain.Entities.Users;
+using ParsKyanCrm.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,72 +9,751 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Domain.Contexts
 {
+    //Scaffold-DbContext "Server=77.238.123.197;Database=ParsKyanCrmDB;user id=vam30;password=10155;Integrated Security=false;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -NoPluralize
+    //namespace AddEfCoreTest.Models
+    //namespace ParsKyanCrm.Domain.Entities
     public interface IDataBaseContext
     {
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
         DbSet<City> City { get; set; }
-
-        DbSet<State> States { get; set; }
-
-        DbSet<Users> Users { get; set; }
-
-        DbSet<UserRoles> UserRoles { get; set; }
-
-        DbSet<Roles> Roles { get; set; }
-
+        DbSet<Companies> Companies { get; set; }
+        DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
+        DbSet<CopanyGroup> CopanyGroup { get; set; }
         DbSet<Customers> Customers { get; set; }
-
-        DbSet<SystemSeting> SystemSetings { get; set; }
-
+        DbSet<EducationCourses> EducationCourses { get; set; }
+        DbSet<NewsAndContent> NewsAndContent { get; set; }
+        DbSet<OtherDocuments> OtherDocuments { get; set; }
+        DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         DbSet<RequestForReating> RequestForReating { get; set; }
+        DbSet<RequestReferences> RequestReferences { get; set; }
+        DbSet<ReturnRequest> ReturnRequest { get; set; }
+        DbSet<Roles> Roles { get; set; }
+        DbSet<SkillsOfEmployees> SkillsOfEmployees { get; set; }
+        DbSet<State> State { get; set; }
+        DbSet<SystemSeting> SystemSeting { get; set; }
+        DbSet<UserReferrals> UserReferrals { get; set; }
+        DbSet<UserRoles> UserRoles { get; set; }
+        DbSet<Users> Users { get; set; }
+        DbSet<WorkExperience> WorkExperience { get; set; }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken());
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
+
     }
 
     public class DataBaseContext : DbContext, IDataBaseContext
     {
+
         public DataBaseContext(DbContextOptions options) : base(options)
         {
         }
 
-        public virtual DbSet<Customers> Customers { get; set; }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public virtual DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
         public virtual DbSet<City> City { get; set; }
-
-        public virtual DbSet<State> States { get; set; }
-
-        public virtual DbSet<Users> Users { get; set; }
-
-        public virtual DbSet<UserRoles> UserRoles { get; set; }
-
-        public virtual DbSet<Roles> Roles { get; set; }
-
-        public virtual DbSet<SystemSeting> SystemSetings { get; set; }
-
+        public virtual DbSet<Companies> Companies { get; set; }
+        public virtual DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
+        public virtual DbSet<CopanyGroup> CopanyGroup { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<EducationCourses> EducationCourses { get; set; }
+        public virtual DbSet<NewsAndContent> NewsAndContent { get; set; }
+        public virtual DbSet<OtherDocuments> OtherDocuments { get; set; }
+        public virtual DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         public virtual DbSet<RequestForReating> RequestForReating { get; set; }
+        public virtual DbSet<RequestReferences> RequestReferences { get; set; }
+        public virtual DbSet<ReturnRequest> ReturnRequest { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<SkillsOfEmployees> SkillsOfEmployees { get; set; }
+        public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<SystemSeting> SystemSeting { get; set; }
+        public virtual DbSet<UserReferrals> UserReferrals { get; set; }
+        public virtual DbSet<UserRoles> UserRoles { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<WorkExperience> WorkExperience { get; set; }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Customers>(entity =>
+            modelBuilder.Entity<BoardOfDirectors>(entity =>
             {
+                entity.HasComment("جدول اعضای هیات مدیره");
 
-                entity.HasOne(d => d.HowGetKnowCompany)
-                    .WithMany(p => p.CustomerHowGetKnowCompanies)
-                    .HasForeignKey(d => d.HowGetKnowCompanyID);
+                entity.Property(e => e.BoardOfDirectorsId).HasColumnName("BoardOfDirectorsID");
 
-                entity.HasOne(d => d.KindOfCompany)
-                    .WithMany(p => p.CustomerKindOfCompanies)
-                    .HasForeignKey(d => d.KindOfCompanyID);
+                entity.Property(e => e.AcademicDegreePicture)
+                    .HasMaxLength(100)
+                    .HasComment("عکس مدرک تحصیلی");
 
-                entity.HasOne(d => d.TypeServiceRequested)
-                    .WithMany(p => p.CustomerTypeServiceRequesteds)
-                    .HasForeignKey(d => d.TypeServiceRequestedID);
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.IsMemeberOfBoard).HasComment("عضو هیات مدیره است ؟");
+
+                entity.Property(e => e.MemberEductionId)
+                    .HasColumnName("MemberEductionID")
+                    .HasComment("مدرک تحصیلی");
+
+                entity.Property(e => e.MemberName).HasMaxLength(100);
+
+                entity.Property(e => e.MemberPostId)
+                    .HasColumnName("MemberPostID")
+                    .HasComment("پست سازمانی");
+
+                entity.Property(e => e.OwnershipCount).HasComment("تعداد سهام");
+
+                entity.Property(e => e.OwnershipPercentage).HasComment("درصد سهام");
+
+                entity.Property(e => e.UniversityId)
+                    .HasColumnName("UniversityID")
+                    .HasComment("محل تحصیل");
+
+                entity.HasOne(d => d.MemberEduction)
+                    .WithMany(p => p.BoardOfDirectorsMemberEduction)
+                    .HasForeignKey(d => d.MemberEductionId)
+                    .HasConstraintName("FK_BoardOfDirectors_SystemSeting1");
+
+                entity.HasOne(d => d.MemberPost)
+                    .WithMany(p => p.BoardOfDirectorsMemberPost)
+                    .HasForeignKey(d => d.MemberPostId)
+                    .HasConstraintName("FK_BoardOfDirectors_SystemSeting");
+
+                entity.HasOne(d => d.University)
+                    .WithMany(p => p.BoardOfDirectorsUniversity)
+                    .HasForeignKey(d => d.UniversityId)
+                    .HasConstraintName("FK_BoardOfDirectors_SystemSeting2");
             });
 
-        }
+            modelBuilder.Entity<City>(entity =>
+            {
+                entity.Property(e => e.CityId).HasColumnName("CityID");
+
+                entity.Property(e => e.CityName).HasMaxLength(50);
+
+                entity.Property(e => e.StateId).HasColumnName("StateID");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.City)
+                    .HasForeignKey(d => d.StateId)
+                    .HasConstraintName("FK_City_State");
+            });
+
+            modelBuilder.Entity<Companies>(entity =>
+            {
+                entity.HasComment("جدول شرکتها");
+
+                entity.Property(e => e.CompaniesId).HasColumnName("CompaniesID");
+
+                entity.Property(e => e.CompanyGroupId).HasColumnName("CompanyGroupID");
+
+                entity.Property(e => e.CompanyName)
+                    .HasMaxLength(250)
+                    .HasComment("نام شرکت");
+
+                entity.Property(e => e.KindOfCompany).HasComment("نوع شرکت");
+
+                entity.HasOne(d => d.CompanyGroup)
+                    .WithMany(p => p.Companies)
+                    .HasForeignKey(d => d.CompanyGroupId)
+                    .HasConstraintName("FK_Companies_CopanyGroup");
+
+                entity.HasOne(d => d.KindOfCompanyNavigation)
+                    .WithMany(p => p.Companies)
+                    .HasForeignKey(d => d.KindOfCompany)
+                    .HasConstraintName("FK_Companies_SystemSeting");
+            });
+
+            modelBuilder.Entity<ContractAndFinancialDocuments>(entity =>
+            {
+                entity.HasKey(e => e.FinancialId);
+
+                entity.HasComment("مدارک قرارداد و رسید پرداخت بانکی");
+
+                entity.Property(e => e.FinancialId).HasColumnName("FinancialID");
+
+                entity.Property(e => e.ContractDocument)
+                    .HasMaxLength(200)
+                    .HasComment("آدرس قراداد امضا شده و بارگزاری شده");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.FinancialDocument)
+                    .HasMaxLength(200)
+                    .HasComment("آدرس فایل رسید پرداخت");
+
+                entity.Property(e => e.SaveDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.ContractAndFinancialDocuments)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_ContractAndFinancialDocuments_Customers");
+            });
+
+            modelBuilder.Entity<CopanyGroup>(entity =>
+            {
+                entity.HasKey(e => e.CompanyGroupId);
+
+                entity.Property(e => e.CompanyGroupId).HasColumnName("CompanyGroupID");
+
+                entity.Property(e => e.GroupName).HasMaxLength(150);
+            });
+
+            modelBuilder.Entity<Customers>(entity =>
+            {
+                entity.HasKey(e => e.CustomerId)
+                    .HasName("PK__Customer__A4AE64B8A99FBB50");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.AddressCompany).HasComment("آدرس شرکت");
+
+                entity.Property(e => e.AgentMobile)
+                    .HasMaxLength(11)
+                    .HasComment("موبایل نماینده");
+
+                entity.Property(e => e.AgentName)
+                    .HasMaxLength(50)
+                    .HasComment("نام رابط و نماینده شرکت");
+
+                entity.Property(e => e.AmountOsLastSaels)
+                    .HasColumnType("money")
+                    .HasComment("مبلغ کل فروش اظهار شده");
+
+                entity.Property(e => e.AuthenticateCode).HasMaxLength(50);
+
+                entity.Property(e => e.CeoMobile)
+                    .HasMaxLength(11)
+                    .HasComment("موبایل مدیر عامل");
+
+                entity.Property(e => e.CeoName)
+                    .HasMaxLength(50)
+                    .HasComment("نام و نام خانوادگی مدیر عامل");
+
+                entity.Property(e => e.CityId).HasColumnName("CityID");
+
+                entity.Property(e => e.CompanyName)
+                    .HasMaxLength(50)
+                    .HasComment("نام شرکت");
+
+                entity.Property(e => e.CountOfPersonal).HasComment("تعداد پرسنل شرکت");
+
+                entity.Property(e => e.EconomicCode)
+                    .HasMaxLength(50)
+                    .HasComment("کد اقتصادی");
+
+                entity.Property(e => e.Email).HasMaxLength(50);
+
+                entity.Property(e => e.HowGetKnowCompanyId).HasColumnName("HowGetKnowCompanyID");
+
+                entity.Property(e => e.Ip).HasMaxLength(50);
+
+                entity.Property(e => e.KindOfCompanyId)
+                    .HasColumnName("KindOfCompanyID")
+                    .HasComment("نوع شرکت");
+
+                entity.Property(e => e.NationalCode)
+                    .HasMaxLength(50)
+                    .HasComment("شناسه ملی  شرکت");
+
+                entity.Property(e => e.PostalCode)
+                    .HasMaxLength(50)
+                    .HasComment("کد پستی");
+
+                entity.Property(e => e.SaveDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Tel)
+                    .HasMaxLength(11)
+                    .HasComment("تلفن شرکت");
+
+                entity.Property(e => e.TypeServiceRequestedId).HasColumnName("TypeServiceRequestedID");
+
+                entity.HasOne(d => d.City)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.CityId)
+                    .HasConstraintName("FK_Customers_City");
+
+                entity.HasOne(d => d.HowGetKnowCompany)
+                    .WithMany(p => p.CustomersHowGetKnowCompany)
+                    .HasForeignKey(d => d.HowGetKnowCompanyId)
+                    .HasConstraintName("FK_Customers_SystemSeting2");
+
+                entity.HasOne(d => d.KindOfCompany)
+                    .WithMany(p => p.CustomersKindOfCompany)
+                    .HasForeignKey(d => d.KindOfCompanyId)
+                    .HasConstraintName("FK_Customers_SystemSeting");
+
+                entity.HasOne(d => d.TypeServiceRequested)
+                    .WithMany(p => p.CustomersTypeServiceRequested)
+                    .HasForeignKey(d => d.TypeServiceRequestedId)
+                    .HasConstraintName("FK_Customers_SystemSeting1");
+            });
+
+            modelBuilder.Entity<EducationCourses>(entity =>
+            {
+                entity.HasComment("دوره های آموزشی");
+
+                entity.Property(e => e.EducationCoursesId).HasColumnName("EducationCoursesID");
+
+                entity.Property(e => e.BoardOfDirectorsId).HasColumnName("BoardOfDirectorsID");
+
+                entity.Property(e => e.CourseOrganizer)
+                    .HasMaxLength(150)
+                    .HasComment("برگزار کننده دوره");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.PlaceOfTraining)
+                    .HasMaxLength(150)
+                    .HasComment("محل برگزاری");
+
+                entity.Property(e => e.TimeOfCource).HasComment("مدت ساعت");
+
+                entity.Property(e => e.TitelCourses)
+                    .HasMaxLength(150)
+                    .HasComment("عنوان دوره");
+
+                entity.HasOne(d => d.BoardOfDirectors)
+                    .WithMany(p => p.EducationCourses)
+                    .HasForeignKey(d => d.BoardOfDirectorsId)
+                    .HasConstraintName("FK_EducationCourses_BoardOfDirectors");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.EducationCourses)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_EducationCourses_Customers");
+            });
+
+            modelBuilder.Entity<NewsAndContent>(entity =>
+            {
+                entity.HasKey(e => e.NewsId);
+
+                entity.HasComment("اخبار و مطالب سایت");
+
+                entity.Property(e => e.NewsId)
+                    .HasColumnName("NewsID")
+                    .HasComment("اخبار سایت");
+
+                entity.Property(e => e.Body).HasComment("متن اصلی خبر");
+
+                entity.Property(e => e.DateNews)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ خبر");
+
+                entity.Property(e => e.Isactive).HasColumnName("isactive");
+
+                entity.Property(e => e.KindOfContent).HasComment("نوع خبر یا مطلب");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100)
+                    .HasComment("عنوان خبر");
+
+                entity.Property(e => e.Userid)
+                    .HasColumnName("userid")
+                    .HasComment("کاربر ثبت کننده");
+
+                entity.HasOne(d => d.KindOfContentNavigation)
+                    .WithMany(p => p.NewsAndContent)
+                    .HasForeignKey(d => d.KindOfContent)
+                    .HasConstraintName("FK_NewsAndContent_SystemSeting");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.NewsAndContent)
+                    .HasForeignKey(d => d.Userid)
+                    .HasConstraintName("FK_NewsAndContent_Users");
+            });
+
+            modelBuilder.Entity<OtherDocuments>(entity =>
+            {
+                entity.HasKey(e => e.OtherDocumentId)
+                    .HasName("PK_OtherCompanyDocuments.");
+
+                entity.HasComment("سایر مدارک شرکت");
+
+                entity.Property(e => e.OtherDocumentId).HasColumnName("OtherDocumentID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.DocumentName)
+                    .HasMaxLength(250)
+                    .HasComment("عنوان مدرک");
+
+                entity.Property(e => e.DocumentPicture)
+                    .HasMaxLength(250)
+                    .HasComment("تصویر مدرک");
+
+                entity.Property(e => e.IssuanceAuthority)
+                    .HasMaxLength(250)
+                    .HasComment("مرجع صدور مدرک");
+
+                entity.Property(e => e.KindOfDocumentId)
+                    .HasColumnName("KindOfDocumentID")
+                    .HasComment("نوع مدرک");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.OtherDocuments)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_OtherCompanyDocuments._Customers");
+
+                entity.HasOne(d => d.KindOfDocument)
+                    .WithMany(p => p.OtherDocuments)
+                    .HasForeignKey(d => d.KindOfDocumentId)
+                    .HasConstraintName("FK_OtherCompanyDocuments._SystemSeting");
+            });
+
+            modelBuilder.Entity<RankingOfCompanies>(entity =>
+            {
+                entity.HasKey(e => e.RankingId);
+
+                entity.HasComment("جدول رتبه بندی شرکتها");
+
+                entity.Property(e => e.RankingId).HasColumnName("RankingID");
+
+                entity.Property(e => e.ComanyId).HasColumnName("ComanyID");
+
+                entity.Property(e => e.LongTermRating)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .IsFixedLength(true)
+                    .HasComment("رتبه بلند مدت");
+
+                entity.Property(e => e.PressRelease)
+                    .HasMaxLength(200)
+                    .HasComment("لینک فایل بیانیه مطبوعاتی");
+
+                entity.Property(e => e.PublishDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ShortTermRating)
+                    .HasMaxLength(10)
+                    .IsFixedLength(true)
+                    .HasComment("رتبه کوتاه مدت");
+
+                entity.Property(e => e.SummaryRanking)
+                    .HasMaxLength(200)
+                    .HasComment("لینک فایل خلاصه رتبه بندی");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasComment("کاربر ثبت کننده");
+
+                entity.Property(e => e.Vistion)
+                    .HasMaxLength(100)
+                    .HasComment("چشم انداز");
+
+                entity.HasOne(d => d.Comany)
+                    .WithMany(p => p.RankingOfCompanies)
+                    .HasForeignKey(d => d.ComanyId)
+                    .HasConstraintName("FK_RankingOfCompanies_Companies");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.RankingOfCompanies)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_RankingOfCompanies_Users");
+            });
+
+            modelBuilder.Entity<RequestForReating>(entity =>
+            {
+                entity.HasKey(e => e.RequestId);
+
+                entity.HasComment("ثبت درخواست");
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.CustomerId)
+                    .HasColumnName("CustomerID")
+                    .HasComment("نام مشتری");
+
+                entity.Property(e => e.DateOfAcceptRequest)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ تایید درخواست");
+
+                entity.Property(e => e.DateOfAssignUsers)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ اختصاص کارشناس");
+
+                entity.Property(e => e.DateOfConfirmed).HasColumnType("datetime");
+
+                entity.Property(e => e.DateOfRequest)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ درخواست");
+
+                entity.Property(e => e.KindOfRequest).HasComment("نوع درخواست ");
+
+                entity.Property(e => e.RequestNo).HasComment("شماره درخواست");
+
+                entity.Property(e => e.Status).HasComment("وضعیت درخواست اگر صفر یا نال بود یعنی در دست بررسی اگر یک بود قراداد قابل نمایش میشود و بارگزای اسناد قراداد و مدارک پرداختی و اگر 2 شد می تواندی سایر مدارک را بارگزاری کند");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasComment("کارشناس مربوطه");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.RequestForReating)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_RequestForReating_Customers");
+
+                entity.HasOne(d => d.KindOfRequestNavigation)
+                    .WithMany(p => p.RequestForReating)
+                    .HasForeignKey(d => d.KindOfRequest)
+                    .HasConstraintName("FK_RequestForReating_SystemSeting");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.RequestForReating)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_RequestForReating_Users");
+            });
+
+            modelBuilder.Entity<RequestReferences>(entity =>
+            {
+                entity.HasKey(e => e.ReferenceId);
+
+                entity.HasComment("جدول ارجاعات درخواست مشتری");
+
+                entity.Property(e => e.ReferenceId).HasColumnName("ReferenceID");
+
+                entity.Property(e => e.ResiveTime).HasColumnType("datetime");
+
+                entity.Property(e => e.SendTime).HasColumnType("datetime");
+
+                entity.HasOne(d => d.CurrentUserNavigation)
+                    .WithMany(p => p.RequestReferences)
+                    .HasForeignKey(d => d.CurrentUser)
+                    .HasConstraintName("FK_RequestReferences_Users");
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.RequestReferences)
+                    .HasForeignKey(d => d.Requestid)
+                    .HasConstraintName("FK_RequestReferences_RequestForReating");
+            });
+
+            modelBuilder.Entity<ReturnRequest>(entity =>
+            {
+                entity.HasComment("جدول سوابق رد درخواست");
+
+                entity.Property(e => e.ReturnRequestId).HasColumnName("ReturnRequestID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.DateOfReturn).HasColumnType("datetime");
+
+                entity.Property(e => e.RequestId)
+                    .HasColumnName("RequestID")
+                    .HasComment("شناسه درخواست");
+
+                entity.Property(e => e.ReturnResult).HasComment("دلیل رد درخواست");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasComment("کاربر بررسی کننده");
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.ReturnRequest)
+                    .HasForeignKey(d => d.RequestId)
+                    .HasConstraintName("FK_ReturnRequest_RequestForReating");
+
+                entity.HasOne(d => d.ReturnResultNavigation)
+                    .WithMany(p => p.ReturnRequest)
+                    .HasForeignKey(d => d.ReturnResult)
+                    .HasConstraintName("FK_ReturnRequest_SystemSeting");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ReturnRequest)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_ReturnRequest_Users");
+            });
+
+            modelBuilder.Entity<Roles>(entity =>
+            {
+                entity.HasKey(e => e.RoleId)
+                    .HasName("PK__Roles__8AFACE3AE90187AE");
+
+                entity.HasComment("نقش ها");
+
+                entity.Property(e => e.RoleId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("RoleID");
+
+                entity.Property(e => e.RoleDesc).HasMaxLength(50);
+
+                entity.Property(e => e.RoleTitle)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<SkillsOfEmployees>(entity =>
+            {
+                entity.HasKey(e => e.SkilsId);
+
+                entity.HasComment("دوره های آموزشی کارمندان");
+
+                entity.Property(e => e.SkilsId).HasColumnName("SkilsID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.Duration).HasComment("طول دوره");
+
+                entity.Property(e => e.EmployeName)
+                    .HasMaxLength(150)
+                    .HasComment("نام و نام خانوادگی کارمند");
+
+                entity.Property(e => e.PlaceOfTraining).HasMaxLength(150);
+
+                entity.Property(e => e.TrainingCourseName)
+                    .HasMaxLength(150)
+                    .HasComment("نام دوره آموزشی");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.SkillsOfEmployees)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_SkillsOfEmployees_Customers");
+            });
+
+            modelBuilder.Entity<State>(entity =>
+            {
+                entity.Property(e => e.StateId).HasColumnName("StateID");
+
+                entity.Property(e => e.StateName)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<SystemSeting>(entity =>
+            {
+                entity.Property(e => e.SystemSetingId).HasColumnName("SystemSetingID");
+
+                entity.Property(e => e.ChangeBy).HasComment("کاربر");
+
+                entity.Property(e => e.ChangeDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Label).HasMaxLength(50);
+
+                entity.Property(e => e.TiTleBaseAmount).HasMaxLength(100);
+
+                entity.Property(e => e.Value).HasMaxLength(100);
+
+                entity.HasOne(d => d.ChangeByNavigation)
+                    .WithMany(p => p.SystemSeting)
+                    .HasForeignKey(d => d.ChangeBy)
+                    .HasConstraintName("FK_SystemSeting_Users");
+            });
+
+            modelBuilder.Entity<UserReferrals>(entity =>
+            {
+                entity.Property(e => e.UserReferralsId).HasColumnName("UserReferralsID");
+
+                entity.Property(e => e.ChangeBy).HasComment("کاربر");
+
+                entity.Property(e => e.ChangeDate)
+                    .HasColumnType("datetime")
+                    .HasComment("تاریخ تغییر وضعیت");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.UserReferrals1)
+                    .HasColumnName("UserReferrals")
+                    .HasComment("شناسه کاربرانی که میتوانند ارجاع دریافت کنند");
+
+                entity.HasOne(d => d.ChangeByNavigation)
+                    .WithMany(p => p.UserReferralsChangeByNavigation)
+                    .HasForeignKey(d => d.ChangeBy)
+                    .HasConstraintName("FK_UserReferrals_Users1");
+
+                entity.HasOne(d => d.KindOfRequestNavigation)
+                    .WithMany(p => p.UserReferrals)
+                    .HasForeignKey(d => d.KindOfRequest)
+                    .HasConstraintName("FK_UserReferrals_SystemSeting");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserReferralsUser)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_UserReferrals_Users");
+            });
+
+            modelBuilder.Entity<UserRoles>(entity =>
+            {
+                entity.HasComment("نقش های کاربران");
+
+                entity.Property(e => e.ExpiredDate).HasColumnType("datetime");
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.UserRoles)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserRoles_Roles");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserRoles)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_dbo.UserRoles_dbo.Users_UserID");
+            });
+
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.HasKey(e => e.UserId)
+                    .HasName("PK__Users__1788CCAC9660A24A");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.Email).HasMaxLength(50);
+
+                entity.Property(e => e.Ip).HasMaxLength(50);
+
+                entity.Property(e => e.Mobile).HasMaxLength(11);
+
+                entity.Property(e => e.Password).HasMaxLength(500);
+
+                entity.Property(e => e.RealName)
+                    .HasMaxLength(500)
+                    .HasComment("نام و نام خانوادگی");
+
+                entity.Property(e => e.UserName).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<WorkExperience>(entity =>
+            {
+                entity.HasKey(e => e.WorkExperinceId);
+
+                entity.HasComment("سوابق اعضای هیات مدیره و مدیران");
+
+                entity.Property(e => e.WorkExperinceId).HasColumnName("WorkExperinceID");
+
+                entity.Property(e => e.BoardOfDirectorsId).HasColumnName("BoardOfDirectorsID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.InsurancListPicture)
+                    .HasMaxLength(100)
+                    .HasComment("تصویر آخرین لیست بیمه");
+
+                entity.Property(e => e.InsuranceHistory).HasComment("سابقه بیمه");
+
+                entity.Property(e => e.ManagersExperience).HasComment("سقف سابقه مدیران");
+
+                entity.Property(e => e.OfficialNewspaper).HasComment("روزنامه رسمی");
+
+                entity.HasOne(d => d.BoardOfDirectors)
+                    .WithMany(p => p.WorkExperience)
+                    .HasForeignKey(d => d.BoardOfDirectorsId)
+                    .HasConstraintName("FK_WorkExperience_BoardOfDirectors");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.WorkExperience)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_WorkExperience_Customers");
+            });            
+
+        }        
 
     }
 }

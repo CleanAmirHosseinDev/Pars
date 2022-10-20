@@ -4,7 +4,7 @@ using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
+using ParsKyanCrm.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetStates
             try
             {
 
-                var lists = (from s in _context.States
+                var lists = (from s in _context.State
                               select s);
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.StateName.Contains(request.Search));
@@ -37,13 +37,13 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetStates
                 switch (request.SortOrder)
                 {
                     case "StateID_D":
-                        lists = lists.OrderByDescending(s => s.StateID);
+                        lists = lists.OrderByDescending(s => s.StateId);
                         break;
                     case "StateID_A":
-                        lists = lists.OrderBy(s => s.StateID);
+                        lists = lists.OrderBy(s => s.StateId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.StateID);
+                        lists = lists.OrderByDescending(s => s.StateId);
                         break;
                 }
 

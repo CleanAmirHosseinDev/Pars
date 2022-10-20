@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
+using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -29,9 +29,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveState
             try
             {
                 EntityEntry<State> q_Entity;
-                if (request.StateID == 0)
+                if (request.StateId == 0)
                 {
-                    q_Entity = _context.States.Add(_mapper.Map<State>(request));
+                    q_Entity = _context.State.Add(_mapper.Map<State>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<StateDto>(q_Entity.Entity);
                 }
@@ -42,7 +42,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveState
                         {
                             nameof(q_Entity.Entity.StateName),request.StateName
                         }
-                    }, string.Format(nameof(q_Entity.Entity.StateID) + " = {0} ", request.StateID));
+                    }, string.Format(nameof(q_Entity.Entity.StateId) + " = {0} ", request.StateId));
                 }
 
                 return new ResultDto<StateDto>()

@@ -35,6 +35,8 @@ D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanC
 D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Domain\obj\Debug\net5.0\ref\ParsKyanCrm.Domain.dll
 D:\Workspase\Sarfarazi\ParsKyanCrm\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanCrm.Domain.pdb
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\bin\Debug\net5.0\ParsKyanCrm.Domain.deps.json
+D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\bin\Debug\net5.0\ParsKyanCrm.Domain.runtimeconfig.json
+D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\bin\Debug\net5.0\ParsKyanCrm.Domain.runtimeconfig.dev.json
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\bin\Debug\net5.0\ParsKyanCrm.Domain.dll
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\bin\Debug\net5.0\ref\ParsKyanCrm.Domain.dll
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\bin\Debug\net5.0\ParsKyanCrm.Domain.pdb
@@ -45,4 +47,4 @@ D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanCrm.
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanCrm.Domain.dll
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\obj\Debug\net5.0\ref\ParsKyanCrm.Domain.dll
 D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanCrm.Domain.pdb
-D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanCrm.Domain.csproj.AssemblyReference.cache
+D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\obj\Debug\net5.0\ParsKyanCrm.Domain.genruntimeconfig.cache

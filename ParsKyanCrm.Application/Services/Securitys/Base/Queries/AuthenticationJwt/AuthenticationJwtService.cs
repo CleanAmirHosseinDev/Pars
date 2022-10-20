@@ -25,7 +25,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Base.Queries.Authentication
             _basicInfoFacad = basicInfoFacad;
         }
 
-        public void Execute(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users.Users user)
+        public void Execute(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users user)
         {
             try
             {

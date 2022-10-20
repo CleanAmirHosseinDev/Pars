@@ -43,13 +43,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUserss
                 switch (request.SortOrder)
                 {
                     case "UserID_D":
-                        lists = lists.OrderByDescending(s => s.UserID);
+                        lists = lists.OrderByDescending(s => s.UserId);
                         break;
                     case "UserID_A":
-                        lists = lists.OrderBy(s => s.UserID);
+                        lists = lists.OrderBy(s => s.UserId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.UserID);
+                        lists = lists.OrderByDescending(s => s.UserId);
                         break;
                 }
 
@@ -70,7 +70,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUserss
                 else
                 {
 
-                    var list_Res_Pageing = await Pagination<Domain.Entities.Users.UserRoles>.CreateAsync(lists.AsNoTracking(), request);
+                    var list_Res_Pageing = await Pagination<Domain.Entities.UserRoles>.CreateAsync(lists.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<UserRolesDto>>
                     {

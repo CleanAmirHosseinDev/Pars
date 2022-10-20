@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
+using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveCity
             try
             {
                 EntityEntry<City> q_Entity;
-                if (request.CityID == 0)
+                if (request.CityId == 0)
                 {
                     q_Entity = _context.City.Add(_mapper.Map<City>(request));
                     await _context.SaveChangesAsync();
@@ -43,9 +43,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveCity
                             nameof(q_Entity.Entity.CityName),request.CityName
                         },
                         {
-                            nameof(q_Entity.Entity.StateID),request.StateID
+                            nameof(q_Entity.Entity.StateId),request.StateId
                         }
-                    }, string.Format(nameof(q_Entity.Entity.CityID) + " = {0} ", request.CityID));
+                    }, string.Format(nameof(q_Entity.Entity.CityId) + " = {0} ", request.CityId));
                 }
 
                 return new ResultDto<CityDto>()

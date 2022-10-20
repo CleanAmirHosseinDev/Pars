@@ -9,7 +9,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 {
     public class RequestSystemSetingDto : PageingParamerDto
     {
-        public int? SystemSetingID { get; set; }
+        public int? SystemSetingId { get; set; }
 
         public int? LabeCode { get; set; }
     }
@@ -17,18 +17,16 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
     public class SystemSetingDto : BaseEntityDto
     {
 
-        public int SystemSetingID { get; set; }
-
+        public int SystemSetingId { get; set; }
         public string Label { get; set; }
-
         public int? LabeCode { get; set; }
-        
-        public string Value { get; set; }
-
+        public string Value { get; set; }        
         public int? BaseAmount { get; set; }
-
+        public string TiTleBaseAmount { get; set; }
         public double? FromAmount { get; set; }
-
         public double? ToAmount { get; set; }
+        public int? ChangeBy { get; set; }
+        public DateTime? ChangeDate { get; set; }
+
     }
 }

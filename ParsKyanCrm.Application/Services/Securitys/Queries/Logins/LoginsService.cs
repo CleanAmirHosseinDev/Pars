@@ -7,7 +7,7 @@ using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.Users;
+using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 var res_ResultLoginDto = new ResultLoginDto();
 
                 UserRolesDto qCheckUserRole = null;
-                Domain.Entities.Users.Users user = null;
+                Domain.Entities.Users user = null;
 
                 if (string.IsNullOrEmpty(request.Mobile))
                 {
@@ -76,14 +76,14 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     else
                     {
 
-                        qCheckUserRole = await CheckUserRole(user.UserID);
+                        qCheckUserRole = await CheckUserRole(user.UserId);
                         if (qCheckUserRole != null)
                         {
 
                             LoginName = qCheckUserRole.Role.RoleTitle;
 
                             res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
-                            res_ResultLoginDto.UserID = user.UserID;
+                            res_ResultLoginDto.UserID = user.UserId;
                             res_ResultLoginDto.CustomerID = null;
 
 
@@ -118,16 +118,16 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                         res_ResultLoginDto.FullName = cusUser.AgentName;
                         res_ResultLoginDto.UserID = 0;
-                        res_ResultLoginDto.CustomerID = cusUser.CustomerID.ToString().Encrypt_Advanced_For_Number();
+                        res_ResultLoginDto.CustomerID = cusUser.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                         needSms = true;
 
                     }
                     else
                     {
-                        var resCus = _context.RequestForReating.Add(new Domain.Entities.Users.RequestForReating()
+                        var resCus = _context.RequestForReating.Add(new Domain.Entities.RequestForReating()
                         {
-                            Customer = new Domain.Entities.Users.Customers()
+                            Customer = new Domain.Entities.Customers()
                             {
                                 AgentMobile = request.Mobile,
                                 IsActive = (byte)Common.Enums.TablesGeneralIsActive.InActive,
@@ -141,7 +141,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                         res_ResultLoginDto.FullName = string.Empty;
                         res_ResultLoginDto.UserID = 0;
-                        res_ResultLoginDto.CustomerID = resCus.Entity.CustomerID.ToString().Encrypt_Advanced_For_Number();
+                        res_ResultLoginDto.CustomerID = resCus.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                         needSms = true;
 
@@ -179,8 +179,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         {
             try
             {
-                var qRole = await _context.UserRoles.FirstOrDefaultAsync(p => p.UserID == UserID);
-                var qUserRole = await _context.Roles.FirstOrDefaultAsync(p => p.RoleID == qRole.RoleID);
+                var qRole = await _context.UserRoles.FirstOrDefaultAsync(p => p.UserId == UserID);
+                var qUserRole = await _context.Roles.FirstOrDefaultAsync(p => p.RoleId == qRole.RoleId);
                 return _mapper.Map<UserRolesDto>(qRole);
             }
             catch (Exception ex)

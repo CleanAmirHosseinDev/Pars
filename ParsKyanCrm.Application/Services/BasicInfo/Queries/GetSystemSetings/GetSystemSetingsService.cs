@@ -4,7 +4,7 @@ using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
+using ParsKyanCrm.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSetings
             try
             {
 
-                var lists = (from s in _context.SystemSetings
+                var lists = (from s in _context.SystemSeting
                              where (s.IsActive == request.IsActive || request.IsActive == null)
                              select s);
 
@@ -40,13 +40,13 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSetings
                 switch (request.SortOrder)
                 {
                     case "SystemSetingID_D":
-                        lists = lists.OrderByDescending(s => s.SystemSetingID);
+                        lists = lists.OrderByDescending(s => s.SystemSetingId);
                         break;
                     case "SystemSetingID_A":
-                        lists = lists.OrderBy(s => s.SystemSetingID);
+                        lists = lists.OrderBy(s => s.SystemSetingId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.SystemSetingID);
+                        lists = lists.OrderByDescending(s => s.SystemSetingId);
                         break;
                 }
 

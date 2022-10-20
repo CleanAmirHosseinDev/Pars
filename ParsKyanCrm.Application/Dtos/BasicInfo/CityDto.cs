@@ -9,18 +9,17 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 {
     public class RequestCityDto : PageingParamerDto
     {
-        public int? StateID { get; set; }
+        public int? StateId { get; set; }
     }
 
     public class CityDto
     {
 
-        public int CityID { get; set; }
-
-        public int? StateID { get; set; }
-
+        public int CityId { get; set; }
         public string CityName { get; set; }
+        public int? StateId { get; set; }
 
         public StateDto State { get; set; }
+
     }
 }

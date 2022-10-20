@@ -9,10 +9,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 {
     public class CustomersDto : BaseEntityDto
     {
-
-        public int CustomerID { get; set; }
-        
-        public int? CityID { get; set; }
+        public int CustomerId { get; set; }
+        public int? CityId { get; set; }
         /// <summary>
         /// نام شرکت
         /// </summary>
@@ -24,15 +22,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// <summary>
         /// نوع شرکت
         /// </summary>
-        public int? KindOfCompanyID { get; set; }
+        public int? KindOfCompanyId { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int? TypeServiceRequestedID { get; set; }
+        public int? TypeServiceRequestedId { get; set; }
         /// <summary>
         /// چگونه شناسه شرکت را بشناسیم
         /// </summary>
-        public int? HowGetKnowCompanyID { get; set; }
+        public int? HowGetKnowCompanyId { get; set; }
         /// <summary>
         /// آدرس شرکت
         /// </summary>
@@ -81,21 +79,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// مبلغ کل فروش اظهار شده
         /// </summary>
         public decimal? AmountOsLastSaels { get; set; }
-
         public DateTime SaveDate { get; set; }
-
         public string Ip { get; set; }
         /// <summary>
         /// کد احراز هویت
         /// </summary>
         public string AuthenticateCode { get; set; }
-
         public CityDto City { get; set; }
-
+        public SystemSetingDto HowGetKnowCompany { get; set; }
         public SystemSetingDto KindOfCompany { get; set; }
-
         public SystemSetingDto TypeServiceRequested { get; set; }
 
-        public SystemSetingDto HowGetKnowCompany { get; set; }
     }
 }

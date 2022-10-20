@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         {
             try
             {
-                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users.Customers).Name, new Dictionary<string, object>()
+                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
                         {
                             nameof(request.AgentName),request.AgentName
@@ -38,7 +38,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             nameof(request.CompanyName),request.CompanyName
                         },
                     {
-                            nameof(request.KindOfCompanyID),request.KindOfCompanyID
+                            nameof(request.KindOfCompanyId),request.KindOfCompanyId
                         },
                     {
                             nameof(request.NationalCode),request.NationalCode
@@ -71,12 +71,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             nameof(request.CeoMobile),request.CeoMobile
                         },
                     {
-                            nameof(request.TypeServiceRequestedID),request.TypeServiceRequestedID
+                            nameof(request.TypeServiceRequestedId),request.TypeServiceRequestedId
                         },
                     {
-                            nameof(request.HowGetKnowCompanyID),request.HowGetKnowCompanyID
+                            nameof(request.HowGetKnowCompanyId),request.HowGetKnowCompanyId
                         }
-                    }, string.Format(nameof(request.CustomerID) + " = '{0}' ", request.CustomerID));
+                    }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
 
 
                 return new ResultDto()

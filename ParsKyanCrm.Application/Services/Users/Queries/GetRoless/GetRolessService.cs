@@ -41,13 +41,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRoless
                 switch (request.SortOrder)
                 {
                     case "RoleID_D":
-                        lists = lists.OrderByDescending(s => s.RoleID);
+                        lists = lists.OrderByDescending(s => s.RoleId);
                         break;
                     case "RoleID_A":
-                        lists = lists.OrderBy(s => s.RoleID);
+                        lists = lists.OrderBy(s => s.RoleId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.RoleID);
+                        lists = lists.OrderByDescending(s => s.RoleId);
                         break;
                 }
 
@@ -68,7 +68,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRoless
                 else
                 {
 
-                    var list_Res_Pageing = await Pagination<Domain.Entities.Users.Roles>.CreateAsync(lists.AsNoTracking(), request);
+                    var list_Res_Pageing = await Pagination<Domain.Entities.Roles>.CreateAsync(lists.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<RolesDto>>
                     {

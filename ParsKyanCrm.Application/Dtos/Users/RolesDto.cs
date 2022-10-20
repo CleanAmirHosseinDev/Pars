@@ -14,10 +14,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
     public class RolesDto
     {
 
-        public int RoleID { get; set; }
-
+        public int RoleId { get; set; }
         public string RoleTitle { get; set; }
-        
         public string RoleDesc { get; set; }
 
     }

@@ -49,7 +49,7 @@ namespace EndPoint.Api.Controllers.api.admin
         {
             try
             {
-                return await _userFacad.GetUsersService.Execute(new RequestUserRolesDto() { UserID = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetUsersService.Execute(new RequestUserRolesDto() { UserId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
-using ParsKyanCrm.Domain.Entities.BasicInfo;
+using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -29,10 +29,10 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
             try
             {
                 EntityEntry<SystemSeting> q_Entity;
-                if (request.SystemSetingID == 0)
+                if (request.SystemSetingId == 0)
                 {
                     request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
-                    q_Entity = _context.SystemSetings.Add(_mapper.Map<SystemSeting>(request));
+                    q_Entity = _context.SystemSeting.Add(_mapper.Map<SystemSeting>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<SystemSetingDto>(q_Entity.Entity);
                 }
@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
                         {
                             nameof(q_Entity.Entity.BaseAmount),request.BaseAmount
                         }
-                    }, string.Format(nameof(q_Entity.Entity.SystemSetingID) + " = {0} ", request.SystemSetingID));
+                    }, string.Format(nameof(q_Entity.Entity.SystemSetingId) + " = {0} ", request.SystemSetingId));
                 }
 
                 return new ResultDto<SystemSetingDto>()

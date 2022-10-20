@@ -5,6 +5,6 @@ namespace ParsKyanCrm.Application.Services.Securitys.Base.Queries.Authentication
 {
     public interface IAuthenticationJwtService
     {
-        void Execute(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users.Users user);
+        void Execute(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users user);
     }
 }

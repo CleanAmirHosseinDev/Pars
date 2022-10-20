@@ -17,12 +17,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveAccessLevels
             try
             {
 
-                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users.UserRoles).Name, new Dictionary<string, object>()
+                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.UserRoles).Name, new Dictionary<string, object>()
                     {
                         {
                             nameof(request.Roles),request.Roles
                         }
-                    }, string.Format(nameof(request.UserID) + " = '{0}' ", request.UserID));
+                    }, string.Format(nameof(request.UserId) + " = '{0}' ", request.UserId));
 
 
                 return new ResultDto()

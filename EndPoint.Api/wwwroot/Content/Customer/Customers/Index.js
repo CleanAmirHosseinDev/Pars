@@ -410,16 +410,16 @@ fillData = function () {
         deb();
         if (!GetNullEmpetyUndefined(response)) {
             var temp = [];
-            Swal.fire({
-                title: "موفقیت!",
-                text: "فاروق رئیس است",
-                type: "error",
-                confirmButtonClass: 'btn btn-primary',
-                buttonsStyling: false,
-                confirmButtonText: 'متوجه شدم!',
-            }).then(function () {
-                //window.location.href = "/Admin/Home/index";
-            });
+            //Swal.fire({
+            //    title: "موفقیت!",
+            //    text: "فاروق رئیس است",
+            //    type: "error",
+            //    confirmButtonClass: 'btn btn-primary',
+            //    buttonsStyling: false,
+            //    confirmButtonText: 'متوجه شدم!',
+            //}).then(function () {
+            //    //window.location.href = "/Admin/Home/index";
+            //});
 
         }
         else {

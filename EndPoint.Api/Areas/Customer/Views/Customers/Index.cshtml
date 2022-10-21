@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Inputs Validation</h4>
+                            <h4 class="card-title">فرم اطلاعات مشتری</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body">
@@ -14,82 +14,129 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>This field is required</label>
+                                                <label>نام شرکت</label>
                                                 <div class="controls">
-                                                    <input type="text" name="text" class="form-control" data-validation-required-message="This field is required" placeholder="First Name">
+                                                    <input type="text" name="NamesAuthorizedSignatories" class="form-control" id="CompanyName" placeholder="نام شرکت">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Must only consist of numbers</label>
+                                                <label>شهر</label>
                                                 <div class="controls">
-                                                    <input type="text" name="numeric" class="form-control" required data-validation-containsnumber-regex="(\d)+" data-validation-containsnumber-message="The numeric field may only contain numeric characters." placeholder="Enter Numbers only">
+                                                    <select id="CityId" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                        <option value="-1">انتخاب کنید</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Only alphabetic characters</label>
+                                                <label>اسامی امضاکنندگان مجاز</label>
                                                 <div class="controls">
-                                                    <input type="text" name="alpha" class="form-control" required data-validation-containsnumber-regex="^[a-zA-Z]+$" data-validation-containsnumber-message="The alpha field may only contain alphabetic characters." placeholder="Enter Character only">
+                                                    <input type="text" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control" placeholder="اسامی امضاکنندگان مجاز">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Password Input Field</label>
+                                                <label>نوع شرکت</label>
                                                 <div class="controls">
-                                                    <input type="password" name="password" class="form-control" data-validation-required-message="This field is required" placeholder="Password">
+                                                    <select id="KindOfCompanyID" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                        <option value="-1">انتخاب کنید</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Repeat password must match</label>
+                                                <label>نوع خدمت</label>
                                                 <div class="controls">
-                                                    <input type="password" name="password2" data-validation-match-match="password" class="form-control" data-validation-required-message="Repeat password must match" placeholder="Repeat Password">
+                                                    <select id="TypeServiceRequestedID" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                        <option value="-1">انتخاب کنید</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Must be a valid email</label>
+                                                <label>چگونه شناسه شرکت را بشناسیم</label>
                                                 <div class="controls">
-                                                    <input type="email" name="email" class="form-control" data-validation-required-message="Must be a valid email" placeholder="Email">
+                                                    <select id="HowGetKnowCompanyId" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                        <option value="-1">انتخاب کنید</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                                          
+                                            <div class="form-group">
+                                                <label>شناسه ملی  شرکت</label>
+                                                <div class="controls">
+                                                    <input type="text" name="NationalCode" data="NationalCode" class="form-control" data-validation-regex-regex="([^a-z]*[A-Z]*)*" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="شناسه ملی  شرکت را صحیح وارد کنید" min="11" max="11" placeholder="شناسه ملی  شرکت" aria-invalid="false">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>کد پستی</label>
+                                                <div class="controls">
+                                                    <input type="text" name="PostalCode" id="PostalCode" class="form-control" data-validation-regex-regex="([^a-z]*[A-Z]*)*" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="کد پستی را صحیح وارد کنید" min="10" max="10" placeholder="کد پستی" aria-invalid="false">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>کد اقتصادی</label>
+                                                <div class="controls">
+                                                    <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" data-validation-regex-regex="([^a-z]*[A-Z]*)*" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="کد اقتصادی  شرکت را صحیح وارد کنید" min="12" max="12" placeholder="کد اقتصادی  شرکت" aria-invalid="false">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
+                             
                                             <div class="form-group">
-                                                <label>Enter Number between 10 & 20</label>
+                                                <label>تلفن شرکت</label>
                                                 <div class="controls">
-                                                    <input type="text" class="form-control" data-validation-regex-regex="([^a-z]*[A-Z]*)*" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="Enter Number between 10 & 20" min="10" max="20" required placeholder="Enter Number between 10 & 20">
+                                                    <input type="tel" name="Tel" id="Tel" class="form-control" data-validation-regex-regex="^0[1-8]{2,}[0-9]{8,}$" data-validation-regex-message="تلفن شرکت را صحیح وارد کنید" min="11" max="11" placeholder="تلفن شرکت">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Must match the specified regular expression : ^([0-9]+)$ - numbers only</label>
+                                                <label>ایمیل شرکت</label>
                                                 <div class="controls">
-                                                    <input type="text" name="text" class="form-control" data-validation-containsnumber-regex="^([0-9]+)$" data-validation-containsnumber-message="The regex field format is invalid." placeholder="Enter specified regular expression" required>
+                                                    <input type="email" name="Email" id="Email" class="form-control" data-validation-containsnumber-message="ایمیل شرکت را صحیح وارد کنید" aria-invalid="true" placeholder="ایمیل شرکت">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Length should not be less than the specified length : 3</label>
+                                                <label>نام رابط و نماینده شرکت</label>
                                                 <div class="controls">
-                                                    <input type="text" name="minChar" class="form-control" data-validation-required-message="The min field must be at least 3 characters." minlength="3" placeholder="Enter minimum 3 characters">
+                                                    <input type="text" name="AgentName" id="AgentName" class="form-control" placeholder="نام رابط و نماینده شرکت">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>The digits field must be numeric and exactly contain 3 digits</label>
+                                                <label>موبایل نماینده</label>
                                                 <div class="controls">
-                                                    <input type="text" name="digit" class="form-control" data-validation-regex-regex="([^a-z]*[A-Z]*)*" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-required-message="The digits field must be numeric and exactly contain 3 digits" maxlength="3" minlength="3" placeholder="Enter Exactly 3 digits">
+                                                    <input type="text" name="AgentMobile" id="AgentMobile" data-validation-regex-regex="^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$" data-validation-regex-message="موبایل نماینده شرکت را صحیح وارد کنید" min="11" max="11" class="form-control" placeholder="موبایل نماینده">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Only alphabetic characters, numbers, dashes or underscores</label>
+                                                <label>نام و نام خانوادگی مدیر عامل</label>
                                                 <div class="controls">
-                                                    <input type="text" name="reg-exp" class="form-control" data-validation-regex-regex="^[-a-zA-Z_\d]+$" data-validation-regex-message="Must Enter Character, Number, Dash or Uderscore" placeholder="Enter Character, Numbers, Dash, Uderscore" required>
+                                                    <input type="text" name="CeoName" id="CeoName" class="form-control" placeholder="نام و نام خانوادگی مدیر عامل">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Must be a valid url</label>
+                                                <label> موبایل مدیر عامل</label>
                                                 <div class="controls">
-                                                    <input type="text" name="url" class="form-control" data-validation-regex-regex="^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" data-validation-regex-message="Must be a valid url" placeholder="Enter valid url" required>
+                                                    <input type="text" name="CeoMobile" id="CeoMobile" data-validation-regex-regex="^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$" data-validation-regex-message="موبایل مدیر عامل شرکت را صحیح وارد کنید" min="11" max="11" class="form-control" placeholder="موبایل مدیر عامل">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>تعداد پرسنل شرکت</label>
+                                                <div class="controls">
+                                                    <input type="text" name="CountOfPersonal" id="CountOfPersonal" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="تعداد پرسنل  شرکت را صحیح وارد کنید" min="0" max="10000000" class="form-control" placeholder="تعداد پرسنل شرکت">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>مبلغ کل فروش اظهار شده</label>
+                                                <div class="controls">
+                                                    <input type="text" name="AmountOsLastSaels" id="AmountOsLastSaels" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="مبلغ کل فروش اظهار شده  شرکت را صحیح وارد کنید" class="form-control" placeholder="مبلغ کل فروش اظهار شده شرکت">
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group">
+                                                <label>آدرس شرکت</label>
+                                                <div class="controls">
+                                                    <textarea class="form-control" placeholder="آدرس شرکت" id="HowGetKnowCompanyId"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">ثبت</button>
                                 </form>
                             </div>
                         </div>

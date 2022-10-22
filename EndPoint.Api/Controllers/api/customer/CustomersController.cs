@@ -44,7 +44,7 @@ namespace EndPoint.Api.Controllers.api.customer
         {
             try
             {
-                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value.Decrypt_Advanced_For_Number());
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return _userFacad.SaveBasicInformationCustomersService.Execute(request);
             }
             catch (Exception ex)

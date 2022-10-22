@@ -35,6 +35,12 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSetings
 
                 if (request.LabeCode.HasValue) lists = lists.Where(p => p.LabeCode == request.LabeCode.Value);
 
+                if (!string.IsNullOrEmpty(request.LabeCodeArr))
+                {
+                    string[] qSplit = request.LabeCodeArr.Split(",");
+                    lists = lists.Where(p => qSplit.Contains(p.LabeCode.ToString()));
+                }
+
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Label.Contains(request.Search) || p.Value.Contains(request.Search));
 
                 switch (request.SortOrder)

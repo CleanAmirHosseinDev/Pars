@@ -1,10 +1,11 @@
 ﻿using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Common.Dto;
+using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
     public interface ISaveBasicInformationCustomersService
     {
-        ResultDto Execute(CustomersDto request);
+        Task<ResultDto> Execute(CustomersDto request);
     }
 }

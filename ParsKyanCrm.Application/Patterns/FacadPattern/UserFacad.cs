@@ -14,6 +14,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetAccessLevels;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAccessLevels;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomers;
+using FluentValidation;
+using ParsKyanCrm.Application.Dtos.Users;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -43,12 +45,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IWebHostEnvironment _env;
-        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        private readonly IValidator<CustomersDto> _validator;
+
+        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IValidator<CustomersDto> validator)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
             _env = env;
+            _validator = validator;
         }
 
         private IGetUserssService _getUserssService;
@@ -110,7 +115,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad);
+                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad, _validator);
             }
         }
 

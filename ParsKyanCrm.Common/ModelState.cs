@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,20 @@ namespace ParsKyanCrm.Common
                 return string.Join("<br />", (from item in modelState
                                               where item.Value.Errors.Any()
                                               select item.Value.Errors[0].ErrorMessage).ToList());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string GetErrorsF(this List<ValidationFailure> modelState)
+        {
+            try
+            {
+                if (modelState != null) return string.Join("<br />", modelState.Select(p => p.ErrorMessage));
+
+                return string.Empty;
             }
             catch (Exception ex)
             {

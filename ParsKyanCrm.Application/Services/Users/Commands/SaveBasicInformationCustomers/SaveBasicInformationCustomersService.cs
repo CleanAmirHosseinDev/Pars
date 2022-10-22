@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParsKyanCrm.Common;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
@@ -18,11 +21,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
-        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IValidator<CustomersDto> _validator;
+
+        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IValidator<CustomersDto> validator)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
+            _validator = validator;
         }
 
         private bool Check_Remote(CustomersDto request)
@@ -61,11 +67,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
-        private string Validation_Execute(CustomersDto request)
+        private async Task<string> Validation_Execute(CustomersDto request)
         {
             try
             {
-                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode } ))
+
+                ValidationResult result = await _validator.ValidateAsync(request);
+                if (!result.IsValid) return result.Errors.GetErrorsF();
+
+
+
+                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
                 {
                     return "شناسه ملی مورد نظر ار قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
                 }
@@ -75,7 +87,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     return "پست الکترونیکی مورد نظر ار قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile } ))
+                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile }))
                 {
                     return "موبایل مدیر عامل مورد نظر ار قبل موجود می باشد لطفا موبایل مدیر عامل دیگری وارد نمایید";
                 }
@@ -93,13 +105,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
-        public ResultDto Execute(CustomersDto request)
+        public async Task<ResultDto> Execute(CustomersDto request)
         {
             try
             {
                 #region Validation
 
-                string strValidation = Validation_Execute(request);
+                string strValidation = await Validation_Execute(request);
                 if (!string.IsNullOrEmpty(strValidation))
                 {
                     return new ResultDto()

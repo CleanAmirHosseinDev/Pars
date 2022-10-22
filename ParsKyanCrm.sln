@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{8EE0BDFD-8584-415F-95BE-4E7F81BE3498}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Lenovo\Downloads\Soroush+ Downloads\Others\Register.docx = C:\Users\Lenovo\Downloads\Soroush+ Downloads\Others\Register.docx
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{5E83E6D7-9D83-4B76-8FFC-314CED1C5871}"
 EndProject
@@ -17,15 +20,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{3BC5373C-193E-4F2C-8CD7-E23B6D34401E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsKyanCrm.Common", "ParsKyanCrm.Common\ParsKyanCrm.Common.csproj", "{36F12A69-33E8-482C-AB3A-B575B0D3BFEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsKyanCrm.Common", "ParsKyanCrm.Common\ParsKyanCrm.Common.csproj", "{36F12A69-33E8-482C-AB3A-B575B0D3BFEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsKyanCrm.Application", "ParsKyanCrm.Application\ParsKyanCrm.Application.csproj", "{5744E23E-1FB3-48C5-84C9-A9B29BA87D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsKyanCrm.Application", "ParsKyanCrm.Application\ParsKyanCrm.Application.csproj", "{5744E23E-1FB3-48C5-84C9-A9B29BA87D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsKyanCrm.Infrastructure", "ParsKyanCrm.Infrastructure\ParsKyanCrm.Infrastructure.csproj", "{452665C5-8EA1-443D-9D2E-54CAA37654AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsKyanCrm.Infrastructure", "ParsKyanCrm.Infrastructure\ParsKyanCrm.Infrastructure.csproj", "{452665C5-8EA1-443D-9D2E-54CAA37654AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsKyanCrm.Domain", "ParsKyanCrm.Domain\ParsKyanCrm.Domain.csproj", "{C4D8D915-1F90-45EA-961B-7D6BF0C7CBDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsKyanCrm.Domain", "ParsKyanCrm.Domain\ParsKyanCrm.Domain.csproj", "{C4D8D915-1F90-45EA-961B-7D6BF0C7CBDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndPoint.Api", "EndPoint.Api\EndPoint.Api.csproj", "{8EDE97BD-512B-41FC-AF21-CD272FF3C2CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint.Api", "EndPoint.Api\EndPoint.Api.csproj", "{8EDE97BD-512B-41FC-AF21-CD272FF3C2CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -72,24 +72,28 @@
 
     $('#conferm').on('click', function (e) {
         e.preventDefault();
-
-        if (GetNullEmpetyUndefined($("#roundText").val())) {
-            $("#roundText")[0].className = "form-control round is-invalid";
-            $(".invalid-feedback").html("فیلد مقدار اجباری است");
-
-        }
-        AjaxCall('/api/admin/SystemSeting/Save_SystemSeting/',
+     
+        AjaxCall('/api/Customer/Customers/Save_BasicInformationCustomers/',
 
             JSON.stringify(
                 {
-                    'SystemSetingID': decrypt($("#ID").val(), keyMaker()),
-                    'IsActive': ($('#isActive')[0].checked ? 15 : 14),
-                    'Label': $("#Label").val(),
-                    'LabeCode': $("#LabelCode").val(),
-                    'Value': $("#roundText").val(),
-                    'BaseAmount': !GetNullEmpetyUndefined($("#BaseAmount").val()) ? parseInt($("#BaseAmount").val()) : null,
-                    'FromAmount': !GetNullEmpetyUndefined($("#FromAmount").val()) ? parseFloat($("#FromAmount").val()) : null,
-                    'ToAmount': !GetNullEmpetyUndefined($("#ToAmount").val()) ? parseFloat($("#ToAmount").val()) : null
+                    'CompanyName': $('#CompanyName').val(),
+                    'Email': $('#Email').val(),
+                    'NamesAuthorizedSignatories': $('#NamesAuthorizedSignatories').val(),
+                    'KindOfCompanyID': $('#KindOfCompanyID').val(),
+                    'TypeServiceRequestedID': $('#TypeServiceRequestedID').val(),
+                    'HowGetKnowCompanyId': $('#HowGetKnowCompanyId').val(),
+                    'NationalCode': $('#NationalCode').val(),
+                    'PostalCode': $('#PostalCode').val(),
+                    'EconomicCode': $('#EconomicCode').val(),
+                    'Tel': $('#Tel').val(),
+                    'AgentName': $('#AgentName').val(),
+                    'AgentMobile': $('#AgentMobile').val(),
+                    'CeoName': $('#CeoName').val(),
+                    'CeoMobile': $('#CeoMobile').val(),
+                    'CountOfPersonal': $('#CountOfPersonal').val(),
+                    'AmountOsLastSaels': $('#AmountOsLastSaels').val(),
+                    'AddressCompany': $('#AddressCompany').val(),
 
                 })
             , 'POST').done(function (response) {
@@ -103,9 +107,6 @@
                         confirmButtonText: 'متوجه شدم!',
                     }).then(function () {
 
-
-                        $('#exampleModalScrollable').modal('hide');
-                        location.reload();
                     });
 
                 }
@@ -119,7 +120,6 @@
                         confirmButtonText: 'متوجه شدم!',
                     }).then(function () {
 
-                        $('#exampleModalScrollable').modal('hide');
                     });
 
 
@@ -134,7 +134,7 @@
                     buttonsStyling: false,
                     confirmButtonText: 'متوجه شدم!',
                 }).then(function () {
-                    $('#exampleModalScrollable').modal('hide');
+                
                 });
             });
         e.stopPropagation();
@@ -406,48 +406,101 @@ var customHTML = function (params) {
 };
 
 fillData = function () {
-    AjaxCall('/api/Customer/Customers/Get_Customers/', null, 'GET').done(function (response) {
-        deb();
-        if (!GetNullEmpetyUndefined(response)) {
-            var temp = [];
-            //Swal.fire({
-            //    title: "موفقیت!",
-            //    text: "فاروق رئیس است",
-            //    type: "error",
-            //    confirmButtonClass: 'btn btn-primary',
-            //    buttonsStyling: false,
-            //    confirmButtonText: 'متوجه شدم!',
-            //}).then(function () {
-            //    //window.location.href = "/Admin/Home/index";
-            //});
 
-        }
-        else {
+    AjaxCall('/api/Customer/SystemSeting/Get_SystemSetings/', JSON.stringify(
+        {
+            'LabeCode': "1005,1015,1010",
+        }), 'POST').done(function (response) {
+            if (response.isSuccess === true) {
+                //نوع شرکت
+                setSelect('#KindOfCompanyID', -1, "انتخاب کنید");
+                for (var i = 0; i < response.data.length; i++) {
+                    setSelect('#KindOfCompanyID', response.data[i].systemSetingId, response.data[0].value);
+                }
+                //نوع خدمت
+                setSelect('#TypeServiceRequestedID', -1, "انتخاب کنید");
+                for (var i = 0; i < response.data.length; i++) {
+                    setSelect('#TypeServiceRequestedID', response.data[i].systemSetingId, response.data[0].value);
+                }
+                //چگونه شناسه شرکت را بشناسیم
+                setSelect('#TypeServiceRequestedID', -1, "انتخاب کنید");
+                for (var i = 0; i < response.data.length; i++) {
+                    setSelect('#TypeServiceRequestedID', response.data[i].systemSetingId, response.data[0].value);
+                }
+                //دریافت تمام فیلد ها
+                AjaxCall('/api/Customer/Customers/Get_Customers/', null, 'GET').done(function (response) {
+                    deb();
+                    if (!GetNullEmpetyUndefined(response)) {
+                        var temp = [];
+
+                        $('#CompanyName').val(response.companyName);
+                        $('#Email').val(response.email);
+                        $('#KindOfCompanyID').val(response.kindOfCompanyId);
+                        $('#NamesAuthorizedSignatories').val(response.namesAuthorizedSignatories);
+                        $('#TypeServiceRequestedID').val(response.typeServiceRequestedId);
+                        $('#HowGetKnowCompanyId').val(response.howGetKnowCompanyId);
+                        $('#NationalCode').val(response.nationalCode);
+                        $('#PostalCode').val(response.postalCode);
+                        $('#EconomicCode').val(response.economicCode);
+                        $('#EconomicCode').val(response.economicCode);
+                        $('#Tel').val(response.tel);
+                        $('#AgentName').val(response.agentName);
+                        $('#AgentMobile').val(response.agentMobile);
+                        $('#CeoName').val(response.ceoName);
+                        $('#CeoMobile').val(response.ceoMobile);
+                        $('#CountOfPersonal').val(response.countOfPersonal);
+                        $('#AmountOsLastSaels').val(response.amountOsLastSaels);
+                        $('#AddressCompany').val(response.addressCompany);
+                        flag = false;
+                    }
+                    else {
+                        Swal.fire({
+                            title: "خطا!",
+                            text: response.message,
+                            type: "error",
+                            confirmButtonClass: 'btn btn-primary',
+                            buttonsStyling: false,
+                            confirmButtonText: 'متوجه شدم!',
+                        }).then(function () {
+                            flag = false;
+                            window.location.href = "/Customer/Home/index";
+                        });
+
+                    }
+                }).fail(function (error) {
+                    Swal.fire({
+                        title: "خطا!",
+                        text: "خطای غیر منتظره!",
+                        type: "error",
+                        confirmButtonClass: 'btn btn-primary',
+                        buttonsStyling: false,
+                        confirmButtonText: 'متوجه شدم!',
+                    }).then(function () {
+                        window.location.href = "/Customer/Home/index";
+                    });
+                });
+            } else {
+                Swal.fire({
+                    title: "خطا!",
+                    text: response.message,
+                    type: "error",
+                    confirmButtonClass: 'btn btn-primary',
+                    buttonsStyling: false,
+                    confirmButtonText: 'متوجه شدم!',
+                }).then(function () {
+                    window.location.href = "/Customer/Home/index";
+                });
+            }
+        }).fail(function (error) {
             Swal.fire({
                 title: "خطا!",
-                text: response.message,
+                text: "خطای غیر منتظره!",
                 type: "error",
                 confirmButtonClass: 'btn btn-primary',
                 buttonsStyling: false,
                 confirmButtonText: 'متوجه شدم!',
             }).then(function () {
-                window.location.href = "/Admin/Home/index";
+                window.location.href = "/Customer/Home/index";
             });
-
-        }
-    }).fail(function (error) {
-
-        Swal.fire({
-            title: "خطا!",
-            text: "خطای غیر منتظره!",
-            type: "error",
-            confirmButtonClass: 'btn btn-primary',
-            buttonsStyling: false,
-            confirmButtonText: 'متوجه شدم!',
-        }).then(function () {
-            window.location.href = "/Admin/Home/index";
         });
-    });
-
-
 };

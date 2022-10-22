@@ -16,15 +16,21 @@
                                             <div class="form-group">
                                                 <label>نام شرکت</label>
                                                 <div class="controls">
-                                                    <input type="text" name="NamesAuthorizedSignatories" class="form-control" id="CompanyName" placeholder="نام شرکت">
+                                                    <input type="text" name="CompanyName" class="form-control" id="CompanyName" placeholder="نام شرکت">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            @* <div class="form-group">
                                                 <label>شهر</label>
                                                 <div class="controls">
-                                                    <select id="CityId" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                                        <option value="-1">انتخاب کنید</option>
-                                                    </select>
+                                                <select id="CityId" class="select2 form-control" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                <option value="-1">انتخاب کنید</option>
+                                                </select>
+                                                </div>
+                                                </div>*@
+                                            <div class="form-group">
+                                                <label>ایمیل شرکت</label>
+                                                <div class="controls">
+                                                    <input type="email" name="Email" id="Email" class="form-control" data-validation-containsnumber-message="ایمیل شرکت را صحیح وارد کنید" aria-invalid="true" placeholder="ایمیل شرکت">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -57,7 +63,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                                          
                                             <div class="form-group">
                                                 <label>شناسه ملی  شرکت</label>
                                                 <div class="controls">
@@ -78,17 +83,11 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                             
+
                                             <div class="form-group">
                                                 <label>تلفن شرکت</label>
                                                 <div class="controls">
                                                     <input type="tel" name="Tel" id="Tel" class="form-control" data-validation-regex-regex="^0[1-8]{2,}[0-9]{8,}$" data-validation-regex-message="تلفن شرکت را صحیح وارد کنید" min="11" max="11" placeholder="تلفن شرکت">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>ایمیل شرکت</label>
-                                                <div class="controls">
-                                                    <input type="email" name="Email" id="Email" class="form-control" data-validation-containsnumber-message="ایمیل شرکت را صحیح وارد کنید" aria-invalid="true" placeholder="ایمیل شرکت">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -127,16 +126,17 @@
                                                     <input type="text" name="AmountOsLastSaels" id="AmountOsLastSaels" data-validation-containsnumber-regex="([^0-9]*[0-9]+)+" data-validation-containsnumber-message="مبلغ کل فروش اظهار شده  شرکت را صحیح وارد کنید" class="form-control" placeholder="مبلغ کل فروش اظهار شده شرکت">
                                                 </div>
                                             </div>
-
-                                             <div class="form-group">
+                                            <div class="form-group">
                                                 <label>آدرس شرکت</label>
                                                 <div class="controls">
-                                                    <textarea class="form-control" placeholder="آدرس شرکت" id="HowGetKnowCompanyId"></textarea>
+                                                    <textarea class="form-control" placeholder="آدرس شرکت" name="AddressCompany" id="AddressCompany"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">ثبت</button>
+                                    <button type="button" class="btn btn-primary">
+                                        ثبت
+                                    </button>
                                 </form>
                             </div>
                         </div>

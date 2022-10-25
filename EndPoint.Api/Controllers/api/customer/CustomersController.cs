@@ -40,12 +40,12 @@ namespace EndPoint.Api.Controllers.api.customer
 
         [HttpPost]
         [Route("[action]")]
-        public ResultDto Save_BasicInformationCustomers([FromBody] CustomersDto request)
+        public async Task<ResultDto> Save_BasicInformationCustomers([FromBody] CustomersDto request)
         {
             try
             {
                 request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
-                return _userFacad.SaveBasicInformationCustomersService.Execute(request);
+                return await _userFacad.SaveBasicInformationCustomersService.Execute(request);
             }
             catch (Exception ex)
             {

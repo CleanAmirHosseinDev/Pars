@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace ParsKyanCrm.Application.Dtos.Users
 {
@@ -98,4 +99,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public SystemSetingDto TypeServiceRequested { get; set; }
 
     }
+
+    public class ValidatorCustomersDto : AbstractValidator<CustomersDto>
+    {
+        public ValidatorCustomersDto()
+        {
+            RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده را وارد کنید");
+
+        }
+
+    }
+
 }

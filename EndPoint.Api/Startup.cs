@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Infrastructure.Consts;
@@ -100,6 +102,8 @@ namespace EndPoint.Api
             services.AddScoped<ISecurityFacad, SecurityFacad>();
 
             services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();
+
+            services.AddScoped<IValidator<CustomersDto>, ValidatorCustomersDto>();
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(VaribleForName.MainConnectionString));
 

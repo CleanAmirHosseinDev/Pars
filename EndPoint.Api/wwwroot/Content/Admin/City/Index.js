@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-  
+
     fillGridUser();
 
     onSetting = function (e) {
@@ -91,7 +91,6 @@
                         confirmButtonText: 'متوجه شدم!',
                     }).then(function () {
 
-
                         $('#exampleModalScrollable').modal('hide');
                         location.reload();
                     });
@@ -132,11 +131,12 @@
     });
 
 });
-  var customHTML = function (params) {
 
-        return '<div data-id="' + params.data.id + '" data-name="' + params.data.name + '" data-stateID="' + params.data.stateID + '" onclick="onSetting($(this))" data-toggle="modal" data-target="#exampleModalScrollable"  style="width: 100% !important;height: inherit !important;min-width: 50px !important;" >' + params.value + '</div>';
+var customHTML = function (params) {
 
-    };
+    return '<div data-id="' + params.data.id + '" data-name="' + params.data.name + '" data-stateID="' + params.data.stateID + '" onclick="onSetting($(this))" data-toggle="modal" data-target="#exampleModalScrollable"  style="width: 100% !important;height: inherit !important;min-width: 50px !important;" >' + params.value + '</div>';
+
+};
 
 fillGridUser = function () {
     AjaxCall('/api/admin/City/Get_Citys/',
@@ -144,7 +144,7 @@ fillGridUser = function () {
         JSON.stringify(
             {
                 'PageIndex': 1,
-                'PageSize': 100
+                'PageSize': 200
             })
         , 'POST').done(function (response) {
             deb();
@@ -226,16 +226,10 @@ fillGridUser = function () {
                 'PageSize': 100
             })
         , 'POST').done(function (response) {
-            deb();
-            if (response.isSuccess === true) {
-                var srt = '';
-                for (var i = 0; i < response.data.length; i++) {
-                    srt += '<option value="' + response.data[i].stateID + '">' + response.data[i].stateName + '</option>';
-                }
-                $("#select2-customize-result").html(srt);
 
-
-            }
+            if (response.isSuccess === true)
+                for (var i = 0; i < response.data.length; i++)
+                    setSelect('#select2-customize-result', response.data[i].stateID, response.data[i].stateName)
 
         }).fail(function (error) {
 
@@ -247,16 +241,13 @@ fillGridUser = function () {
         JSON.stringify(
             {
                 'PageIndex': 1,
-                'PageSize': 100
+                'PageSize': 200
             })
         , 'POST').done(function (response) {
 
             if (response.isSuccess === true) {
-                var str = '';
-                for (var i = 0; i < response.data.length; i++) {
-                    str += '<option value="' + response.data[i].stateID + '" >' + response.data[i].stateName + '</option>';
-                }
-                $('#StateId').html(str);
+                for (var i = 0; i < response.data.length; i++)
+                    setSelect('#StateId', response.data[i].stateID, response.data[i].stateName)
             }
             else {
                 Swal.fire({

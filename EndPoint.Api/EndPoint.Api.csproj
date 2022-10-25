@@ -28,6 +28,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Content\fonts\BNazanin\BNazanin.svg" />
+    <None Include="wwwroot\Content\fonts\BNazanin\BNazanin.woff2" />
+    <None Include="wwwroot\Content\fonts\BNazanin\BNaznnBd.woff2" />
+    <None Include="wwwroot\Content\fonts\BYekan\Yekan.svg" />
+    <None Include="wwwroot\Content\fonts\BYekan\Yekan.vfb" />
+    <None Include="wwwroot\Content\fonts\BYekan\Yekan.woff2" />
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\Content\fonts\IRANSans-Bold-web.woff2" />
+    <None Include="wwwroot\Content\fonts\IRANSans-Light-web.woff2" />
+    <None Include="wwwroot\Content\fonts\IRANSans-Medium-web.woff2" />
+    <None Include="wwwroot\Content\fonts\IRANSans-web.woff2" />
+    <None Include="wwwroot\Content\fonts\IRANSansWeb%28FaNum%29.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />

@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\**" />
     <Compile Remove="Controllers\api\superVisor\**" />
     <Compile Remove="FileUpload\**" />
+    <Content Remove="Areas\**" />
     <Content Remove="Controllers\api\superVisor\**" />
     <Content Remove="FileUpload\**" />
+    <EmbeddedResource Remove="Areas\**" />
     <EmbeddedResource Remove="Controllers\api\superVisor\**" />
     <EmbeddedResource Remove="FileUpload\**" />
+    <None Remove="Areas\**" />
     <None Remove="Controllers\api\superVisor\**" />
     <None Remove="FileUpload\**" />
   </ItemGroup>
@@ -37,7 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

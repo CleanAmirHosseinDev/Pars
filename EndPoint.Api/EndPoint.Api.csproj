@@ -5,42 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\Data\**" />
-    <Compile Remove="Areas\Admin\Models\**" />
     <Compile Remove="Controllers\api\superVisor\**" />
     <Compile Remove="FileUpload\**" />
-    <Compile Remove="wwwroot\Content\js\Admin\**" />
-    <Content Remove="Areas\Admin\Data\**" />
-    <Content Remove="Areas\Admin\Models\**" />
     <Content Remove="Controllers\api\superVisor\**" />
     <Content Remove="FileUpload\**" />
-    <Content Remove="wwwroot\Content\js\Admin\**" />
-    <EmbeddedResource Remove="Areas\Admin\Data\**" />
-    <EmbeddedResource Remove="Areas\Admin\Models\**" />
     <EmbeddedResource Remove="Controllers\api\superVisor\**" />
     <EmbeddedResource Remove="FileUpload\**" />
-    <EmbeddedResource Remove="wwwroot\Content\js\Admin\**" />
-    <None Remove="Areas\Admin\Data\**" />
-    <None Remove="Areas\Admin\Models\**" />
     <None Remove="Controllers\api\superVisor\**" />
     <None Remove="FileUpload\**" />
-    <None Remove="wwwroot\Content\js\Admin\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Content\fonts\BNazanin\BNazanin.svg" />
-    <None Include="wwwroot\Content\fonts\BNazanin\BNazanin.woff2" />
-    <None Include="wwwroot\Content\fonts\BNazanin\BNaznnBd.woff2" />
-    <None Include="wwwroot\Content\fonts\BYekan\Yekan.svg" />
-    <None Include="wwwroot\Content\fonts\BYekan\Yekan.vfb" />
-    <None Include="wwwroot\Content\fonts\BYekan\Yekan.woff2" />
-    <None Include="wwwroot\Content\fonts\fontawesome-webfont.woff2" />
-    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.svg" />
-    <None Include="wwwroot\Content\fonts\IRANSans-Bold-web.woff2" />
-    <None Include="wwwroot\Content\fonts\IRANSans-Light-web.woff2" />
-    <None Include="wwwroot\Content\fonts\IRANSans-Medium-web.woff2" />
-    <None Include="wwwroot\Content\fonts\IRANSans-web.woff2" />
-    <None Include="wwwroot\Content\fonts\IRANSansWeb%28FaNum%29.woff2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,26 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Customer\Views\Home\Index.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Areas\Customer\Views\Shared\_Header.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Areas\Customer\Views\Shared\_Layout.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Areas\Customer\Views\Shared\_Menu.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Areas\Customer\Views\_ViewStart.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <Folder Include="Areas\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

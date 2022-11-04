@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Common.Enums
         [Category("SystemStructure")]
         [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "/Admin/Users/Index")]
-        [DisplayFiledAttribute2(Name = "fa fa-users")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "کاربران سیستم")]
         [OrderAttribute(Order = 1)]
         Users = 102,
@@ -26,7 +26,7 @@ namespace ParsKyanCrm.Common.Enums
         [Category("SystemStructure")]
         [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-users")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "کاربران سیستم")]
         [OrderAttribute(Order = 1)]
         Users_Save = 103,
@@ -37,7 +37,7 @@ namespace ParsKyanCrm.Common.Enums
         [Category("SystemStructure")]
         [DisplayFiledAttribute(Name = "ساختار سیستم")]
         [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-users")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "تنظیم سطوح دسترسی")]
         [OrderAttribute(Order = 1)]
         SetAccessLevels = 104,

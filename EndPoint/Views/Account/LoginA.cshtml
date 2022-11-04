@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ورود</title>
+    <link rel="icon" type="image/png" href="~/favicon.ico" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="~/css/GlobalAreas/dist/css/bootstrap-theme.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/dist/css/rtl.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/bower_components/font-awesome/css/font-awesome.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/bower_components/Ionicons/css/ionicons.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/dist/css/AdminLTE.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/dist/css/skins/_all-skins.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/_Layout.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+
+    <script src="~/lib/SweetAlert/sweetalert.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+
+    <link href="~/css/GlobalAreas/AccountForm.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <link href="~/css/GlobalAreas/AccountFormP1.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+    <style>
+        :root {
+            --login-chue: 270deg;
+        }
+    </style>
+</head>
+<body>
+    <img src="/css/GlobalAreas/dist/img/53261.jpg" id="locklogo" />
+
+    <div class="container">
+        <div class="screen">
+            <div class="login_logo">
+                <div></div>
+                <a href="https://vam30.com"> <img src="/css/GlobalAreas/dist/img/53261.jpg"></a>
+            </div>
+            <div class="screen__content">
+                <h1 class="login_h1">ناحیه</h1>
+                <a href="https://vam30.com"> <img class="login_head_img" src="/css/GlobalAreas/dist/img/53261.jpg" /></a>
+                <div class="login">
+                    <div class="login__field">
+                        <i class="login__icon fa fa-user"></i>
+                        <input type="text" class="login__input" autofocus="" placeholder="نام کاربری" autocomplete="Off" id="User" />
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fa fa-lock"></i>
+                        <i class="login__show_pass fa fa-eye" onclick="Web.AccountController.LoginShowPass();"></i>
+                        <input type="password" class="login__input" placeholder="کلمه عبور" autocomplete="Off" id="Password" />
+                    </div>
+                    <br>
+                    @*محل انتساب کپچا*@
+                    <button type="button" onclick="Web.AccountController.LoginA(this);" class="button login__submit">
+                        <span class="button__text">ورود</span>
+                        <i class="button__icon fa fa-chevron-left"></i>
+                    </button>
+                </div>
+
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/css/GlobalAreas/bower_components/bootstrap/dist/js/bootstrap.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/css/GlobalAreas/dist/js/adminlte.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/css/GlobalAreas/dist/js/demo.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+
+    <script src="~/js/InitProject.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/js/Utility.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+
+    <script src="~/js/Views/AccountController.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+
+</body>
+</html>

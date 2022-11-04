@@ -8,6 +8,16 @@ namespace ParsKyanCrm.Infrastructure.Consts
 {
     public class VaribleForName
     {
+
+        //موقع ورژن زدن این عدد باید یکی اضافه شود
+        public static string SCVersion
+        {
+            get
+            {
+                return "v=" + "1";
+            }
+        }
+
         public static bool IsDebug
         {
             get

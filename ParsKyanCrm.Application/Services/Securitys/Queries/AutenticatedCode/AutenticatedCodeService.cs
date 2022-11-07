@@ -35,7 +35,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 var res_ResultLoginDto = new ResultLoginDto();
                 string LoginName = "Customer";
 
-                res_ResultLoginDto.CustomerID = request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number();
+                res_ResultLoginDto.CustomerID = !string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ?request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number():null;
+                res_ResultLoginDto.FullName = request.Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf;
 
                 if (request.Code == "1234")
                 {

@@ -13,11 +13,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int RequestId { get; set; }
         public string RequestNoStr { get; set; }
         public int? RequestNo { get; set; }
-        public int? CustomerId { get; set; }
-        public int? UserId { get; set; }
-        public DateTime? DateOfRequest { get; set; }
-        public DateTime? DateOfAssignUsers { get; set; }
-        public DateTime? DateOfAcceptRequest { get; set; }
+        public int? CustomerId { get; set; }        
+        public DateTime? DateOfRequest { get; set; }                
         public DateTime? DateOfConfirmed { get; set; }
         public int? Status { get; set; }
         public int? KindOfRequest { get; set; }

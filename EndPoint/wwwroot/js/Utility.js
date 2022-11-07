@@ -953,6 +953,7 @@ function alertB(title, text, icon, buttonOk = "بله متوجه شدم") {
     }
 
 }
+
 function confirmB(title, text, icon, successCallBack, CancelCallBack, buttons = ["Cancel", "Ok"], dangerMode = true) {
 
     try {

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace ParsKyanCrm.Domain.Entities
 {
-    public partial class CopanyGroup
+    public partial class CompanyGroup
     {
-        public CopanyGroup()
+        public CompanyGroup()
         {
             Companies = new HashSet<Companies>();
         }

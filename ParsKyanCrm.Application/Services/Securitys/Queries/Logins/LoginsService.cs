@@ -116,7 +116,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             };
                         }
 
-                        res_ResultLoginDto.FullName = cusUser.AgentName;
+                        res_ResultLoginDto.FullName = !string.IsNullOrEmpty(cusUser.AgentName) ? cusUser.AgentName : "فاقد نام";
                         res_ResultLoginDto.UserID = 0;
                         res_ResultLoginDto.CustomerID = cusUser.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
@@ -139,7 +139,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                         });
                         await _context.SaveChangesAsync();
 
-                        res_ResultLoginDto.FullName = string.Empty;
+                        res_ResultLoginDto.FullName = "فاقد نام";
                         res_ResultLoginDto.UserID = 0;
                         res_ResultLoginDto.CustomerID = resCus.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
 

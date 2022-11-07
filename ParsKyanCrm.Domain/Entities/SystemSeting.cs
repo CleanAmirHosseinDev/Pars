@@ -16,16 +16,17 @@ namespace ParsKyanCrm.Domain.Entities
             CustomersHowGetKnowCompany = new HashSet<Customers>();
             CustomersKindOfCompany = new HashSet<Customers>();
             CustomersTypeServiceRequested = new HashSet<Customers>();
+            LevelStepSetting = new HashSet<LevelStepSetting>();
             NewsAndContent = new HashSet<NewsAndContent>();
             OtherDocuments = new HashSet<OtherDocuments>();
             RequestForReating = new HashSet<RequestForReating>();
             ReturnRequest = new HashSet<ReturnRequest>();
-            UserReferrals = new HashSet<UserReferrals>();
         }
 
         public int SystemSetingId { get; set; }
         public string Label { get; set; }
         public int? LabeCode { get; set; }
+        public int? ParentCode { get; set; }
         public string Value { get; set; }
         public byte IsActive { get; set; }
         public int? BaseAmount { get; set; }
@@ -43,10 +44,10 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<Customers> CustomersHowGetKnowCompany { get; set; }
         public virtual ICollection<Customers> CustomersKindOfCompany { get; set; }
         public virtual ICollection<Customers> CustomersTypeServiceRequested { get; set; }
+        public virtual ICollection<LevelStepSetting> LevelStepSetting { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
         public virtual ICollection<RequestForReating> RequestForReating { get; set; }
         public virtual ICollection<ReturnRequest> ReturnRequest { get; set; }
-        public virtual ICollection<UserReferrals> UserReferrals { get; set; }
     }
 }

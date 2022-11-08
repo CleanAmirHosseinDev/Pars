@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCity
 {
@@ -29,8 +30,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCity
 
                 if (id != null && id != 0)
                 {
-                    var q_Find = await _context.City.FindAsync(id);
+                    var q_Find = await _context.City.Include(p=>p.State).FirstOrDefaultAsync(p=>p.CityId == id.Value);
                     res = _mapper.Map<CityDto>(q_Find);
+                    res.State = q_Find.State != null ? _mapper.Map<StateDto>(q_Find.State) : new StateDto();
                 }
 
                 return res;

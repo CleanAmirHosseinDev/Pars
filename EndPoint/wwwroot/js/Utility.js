@@ -674,6 +674,20 @@ function RemoveDisableAttrTag(tagId) {
     }
 
 }
+function comboBoxWithSearchUpdateText(selector,text) {
+
+    try {
+
+        $("#select2-" + selector + "-container").text(text);
+
+        $("#select2-" + selector + "-container").attr("title", text);
+        
+
+    } catch (e) {
+
+    }
+
+}
 
 function GetExtension(filename) {
 

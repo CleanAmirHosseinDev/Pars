@@ -17,11 +17,12 @@
 
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ LabeCode: $("#LabeCode").val(), Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ LabeCode: !isEmpty($("#LabeCode").val()) ? $("#LabeCode").val() : null, Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
 
             if (res.isSuccess) {
 
                 var strM = '';
+
                 for (var i = 0; i < res.data.length; i++) {
 
                     strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].label + "</td><td>" + res.data[i].value + "</td><td><a title='ویرایش' href='/Admin/SystemSeting/EditSystemSeting?id=" + res.data[i].systemSetingId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
@@ -35,9 +36,8 @@
 
     }
 
-    function initSystemSeting(id = null, dir = 'rtl') {
+    function initSystemSeting(id = null) {
 
-        ComboBoxWithSearch('.select2', dir);
         systemSetingList();
         if (!isEmpty(id) && id != 0) {
 
@@ -54,21 +54,31 @@
 
     }
 
-    function systemSetingList( dir = 'rtl') {
+    function systemSetingList(dir = 'rtl') {
 
-        ComboBoxWithSearch('.select2', dir);        
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({  PageIndex: 0, PageSize: 0}), true, function (res) {
+        ComboBoxWithSearch('.select2', dir);
 
-                if (res.isSuccess) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
 
-                    var strM = '';
-                    for (var i = 0; i < res.data.length; i++) {
-                        strM += " <option value=" + res.data[i].labeCode + ">" + res.data[i].label + "</option>";
-                    }
-                    $("#LabeCode").html(strM);
+            if (res.isSuccess) {
+
+
+                var resA = new Array();
+
+                var strM = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+
+                    var q = resA.filter(p => p.labeCode == res.data[i].labeCode);
+                    if (q.length > 0) continue;
+
+                    resA.push(res.data[i]);
+                    strM += " <option value=" + res.data[i].labeCode + ">" + res.data[i].label + "</option>";
                 }
-            }, true);      
+                $("#LabeCode").html(strM);
+            }
 
+        }, true);
     }
 
     function saveSystemSeting(e) {

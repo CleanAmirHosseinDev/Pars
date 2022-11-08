@@ -20,5 +20,11 @@ namespace EndPoint.Controllers
         {
             return View();
         }
+
+        public IActionResult LoginC()
+        {
+            return View();
+        }
+
     }
 }

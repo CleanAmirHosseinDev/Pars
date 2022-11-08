@@ -16,17 +16,13 @@ namespace ParsKyanCrm.Domain.Entities
         public int RequestId { get; set; }
         public int? RequestNo { get; set; }
         public int? CustomerId { get; set; }
-        public int? UserId { get; set; }
         public DateTime? DateOfRequest { get; set; }
-        public DateTime? DateOfAssignUsers { get; set; }
-        public DateTime? DateOfAcceptRequest { get; set; }
         public DateTime? DateOfConfirmed { get; set; }
         public int? Status { get; set; }
         public int? KindOfRequest { get; set; }
 
         public virtual Customers Customer { get; set; }
         public virtual SystemSeting KindOfRequestNavigation { get; set; }
-        public virtual Users User { get; set; }
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
         public virtual ICollection<ReturnRequest> ReturnRequest { get; set; }
     }

@@ -15,13 +15,13 @@ namespace ParsKyanCrm.Domain.Entities
         public double Score { get; set; }
         public double Weight { get; set; }
         public int IsActive { get; set; }
-        public DateTime ChaneDate { get; set; }
+        public DateTime ChangeDate { get; set; }
         public int ChangeByUser { get; set; }
         public string Comment { get; set; }
 
         public virtual Customers Customer { get; set; }
         public virtual SystemSeting Index { get; set; }
-        public virtual RequestForReating Request { get; set; }
+        public virtual RequestForRating Request { get; set; }
         public virtual SystemSeting SubDomain { get; set; }
     }
 }

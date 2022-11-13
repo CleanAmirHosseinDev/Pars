@@ -11,12 +11,11 @@ using System.Threading.Tasks;
 namespace ParsKyanCrm.Domain.Contexts
 {
     //Scaffold-DbContext "Server=77.238.123.197;Database=ParsKyanCrmDB;user id=vam30;password=10155;Integrated Security=false;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -NoPluralize
-    //namespace ParsKyanCrm.Domain.Entities
-    //namespace ParsKyanCrm.Domain.Entities
+    //namespace ParsKyanCrm.Domain.Entities    
     public interface IDataBaseContext
     {
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
 
         DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
         DbSet<City> City { get; set; }
@@ -30,16 +29,14 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<OtherDocuments> OtherDocuments { get; set; }
         DbSet<RankingCalculationResults> RankingCalculationResults { get; set; }
         DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
-        DbSet<RequestForReating> RequestForReating { get; set; }
+        DbSet<RequestForRating> RequestForRating { get; set; }
         DbSet<RequestReferences> RequestReferences { get; set; }
-        DbSet<ReturnRequest> ReturnRequest { get; set; }
         DbSet<Roles> Roles { get; set; }
         DbSet<SkillsOfEmployees> SkillsOfEmployees { get; set; }
         DbSet<State> State { get; set; }
         DbSet<SystemSeting> SystemSeting { get; set; }
         DbSet<UserRoles> UserRoles { get; set; }
         DbSet<Users> Users { get; set; }
-        DbSet<WorkExperience> WorkExperience { get; set; }
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,16 +69,14 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<OtherDocuments> OtherDocuments { get; set; }
         public virtual DbSet<RankingCalculationResults> RankingCalculationResults { get; set; }
         public virtual DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
-        public virtual DbSet<RequestForReating> RequestForReating { get; set; }
+        public virtual DbSet<RequestForRating> RequestForRating { get; set; }
         public virtual DbSet<RequestReferences> RequestReferences { get; set; }
-        public virtual DbSet<ReturnRequest> ReturnRequest { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<SkillsOfEmployees> SkillsOfEmployees { get; set; }
         public virtual DbSet<State> State { get; set; }
         public virtual DbSet<SystemSeting> SystemSeting { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<WorkExperience> WorkExperience { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -336,7 +331,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<LevelStepSetting>(entity =>
             {
-                entity.Property(e => e.LevelStepSettingId).HasColumnName("LevelStepSettingID");
+                entity.Property(e => e.LevelStepSettingId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("LevelStepSettingID");
 
                 entity.Property(e => e.AccessRoles)
                     .HasMaxLength(100)
@@ -442,11 +439,11 @@ namespace ParsKyanCrm.Domain.Contexts
                     .ValueGeneratedOnAdd()
                     .HasColumnName("CalcID");
 
-                entity.Property(e => e.ChaneDate)
+                entity.Property(e => e.ChangeByUser).HasComment("کاربر تغییر دهنده یا ثبت کننده");
+
+                entity.Property(e => e.ChangeDate)
                     .HasColumnType("datetime")
                     .HasComment("تاریخ ثبت یا تغییر");
-
-                entity.Property(e => e.ChangeByUser).HasComment("کاربر تغییر دهنده یا ثبت کننده");
 
                 entity.Property(e => e.IndexId)
                     .HasColumnName("IndexID")
@@ -537,9 +534,10 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasConstraintName("FK_RankingOfCompanies_Users");
             });
 
-            modelBuilder.Entity<RequestForReating>(entity =>
+            modelBuilder.Entity<RequestForRating>(entity =>
             {
-                entity.HasKey(e => e.RequestId);
+                entity.HasKey(e => e.RequestId)
+                    .HasName("PK_RequestForReating");
 
                 entity.HasComment("ثبت درخواست");
 
@@ -562,12 +560,12 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.Status).HasComment("وضعیت درخواست اگر صفر یا نال بود یعنی در دست بررسی اگر یک بود قراداد قابل نمایش میشود و بارگزای اسناد قراداد و مدارک پرداختی و اگر 2 شد می تواندی سایر مدارک را بارگزاری کند");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.RequestForReating)
+                    .WithMany(p => p.RequestForRating)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_RequestForReating_Customers");
 
                 entity.HasOne(d => d.KindOfRequestNavigation)
-                    .WithMany(p => p.RequestForReating)
+                    .WithMany(p => p.RequestForRating)
                     .HasForeignKey(d => d.KindOfRequest)
                     .HasConstraintName("FK_RequestForReating_SystemSeting");
             });
@@ -580,52 +578,21 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ReferenceId).HasColumnName("ReferenceID");
 
+                entity.Property(e => e.LevelStepsId).HasColumnName("LevelStepsID");
+
                 entity.Property(e => e.ResiveTime).HasColumnType("datetime");
 
                 entity.Property(e => e.SendTime).HasColumnType("datetime");
 
-                entity.Property(e => e.SurceLevelStepsId).HasColumnName("SurceLevelStepsID");
+                entity.HasOne(d => d.LevelSteps)
+                    .WithMany(p => p.RequestReferences)
+                    .HasForeignKey(d => d.LevelStepsId)
+                    .HasConstraintName("FK_RequestReferences_LevelStepSetting");
 
                 entity.HasOne(d => d.Request)
                     .WithMany(p => p.RequestReferences)
                     .HasForeignKey(d => d.Requestid)
                     .HasConstraintName("FK_RequestReferences_RequestForReating");
-            });
-
-            modelBuilder.Entity<ReturnRequest>(entity =>
-            {
-                entity.HasComment("جدول سوابق رد درخواست");
-
-                entity.Property(e => e.ReturnRequestId).HasColumnName("ReturnRequestID");
-
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
-                entity.Property(e => e.DateOfReturn).HasColumnType("datetime");
-
-                entity.Property(e => e.RequestId)
-                    .HasColumnName("RequestID")
-                    .HasComment("شناسه درخواست");
-
-                entity.Property(e => e.ReturnResult).HasComment("دلیل رد درخواست");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("UserID")
-                    .HasComment("کاربر بررسی کننده");
-
-                entity.HasOne(d => d.Request)
-                    .WithMany(p => p.ReturnRequest)
-                    .HasForeignKey(d => d.RequestId)
-                    .HasConstraintName("FK_ReturnRequest_RequestForReating");
-
-                entity.HasOne(d => d.ReturnResultNavigation)
-                    .WithMany(p => p.ReturnRequest)
-                    .HasForeignKey(d => d.ReturnResult)
-                    .HasConstraintName("FK_ReturnRequest_SystemSeting");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.ReturnRequest)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_ReturnRequest_Users");
             });
 
             modelBuilder.Entity<Roles>(entity =>
@@ -635,7 +602,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.HasComment("نقش ها");
 
-                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+                entity.Property(e => e.RoleId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("RoleID");
 
                 entity.Property(e => e.RoleDesc).HasMaxLength(50);
 
@@ -683,17 +652,33 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<SystemSeting>(entity =>
             {
+                entity.HasComment("جدول تنظیمات پایه");
+
                 entity.Property(e => e.SystemSetingId).HasColumnName("SystemSetingID");
+
+                entity.Property(e => e.BaseAmount).HasComment("مقدار پایه");
 
                 entity.Property(e => e.ChangeBy).HasComment("کاربر");
 
                 entity.Property(e => e.ChangeDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Label).HasMaxLength(50);
+                entity.Property(e => e.FromAmount).HasComment("از مقدار");
 
-                entity.Property(e => e.TiTleBaseAmount).HasMaxLength(100);
+                entity.Property(e => e.Label)
+                    .HasMaxLength(50)
+                    .HasComment("عنوان ساختار سیستم");
 
-                entity.Property(e => e.Value).HasMaxLength(100);
+                entity.Property(e => e.ParentCode).HasComment("کد پدر");
+
+                entity.Property(e => e.TiTleBaseAmount)
+                    .HasMaxLength(100)
+                    .HasComment("عنوان مقدار پایه");
+
+                entity.Property(e => e.ToAmount).HasComment("تا مقدار");
+
+                entity.Property(e => e.Value)
+                    .HasMaxLength(100)
+                    .HasComment("مقادیر داده هر لیبل");
 
                 entity.HasOne(d => d.ChangeByNavigation)
                     .WithMany(p => p.SystemSeting)
@@ -730,6 +715,8 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
                 entity.Property(e => e.Email).HasMaxLength(50);
 
                 entity.Property(e => e.Ip).HasMaxLength(50);
@@ -743,39 +730,11 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasComment("نام و نام خانوادگی");
 
                 entity.Property(e => e.UserName).HasMaxLength(100);
-            });
-
-            modelBuilder.Entity<WorkExperience>(entity =>
-            {
-                entity.HasKey(e => e.WorkExperinceId);
-
-                entity.HasComment("سوابق اعضای هیات مدیره و مدیران");
-
-                entity.Property(e => e.WorkExperinceId).HasColumnName("WorkExperinceID");
-
-                entity.Property(e => e.BoardOfDirectorsId).HasColumnName("BoardOfDirectorsID");
-
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
-                entity.Property(e => e.InsurancListPicture)
-                    .HasMaxLength(100)
-                    .HasComment("تصویر آخرین لیست بیمه");
-
-                entity.Property(e => e.InsuranceHistory).HasComment("سابقه بیمه");
-
-                entity.Property(e => e.ManagersExperience).HasComment("سقف سابقه مدیران");
-
-                entity.Property(e => e.OfficialNewspaper).HasComment("روزنامه رسمی");
-
-                entity.HasOne(d => d.BoardOfDirectors)
-                    .WithMany(p => p.WorkExperience)
-                    .HasForeignKey(d => d.BoardOfDirectorsId)
-                    .HasConstraintName("FK_WorkExperience_BoardOfDirectors");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.WorkExperience)
+                    .WithMany(p => p.Users)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_WorkExperience_Customers");
+                    .HasConstraintName("FK_Users_Customers");
             });
         }
 

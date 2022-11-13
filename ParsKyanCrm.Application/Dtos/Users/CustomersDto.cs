@@ -17,6 +17,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
     public class CustomersDto : BaseEntityDto
     {
+
+        public bool IsProfileComplete { get; set; }
+
         public int CustomerId { get; set; }
         public int? CityId { get; set; }
         /// <summary>

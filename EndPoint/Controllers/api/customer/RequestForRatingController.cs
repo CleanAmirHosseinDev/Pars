@@ -1,0 +1,43 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using ParsKyanCrm.Application.Dtos.Users;
+using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common.Dto;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace EndPoint.Controllers.api.customer
+{
+    
+    public class RequestForRatingController : BaseController
+    {
+
+        private readonly ILogger<RequestForRatingController> _logger;
+        private readonly IUserFacad _userFacad;
+        public RequestForRatingController(ILogger<RequestForRatingController> logger, IUserFacad userFacad)
+        {
+            _logger = logger;
+            _userFacad = userFacad;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<RequestForRatingDto>>> Get_RequestForRatings([FromBody] RequestRequestForRatingDto request)
+        {
+            try
+            {
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.GetRequestForRatingsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+    }
+}

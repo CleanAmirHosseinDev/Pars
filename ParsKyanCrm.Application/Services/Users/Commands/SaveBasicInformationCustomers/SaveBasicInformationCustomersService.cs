@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ParsKyanCrm.Common;
+using ParsKyanCrm.Domain.Entities;
+using ParsKyanCrm.Common.Enums;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
@@ -105,6 +107,20 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
+        private string MaxAllRequestNo()
+        {
+            try
+            {
+                List<RequestForRatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForRatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForRating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNoStr"));
+                if (q != null) return q.FirstOrDefault().RequestNoStr.ToString();
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<ResultDto> Execute(CustomersDto request)
         {
             try
@@ -121,10 +137,36 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     };
                 }
 
-                #endregion
+                #endregion                
+
+                var cus = await _context.Customers.FindAsync(request.CustomerId);
+                if (!cus.IsProfileComplete)
+                {
+
+                    _context.RequestReferences.Add(new RequestReferences()
+                    {                        
+                        LevelStepsId = 1,                        
+                        Request = new Domain.Entities.RequestForRating()
+                        {
+
+                            RequestNo = int.Parse(MaxAllRequestNo()),
+                            DateOfRequest = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
+                            Status = (int)RequestForRatingStatus.UnderInvestigation,
+                            KindOfRequest = request.TypeServiceRequestedId,
+                            CustomerId = cus.CustomerId,                            
+                        },
+                        ResiveTime = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)                        
+                    });
+                    await _context.SaveChangesAsync();
+
+                }
+
 
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
+                    {
+                        nameof(request.IsProfileComplete),true
+                    },
                         {
                             nameof(request.AgentName),request.AgentName
                         },
@@ -171,7 +213,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             nameof(request.HowGetKnowCompanyId),request.HowGetKnowCompanyId
                         }
                     }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
-
 
                 return new ResultDto()
                 {

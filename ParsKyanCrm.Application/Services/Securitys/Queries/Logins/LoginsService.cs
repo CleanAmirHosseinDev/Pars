@@ -34,20 +34,6 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             _baseSecurityFacad = baseSecurityFacad;
         }
 
-        private string MaxAllRequestNo()
-        {
-            try
-            {
-                List<RequestForReatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForReatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForReating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNoStr"));
-                if (q != null) return q.FirstOrDefault().RequestNoStr.ToString();
-                return "1";
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         //هنوز کامل نشده فقط مبین روی این قسمت کار کند
         public async Task<ResultDto<ResultLoginDto>> Execute(RequestLoginDto request)
         {
@@ -125,23 +111,34 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     }
                     else
                     {
-                        var resCus = _context.RequestForReating.Add(new Domain.Entities.RequestForReating()
+
+                        var cusUserA = _context.Customers.Add(new Domain.Entities.Customers()
                         {
-                            Customer = new Domain.Entities.Customers()
-                            {
-                                AgentMobile = request.Mobile,
-                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
-                                SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
-                            },
-                            RequestNo = int.Parse(MaxAllRequestNo()),
-                            DateOfRequest = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
-                            Status = (int)RequestForReatingStatus.UnderInvestigation
+                            AgentMobile = request.Mobile,
+                            IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
+                            SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
                         });
+
+                        await _context.SaveChangesAsync();
+
+                        _context.UserRoles.Add(new UserRoles()
+                        {
+                            User = new Domain.Entities.Users()
+                            {
+                                CustomerId = cusUserA.Entity.CustomerId,
+                                UserName = cusUserA.Entity.AgentMobile,
+                                Ip = Common.Utility.GetUserHostAddress(),
+                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
+                                Status = true,
+                                Mobile = cusUserA.Entity.AgentMobile                                
+                            },
+                           RoleId = 10                           
+                        }) ;
                         await _context.SaveChangesAsync();
 
                         res_ResultLoginDto.FullName = "فاقد نام";
                         res_ResultLoginDto.UserID = 0;
-                        res_ResultLoginDto.CustomerID = resCus.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
+                        res_ResultLoginDto.CustomerID = cusUserA.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                         needSms = true;
 

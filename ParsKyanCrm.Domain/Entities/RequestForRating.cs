@@ -5,12 +5,11 @@ using System.Collections.Generic;
 
 namespace ParsKyanCrm.Domain.Entities
 {
-    public partial class RequestForReating
+    public partial class RequestForRating
     {
-        public RequestForReating()
+        public RequestForRating()
         {
             RequestReferences = new HashSet<RequestReferences>();
-            ReturnRequest = new HashSet<ReturnRequest>();
         }
 
         public int RequestId { get; set; }
@@ -24,6 +23,5 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual Customers Customer { get; set; }
         public virtual SystemSeting KindOfRequestNavigation { get; set; }
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
-        public virtual ICollection<ReturnRequest> ReturnRequest { get; set; }
     }
 }

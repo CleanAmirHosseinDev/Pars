@@ -11,12 +11,12 @@ namespace ParsKyanCrm.Domain.Entities
         {
             NewsAndContent = new HashSet<NewsAndContent>();
             RankingOfCompanies = new HashSet<RankingOfCompanies>();
-            ReturnRequest = new HashSet<ReturnRequest>();
             SystemSeting = new HashSet<SystemSeting>();
             UserRoles = new HashSet<UserRoles>();
         }
 
         public int UserId { get; set; }
+        public int? CustomerId { get; set; }
         public string UserName { get; set; }
         public string RealName { get; set; }
         public string Password { get; set; }
@@ -26,9 +26,9 @@ namespace ParsKyanCrm.Domain.Entities
         public string Ip { get; set; }
         public byte IsActive { get; set; }
 
+        public virtual Customers Customer { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<RankingOfCompanies> RankingOfCompanies { get; set; }
-        public virtual ICollection<ReturnRequest> ReturnRequest { get; set; }
         public virtual ICollection<SystemSeting> SystemSeting { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
     }

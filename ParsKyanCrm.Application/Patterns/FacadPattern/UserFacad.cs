@@ -16,6 +16,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustom
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomers;
 using FluentValidation;
 using ParsKyanCrm.Application.Dtos.Users;
+using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -36,6 +37,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveBasicInformationCustomersService SaveBasicInformationCustomersService { get; }
 
         IGetCustomersService GetCustomersService { get; }
+
+        IGetRequestForRatingsService GetRequestForRatingsService { get; }
 
     }
 
@@ -125,6 +128,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getCustomersService = _getCustomersService ?? new GetCustomersService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetRequestForRatingsService _getRequestForRatingsService;
+        public IGetRequestForRatingsService GetRequestForRatingsService
+        {
+            get
+            {
+                return _getRequestForRatingsService = _getRequestForRatingsService ?? new GetRequestForRatingsService(_context, _mapper, _basicInfoFacad);
             }
         }
 

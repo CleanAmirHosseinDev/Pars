@@ -12,9 +12,9 @@ namespace ParsKyanCrm.Domain.Entities
             ContractAndFinancialDocuments = new HashSet<ContractAndFinancialDocuments>();
             EducationCourses = new HashSet<EducationCourses>();
             OtherDocuments = new HashSet<OtherDocuments>();
-            RequestForReating = new HashSet<RequestForReating>();
+            RequestForRating = new HashSet<RequestForRating>();
             SkillsOfEmployees = new HashSet<SkillsOfEmployees>();
-            WorkExperience = new HashSet<WorkExperience>();
+            Users = new HashSet<Users>();
         }
 
         public int CustomerId { get; set; }
@@ -40,6 +40,7 @@ namespace ParsKyanCrm.Domain.Entities
         public byte IsActive { get; set; }
         public string Ip { get; set; }
         public string AuthenticateCode { get; set; }
+        public bool IsProfileComplete { get; set; }
 
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
@@ -48,8 +49,8 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         public virtual ICollection<EducationCourses> EducationCourses { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
-        public virtual ICollection<RequestForReating> RequestForReating { get; set; }
+        public virtual ICollection<RequestForRating> RequestForRating { get; set; }
         public virtual ICollection<SkillsOfEmployees> SkillsOfEmployees { get; set; }
-        public virtual ICollection<WorkExperience> WorkExperience { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

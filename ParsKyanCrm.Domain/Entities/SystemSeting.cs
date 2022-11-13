@@ -19,8 +19,7 @@ namespace ParsKyanCrm.Domain.Entities
             LevelStepSetting = new HashSet<LevelStepSetting>();
             NewsAndContent = new HashSet<NewsAndContent>();
             OtherDocuments = new HashSet<OtherDocuments>();
-            RequestForReating = new HashSet<RequestForReating>();
-            ReturnRequest = new HashSet<ReturnRequest>();
+            RequestForRating = new HashSet<RequestForRating>();
         }
 
         public int SystemSetingId { get; set; }
@@ -47,7 +46,6 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<LevelStepSetting> LevelStepSetting { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
-        public virtual ICollection<RequestForReating> RequestForReating { get; set; }
-        public virtual ICollection<ReturnRequest> ReturnRequest { get; set; }
+        public virtual ICollection<RequestForRating> RequestForRating { get; set; }
     }
 }

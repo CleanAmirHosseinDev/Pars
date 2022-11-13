@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Common.Enums
 {
-    public enum RequestForReatingStatus : int
+    public enum RequestForRatingStatus : int
     {
 
 

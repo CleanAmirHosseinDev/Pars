@@ -13,6 +13,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string TrainingCourseName { get; set; }
         public int? Duration { get; set; }
         public string PlaceOfTraining { get; set; }
+        public string PictureOfSkill { get; set; }
         public byte? IsActive { get; set; }
 
         public virtual Customers Customer { get; set; }

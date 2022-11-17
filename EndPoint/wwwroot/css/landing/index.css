@@ -1,0 +1,94 @@
+﻿
+.main { max-width: var(--max-site-width); margin: auto; font-size: 17px; margin-top: -70px; }
+    .main .sec1 .slider { width: var(--max-site-width); height: 620px; }
+        .main .sec1 .slider div { width: inherit; height: inherit; }
+    .main .sec1 { overflow: hidden; }
+        .main .sec1 .slider_pages { display: flex; overflow: hidden; position: absolute; }
+        .main .sec1 .overlay { position: absolute; }
+        .main .sec1 .slider_page { flex: none; transition: margin 1s cubic-bezier(0.61, 0.27, 0.31, 0.99) 0s; }
+            .main .sec1 .slider_page img { width: inherit; position: absolute; height: inherit; object-fit: cover; }
+            .main .sec1 .slider_page .label { position: absolute; z-index: 10; display: flex; align-items: center; margin: 0 3%; color: white; display: flex; width: initial; flex-direction: column; justify-content: center; align-items: start; }
+                .main .sec1 .slider_page .label h2 { color: white; margin: 0; font-size: 45px; max-width: 450px; margin-top: 100px; }
+                    .main .sec1 .slider_page .label h2 span { padding: 0 10px; }
+        .main .sec1 .slider .overlay { position: absolute; overflow: hidden }
+            .main .sec1 .slider .overlay #thedot { position: absolute; border-radius: 100%; background-image: radial-gradient(circle closest-side,#1952a8 0,#1953a9c0 60%,transparent 100%); margin-right: -30%; transform: scale(1.5); background-image: radial-gradient(circle closest-side,#000000 0,#333333c0 60%,transparent 100%); opacity: 0.4; }
+            .main .sec1 .slider .overlay .slider_buttons { display: flex; justify-content: center; align-items: end; position: absolute; z-index: 20; bottom: 3%; }
+                .main .sec1 .slider .overlay .slider_buttons button { background: #ddd; border: none; width: 11px; height: 11px; border-radius: 10px; margin: 10px; cursor: pointer; box-shadow: 0 0 5px 1px #0000003f; transition-property: width; transition-duration: 0.3s; transition-timing-function: ease-out; }
+                    .main .sec1 .slider .overlay .slider_buttons button.selected { background: white; width: 46px; border-radius: 15px; }
+        .main .sec1 #slider_mobile_controller { z-index: 20; position: absolute; height: 80%; display: none; }
+            .main .sec1 #slider_mobile_controller div { width: 50%; height: 100%; }
+
+@media only screen and (max-width: 1100px) {
+    .main .sec1 #slider_mobile_controller { display: flex; }
+    .main .sec1 .slider .overlay #thedot { margin-top: 120px; }
+    .main .sec1 .slider_page .label h2 { font-size: 30px; margin-top: 120px; }
+}
+
+
+.main .sec2 { background: #dfdfdc; min-height: 250px; display: flex; align-items: flex-end; max-width: inherit; }
+    .main .sec2 #particles-js { width: 100%; height: 300px; position: absolute; max-width: inherit }
+    .main .sec2 .inner_div { display: flex; text-align: justify; z-index: 20; padding: 25px 4vw; }
+        .main .sec2 .inner_div .right_div { display: flex; flex-direction: column; justify-content: center; }
+        .main .sec2 .inner_div .left_div > div { display: flex; align-items: center; padding: 20px; }
+
+            .main .sec2 .inner_div .left_div > div i { font-size: 45px; padding: 10px; }
+            .main .sec2 .inner_div .left_div > div h3 { white-space: nowrap; margin: 0; }
+            .main .sec2 .inner_div .left_div > div p { white-space: nowrap; margin: 0; }
+
+
+@media only screen and (max-width: 1199px) {
+    .main .sec2 .inner_div .left_div > div p { white-space: initial; }
+}
+
+@media only screen and (max-width: 699px) {
+
+    .main .sec2 .inner_div { flex-direction: column; }
+        .main .sec2 .inner_div .left_div > div { padding: 0px; }
+}
+
+.main .sec3 { align-items: center; background: white; min-height: 250px; background: hsl(207deg 30% 9%); display: flex; color: white; flex-direction: column; padding: 20px 2vw; }
+    .main .sec3 h3 { margin: 0; margin-bottom: 13px; font-size: 28px; }
+    .main .sec3 .inner_div { display: flex; flex-wrap: wrap; justify-content: center; }
+
+h4 { font-size: 35px; }
+
+.main .sec4 .inner_div { display: flex; text-align: justify; padding: 25px 1.2vw; z-index: 10; background: hsl(207deg 30% 9%); }
+
+    .main .sec4 .inner_div .right_div { justify-content: center; color: white; flex: auto; display: flex; flex-direction: column; min-width: 160px; text-align: center; align-items: center; }
+    .main .sec4 .inner_div .left_div { display: flex; flex-wrap: wrap; justify-content: center; }
+
+@media only screen and (max-width: 1520px) {
+    .main .sec4 .inner_div { flex-direction: column; }
+}
+
+.main .sec5 h3 { margin: 13px 0 18px; font-size: 28px; }
+.main .sec5 #top_rating_button { display: flex; justify-content: center; margin: auto; flex-wrap: wrap; }
+#top_rating_button .btn { opacity: 0.65; margin: 4px; }
+    #top_rating_button .btn:hover, #top_rating_button .btn.selected { opacity: 1; }
+.main .sec5 { background: #dfdfdc; min-height: 200px; display: flex; flex-direction: column; align-items: center; }
+    .main .sec5 #top_rating_button { }
+#top_rating_cards { padding: 5px 15px; }
+.top_rating_cards_parrent { display: flex; flex-wrap: wrap; max-width: 1300px; justify-content: center; }
+.top_rateing_card { width: 350px; background: white; margin: 10px; box-shadow: 0 5px 7px 0px #00000073; padding: 7px; border-radius: 5px; display: flex; }
+    .top_rateing_card p { margin: 0; }
+        .top_rateing_card .c3 p span { margin: 0 5px 0 0; }
+    .top_rateing_card .c1 { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: -5%; }
+        .top_rateing_card .c1 > p { margin: 0; }
+    .top_rateing_card .c2 { background-image: linear-gradient( 69deg, rgba(227, 230, 230, 1) 29%, rgba(244, 246, 247, 1) 61%, rgba(240, 245, 251, 0.9920343137254902) 83% ); padding: 5px; }
+        .top_rateing_card .c2 p { white-space: nowrap; font-size: 13px; font-weight: 300; }
+            .top_rateing_card .c2 p span { font-size: 15px; font-weight: 600; margin-right: 2px; }
+    .top_rateing_card .c3 { width: 100%; padding: 7px; }
+        .top_rateing_card .c3 h5 { font-size: 17px; width: 100%; margin: 0; text-align: center; color: #10366e; }
+    .top_rateing_card .c4 { margin-right: 10px; }
+        .top_rateing_card .c4 p { margin: 1px 0; font-size: 14px; font-weight: 200; }
+            .top_rateing_card .c4 p span { font-weight: 500; }
+    .top_rateing_card .c5 { display: flex; align-items: center; margin-right: 10px; }
+        .top_rateing_card .c5 p { white-space: nowrap; font-size: 13px; font-weight: 300; }
+            .top_rateing_card .c5 p span { font-size: 15px; font-weight: 600; }
+        .top_rateing_card .c5 .btn { font-size: 13px; padding: 9px; margin-right: auto; }
+@media only screen and (max-width: 400px) {
+    .top_rateing_card { width: 300px; margin:10px 0;}
+}
+@media only screen and (max-width: 350px) {
+    .top_rateing_card { width: 280px; }
+}

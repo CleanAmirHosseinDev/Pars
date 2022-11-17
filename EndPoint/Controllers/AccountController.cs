@@ -16,8 +16,10 @@ namespace EndPoint.Controllers
             _logger = logger;
         }
 
-        public IActionResult LoginA()
-        {
+        public IActionResult Index( ) {
+            return View();
+        }
+        public IActionResult LoginA( ) {
             return View();
         }
 

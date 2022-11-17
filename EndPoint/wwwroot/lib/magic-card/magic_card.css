@@ -1,0 +1,28 @@
+﻿@property --rotate { syntax: "<angle>"; initial-value: 132deg; inherits: false; }
+
+:root { --card-height: 65vh; --card-width: calc(var(--card-height) / 1.5); }
+
+
+.magic_card { color: white; transition: all 0.2s ease-in-out; padding: 3px; position: relative; border-radius: 6px; justify-content: center; align-items: center; text-align: center; display: flex; font-size: 1.5em; color: rgb(88 199 250 / 0%); width: 250px; height: 325px; margin: 20px 30px; }
+
+    .magic_card:hover { transform:scale(1.05); }/*
+        .magic_card:hover:before, .card:hover:after { animation: none; opacity: 0; }*/
+
+    .magic_card .inner_div { z-index: 2; background: #041625; width: 100%; height: 90%; border-radius: 5px; }
+    .magic_card::before { content: ""; width: 101%; height: 101%; background-image: conic-gradient(from var(--rotate), #ff2d2d, #a702bc, #0043ff,#ff2d2d); filter: blur(0.5px); position: absolute; z-index: 1; top: -0.5%; left: -0.5%; animation: spin 2.5s linear infinite; border-radius: 5px; box-shadow: #3988ffa1 0 0 14px 0px; }
+
+    /*.magic_card::after { position: absolute; content: ""; top: 16%; left: 0; right: 0; z-index: -1; height: 100%; width: 100%; margin: 0 auto; transform: scale(0.8); filter: blur(10); background-image: linear-gradient( var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2); opacity: 1; transition: opacity .5s; animation: spin 2.5s linear infinite; }*/
+
+@keyframes spin {
+    0% { --rotate: 0deg; }
+    50% { --rotate: 180deg; }
+    100% { --rotate: 360deg; }
+}
+
+.magic_card .inner_div { color:white; display: flex; flex-direction: column; justify-content: center; padding:16px; }
+    .magic_card .inner_div .center p { font-size: 14px; text-align: justify; font-weight: 200; }
+        .magic_card .inner_div .center p b { font-size: 18px; text-align: center; display: block; margin-bottom: -15px; }
+    .magic_card .inner_div .btn { font-size: 13px; }
+    .magic_card .inner_div .top { font-size: 60px; width: 110px; height: 110px; display: flex; margin: auto; align-items: center; background: #ffffff0f; justify-content: center; border-radius: 100%; padding-left: 2px; }
+        .magic_card .inner_div .top i:nth-child(odd) { color: #ffffff38; }
+        .magic_card .inner_div .top i:nth-child(even) { color: #dce8e9; position: absolute; margin-right: 7px; margin-top: 3px; }

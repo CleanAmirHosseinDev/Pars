@@ -130,10 +130,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                                 Ip = Common.Utility.GetUserHostAddress(),
                                 IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
                                 Status = true,
-                                Mobile = cusUserA.Entity.AgentMobile                                
+                                Mobile = cusUserA.Entity.AgentMobile
                             },
-                           RoleId = 10                           
-                        }) ;
+                            RoleId = 10
+                        });
                         await _context.SaveChangesAsync();
 
                         res_ResultLoginDto.FullName = "فاقد نام";
@@ -162,7 +162,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 {
                     Data = res_ResultLoginDto,
                     IsSuccess = true,
-                    Message = "/" + LoginName + "/Home/Index",
+                    Message = "/" + (LoginName != "Customer" && LoginName != "Admin" ? "SuperVisor" : LoginName) + "/Home/Index",
                 };
 
             }

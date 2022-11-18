@@ -38,7 +38,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 res_ResultLoginDto.CustomerID = !string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ?request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number():null;
                 res_ResultLoginDto.FullName = request.Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf;
 
-                if (request.Code == "1234")
+                if (request.Code == "ParsKyan@10155")
                 {
                     //True 1
 

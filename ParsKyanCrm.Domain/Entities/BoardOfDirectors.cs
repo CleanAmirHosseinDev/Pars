@@ -26,9 +26,9 @@ namespace ParsKyanCrm.Domain.Entities
         public double? ManagersExperience { get; set; }
         public byte? IsActive { get; set; }
 
-        public virtual SystemSeting11 MemberEduction { get; set; }
-        public virtual SystemSeting11 MemberPost { get; set; }
-        public virtual SystemSeting11 University { get; set; }
+        public virtual SystemSeting MemberEduction { get; set; }
+        public virtual SystemSeting MemberPost { get; set; }
+        public virtual SystemSeting University { get; set; }
         public virtual ICollection<EducationCourses> EducationCourses { get; set; }
     }
 }

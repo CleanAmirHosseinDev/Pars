@@ -20,7 +20,6 @@ namespace ParsKyanCrm.Domain.Entities
         public string AccessRoles { get; set; }
         public string StepComment { get; set; }
 
-        public virtual SystemSeting11 KindOfRequestNavigation { get; set; }
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
     }
 }

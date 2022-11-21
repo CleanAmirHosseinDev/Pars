@@ -16,6 +16,6 @@ namespace ParsKyanCrm.Domain.Entities
         public byte? IsActive { get; set; }
 
         public virtual Customers Customer { get; set; }
-        public virtual SystemSeting11 KindOfDocument { get; set; }
+        public virtual SystemSeting KindOfDocument { get; set; }
     }
 }

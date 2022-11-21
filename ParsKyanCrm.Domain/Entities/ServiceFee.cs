@@ -17,6 +17,6 @@ namespace ParsKyanCrm.Domain.Entities
         public DateTime? ChangeDate { get; set; }
         public int IsActive { get; set; }
 
-        public virtual SystemSeting11 KindOfServiceNavigation { get; set; }
+        public virtual SystemSeting KindOfServiceNavigation { get; set; }
     }
 }

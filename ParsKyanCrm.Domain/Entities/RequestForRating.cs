@@ -21,7 +21,7 @@ namespace ParsKyanCrm.Domain.Entities
         public int? KindOfRequest { get; set; }
 
         public virtual Customers Customer { get; set; }
-        public virtual SystemSeting11 KindOfRequestNavigation { get; set; }
+        public virtual SystemSeting KindOfRequestNavigation { get; set; }
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
     }
 }

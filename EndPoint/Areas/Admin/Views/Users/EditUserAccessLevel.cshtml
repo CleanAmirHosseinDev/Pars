@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "ثبت دسترسی کاربران";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">
+    <link href="~/lib/jquery-multi-select/css/multi-select.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
+<style>
+    #accordion {
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;       
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+        .card  {
+          
+        }
+    .card-header {
+        padding:10px;
+        background-color: #eee;
+        margin-bottom:10px;
+    }
+    .card-body {
+    
+    }
+   
+</style>
+}
+
+@section PageHeader{
+    <section class="content-header">
+        <h1>
+            ثبت دسترسی کاربران
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/Users/Index"><i></i>کاربران سیستم</a></li>
+            <li class="active"><a href="/Admin/Users/EditUserAccessLevel@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت دسترسی کاربر</a></li>
+        </ol>
+    </section>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                @*<i class="fa fa-cloud"></i>*@
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body" style="">
+                <div class="form-horizontal">
+                    
+                    <form action="/Admin/Users/EditUser" id="frmUserRole" name="frmUserRole" method="post">
+                        <div class="form-horizontal">
+                            <input type="hidden" value="0" id="Id" name="Id" />
+                            <input type="hidden" value="0" id="UserId" name="UserId" />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">نام و نام خانوادگی: </label>
+
+                                        <div class="col-md-9">
+                                            <input type="text" readonly="readonly" class="form-control" name="RealName" id="RealName" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div id="AccessPanel">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Users.SaveUserAccessLevel(this);">
+                                        <i class="fa fa-save"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/lib/jquery-multi-select/js/jquery.multi-select.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/js/Views/Admin/Users.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        Web.Users.InitUserAccessLevel(@ViewBag.id);
+
+    </script>
+}

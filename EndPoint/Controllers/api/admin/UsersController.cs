@@ -94,7 +94,9 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _userFacad.GetAccessLevelsService.Execute(id);
+                var q= await _userFacad.GetAccessLevelsService.Execute(id);
+
+                return q;
             }
             catch (Exception ex)
             {

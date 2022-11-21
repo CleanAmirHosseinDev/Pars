@@ -12,7 +12,6 @@
     <link rel="icon" type="image/png" href="~/favicon.ico" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
     <link href="~/css/GlobalAreas/dist/css/bootstrap-theme.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <link href="~/css/GlobalAreas/dist/css/rtl.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <link href="~/css/GlobalAreas/bower_components/font-awesome/css/font-awesome.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
@@ -20,13 +19,10 @@
     <link href="~/css/GlobalAreas/dist/css/AdminLTE.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <link href="~/css/GlobalAreas/dist/css/skins/_all-skins.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <link href="~/css/GlobalAreas/_Layout.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+    <link href="~/lib/Loader/Loader.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
-
     <script src="~/lib/SweetAlert/sweetalert.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
-
     <link href="~/css/GlobalAreas/AccountForm.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <link href="~/css/GlobalAreas/AccountFormP1.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion" rel="stylesheet" />
     <style>
@@ -45,11 +41,11 @@
             <div class="screen">
                 <div class="login_logo">
                     <div></div>
-                    <a href="https://vam30.com"> <img src="/css/GlobalAreas/dist/img/53261.jpg"></a>
+                    <a href="https://parscrc.ir/"> <img src="/css/GlobalAreas/dist/img/53261.jpg"></a>
                 </div>
                 <div class="screen__content">
                     <h1 class="login_h1">ناحیه</h1>
-                    <a href="https://vam30.com"> <img class="login_head_img" src="/css/GlobalAreas/dist/img/53261.jpg" /></a>
+                    <a href="https://parscrc.ir/"> <img class="login_head_img" src="/css/GlobalAreas/dist/img/53261.jpg" /></a>
                     <div class="login">
                         <div class="login__field">
                             <i class="login__icon fa fa-user"></i>
@@ -78,7 +74,6 @@
 
     <div id="divAuthenticatedCode">
 
-
         <div class="container">
             <div class="screen">
                 <div class="login_logo">
@@ -105,6 +100,7 @@
                     </div>
 
                 </div>
+
                 <div class="screen__background">
                     <span class="screen__background__shape screen__background__shape4"></span>
                     <span class="screen__background__shape screen__background__shape3"></span>
@@ -117,15 +113,16 @@
 
     </div>
 
-
+    <!-- Start Loader -->
+    <div id="loader"></div>
+    <!-- End Loader -->
 
     <script src="~/css/GlobalAreas/bower_components/bootstrap/dist/js/bootstrap.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script src="~/css/GlobalAreas/dist/js/adminlte.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script src="~/css/GlobalAreas/dist/js/demo.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
-
     <script src="~/js/InitProject.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script src="~/js/Utility.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
-
+    <script src="~/lib/Loader/Loader.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script src="~/js/Views/AccountController.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script>
         Web.AccountController.InitLoginC();

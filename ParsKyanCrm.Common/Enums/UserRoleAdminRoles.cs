@@ -100,5 +100,73 @@ namespace ParsKyanCrm.Common.Enums
 
         #endregion
 
+        #region اطلاعات پایه
+        [Display(Name = "مشاهده")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "اطلاعات پایه")]
+        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "ثبت گروه شرکت ها")]
+        [OrderAttribute(Order = 1)]
+        CompanyGroup = 111,
+
+
+        [Display(Name = "مشاهده")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "اطلاعات پایه")]
+        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "نرخ نامه قرارداد")]
+        [OrderAttribute(Order = 1)]
+        ServiceFee = 112,
+
+        #endregion
+
+
+        #region امور سایت
+        [Display(Name = "مشاهده")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مدیریت محتوای سایت")]
+        [OrderAttribute(Order = 1)]
+        NewsAndContent = 113,
+
+
+        [Display(Name = "مشاهده")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "فرصت های شغلی")]
+        [OrderAttribute(Order = 1)]
+        ServiyceFee = 114,
+
+
+        [Display(Name = "مشاهده")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "ثبت امتیازات شرکت ها")]
+        [OrderAttribute(Order = 1)]
+        RankingOfCompanies = 115,
+
+        #endregion
+
+        #region پشتیبانی
+        [Display(Name = "مشاهده")]
+        [Category("Support")]
+        [DisplayFiledAttribute(Name = "پشتیبانی")]
+        [DisplayFiledAttribute1(Name = "#")]
+        [DisplayFiledAttribute2(Name = "fa fa-support")]
+        [DisplayFiledAttribute3(Name = "تیکت ها")]
+        [OrderAttribute(Order = 1)]
+        Tickets = 116,       
+
+        #endregion
+
+      
     }
 }

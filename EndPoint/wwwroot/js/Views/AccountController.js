@@ -34,7 +34,7 @@
 
                 }
 
-            }, false);
+            }, true);
 
         } catch (e) {
 
@@ -129,7 +129,7 @@
 
                 }
 
-            }, false);
+            }, true);
 
         } catch (e) {
 

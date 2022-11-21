@@ -11,9 +11,9 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
     {
         public int? SystemSetingId { get; set; }
 
-        public int? LabeCode { get; set; }
+        public int? ParentCode { get; set; }
 
-        public string LabeCodeArr { get; set; }
+        public string ParentCodeArr { get; set; }
 
     }
 
@@ -25,11 +25,12 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public int? LabeCode { get; set; }
         public string Value { get; set; }        
         public int? BaseAmount { get; set; }
-        public string TiTleBaseAmount { get; set; }
+        public string TitleBaseAmount { get; set; }
         public double? FromAmount { get; set; }
         public double? ToAmount { get; set; }
         public int? ChangeBy { get; set; }
         public DateTime? ChangeDate { get; set; }
-
+        public int? ParentCode { get; set; }
+        public string ParenLabel { get; set; }
     }
 }

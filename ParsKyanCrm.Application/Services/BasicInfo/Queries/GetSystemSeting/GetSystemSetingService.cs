@@ -31,7 +31,12 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSeting
                 {
 
                     var q_Find = await _context.SystemSeting.FirstOrDefaultAsync(p => p.SystemSetingId == request.SystemSetingId.Value && (p.IsActive == request.IsActive || request.IsActive == null));
-
+                    if (q_Find.ParentCode != null)
+                    {
+                        var q_parent = await _context.SystemSeting.FirstOrDefaultAsync(p => p.SystemSetingId == q_Find.ParentCode);
+                        res.ParenLabel = q_parent.Label;
+                    }
+                   
                     res = _mapper.Map<SystemSetingDto>(q_Find);
 
                 }

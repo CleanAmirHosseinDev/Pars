@@ -39,7 +39,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// </summary>
         public int? TypeServiceRequestedId { get; set; }
         /// <summary>
-        /// چگونه شناسه شرکت را بشناسیم
+        /// نحوه آشنایی با شرکت
         /// </summary>
         public int? HowGetKnowCompanyId { get; set; }
         /// <summary>

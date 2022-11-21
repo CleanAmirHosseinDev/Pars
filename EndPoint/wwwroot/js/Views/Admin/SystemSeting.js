@@ -17,7 +17,7 @@
 
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ LabeCode: !isEmpty($("#LabeCode").val()) ? $("#LabeCode").val() : null, Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCode: !isEmpty($("#SystemSetingID").val()) ? $("#SystemSetingID").val() : null, Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
 
             if (res.isSuccess) {
 
@@ -25,7 +25,7 @@
 
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].label + "</td><td>" + res.data[i].value + "</td><td><a title='ویرایش' href='/Admin/SystemSeting/EditSystemSeting?id=" + res.data[i].systemSetingId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].label + "</td><td><a title='ویرایش' href='/Admin/SystemSeting/EditSystemSeting?id=" + res.data[i].systemSetingId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -37,45 +37,68 @@
     }
 
     function initSystemSeting(id = null) {
-
-        systemSetingList();
+        
+        systemSetingList("ParentCode");
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/admin/SystemSeting/Get_SystemSeting/" + id, null, true, function (res) {
 
                 if (res != null) {
-                    $("#SystemSetingID").val(res.systemSetingId);
-                    $("#Value").val(res.value);
-                    $("#LabeCode").val(res.labeCode);
-                    comboBoxWithSearchUpdateText("LabeCode", res.label);
+                   $("#SystemSetingID").val(res.systemSetingId);                    
+                   $("#Label").val(res.label);
+                   $("#ParentCode").val(res.parentCode);                   
+                    comboBoxWithSearchUpdateText("ParentCode", res.parenLabel);
+                    systemSetingListSub("SubCodes", res.systemSetingId);
                 }
             }, true);
         }
 
     }
 
-    function systemSetingList(dir = 'rtl') {
+   
 
-        ComboBoxWithSearch('.select2', dir);
+    function systemSetingList(ComboName) {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
+        ComboBoxWithSearch('.select2', 'rtl');
+
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCode:null, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
 
-
-                var resA = new Array();
+               // var resA = new Array();
 
                 var strM = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
 
-                    var q = resA.filter(p => p.labeCode == res.data[i].labeCode);
-                    if (q.length > 0) continue;
-
-                    resA.push(res.data[i]);
-                    strM += " <option value=" + res.data[i].labeCode + ">" + res.data[i].label + "</option>";
+                    //  var q = resA.filter(p => p.ParentCode == res.data[i].labeCode);
+                    //  if (q.length > 0) continue;
+                    if (res.data[i].parentCode == null) {
+                      //  resA.push(res.data[i]);
+                        strM += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+                  
                 }
-                $("#LabeCode").html(strM);
+                $("#" + ComboName).html(strM);
+            }
+
+        }, true);
+    }
+    function systemSetingListSub(ComboName,PC=null) {
+
+        ComboBoxWithSearch('.select2', 'rtl');
+
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCode: PC, PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strM ="";
+
+                for (var i = 0; i < res.data.length; i++) {
+
+                        strM += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";                   
+
+                }
+                $("#" + ComboName).html(strM);
             }
 
         }, true);
@@ -85,14 +108,39 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Save_SystemSeting", JSON.stringify({ Value: $("#Value").val(), SystemSetingId: $("#SystemSetingID").val(), LabeCode: $("#LabeCode").val(), label: $("#LabeCode option:selected").text() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Save_SystemSeting", JSON.stringify({ Label: $("#Label").val(), ParentCode: $("#ParentCode").val() }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
 
                 goToUrl("/Admin/SystemSeting/Index");
+                if ($("#NewLabel").val() != null || $("#NewLabel").val() != string.isEmpty) {
+                    saveSubSystemSeting();
+                }
+            }
+            else {
 
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
+    function saveSubSystemSeting() {       
+        var m = $("#NewLabel").val();
+        var u = $("#SystemSetingID").val();
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Save_SystemSeting", JSON.stringify({ Label: $("#NewLabel").val(), ParentCode: $("#SystemSetingID").val() }), true, function (res) {
+
+           
+            if (res.isSuccess) {
+
+                goToUrl("/Admin/SystemSeting/Index");
+
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
             }
 
         }, true);
@@ -105,7 +153,10 @@
         FilterGrid: filterGrid,
         InitSystemSeting: initSystemSeting,
         SystemSetingList: systemSetingList,
-        SaveSystemSeting: saveSystemSeting
+        SaveSystemSeting: saveSystemSeting,
+        SystemSetingListSub: systemSetingListSub,
+        SaveSubSystemSeting: saveSubSystemSeting
+        
     };
 
 })(Web, jQuery);

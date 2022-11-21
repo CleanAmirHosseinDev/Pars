@@ -28,7 +28,7 @@
 
             var menu = JSON.parse(getlstor("menu"));
 
-            var strMenu = "<li><a href='/'><img src='/css/GlobalAreas/dist/img/Logo/hnet.com-image.ico' class='' style='width: 20px; height: 20px;' /> <span>سامانه وامسی</span></a></li><li class='active'><a href='/Admin'><i class='fa fa-dashboard'></i> <span>داشبورد</span></a></li>";
+            var strMenu = "<li><a href='/'><img src='/css/GlobalAreas/dist/img/Logo/hnet.com-image.png' class='' style='width: 20px; height: 20px;' /> <span>سامانه پارس کیان</span></a></li><li class='active'><a href='/Admin'><i class='fa fa-dashboard'></i> <span>داشبورد</span></a></li>";
 
             if (menu != null && menu.length > 0) {
 

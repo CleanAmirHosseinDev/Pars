@@ -41,7 +41,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
                     Ado_NetOperation.SqlUpdate(typeof(SystemSeting).Name, new Dictionary<string, object>()
                     {
                         {
-                            nameof(q_Entity.Entity.LabeCode),request.LabeCode
+                            nameof(q_Entity.Entity.LabelCode),request.LabeCode
                         },
                         {
                             nameof(q_Entity.Entity.Label),request.Label

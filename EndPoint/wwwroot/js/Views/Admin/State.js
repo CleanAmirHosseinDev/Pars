@@ -48,6 +48,10 @@
                 goToUrl("/Admin/State/Index");
 
             }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
 
         }, true);
 

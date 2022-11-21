@@ -65,6 +65,10 @@
                 goToUrl("/Admin/City/Index");
 
             }
+         else {
+
+            alertB("خطا", res.message, "error");
+            }
 
         }, true);
 
@@ -73,7 +77,7 @@
     function initCity(id = null, dir = 'rtl') {
 
         ComboBoxWithSearch('.select2', dir);
-
+        getStatesList();
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/admin/City/Get_City/" + id, null, true, function (res) {                

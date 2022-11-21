@@ -66,7 +66,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
             {
                 if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { Mobile = request.User.Mobile } }))
                 {
-                    return "موبایل مورد نظر ار قبل موجود می باشد لطفا موبایل دیگری وارد نمایید";
+                    return "موبایل مورد نظر از قبل موجود می باشد لطفا موبایل دیگری وارد نمایید";
                 }
 
                 if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { Email = request.User.Email } }))
@@ -123,6 +123,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                             Password = request.User.Password,
                             Status = request.User.Status,
                             UserName = request.User.UserName,
+                            RealName=request.User.RealName
                         }
                     });
                     await _context.SaveChangesAsync();
@@ -146,6 +147,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                         },
                         {
                             nameof(q_Entity.Entity.User.Email),request.User.Email
+                        },
+                        {
+                            nameof(q_Entity.Entity.User.RealName),request.User.RealName
                         },
                     }, string.Format(nameof(q_Entity.Entity.UserId) + " = {0} ", request.UserId));
                 }

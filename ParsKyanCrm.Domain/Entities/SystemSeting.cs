@@ -9,6 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public int SystemSetingId { get; set; }
         public string Label { get; set; }
+        public int? LabelCode { get; set; }
         public int? ParentCode { get; set; }
         public byte IsActive { get; set; }
         public int? BaseAmount { get; set; }

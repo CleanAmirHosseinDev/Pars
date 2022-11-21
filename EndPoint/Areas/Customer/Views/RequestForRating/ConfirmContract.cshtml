@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "تایید قرارداد و بارگذاری مدارک";
+}
+
+
+@section Styles{
+
+}
+
+@section PageHeader{
+    <section class="content-header">
+        <h1>
+            تایید قرارداد و بارگذاری مدارک
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Customer"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Customer/RequestForRating/Index"><i></i>مشاهده درخواست ها</a></li>
+            <li class="active"><a href="/Customer/RequestForRating/ConfirmContract@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> تایید قرارداد و بارگذاری مدارک</a></li>
+        </ol>
+    </section>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                @*<i class="fa fa-cloud"></i>*@
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body" style="">
+
+
+                <form action="/Customer/RequestForRating/Index" id="frmFormMain" method="post">
+                    <div class="form-horizontal">
+                        <h5 style="font-weight:bolder"> تایید قرارداد و بارگذاری مدارک</h5>
+                        <p style="color:darkgrey;line-height:30px">
+                            کاربرگرامی : لطفا تصویر کلیه صفحات قرارداد امضا شده با مهر شرکت در اینجا به همراه اسناد پرداختی بارگزاری نمایید.
+                            <br />
+                            <small> فرمت مجاز جهت بارگزاری : pdf</small>
+                        </p>
+                        <table class="table">
+                            <tr>
+                                <th>بارگزاری اسناد</th>
+                                <th>تصویر سند</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button title="بارگزاری تصویر کلیه صفحات قرارداد" class="btn btn-default fontForAllPage" onclick="Web.RequestForRating.Contract(this);">
+                                        بارگزاری تصویر کلیه صفحات قرارداد  <i class="fa fa-file-text-o"></i>
+                                    </button>
+                                </td>
+                                <td><a href="#">مشاهده </a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button title="بارگزاری اسناد پرداختی" class="btn btn-default fontForAllPage" onclick="Web.RequestForRating.Contract(this);">
+                                        بارگزاری اسناد پرداختی  <i class="fa fa-file-text-o"></i>
+                                    </button>
+                                </td>
+                                <td><a href="#">مشاهده </a></td>
+                            </tr>
+                        </table>
+                        <input type="hidden" value="0" id="RequestId" name="RequestId" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button title="ثبت و ارسال به کارشناس مربوطه" class="btn btn-info fontForAllPage" onclick="Web.RequestForRating.Contract(this);">
+                                            ثبت و ارسال به کارشناس مربوطه  <i class="fa fa-print"></i>
+                                        </button>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+   
+}

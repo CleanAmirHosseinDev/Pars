@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = " تنظیمات پایه";
+    ViewData["Title"] = "  تنظیمات سیستم";
 }
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">
@@ -7,11 +7,11 @@
 @section PageHeader{
     <section class="content-header">
         <h1>
-            تنظیمات پایه
+            تنظیمات سیستم
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/SystemSeting/Index"><i></i>تنظیمات پایه  </a></li>
+            <li><a href="/Admin/SystemSeting/Index"><i></i> تنظیمات سیستم </a></li>
         </ol>
     </section>
 }
@@ -47,7 +47,7 @@
                     <div class="panel-body">
                         <div class="row" style="margin-bottom: 5px;">
                             <div class="col-md-3">
-                                <select name="LabeCode" id="LabeCode" class="form-control select2" style="width:100% !important;" onchange="Web.SystemSeting.FilterGrid();"></select>
+                                <select name="SystemSetingID" id="SystemSetingID" class="form-control select2" style="width:100% !important;" onchange="Web.SystemSeting.FilterGrid();"></select>
                             </div>
                             <div class="col-md-3">
                                 <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.SystemSeting.TextSearchOnKeyDown(event);" />
@@ -69,6 +69,12 @@
                                     <option value="100">
                                         100
                                     </option>
+                                    <option value="150">
+                                        150
+                                    </option>
+                                    <option value="200">
+                                        200
+                                    </option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -79,8 +85,8 @@
                         </div>
                     </div>
                 </div>
-              
-                <a href="/Admin/SystemSeting/EditSystemSeting" class="btn btn-success fontForAllPage">
+
+                <a href="/Admin/SystemSeting/EditSystemSeting" class="btn btn-success fontForAllPage" style="margin-bottom:10px">
                     <i class="fa fa-plus"></i>
                     افزودن
                 </a>
@@ -93,11 +99,9 @@
                                     #
                                 </th>
                                 <th>
-                                    دسته اصلی
+                                    گزینه ها
                                 </th>
-                                <th>
-                                    دسته فرعی
-                                </th>
+
                                 <th>عملیات</th>
                             </tr>
                         </thead>
@@ -117,7 +121,7 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script src="~/js/Views/Admin/SystemSeting.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
-    <script>        
-        Web.SystemSeting.SystemSetingList();
+    <script>
+        Web.SystemSeting.SystemSetingList("SystemSetingID");
     </script>
 }

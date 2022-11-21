@@ -14,7 +14,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/City/Index"><i></i>  تنظیمات</a></li>
+            <li><a href="/Admin/SystemSeting/Index"><i></i> تنظیمات سیستم</a></li>
             <li class="active"><a href="/Admin/SystemSeting/EditSystemSeting@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت تنظیمات</a></li>
         </ol>
     </section>
@@ -45,31 +45,45 @@
                 <!-- /. tools -->
             </div>
             <div class="box-body" style="">
-
-
                 <form action="/Admin/SystemSeting/index" id="frmFormMain" method="post">
                     <div class="form-horizontal">
-
                         <input type="hidden" value="0" id="SystemSetingID" name="SystemSetingID" />
-
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3" for="">
-                                        عنوان برچسب
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="Value" id="Value" />
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
                                         دسته
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <select name="LabeCode" id="LabeCode" class="form-control select2" style="width:100% !important;"></select>
+                                        <select name="ParentCode" id="ParentCode" class="form-control select2" style="width:100% !important;"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        عنوان برچسب
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Label" id="Label" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        زیر مجموعه:
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="SubCodes" id="SubCodes" class="form-control " size="3" style="width:100% !important;"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        زیر مجموعه:
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="NewLabel" id="NewLabel" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -82,11 +96,8 @@
                             </div>
                             <div class="col-md-6"></div>
                         </div>
-
                     </div>
                 </form>
-
-
             </div>
         </div>
     </section>
@@ -95,7 +106,7 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script src="~/js/Views/Admin/SystemSeting.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
-    <script>
-        Web.SystemSeting.InitSystemSeting(@ViewBag.id);
+    <script>       
+       Web.SystemSeting.InitSystemSeting(@ViewBag.id);
     </script>
 }

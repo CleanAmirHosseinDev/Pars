@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = ParsKyanCrm.Domain
-build_property.ProjectDir = D:\Programmings\ParsKyanCrm_Git\ParsKyanCrm.Domain\
+build_property.ProjectDir = D:\Parskyan\ParsKyanCrm.Domain\

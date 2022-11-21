@@ -36,7 +36,6 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<SkillsOfEmployees> SkillsOfEmployees { get; set; }
         DbSet<State> State { get; set; }
         DbSet<SystemSeting> SystemSeting { get; set; }
-        DbSet<SystemSeting11> SystemSeting11 { get; set; }
         DbSet<UserRoles> UserRoles { get; set; }
         DbSet<Users> Users { get; set; }
 
@@ -78,10 +77,8 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<SkillsOfEmployees> SkillsOfEmployees { get; set; }
         public virtual DbSet<State> State { get; set; }
         public virtual DbSet<SystemSeting> SystemSeting { get; set; }
-        public virtual DbSet<SystemSeting11> SystemSeting11 { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -351,11 +348,6 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.KindOfRequest).HasComment("نوع درخواست");
 
                 entity.Property(e => e.StepComment).HasMaxLength(100);
-
-                entity.HasOne(d => d.KindOfRequestNavigation)
-                    .WithMany(p => p.LevelStepSetting)
-                    .HasForeignKey(d => d.KindOfRequest)
-                    .HasConstraintName("FK_ProcessSteps_SystemSeting");
             });
 
             modelBuilder.Entity<NewsAndContent>(entity =>
@@ -432,7 +424,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasOne(d => d.KindOfDocument)
                     .WithMany(p => p.OtherDocuments)
                     .HasForeignKey(d => d.KindOfDocumentId)
-                    .HasConstraintName("FK_OtherCompanyDocuments._SystemSeting");
+                    .HasConstraintName("FK_OtherDocuments_SystemSeting");
             });
 
             modelBuilder.Entity<RankingCalculationResults>(entity =>
@@ -573,7 +565,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasOne(d => d.KindOfRequestNavigation)
                     .WithMany(p => p.RequestForRating)
                     .HasForeignKey(d => d.KindOfRequest)
-                    .HasConstraintName("FK_RequestForReating_SystemSeting");
+                    .HasConstraintName("FK_RequestForRating_SystemSeting");
             });
 
             modelBuilder.Entity<RequestReferences>(entity =>
@@ -699,48 +691,11 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ChangeDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Label).HasMaxLength(50);
+                entity.Property(e => e.Label).HasMaxLength(255);
 
                 entity.Property(e => e.TitleBaseAmount).HasMaxLength(100);
 
                 entity.Property(e => e.Value).HasMaxLength(100);
-            });
-
-            modelBuilder.Entity<SystemSeting11>(entity =>
-            {
-                entity.HasKey(e => e.SystemSetingId)
-                    .HasName("PK__SystemSe__E6CC744751A6ACB7");
-
-                entity.HasComment("جدول تنظیمات پایه");
-
-                entity.Property(e => e.SystemSetingId).HasColumnName("SystemSetingID");
-
-                entity.Property(e => e.BaseAmount).HasComment("مقدار پایه");
-
-                entity.Property(e => e.ChangeBy).HasComment("کاربر");
-
-                entity.Property(e => e.ChangeDate).HasColumnType("datetime");
-
-                entity.Property(e => e.FromAmount).HasComment("از مقدار");
-
-                entity.Property(e => e.Label)
-                    .HasMaxLength(50)
-                    .HasComment("عنوان ساختار سیستم");
-
-                entity.Property(e => e.TitleBaseAmount)
-                    .HasMaxLength(100)
-                    .HasComment("عنوان مقدار پایه");
-
-                entity.Property(e => e.ToAmount).HasComment("تا مقدار");
-
-                entity.Property(e => e.Value)
-                    .HasMaxLength(100)
-                    .HasComment("مقادیر داده هر لیبل");
-
-                entity.HasOne(d => d.ChangeByNavigation)
-                    .WithMany(p => p.SystemSeting11)
-                    .HasForeignKey(d => d.ChangeBy)
-                    .HasConstraintName("FK_SystemSeting_Users");
             });
 
             modelBuilder.Entity<UserRoles>(entity =>

@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string Keywords { get; set; }
         public byte? IsConfirmByAdmin { get; set; }
 
-        public virtual SystemSeting11 KindOfContentNavigation { get; set; }
+        public virtual SystemSeting KindOfContentNavigation { get; set; }
         public virtual Users User { get; set; }
     }
 }

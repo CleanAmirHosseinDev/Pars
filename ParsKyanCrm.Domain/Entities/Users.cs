@@ -13,7 +13,6 @@ namespace ParsKyanCrm.Domain.Entities
             RankingOfCompanies = new HashSet<RankingOfCompanies>();
             RequestReferencesReciveUserNavigation = new HashSet<RequestReferences>();
             RequestReferencesSendUserNavigation = new HashSet<RequestReferences>();
-            SystemSeting11 = new HashSet<SystemSeting11>();
             UserRoles = new HashSet<UserRoles>();
         }
 
@@ -33,7 +32,6 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<RankingOfCompanies> RankingOfCompanies { get; set; }
         public virtual ICollection<RequestReferences> RequestReferencesReciveUserNavigation { get; set; }
         public virtual ICollection<RequestReferences> RequestReferencesSendUserNavigation { get; set; }
-        public virtual ICollection<SystemSeting11> SystemSeting11 { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

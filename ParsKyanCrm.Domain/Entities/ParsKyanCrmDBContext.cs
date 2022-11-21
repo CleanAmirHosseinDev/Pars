@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Domain.Entities
         {
         }
 
-    
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,7 +30,7 @@ namespace ParsKyanCrm.Domain.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            
 
             OnModelCreatingPartial(modelBuilder);
         }

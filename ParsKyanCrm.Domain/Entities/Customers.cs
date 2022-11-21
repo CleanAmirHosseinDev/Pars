@@ -43,9 +43,9 @@ namespace ParsKyanCrm.Domain.Entities
         public bool IsProfileComplete { get; set; }
 
         public virtual City City { get; set; }
-        public virtual SystemSeting HowGetKnowCompany { get; set; }
-        public virtual SystemSeting KindOfCompany { get; set; }
-        public virtual SystemSeting TypeServiceRequested { get; set; }
+        public virtual SystemSeting11 HowGetKnowCompany { get; set; }
+        public virtual SystemSeting11 KindOfCompany { get; set; }
+        public virtual SystemSeting11 TypeServiceRequested { get; set; }
         public virtual ICollection<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         public virtual ICollection<EducationCourses> EducationCourses { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }

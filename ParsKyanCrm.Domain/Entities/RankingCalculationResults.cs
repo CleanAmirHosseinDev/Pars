@@ -20,8 +20,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string Comment { get; set; }
 
         public virtual Customers Customer { get; set; }
-        public virtual SystemSeting Index { get; set; }
+        public virtual SystemSeting11 Index { get; set; }
         public virtual RequestForRating Request { get; set; }
-        public virtual SystemSeting SubDomain { get; set; }
+        public virtual SystemSeting11 SubDomain { get; set; }
     }
 }

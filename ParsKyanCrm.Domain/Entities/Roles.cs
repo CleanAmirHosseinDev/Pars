@@ -9,6 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public Roles()
         {
+            RequestReferences = new HashSet<RequestReferences>();
             UserRoles = new HashSet<UserRoles>();
         }
 
@@ -16,6 +17,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string RoleTitle { get; set; }
         public string RoleDesc { get; set; }
 
+        public virtual ICollection<RequestReferences> RequestReferences { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

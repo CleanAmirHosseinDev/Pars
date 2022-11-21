@@ -11,7 +11,9 @@ namespace ParsKyanCrm.Domain.Entities
         {
             NewsAndContent = new HashSet<NewsAndContent>();
             RankingOfCompanies = new HashSet<RankingOfCompanies>();
-            SystemSeting = new HashSet<SystemSeting>();
+            RequestReferencesReciveUserNavigation = new HashSet<RequestReferences>();
+            RequestReferencesSendUserNavigation = new HashSet<RequestReferences>();
+            SystemSeting11 = new HashSet<SystemSeting11>();
             UserRoles = new HashSet<UserRoles>();
         }
 
@@ -29,7 +31,9 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual Customers Customer { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<RankingOfCompanies> RankingOfCompanies { get; set; }
-        public virtual ICollection<SystemSeting> SystemSeting { get; set; }
+        public virtual ICollection<RequestReferences> RequestReferencesReciveUserNavigation { get; set; }
+        public virtual ICollection<RequestReferences> RequestReferencesSendUserNavigation { get; set; }
+        public virtual ICollection<SystemSeting11> SystemSeting11 { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

@@ -1,0 +1,26 @@
+﻿
+figure.snip1249 {border-radius: 5px; font-family: inherit; position: relative; overflow: hidden; margin: 10px; min-width: 220px; max-width: 310px; width: 100%; background: #1a1a1a; color: #ffffff; text-align: right;direction:rtl; box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); }
+    figure.snip1249 * {  -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-transition: all 0.35s ease-in-out; transition: all 0.35s ease-in-out; }
+    figure.snip1249 .image { position: relative; }
+    figure.snip1249 .postimg { vertical-align: top; height: 200px; object-fit: cover; width: 100%; }
+    figure.snip1249 .icon { position: absolute; top: 7px; left: 12px; font-size: 32px; opacity: 0; z-index: 2; -webkit-transition-delay: 0; transition-delay: 0; width: 32px; height: 32px; }
+    figure.snip1249 h3 { margin: 0; font-weight: 500; text-transform: uppercase; }
+    figure.snip1249:before,
+    figure.snip1249:after { width: 120px; height: 120px; position: absolute; top: 0; left: 0; content: ''; -webkit-transition: all 0.35s ease; transition: all 0.35s ease; z-index: 1; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%); -webkit-transition-delay: 0.2s; transition-delay: 0.2s; }
+    figure.snip1249:before { background-color: #20638f; -webkit-transform: skew(-45deg) translateX(-150%); transform: skew(-45deg) translateX(-150%); border-right: 1px solid #20638f; }
+    figure.snip1249:after { background-color: #962d22; -webkit-transform: skew(-45deg) translateX(-175%); transform: skew(-45deg) translateX(-175%); border-right: 1px solid #962d22; }
+    figure.snip1249 figcaption { padding: 25px 60px 25px 25px; background-color: #ffffff; color: #000000; position: relative; font-size: 0.9em; }
+        figure.snip1249 figcaption p { margin-bottom: 15px; text-align: justify; }
+        figure.snip1249 figcaption:before { width: 125px; height: 125px; position: absolute; bottom: 0; right: 0; content: ''; z-index: 1; background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%); background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%); background-color: var(--nv-color1); -webkit-transform: skew(-45deg) translateX(50%); transform: skew(-45deg) translateX(50%); border-right: 1px solid #20638f; }
+    figure.snip1249 .btn { font-size: 0.9em; margin-right: auto; display: table; }
+        /*figure.snip1249 .add-to-cart:hover { background-color: #20638f; color: #ffffff; }*/
+    figure.snip1249 .date { position: absolute; right: 0; bottom: 0; color: #ffffff; z-index: 2; text-transform: uppercase; padding: 10px; font-weight: 800; font-size: 1.2em; text-align: center; }
+        figure.snip1249 .date l2 { display: block; font-size: 0.9em; font-weight: 400; opacity: 0.8; }
+    figure.snip1249:hover .icon,
+    figure.snip1249.hover .icon { opacity: 0.8; -webkit-transition-delay: 0.3s; transition-delay: 0.3s; }
+    figure.snip1249:hover h3,
+    figure.snip1249.hover h3 { -webkit-transform: translateY(0); transform: translateY(0); opacity: 1; }
+    figure.snip1249:hover:before,
+    figure.snip1249.hover:before { -webkit-transition-delay: 0s; transition-delay: 0s; -webkit-transform: skew(-45deg) translateX(-50%); transform: skew(-45deg) translateX(-50%); }
+    figure.snip1249:hover:after,
+    figure.snip1249.hover:after { -webkit-transition-delay: 0.1s; transition-delay: 0.1s; -webkit-transform: skew(-45deg) translateX(-75%); transform: skew(-45deg) translateX(-75%); }

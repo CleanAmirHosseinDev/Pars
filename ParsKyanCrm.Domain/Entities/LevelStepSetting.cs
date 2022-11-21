@@ -19,9 +19,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string DestLevelSteps { get; set; }
         public string AccessRoles { get; set; }
         public string StepComment { get; set; }
-        public string Refrences { get; set; }
 
-        public virtual SystemSeting KindOfRequestNavigation { get; set; }
+        public virtual SystemSeting11 KindOfRequestNavigation { get; set; }
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
     }
 }

@@ -1,10 +1,451 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "صفحه‌ی اصلی";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<link rel="stylesheet" href="~/css/landing/index.css?v=141414" />
+<link rel="stylesheet" href="~/lib/figure-card/figure.css?v=141414" />
+<link rel="stylesheet" href="~/lib/magic-card/magic_card.css?v=141414" />
 
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="main">
+
+    <section class="sec1">
+        <div class="slider topslider">
+            <div class="slider_pages">
+                <div class="slider_page" id="slide1">
+                    <img src="~/image/landing/slider_1.webp" />
+                    <div class="label">
+                        <h2 class="slider_text" id="cursor_node_1" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                    </div>
+
+                </div>
+                <div class="slider_page" id="slide2">
+                    <img src="~/image/landing/slider_2.webp" />
+                    <div class="label">
+
+                        <h2 class="slider_text" id="cursor_node_2" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                    </div>
+                </div>
+                <div class="slider_page" id="slide3">
+                    <img src="~/image/landing/slider_3.webp" />
+
+                    <div class="label">
+
+                        <h2 class="slider_text" id="cursor_node_3" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                    </div>
+                </div>
+                <div class="slider_page" id="slide4">
+                    <img src="~/image/landing/slider_4.jpg" />
+
+                    <div class="label">
+
+                        <h2 class="slider_text" id="cursor_node_4" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                    </div>
+                </div>
+                <div class="slider_page" id="slide5">
+                    <img src="~/image/landing/slider_5.jpg" />
+
+                    <div class="label">
+
+                        <h2 class="slider_text" id="cursor_node_5" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                    </div>
+                </div>
+
+            </div>
+            <div class="overlay">
+                <div id="thedot">
+                </div>
+                <div class="slider_buttons"></div>
+                <div id="slider_mobile_controller">
+                    <div onclick="jvSlider_prev();"></div>
+                    <div onclick="jvSlider_next();"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec2">
+        <div class="inner_div">
+            <div class="right_div">
+                <h2>پارس کیان چه خدماتی ارائه می‌دهد؟</h2>
+                <p>
+                    ما با بررسی و تجزیه و تحلیل حرفه‌ای و بی‌طرفانه، ریسک اعتباری شرکت‌ها یا اوراق بهادار را ارزیابی نموده و با تخصیص رتبه اعتباری، مرجعی منحصر به فرد و قابل اعتماد در تصمیم‌گیری‌های سرمایه گذاران و اعتبار دهندگان ارائه می‌دهیم.
+                    <br />
+                    شفافیت، اطمینان بخشی به سرمایه‌گذاری‌ها، مدیریت ریسک و تعیین نرخ مناسب تامین مالی از اهدافی است که شرکت رتبه‌بندی اعتباری پارس کیان دنبال می‌نماید.
+                    <br />
+                    به منظور تعامل بیشتر و آشنایی با فرآیندهای داخلی و انجام فرآیند رتبه‌بندی اعتباری و یا دریافت مشاوره‌های تخصصی با ما در ارتباط باشید.
+                </p>
+            </div>
+            <div class="left_div">
+                <div>
+                    <i class="fa-sharp fa-solid fa-magnifying-glass-chart"></i>
+                    <div>
+                        <h3>گزارشات تحلیل صنعت</h3>
+                        <p>مشاهده گزارشات تحلیل‌های صورت گرفته از صنایع مختلف در جهان</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="fa-sharp fa-solid fa-eye"></i>
+                    <div>
+                        <h3>تغییرات منتشر شده</h3>
+                        <p>مشاهده‌ی آخرین تغییرات منتشر شده از مستندات پارس کیان</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="fa-sharp fa-solid fa-ranking-star"></i>
+                    <div>
+                        <h3>رتبه‌بندی‌های منتشر شده</h3>
+                        <p>اطلاع از آخرین رتبه بندی‌های منتشر شده یا تغییر یافته</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="particles-js"></div>
+    </section>
+    <section class="sec3">
+        <h3>درخواست خدمات</h3>
+        <div class="inner_div">
+            <div class="magic_card">
+                <div class="inner_div">
+                    <div class="top">
+                        <i class="fa-solid fa-square-poll-vertical"></i>
+                        <i class="fa-solid fa-square-poll-vertical "></i>
+                    </div>
+                    <div class="center">
+                        <p>
+                            <b>رتبه بندی شرکتهای بورسی</b>
+                            <br />
+                            پارس کیان مفتخر است با تکیه بر سوابق ارزیابی خود، ارزیابی اعتباری کسب و کار شما را انجام دهد.
+                        </p>
+
+                    </div>
+                    <div class="bottom">
+                        <a class="btn" href="#">ثبت درخواست</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="magic_card">
+                <div class="inner_div">
+                    <div class="top">
+                        <i class="fa-solid fa-chart-area"></i>
+                        <i class="fa-solid fa-chart-area"></i>
+                    </div>
+                    <div class="center">
+                        <p>
+                            <b>رتبه بندی وزارت صمت</b>
+                            <br />
+                            پارس کیان مفتخر است با تکیه بر سوابق ارزیابی خود، ارزیابی وزارت صمت کسب و کار شما را انجام دهد.
+                        </p>
+
+                    </div>
+                    <div class="bottom">
+                        <a class="btn" href="#">ثبت درخواست</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="magic_card">
+                <div class="inner_div">
+                    <div class="top">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <div class="center">
+                        <p>
+                            <b>رتبه بندی حاکمیتی شرکت</b>
+                            <br />
+                            پارس کیان مفتخر است با تکیه بر سوابق ارزیابی خود، رتبه بندی حاکمیتی شرکت شما را انجام دهد.
+                        </p>
+
+                    </div>
+                    <div class="bottom">
+                        <a class="btn" href="#">ثبت درخواست</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="magic_card">
+                <div class="inner_div">
+                    <div class="top">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div class="center">
+                        <p>
+                            <b>آموزش و مشاوره</b>
+                            <br />
+                            پارس کیان مفتخر است با تکیه بر سوابق ارزیابی خود، به کسب و کار شما آموزش ها و مشاوره های لازم را بدهد.
+                        </p>
+
+                    </div>
+                    <div class="bottom">
+                        <a class="btn" href="#">ثبت درخواست</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="sec5">
+        <div style="display:flex;align-items: center;">
+            <h3>برترین ارزیابی ها</h3>
+            <a class="btn" style="margin-right:5px;font-size: 14px;">جدول کلی &gt;</a>
+        </div>
+        <div>
+            <div id="top_rating_button">
+                <a class="btn" toprateid="0" onclick="topRatingBtnOnclick(this)">همه</a>
+                <a class="btn" toprateid="1" onclick="topRatingBtnOnclick(this)">صنعتی</a>
+                <a class="btn" toprateid="2" onclick="topRatingBtnOnclick(this)">نفت، گاز و انرژی</a>
+                <a class="btn" toprateid="3" onclick="topRatingBtnOnclick(this)">سرمایه گذاری</a>
+                <a class="btn" toprateid="4" onclick="topRatingBtnOnclick(this)">دیگر</a>
+            </div>
+            <div id="top_rating_cards">
+
+                <div class="top_rating_cards_parrent" toprateid="0">
+
+                    <div class="top_rateing_card">
+                        <div class="c1">
+                            <p>رتبه</p>
+                            <div class="c2">
+                                <p>کوتاه مدت<span>AA+</span></p>
+                                <p>بلند مدت<span>AAA</span></p>
+                            </div>
+                        </div>
+                        <div class="c3">
+                            <h5>شرکت پتروشیمی شهرآرا</h5>
+                            <div class="c4">
+                                <p>وضعیت:<span>در حال پایش</span></p>
+                                <p>دورنما:<span>با ثبات</span></p>
+                                <p>بخش:<span>پتروشیمی</span></p>
+                            </div>
+                            <div class="c5">
+                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
+                                <a class="btn" href="#">مشاهده</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top_rateing_card">
+                        <div class="c1">
+                            <p>رتبه</p>
+                            <div class="c2">
+                                <p>کوتاه مدت<span>AA+</span></p>
+                                <p>بلند مدت<span>AAA</span></p>
+                            </div>
+                        </div>
+                        <div class="c3">
+                            <h5>شرکت پتروشیمی شهرآرا</h5>
+                            <div class="c4">
+                                <p>وضعیت:<span>در حال پایش</span></p>
+                                <p>دورنما:<span>با ثبات</span></p>
+                                <p>بخش:<span>پتروشیمی</span></p>
+                            </div>
+                            <div class="c5">
+                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
+                                <a class="btn" href="#">مشاهده</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top_rateing_card">
+                        <div class="c1">
+                            <p>رتبه</p>
+                            <div class="c2">
+                                <p>کوتاه مدت<span>AA+</span></p>
+                                <p>بلند مدت<span>AAA</span></p>
+                            </div>
+                        </div>
+                        <div class="c3">
+                            <h5>شرکت پتروشیمی شهرآرا</h5>
+                            <div class="c4">
+                                <p>وضعیت:<span>در حال پایش</span></p>
+                                <p>دورنما:<span>با ثبات</span></p>
+                                <p>بخش:<span>پتروشیمی</span></p>
+                            </div>
+                            <div class="c5">
+                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
+                                <a class="btn" href="#">مشاهده</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top_rateing_card">
+                        <div class="c1">
+                            <p>رتبه</p>
+                            <div class="c2">
+                                <p>کوتاه مدت<span>AA+</span></p>
+                                <p>بلند مدت<span>AAA</span></p>
+                            </div>
+                        </div>
+                        <div class="c3">
+                            <h5>شرکت پتروشیمی شهرآرا</h5>
+                            <div class="c4">
+                                <p>وضعیت:<span>در حال پایش</span></p>
+                                <p>دورنما:<span>با ثبات</span></p>
+                                <p>بخش:<span>پتروشیمی</span></p>
+                            </div>
+                            <div class="c5">
+                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
+                                <a class="btn" href="#">مشاهده</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top_rateing_card">
+                        <div class="c1">
+                            <p>رتبه</p>
+                            <div class="c2">
+                                <p>کوتاه مدت<span>AA+</span></p>
+                                <p>بلند مدت<span>AAA</span></p>
+                            </div>
+                        </div>
+                        <div class="c3">
+                            <h5>شرکت پتروشیمی شهرآرا</h5>
+                            <div class="c4">
+                                <p>وضعیت:<span>در حال پایش</span></p>
+                                <p>دورنما:<span>با ثبات</span></p>
+                                <p>بخش:<span>پتروشیمی</span></p>
+                            </div>
+                            <div class="c5">
+                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
+                                <a class="btn" href="#">مشاهده</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top_rateing_card">
+                        <div class="c1">
+                            <p>رتبه</p>
+                            <div class="c2">
+                                <p>کوتاه مدت<span>AA+</span></p>
+                                <p>بلند مدت<span>AAA</span></p>
+                            </div>
+                        </div>
+                        <div class="c3">
+                            <h5>شرکت پتروشیمی شهرآرا</h5>
+                            <div class="c4">
+                                <p>وضعیت:<span>در حال پایش</span></p>
+                                <p>دورنما:<span>با ثبات</span></p>
+                                <p>بخش:<span>پتروشیمی</span></p>
+                            </div>
+                            <div class="c5">
+                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
+                                <a class="btn" href="#">مشاهده</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="sec4">
+        <div class="inner_div">
+            <div class="right_div">
+                <h3>
+                    جدید ترین خبرها
+                </h3>
+                <a href="#" class="btn">آرشیو خبرها</a>
+            </div>
+            <div class="left_div">
+                <figure class="snip1249">
+                    <div class="image">
+                        <img class="postimg" src="~/image/landing/slider_1.webp" />
+                        <i><img class="icon" src="~/image/landing/news_outline.png" /></i>
+                    </div>
+                    <figcaption>
+                        <h3>نسخه جدید سایت</h3>
+                        <p>نسخه جدید وب‌سایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
+                        <div class="date">
+                            <l2>۲۴ مهر</l2>۱۴۰۱
+                        </div>
+                        <a href="#" class="btn">ادامه مطلب</a>
+                    </figcaption>
+                </figure>
+                <figure class="snip1249">
+                    <div class="image">
+                        <img class="postimg" src="~/image/landing/slider_2.webp" />
+                        <img class="icon" src="~/image/landing/news_outline.png" />
+                    </div>
+                    <figcaption>
+                        <h3>نسخه جدید سایت</h3>
+                        <p>نسخه جدید وبسایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
+                        <div class="date">
+                            <l2>۲۴ مهر</l2>۱۴۰۱
+                        </div>
+                        <a href="#" class="btn">ادامه مطلب</a>
+                    </figcaption>
+                </figure>
+                <figure class="snip1249">
+                    <div class="image">
+                        <img class="postimg" src="~/image/landing/slider_3.webp" />
+                        <img class="icon" src="~/image/landing/news_outline.png" />
+                    </div>
+                    <figcaption>
+                        <h3>نسخه جدید سایت</h3>
+                        <p>نسخه جدید وبسایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
+                        <div class="date">
+                            <l2>۲۴ مهر</l2>۱۴۰۱
+                        </div>
+                        <a href="#" class="btn">ادامه مطلب</a>
+                    </figcaption>
+                </figure>
+                <figure class="snip1249">
+                    <div class="image">
+                        <img class="postimg" src="~/image/landing/slider_4.jpg" />
+                        <img class="icon" src="~/image/landing/news_outline.png" />
+                    </div>
+                    <figcaption>
+                        <h3>نسخه جدید سایت</h3>
+                        <p>نسخه جدید وبسایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
+                        <div class="date">
+                            <l2>۲۴ مهر</l2>۱۴۰۱
+                        </div>
+                        <a href="#" class="btn">ادامه مطلب</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+    </section>
+    <section class="sec6">
+        <p style="white-space: pre-wrap;text-align: center;background: #dfdfdc;margin: 0;margin-bottom:-20px;">
+            شرکت رتبه بندی اعتباری پارس کیان
+            تهران – خیابان میرزای شیرازی – خیابان منصور – پلاک 2
+            تلفن: 09059034646 -88710150 -88109134-88102175-88710150- 88715022
+            فکس: 88727819
+            ایمیل: info@parscrc.ir
+        </p>
+
+    </section>
 </div>
-<h1>hi</h1>
+
+
+@section Scripts{
+    <script>
+        function topRatingBtnOnclick(inelement) {
+
+            $("#top_rating_button .btn").each(function(index) {
+                $(this).removeClass("selected");
+            });
+            $(inelement).addClass("selected");
+
+            $(".top_rating_cards_parrent").each(function(index) {
+                $(this).hide();
+            });
+            let innerid = $(inelement).attr("toprateid");
+            $(`.top_rating_cards_parrent[toprateid='${innerid}']`).fadeIn();
+            $(`.top_rating_cards_parrent[toprateid='${innerid}']`).css("display", "flex");
+
+
+
+        }
+        $("#top_rating_button .btn[toprateid ='0']").click();
+
+    </script>
+    <script src="~/js/landing/index.js?v=141414"></script>
+
+    <script src="~/lib/particlesjs/particles.min.js"></script>
+    <script src="~/lib/particlesjs/type1.js"></script>
+}

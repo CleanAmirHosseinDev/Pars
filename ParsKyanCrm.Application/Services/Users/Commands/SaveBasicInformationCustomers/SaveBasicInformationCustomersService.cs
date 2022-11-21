@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Common.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
@@ -143,9 +144,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 if (!cus.IsProfileComplete)
                 {
 
+                    var qUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == cus.CustomerId);
+
                     _context.RequestReferences.Add(new RequestReferences()
-                    {                        
-                        LevelStepsId = 1,                        
+                    {
+                        LevelStepsId = 1,
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -153,9 +156,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             DateOfRequest = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
                             Status = (int)RequestForRatingStatus.UnderInvestigation,
                             KindOfRequest = request.TypeServiceRequestedId,
-                            CustomerId = cus.CustomerId,                            
+                            CustomerId = cus.CustomerId,
                         },
-                        ResiveTime = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)                        
+                        ResiveTime = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
+                        Comment = "ثبت اولیه مشتری",                        
+                        SendUser = qUser.UserId
                     });
                     await _context.SaveChangesAsync();
 

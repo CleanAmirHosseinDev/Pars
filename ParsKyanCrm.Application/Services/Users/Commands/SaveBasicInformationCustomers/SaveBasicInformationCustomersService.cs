@@ -159,8 +159,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             CustomerId = cus.CustomerId,
                         },
                         ResiveTime = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
-                        Comment = "ثبت اولیه مشتری",
-                        ReciveRole = 1,
+                        Comment = "ثبت اولیه مشتری",                        
                         SendUser = qUser.UserId
                     });
                     await _context.SaveChangesAsync();

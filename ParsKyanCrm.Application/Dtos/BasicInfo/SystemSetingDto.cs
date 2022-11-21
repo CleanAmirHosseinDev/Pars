@@ -20,6 +20,8 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
     public class SystemSetingDto : BaseEntityDto
     {
 
+        public string NewLabel { get; set; }
+
         public int SystemSetingId { get; set; }
         public string Label { get; set; }
         public int? LabeCode { get; set; }

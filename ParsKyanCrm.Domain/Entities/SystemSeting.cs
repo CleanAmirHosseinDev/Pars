@@ -19,6 +19,6 @@ namespace ParsKyanCrm.Domain.Entities
         public int? ChangeBy { get; set; }
         public DateTime? ChangeDate { get; set; }
         public string Value { get; set; }
-        public int? LabelCode { get; set; }
+        
     }
 }

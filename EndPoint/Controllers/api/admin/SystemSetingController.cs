@@ -60,8 +60,6 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-               
-
                 return await _basicInfoFacad.SaveSystemSetingService.Execute(request);
             }
             catch (Exception ex)

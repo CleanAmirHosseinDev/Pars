@@ -31,13 +31,26 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
                 EntityEntry<SystemSeting> q_Entity;
                 if (request.SystemSetingId == 0)
                 {
+                    //Add
                     request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     q_Entity = _context.SystemSeting.Add(_mapper.Map<SystemSeting>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<SystemSetingDto>(q_Entity.Entity);
                 }
-                else
+                else 
                 {
+                    //Update
+                    if (!string.IsNullOrEmpty(request.NewLabel))
+                    {
+                        request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
+                        _context.SystemSeting.Add(new SystemSeting()
+                        {
+                            ParentCode = request.SystemSetingId,
+                            Label = request.NewLabel,
+                             IsActive=request.IsActive
+                        });                        
+                        await _context.SaveChangesAsync();
+                    }
                     Ado_NetOperation.SqlUpdate(typeof(SystemSeting).Name, new Dictionary<string, object>()
                     {
                         {
@@ -59,6 +72,8 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting
                             nameof(q_Entity.Entity.BaseAmount),request.BaseAmount
                         }
                     }, string.Format(nameof(q_Entity.Entity.SystemSetingId) + " = {0} ", request.SystemSetingId));
+
+                   
                 }
 
                 return new ResultDto<SystemSetingDto>()

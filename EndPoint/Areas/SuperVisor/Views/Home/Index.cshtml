@@ -3,5 +3,143 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h1>داشبورد</h1>
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <i class="fa fa-bar-chart"></i>
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            <span class="caption-subject bold uppercase">مانیتورینگ مدیریت</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <!-- Small boxes (Stat box) -->
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua" style=" background-color: #FF5733 !important;">
+                                    <div class="inner">
+                                        <h3 id="StoreBoss1" style="font-size: 24px;">0 عدد</h3>
+                                        <p>تعداد  فروشگاه های سام الکترونیک</p>
+                                    </div>
 
+                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1008})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua" style=" background-color: #2CDD7F !important;">
+                                    <div class="inner">
+                                        <h3 id="StoreBoss2" style="font-size: 24px;">0 عدد</h3>
+                                        <p>تعداد  سایر فروشگاهها</p>
+                                    </div>
+
+                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1015})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua" style=" background-color: #2CB2DD !important;">
+                                    <div class="inner">
+                                        <h3 id="StoreBoss3" style="font-size: 24px;">0 عدد</h3>
+                                        <p>تعداد فروشگاه های آنلاین</p>
+                                    </div>
+
+                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1020})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua" style=" background-color: #3a84af !important;">
+                                    <div class="inner">
+                                        <h3 id="StoreBossConfirm" style="font-size: 24px;">0 عدد</h3>
+                                        <p>تعداد فروشگاه های تایید شده وامسی</p>
+                                    </div>
+
+                                    <a href="@Url.Action("IndexApproved","Stores")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-green" style="background-color: #faa85e !important ">
+                                    <div class="inner">
+                                        <h3 id="Borrowers" style="font-size: 24px;">0 عدد</h3>
+                                        <p>تعداد متقاضیان اعتبارسنجی شده در سامانه</p>
+                                    </div>
+
+                                    <a href="@Url.Action("Index","Borrowers")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 id="TotalAmountOfOrder" style="font-size: 20px;">0 تومان</h3>
+                                        <p>مبلغ کل فروش با حمایت وامسی</p>
+                                    </div>
+                                    @*<div class="icon">
+                                            <i class="ion ion-bag"></i>
+                                        </div>*@
+                                    <a href="@Url.Action("IndexIsapprovedFinanceAdmin","OrderHeader")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-red" style=" background-color: #2b9bff !important;">
+                                    <div class="inner">
+                                        <h3 id="LoanPerPay" style="font-size: 20px;">0 تومان</h3>
+
+                                        <p>اعتبار اختصاص یافته و پرداخت شده</p>
+                                    </div>
+                                    @*<div class="icon">
+                                            <i class="ion ion-bag"></i>
+                                        </div>*@
+                                    <a href="@Url.Action("IndexLoanPerPayAdmin","OrderHeader")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua" style="background-color: #fadd00 !important;">
+                                    <div class="inner">
+                                        <h3 id="AmountInstallment" style="font-size: 20px;">0 تومان</h3>
+                                        <p>مبلغ وام های سررسیده نشده </p>
+                                    </div>
+                                    @*<div class="icon">
+                                            <i class="ion ion-bag"></i>
+                                        </div>*@
+                                    <a href="@Url.Action("Index","LoanInstallment")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

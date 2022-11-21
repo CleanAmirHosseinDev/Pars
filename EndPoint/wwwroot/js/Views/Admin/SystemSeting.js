@@ -53,9 +53,7 @@
             }, true);
         }
 
-    }
-
-   
+    }   
 
     function systemSetingList(ComboName) {
 
@@ -84,6 +82,7 @@
 
         }, true);
     }
+
     function systemSetingListSub(ComboName,PC=null) {
 
         ComboBoxWithSearch('.select2', 'rtl');
@@ -107,36 +106,17 @@
     function saveSystemSeting(e) {
 
         $(e).attr("disabled", "");
-
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Save_SystemSeting", JSON.stringify({ Label: $("#Label").val(), ParentCode: $("#ParentCode").val() }), true, function (res) {
+       
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Save_SystemSeting", JSON.stringify({ NewLabel: $("#NewLabel").val(), SystemSetingID: $("#SystemSetingID").val(), Label: $("#Label").val(), ParentCode: $("#ParentCode").val() }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
-            if (res.isSuccess) {
-
-                goToUrl("/Admin/SystemSeting/Index");
-                if ($("#NewLabel").val() != null || $("#NewLabel").val() != string.isEmpty) {
-                    saveSubSystemSeting();
-                }
-            }
-            else {
-
-                alertB("خطا", res.message, "error");
-            }
-
-        }, true);
-
-    }
-    function saveSubSystemSeting() {       
-        var m = $("#NewLabel").val();
-        var u = $("#SystemSetingID").val();
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Save_SystemSeting", JSON.stringify({ Label: $("#NewLabel").val(), ParentCode: $("#SystemSetingID").val() }), true, function (res) {
-
-           
-            if (res.isSuccess) {
-
-                goToUrl("/Admin/SystemSeting/Index");
-
+            if (res.isSuccess) {               
+                var o = new Option($("#NewLabel").val(), "");
+                $(o).html($("#NewLabel").val());
+                $("#SubCodes").append(o);
+                $("#NewLabel").val("");
+               // goToUrl("/Admin/SystemSeting/EditSystemSeting?id=" + $("#SystemSetingID").val());
             }
             else {
 
@@ -155,8 +135,7 @@
         SystemSetingList: systemSetingList,
         SaveSystemSeting: saveSystemSeting,
         SystemSetingListSub: systemSetingListSub,
-        SaveSubSystemSeting: saveSubSystemSeting
-        
+         
     };
 
 })(Web, jQuery);

@@ -77,12 +77,13 @@
     function initCity(id = null, dir = 'rtl') {
 
         ComboBoxWithSearch('.select2', dir);
-        getStatesList();
+        
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/admin/City/Get_City/" + id, null, true, function (res) {                
                
                 if (res != null) {
+                    getStatesList();
                     $("#CityId").val(res.cityId);
                     $("#CityName").val(res.cityName);                   
                     $("#StateId").val(res.stateId);

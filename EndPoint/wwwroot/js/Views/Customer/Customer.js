@@ -57,9 +57,47 @@
 
     }
 
-    function initCustomer() {
+
+    function systemSeting_Combo(resSingle) {
+
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56",  PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+                var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';
+                var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[i].parentCode == 56) {
+                        strHowGetKnowCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 63) {
+                        strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 27) {
+                        strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }                    
+                }
+
+                $("#KindOfCompany").html(strKindOfCompany);
+                $("#HowGetKnowCompany").html(strHowGetKnowCompany);
+                $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
+
+                $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
+                $("#KindOfCompany").val(resSingle.kindOfCompanyId);
+                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
+
+                
+
+            }
+        }, true);
+    }
+
+
+    function initCustomer(dir = 'rtl') {
+
+        ComboBoxWithSearch('.select2', dir);
        
-        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {            
+                
 
                 if (res != null) {
                     $("#AddressCompany").val(res.addressCompany);
@@ -76,11 +114,11 @@
                     $("#Email").val(res.email);
                     $("#Tel").val(res.tel);
                     $("#PostalCode").val(res.postalCode);
-                    $("#HowGetKnowCompany").val(res.howGetKnowCompanyId);
-                    $("#KindOfCompany").val(res.kindOfCompanyId);
-                    $("#TypeServiceRequestedId").val(res.typeServiceRequestedId);
-                    
+
+                    systemSeting_Combo(res);
+
                 }
+                           
 
             }, true);       
 
@@ -89,7 +127,8 @@
     web.Customer = {
         TextSearchOnKeyDown: textSearchOnKeyDown,       
         SaveCustomer: saveCustomer,
-        InitCustomer: initCustomer
+        InitCustomer: initCustomer,
+        SystemSeting_Combo: systemSeting_Combo
     };
 
 })(Web, jQuery);

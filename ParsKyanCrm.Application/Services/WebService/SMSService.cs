@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.WebService
@@ -32,18 +33,17 @@ namespace ParsKyanCrm.Application.Services.WebService
                 string Data = JsonConvert.SerializeObject(param);
                 string result = CreateObject("https://rahyabbulk.ir:8443/url/send.ashx?username=parsmehr&password=pars562361&from=50001475&to=" + MobileNumber + "&farsi=true&message=" + Message, Data, "POST");
 
-                return result;
-                //if (string.IsNullOrEmpty(result) && result!="-1")
-                //{                   
-                //  return  "ارسال انجام شد";
-                //}
-                //else
-                //{
-                //    return result; //"ارسال با خطا مواجعه شد دوباره سعی کنید";
+                if (string.IsNullOrEmpty(result) && result!="-1")
+                {                   
+                  return  "ارسال انجام شد";
+                }
+                else
+                {
+                    return "ارسال با خطا مواجعه شد دوباره سعی کنید";
 
-                //}
+                }
 
-                //  return result;
+              //  return result;
             }
             catch (Exception ex)
             {
@@ -82,6 +82,10 @@ namespace ParsKyanCrm.Application.Services.WebService
                         using (StreamReader responseReader = new StreamReader(webStream))
                         {
                             string response = responseReader.ReadToEnd();
+                            Regex regex = new Regex("<ReturnIDs>(.*)</ReturnIDs>");
+                            Regex regex2 = new Regex("<message>(.*)</message>");
+                            string resID = regex.Match(response).Groups[1].ToString();
+
                             return response;
                         }
                     }

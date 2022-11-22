@@ -3,7 +3,7 @@
 
 $(function () {
     setTimeout(() => {
-        $("#loading_container").fadeOut();
+        $("#loading_container_j").fadeOut();
 
 
     }, 300);

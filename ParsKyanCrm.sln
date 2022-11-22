@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{8EE0BDFD-8584-415F-95BE-4E7F81BE3498}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\Lenovo\Downloads\Soroush+ Downloads\Others\Register.docx = C:\Users\Lenovo\Downloads\Soroush+ Downloads\Others\Register.docx
+		..\..\..\..\Users\Lenovo\Downloads\Soroush+ Downloads\Others\Register.docx = ..\..\..\..\Users\Lenovo\Downloads\Soroush+ Downloads\Others\Register.docx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{5E83E6D7-9D83-4B76-8FFC-314CED1C5871}"
@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsKyanCrm.Infrastructure"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsKyanCrm.Domain", "ParsKyanCrm.Domain\ParsKyanCrm.Domain.csproj", "{C4D8D915-1F90-45EA-961B-7D6BF0C7CBDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndPoint", "EndPoint\EndPoint.csproj", "{EA8927D3-A8AE-40E1-8454-7EA3D87EEA6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint", "EndPoint\EndPoint.csproj", "{EA8927D3-A8AE-40E1-8454-7EA3D87EEA6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

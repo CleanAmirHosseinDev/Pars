@@ -18,8 +18,10 @@ namespace EndPoint.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
+        public IActionResult Index( ) {
+            return View();
+        }
+        public IActionResult ContactUs( ) {
             return View();
         }
 

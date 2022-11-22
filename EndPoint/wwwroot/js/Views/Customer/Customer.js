@@ -22,23 +22,23 @@
         AjaxCallAction("POST", "/api/customer/Customers/Save_BasicInformationCustomers", JSON.stringify({
 
             tel: $("#Tel").val(),
-            //AddressCompany: $("#AddressCompany").val(),
-            //CompanyName: $("#CompanyName").val(),
-            //CeoName: $("#CeoName").val(),
-            //EconomicCode: $("#EconomicCode").val(),
-            //NationalCode: $("#NationalCode").val(),
-            //CeoMobile: $("#CeoMobile").val(),
-            //AgentMobile:$("#AgentMobile").val(),
-            //AgentName: $("#AgentName").val(),
-            //NamesAuthorizedSignatories:$("#NamesAuthorizedSignatories").val(),
-            //AmountOsLastSaels:$("#AmountOsLastSaels").val(),
-            //CountOfPersonal: $("#CountOfPersonal").val(),
-            //Email: $("#Email").val(),
-            //Tel: $("#Tel").val(),
-            //PostalCode: $("#PostalCode").val(),
-            //HowGetKnowCompanyId:$("#howGetKnowCompany").val(),
-            //KindOfCompanyId:$("#KindOfCompany").val(),
-            //TypeServiceRequestedId: $("#TypeServiceRequestedId").val()
+            AddressCompany: $("#AddressCompany").val(),
+            CompanyName: $("#CompanyName").val(),
+            CeoName: $("#CeoName").val(),
+            EconomicCode: $("#EconomicCode").val(),
+            NationalCode: $("#NationalCode").val(),
+            CeoMobile: $("#CeoMobile").val(),
+            AgentMobile:$("#AgentMobile").val(),
+            AgentName: $("#AgentName").val(),
+            NamesAuthorizedSignatories:$("#NamesAuthorizedSignatories").val(),
+            AmountOsLastSaels:$("#AmountOsLastSaels").val(),
+            CountOfPersonal: $("#CountOfPersonal").val(),
+            Email: $("#Email").val(),
+            Tel: $("#Tel").val(),
+            PostalCode: $("#PostalCode").val(),
+            HowGetKnowCompanyId:$("#howGetKnowCompany").val(),
+            KindOfCompanyId:$("#KindOfCompany").val(),
+            TypeServiceRequestedId: $("#TypeServiceRequestedId").val()
 
         }), true, function (res) {
 
@@ -46,7 +46,7 @@
 
             if (res.isSuccess) {
                 alertB("ثبت", res.message, "success");
-                goToUrl("/Customer/Customer/EditCustomer");
+              //  goToUrl("/Customer/Customer/EditCustomer");
 
             } else {
 

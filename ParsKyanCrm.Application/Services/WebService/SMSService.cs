@@ -9,49 +9,71 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.WebService
 {
-   public class SMSService
+    public class Parameters
     {
-        public class Parameters
-        {
-            //  public string username { get; set; }
-            // public string password { get; set; }
-            // public string from { get; set; }
-            // public string to { get; set; }
-            public bool farsi { get; set; }
-            public string message { get; set; }
-           
-        }
+        //  public string username { get; set; }
+        // public string password { get; set; }
+        // public string from { get; set; }
+        // public string to { get; set; }
+        public bool farsi { get; set; }
+        public string message { get; set; }
 
-        public string SendSMS(string MobileNumber,string Message)
+    }
+    public class SMSService
+    {
+
+
+        public static string Execute(string MobileNumber, string Message)
         {
-            Parameters param = new Parameters();
-            param.message = Message;
-            string Data = JsonConvert.SerializeObject(param);
-            string result = CreateObject("https://rahyabbulk.ir:8443/url/send.ashx?username=parsmehr&password=pars562361&from=50001475&to="+MobileNumber+"&farsi=true&message="+Message, Data, "POST");
-            return result;
+            try
+            {
+                Parameters param = new Parameters();
+                param.message = Message;
+                string Data = JsonConvert.SerializeObject(param);
+                string result = CreateObject("https://rahyabbulk.ir:8443/url/send.ashx?username=parsmehr&password=pars562361&from=50001475&to=" + MobileNumber + "&farsi=true&message=" + Message, Data, "POST");
+
+                return result;
+                //if (string.IsNullOrEmpty(result) && result!="-1")
+                //{                   
+                //  return  "ارسال انجام شد";
+                //}
+                //else
+                //{
+                //    return result; //"ارسال با خطا مواجعه شد دوباره سعی کنید";
+
+                //}
+
+                //  return result;
+            }
+            catch (Exception ex)
+            {
+                // throw ex;
+                return "ارسال با خطا مواجعه شد دوباره سعی کنید";
+            }
 
         }
         private static string CreateObject(string url, string data, string method)
         {
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = method;
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.Headers.Add("charset", "utf-8");
-
-            if (data != null)
-            {
-                UTF8Encoding encoding = new UTF8Encoding();
-                byte[] bytes = encoding.GetBytes(data);
-                request.ContentLength = bytes.Length;
-                using (Stream webStream = request.GetRequestStream())
-                {
-                    webStream.Write(bytes, 0, bytes.Length);
-                }
-            }
-
             try
             {
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = method;
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.Headers.Add("charset", "utf-8");
+
+                if (data != null)
+                {
+                    UTF8Encoding encoding = new UTF8Encoding();
+                    byte[] bytes = encoding.GetBytes(data);
+                    request.ContentLength = bytes.Length;
+                    using (Stream webStream = request.GetRequestStream())
+                    {
+                        webStream.Write(bytes, 0, bytes.Length);
+                    }
+                }
+
+
                 WebResponse webResponse = request.GetResponse();
                 using (Stream webStream = webResponse.GetResponseStream())
                 {
@@ -63,7 +85,7 @@ namespace ParsKyanCrm.Application.Services.WebService
                             return response;
                         }
                     }
-
+                    return "-1";
                 }
             }
             catch (WebException e)
@@ -72,7 +94,6 @@ namespace ParsKyanCrm.Application.Services.WebService
                 var content = reader.ReadToEnd();
                 return "-1";
             }
-            return "-1";
         }
 
     }

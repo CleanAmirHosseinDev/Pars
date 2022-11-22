@@ -150,8 +150,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     //Use Field needSms In Condition Under
                     if (needSms)
                     {
-                        ParsKyanCrm.Application.Services.WebService.SMSService smsObj = new WebService.SMSService();
-                        smsObj.SendSMS("09363084693", "This is a test");
+                        //
                     }
 
                 }

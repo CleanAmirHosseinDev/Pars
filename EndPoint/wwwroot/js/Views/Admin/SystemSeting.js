@@ -17,7 +17,7 @@
 
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCode: !isEmpty($("#SystemSetingID").val()) ? $("#SystemSetingID").val() : null, Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({  ParentCode: !isEmpty($("#SystemSetingID").val()) ? $("#SystemSetingID").val() : null, Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
 
             if (res.isSuccess) {
 
@@ -59,7 +59,7 @@
 
         ComboBoxWithSearch('.select2', 'rtl');
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCode:null, PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({  ParentCode:null, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
 

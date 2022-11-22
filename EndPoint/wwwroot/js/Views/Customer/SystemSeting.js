@@ -8,9 +8,9 @@
 (function (web, $) {
 
 
-    function systemSeting_Combo(labelCode = null, ComboName = "") {
+    function systemSeting_Combo(parentCodeArr = null, labelCode = null, ComboName = "") {
 
-        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ LabeCode: labelCode , PageIndex: 0, PageSize:0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: parentCodeArr, LabeCode: labelCode , PageIndex: 0, PageSize:0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strM = '<option value="">انتخاب کنید</option>';

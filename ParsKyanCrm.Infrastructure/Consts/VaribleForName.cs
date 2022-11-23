@@ -18,7 +18,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
-        public static bool IsDebug
+        public static bool? IsDebug
         {
             get
             {
@@ -30,7 +30,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return IsDebug ? "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=vam30;password=10155;MultipleActiveResultSets=True" : "data source=172.16.19.9;initial catalog=ParsKyanCrmDB;user id=ParsKyanCrm;password=ParsKyanCrm@10155;MultipleActiveResultSets=True";
+                return IsDebug == true ? "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=vam30;password=10155;MultipleActiveResultSets=True" : "";
             }
         }
 

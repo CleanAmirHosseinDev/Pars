@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Domain.Contexts;
@@ -89,6 +90,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     LoginName = "Customer";
                     bool needSms = false;
 
+                    string r = RandomDjcode.randnu(5);
+
                     var cusUser = await _context.Customers.FirstOrDefaultAsync(p => p.AgentMobile == request.Mobile);
                     if (cusUser != null)
                     {
@@ -106,7 +109,16 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                         res_ResultLoginDto.UserID = 0;
                         res_ResultLoginDto.CustomerID = cusUser.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
+                        Ado_NetOperation.SqlUpdate(nameof(Customers), new Dictionary<string, object>()
+                        {
+                            {
+                                nameof(cusUser.AuthenticateCode),r
+                            }
+                        }, nameof(cusUser.CustomerId) + " = " + "'" + cusUser.CustomerId + "'");
+
                         needSms = true;
+
+
 
                     }
                     else
@@ -116,7 +128,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                         {
                             AgentMobile = request.Mobile,
                             IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
-                            SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+                            SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
+                            AuthenticateCode = r
                         });
 
                         await _context.SaveChangesAsync();
@@ -150,7 +163,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     //Use Field needSms In Condition Under
                     if (needSms)
                     {
-                        //
+                        WebService.SMSService.Execute(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
                     }
 
                 }

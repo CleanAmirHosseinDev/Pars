@@ -1,0 +1,60 @@
+[
+  {
+    "outputFileName": "wwwroot/js/iu.min.js",
+    "inputFiles": [
+      "wwwroot/js/InitProject.js",
+      "wwwroot/js/Utility.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  //////////////////////////////////////////////////////////////////////////////////////Start Customer////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  {
+    "outputFileName": "wwwroot/js/Views/Customer/all.min.js",
+    "inputFiles": [
+      "wwwroot/js/Views/Customer/Customer.js",
+      "wwwroot/js/Views/Customer/Layout.js",
+      "wwwroot/js/Views/Customer/RequestForRating.js",
+      "wwwroot/js/Views/Customer/SystemSeting.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  /////////////////////////////////////////////////////////////////////////////////////Start SuperVisor/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  {
+    "outputFileName": "wwwroot/js/Views/SuperVisor/all.min.js",
+    "inputFiles": [
+      "wwwroot/js/Views/SuperVisor/Layout.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  /////////////////////////////////////////////////////////////////////////////////////Start Admin/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  {
+    "outputFileName": "wwwroot/js/Views/Admin/all.min.js",
+    "inputFiles": [
+      "wwwroot/js/Views/Admin/Layout.js",
+      "wwwroot/js/Views/Admin/City.js",
+      "wwwroot/js/Views/Admin/State.js",
+      "wwwroot/js/Views/Admin/SystemSeting.js",
+      "wwwroot/js/Views/Admin/Users.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+
+
+
+]

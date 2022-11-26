@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,18 +29,29 @@ namespace ParsKyanCrm.Application.Services.WebService
         {
             try
             {
-                Parameters param = new Parameters();
-                param.message = Message;
-                string Data = JsonConvert.SerializeObject(param);
-                string result = CreateObject("https://rahyabbulk.ir:8443/url/send.ashx?username=parsmehr&password=pars562361&from=50001475&to=" + MobileNumber + "&farsi=true&message=" + Message, Data, "POST");
+                if (VaribleForName.IsDebug == true)
+                {
 
-                if (string.IsNullOrEmpty(result) && result!="-1")
-                {                   
-                  return  "ارسال انجام شد";
+                    return "ارسال انجام شد";
+
                 }
                 else
                 {
-                    return "ارسال با خطا مواجعه شد دوباره سعی کنید";
+
+                    Parameters param = new Parameters();
+                    param.message = Message;
+                    string Data = JsonConvert.SerializeObject(param);
+                    string result = CreateObject("https://rahyabbulk.ir:8443/url/send.ashx?username=parsmehr&password=pars562361&from=50001475&to=" + MobileNumber + "&farsi=true&message=" + Message, Data, "POST");
+
+                    if (string.IsNullOrEmpty(result) && result != "-1")
+                    {
+                        return "ارسال انجام شد";
+                    }
+                    else
+                    {
+                        return "ارسال با خطا مواجعه شد دوباره سعی کنید";
+
+                    }
 
                 }
 

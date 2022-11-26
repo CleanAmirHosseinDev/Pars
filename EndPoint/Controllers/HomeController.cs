@@ -20,10 +20,9 @@ namespace EndPoint.Controllers
 
         public IActionResult Index()
         {
-            //ViewBag.res = ParsKyanCrm.Application.Services.WebService.SMSService.Execute("09363084693", "This is a test");   
             return View();
         }
-        
+
         public IActionResult ContactUs()
         {
             return View();

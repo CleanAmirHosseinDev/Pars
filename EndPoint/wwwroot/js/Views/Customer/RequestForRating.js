@@ -44,7 +44,7 @@
 
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].kindOfRequest + "</td><td>"
-                        + res.data[i].kindOfRequestNavigation.label + "</td><td>"
+                        + (res.data[i].kindOfRequestNavigation != null ?res.data[i].kindOfRequestNavigation.label:'') + "</td><td>"
                         + res.data[i].statusStr + "</td><td>"
                         + detailbtn
                         + contractbtn

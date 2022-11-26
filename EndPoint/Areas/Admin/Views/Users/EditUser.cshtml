@@ -4,7 +4,7 @@
 }
 
 @section Styles{
-    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">   
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">
 }
 
 @section PageHeader{
@@ -47,96 +47,96 @@
             <div class="box-body" style="">
 
                 <div class="form-horizontal">
-                        
-                        <form action="/Admin/Users/EditUser" id="frmUserRole" name="frmUserRole" method="post">
-                            <div class="form-horizontal">
 
-                                <input type="hidden" value="0" id="Id" name="Id" />
-                                <input type="hidden" value="0" id="UserId" name="UserId" />
+                    <form action="/Admin/Users/EditUser" id="frmUserRole" name="frmUserRole" method="post">
+                        <div class="form-horizontal">
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                نام و نام خانوادگی
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="RealName" id="RealName" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                نام کاربری
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="UserName" id="UserName" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                کلمه عبور
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="Password" id="Password" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                موبایل
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="Mobile" id="Mobile" onkeypress="return TextBoxOnlyNumber(event);" maxlength="11" />
-                                            </div>
-                                        </div>
+                            <input type="hidden" value="0" id="Id" name="Id" />
+                            <input type="hidden" value="0" id="UserId" name="UserId" />
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            نام و نام خانوادگی
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="RealName" id="RealName" />
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                ایمیل
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="Email" id="Email" />
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            نام کاربری
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="UserName" id="UserName" />
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                نقش کاربر
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <select name="RoleId" id="RoleId" class="form-control select2" style="width:100% !important;"></select>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            کلمه عبور
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="Password" id="Password" />
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="">
-                                                وضعیت کاربر
-                                                <span class="RequiredLabel">*</span>
-                                            </label>
-                                            <div class="col-md-9">
-                                                <input type="checkbox" name="Status" id="Status" checked />
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            موبایل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="Mobile" id="Mobile" onkeypress="return TextBoxOnlyNumber(event);" maxlength="11" />
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-md-3">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Users.SaveUser(this);">
-                                                    <i class="fa fa-save"></i>
-                                                </button>
-                                            </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            ایمیل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="Email" id="Email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            نقش کاربر
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <select name="RoleId" id="RoleId" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            وضعیت کاربر
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="checkbox" name="Status" id="Status" checked />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Users.SaveUser(this);">
+                                                <i class="fa fa-save"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                            </form>
-                    
+
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -144,8 +144,7 @@
 </div>
 
 @section Scripts {
-    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>  
-  <script src="~/js/Views/Admin/Users.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script>
        Web.Users.InitUser(@ViewBag.id);
     </script>

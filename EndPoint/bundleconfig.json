@@ -18,7 +18,9 @@
       "wwwroot/js/Views/Customer/Customer.js",
       "wwwroot/js/Views/Customer/Layout.js",
       "wwwroot/js/Views/Customer/RequestForRating.js",
-      "wwwroot/js/Views/Customer/SystemSeting.js"
+      "wwwroot/js/Views/Customer/SystemSeting.js",
+      "wwwroot/js/Views/Customer/FurtherInfo.js"
+
     ],
     "minify": {
       "enabled": true,

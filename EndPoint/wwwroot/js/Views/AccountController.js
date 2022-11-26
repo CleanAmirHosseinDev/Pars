@@ -72,7 +72,7 @@
 
                     $("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(encrypt(res.data.fullName, keyMaker()));
 
-                    
+
 
                     //$("#divLogin").hide();
                     //$("#divAuthenticatedCode").show();
@@ -116,12 +116,17 @@
 
                 if (res.isSuccess) {
 
+                    debugger;
 
-                    setlstor("token", res.data.token);
-                    
-                    setlstor("fullName", res.data.fullName);
+                    try { setlstor("token", res.data.token); } catch (e) { }
 
-                    setlstor("customerID", res.data.customerID);
+                    try {
+                        setlstor("fullName", res.data.fullName);
+                    } catch (e) { }
+
+                    try {
+                        setlstor("customerID", res.data.customerID);
+                    } catch (e) { }
 
                     goToUrl(res.message);
 

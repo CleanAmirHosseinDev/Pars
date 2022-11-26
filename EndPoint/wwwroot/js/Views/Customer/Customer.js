@@ -57,7 +57,6 @@
 
     }
 
-
     function systemSeting_Combo(resSingle) {
 
         AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56",  PageIndex: 0, PageSize: 0 }), true, function (res) {
@@ -90,7 +89,6 @@
             }
         }, true);
     }
-
 
     function initCustomer(dir = 'rtl') {
 

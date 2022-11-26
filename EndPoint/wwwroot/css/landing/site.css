@@ -112,7 +112,7 @@ header > .items > div:hover .header_dropdown_handle { color: var(--nv-color1); }
 #footer_icons { align-self: center; }
     #footer_icons a { color: #777; margin: 3px; fill: #777; }
         #footer_icons a svg { width: 40px; height: 24px; padding: 5px; background: white; border-radius: 50px; }
-#footer_desc { display: flex; }
+#footer_desc { display: flex; flex-direction: column; align-items: center; }
     #footer_desc p { color: #fff; padding: 3px; margin: 0; }
 
 .footer_block a { color:white;}

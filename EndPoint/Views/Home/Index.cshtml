@@ -2,9 +2,9 @@
     ViewData["Title"] = "صفحه‌ی اصلی";
 }
 
-<link rel="stylesheet" href="~/css/landing/index.css?v=141414" />
-<link rel="stylesheet" href="~/lib/figure-card/figure.css?v=141414" />
-<link rel="stylesheet" href="~/lib/magic-card/magic_card.css?v=141414" />
+<link rel="stylesheet" href="~/css/landing/index.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/magic-card/magic_card.css" asp-append-version="true" />
 
 <div class="main">
 
@@ -108,6 +108,26 @@
             <div class="magic_card">
                 <div class="inner_div">
                     <div class="top">
+                        <i class="fa-solid fa-chart-area"></i>
+                        <i class="fa-solid fa-chart-area"></i>
+                    </div>
+                    <div class="center">
+                        <p>
+                            <b>رتبه بندی وزارت صمت</b>
+                            <br />
+                            پارس کیان مفتخر است با تکیه بر سوابق ارزیابی خود، ارزیابی وزارت صمت کسب و کار شما را انجام دهد.
+                        </p>
+
+                    </div>
+                    <div class="bottom">
+                        <a class="btn" href="#">ثبت درخواست</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="magic_card">
+                <div class="inner_div">
+                    <div class="top">
                         <i class="fa-solid fa-square-poll-vertical"></i>
                         <i class="fa-solid fa-square-poll-vertical "></i>
                     </div>
@@ -126,26 +146,7 @@
                 </div>
             </div>
 
-            <div class="magic_card">
-                <div class="inner_div">
-                    <div class="top">
-                        <i class="fa-solid fa-chart-area"></i>
-                        <i class="fa-solid fa-chart-area"></i>
-                    </div>
-                    <div class="center">
-                        <p>
-                            <b>رتبه بندی وزارت صمت</b>
-                            <br />
-                            پارس کیان مفتخر است با تکیه بر سوابق ارزیابی خود، ارزیابی وزارت صمت کسب و کار شما را انجام دهد.
-                        </p>
 
-                    </div>
-                    <div class="bottom">
-                        <a class="btn" href="#">ثبت درخواست</a>
-                    </div>
-
-                </div>
-            </div>
             <div class="magic_card">
                 <div class="inner_div">
                     <div class="top">
@@ -192,12 +193,11 @@
 
     <section class="sec5">
         <div style="display:flex;align-items: center;">
-            <h3>برترین ارزیابی ها</h3>
-            <a class="btn" style="margin-right:5px;font-size: 14px;">جدول کلی &gt;</a>
+            <h3>جدیدترین ارزیابی ها</h3>
         </div>
         <div>
-            <div id="top_rating_button">
-                <a class="btn" toprateid="0" onclick="topRatingBtnOnclick(this)">همه</a>
+            <div id="top_rating_button" style="display:none;">
+                <a class="btn selected" toprateid="0">همه</a>
                 <a class="btn" toprateid="1" onclick="topRatingBtnOnclick(this)">صنعتی</a>
                 <a class="btn" toprateid="2" onclick="topRatingBtnOnclick(this)">نفت، گاز و انرژی</a>
                 <a class="btn" toprateid="3" onclick="topRatingBtnOnclick(this)">سرمایه گذاری</a>
@@ -337,6 +337,11 @@
                 </div>
             </div>
         </div>
+        <div style="font-size: 14px;margin: 10px auto 18px 3vw;display: block;">
+
+            <a class="btn" style="margin-right:5px;font-size: 14px;">مشاهده همه‌ی ارزیابی ها &gt;</a>
+        </div>
+
     </section>
 
 
@@ -410,13 +415,40 @@
 
     </section>
     <section class="sec6">
-        <p style="white-space: pre-wrap;text-align: center;background: #dfdfdc;margin: 0;margin-bottom:-20px;">
-            شرکت رتبه بندی اعتباری پارس کیان
-            تهران – خیابان میرزای شیرازی – خیابان منصور – پلاک 2
-            تلفن: 09059034646 -88710150 -88109134-88102175-88710150- 88715022
-            فکس: 88727819
-            ایمیل: info@parscrc.ir
-        </p>
+        <div style="display:flex;align-items: center;">
+            <h3 style="margin-bottom: 0;font-size: 24px;">افتخارات پارس کیان</h3>
+        </div>
+        <div id="xitem_parrent">
+            <div class="x_item">
+                <div class="circle">
+                    <i class="fa-solid fa-users-rectangle"></i>
+                </div>
+                <h5>۶</h5>
+                <h6>سال تجربه</h6>
+            </div>
+            <div class="x_item">
+                <div class="circle">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h5>۵۲</h5>
+                <h6>مشتری تجاری ثابت</h6>
+            </div>
+            <div class="x_item">
+                <div class="circle">
+                    <i class="fa-solid fa-file-circle-check"></i>
+                </div>
+                <h5>۷۵۰</h5>
+                <h6>ارزیابی تایید شده</h6>
+            </div>
+            <div class="x_item">
+                <div class="circle">
+                    <i class="fa-brands fa-square-pied-piper"></i>
+                </div>
+                <h5>۲۲۰</h5>
+                <h6>سند رسمی حقوقی</h6>
+            </div>
+
+        </div>
 
     </section>
 </div>
@@ -444,7 +476,7 @@
         $("#top_rating_button .btn[toprateid ='0']").click();
 
     </script>
-    <script src="~/js/landing/index.js?v=141414"></script>
+    <script src="~/js/landing/index.js" asp-append-version="true"></script>
 
     <script src="~/lib/particlesjs/particles.min.js"></script>
     <script src="~/lib/particlesjs/type1.js"></script>

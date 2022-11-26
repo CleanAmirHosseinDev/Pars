@@ -56,6 +56,7 @@
 
     function loginC(e) {
 
+        console.log("dsf");
         try {
 
             $(e).attr("disabled", "");
@@ -63,15 +64,18 @@
             AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
-
+                debugger;
                 if (res.isSuccess) {
+                    showTab2();
 
                     $("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(encrypt(res.data.customerID, keyMaker()));
 
                     $("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(encrypt(res.data.fullName, keyMaker()));
 
-                    $("#divLogin").hide();
-                    $("#divAuthenticatedCode").show();
+                    
+
+                    //$("#divLogin").hide();
+                    //$("#divAuthenticatedCode").show();
 
                 }
                 else {

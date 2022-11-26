@@ -14,7 +14,7 @@
     </section>
 }
 @section Styles{
-    <link rel="stylesheet" href="~/css/Area/Customer/FurtherInfo.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">
+    <link rel="stylesheet" href="~/css/GlobalAreas/Customer/FurtherInfo.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion">
 }
 <div class="row">
@@ -179,14 +179,14 @@
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    
+
                                                                     <th>بارگزاری اسناد</th>
                                                                     <th>تصویر سند</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="CompanyDocument">
                                                             </tbody>
-                                                           
+
                                                         </table>
 
                                                     </div>
@@ -378,8 +378,8 @@
 
 
 @section Scripts {
-    <script src="~/js/Views/Admin/FurtherInfo.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js?@ParsKyanCrm.Infrastructure.Consts.VaribleForName.SCVersion"></script>
     <script>
-    Web.FurtherInfo.FilterGrid();
+        Web.FurtherInfo.SystemSeting_Combo();
     </script>
 }

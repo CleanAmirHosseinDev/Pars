@@ -45,7 +45,7 @@
   
     /*Blue Buttons*/
     #msform .action-button {
-        width: 100px;
+        width: 150px;
         background: skyblue;
         font-weight: bold;
         color: white;
@@ -62,7 +62,7 @@
 
     /*Previous Buttons*/
     #msform .action-button-previous {
-        width: 100px;
+        width: 150px;
         background: #616161;
         font-weight: bold;
         color: white;

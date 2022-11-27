@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Domain.Contexts
 {
-    //Scaffold-DbContext "Server=77.238.123.197;Database=ParsKyanCrmDB;user id=vam30;password=10155;Integrated Security=false;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -NoPluralize
+    //Scaffold-DbContext "Server=xx.xx.xx.xx;Database=ParsKyanCrmDB;user id=vam30;password=10155;Integrated Security=false;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -NoPluralize
     //namespace ParsKyanCrm.Domain.Entities    
     public interface IDataBaseContext
     {

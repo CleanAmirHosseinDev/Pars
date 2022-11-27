@@ -87,6 +87,7 @@ namespace EndPoint
             }
             else
             {
+                app.UseCors(p => p.WithOrigins("https://test.rayshomar.ir").AllowAnyMethod().AllowAnyHeader());
                 app.UseExceptionHandler("/Home/Error");
             }
 

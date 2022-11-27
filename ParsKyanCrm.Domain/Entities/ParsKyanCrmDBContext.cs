@@ -23,8 +23,9 @@ namespace ParsKyanCrm.Domain.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=77.238.123.197;Database=ParsKyanCrmDB;user id=vam30;password=10155;Integrated Security=false;");
+                string cs =  "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=vam30;password=10155;MultipleActiveResultSets=True";
+               // string cs = "data source=172.16.19.9;initial catalog=ParsKyanCrmDB;user id=pars;password=pars@10155;MultipleActiveResultSets=True";
+                optionsBuilder.UseSqlServer(cs);
             }
         }
 

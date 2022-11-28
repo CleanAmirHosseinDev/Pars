@@ -30,8 +30,7 @@ namespace ParsKyanCrm.Domain.Entities
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
+        { 
 
             OnModelCreatingPartial(modelBuilder);
         }

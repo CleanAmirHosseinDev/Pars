@@ -1,21 +1,24 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace ParsKyanCrm.Domain.Entities
 {
-    public partial class EducationCourses
+    public partial class WorkExperience
     {
-        public int EducationCoursesId { get; set; }
+        public int SkilsId { get; set; }
         public int? CustomerId { get; set; }
         public int? BoardOfDirectorsId { get; set; }
-        public string TitelCourses { get; set; }
-        public int? TimeOfCource { get; set; }
-        public string PlaceOfTraining { get; set; }
-        public string CourseOrganizer { get; set; }
-        public string PictureOfEducationCourse { get; set; }
+        public int? InsuranceHistory { get; set; }
+        public int? OfficialNewspaperHistory { get; set; }
+        public int? EtcHistory { get; set; }
+
         public byte? IsActive { get; set; }
+
+        public string PictureOfEtcHistory { get; set; }
+               
         public DateTime? SaveDate { get; set; }
 
         public virtual BoardOfDirectors BoardOfDirectors { get; set; }

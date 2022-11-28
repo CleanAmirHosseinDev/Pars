@@ -10,6 +10,7 @@ namespace ParsKyanCrm.Domain.Entities
         public BoardOfDirectors()
         {
             EducationCourses = new HashSet<EducationCourses>();
+            WorkExperience = new HashSet<WorkExperience>();
         }
 
         public int BoardOfDirectorsId { get; set; }
@@ -22,13 +23,15 @@ namespace ParsKyanCrm.Domain.Entities
         public byte? IsMemeberOfBoard { get; set; }
         public double? OwnershipPercentage { get; set; }
         public int? OwnershipCount { get; set; }
-        public double? InsuranceHistory { get; set; }
-        public double? ManagersExperience { get; set; }
+        public int? InsuranceHistory { get; set; }
+        public int? ManagersExperience { get; set; }
         public byte? IsActive { get; set; }
+        public DateTime? SaveDate { get; set; }
 
         public virtual SystemSeting MemberEduction { get; set; }
         public virtual SystemSeting MemberPost { get; set; }
         public virtual SystemSeting University { get; set; }
         public virtual ICollection<EducationCourses> EducationCourses { get; set; }
+        public virtual ICollection<WorkExperience> WorkExperience { get; set; }
     }
 }

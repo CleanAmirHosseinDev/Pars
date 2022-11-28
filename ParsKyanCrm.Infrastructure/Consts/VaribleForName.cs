@@ -28,7 +28,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -51,6 +51,30 @@ namespace ParsKyanCrm.Infrastructure.Consts
             get
             {
                 return "3315169990345098_543267319_12345678900987654321_Mobin2352@gmail.com_Mobin2352@outlook.com_Ab123456Ba654321_ParsKyanCrm_Mohandes_Sarfrazi_Mobin_Morid_Ahmadi.!@#$%^&*()09876543211234567890";
+            }
+        }
+
+        public static string BoardOfDirectorsFolder
+        {
+            get
+            {
+                return "/FileUpload/BoardOfDirectors/";
+            }
+        }
+
+        public static string WorkExperienceFolder
+        {
+            get
+            {
+                return "/FileUpload/WorkExperience/";
+            }
+        }
+
+        public static string EducationCoursesFolder
+        {
+            get
+            {
+                return "/FileUpload/EducationCourses/";
             }
         }
 

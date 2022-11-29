@@ -28,7 +28,7 @@ namespace EndPoint.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Article()
         {
             return View();
         }

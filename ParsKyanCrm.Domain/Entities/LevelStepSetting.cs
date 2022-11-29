@@ -12,13 +12,16 @@ namespace ParsKyanCrm.Domain.Entities
             RequestReferences = new HashSet<RequestReferences>();
         }
 
-        public int LevelStepSettingId { get; set; }
+        public int LevelStepSettingIndexId { get; set; }
         public int? KindOfRequest { get; set; }
-        public int? SrcLevel { get; set; }
-        public int? SrcStep { get; set; }
-        public string DestLevelSteps { get; set; }
-        public string AccessRoles { get; set; }
-        public string StepComment { get; set; }
+        public string LevelStepAccessRole { get; set; }
+        public string AccessRoleName { get; set; }
+        public int? LevelStepIndex { get; set; }
+        public string LevelStepStatus { get; set; }
+        public string DestLevelStep { get; set; }
+        public string DestLevelStepButton { get; set; }
+        public string SmsContent { get; set; }
+        public bool? SmsType { get; set; }
 
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
     }

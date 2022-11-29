@@ -17,6 +17,15 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetCustomers;
 using FluentValidation;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors;
+using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectorss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectors;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveWorkExperience;
+using ParsKyanCrm.Application.Services.Users.Queries.GetWorkExperience;
+using ParsKyanCrm.Application.Services.Users.Queries.GetWorkExperiences;
+using ParsKyanCrm.Application.Services.Users.Queries.GetEducationCourses;
+using ParsKyanCrm.Application.Services.Users.Queries.GetEducationCoursess;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveEducationCourses;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -40,6 +49,23 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetRequestForRatingsService GetRequestForRatingsService { get; }
 
+        ISaveBoardOfDirectorsService SaveBoardOfDirectorsService { get; }
+
+        IGetBoardOfDirectorssService GetBoardOfDirectorssService { get; }
+
+        IGetBoardOfDirectorsService GetBoardOfDirectorsService { get; }
+
+        ISaveWorkExperienceService SaveWorkExperienceService { get; }
+
+        IGetWorkExperienceService GetWorkExperienceService { get; }
+
+        IGetWorkExperiencesService GetWorkExperiencesService { get; }
+
+        IGetEducationCoursesService GetEducationCoursesService { get; }
+
+        IGetEducationCoursessService GetEducationCoursessService { get; }
+
+        ISaveEducationCoursesService SaveEducationCoursesService { get; }
     }
 
     public class UserFacad : IUserFacad
@@ -48,7 +74,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IWebHostEnvironment _env;
-        private readonly IValidator<CustomersDto> _validator;
+        private readonly IValidator<CustomersDto> _validator;        
 
         public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IValidator<CustomersDto> validator)
         {
@@ -137,6 +163,87 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getRequestForRatingsService = _getRequestForRatingsService ?? new GetRequestForRatingsService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveBoardOfDirectorsService _saveBoardOfDirectorsService;
+        public ISaveBoardOfDirectorsService SaveBoardOfDirectorsService
+        {
+            get
+            {
+                return _saveBoardOfDirectorsService = _saveBoardOfDirectorsService ?? new SaveBoardOfDirectorsService(_context, _mapper, _basicInfoFacad,_env);
+            }
+        }
+
+        private IGetBoardOfDirectorssService _getBoardOfDirectorssService;
+        public IGetBoardOfDirectorssService GetBoardOfDirectorssService
+        {
+            get
+            {
+                return _getBoardOfDirectorssService = _getBoardOfDirectorssService ?? new GetBoardOfDirectorssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetBoardOfDirectorsService _getBoardOfDirectorsService;
+        public IGetBoardOfDirectorsService GetBoardOfDirectorsService
+        {
+            get
+            {
+                return _getBoardOfDirectorsService = _getBoardOfDirectorsService ?? new GetBoardOfDirectorsService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveWorkExperienceService _saveWorkExperienceService;
+        public ISaveWorkExperienceService SaveWorkExperienceService
+        {
+            get
+            {
+                return _saveWorkExperienceService = _saveWorkExperienceService ?? new SaveWorkExperienceService(_context, _mapper, _basicInfoFacad,_env);
+            }
+        }
+
+        private IGetWorkExperienceService _getWorkExperienceService;
+        public IGetWorkExperienceService GetWorkExperienceService
+        {
+            get
+            {
+                return _getWorkExperienceService = _getWorkExperienceService ?? new GetWorkExperienceService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetWorkExperiencesService _getWorkExperiencesService;
+        public IGetWorkExperiencesService GetWorkExperiencesService
+        {
+            get
+            {
+                return _getWorkExperiencesService = _getWorkExperiencesService ?? new GetWorkExperiencesService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetEducationCoursesService _getEducationCoursesService;
+        public IGetEducationCoursesService GetEducationCoursesService
+        {
+            get
+            {
+                return _getEducationCoursesService = _getEducationCoursesService ?? new GetEducationCoursesService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetEducationCoursessService _getEducationCoursessService;
+        public IGetEducationCoursessService GetEducationCoursessService
+        {
+            get
+            {
+                return _getEducationCoursessService = _getEducationCoursessService ?? new GetEducationCoursessService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveEducationCoursesService _saveEducationCoursesService;
+        public ISaveEducationCoursesService SaveEducationCoursesService
+        {
+            get
+            {
+                return _saveEducationCoursesService = _saveEducationCoursesService ?? new SaveEducationCoursesService(_context, _mapper, _basicInfoFacad,_env);
             }
         }
 

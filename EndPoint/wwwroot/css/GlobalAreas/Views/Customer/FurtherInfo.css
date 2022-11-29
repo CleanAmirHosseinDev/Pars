@@ -45,12 +45,11 @@
   
     /*Blue Buttons*/
     #msform .action-button {
-        width: 150px;
-        background: skyblue;
+        width: 50px;
         font-weight: bold;
-        color: white;
-        border: 0 none;
-        border-radius: 0px;
+        color: #2f2c2c;
+        border: 1px solid silver;
+        border-radius: 10px;
         cursor: pointer;
         padding: 10px 5px;
         margin: 10px 5px;
@@ -62,12 +61,11 @@
 
     /*Previous Buttons*/
     #msform .action-button-previous {
-        width: 150px;
-        background: #616161;
+        width: 50px;       
         font-weight: bold;
-        color: white;
-        border: 0 none;
-        border-radius: 0px;
+        color: #2f2c2c;
+        border: 1px solid silver;
+        border-radius: 10px;
         cursor: pointer;
         padding: 10px 5px;
         margin: 10px 5px;

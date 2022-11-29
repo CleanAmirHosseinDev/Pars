@@ -13,8 +13,8 @@ namespace ParsKyanCrm.Domain.Entities
             EducationCourses = new HashSet<EducationCourses>();
             OtherDocuments = new HashSet<OtherDocuments>();
             RequestForRating = new HashSet<RequestForRating>();
-            SkillsOfEmployees = new HashSet<SkillsOfEmployees>();
             Users = new HashSet<Users>();
+            WorkExperience = new HashSet<WorkExperience>();
         }
 
         public int CustomerId { get; set; }
@@ -50,7 +50,7 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<EducationCourses> EducationCourses { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }
-        public virtual ICollection<SkillsOfEmployees> SkillsOfEmployees { get; set; }
         public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<WorkExperience> WorkExperience { get; set; }
     }
 }

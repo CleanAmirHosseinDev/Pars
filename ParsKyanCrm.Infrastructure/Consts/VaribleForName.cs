@@ -54,6 +54,30 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string BoardOfDirectorsFolder
+        {
+            get
+            {
+                return "/FileUpload/BoardOfDirectors/";
+            }
+        }
+
+        public static string WorkExperienceFolder
+        {
+            get
+            {
+                return "/FileUpload/WorkExperience/";
+            }
+        }
+
+        public static string EducationCoursesFolder
+        {
+            get
+            {
+                return "/FileUpload/EducationCourses/";
+            }
+        }
+
         public static string No_Photo
         {
             get

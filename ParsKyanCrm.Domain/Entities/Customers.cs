@@ -10,11 +10,9 @@ namespace ParsKyanCrm.Domain.Entities
         public Customers()
         {
             ContractAndFinancialDocuments = new HashSet<ContractAndFinancialDocuments>();
-            EducationCourses = new HashSet<EducationCourses>();
             OtherDocuments = new HashSet<OtherDocuments>();
             RequestForRating = new HashSet<RequestForRating>();
             Users = new HashSet<Users>();
-            WorkExperience = new HashSet<WorkExperience>();
         }
 
         public int CustomerId { get; set; }
@@ -34,6 +32,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string AgentMobile { get; set; }
         public string CeoName { get; set; }
         public string CeoMobile { get; set; }
+        public string CeoNationalCode { get; set; }
         public int? CountOfPersonal { get; set; }
         public decimal? AmountOsLastSaels { get; set; }
         public DateTime SaveDate { get; set; }
@@ -41,16 +40,16 @@ namespace ParsKyanCrm.Domain.Entities
         public string Ip { get; set; }
         public string AuthenticateCode { get; set; }
         public bool IsProfileComplete { get; set; }
+        public string OfficialNewspape { get; set; }
+        public string InsuranceList { get; set; }
 
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
         public virtual SystemSeting KindOfCompany { get; set; }
         public virtual SystemSeting TypeServiceRequested { get; set; }
         public virtual ICollection<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
-        public virtual ICollection<EducationCourses> EducationCourses { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }
         public virtual ICollection<Users> Users { get; set; }
-        public virtual ICollection<WorkExperience> WorkExperience { get; set; }
     }
 }

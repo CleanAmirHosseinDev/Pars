@@ -20,12 +20,6 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors;
 using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectorss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectors;
-using ParsKyanCrm.Application.Services.Users.Commands.SaveWorkExperience;
-using ParsKyanCrm.Application.Services.Users.Queries.GetWorkExperience;
-using ParsKyanCrm.Application.Services.Users.Queries.GetWorkExperiences;
-using ParsKyanCrm.Application.Services.Users.Queries.GetEducationCourses;
-using ParsKyanCrm.Application.Services.Users.Queries.GetEducationCoursess;
-using ParsKyanCrm.Application.Services.Users.Commands.SaveEducationCourses;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
@@ -55,18 +49,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetBoardOfDirectorssService GetBoardOfDirectorssService { get; }
 
         IGetBoardOfDirectorsService GetBoardOfDirectorsService { get; }
-
-        ISaveWorkExperienceService SaveWorkExperienceService { get; }
-
-        IGetWorkExperienceService GetWorkExperienceService { get; }
-
-        IGetWorkExperiencesService GetWorkExperiencesService { get; }
-
-        IGetEducationCoursesService GetEducationCoursesService { get; }
-
-        IGetEducationCoursessService GetEducationCoursessService { get; }
-
-        ISaveEducationCoursesService SaveEducationCoursesService { get; }
 
         ISaveRequestForRatingService SaveRequestForRatingService { get; }
 
@@ -194,60 +176,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getBoardOfDirectorsService = _getBoardOfDirectorsService ?? new GetBoardOfDirectorsService(_context, _mapper, _basicInfoFacad);
-            }
-        }
-
-        private ISaveWorkExperienceService _saveWorkExperienceService;
-        public ISaveWorkExperienceService SaveWorkExperienceService
-        {
-            get
-            {
-                return _saveWorkExperienceService = _saveWorkExperienceService ?? new SaveWorkExperienceService(_context, _mapper, _basicInfoFacad,_env);
-            }
-        }
-
-        private IGetWorkExperienceService _getWorkExperienceService;
-        public IGetWorkExperienceService GetWorkExperienceService
-        {
-            get
-            {
-                return _getWorkExperienceService = _getWorkExperienceService ?? new GetWorkExperienceService(_context, _mapper, _basicInfoFacad);
-            }
-        }
-
-        private IGetWorkExperiencesService _getWorkExperiencesService;
-        public IGetWorkExperiencesService GetWorkExperiencesService
-        {
-            get
-            {
-                return _getWorkExperiencesService = _getWorkExperiencesService ?? new GetWorkExperiencesService(_context, _mapper, _basicInfoFacad);
-            }
-        }
-
-        private IGetEducationCoursesService _getEducationCoursesService;
-        public IGetEducationCoursesService GetEducationCoursesService
-        {
-            get
-            {
-                return _getEducationCoursesService = _getEducationCoursesService ?? new GetEducationCoursesService(_context, _mapper, _basicInfoFacad);
-            }
-        }
-
-        private IGetEducationCoursessService _getEducationCoursessService;
-        public IGetEducationCoursessService GetEducationCoursessService
-        {
-            get
-            {
-                return _getEducationCoursessService = _getEducationCoursessService ?? new GetEducationCoursessService(_context, _mapper, _basicInfoFacad);
-            }
-        }
-
-        private ISaveEducationCoursesService _saveEducationCoursesService;
-        public ISaveEducationCoursesService SaveEducationCoursesService
-        {
-            get
-            {
-                return _saveEducationCoursesService = _saveEducationCoursesService ?? new SaveEducationCoursesService(_context, _mapper, _basicInfoFacad,_env);
             }
         }
 

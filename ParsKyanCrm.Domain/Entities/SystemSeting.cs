@@ -9,14 +9,17 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public SystemSeting()
         {
+            Activity = new HashSet<Activity>();
             BoardOfDirectorsMemberEduction = new HashSet<BoardOfDirectors>();
             BoardOfDirectorsMemberPost = new HashSet<BoardOfDirectors>();
             BoardOfDirectorsUniversity = new HashSet<BoardOfDirectors>();
-            CompaniesCompanyGroupNavigation = new HashSet<Companies>();
+            CompaniesCompanyGroup = new HashSet<Companies>();
             CompaniesKindOfCompanyNavigation = new HashSet<Companies>();
             CustomersHowGetKnowCompany = new HashSet<Customers>();
             CustomersKindOfCompany = new HashSet<Customers>();
             CustomersTypeServiceRequested = new HashSet<Customers>();
+            ManagerOfParsKyanPosition = new HashSet<ManagerOfParsKyan>();
+            ManagerOfParsKyanTitel = new HashSet<ManagerOfParsKyan>();
             NewsAndContent = new HashSet<NewsAndContent>();
             OtherDocuments = new HashSet<OtherDocuments>();
             RequestForRating = new HashSet<RequestForRating>();
@@ -36,14 +39,17 @@ namespace ParsKyanCrm.Domain.Entities
         public string Value { get; set; }
         public int? LabelCode { get; set; }
 
+        public virtual ICollection<Activity> Activity { get; set; }
         public virtual ICollection<BoardOfDirectors> BoardOfDirectorsMemberEduction { get; set; }
         public virtual ICollection<BoardOfDirectors> BoardOfDirectorsMemberPost { get; set; }
         public virtual ICollection<BoardOfDirectors> BoardOfDirectorsUniversity { get; set; }
-        public virtual ICollection<Companies> CompaniesCompanyGroupNavigation { get; set; }
+        public virtual ICollection<Companies> CompaniesCompanyGroup { get; set; }
         public virtual ICollection<Companies> CompaniesKindOfCompanyNavigation { get; set; }
         public virtual ICollection<Customers> CustomersHowGetKnowCompany { get; set; }
         public virtual ICollection<Customers> CustomersKindOfCompany { get; set; }
         public virtual ICollection<Customers> CustomersTypeServiceRequested { get; set; }
+        public virtual ICollection<ManagerOfParsKyan> ManagerOfParsKyanPosition { get; set; }
+        public virtual ICollection<ManagerOfParsKyan> ManagerOfParsKyanTitel { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }

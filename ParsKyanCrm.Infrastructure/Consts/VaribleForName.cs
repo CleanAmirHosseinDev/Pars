@@ -7,17 +7,7 @@ using System.Threading.Tasks;
 namespace ParsKyanCrm.Infrastructure.Consts
 {
     public class VaribleForName
-    {
-
-        //موقع ورژن زدن این عدد باید یکی اضافه شود
-        public static string SCVersion
-        {
-            get
-            {
-                return "v=" + "1";
-            }
-        }
-
+    {                
 
         /// <summary>
         /// true ==> Debug
@@ -60,23 +50,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
             {
                 return "/FileUpload/BoardOfDirectors/";
             }
-        }
-
-        public static string WorkExperienceFolder
-        {
-            get
-            {
-                return "/FileUpload/WorkExperience/";
-            }
-        }
-
-        public static string EducationCoursesFolder
-        {
-            get
-            {
-                return "/FileUpload/EducationCourses/";
-            }
-        }
+        }                
 
         public static string No_Photo
         {

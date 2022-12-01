@@ -18,6 +18,7 @@ namespace ParsKyanCrm.Domain.Contexts
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
 
          DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
+         DbSet<CaptchaCodes> CaptchaCodes { get; set; }
          DbSet<City> City { get; set; }
          DbSet<Companies> Companies { get; set; }
          DbSet<CompanyGroup> CompanyGroup { get; set; }
@@ -58,6 +59,7 @@ namespace ParsKyanCrm.Domain.Contexts
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public virtual DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
+        public virtual DbSet<CaptchaCodes> CaptchaCodes { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }
         public virtual DbSet<CompanyGroup> CompanyGroup { get; set; }
@@ -78,6 +80,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<WorkExperience> WorkExperience { get; set; }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +137,15 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasConstraintName("FK_BoardOfDirectors_SystemSeting2");
             });
 
+            modelBuilder.Entity<CaptchaCodes>(entity =>
+            {
+                entity.Property(e => e.Code).HasMaxLength(10);
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Guid).HasMaxLength(36);
+            });
+
             modelBuilder.Entity<City>(entity =>
             {
                 entity.Property(e => e.CityId).HasColumnName("CityID");
@@ -167,8 +179,13 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasForeignKey(d => d.CompanyGroupId)
                     .HasConstraintName("FK_Companies_CopanyGroup");
 
+                entity.HasOne(d => d.CompanyGroupNavigation)
+                    .WithMany(p => p.CompaniesCompanyGroupNavigation)
+                    .HasForeignKey(d => d.CompanyGroupId)
+                    .HasConstraintName("FK_Companies_SystemSeting1");
+
                 entity.HasOne(d => d.KindOfCompanyNavigation)
-                    .WithMany(p => p.Companies)
+                    .WithMany(p => p.CompaniesKindOfCompanyNavigation)
                     .HasForeignKey(d => d.KindOfCompany)
                     .HasConstraintName("FK_Companies_SystemSeting");
             });
@@ -348,9 +365,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.AccessRoleName).HasMaxLength(50);
 
-                entity.Property(e => e.DestLevelStep).HasComment("مقصد هایی که میتوان به آن ارجاع داد");
+                entity.Property(e => e.DestLevelStepIndex).HasComment("مقصد هایی که میتوان به آن ارجاع داد");
 
-                entity.Property(e => e.DestLevelStepButton).HasMaxLength(100);
+                entity.Property(e => e.DestLevelStepIndexButton).HasMaxLength(100);
 
                 entity.Property(e => e.KindOfRequest).HasComment("نوع درخواست");
 
@@ -573,8 +590,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.RequestNo).HasComment("شماره درخواست");
 
-                entity.Property(e => e.Status).HasComment("وضعیت درخواست اگر صفر یا نال بود یعنی در دست بررسی اگر یک بود قراداد قابل نمایش میشود و بارگزای اسناد قراداد و مدارک پرداختی و اگر 2 شد می تواندی سایر مدارک را بارگزاری کند");
-
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.RequestForRating)
                     .HasForeignKey(d => d.CustomerId)
@@ -592,28 +607,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.HasComment("جدول ارجاعات درخواست مشتری");
 
-                entity.Property(e => e.ReferenceId).HasColumnName("ReferenceID");
-
-                entity.Property(e => e.LevelStepsId).HasColumnName("LevelStepsID");
-
-                entity.Property(e => e.ResiveTime).HasColumnType("datetime");
+                entity.Property(e => e.ReferenceId).HasColumnName("ReferenceID");                
 
                 entity.Property(e => e.SendTime).HasColumnType("datetime");
-
-                entity.HasOne(d => d.LevelSteps)
-                    .WithMany(p => p.RequestReferences)
-                    .HasForeignKey(d => d.LevelStepsId)
-                    .HasConstraintName("FK_RequestReferences_LevelStepSetting");
-
-                entity.HasOne(d => d.ReciveRoleNavigation)
-                    .WithMany(p => p.RequestReferences)
-                    .HasForeignKey(d => d.ReciveRole)
-                    .HasConstraintName("FK_RequestReferences_Roles");
-
-                entity.HasOne(d => d.ReciveUserNavigation)
-                    .WithMany(p => p.RequestReferencesReciveUserNavigation)
-                    .HasForeignKey(d => d.ReciveUser)
-                    .HasConstraintName("FK_RequestReferences_Users");
 
                 entity.HasOne(d => d.Request)
                     .WithMany(p => p.RequestReferences)
@@ -621,7 +617,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasConstraintName("FK_RequestReferences_RequestForReating");
 
                 entity.HasOne(d => d.SendUserNavigation)
-                    .WithMany(p => p.RequestReferencesSendUserNavigation)
+                    .WithMany(p => p.RequestReferences)
                     .HasForeignKey(d => d.SendUser)
                     .HasConstraintName("FK_RequestReferences_Users1");
             });

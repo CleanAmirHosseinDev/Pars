@@ -38,6 +38,20 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto> Save_Request([FromBody] RequestReferencesDto request)
+        {
+            try
+            {
+                request.Request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.SaveRequestForRatingService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
     }
 }

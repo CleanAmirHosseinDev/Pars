@@ -37,10 +37,10 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCitys
 
                 switch (request.SortOrder)
                 {
-                    case "CityID_D":
+                    case "CityId_D":
                         lists = lists.OrderByDescending(s => s.CityId);
                         break;
-                    case "CityID_A":
+                    case "CityId_A":
                         lists = lists.OrderBy(s => s.CityId);
                         break;
                     default:

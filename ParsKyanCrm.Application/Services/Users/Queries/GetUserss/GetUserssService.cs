@@ -42,10 +42,10 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUserss
 
                 switch (request.SortOrder)
                 {
-                    case "UserID_D":
+                    case "UserId_D":
                         lists = lists.OrderByDescending(s => s.UserId);
                         break;
-                    case "UserID_A":
+                    case "UserId_A":
                         lists = lists.OrderBy(s => s.UserId);
                         break;
                     default:

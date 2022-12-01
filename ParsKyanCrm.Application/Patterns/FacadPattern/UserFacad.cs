@@ -26,6 +26,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetWorkExperiences;
 using ParsKyanCrm.Application.Services.Users.Queries.GetEducationCourses;
 using ParsKyanCrm.Application.Services.Users.Queries.GetEducationCoursess;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveEducationCourses;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -66,6 +67,9 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetEducationCoursessService GetEducationCoursessService { get; }
 
         ISaveEducationCoursesService SaveEducationCoursesService { get; }
+
+        ISaveRequestForRatingService SaveRequestForRatingService { get; }
+
     }
 
     public class UserFacad : IUserFacad
@@ -244,6 +248,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveEducationCoursesService = _saveEducationCoursesService ?? new SaveEducationCoursesService(_context, _mapper, _basicInfoFacad,_env);
+            }
+        }
+
+        private ISaveRequestForRatingService _saveRequestForRatingService;
+        public ISaveRequestForRatingService SaveRequestForRatingService
+        {
+            get
+            {
+                return _saveRequestForRatingService = _saveRequestForRatingService ?? new SaveRequestForRatingService(_context, _mapper, _basicInfoFacad);
             }
         }
 

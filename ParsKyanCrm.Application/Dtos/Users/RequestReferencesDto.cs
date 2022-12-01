@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace ParsKyanCrm.Domain.Entities
+namespace ParsKyanCrm.Application.Dtos.Users
 {
-    public partial class RequestReferences
+    public class RequestReferencesDto
     {
         public int ReferenceId { get; set; }
         public int? Requestid { get; set; }
@@ -14,7 +15,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string Comment { get; set; }
         public int? SendUser { get; set; }
 
-        public virtual RequestForRating Request { get; set; }
-        public virtual Users SendUserNavigation { get; set; }
+        public RequestForRatingDto Request { get; set; }
+        public UsersDto SendUserNavigation { get; set; }
     }
 }

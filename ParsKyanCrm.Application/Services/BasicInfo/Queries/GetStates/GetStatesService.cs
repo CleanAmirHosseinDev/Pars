@@ -36,10 +36,10 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetStates
 
                 switch (request.SortOrder)
                 {
-                    case "StateID_D":
+                    case "StateId_D":
                         lists = lists.OrderByDescending(s => s.StateId);
                         break;
-                    case "StateID_A":
+                    case "StateId_A":
                         lists = lists.OrderBy(s => s.StateId);
                         break;
                     default:

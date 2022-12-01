@@ -40,10 +40,10 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRoless
 
                 switch (request.SortOrder)
                 {
-                    case "RoleID_D":
+                    case "RoleId_D":
                         lists = lists.OrderByDescending(s => s.RoleId);
                         break;
-                    case "RoleID_A":
+                    case "RoleId_A":
                         lists = lists.OrderBy(s => s.RoleId);
                         break;
                     default:

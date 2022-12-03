@@ -45,6 +45,7 @@ namespace EndPoint.Controllers.api.customer
             try
             {
                 request.Request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                request.SendUser = null;
                 return await _userFacad.SaveRequestForRatingService.Execute(request);
             }
             catch (Exception ex)

@@ -711,6 +711,10 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.SendTime).HasColumnType("datetime");
 
+                entity.Property(e => e.LevelStepAccessRole)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);                    
+
                 entity.HasOne(d => d.Request)
                     .WithMany(p => p.RequestReferences)
                     .HasForeignKey(d => d.Requestid)

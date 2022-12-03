@@ -15,6 +15,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string Comment { get; set; }
         public int? SendUser { get; set; }
 
+        public string LevelStepAccessRole { get; set; }
+
         public RequestForRatingDto Request { get; set; }
         public UsersDto SendUserNavigation { get; set; }
     }

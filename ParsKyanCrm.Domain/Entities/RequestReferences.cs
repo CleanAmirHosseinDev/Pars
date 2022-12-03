@@ -14,6 +14,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string Comment { get; set; }
         public int? SendUser { get; set; }
 
+        public string LevelStepAccessRole { get; set; }
+
         public virtual RequestForRating Request { get; set; }
         public virtual Users SendUserNavigation { get; set; }
     }

@@ -90,7 +90,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         },                        
                         Comment = request.Comment,
                         SendUser = request.SendUser,
-                        SendTime = dt                       
+                        SendTime = dt,
+                        LevelStepAccessRole = null,                        
                     });
                     await _context.SaveChangesAsync();
 
@@ -107,6 +108,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         SendUser = request.SendUser,                        
                         Requestid = request.Request.RequestId,  
                         SendTime = dt,
+                        LevelStepAccessRole = request.LevelStepAccessRole
                     });
                     await _context.SaveChangesAsync();
 

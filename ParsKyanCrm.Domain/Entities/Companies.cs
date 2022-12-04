@@ -18,7 +18,7 @@ namespace ParsKyanCrm.Domain.Entities
         public int? KindOfCompany { get; set; }
         public int? IsActive { get; set; }
 
-        public virtual CompanyGroup CompanyGroup { get; set; }
+        public virtual SystemSeting CompanyGroup { get; set; }
         public virtual SystemSeting KindOfCompanyNavigation { get; set; }
         public virtual ICollection<RankingOfCompanies> RankingOfCompanies { get; set; }
     }

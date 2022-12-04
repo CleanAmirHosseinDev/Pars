@@ -17,8 +17,8 @@ namespace ParsKyanCrm.Domain.Entities
         public int? CustomerId { get; set; }
         public DateTime? DateOfRequest { get; set; }
         public DateTime? DateOfConfirmed { get; set; }
-        public int? Status { get; set; }
         public int? KindOfRequest { get; set; }
+        public bool IsFinished { get; set; }
 
         public virtual Customers Customer { get; set; }
         public virtual SystemSeting KindOfRequestNavigation { get; set; }

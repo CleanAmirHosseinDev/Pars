@@ -106,21 +106,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             {
                 throw ex;
             }
-        }
-
-        private string MaxAllRequestNo()
-        {
-            try
-            {
-                List<RequestForRatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForRatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForRating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNoStr"));
-                if (q != null) return q.FirstOrDefault().RequestNoStr.ToString();
-                return "1";
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        }        
 
         public async Task<ResultDto> Execute(CustomersDto request)
         {
@@ -138,33 +124,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     };
                 }
 
-                #endregion                
-
-                var cus = await _context.Customers.FindAsync(request.CustomerId);
-                if (!cus.IsProfileComplete)
-                {
-
-                    var qUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == cus.CustomerId);
-
-                    _context.RequestReferences.Add(new RequestReferences()
-                    {
-                        LevelStepsId = 1,
-                        Request = new Domain.Entities.RequestForRating()
-                        {
-
-                            RequestNo = int.Parse(MaxAllRequestNo()),
-                            DateOfRequest = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
-                            Status = (int)RequestForRatingStatus.UnderInvestigation,
-                            KindOfRequest = request.TypeServiceRequestedId,
-                            CustomerId = cus.CustomerId,
-                        },
-                        ResiveTime = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
-                        Comment = "ثبت اولیه مشتری",                        
-                        SendUser = qUser.UserId
-                    });
-                    await _context.SaveChangesAsync();
-
-                }
+                #endregion                                
 
 
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()

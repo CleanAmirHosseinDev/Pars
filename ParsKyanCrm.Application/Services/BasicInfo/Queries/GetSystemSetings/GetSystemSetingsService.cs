@@ -45,10 +45,10 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSetings
 
                 switch (request.SortOrder)
                 {
-                    case "SystemSetingID_D":
+                    case "SystemSetingId_D":
                         lists = lists.OrderByDescending(s => s.SystemSetingId);
                         break;
-                    case "SystemSetingID_A":
+                    case "SystemSetingId_A":
                         lists = lists.OrderBy(s => s.SystemSetingId);
                         break;
                     default:

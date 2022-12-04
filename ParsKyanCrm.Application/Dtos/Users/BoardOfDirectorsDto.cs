@@ -47,6 +47,25 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? OwnershipCount { get; set; }
         public double? InsuranceHistory { get; set; }
         public double? ManagersExperience { get; set; }
+        public string TitelCourses { get; set; }
+        public int? TimeOfCource { get; set; }
+        public int? PlaceOfTraining { get; set; }
+
+
+        public string PictureOfEducationCourse { get; set; }
+        public string PictureOfEducationCourseFull
+        {
+            get
+            {
+                if (VaribleForName.IsDebug == true)
+                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) + VaribleForName.BoardOfDirectorsFolder + (string.IsNullOrEmpty(PictureOfEducationCourse) ? VaribleForName.No_Photo : PictureOfEducationCourse));
+                else
+                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory + VaribleForName.BoardOfDirectorsFolder + (string.IsNullOrEmpty(PictureOfEducationCourse) ? VaribleForName.No_Photo : PictureOfEducationCourse));
+            }
+        }
+        public string Result_Final_PictureOfEducationCourse { get; set; }
+
+
         public DateTime? SaveDate { get; set; }
         public SystemSetingDto MemberEduction { get; set; }
         public SystemSetingDto MemberPost { get; set; }

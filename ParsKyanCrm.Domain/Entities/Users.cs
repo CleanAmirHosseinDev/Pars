@@ -9,10 +9,12 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public Users()
         {
+            AboutUs = new HashSet<AboutUs>();
+            LicensesAndHonors = new HashSet<LicensesAndHonors>();
+            ManagerOfParsKyan = new HashSet<ManagerOfParsKyan>();
             NewsAndContent = new HashSet<NewsAndContent>();
             RankingOfCompanies = new HashSet<RankingOfCompanies>();
-            RequestReferencesReciveUserNavigation = new HashSet<RequestReferences>();
-            RequestReferencesSendUserNavigation = new HashSet<RequestReferences>();
+            RequestReferences = new HashSet<RequestReferences>();
             UserRoles = new HashSet<UserRoles>();
         }
 
@@ -28,10 +30,12 @@ namespace ParsKyanCrm.Domain.Entities
         public byte IsActive { get; set; }
 
         public virtual Customers Customer { get; set; }
+        public virtual ICollection<AboutUs> AboutUs { get; set; }
+        public virtual ICollection<LicensesAndHonors> LicensesAndHonors { get; set; }
+        public virtual ICollection<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<RankingOfCompanies> RankingOfCompanies { get; set; }
-        public virtual ICollection<RequestReferences> RequestReferencesReciveUserNavigation { get; set; }
-        public virtual ICollection<RequestReferences> RequestReferencesSendUserNavigation { get; set; }
+        public virtual ICollection<RequestReferences> RequestReferences { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

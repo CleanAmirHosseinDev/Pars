@@ -39,6 +39,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
 
             string fileNameOldPic_AcademicDegreePicture = string.Empty, path_AcademicDegreePicture = string.Empty;
 
+            string fileNameOldPic_PictureOfEducationCourse = string.Empty, path_PictureOfEducationCourse = string.Empty;
+
             #endregion
 
             try
@@ -70,7 +72,27 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                         };
 
                     }
-                }                
+                }
+
+                if (request.Result_Final_PictureOfEducationCourse != null && request.Result_Final_PictureOfEducationCourse.Length > 10)
+                {
+                    fileNameOldPic_PictureOfEducationCourse = request.PictureOfEducationCourse;
+                    request.PictureOfEducationCourse = Guid.NewGuid().ToString().Replace("-", "") + ".png";
+                    path_PictureOfEducationCourse = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + request.PictureOfEducationCourse;
+
+                    string strMessage = ServiceImage.SaveImageByByte_InExistNextDelete(request.Result_Final_PictureOfEducationCourse, path_PictureOfEducationCourse, string.Empty, "تصویر دوره آموزشی");
+                    if (!string.IsNullOrEmpty(strMessage))
+                    {
+
+                        return new ResultDto<BoardOfDirectorsDto>()
+                        {
+                            IsSuccess = false,
+                            Message = strMessage,
+                            Data = null
+                        };
+
+                    }
+                }
 
                 #endregion
 
@@ -127,7 +149,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                     if (request.Result_Final_AcademicDegreePicture != null && request.Result_Final_AcademicDegreePicture.Length > 10)
                         FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + fileNameOldPic_AcademicDegreePicture);
 
-                    path_AcademicDegreePicture = string.Empty;                    
+                    if (request.Result_Final_PictureOfEducationCourse != null && request.Result_Final_PictureOfEducationCourse.Length > 10)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + fileNameOldPic_PictureOfEducationCourse);
+
+                    path_AcademicDegreePicture = string.Empty;
+                    path_PictureOfEducationCourse = string.Empty;
 
                     #endregion
 
@@ -146,7 +172,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
             {
                 #region Upload Image
 
-                FileOperation.DeleteFile(path_AcademicDegreePicture);                
+                FileOperation.DeleteFile(path_AcademicDegreePicture);
+                FileOperation.DeleteFile(path_PictureOfEducationCourse);
 
                 #endregion
 

@@ -42,26 +42,14 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 if (DateOfConfirmed.HasValue) return DateTimeOperation.ToPersianDate(DateOfConfirmed.Value);
                 return string.Empty;
             }
-        }
-
-        public int? Status { get; set; }
-        public string StatusStr
-        {
-            get
-            {
-                if (!Status.HasValue) return string.Empty;
-
-                RequestForRatingStatus itemDisplay = (RequestForRatingStatus)Status.Value;
-                return EnumOperation<RequestForRatingStatus>.GetDisplayValue(itemDisplay);
-
-            }
-        }
+        }        
 
         public int? KindOfRequest { get; set; }
 
+        public bool IsFinished { get; set; }
+
         public CustomersDto Customer { get; set; }
         public SystemSetingDto KindOfRequestNavigation { get; set; }
-        public UsersDto User { get; set; }
 
     }
 }

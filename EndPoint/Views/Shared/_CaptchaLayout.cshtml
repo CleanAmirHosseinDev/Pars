@@ -1,0 +1,59 @@
+﻿
+<style>
+    .captcha_group { display: flex; height: 45px; padding: 10px; place-content: center; flex-direction: row; align-items: center; }
+        .captcha_group .code { letter-spacing: 1px; width: 96px; direction: ltr; text-align: center; border: none; border-bottom: 2px solid #D1D1D4; font-size: 14px; font-family: 'Vazir'; padding: 8px; font-weight: bold; border-color: #b5b5b5; background: #f2f2f2; }
+        .captcha_group .renew { width: 26px; padding: 7px; object-fit: contain; cursor: pointer; }
+        .captcha_group .image { width: 140px; object-fit: cover; cursor: pointer; margin-right: 5px; height: inherit; }
+    .captcha_overlay_div { display: block; }
+</style>
+
+
+<div class="captcha_loader_parent" loaded="false"></div>
+
+
+<script>
+
+    $(window).on('load', function () {
+
+        captchaCodeChange = function (id) {
+            var a = $("#local_captcha_image_" + id).attr("xcode");
+            var b = $("#local_captcha_input_" + id).val().toString();
+            var c = "{'xcode':'" + a + "','code':'" + b + "'}";
+            $("#local_captcha_code_" + id).val(c);
+        }
+        reGetCaptcha = function (id) {
+            try {
+                $.ajax({
+                    url: "/Captcha/getCapchaImage",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (res) {
+                        $("#local_captcha_image_" + id).attr("src", "data:image/png;base64," + res.image);
+                        $("#local_captcha_image_" + id).attr("xcode", res.xcode);
+                        $("#local_captcha_input_" + id).val('');
+                    }
+                    , fail: function () {
+                        alert("خطا در دریافت کد امنیتی کپچا");
+                    }
+                });
+            } catch (e) { }
+        }
+        var cpview = `
+            <div class="captcha_overlay_div" data-code="">
+                <div class="captcha_group">
+                    <input type="hidden" name="CaptchaCodes" id="local_captcha_code_#randcode" >
+                        <input class="code" maxlength="6" placeholder="کد مقابل" oninput="captchaCodeChange(#randcode)" id="local_captcha_input_#randcode">
+                            <img class="renew" style="display:none;" onclick="reGetCaptcha(#randcode)" src="#">
+                                <img class="image" onclick="reGetCaptcha(#randcode)" id="local_captcha_image_#randcode">
+                        </div>
+            </div>`;
+        var rcode = parseInt(((Math.random() * 8999) + 1000));
+        for (var i = 0; i < 5; i++) {
+            cpview = cpview.replace("#randcode", rcode + "").replace("#randcode", rcode + "");
+        }
+        $(".captcha_loader_parent[loaded='false']").html(cpview);
+        $(".captcha_loader_parent").attr("loaded", "true");
+        reGetCaptcha(rcode);
+});
+</script>
+

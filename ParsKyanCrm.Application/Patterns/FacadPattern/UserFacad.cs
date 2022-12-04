@@ -21,6 +21,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors;
 using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectorss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectors;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating;
+using ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSetting;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -51,6 +52,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetBoardOfDirectorsService GetBoardOfDirectorsService { get; }
 
         ISaveRequestForRatingService SaveRequestForRatingService { get; }
+
+        IGetLevelStepSettingService GetLevelStepSettingService { get; }
 
     }
 
@@ -185,6 +188,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveRequestForRatingService = _saveRequestForRatingService ?? new SaveRequestForRatingService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetLevelStepSettingService _getLevelStepSettingService;
+        public IGetLevelStepSettingService GetLevelStepSettingService
+        {
+            get
+            {
+                return _getLevelStepSettingService = _getLevelStepSettingService ?? new GetLevelStepSettingService(_context, _mapper, _basicInfoFacad);
             }
         }
 

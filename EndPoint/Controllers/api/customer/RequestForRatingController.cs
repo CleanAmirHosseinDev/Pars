@@ -54,5 +54,19 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<LevelStepSettingDto> Get_LevelStepSetting(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetLevelStepSettingService.Execute(new RequestLevelStepSettingDto() { LevelStepSettingIndexId = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

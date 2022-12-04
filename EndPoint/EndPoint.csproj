@@ -657,7 +657,6 @@
     <Folder Include="Areas\SuperVisor\Data\" />
     <Folder Include="Areas\SuperVisor\Models\" />
     <Folder Include="FileUpload\BoardOfDirectors\" />
-    <Folder Include="wwwroot\image\" />
     <Folder Include="wwwroot\lib\jquery-multi-select\" />
   </ItemGroup>
 

@@ -13,7 +13,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Username: $("#User").val(), Password: $("#Password").val() }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Username: $("#User").val(), Password: $("#Password").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 
@@ -61,7 +61,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val() }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
                 debugger;
@@ -110,7 +110,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() , Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 

@@ -43,10 +43,9 @@
     <div class="form-structor">
         <div class="signup">
             <h2 class="form-title" id="signup"><span></span>به حساب کاربری خود وارد شوید</h2>
-            <div class="form-holder">
-                <input type="text" class="input" placeholder="شماره تلفن همراه" id="User" />
-                <div id="captcha_img" class="input form_captcha"></div>
-                <input type="text" class="input" placeholder="کد امنیتی بالا" />
+            <div class="form-holder" id="form_n1">
+                <input type="text" class="input" placeholder="شماره تلفن همراه" id="User" maxlength="11" />
+                <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
             </div>
             <button class="submit-btn" type="button" onclick="Web.AccountController.LoginC(this);">ارسال کد احراز ورود</button>
         </div>
@@ -55,6 +54,7 @@
                 <input type="hidden" id="Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh" />
                 <input type="hidden" id="Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf" />
                 <h2 class="form-title" id="login"><span></span>ثبت کد احراز</h2>
+                
                 <br />
                 <div id="step2">
                     <p>کد احراز ارسال شده را وارد کنید.</p>
@@ -74,11 +74,12 @@
         #captcha_img {text-decoration: line-through; padding: 0; background: #d7d7d7; height: 50px; display: flex; justify-content: center; align-items: center; font-size: 23px; }
     </style>
     <script>
+        /*
 $(function() {
 
     $("#captcha_img").html(parseInt((Math.random() * 90000)+9999));
 
-});
+});*/
 
     </script>   
 

@@ -7,6 +7,7 @@
         public string Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh { get; set; }
 
         public string Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf { get; set; }
+        public string CaptchaCodes { get; set; }
 
     }
 }

@@ -105,8 +105,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             };
                         }
 
+                        var customerUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == cusUser.CustomerId);
+
                         res_ResultLoginDto.FullName = !string.IsNullOrEmpty(cusUser.AgentName) ? cusUser.AgentName : "فاقد نام";
-                        res_ResultLoginDto.UserID = 0;
+                        res_ResultLoginDto.UserID = customerUser.UserId;
                         res_ResultLoginDto.CustomerID = cusUser.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                         Ado_NetOperation.SqlUpdate(nameof(Customers), new Dictionary<string, object>()
@@ -134,7 +136,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                         await _context.SaveChangesAsync();
 
-                        _context.UserRoles.Add(new UserRoles()
+                        var userC = _context.UserRoles.Add(new UserRoles()
                         {
                             User = new Domain.Entities.Users()
                             {
@@ -150,7 +152,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                         await _context.SaveChangesAsync();
 
                         res_ResultLoginDto.FullName = "فاقد نام";
-                        res_ResultLoginDto.UserID = 0;
+                        res_ResultLoginDto.UserID = userC.Entity.UserId;
                         res_ResultLoginDto.CustomerID = cusUserA.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                         needSms = true;

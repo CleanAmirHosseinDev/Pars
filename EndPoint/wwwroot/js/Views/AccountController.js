@@ -110,7 +110,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() , Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 
@@ -118,15 +118,10 @@
 
                     debugger;
 
-                    try { setlstor("token", res.data.token); } catch (e) { }
-
-                    try {
-                        setlstor("fullName", res.data.fullName);
-                    } catch (e) { }
-
-                    try {
-                        setlstor("customerID", res.data.customerID);
-                    } catch (e) { }
+                    setlstor("token", res.data.token);
+                    setlstor("fullName", res.data.fullName);
+                    setlstor("customerID", res.data.customerID);
+                    setlstor("userID", res.data.userID);
 
                     goToUrl(res.message);
 

@@ -142,6 +142,18 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                         {
                             nameof(q_Entity.Entity.ManagersExperience),request.ManagersExperience
                         },
+                        {
+                            nameof(q_Entity.Entity.TitelCourses),request.TitelCourses
+                        },
+                        {
+                            nameof(q_Entity.Entity.TimeOfCource),request.TimeOfCource
+                        },
+                        {
+                            nameof(q_Entity.Entity.PlaceOfTraining),request.PlaceOfTraining
+                        },
+                        {
+                            nameof(q_Entity.Entity.PictureOfEducationCourse),request.PictureOfEducationCourse
+                        },
                     }, string.Format(nameof(q_Entity.Entity.BoardOfDirectorsId) + " = {0} ", request.BoardOfDirectorsId));
 
                     #region Upload Image

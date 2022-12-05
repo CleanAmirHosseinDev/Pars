@@ -13,6 +13,7 @@
         dellstor("token");        
         dellstor("fullName");
         dellstor("customerID");
+        dellstor("userID");
 
         goToUrl("/Account/LoginC");
 

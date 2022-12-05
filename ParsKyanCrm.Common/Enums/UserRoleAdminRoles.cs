@@ -242,16 +242,7 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "درباره شرکت")]
         [OrderAttribute(Order = 3)]
-        AboutUs = 876,
-
-        [Display(Name = "ویرایش و افزودن")]
-        [Category("Landing")]
-        [DisplayFiledAttribute(Name = "امور سایت")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "درباره شرکت")]
-        [OrderAttribute(Order = 3)]
-        AboutUs_Save = 898,
+        AboutUs = 876,        
 
         [Display(Name = "مشاهده")]
         [Category("Landing")]

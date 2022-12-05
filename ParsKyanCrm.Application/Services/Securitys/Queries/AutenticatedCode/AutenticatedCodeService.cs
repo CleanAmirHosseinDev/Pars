@@ -43,7 +43,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
 
                 var qCus = await _context.Customers.FirstOrDefaultAsync(p => p.AuthenticateCode == request.Code && p.CustomerId.ToString() == res_ResultLoginDto.CustomerID);
 
+                var qUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == qCus.CustomerId);
+
                 res_ResultLoginDto.FullName = request.Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf;
+                res_ResultLoginDto.UserID = qUser.UserId;
 
                 if (VaribleForName.IsDebug == true)
                 {

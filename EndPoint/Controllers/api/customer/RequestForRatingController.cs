@@ -45,7 +45,22 @@ namespace EndPoint.Controllers.api.customer
             try
             {
                 request.Request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                request.SendUser = null;
                 return await _userFacad.SaveRequestForRatingService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<LevelStepSettingDto> Get_LevelStepSetting(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetLevelStepSettingService.Execute(new RequestLevelStepSettingDto() { LevelStepSettingIndexId = id });
             }
             catch (Exception ex)
             {

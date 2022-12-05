@@ -18,7 +18,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -50,7 +50,23 @@ namespace ParsKyanCrm.Infrastructure.Consts
             {
                 return "/FileUpload/BoardOfDirectors/";
             }
-        }                
+        }
+
+        public static string ActivityFolder
+        {
+            get
+            {
+                return "/FileUpload/Activity/";
+            }
+        }
+
+        public static string LicensesAndHonorsFolder
+        {
+            get
+            {
+                return "/FileUpload/LicensesAndHonors/";
+            }
+        }
 
         public static string No_Photo
         {

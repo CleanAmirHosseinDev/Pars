@@ -86,11 +86,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                             DateOfRequest = dt,
                             KindOfRequest = request.Request.KindOfRequest,
                             CustomerId = cus.CustomerId,
-                            IsFinished = false,                            
-                        },                        
-                        Comment = request.Comment,
+                            IsFinished = false,
+                        },
+                        Comment = null,
                         SendUser = request.SendUser,
-                        SendTime = dt                       
+                        SendTime = dt,
+                        LevelStepAccessRole = "10",
                     });
                     await _context.SaveChangesAsync();
 
@@ -102,11 +103,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                     _context.RequestReferences.Add(new RequestReferences()
                     {
-                        DestLevelStepIndex = request.DestLevelStepIndex,                        
-                        Comment = request.Comment,
-                        SendUser = request.SendUser,                        
-                        Requestid = request.Request.RequestId,  
+                        DestLevelStepIndex = request.DestLevelStepIndex,
+                        Comment = request.SendUser == null ? null : request.Comment,
+                        SendUser = request.SendUser,
+                        Requestid = request.Request.RequestId,
                         SendTime = dt,
+                        LevelStepAccessRole = request.LevelStepAccessRole
                     });
                     await _context.SaveChangesAsync();
 

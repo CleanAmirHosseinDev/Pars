@@ -3,7 +3,7 @@
 html, body { height: 100%; flex-direction: column; position: relative; width: 100%; background: linear-gradient(rgb(18 59 107), rgb(3, 8, 16)); display: flex; align-items: center; justify-content: center; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background-image: url(/image/landing/contactus.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; }
 .form-structor { background-color: #222; box-shadow: 0 0 2px 2px #ffffff50; border-radius: 15px; height: 550px; width: 350px; position: relative; overflow: hidden; }
     .form-structor::after { content: ""; opacity: 0.6; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-repeat: no-repeat; background-position: top; background-size: 700px; background-image: url(/image/landing/login_card.png); }
-    .form-structor .signup { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); width: 65%; z-index: 5; -webkit-transition: all 0.3s ease; position: absolute; background: #00000080; box-shadow: 0 0 17px 6px #000000a8; border-radius: 15px; }
+    .form-structor .signup { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); width: 75%; z-index: 5; -webkit-transition: all 0.3s ease; position: absolute; background: #00000080; box-shadow: 0 0 17px 6px #000000a8; border-radius: 15px; }
         .form-structor .signup.slide-up { top: 5%; -webkit-transform: translate(-50%, 0%); -webkit-transition: all 0.3s ease; }
             .form-structor .signup.slide-up .form-holder, .form-structor .signup.slide-up .submit-btn { opacity: 0; visibility: hidden; }
             .form-structor .signup.slide-up .form-title { font-size: 1em;/* cursor: pointer;*/ }

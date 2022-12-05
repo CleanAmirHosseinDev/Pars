@@ -24,6 +24,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string Moto1 { get; set; }
         public string Moto2 { get; set; }
         public string Moto3 { get; set; }
+        public string Moto4 { get; set; }
+        public string Moto5 { get; set; }
         public string Instagram { get; set; }
         public string Whatsapp { get; set; }
         public string Fasebook { get; set; }

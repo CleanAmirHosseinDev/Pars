@@ -14,6 +14,8 @@ using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCity;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCitys;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonors;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonorss;
+using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKyan;
+using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKyans;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetState;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetStates;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSeting;
@@ -64,6 +66,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetLicensesAndHonorssService GetLicensesAndHonorssService { get; }
 
         ISaveLicensesAndHonorsService SaveLicensesAndHonorsService { get; }
+
+        IGetManagerOfParsKyanService GetManagerOfParsKyanService { get; }
+
+        IGetManagerOfParsKyansService GetManagerOfParsKyansService { get; }
 
     }
 
@@ -239,6 +245,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveLicensesAndHonorsService = _saveLicensesAndHonorsService ?? new SaveLicensesAndHonorsService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetManagerOfParsKyanService _getManagerOfParsKyanService;
+        public IGetManagerOfParsKyanService GetManagerOfParsKyanService
+        {
+            get
+            {
+                return _getManagerOfParsKyanService = _getManagerOfParsKyanService ?? new GetManagerOfParsKyanService(_context, _mapper);
+            }
+        }
+
+        private IGetManagerOfParsKyansService _getManagerOfParsKyansService;
+        public IGetManagerOfParsKyansService GetManagerOfParsKyansService
+        {
+            get
+            {
+                return _getManagerOfParsKyansService = _getManagerOfParsKyansService ?? new GetManagerOfParsKyansService(_context, _mapper);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Domain.Contexts;
@@ -29,13 +30,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContract
         {
             try
             {
-                ContractDto res = new ContractDto();                
+                ContractDto res = new ContractDto();
+                res.KinfOfRequestNavigation = new SystemSetingDto();
 
                 if (request.ContractId != null && request.ContractId != 0)
                 {
                     var q_Find = await _context.Contract.FirstOrDefaultAsync(p => p.ContractId == request.ContractId.Value);
 
-                    res = _mapper.Map<ContractDto>(q_Find);                   
+                    res = _mapper.Map<ContractDto>(q_Find);
+                    res.KinfOfRequestNavigation = q_Find.KinfOfRequestNavigation != null ? _mapper.Map<SystemSetingDto>(q_Find.KinfOfRequestNavigation) : new SystemSetingDto();
 
                 }
 

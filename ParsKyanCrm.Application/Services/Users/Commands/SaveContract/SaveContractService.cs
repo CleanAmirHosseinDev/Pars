@@ -51,7 +51,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContract
                     {
                         {
                             nameof(q_Entity.Entity.ContractText),request.ContractText
-                        },                        
+                        },
+                        {
+                            nameof(q_Entity.Entity.KinfOfRequest),request.KinfOfRequest
+                        },
                     }, string.Format(nameof(q_Entity.Entity.ContractId) + " = {0} ", request.ContractId));
                 }
 

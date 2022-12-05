@@ -15,6 +15,7 @@ namespace ParsKyanCrm.Domain.Entities
             BoardOfDirectorsUniversity = new HashSet<BoardOfDirectors>();
             CompaniesCompanyGroup = new HashSet<Companies>();
             CompaniesKindOfCompanyNavigation = new HashSet<Companies>();
+            Contract = new HashSet<Contract>();
             CustomersHowGetKnowCompany = new HashSet<Customers>();
             CustomersKindOfCompany = new HashSet<Customers>();
             CustomersTypeServiceRequested = new HashSet<Customers>();
@@ -45,6 +46,7 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<BoardOfDirectors> BoardOfDirectorsUniversity { get; set; }
         public virtual ICollection<Companies> CompaniesCompanyGroup { get; set; }
         public virtual ICollection<Companies> CompaniesKindOfCompanyNavigation { get; set; }
+        public virtual ICollection<Contract> Contract { get; set; }
         public virtual ICollection<Customers> CustomersHowGetKnowCompany { get; set; }
         public virtual ICollection<Customers> CustomersKindOfCompany { get; set; }
         public virtual ICollection<Customers> CustomersTypeServiceRequested { get; set; }

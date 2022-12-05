@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContracts
             {
 
                 var lists = (from s in _context.Contract
-                             select s).AsQueryable();
+                             select s).Include(p => p.KinfOfRequestNavigation).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p =>
                 p.ContractText.Contains(request.Search)

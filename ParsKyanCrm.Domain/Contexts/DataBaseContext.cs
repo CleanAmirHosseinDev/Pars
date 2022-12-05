@@ -89,9 +89,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<AboutUs>(entity =>
             {
                 entity.Property(e => e.AboutUsId).HasColumnName("AboutUsID");
@@ -122,6 +122,10 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.Moto3).HasMaxLength(250);
 
+                entity.Property(e => e.Moto4).HasMaxLength(250);
+
+                entity.Property(e => e.Moto5).HasMaxLength(250);
+
                 entity.Property(e => e.Subject).HasMaxLength(250);
 
                 entity.Property(e => e.Tel1).HasMaxLength(15);
@@ -146,8 +150,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<Activity>(entity =>
             {
-                entity.Property(e => e.ActivityComment).IsUnicode(false);
-
                 entity.Property(e => e.Picture1).HasMaxLength(250);
 
                 entity.Property(e => e.Picture2).HasMaxLength(250);
@@ -296,6 +298,11 @@ namespace ParsKyanCrm.Domain.Contexts
             modelBuilder.Entity<Contract>(entity =>
             {
                 entity.Property(e => e.ContractId).HasColumnName("ContractID");
+
+                entity.HasOne(d => d.KinfOfRequestNavigation)
+                    .WithMany(p => p.Contract)
+                    .HasForeignKey(d => d.KinfOfRequest)
+                    .HasConstraintName("FK_Contract_SystemSeting");
             });
 
             modelBuilder.Entity<ContractAndFinancialDocuments>(entity =>
@@ -870,9 +877,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_Users_Customers");
-            });
-
-
+            });            
         }
 
     }

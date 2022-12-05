@@ -94,6 +94,12 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveAboutUs
                             nameof(q_Entity.Entity.Moto3),request.Moto3
                         },
                         {
+                            nameof(q_Entity.Entity.Moto4),request.Moto4
+                        },
+                        {
+                            nameof(q_Entity.Entity.Moto5),request.Moto5
+                        },
+                        {
                             nameof(q_Entity.Entity.Instagram),request.Instagram
                         },
                         {
@@ -116,7 +122,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveAboutUs
                         },
                         {
                             nameof(q_Entity.Entity.DateOfSaveorEdit),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
-                        },                       
+                        },
                     }, string.Format(nameof(q_Entity.Entity.AboutUsId) + " = {0} ", qAboutUs.AboutUsId));
                 }
 

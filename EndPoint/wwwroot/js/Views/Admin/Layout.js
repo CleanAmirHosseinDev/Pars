@@ -14,6 +14,7 @@
         dellstor("menu");
         dellstor("fullName");
         dellstor("userID");
+        dellstor("loginName");
 
         goToUrl("/Account/LoginA");
 

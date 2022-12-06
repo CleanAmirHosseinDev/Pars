@@ -15,6 +15,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? CustomerId { get; set; }
 
+        public string LoginName { get; set; }
+
     }
     public class RequestForRatingDto
     {

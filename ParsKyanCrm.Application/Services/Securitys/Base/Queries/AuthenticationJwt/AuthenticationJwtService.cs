@@ -44,6 +44,9 @@ namespace ParsKyanCrm.Application.Services.Securitys.Base.Queries.Authentication
                 if (!string.IsNullOrEmpty(res_ResultLoginDto.CustomerID)) tokenDescriptor.Subject.AddClaim(new Claim("CustomerID", res_ResultLoginDto.CustomerID));
                 if (res_ResultLoginDto.UserID != 0) tokenDescriptor.Subject.AddClaim(new Claim("UserID", res_ResultLoginDto.UserID.ToString()));
 
+                tokenDescriptor.Subject.AddClaim(new Claim("LoginName", LoginName));
+                res_ResultLoginDto.LoginName = LoginName;
+
                 List<NormalJsonClassDto> obj_fillUserRoleCustomerRoles = null;
 
                 switch (LoginName)

@@ -13,6 +13,8 @@
         dellstor("token");        
         dellstor("fullName");
         dellstor("userID");
+        dellstor("loginName");
+        dellstor("menu");
 
         goToUrl("/Account/LoginA");
 

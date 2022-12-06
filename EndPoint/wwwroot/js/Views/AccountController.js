@@ -24,6 +24,7 @@
                     setlstor("menu", JSON.stringify(res.data.menus));
                     setlstor("fullName", res.data.fullName);
                     setlstor("userID", res.data.userID);
+                    setlstor("loginName", res.data.loginName);
 
                     goToUrl(res.message);
 

@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
 
                 var lists = (from s in _context.RequestForRating
                              where (s.CustomerId == request.CustomerId || request.CustomerId == null)
-                             select s).Include(p => p.KindOfRequestNavigation).AsQueryable();
+                             select s).Include(p => p.KindOfRequestNavigation).Include(p => p.Customer).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.RequestNo.ToString().Contains(request.Search));
 

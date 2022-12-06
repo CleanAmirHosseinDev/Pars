@@ -32,10 +32,11 @@
   {
     "outputFileName": "wwwroot/js/Views/SuperVisor/all.min.js",
     "inputFiles": [
-      "wwwroot/js/Views/SuperVisor/Layout.js"
+      "wwwroot/js/Views/SuperVisor/Layout.js",
+      "wwwroot/js/Views/SuperVisor/RequestForRating.js"
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false

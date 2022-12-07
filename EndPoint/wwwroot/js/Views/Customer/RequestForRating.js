@@ -89,47 +89,52 @@
     }
     function saveRequestForRating(e) {
 
-        //$(e).attr("disabled", "");
+        $(e).attr("disabled", "");       
 
-        //AjaxCallAction("POST", "/api/customer/Customer/Save_BasicInformationCustomers", JSON.stringify({ Tel: $("#Tel").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify({ Request: { KindOfRequest: $("#TypeServiceRequestedId").val() } }), true, function (res) {
 
-        //    $(e).removeAttr("disabled");
+            $(e).removeAttr("disabled");
 
-        //    if (res.isSuccess) {
+            if (res.isSuccess) {
 
-        //        goToUrl("/Customer/Customer/EditCustomer");
+                alertB("ثبت", res.message, "success");
 
-        //    }
+            }
 
-        //}, true);
+        }, true);
 
     }
 
-    function initRequestForRating() {
-       
-        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+    function systemSeting_ComboRequestForRating() {
 
-                if (res != null) {
-                    $("#AddressCompany").val(res.addressCompany);
-                    $("#CompanyName").val(res.companyName);
-                    $("#CeoName").val(res.ceoName);
-                    $("#EconomicCode").val(res.economicCode);
-                    $("#NationalCode").val(res.nationalCode);
-                    $("#CeoMobile").val(res.ceoMobile);
-                    $("#AgentMobile").val(res.agentMobile);
-                    $("#AgentName").val(res.agentName);
-                    $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-                    $("#AmountOsLastSaels").val(res.amountOsLastSaels);
-                    $("#CountOfPersonal").val(res.countOfPersonal);
-                    $("#Email").val(res.email);
-                    $("#Tel").val(res.tel);
-                    $("#PostalCode").val(res.postalCode);
-                    
-                    //
-                    //
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {                   
+                        strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";                    
                 }
+                $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
+                // $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
+            }
+        }, true);
+    }
 
-            }, true);       
+    function initRequestForRating() {
+
+       
+        ComboBoxWithSearch('.select2', 'dir');
+        //AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+
+        //        if (res != null) {
+                  
+        //            //
+        //            //
+        //        }
+
+        //    }, true);  
+        systemSeting_ComboRequestForRating();
 
     }
 
@@ -139,7 +144,8 @@
         InitRequestForRating: initRequestForRating,
         Get_Detail_Post: get_Detail_Post,
         FilterGrid: filterGrid,
-        Get_Detail: get_Detail
+        Get_Detail: get_Detail,
+        SystemSeting_ComboRequestForRating: systemSeting_ComboRequestForRating
     };
 
 })(Web, jQuery);

@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 if (IsDebug == null)                
                     return "";                
                 else if(IsDebug == true)
-                    return "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=vam30;password=10155;MultipleActiveResultSets=True";
+                    return "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
                 else
                     return "data source=172.16.19.9;initial catalog=ParsKyanCrmDB;user id=pars;password=pars@10155;MultipleActiveResultSets=True";
                 

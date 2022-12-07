@@ -74,7 +74,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
                 EntityEntry<LicensesAndHonors> q_Entity;
                 if (request.LicensesAndHonorsId == 0)
                 {
-                    request.SaveOrdEditDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+                    request.SaveOrEditDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     q_Entity = _context.LicensesAndHonors.Add(_mapper.Map<LicensesAndHonors>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<LicensesAndHonorsDto>(q_Entity.Entity);
@@ -87,13 +87,13 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
                             nameof(q_Entity.Entity.Picture),request.Picture
                         },
                         {
-                            nameof(q_Entity.Entity.Titel),request.Titel
+                            nameof(q_Entity.Entity.Title),request.Title
                         },
                         {
                             nameof(q_Entity.Entity.Userid),request.Userid
                         },
                         {
-                            nameof(q_Entity.Entity.SaveOrdEditDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+                            nameof(q_Entity.Entity.SaveOrEditDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
                         },
 
                     }, string.Format(nameof(q_Entity.Entity.LicensesAndHonorsId) + " = {0} ", request.LicensesAndHonorsId));

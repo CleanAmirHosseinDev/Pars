@@ -19,7 +19,8 @@
       "wwwroot/js/Views/Customer/Layout.js",
       "wwwroot/js/Views/Customer/RequestForRating.js",
       "wwwroot/js/Views/Customer/SystemSeting.js",
-      "wwwroot/js/Views/Customer/FurtherInfo.js"
+      "wwwroot/js/Views/Customer/FurtherInfo.js",
+     
 
     ],
     "minify": {
@@ -50,10 +51,18 @@
       "wwwroot/js/Views/Admin/City.js",
       "wwwroot/js/Views/Admin/State.js",
       "wwwroot/js/Views/Admin/SystemSeting.js",
-      "wwwroot/js/Views/Admin/Users.js"
+      "wwwroot/js/Views/Admin/Users.js",
+      "wwwroot/js/Views/Admin/Activity.js",
+      "wwwroot/js/Views/Admin/Companies.js",
+      "wwwroot/js/Views/Admin/ServiceFee.js",
+      "wwwroot/js/Views/Admin/Contract.js",
+      "wwwroot/js/Views/Admin/LicensesAndHonors.js",
+      "wwwroot/js/Views/Admin/AboutUs.js",
+      "wwwroot/js/Views/Admin/ManagerOfParsKyan.js"
+
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false

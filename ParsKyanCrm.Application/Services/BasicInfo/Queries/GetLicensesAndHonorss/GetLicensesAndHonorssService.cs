@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonor
                 var lists = (from s in _context.LicensesAndHonors                             
                              select s).Include(p => p.User).AsQueryable();
 
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Titel.Contains(request.Search));
+                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Title.Contains(request.Search));
 
                 switch (request.SortOrder)
                 {

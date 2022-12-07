@@ -143,7 +143,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                             nameof(q_Entity.Entity.ManagersExperience),request.ManagersExperience
                         },
                         {
-                            nameof(q_Entity.Entity.TitelCourses),request.TitelCourses
+                            nameof(q_Entity.Entity.TitleCourses),request.TitleCourses
                         },
                         {
                             nameof(q_Entity.Entity.TimeOfCource),request.TimeOfCource

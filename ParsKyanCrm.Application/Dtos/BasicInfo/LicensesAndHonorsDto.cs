@@ -21,7 +21,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
     {
 
         public int LicensesAndHonorsId { get; set; }
-        public string Titel { get; set; }
+        public string Title { get; set; }
 
         public string Picture { get; set; }
         public string Result_Final_Picture { get; set; }
@@ -37,7 +37,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         }
 
         public int? Userid { get; set; }
-        public DateTime? SaveOrdEditDate { get; set; }
+        public DateTime? SaveOrEditDate { get; set; }
 
         public UsersDto User { get; set; }
 

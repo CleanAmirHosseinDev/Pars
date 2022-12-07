@@ -108,7 +108,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
                             nameof(q_Entity.Entity.Picture1),request.Picture1
                         },
                         {
-                            nameof(q_Entity.Entity.ActivityTitel),request.ActivityTitel
+                            nameof(q_Entity.Entity.ActivityTitle),request.ActivityTitle
                         },
                         {
                             nameof(q_Entity.Entity.ActivityComment),request.ActivityComment

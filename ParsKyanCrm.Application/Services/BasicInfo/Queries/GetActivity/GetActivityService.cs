@@ -31,9 +31,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetActivity
 
                 if (request.ActivityId != null && request.ActivityId != 0)
                 {
-                    var q_Find = await _context.Activity.Include(p => p.ActivityTitelNavigation).FirstOrDefaultAsync(p => p.ActivityId == request.ActivityId.Value);
+                    var q_Find = await _context.Activity.Include(p => p.ActivityTitleNavigation).FirstOrDefaultAsync(p => p.ActivityId == request.ActivityId.Value);
                     res = _mapper.Map<ActivityDto>(q_Find);
-                    res.ActivityTitelNavigation = q_Find.ActivityTitelNavigation != null ? _mapper.Map<SystemSetingDto>(q_Find.ActivityTitelNavigation) : new SystemSetingDto();
+                    res.ActivityTitleNavigation = q_Find.ActivityTitleNavigation != null ? _mapper.Map<SystemSetingDto>(q_Find.ActivityTitleNavigation) : new SystemSetingDto();
                 }
 
                 return res;

@@ -154,9 +154,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.Picture2).HasMaxLength(250);
 
-                entity.HasOne(d => d.ActivityTitelNavigation)
+                entity.HasOne(d => d.ActivityTitleNavigation)
                     .WithMany(p => p.Activity)
-                    .HasForeignKey(d => d.ActivityTitel)
+                    .HasForeignKey(d => d.ActivityTitle)
                     .HasConstraintName("FK_Activity_SystemSeting");
             });
 
@@ -194,7 +194,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.SaveDate).HasColumnType("datetime");
 
-                entity.Property(e => e.TitelCourses).HasMaxLength(150);
+                entity.Property(e => e.TitleCourses).HasMaxLength(150);
 
                 entity.Property(e => e.UniversityId)
                     .HasColumnName("UniversityID")
@@ -464,9 +464,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.Picture).HasMaxLength(250);
 
-                entity.Property(e => e.SaveOrdEditDate).HasColumnType("datetime");
+                entity.Property(e => e.SaveOrEditDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Titel).HasMaxLength(150);
+                entity.Property(e => e.Title).HasMaxLength(150);
 
                 entity.Property(e => e.Userid).HasColumnName("userid");
 
@@ -498,8 +498,8 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.SaveAndEditDate).HasColumnType("datetime");
 
-                entity.Property(e => e.TitelId)
-                    .HasColumnName("TitelID")
+                entity.Property(e => e.TitleId)
+                    .HasColumnName("TitleId")
                     .HasComment("systemseting = 142");
 
                 entity.Property(e => e.TwitterId).HasMaxLength(150);
@@ -511,9 +511,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasForeignKey(d => d.PositionId)
                     .HasConstraintName("FK_ManagerOfParsKyan_SystemSeting");
 
-                entity.HasOne(d => d.Titel)
-                    .WithMany(p => p.ManagerOfParsKyanTitel)
-                    .HasForeignKey(d => d.TitelId)
+                entity.HasOne(d => d.Title)
+                    .WithMany(p => p.ManagerOfParsKyanTitle)
+                    .HasForeignKey(d => d.TitleId)
                     .HasConstraintName("FK_ManagerOfParsKyan_SystemSeting1");
 
                 entity.HasOne(d => d.User)

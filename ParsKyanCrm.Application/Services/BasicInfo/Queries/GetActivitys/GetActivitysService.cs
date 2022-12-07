@@ -31,9 +31,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetActivitys
             {
 
                 var lists = (from s in _context.Activity
-                             select s).Include(p => p.ActivityTitelNavigation).AsQueryable();
+                             select s).Include(p => p.ActivityTitleNavigation).AsQueryable();
 
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.ActivityTitelNavigation.Label.Contains(request.Search));
+                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.ActivityTitleNavigation.Label.Contains(request.Search));
 
                 switch (request.SortOrder)
                 {

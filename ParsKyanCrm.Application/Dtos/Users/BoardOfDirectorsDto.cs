@@ -47,7 +47,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? OwnershipCount { get; set; }
         public double? InsuranceHistory { get; set; }
         public double? ManagersExperience { get; set; }
-        public string TitelCourses { get; set; }
+        public string TitleCourses { get; set; }
         public int? TimeOfCource { get; set; }
         public int? PlaceOfTraining { get; set; }
 

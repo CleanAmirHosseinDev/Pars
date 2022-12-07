@@ -20,7 +20,7 @@ namespace ParsKyanCrm.Domain.Entities
             CustomersKindOfCompany = new HashSet<Customers>();
             CustomersTypeServiceRequested = new HashSet<Customers>();
             ManagerOfParsKyanPosition = new HashSet<ManagerOfParsKyan>();
-            ManagerOfParsKyanTitel = new HashSet<ManagerOfParsKyan>();
+            ManagerOfParsKyanTitle = new HashSet<ManagerOfParsKyan>();
             NewsAndContent = new HashSet<NewsAndContent>();
             OtherDocuments = new HashSet<OtherDocuments>();
             RequestForRating = new HashSet<RequestForRating>();
@@ -51,7 +51,7 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual ICollection<Customers> CustomersKindOfCompany { get; set; }
         public virtual ICollection<Customers> CustomersTypeServiceRequested { get; set; }
         public virtual ICollection<ManagerOfParsKyan> ManagerOfParsKyanPosition { get; set; }
-        public virtual ICollection<ManagerOfParsKyan> ManagerOfParsKyanTitel { get; set; }
+        public virtual ICollection<ManagerOfParsKyan> ManagerOfParsKyanTitle { get; set; }
         public virtual ICollection<NewsAndContent> NewsAndContent { get; set; }
         public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }

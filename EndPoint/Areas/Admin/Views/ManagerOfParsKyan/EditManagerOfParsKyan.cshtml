@@ -4,7 +4,7 @@
 }
 
 @section Styles{
-
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
 
 @section PageHeader{
@@ -25,7 +25,7 @@
         <div class="box box-info">
             <div class="box-header">
                 @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
+                <h4 class="box-title">
                     <div class="portlet-title">
                         <div class="caption font-green-haze">
                             @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
@@ -35,7 +35,7 @@
                             </a>
                         </div>
                     </div>
-                </h3>
+                </h4>
                 <!-- tools box -->
                 <div class="pull-left box-tools">
                     <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
@@ -55,15 +55,77 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="">
-                                        نام استان
+                                    <label class="control-label col-md-4" for="">
+                                        نام و نا خانوادگی مدیر
                                         <span class="RequiredLabel">*</span>
                                     </label>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <input type="text" class="form-control" name="ManagerOfParsKyanName" id="ManagerOfParsKyanName" />
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        سمت در  هیات مدیره
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="PositionID" id="PositionID" class="form-control select2" style="width:100% !important;"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        عنوان
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="TitleID" id="TitleID" class="form-control select2" style="width:100% !important;"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        ایمیل
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="email" name="EmailAddress" id="EmailAddress" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        تویتر
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="TwitterId" id="TwitterId" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        عکس
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="file" name="Picture" id="Picture" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        خلاصه رزومه
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="ResumeSummary" id="ResumeSummary" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        فایل رزومه
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="ResumeFile" id="ResumeFile" class="form-control" />
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.ManagerOfParsKyan.SaveManagerOfParsKyan(this);">
@@ -84,7 +146,8 @@
     </section>
 </div>
 
-@section Scripts {    
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
         Web.ManagerOfParsKyan.InitManagerOfParsKyan(@ViewBag.id);
     </script>

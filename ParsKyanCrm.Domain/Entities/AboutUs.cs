@@ -28,7 +28,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string Moto5 { get; set; }
         public string Instagram { get; set; }
         public string Whatsapp { get; set; }
-        public string Fasebook { get; set; }
+        public string Facebook { get; set; }
         public string Telegram { get; set; }
         public string VisionAndMission { get; set; }
         public string OrganazationChart { get; set; }

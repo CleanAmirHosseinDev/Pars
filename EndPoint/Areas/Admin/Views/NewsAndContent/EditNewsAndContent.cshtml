@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewData["Title"] = "ثبت اخبار و محتوا";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+}
+
+@section PageHeader{
+    <section class="content-header">
+        <h1>
+            ثبت اخبار و محتوا
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/NewsAndContent/Index"><i></i> ثبت اخبار و محتوا</a></li>
+            <li class="active"><a href="/Admin/NewsAndContent/EditNewsAndContent@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت فعالیت شرکت ها</a></li>
+        </ol>
+    </section>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                @*<i class="fa fa-cloud"></i>*@
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body" style="">
+
+               
+                <div class="form-horizontal">
+                    <input type="hidden" value="0" id="ContentID" name="ContentID" />
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    عنوان
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" value="0" id="ContentTitel" name="ContentTitel" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    عنوان کلیدی
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" value="0" id="MetaTitel" name="MetaTitel" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    انتخاب نوع محتوا
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <select value="0" id="ContentType" name="ContentType" class="form-control select2" style="width:100% !important;"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    انتخاب نوع محتوا
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" value="0" id="PageUrl" name="PageUrl" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    کلمات کلیدی
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" value="0" id="MetaKeywords" name="MetaKeywords" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    متن
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" value="0" id="Text" name="Text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    توضیحات کلیدی
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" value="0" id="MeteDesc" name="MeteDesc" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">
+                                    تصویر محتوا
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="file" value="0" id="ContentPic" name="ContentPic" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.Activity.SaveActivity(this);">
+                                        <i class="fa fa-save"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                }
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script><script>
+        Web.NewsAndContent.InitNewsAndContent(@ViewBag.id);
+    </script>
+}

@@ -66,8 +66,13 @@
 
                 if (res != null) {
                     
-                    $("#ServiceFeeId").val(res.ServiceFeeId);
-                    $("#ServiceFeeComment").val(res.ServiceFeeComment);
+                    $("#ServiceFeeId").val(res.serviceFeeId);
+                    $("#ServiceFeeComment").val(res.serviceFeeComment);
+                    $("#FromCompanyRange").val(res.fromCompanyRange);
+                    $("#ToCompanyRange").val(res.toCompanyRange);
+                    $("#FixedCost").val(res.fixedCost);
+                    $("#VariableCost").val(res.variableCost);
+                    $("#VariableCost").val(res.variableCost);                    //
                     systemSeting_Combo(res);
                 }
 
@@ -79,19 +84,19 @@
 
     function systemSeting_Combo(resSingle) {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "150", PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
-                var strServiceFeeTitle = '<option value="">انتخاب کنید</option>';
+                var strKindOfService = '<option value="">انتخاب کنید</option>';
                
                 for (var i = 0; i < res.data.length; i++) {
                    
-                    strServiceFeeTitle += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    strKindOfService += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     
                 }
              
-                $("#ServiceFeeTitle").html(strServiceFeeTitle);              
-                $("#ServiceFeeTitle").val(resSingle.ServiceFeeTitle);
+                $("#KindOfService").html(strKindOfService);
+                $("#KindOfService").val(resSingle.kindOfService);
 
 
 

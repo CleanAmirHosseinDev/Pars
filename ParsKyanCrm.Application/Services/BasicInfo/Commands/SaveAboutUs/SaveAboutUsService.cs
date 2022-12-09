@@ -106,7 +106,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveAboutUs
                             nameof(q_Entity.Entity.Whatsapp),request.Whatsapp
                         },
                         {
-                            nameof(q_Entity.Entity.Fasebook),request.Fasebook
+                            nameof(q_Entity.Entity.Facebook),request.Facebook
                         },
                         {
                             nameof(q_Entity.Entity.Telegram),request.Telegram

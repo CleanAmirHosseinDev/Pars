@@ -15,26 +15,7 @@
 
     }
 
-    function filterGrid() {
-
-        AjaxCallAction("POST", "/api/admin/AboutUs/Get_AboutUss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
-
-            if (res.isSuccess) {
-
-                var strM = '';
-                for (var i = 0; i < res.data.length; i++) {
-
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kindOfServiceNavigation.label + "</td><td>" + res.data[i].fromCompanyRange + "</td><td>" + res.data[i].toCompanyRange + "</td><td>" + res.data[i].fixedCost + "</td><td>" + res.data[i].variableCost + "</td><td><a title='ویرایش' href='/Admin/AboutUs/EditAboutUs?id=" + res.data[i].AboutUsId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
-
-                }
-                $("#tBodyList").html(strM);
-
-            }
-
-        }, true);
-
-    }
-
+   
     function saveAboutUs(e) {
 
         $(e).attr("disabled", "");
@@ -57,54 +38,52 @@
 
     }
 
-    function initAboutUs(id = null) {
-        ComboBoxWithSearch('.select2', 'dir');
+    function initAboutUs() {
+      
+        AjaxCallAction("GET", "/api/admin/AboutUs/Get_AboutUs/", null, true, function (res) {
 
-        if (!isEmpty(id) && id != 0) {
+            if (res != null) {
 
-            AjaxCallAction("GET", "/api/admin/AboutUs/Get_AboutUs/" + id, null, true, function (res) {
-
-                if (res != null) {
-                    
-                    $("#AboutUsId").val(res.AboutUsId);
-                    $("#AboutUsComment").val(res.AboutUsComment);
-                    systemSeting_Combo(res);
-                }
-
-            }, true);
-
-        }
-
-    }
-
-    function systemSeting_Combo(resSingle) {
-
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "150", PageIndex: 0, PageSize: 0 }), true, function (res) {
-
-            if (res.isSuccess) {
-                var strAboutUsTitle = '<option value="">انتخاب کنید</option>';
-               
-                for (var i = 0; i < res.data.length; i++) {
-                   
-                    strAboutUsTitle += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    
-                }
-             
-                $("#AboutUsTitle").html(strAboutUsTitle);              
-                $("#AboutUsTitle").val(resSingle.AboutUsTitle);
-
-
+                $("#AboutUsId").val(res.AboutUsId);
+                $("#AboutUsComment").val(res.AboutUsComment);
+                $("#CompanyName").val(res.companyName);
+                $("#Address").val(res.address);
+                $("#Subject").val(res.subject);
+                $("#AboutUSContent").val(res.aboutUSContent);
+                $("#Tel1").val(res.tel1);
+                $("#Tel2").val(res.tel2);
+                $("#Tel3").val(res.tel3);
+                $("#Tel4").val(res.tel4);
+                $("#Tel5").val(res.tel5);
+                $("#Mobile1").val(res.mobile1);
+                $("#Mobile2").val(res.mobile2);
+                $("#FaxNumber").val(res.faxNumber);
+                $("#Email").val(res.email);
+                $("#Instagram").val(res.instagram);
+                $("#Whatsapp").val(res.whatsapp);
+                $("#Facebook").val(res.facebook);
+                $("#Telegram").val(res.telegram);
+                $("#VisionAndMission").val(res.visionAndMission);
+                $("#OrganazationChart").val(res.organazationChart);
+                $("#Moto1").val(res.Moto1);
+                $("#Moto2").val(res.Moto2);
+                $("#Moto3").val(res.Moto3);
+                $("#Moto4").val(res.Moto4);
+                $("#Moto5").val(res.Moto5);
+                //
 
             }
+
         }, true);
+
     }
 
+  
     web.AboutUs = {
-        TextSearchOnKeyDown: textSearchOnKeyDown,
-        FilterGrid: filterGrid,
+        TextSearchOnKeyDown: textSearchOnKeyDown,       
         SaveAboutUs: saveAboutUs,
         InitAboutUs: initAboutUs,
-        SystemSeting_Combo: systemSeting_Combo
+       
     };
 
 })(Web, jQuery);

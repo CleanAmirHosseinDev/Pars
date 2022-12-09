@@ -106,7 +106,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.Email).HasMaxLength(100);
 
-                entity.Property(e => e.Fasebook).HasMaxLength(250);
+                entity.Property(e => e.Facebook).HasMaxLength(250);
 
                 entity.Property(e => e.FaxNumber).HasMaxLength(15);
 

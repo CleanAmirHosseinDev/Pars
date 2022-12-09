@@ -66,8 +66,8 @@
 
                 if (res != null) {
                     
-                    $("#CompaniesId").val(res.CompaniesId);
-                    $("#CompaniesComment").val(res.CompaniesComment);
+                    $("#CompaniesId").val(res.companiesId);
+                    $("#CompanyName").val(res.companyName);                    //
                     systemSeting_Combo(res);
                 }
 
@@ -79,20 +79,28 @@
 
     function systemSeting_Combo(resSingle) {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "150", PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "27,126", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
-                var strCompaniesTitle = '<option value="">انتخاب کنید</option>';
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+                var strCompanyGroupID = '<option value="">انتخاب کنید</option>';
                
+                  
                 for (var i = 0; i < res.data.length; i++) {
-                   
-                    strCompaniesTitle += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    
-                }
-             
-                $("#CompaniesTitle").html(strCompaniesTitle);              
-                $("#CompaniesTitle").val(resSingle.CompaniesTitle);
 
+                    if (res.data[i].parentCode == 27) {
+                        strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 126) {
+                        strCompanyGroupID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+
+                    }
+                }
+
+                        $("#KindOfCompany").html(strKindOfCompany);
+                        $("#CompanyGroupID").html(strCompanyGroupID);
+
+                        $("#KindOfCompany").val(resSingle.kindOfCompany);
+                        $("#CompanyGroupID").val(resSingle.companyGroupId);
 
 
             }

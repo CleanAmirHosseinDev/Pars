@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kinfOfRequestNavigation.label +  "</td><td><a title='ویرایش' href='/Admin/Contract/EditContract?id=" + res.data[i].ContractId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kinfOfRequestNavigation.label + "</td><td><a title='ویرایش' href='/Admin/Contract/EditContract?id=" + res.data[i].contractId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -67,7 +67,7 @@
                 if (res != null) {
                     
                     $("#ContractId").val(res.ContractId);
-                    $("#ContractComment").val(res.ContractComment);
+                    $("#ContractText").val(res.contractText);
                     systemSeting_Combo(res);
                 }
 
@@ -79,19 +79,19 @@
 
     function systemSeting_Combo(resSingle) {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "150", PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
-                var strContractTitle = '<option value="">انتخاب کنید</option>';
+                var strKinfOfRequest = '<option value="">انتخاب کنید</option>';
                
                 for (var i = 0; i < res.data.length; i++) {
                    
-                    strContractTitle += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    strKinfOfRequest+= " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     
                 }
              
-                $("#ContractTitle").html(strContractTitle);              
-                $("#ContractTitle").val(resSingle.ContractTitle);
+                $("#KinfOfRequest").html(strKinfOfRequest);
+                $("#KinfOfRequest").val(resSingle.kinfOfRequest);
 
 
 

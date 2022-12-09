@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + res.data[i].picture + "</td><td><a title='ویرایش' href='/Admin/LicensesAndHonors/EditLicensesAndHonors?id=" + res.data[i].LicensesAndHonorsId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + res.data[i].picture + "</td><td><a title='ویرایش' href='/Admin/LicensesAndHonors/EditLicensesAndHonors?id=" + res.data[i].licensesAndHonorsId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -58,17 +58,17 @@
     }
 
     function initLicensesAndHonors(id = null) {
-        ComboBoxWithSearch('.select2', 'dir');
 
+       
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/admin/LicensesAndHonors/Get_LicensesAndHonors/" + id, null, true, function (res) {
 
                 if (res != null) {
                     
-                    $("#LicensesAndHonorsId").val(res.LicensesAndHonorsId);
-                    $("#LicensesAndHonorsComment").val(res.LicensesAndHonorsComment);
-                    systemSeting_Combo(res);
+                    $("#LicensesAndHonorsId").val(res.licensesAndHonorsId);
+                    $("#Title").val(res.title);
+                   
                 }
 
             }, true);
@@ -77,34 +77,13 @@
 
     }
 
-    function systemSeting_Combo(resSingle) {
-
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "150", PageIndex: 0, PageSize: 0 }), true, function (res) {
-
-            if (res.isSuccess) {
-                var strLicensesAndHonorsTitle = '<option value="">انتخاب کنید</option>';
-               
-                for (var i = 0; i < res.data.length; i++) {
-                   
-                    strLicensesAndHonorsTitle += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    
-                }
-             
-                $("#LicensesAndHonorsTitle").html(strLicensesAndHonorsTitle);              
-                $("#LicensesAndHonorsTitle").val(resSingle.LicensesAndHonorsTitle);
-
-
-
-            }
-        }, true);
-    }
-
+  
     web.LicensesAndHonors = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveLicensesAndHonors: saveLicensesAndHonors,
         InitLicensesAndHonors: initLicensesAndHonors,
-        SystemSeting_Combo: systemSeting_Combo
+       
     };
 
 })(Web, jQuery);

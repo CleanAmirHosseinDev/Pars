@@ -33,7 +33,20 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", JSON.stringify({ ManagerOfParsKyanName: $("#ManagerOfParsKyanName").val(), ManagerOfParsKyanId: $("#ManagerOfParsKyanId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", JSON.stringify({
+            ManagerOfParsKyanName: $("#ManagerOfParsKyanName").val(),
+            ManagerOfParsKyanId: $("#ManagerOfParsKyanId").val(),
+            PositionID: $("#PositionID").val(),
+            TitleID: $("#TitleID").val(),
+            EmailAddress: $("#EmailAddress").val(),
+            TwitterId: $("#TwitterId").val(),
+            ResumeSummary: $("#ResumeSummary").val()
+            //,
+                
+           // ResumeFile
+           // Picture
+
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -71,6 +84,11 @@
             }, true);
 
         }
+        else {
+            systemSeting_Combo(null);
+        }
+
+      
 
     }
 
@@ -92,11 +110,10 @@
 
                 $("#PositionID").html(strPositionID);
                 $("#TitleID").html(strTitleID);
-               
-                $("#PositionID").val(resSingle.positionId);
-                $("#TitleID").val(resSingle.titleId);
-                
-
+                if (resSingle != null) {
+                    $("#PositionID").val(resSingle.positionId);
+                    $("#TitleID").val(resSingle.titleId);
+                } 
             }
         }, true);
     }

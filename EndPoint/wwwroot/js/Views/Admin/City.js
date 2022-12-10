@@ -92,6 +92,8 @@
                 }
             }, true);
 
+        } else {
+            getStatesList();
         }
 
     }

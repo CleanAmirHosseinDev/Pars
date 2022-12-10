@@ -38,8 +38,13 @@
     function saveContract(e) {
 
         $(e).attr("disabled", "");
+       
+        AjaxCallAction("POST", "/api/admin/Contract/Save_Contract", JSON.stringify({
+            ContractText: $("#ContractText").val(),
+            KinfOfRequest: $("#KinfOfRequest").val(),
+            ContractId: $("#ContractId").val(),
 
-        AjaxCallAction("POST", "/api/admin/Contract/Save_Contract", JSON.stringify({ ContractName: $("#ContractName").val(), ContractId: $("#ContractId").val() }), true, function (res) {
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -65,14 +70,17 @@
             AjaxCallAction("GET", "/api/admin/Contract/Get_Contract/" + id, null, true, function (res) {
 
                 if (res != null) {
-                    
-                    $("#ContractId").val(res.ContractId);
+
+                    $("#ContractId").val(res.contractId);
                     $("#ContractText").val(res.contractText);
                     systemSeting_Combo(res);
                 }
 
             }, true);
 
+        }
+        else {
+            systemSeting_Combo(null);
         }
 
     }
@@ -91,8 +99,11 @@
                 }
              
                 $("#KinfOfRequest").html(strKinfOfRequest);
-                $("#KinfOfRequest").val(resSingle.kinfOfRequest);
+                if (resSingle != null) {
+                    $("#KinfOfRequest").val(resSingle.kinfOfRequest);
 
+                }
+            
 
 
             }

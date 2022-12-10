@@ -39,7 +39,10 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/LicensesAndHonors/Save_LicensesAndHonors", JSON.stringify({ LicensesAndHonorsName: $("#LicensesAndHonorsName").val(), LicensesAndHonorsId: $("#LicensesAndHonorsId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/LicensesAndHonors/Save_LicensesAndHonors", JSON.stringify({
+            Title: $("#Title").val(),
+            LicensesAndHonorsId: $("#LicensesAndHonorsId").val()
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 

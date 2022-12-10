@@ -15,12 +15,38 @@
 
     }
 
-   
     function saveAboutUs(e) {
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/AboutUs/Save_AboutUs", JSON.stringify({ AboutUsName: $("#AboutUsName").val(), AboutUsId: $("#AboutUsId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/AboutUs/Save_AboutUs", JSON.stringify({
+            CompanyName: $("#CompanyName").val(),
+            AboutUsId: $("#AboutUsId").val(),            
+            AboutUsComment: $("#AboutUsComment").val(),            
+            Address: $("#Address").val(),
+            Subject:$("#Subject").val(),
+            AboutUSContent: $("#AboutUSContent").val(),
+            Tel1: $("#Tel1").val(),
+            Tel2: $("#Tel2").val(),
+            Tel3:$("#Tel3").val(),
+            tel4: $("#Tel4").val(),
+            Tel5:$("#Tel5").val(),
+            Mobile1: $("#Mobile1").val(),
+            Mobile2:$("#Mobile2").val(),
+            FaxNumber:$("#FaxNumber").val(),
+            Email: $("#Email").val(),
+            Instagram:$("#Instagram").val(),
+            Whatsapp: $("#Whatsapp").val(),
+            Facebook: $("#Facebook").val(),
+            Telegram: $("#Telegram").val(),
+            VisionAndMission: $("#VisionAndMission").val(),
+            OrganazationChart: $("#OrganazationChart").val(),
+            Moto1: $("#Moto1").val(),
+            Moto2: $("#Moto2").val(),
+            Moto3:$("#Moto3").val(),
+            Moto4:$("#Moto4").val(),
+            Moto5:$("#Moto5").val()
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -44,12 +70,12 @@
 
             if (res != null) {
 
-                $("#AboutUsId").val(res.AboutUsId);
-                $("#AboutUsComment").val(res.AboutUsComment);
+                $("#AboutUsId").val(res.aboutUsId);
+                $("#AboutUsComment").val(res.aboutUsComment);
                 $("#CompanyName").val(res.companyName);
                 $("#Address").val(res.address);
                 $("#Subject").val(res.subject);
-                $("#AboutUSContent").val(res.aboutUSContent);
+                $("#AboutUSContent").val(res.aboutUscontent);
                 $("#Tel1").val(res.tel1);
                 $("#Tel2").val(res.tel2);
                 $("#Tel3").val(res.tel3);
@@ -65,11 +91,11 @@
                 $("#Telegram").val(res.telegram);
                 $("#VisionAndMission").val(res.visionAndMission);
                 $("#OrganazationChart").val(res.organazationChart);
-                $("#Moto1").val(res.Moto1);
-                $("#Moto2").val(res.Moto2);
-                $("#Moto3").val(res.Moto3);
-                $("#Moto4").val(res.Moto4);
-                $("#Moto5").val(res.Moto5);
+                $("#Moto1").val(res.moto1);
+                $("#Moto2").val(res.moto2);
+                $("#Moto3").val(res.moto3);
+                $("#Moto4").val(res.moto4);
+                $("#Moto5").val(res.moto5);
                 //
 
             }

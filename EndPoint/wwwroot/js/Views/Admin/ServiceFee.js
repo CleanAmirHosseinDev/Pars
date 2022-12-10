@@ -24,7 +24,11 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kindOfServiceNavigation.label + "</td><td>" + res.data[i].fromCompanyRange + "</td><td>" + res.data[i].toCompanyRange + "</td><td>" + res.data[i].fixedCost + "</td><td>" + res.data[i].variableCost + "</td><td><a title='ویرایش' href='/Admin/ServiceFee/EditServiceFee?id=" + res.data[i].serviceFeeId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kindOfServiceNavigation.label +
+                        "</td><td>" + res.data[i].fromCompanyRange + "</td><td>" + res.data[i].toCompanyRange +
+                        "</td><td>" + res.data[i].fixedCost + "</td><td>" + res.data[i].variableCost +
+                        "</td><td><a title='ویرایش' href='/Admin/ServiceFee/EditServiceFee?id=" +
+                        res.data[i].serviceFeeId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -39,7 +43,18 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/ServiceFee/Save_ServiceFee", JSON.stringify({ ServiceFeeName: $("#ServiceFeeName").val(), ServiceFeeId: $("#ServiceFeeId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/ServiceFee/Save_ServiceFee", JSON.stringify({
+           
+            ServiceFeeId: $("#ServiceFeeId").val(),
+           // ServiceFeeComment: $("#ServiceFeeComment").val(),
+            FromCompanyRange: $("#FromCompanyRange").val(),
+            ToCompanyRange: $("#ToCompanyRange").val(),
+            FixedCost: $("#FixedCost").val(),
+            VariableCost: $("#VariableCost").val(),
+            KindOfService: $("#KindOfService").val(),
+
+
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -66,18 +81,19 @@
 
                 if (res != null) {
                     
-                    $("#ServiceFeeId").val(res.serviceFeeId);
-                    $("#ServiceFeeComment").val(res.serviceFeeComment);
+                    $("#ServiceFeeId").val(res.serviceFeeId);                   
                     $("#FromCompanyRange").val(res.fromCompanyRange);
                     $("#ToCompanyRange").val(res.toCompanyRange);
                     $("#FixedCost").val(res.fixedCost);
-                    $("#VariableCost").val(res.variableCost);
-                    $("#VariableCost").val(res.variableCost);                    //
+                    $("#VariableCost").val(res.variableCost);                                   
                     systemSeting_Combo(res);
                 }
 
             }, true);
 
+        }
+        else {
+            systemSeting_Combo(null);
         }
 
     }
@@ -91,15 +107,13 @@
                
                 for (var i = 0; i < res.data.length; i++) {
                    
-                    strKindOfService += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    
+                    strKindOfService += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";                    
                 }
              
                 $("#KindOfService").html(strKindOfService);
-                $("#KindOfService").val(resSingle.kindOfService);
-
-
-
+                if (resSingle!=null) {
+                    $("#KindOfService").val(resSingle.kindOfService);
+                } 
             }
         }, true);
     }

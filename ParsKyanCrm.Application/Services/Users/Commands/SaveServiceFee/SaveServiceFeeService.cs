@@ -41,6 +41,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveServiceFee
                 EntityEntry<ServiceFee> q_Entity;
                 if (request.ServiceFeeId == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     request.ChangeDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     q_Entity = _context.ServiceFee.Add(_mapper.Map<ServiceFee>(request));
                     await _context.SaveChangesAsync();

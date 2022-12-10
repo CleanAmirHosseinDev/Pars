@@ -39,7 +39,13 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/Companies/Save_Companies", JSON.stringify({ CompaniesName: $("#CompaniesName").val(), CompaniesId: $("#CompaniesId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Companies/Save_Companies", JSON.stringify({
+            CompanyName: $("#CompanyName").val(),
+            CompaniesId: $("#CompaniesId").val(),
+            KindOfCompany: $("#KindOfCompany").val(),
+            CompanyGroupId: $("#CompanyGroupID").val()
+
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -74,6 +80,9 @@
             }, true);
 
         }
+        else {
+            systemSeting_Combo(null);
+        }
 
     }
 
@@ -97,10 +106,12 @@
                 }
 
                         $("#KindOfCompany").html(strKindOfCompany);
-                        $("#CompanyGroupID").html(strCompanyGroupID);
-
-                        $("#KindOfCompany").val(resSingle.kindOfCompany);
-                        $("#CompanyGroupID").val(resSingle.companyGroupId);
+                $("#CompanyGroupID").html(strCompanyGroupID);
+                if (resSingle!=null) {
+                    $("#KindOfCompany").val(resSingle.kindOfCompany);
+                    $("#CompanyGroupID").val(resSingle.companyGroupId);
+                }
+                     
 
 
             }

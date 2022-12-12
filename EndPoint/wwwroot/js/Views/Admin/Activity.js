@@ -39,7 +39,13 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/Activity/Save_Activity", JSON.stringify({ ActivityName: $("#ActivityName").val(), ActivityId: $("#ActivityId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Activity/Save_Activity", JSON.stringify({
+            ActivityTitle: $("#ActivityTitle").val(),
+            ActivityId: $("#ActivityId").val(),
+            ActivityComment: $("#ActivityComment").val()//,
+            //Picture1: $("#Picture1").val(),
+            //Picture2: $("#Picture2").val()
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -58,6 +64,7 @@
     }
 
     function initActivity(id = null) {
+
         ComboBoxWithSearch('.select2', 'dir');
 
         if (!isEmpty(id) && id != 0) {
@@ -73,6 +80,8 @@
 
             }, true);
 
+        } else {
+            systemSeting_Combo(null);
         }
 
     }
@@ -90,9 +99,12 @@
                     
                 }
              
-                $("#ActivityTitle").html(strActivityTitle);              
-                $("#ActivityTitle").val(resSingle.activityTitle);
+                $("#ActivityTitle").html(strActivityTitle);
+                if (resSingle!=null) {
+                    $("#ActivityTitle").val(resSingle.activityTitle);
 
+                }
+             
 
 
             }

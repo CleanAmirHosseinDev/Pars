@@ -1,10 +1,4 @@
 ﻿
-
-
-
-
-
-
 (function (web, $) {
 
     //Document Ready              
@@ -39,7 +33,20 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", JSON.stringify({ ManagerOfParsKyanName: $("#ManagerOfParsKyanName").val(), ManagerOfParsKyanId: $("#ManagerOfParsKyanId").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", JSON.stringify({
+            ManagerOfParsKyanName: $("#ManagerOfParsKyanName").val(),
+            ManagerOfParsKyanId: $("#ManagerOfParsKyanId").val(),
+            PositionID: $("#PositionID").val(),
+            TitleID: $("#TitleID").val(),
+            EmailAddress: $("#EmailAddress").val(),
+            TwitterId: $("#TwitterId").val(),
+            ResumeSummary: $("#ResumeSummary").val()
+            //,
+                
+           // ResumeFile
+           // Picture
+
+        }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -57,7 +64,9 @@
 
     }
 
-    function initManagerOfParsKyan(id = null) {
+    function initManagerOfParsKyan(id = null, dir = 'rtl') {
+
+        ComboBoxWithSearch('.select2', dir);
 
         if (!isEmpty(id) && id != 0) {
 
@@ -65,15 +74,48 @@
 
                 if (res != null) {
 
-                    $("#ManagerOfParsKyanId").val(res.ManagerOfParsKyanId);
-                    $("#ManagerOfParsKyanName").val(res.ManagerOfParsKyanName);
-
+                    $("#ManagerOfParsKyanId").val(res.managersId);
+                    $("#ManagerOfParsKyanName").val(res.nameOfManager);
+                    $("#TwitterId").val(res.twitterId);
+                    $("#ResumeSummary").val(res.resumeSummary);
+                    systemSeting_Combo(res);
                 }
 
             }, true);
 
         }
+        else {
+            systemSeting_Combo(null);
+        }
 
+      
+
+    }
+
+    function systemSeting_Combo(resSingle) {
+
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "1,142", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strPositionID = '<option value="">انتخاب کنید</option>';
+                var strTitleID = '<option value="">انتخاب کنید</option>';
+               
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[i].parentCode == 1) {
+                        strPositionID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 142) {
+                        strTitleID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } 
+                }
+
+                $("#PositionID").html(strPositionID);
+                $("#TitleID").html(strTitleID);
+                if (resSingle != null) {
+                    $("#PositionID").val(resSingle.positionId);
+                    $("#TitleID").val(resSingle.titleId);
+                } 
+            }
+        }, true);
     }
 
     web.ManagerOfParsKyan = {

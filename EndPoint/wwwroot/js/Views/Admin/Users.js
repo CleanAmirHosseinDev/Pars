@@ -111,6 +111,7 @@
 
     function initUser(id = null, dir = 'rtl') {
 
+        ComboBoxWithSearch('.select2', 'dir');
         get_Roles_Combo();
         
         if (!isEmpty(id) && id != 0) {

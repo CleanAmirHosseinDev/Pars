@@ -18,14 +18,15 @@
 
 
                 var strM = '';
-                for (var i = 0; i < res.data.length; i++) {                                                         
+                for (var i = 0; i < res.data.length; i++) {
 
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
-                        + res.data[i].kindOfRequest + "</td><td>"
-                        + (res.data[i].kindOfRequestNavigation != null ? res.data[i].kindOfRequestNavigation.label : '') + "</td><td>"
-                        + res.data[i].statusStr + "</td><td>"
+                        + res.data[i].requestNo + "</td><td>"
+                        + res.data[i].agentName + "</td><td>"
+                        + res.data[i].agentMobile + "</td>" +
+                        "<td>" + res.data[i].levelStepStatus + "</td><td>"
                         + "<a style='margin-right:5px' title='مشاهده گردش' class='btn btn-detail fontForAllPage'> <i class='fa fa-eye'></i></a>"
-                        + "<a style='margin-right:5px' title='مشاهده و ارجاع' class='btn btn-detail fontForAllPage'> <i class='fa fa-eye'></i></a>"
+                        + (getlstor("loginName") === res.data[i].levelStepAccessRole ? "<a style='margin-right:5px' title='ارجاع' class='btn btn-detail fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-eye'></i></a>" : "")
                         + "</td></tr>";
                 }
 
@@ -36,9 +37,80 @@
 
     }
 
+    function initReferral(id = null) {
+
+        AjaxCallAction("GET", "/api/superVisor/RequestForRating/InitReferral/" + id, null, true, function (res) {
+
+            if (res.isSuccess) {
+
+                getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Referral.html", function (resG) {
+
+                    $("#divMAS").html(resG);
+                    $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
+                    $("#phch").show();
+
+                    var htmlB = "";
+                    for (var i = 0; i < res.data.length; i++) {
+
+                        htmlB += "<button type='button' class='btn btn-warning ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+
+                    }
+
+                    $("#bLLSS").html(htmlB);
+
+                });
+
+
+            }
+            else {
+
+                $("#divMAS").html("<div class='alert alert-error text-center' style='font-size: 20px;'>شما اجازه انجام این عملیات را ندارید</div>");
+                $("#phch").hide();
+                $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt('0', keyMaker()));
+                $("#bLLSS").html("");
+            }
+
+        }, true);
+
+    }
+
+    function saveRequestForRating(e) {
+
+        $(".ButtonOpperationLSSlss").attr("disabled", "");
+
+        var objJ = {};
+        objJ.DestLevelStepIndex = decrypt($(e).attr("data-DLSI"), keyMaker());
+        objJ.Comment = !isEmpty($("#ReferralExplanation").val()) ? $("#ReferralExplanation").val() : null;
+        objJ.LevelStepAccessRole = decrypt($(e).attr("data-LSAR"), keyMaker());
+        objJ.LevelStepStatus = decrypt($(e).attr("data-LSS"), keyMaker());
+        objJ.Request = {};
+        objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        objJ.Request.KindOfRequest = 0;
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
+
+            $(".ButtonOpperationLSSlss").removeAttr("disabled");
+
+            if (res.isSuccess) {
+
+                goToUrl("/SuperVisor/RequestForRating/Index");
+
+            }
+            else {
+
+                alertB("هشدار", res.message, "warning");
+
+            }
+
+        }, true);
+
+    }
+
     web.RequestForRating = {
         FilterGrid: filterGrid,
-        TextSearchOnKeyDown: textSearchOnKeyDown
+        TextSearchOnKeyDown: textSearchOnKeyDown,
+        InitReferral: initReferral,
+        SaveRequestForRating: saveRequestForRating
     };
 
 })(Web, jQuery);

@@ -10,7 +10,7 @@ namespace ParsKyanCrm.Domain.Entities
         public Customers()
         {
             ContractAndFinancialDocuments = new HashSet<ContractAndFinancialDocuments>();
-            OtherDocuments = new HashSet<OtherDocuments>();
+            ManagementSystem = new HashSet<ManagementSystem>();
             RequestForRating = new HashSet<RequestForRating>();
             Users = new HashSet<Users>();
         }
@@ -40,15 +40,19 @@ namespace ParsKyanCrm.Domain.Entities
         public string Ip { get; set; }
         public string AuthenticateCode { get; set; }
         public bool IsProfileComplete { get; set; }
-        public string OfficialNewspape { get; set; }
-        public string InsuranceList { get; set; }
+        public string LastAuditingTaxList { get; set; }
+        public string LastInsuranceList { get; set; }
+        public string OfficialNewspaper { get; set; }
+        public string LastChangeOfficialNewspaper { get; set; }
+        public string Statute { get; set; }
+        public string AuditedFinancialStatements { get; set; }
 
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
         public virtual SystemSeting KindOfCompany { get; set; }
         public virtual SystemSeting TypeServiceRequested { get; set; }
         public virtual ICollection<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
-        public virtual ICollection<OtherDocuments> OtherDocuments { get; set; }
+        public virtual ICollection<ManagementSystem> ManagementSystem { get; set; }
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }
         public virtual ICollection<Users> Users { get; set; }
     }

@@ -1,5 +1,5 @@
 ﻿
-setlstor = function (k, v) {    
+setlstor = function (k, v) {
     var key = encrypt(k.toString(), keyMaker());
     var val = encrypt(v.toString(), keyMaker());
     localStorage.setItem(key, val);
@@ -146,7 +146,7 @@ function isEmpty(str) {
 
     try {
 
-        return str === "" || str === null || str === undefined ? true : false;
+        return str === "" || str === null || str === undefined || str === "null" || str === "undefined" ? true : false;
 
     } catch (e) {
 
@@ -214,6 +214,13 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
                     }
                     if (res.statusCode === Web.Resources.Code401) {
                         goToUrl(res.redirectResult);
+                        return;
+                    }
+                    if (res.statusCode == "404") {
+
+                        if (!isEmpty(res.message)) alertB("", res.message,"error");
+                        else goToUrl("/Error/Code404");
+
                         return;
                     }
                     successCallBack(res);
@@ -674,14 +681,14 @@ function RemoveDisableAttrTag(tagId) {
     }
 
 }
-function comboBoxWithSearchUpdateText(selector,text) {
+function comboBoxWithSearchUpdateText(selector, text) {
 
     try {
 
         $("#select2-" + selector + "-container").text(text);
 
         $("#select2-" + selector + "-container").attr("title", text);
-        
+
 
     } catch (e) {
 
@@ -2269,6 +2276,14 @@ function debuggerWeb() {
     } catch (e) {
 
     }
+
+}
+
+function getU(path, successCallBack = null, dataType = 'html') {
+
+    $.get(path, function (res) {
+        successCallBack(res);
+    }, dataType);
 
 }
 

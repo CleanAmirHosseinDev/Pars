@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Referral.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\GlobalAreas\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="wwwroot\css\GlobalAreas\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="wwwroot\css\GlobalAreas\bower_components\bootstrap\dist\css\bootstrap.css" />
@@ -81,6 +85,8 @@
     <None Include="wwwroot\css\GlobalAreas\bower_components\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\css\GlobalAreas\bower_components\jquery\dist\jquery.min.map" />
     <None Include="wwwroot\css\GlobalAreas\bower_components\select2\dist\js\select2.full.min.js" />
+    <None Include="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Referral.html" />
+    <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Referral.html" />
   </ItemGroup>
 
   <ItemGroup>

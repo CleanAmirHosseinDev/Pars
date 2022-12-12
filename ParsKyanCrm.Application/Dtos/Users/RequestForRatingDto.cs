@@ -1,4 +1,5 @@
-﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
+﻿using FluentValidation;
+using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;
@@ -17,10 +18,14 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string LoginName { get; set; }
 
+        public int? RequestId { get; set; }
+
+
     }
     public class RequestForRatingDto
     {
 
+        public string DestLevelStepIndex { get; set; }
         public int RequestId { get; set; }
         public string RequestNoStr { get; set; }
         public int? RequestNo { get; set; }
@@ -48,10 +53,17 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? KindOfRequest { get; set; }
 
+        public string KindOfRequestName { get; set; }
+
         public bool IsFinished { get; set; }
 
-        public CustomersDto Customer { get; set; }
-        public SystemSetingDto KindOfRequestNavigation { get; set; }
+        public string LevelStepStatus { get; set; }
+
+        public string LevelStepAccessRole { get; set; }
+
+        public string AgentName { get; set; }
+
+        public string AgentMobile { get; set; }
 
     }
 }

@@ -23,5 +23,7 @@ namespace ParsKyanCrm.Common.Dto
 
         public long Rows { get; set; }
 
+        public int StatusCode { get; set; }
+
     }
 }

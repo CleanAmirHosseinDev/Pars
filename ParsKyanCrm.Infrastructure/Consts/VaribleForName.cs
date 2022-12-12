@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ParsKyanCrm.Infrastructure.Consts
 {
     public class VaribleForName
-    {                
+    {
 
         /// <summary>
         /// true ==> Debug
@@ -26,13 +26,13 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                if (IsDebug == null)                
-                    return "";                
-                else if(IsDebug == true)
+                if (IsDebug == null)
+                    return "";
+                else if (IsDebug == true)
                     return "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
                 else
                     return "data source=172.16.19.9;initial catalog=ParsKyanCrmDB;user id=pars;password=pars@10155;MultipleActiveResultSets=True";
-                
+
             }
         }
 
@@ -75,5 +75,34 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "no-photo.png";
             }
         }
+
+        #region شروع فرایند
+
+        public static string DestLevelStepIndex
+        {
+            get
+            {
+                return "1";
+            }
+        }
+
+        public static string LevelStepAccessRole
+        {
+            get
+            {
+                return "10";
+            }
+        }
+
+        public static string LevelStepStatus
+        {
+            get
+            {
+                return "منتظر تکمیل و ارسال درخواست اولیه توسط مشتری";
+            }
+        }
+
+        #endregion
+
     }
 }

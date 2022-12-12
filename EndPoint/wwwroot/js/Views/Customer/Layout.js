@@ -14,6 +14,7 @@
         dellstor("fullName");
         dellstor("customerID");
         dellstor("userID");
+        dellstor("loginName");
 
         goToUrl("/Account/LoginC");
 

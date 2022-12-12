@@ -90,7 +90,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
                             nameof(q_Entity.Entity.Title),request.Title
                         },
                         {
-                            nameof(q_Entity.Entity.Userid),request.Userid
+                            nameof(q_Entity.Entity.UserId),request.Userid
                         },
                         {
                             nameof(q_Entity.Entity.SaveOrEditDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)

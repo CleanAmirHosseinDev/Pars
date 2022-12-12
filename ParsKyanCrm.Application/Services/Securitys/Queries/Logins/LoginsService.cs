@@ -52,7 +52,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     //Admin And Supervisor
                     string strPassword = Infrastructure.EncryptDecrypt.Encrypt(request.Password);
 
-                    user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == request.Username && x.Password == strPassword && x.Status == true);
+                    user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == request.Username && x.Password == strPassword && x.Status == true && x.CustomerId == null);
                     if (user == null)
                         return new ResultDto<ResultLoginDto>
                         {

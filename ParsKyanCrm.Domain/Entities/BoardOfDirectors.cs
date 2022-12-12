@@ -19,10 +19,11 @@ namespace ParsKyanCrm.Domain.Entities
         public int? OwnershipCount { get; set; }
         public int? InsuranceHistory { get; set; }
         public int? ManagersExperience { get; set; }
-        public string TitleCourses { get; set; }
+        public string TitelCourses { get; set; }
         public int? TimeOfCource { get; set; }
         public int? PlaceOfTraining { get; set; }
         public string PictureOfEducationCourse { get; set; }
+        public string PictureOfExperince { get; set; }
         public byte? IsActive { get; set; }
         public DateTime? SaveDate { get; set; }
 

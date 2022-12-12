@@ -96,6 +96,14 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// کد احراز هویت
         /// </summary>
         public string AuthenticateCode { get; set; }
+
+        public string OfficialNewspape { get; set; }
+        public string InsuranceList { get; set; }
+
+        public string LastAuditingTaxList { get; set; }
+
+        public string LastInsuranceList { get; set; }
+
         public CityDto City { get; set; }
         public SystemSetingDto HowGetKnowCompany { get; set; }
         public SystemSetingDto KindOfCompany { get; set; }

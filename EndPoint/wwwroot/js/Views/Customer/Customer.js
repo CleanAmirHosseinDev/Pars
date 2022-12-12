@@ -30,15 +30,15 @@
             CeoMobile: $("#CeoMobile").val(),
             AgentMobile:$("#AgentMobile").val(),
             AgentName: $("#AgentName").val(),
-            NamesAuthorizedSignatories:$("#NamesAuthorizedSignatories").val(),
-            AmountOsLastSaels:$("#AmountOsLastSaels").val(),
-            CountOfPersonal: $("#CountOfPersonal").val(),
+            NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
+            AmountOsLastSaels: isEmpty($("#AmountOsLastSaels").val()) ? null : $("#AmountOsLastSaels").val(),
+            CountOfPersonal: isEmpty($("#CountOfPersonal").val()) ? null : $("#CountOfPersonal").val(),
             Email: $("#Email").val(),
             Tel: $("#Tel").val(),
             PostalCode: $("#PostalCode").val(),
-            HowGetKnowCompanyId:$("#howGetKnowCompany").val(),
-            KindOfCompanyId:$("#KindOfCompany").val(),
-            TypeServiceRequestedId: $("#TypeServiceRequestedId").val()
+            HowGetKnowCompanyId: isEmpty($("#howGetKnowCompany").val()) ? null : $("#howGetKnowCompany").val(),
+            KindOfCompanyId: isEmpty($("#KindOfCompany").val()) ? null : $("#KindOfCompany").val(),
+            TypeServiceRequestedId: isEmpty($("#TypeServiceRequestedId").val()) ? null : $("#TypeServiceRequestedId").val()
 
         }), true, function (res) {
 

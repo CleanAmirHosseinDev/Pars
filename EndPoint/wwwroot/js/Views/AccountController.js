@@ -123,6 +123,7 @@
                     setlstor("fullName", res.data.fullName);
                     setlstor("customerID", res.data.customerID);
                     setlstor("userID", res.data.userID);
+                    setlstor("loginName", res.data.loginName);
 
                     goToUrl(res.message);
 

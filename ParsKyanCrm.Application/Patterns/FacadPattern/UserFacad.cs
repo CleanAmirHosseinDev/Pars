@@ -16,7 +16,6 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustom
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomers;
 using FluentValidation;
 using ParsKyanCrm.Application.Dtos.Users;
-using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors;
 using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectorss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectors;
@@ -31,6 +30,9 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveContract;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCompaniess;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCompanies;
+using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
+using ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatings;
+using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -82,6 +84,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         ISaveCompaniesService SaveCompaniesService { get; }
 
+        IInitReferralService InitReferralService { get; }
+
+        IGetRequestReferencessService GetRequestReferencessService { get; }
+
     }
 
     public class UserFacad : IUserFacad
@@ -90,15 +96,20 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IWebHostEnvironment _env;
-        private readonly IValidator<CustomersDto> _validator;        
+        private readonly IValidator<CustomersDto> _validator;
+        private readonly IBaseUserFacad _baseUserFacad;
 
-        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IValidator<CustomersDto> validator)
+        private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
+
+        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IValidator<CustomersDto> validator, IBaseUserFacad baseUserFacad, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
             _env = env;
             _validator = validator;
+            _baseUserFacad = baseUserFacad;
+            _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
 
         private IGetUserssService _getUserssService;
@@ -172,13 +183,12 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _getCustomersService = _getCustomersService ?? new GetCustomersService(_context, _mapper, _basicInfoFacad);
             }
         }
-
-        private IGetRequestForRatingsService _getRequestForRatingsService;
+        
         public IGetRequestForRatingsService GetRequestForRatingsService
         {
             get
             {
-                return _getRequestForRatingsService = _getRequestForRatingsService ?? new GetRequestForRatingsService(_context, _mapper, _basicInfoFacad);
+                return _baseUserFacad.GetRequestForRatingsService;
             }
         }
 
@@ -214,7 +224,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveRequestForRatingService = _saveRequestForRatingService ?? new SaveRequestForRatingService(_context, _mapper, _basicInfoFacad);
+                return _saveRequestForRatingService = _saveRequestForRatingService ?? new SaveRequestForRatingService(_context, _mapper, _basicInfoFacad, _validatorRequestReferencesDto);
             }
         }
 
@@ -309,5 +319,54 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private IInitReferralService _initReferralService;
+        public IInitReferralService InitReferralService
+        {
+            get
+            {
+                return _initReferralService = _initReferralService ?? new InitReferralService(_context, _mapper, _basicInfoFacad, _baseUserFacad);
+            }
+        }
+
+        private IGetRequestReferencessService _getRequestReferencessService;
+        public IGetRequestReferencessService GetRequestReferencessService
+        {
+            get
+            {
+                return _getRequestReferencessService = _getRequestReferencessService ?? new GetRequestReferencessService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public interface IBaseUserFacad
+    {
+        IGetRequestForRatingsService GetRequestForRatingsService { get; }
+    }
+
+    public class BaseUserFacad : IBaseUserFacad
+    {
+        private readonly IDataBaseContext _context;
+        private readonly IMapper _mapper;
+        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IWebHostEnvironment _env;
+
+        public BaseUserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        {
+            _context = context;
+            _mapper = mapper;
+            _basicInfoFacad = basicInfoFacad;
+            _env = env;
+        }
+        private IGetRequestForRatingsService _getRequestForRatingsService;
+        public IGetRequestForRatingsService GetRequestForRatingsService
+        {
+            get
+            {
+                return _getRequestForRatingsService = _getRequestForRatingsService ?? new GetRequestForRatingsService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+    }
+
 }

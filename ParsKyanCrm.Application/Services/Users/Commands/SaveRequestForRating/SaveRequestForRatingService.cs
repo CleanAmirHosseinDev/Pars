@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +25,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
 
-        public SaveRequestForRatingService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        public SaveRequestForRatingService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
+            _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
 
         private string MaxAllRequestNo()
@@ -43,10 +49,41 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
             }
         }
 
+        private async Task<string> Validation_Execute(RequestReferencesDto request)
+        {
+            try
+            {
+
+                ValidationResult result = await _validatorRequestReferencesDto.ValidateAsync(request);
+                if (!result.IsValid) return result.Errors.GetErrorsF();                
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<ResultDto> Execute(RequestReferencesDto request)
         {
             try
             {
+
+                #region Validation
+
+                string strValidation = await Validation_Execute(request);
+                if (!string.IsNullOrEmpty(strValidation))
+                {
+                    return new ResultDto()
+                    {
+                        IsSuccess = false,
+                        Message = strValidation
+                    };
+                }
+
+                #endregion                                
+
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
 
                 if (request.Request.RequestId == 0)
@@ -78,7 +115,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                     _context.RequestReferences.Add(new RequestReferences()
                     {
-                        DestLevelStepIndex = 1,
+                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
+                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
+                        LevelStepStatus = VaribleForName.LevelStepStatus,
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -91,7 +130,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         Comment = null,
                         SendUser = request.SendUser,
                         SendTime = dt,
-                        LevelStepAccessRole = "10",
                     });
                     await _context.SaveChangesAsync();
 
@@ -104,11 +142,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     _context.RequestReferences.Add(new RequestReferences()
                     {
                         DestLevelStepIndex = request.DestLevelStepIndex,
-                        Comment = request.SendUser == null ? null : request.Comment,
+                        Comment = request.Comment,
                         SendUser = request.SendUser,
                         Requestid = request.Request.RequestId,
                         SendTime = dt,
-                        LevelStepAccessRole = request.LevelStepAccessRole
+                        LevelStepAccessRole = request.LevelStepAccessRole,
+                        LevelStepStatus = request.LevelStepStatus,
                     });
                     await _context.SaveChangesAsync();
 

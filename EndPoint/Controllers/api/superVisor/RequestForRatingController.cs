@@ -28,6 +28,7 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
                 request.CustomerId = null;
+                request.RequestId = null;
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
@@ -59,6 +60,34 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
                 return await _userFacad.GetLevelStepSettingService.Execute(new RequestLevelStepSettingDto() { LevelStepSettingIndexId = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<IEnumerable<LevelStepSettingDto>>> InitReferral(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.InitReferralService.Execute(User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value, id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<RequestReferencesDto>>> Get_RequestReferencessService([FromBody] RequestRequestReferencesDto request)
+        {
+            try
+            {
+                return await _userFacad.GetRequestReferencessService.Execute(request);
             }
             catch (Exception ex)
             {

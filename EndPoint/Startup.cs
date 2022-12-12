@@ -65,6 +65,7 @@ namespace EndPoint
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
 
+            services.AddScoped<IBaseUserFacad, BaseUserFacad>();
             services.AddScoped<IUserFacad, UserFacad>();
 
             services.AddScoped<IBaseSecurityFacad, BaseSecurityFacad>();
@@ -73,6 +74,8 @@ namespace EndPoint
             services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();
 
             services.AddScoped<IValidator<CustomersDto>, ValidatorCustomersDto>();
+
+            services.AddScoped<IValidator<RequestReferencesDto>, ValidatorRequestReferencesDto>();
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(VaribleForName.MainConnectionString));
 

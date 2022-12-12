@@ -12,5 +12,12 @@ namespace EndPoint.Areas.SuperVisor.Controllers
         {
             return View();
         }
+
+        public IActionResult Referral(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
     }
 }

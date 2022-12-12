@@ -10,7 +10,7 @@ namespace ParsKyanCrm.Domain.Entities
         public int LicensesAndHonorsId { get; set; }
         public string Title { get; set; }
         public string Picture { get; set; }
-        public int? Userid { get; set; }
+        public int? UserId { get; set; }
         public DateTime? SaveOrEditDate { get; set; }
 
         public virtual Users User { get; set; }

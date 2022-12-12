@@ -152,6 +152,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                             nameof(q_Entity.Entity.User.RealName),request.User.RealName
                         },
                     }, string.Format(nameof(q_Entity.Entity.UserId) + " = {0} ", request.UserId));
+                    Ado_NetOperation.SqlUpdate(typeof(UserRoles).Name, new Dictionary<string, object>()
+                    {
+                        {
+                            nameof(q_Entity.Entity.RoleId),request.RoleId
+                        }                        
+                    }, string.Format(nameof(q_Entity.Entity.UserId) + " = {0} ", request.UserId));
                 }
 
                 return new ResultDto<UserRolesDto>()

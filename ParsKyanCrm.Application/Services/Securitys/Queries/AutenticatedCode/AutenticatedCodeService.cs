@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Securitys.Queries.Logins;
 using ParsKyanCrm.Common.Dto;
@@ -48,10 +49,12 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 res_ResultLoginDto.FullName = request.Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf;
                 res_ResultLoginDto.UserID = qUser.UserId;
 
+                var QUserRoles = _mapper.Map<UserRolesDto>(await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == qUser.UserId));
+
                 if (VaribleForName.IsDebug == true)
                 {
 
-                    if (request.Code == "1234") _baseSecurityFacad.AuthenticationJwtService.Execute(LoginName, res_ResultLoginDto, null, null);
+                    if (request.Code == "1234") _baseSecurityFacad.AuthenticationJwtService.Execute(LoginName, res_ResultLoginDto, QUserRoles, null);
                     else
                     {
                         return new ResultDto<ResultLoginDto>
@@ -66,7 +69,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 else
                 {
 
-                    if (qCus != null) _baseSecurityFacad.AuthenticationJwtService.Execute(LoginName, res_ResultLoginDto, null, null);
+                    if (qCus != null) _baseSecurityFacad.AuthenticationJwtService.Execute(LoginName, res_ResultLoginDto, QUserRoles, null);
                     else
                     {
 

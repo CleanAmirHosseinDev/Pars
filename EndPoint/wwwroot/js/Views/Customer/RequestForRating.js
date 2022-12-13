@@ -84,6 +84,7 @@
 
 
     }
+
     function saveRequestForRating(e) {
 
         $(e).attr("disabled", "");

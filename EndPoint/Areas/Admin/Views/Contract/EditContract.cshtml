@@ -14,8 +14,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/Contract/Index"><i></i> متن قراردادها/a></li>
-            <li class="active"><a href="/Admin/Contract/EditContract@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت فعالیت شرکت ها</a></li>
+            <li><a href="/Admin/Contract/Index"><i></i>متن قراردادها </a></li>
+            <li class="active"><a href="/Admin/Contract/EditContract@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"></a><i></i> ثبت فعالیت شرکت ها</a></li>
         </ol>
     </section>
 }
@@ -53,7 +53,7 @@
                         <input type="hidden" value="0" id="ContractId" name="ContractId" />
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
                                         گروه خدمات
@@ -64,28 +64,27 @@
 
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                         متن قرارداد
+                                        متن قرارداد
                                         <span class="RequiredLabel">*</span>
                                     </label>
-                                    <div class="col-md-9">                                       
-                                        <textarea  class="form-control" name="ContractText" id="ContractText" ></textarea>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" name="ContractText" id="ContractText"></textarea>
                                     </div>
                                 </div>
-                               
+
                                 <div class="form-group">
                                     <div class="col-md-3">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.Contract.SaveContract(this);">
-                                                <i class="fa fa-save"></i>
-                                            </button>
-                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.Contract.SaveContract(this);">
+                                            <i class="fa fa-save"></i>
+                                        </button>
                                     </div>
                                 </div>
-                            <div class="col-md-6"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -98,7 +97,9 @@
 </div>
 
 @section Scripts {
-    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script><script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script>        
         Web.Contract.InitContract(@ViewBag.id);
     </script>
 }

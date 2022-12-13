@@ -26,7 +26,7 @@
 
                     strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kindOfServiceNavigation.label +
                         "</td><td>" + res.data[i].fromCompanyRange + "</td><td>" + res.data[i].toCompanyRange +
-                        "</td><td>" + res.data[i].fixedCost + "</td><td>" + res.data[i].variableCost +
+                        "</td><td>" + moneyCommaSepWithReturn(res.data[i].fixedCost.toString()) + "</td><td>" + moneyCommaSepWithReturn(res.data[i].variableCost.toString()) +
                         "</td><td><a title='ویرایش' href='/Admin/ServiceFee/EditServiceFee?id=" +
                         res.data[i].serviceFeeId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
@@ -42,6 +42,9 @@
     function saveServiceFee(e) {
 
         $(e).attr("disabled", "");
+
+        RemoveAllCharForPrice("FixedCost");
+        RemoveAllCharForPrice("VariableCost");
 
         AjaxCallAction("POST", "/api/admin/ServiceFee/Save_ServiceFee", JSON.stringify({
            
@@ -65,6 +68,9 @@
             }
             else {
 
+                $("#FixedCost").val(moneyCommaSepWithReturn($("#FixedCost").val()));
+                $("#VariableCost").val(moneyCommaSepWithReturn($("#VariableCost").val()));
+
                 alertB("خطا", res.message, "error");
             }
 
@@ -84,8 +90,8 @@
                     $("#ServiceFeeId").val(res.serviceFeeId);                   
                     $("#FromCompanyRange").val(res.fromCompanyRange);
                     $("#ToCompanyRange").val(res.toCompanyRange);
-                    $("#FixedCost").val(res.fixedCost);
-                    $("#VariableCost").val(res.variableCost);                                   
+                    $("#FixedCost").val(moneyCommaSepWithReturn(res.fixedCost.toString()));
+                    $("#VariableCost").val(moneyCommaSepWithReturn(res.variableCost.toString()));
                     systemSeting_Combo(res);
                 }
 

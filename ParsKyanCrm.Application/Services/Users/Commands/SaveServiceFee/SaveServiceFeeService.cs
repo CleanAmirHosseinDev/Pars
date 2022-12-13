@@ -49,7 +49,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveServiceFee
                 }
                 else
                 {
-                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Contract).Name, new Dictionary<string, object>()
+                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ServiceFee).Name, new Dictionary<string, object>()
                     {
                         {
                             nameof(q_Entity.Entity.KindOfService),request.KindOfService

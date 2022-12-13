@@ -41,7 +41,8 @@
 
         AjaxCallAction("POST", "/api/admin/LicensesAndHonors/Save_LicensesAndHonors", JSON.stringify({
             Title: $("#Title").val(),
-            LicensesAndHonorsId: $("#LicensesAndHonorsId").val()
+            LicensesAndHonorsId: $("#LicensesAndHonorsId").val(),
+            Result_Final_Picture: null
         }), true, function (res) {
 
             $(e).removeAttr("disabled");

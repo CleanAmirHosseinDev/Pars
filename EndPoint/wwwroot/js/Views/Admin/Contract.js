@@ -38,9 +38,9 @@
     function saveContract(e) {
 
         $(e).attr("disabled", "");
-       
+
         AjaxCallAction("POST", "/api/admin/Contract/Save_Contract", JSON.stringify({
-            ContractText: $("#ContractText").val(),
+            ContractText: getDataCkeditor("ContractText"),
             KinfOfRequest: $("#KinfOfRequest").val(),
             ContractId: $("#ContractId").val(),
 
@@ -63,7 +63,7 @@
     }
 
     function initContract(id = null) {
-        ComboBoxWithSearch('.select2', 'dir');
+        ComboBoxWithSearch('.select2', 'dir');        
 
         if (!isEmpty(id) && id != 0) {
 
@@ -73,6 +73,7 @@
 
                     $("#ContractId").val(res.contractId);
                     $("#ContractText").val(res.contractText);
+                    Ckeditor("ContractText");
                     systemSeting_Combo(res);
                 }
 
@@ -80,6 +81,7 @@
 
         }
         else {
+            Ckeditor("ContractText");
             systemSeting_Combo(null);
         }
 

@@ -1587,7 +1587,9 @@ function UploadForGalleryChange(e, idDivHtml = "selectedFiles", idSpnError = "sp
 
 function Ckeditor(id) {
     try {
-        $("#" + id).ckeditor();
+
+        CKEDITOR.replace(id);
+
     } catch (e) {
 
     }
@@ -1611,6 +1613,11 @@ function EmptyCkeditors(ids) {
     } catch (e) {
 
     }
+}
+function getDataCkeditor(id) {
+
+    return CKEDITOR.instances[id].getData();
+
 }
 
 function Tagsinput(id) {

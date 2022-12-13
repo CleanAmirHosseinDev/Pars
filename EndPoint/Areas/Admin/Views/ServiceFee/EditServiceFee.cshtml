@@ -88,7 +88,7 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="FixedCost" id="FixedCost" />
+                                        <input type="text" class="form-control" name="FixedCost" id="FixedCost" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,7 +97,7 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="VariableCost" id="VariableCost" />
+                                        <input type="text" class="form-control" name="VariableCost" id="VariableCost" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
                                     </div>
                                 </div>
                                 <div class="form-group">

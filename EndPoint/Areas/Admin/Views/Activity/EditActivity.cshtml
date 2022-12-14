@@ -5,6 +5,7 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link href="~/lib/cropperjs/cropper.css" rel="stylesheet" />
 }
 
 @section PageHeader{
@@ -79,7 +80,9 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" class="form-control" name="Picture1" id="Picture1" />
+                                        <input type="hidden" id="hid_Picture1" value="" />                                        
+                                        <input type="file" name="Picture1" id="Picture1" accept="image/*" onchange="onChangePicCropper(this,1200,'imgUpload_Picture1','hid_Picture1');" />
+                                        <img src="" width="150" class="img-thumbnail" id="imgUpload_Picture1" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -88,7 +91,9 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="file" class="form-control" name="Picture2" id="Picture2" />
+                                        <input type="hidden" id="hid_Picture2" value="" />                                        
+                                        <input type="file" name="Picture2" id="Picture2" accept="image/*" onchange="onChangePicCropper(this,1200,'imgUpload_Picture2','hid_Picture2');" />
+                                        <img src="" width="150" class="img-thumbnail" id="imgUpload_Picture2" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -115,7 +120,10 @@
 </div>
 
 @section Scripts {
-    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script><script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropper.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropperOpp.js" asp-append-version="true"></script>
+    <script>
         Web.Activity.InitActivity(@ViewBag.id);
     </script>
 }

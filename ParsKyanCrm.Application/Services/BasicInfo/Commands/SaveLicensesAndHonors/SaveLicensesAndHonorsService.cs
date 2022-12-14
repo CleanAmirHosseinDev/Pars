@@ -47,6 +47,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
 
                 #endregion
 
+                var qFind = await _context.LicensesAndHonors.FindAsync(request.LicensesAndHonorsId);
+                request.Picture = qFind != null && !string.IsNullOrEmpty(qFind.Picture) ? qFind.Picture : string.Empty;
+
                 #region Upload Image
 
                 if (request.Result_Final_Picture != null && request.Result_Final_Picture.Length > 10)
@@ -55,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
                     request.Picture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_Picture = _env.ContentRootPath + VaribleForName.LicensesAndHonorsFolder + request.Picture;
 
-                    string strMessage = ServiceImage.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر جایزه");
+                    string strMessage = ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر جایزه");
                     if (!string.IsNullOrEmpty(strMessage))
                     {
 

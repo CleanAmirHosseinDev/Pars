@@ -1,5 +1,6 @@
 ﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
+using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         {
             get
             {
-                if (VaribleForName.IsDebug == true)
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) + VaribleForName.BoardOfDirectorsFolder + (string.IsNullOrEmpty(AcademicDegreePicture) ? VaribleForName.No_Photo : AcademicDegreePicture));
-                else
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory + VaribleForName.BoardOfDirectorsFolder + (string.IsNullOrEmpty(AcademicDegreePicture) ? VaribleForName.No_Photo : AcademicDegreePicture));
+                return ServiceFileUploader.GetFullPath(AcademicDegreePicture, VaribleForName.BoardOfDirectorsFolder);              
             }
         }
 
@@ -57,10 +55,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         {
             get
             {
-                if (VaribleForName.IsDebug == true)
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) + VaribleForName.BoardOfDirectorsFolder + (string.IsNullOrEmpty(PictureOfEducationCourse) ? VaribleForName.No_Photo : PictureOfEducationCourse));
-                else
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory + VaribleForName.BoardOfDirectorsFolder + (string.IsNullOrEmpty(PictureOfEducationCourse) ? VaribleForName.No_Photo : PictureOfEducationCourse));
+                return ServiceFileUploader.GetFullPath(PictureOfEducationCourse, VaribleForName.BoardOfDirectorsFolder);
             }
         }
         public string Result_Final_PictureOfEducationCourse { get; set; }

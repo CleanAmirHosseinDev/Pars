@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ParsKyanCrm.Common;
+using ParsKyanCrm.Infrastructure.Consts;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -6,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Common
+namespace ParsKyanCrm.Infrastructure
 {
-    public static class ServiceImage
+    public static class ServiceFileUploader
     {
         public static Image LoadBase64(string base64)
         {
@@ -71,5 +73,20 @@ namespace ParsKyanCrm.Common
                 throw ex;
             }
         }
+
+        public static string GetFullPath(string filename, string path)
+        {
+
+            try
+            {
+                return ConvertImageToByte((VaribleForName.IsDebug == true ? AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) : AppContext.BaseDirectory) + path + (string.IsNullOrEmpty(filename) ? VaribleForName.No_Photo : filename));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 }

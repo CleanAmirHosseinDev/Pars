@@ -46,28 +46,18 @@
             </div>
             <div class="box-body" style="">
 
-               
+
                 <div class="form-horizontal">
-                    <input type="hidden" value="0" id="ContentID" name="ContentID" />
+                    <input type="hidden" value="0" id="ContentId" name="ContentId" />
                     <div class="row">
                         <div class="col-lg-12">
-
                             <div class="form-group">
                                 <label class="control-label col-md-2" for="">
                                     عنوان
                                     <span class="RequiredLabel">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input type="text" id="ContentTitel" name="ContentTitel" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2" for="">
-                                    عنوان کلیدی
-                                    <span class="RequiredLabel">*</span>
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" id="MetaTitel" name="MetaTitel" class="form-control" />
+                                    <input type="text" id="Title" name="Title" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,16 +66,25 @@
                                     <span class="RequiredLabel">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <select id="ContentType" name="ContentType" class="form-control select2" style="width:100% !important;"></select>
+                                    <select id="KindOfContent" name="KindOfContent" class="form-control select2" style="width:100% !important;"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2" for="">
-                                    انتخاب نوع محتوا
+                                    متن
                                     <span class="RequiredLabel">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input type="text" id="PageUrl" name="PageUrl" class="form-control" />
+                                    <textarea id="Body" name="Body" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="">
+                                    تصویر محتوا
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="file" id="ContentPic" name="ContentPic" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -99,31 +98,14 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2" for="">
-                                     متن
-                                    <span class="RequiredLabel">*</span>
-                                </label>
-                                <div class="col-md-9">
-                                    <textarea  id="Text" name="Text" class="form-control" ></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2" for="">
                                     توضیحات کلیدی
                                     <span class="RequiredLabel">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <textarea  id="MeteDesc" name="MeteDesc" class="form-control" ></textarea>
+                                    <textarea id="MeteDesc" name="MeteDesc" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2" for="">
-                                    تصویر محتوا
-                                    <span class="RequiredLabel">*</span>
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="file" id="ContentPic" name="ContentPic" class="form-control" />
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-2">
                                 </div>
@@ -133,12 +115,12 @@
                                     </button>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
 
                 </div>
-               
+
 
             </div>
         </div>
@@ -146,7 +128,9 @@
 </div>
 
 @section Scripts {
-    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script><script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script>
         Web.NewsAndContent.InitNewsAndContent(@ViewBag.id);
     </script>
 }

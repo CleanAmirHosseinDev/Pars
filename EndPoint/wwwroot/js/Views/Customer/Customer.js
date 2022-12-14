@@ -14,7 +14,7 @@
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
 
     }
-  
+
     function saveCustomer(e) {
 
         $(e).attr("disabled", "");
@@ -28,7 +28,8 @@
             EconomicCode: $("#EconomicCode").val(),
             NationalCode: $("#NationalCode").val(),
             CeoMobile: $("#CeoMobile").val(),
-            AgentMobile:$("#AgentMobile").val(),
+            CeoNationalCode: $("#CeoNationalCode").val(),
+            AgentMobile: $("#AgentMobile").val(),
             AgentName: $("#AgentName").val(),
             NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
             AmountOsLastSaels: isEmpty($("#AmountOsLastSaels").val()) ? null : $("#AmountOsLastSaels").val(),
@@ -38,7 +39,9 @@
             PostalCode: $("#PostalCode").val(),
             HowGetKnowCompanyId: isEmpty($("#howGetKnowCompany").val()) ? null : $("#howGetKnowCompany").val(),
             KindOfCompanyId: isEmpty($("#KindOfCompany").val()) ? null : $("#KindOfCompany").val(),
-            TypeServiceRequestedId: isEmpty($("#TypeServiceRequestedId").val()) ? null : $("#TypeServiceRequestedId").val()
+            LastInsuranceList: null,
+            LastChangeOfficialNewspaper: null,
+
 
         }), true, function (res) {
 
@@ -46,7 +49,8 @@
 
             if (res.isSuccess) {
                 alertB("ثبت", res.message, "success");
-              //  goToUrl("/Customer/Customer/EditCustomer");
+                $("SeeAllRequest").show();
+                //  goToUrl("/Customer/Customer/EditCustomer");
 
             } else {
 
@@ -59,7 +63,7 @@
 
     function systemSeting_Combo(resSingle) {
 
-        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56",  PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
@@ -73,7 +77,7 @@
                         strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 27) {
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    }                    
+                    }
                 }
 
                 $("#KindOfCompany").html(strKindOfCompany);
@@ -82,51 +86,67 @@
 
                 $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
                 $("#KindOfCompany").val(resSingle.kindOfCompanyId);
-                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
-
-                
+                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);              
 
             }
         }, true);
     }
 
+    function checkForFirstRequest() {
+        Web.RequestForRating.RegistingFirstRequest(function (res) {
+
+            if (res.isSuccess) {
+                if (res.data.length > 0) {
+                    $("#divTypeServiceRequestedId").hide();
+                }
+
+                else {
+                    $("#divTypeServiceRequestedId").show();
+                }
+            } 
+
+        });
+    }
+
     function initCustomer(dir = 'rtl') {
 
         ComboBoxWithSearch('.select2', dir);
-       
-        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {            
-                
+        checkForFirstRequest();
+        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
 
-                if (res != null) {
-                    $("#AddressCompany").val(res.addressCompany);
-                    $("#CompanyName").val(res.companyName);
-                    $("#CeoName").val(res.ceoName);
-                    $("#EconomicCode").val(res.economicCode);
-                    $("#NationalCode").val(res.nationalCode);
-                    $("#CeoMobile").val(res.ceoMobile);
-                    $("#AgentMobile").val(res.agentMobile);
-                    $("#AgentName").val(res.agentName);
-                    $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-                    $("#AmountOsLastSaels").val(res.amountOsLastSaels);
-                    $("#CountOfPersonal").val(res.countOfPersonal);
-                    $("#Email").val(res.email);
-                    $("#Tel").val(res.tel);
-                    $("#PostalCode").val(res.postalCode);
 
-                    systemSeting_Combo(res);
+            if (res != null) {
+                $("#AddressCompany").val(res.addressCompany);
+                $("#CompanyName").val(res.companyName);
+                $("#CeoName").val(res.ceoName);
+                $("#EconomicCode").val(res.economicCode);
+                $("#NationalCode").val(res.nationalCode);
+                $("#CeoMobile").val(res.ceoMobile);
+                $("#AgentMobile").val(res.agentMobile);
+                $("#AgentName").val(res.agentName);
+                $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
+                $("#AmountOsLastSaels").val(res.amountOsLastSaels);
+                $("#CountOfPersonal").val(res.countOfPersonal);
+                $("#Email").val(res.email);
+                $("#Tel").val(res.tel);
+                $("#PostalCode").val(res.postalCode);
 
-                }
-                           
+                systemSeting_Combo(res);
+               
 
-            }, true);       
+            }
+
+
+        }, true);
 
     }
 
     web.Customer = {
-        TextSearchOnKeyDown: textSearchOnKeyDown,       
+        TextSearchOnKeyDown: textSearchOnKeyDown,
         SaveCustomer: saveCustomer,
         InitCustomer: initCustomer,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        CheckForFirstRequest: checkForFirstRequest
     };
 
 })(Web, jQuery);

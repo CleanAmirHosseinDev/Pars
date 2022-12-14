@@ -64,6 +64,7 @@
     }
 
     function initCompanies(id = null) {
+
         ComboBoxWithSearch('.select2', 'dir');
 
         if (!isEmpty(id) && id != 0) {

@@ -58,7 +58,9 @@
       "wwwroot/js/Views/Admin/Contract.js",
       "wwwroot/js/Views/Admin/LicensesAndHonors.js",
       "wwwroot/js/Views/Admin/AboutUs.js",
-      "wwwroot/js/Views/Admin/ManagerOfParsKyan.js"
+      "wwwroot/js/Views/Admin/ManagerOfParsKyan.js",
+      "wwwroot/js/Views/Admin/NewsAndContent.js",
+      "wwwroot/js/Views/Admin/RankingOfCompanies.js"
 
     ],
     "minify": {

@@ -22,24 +22,61 @@
             if (res.isSuccess) {
 
                 var strM = '';
+              
                 for (var i = 0; i < res.data.length; i++) {
 
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].kindOfRequestName + "</td><td>"
                         + res.data[i].dateOfRequestStr + "</td><td>"
                         + res.data[i].levelStepStatus + "</td><td>"
-                        + "<a style='margin-right:5px' title='مشاهده جزییات' " + "onclick = 'Web.RequestForRating.Get_Detail(" + res.data[i].requestId + ");'"
-                        + " class='btn btn-detail fontForAllPage'> <i class='fa fa-eye'></i></a>"
-                        + "<a style='margin-right:5px' title='مشاهده قرارداد' href='/Customer/RequestForRating/ContractPrinting?id=" +
-                        res.data[i].requestId + "' class='btn btn-print fontForAllPage'> <i class='fa fa-print'></i></a>"
-                        + "<a style='margin-right:5px' title='ثبت اطلاعات تکمیلی' href='#' class='btn btn-info fontForAllPage'> <i class='fa fa-file-text-o'></i></a>"
-                        + "</td></tr>";
+                        + "<a style='margin-right:5px' title='مشاهده گردش کار' href='/Customer/RequestForRating/ContractPrinting?id="  + res.data[i].requestId + ");'"
+
+                      //  + "<a style='margin-right:5px' title='مشاهده گردش کار' " + "onclick = 'Web.RequestForRating.Get_Detail(" + res.data[i].requestId + ");'"
+                        + " class='btn btn-detail fontForAllPage'> <i class='fa fa-eye'></i> مشاهده گردش کار</a>";
+                        if (res.data[i].destLevelStepIndex==4) {
+                            strM += "<a style='margin-right:5px' title='مشاهده و ارجاع' href='/Customer/RequestForRating/ContractPrinting?id=" + res.data[i].requestId + "' class='btn btn-print fontForAllPage'> <i class='fa fa-print'></i></a>"
+
+                        } else if (res.data[i].destLevelStepIndex == 7) {
+                            strM += "<a style='margin-right:5px' title='ثبت اطلاعات تکمیلی' href='#' class='btn btn-info fontForAllPage'> <i class='fa fa-file-text-o'></i> ثبت اطلاعات تکمیلی</a>"
+
+                        }
+                        else if (res.data[i].destLevelStepIndex == 11) {
+                            strM += "<a style='margin-right:5px' title='تسویه حساب' href='#' class='btn btn-info fontForAllPage'> <i class='fa fa-file-text-o'></i> تسویه حساب</a>"
+
+                        }
+                    strM +="</td></tr>";
                 }
 
                 $("#tBodyList").html(strM);
             }
 
         }, true);
+
+    }
+
+    function registingFirstRequest(successCallback = null) {
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1 }), true, function (res) {
+
+            if (successCallback == null) {
+
+                if (res.isSuccess) {
+
+                    if (res.data.length == 0) {
+                        goToUrl("/Customer/Customer/EditCustomer");
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+
+            }
+            else {
+
+                successCallback(res);
+
+            }
+        }, false);
 
     }
 
@@ -171,7 +208,8 @@
         FilterGrid: filterGrid,
         Get_Detail: get_Detail,
         SystemSeting_ComboRequestForRating: systemSeting_ComboRequestForRating,
-        SaveReferralRequestForRating: saveReferralRequestForRating
+        SaveReferralRequestForRating: saveReferralRequestForRating,
+        RegistingFirstRequest: registingFirstRequest
     };
 
 })(Web, jQuery);

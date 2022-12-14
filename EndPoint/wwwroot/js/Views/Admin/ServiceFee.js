@@ -25,7 +25,7 @@
                 for (var i = 0; i < res.data.length; i++) {
 
                     strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kindOfServiceNavigation.label +
-                        "</td><td>" + res.data[i].fromCompanyRange + "</td><td>" + res.data[i].toCompanyRange +
+                        "</td><td>" + moneyCommaSepWithReturn(res.data[i].fromCompanyRange.toString()) + "</td><td>" + moneyCommaSepWithReturn(res.data[i].toCompanyRange.toString()) +
                         "</td><td>" + moneyCommaSepWithReturn(res.data[i].fixedCost.toString()) + "</td><td>" + moneyCommaSepWithReturn(res.data[i].variableCost.toString()) +
                         "</td><td><a title='ویرایش' href='/Admin/ServiceFee/EditServiceFee?id=" +
                         res.data[i].serviceFeeId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";

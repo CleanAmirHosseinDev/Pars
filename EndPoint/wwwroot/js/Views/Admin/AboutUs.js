@@ -24,8 +24,7 @@
             AboutUsId: $("#AboutUsId").val(),            
             AboutUsComment: $("#AboutUsComment").val(),            
             Address: $("#Address").val(),
-            Subject:$("#Subject").val(),
-            AboutUSContent: $("#AboutUSContent").val(),
+            Subject:$("#Subject").val(),           
             Tel1: $("#Tel1").val(),
             Tel2: $("#Tel2").val(),
             Tel3:$("#Tel3").val(),
@@ -39,13 +38,14 @@
             Whatsapp: $("#Whatsapp").val(),
             Facebook: $("#Facebook").val(),
             Telegram: $("#Telegram").val(),
-            VisionAndMission: $("#VisionAndMission").val(),
-            OrganazationChart: $("#OrganazationChart").val(),
             Moto1: $("#Moto1").val(),
             Moto2: $("#Moto2").val(),
             Moto3:$("#Moto3").val(),
             Moto4:$("#Moto4").val(),
-            Moto5:$("#Moto5").val()
+            Moto5: $("#Moto5").val(),
+            OrganazationChart: getDataCkeditor("OrganazationChart"),
+            AboutUSContent:    getDataCkeditor("AboutUSContent"),
+            VisionAndMission:  getDataCkeditor("VisionAndMission"),
         }), true, function (res) {
 
             $(e).removeAttr("disabled");
@@ -76,6 +76,7 @@
                 $("#Address").val(res.address);
                 $("#Subject").val(res.subject);
                 $("#AboutUSContent").val(res.aboutUscontent);
+                Ckeditor("AboutUSContent");
                 $("#Tel1").val(res.tel1);
                 $("#Tel2").val(res.tel2);
                 $("#Tel3").val(res.tel3);
@@ -90,7 +91,9 @@
                 $("#Facebook").val(res.facebook);
                 $("#Telegram").val(res.telegram);
                 $("#VisionAndMission").val(res.visionAndMission);
+                Ckeditor("VisionAndMission");
                 $("#OrganazationChart").val(res.organazationChart);
+                Ckeditor("OrganazationChart");
                 $("#Moto1").val(res.moto1);
                 $("#Moto2").val(res.moto2);
                 $("#Moto3").val(res.moto3);

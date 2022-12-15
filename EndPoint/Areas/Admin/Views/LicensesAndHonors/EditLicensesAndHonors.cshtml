@@ -5,6 +5,7 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link href="~/lib/cropperjs/cropper.css" rel="stylesheet" />
 }
 
 @section PageHeader{
@@ -56,7 +57,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                       عنوان
+                                        عنوان
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
@@ -64,27 +65,32 @@
 
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
                                         عکس
                                         <span class="RequiredLabel">*</span>
                                     </label>
-                                    <div class="col-md-9">                                       
-                                        <input type="file" class="form-control" name="Picture" id="Picture" />
+                                    <div class="col-md-9">
+
+                                        <input type="hidden" id="hid_Picture" value="" />
+                                        <input type="file" name="Picture" id="Picture" accept="image/*" onchange="onChangePicCropper(this,1200,'imgUpload_Picture','hid_Picture');" />
+                                        <img src="" width="150" class="img-thumbnail" id="imgUpload_Picture" />
+
                                     </div>
                                 </div>
-                               
+
+
                                 <div class="form-group">
                                     <div class="col-md-3">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.LicensesAndHonors.SaveLicensesAndHonors(this);">
-                                                <i class="fa fa-save"></i>
-                                            </button>
-                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.LicensesAndHonors.SaveLicensesAndHonors(this);">
+                                            <i class="fa fa-save"></i>
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-md-6"></div>
                         </div>
 
@@ -98,7 +104,10 @@
 </div>
 
 @section Scripts {
-    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script><script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropper.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropperOpp.js" asp-append-version="true"></script>
+    <script>
         Web.LicensesAndHonors.InitLicensesAndHonors(@ViewBag.id);
     </script>
 }

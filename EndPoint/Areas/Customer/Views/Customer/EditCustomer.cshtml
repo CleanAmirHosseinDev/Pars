@@ -48,14 +48,14 @@
                     <div class="form-horizontal">
                         <div class="row" id="divTypeServiceRequestedId">
                             <div class="col-md-12">
-                                <div style="max-width: 600px; margin: auto; border: 2px solid #00c0ef; padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 20px">
+                                <div style="background-color:#c2dae1; max-width: 600px; margin: auto; border: 2px solid #00c0ef; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px">
                                     <h4> نوع خدمت مورد تقاضا</h4>
                                     <select name="TypeServiceRequestedId" id="TypeServiceRequestedId" class="form-control select2" style="width:100% !important;"></select>
 
                                 </div>
                             </div>
                         </div>
-                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 20px">
+                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -159,7 +159,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="AmountOsLastSaels" id="AmountOsLastSaels" class="form-control" />
+                                            <input type="text" name="AmountOsLastSaels" id="AmountOsLastSaels" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
                                         </div>
                                     </div>
                                 </div>
@@ -257,9 +257,7 @@
                                             <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
                                                 ثبت اطلاعات  <i class="fa fa-save"></i>
                                             </button>
-                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
-                                                مشاهده درخواست   <i class="fa fa-file"></i>
-                                            </button>
+                                            <a href="~/customer/RequestForRating/index" class="btn btn-default fontForAllPage">مشاهده درخواست ها </a>                                           
                                         </div>
                                       
                                     </div>

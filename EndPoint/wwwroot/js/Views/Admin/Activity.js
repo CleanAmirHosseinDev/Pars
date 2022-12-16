@@ -67,7 +67,7 @@
 
         ComboBoxWithSearch('.select2', 'dir');
 
-        AjaxCallAction("GET", "/api/admin/Activity/Get_Activity/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Activity/Get_Activity/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
             if (res != null) {
 

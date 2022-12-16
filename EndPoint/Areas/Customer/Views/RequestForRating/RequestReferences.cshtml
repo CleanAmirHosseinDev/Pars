@@ -4,7 +4,7 @@
 
 
 @section Styles{
-
+    <link rel="stylesheet" href="~/css/GlobalAreas/Views/TimeLine.css" type="text/css" />
 }
 
 @section PageHeader{
@@ -49,13 +49,17 @@
 
                 <form action="/Customer/RequestForRating/Index" id="frmFormMain" method="post">
                     <div class="form-horizontal">
-                        <div style="width:100%;border:1px solid silver;min-height:400px;margin-bottom:15px">
-
-                        </div>
                         <input type="hidden" value="0" id="RequestId" name="RequestId" />
 
-                        
 
+                        <div>
+
+                            <div class="customDiv darkBackground">
+                                <div class="timeline-centered" id="TimeLine"> 
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
 
@@ -67,6 +71,6 @@
 
 @section Scripts {
     <script>
-        Web.RequestForRating.InitRequestForRating(@ViewBag.id);
-    </script>
+        Web.RequestForRating.InitRequestReferences(@ViewBag.id);
+   </script>
 }

@@ -41,13 +41,17 @@
             KindOfCompanyId: isEmpty($("#KindOfCompany").val()) ? null : $("#KindOfCompany").val(),
             LastInsuranceList: null,
             LastChangeOfficialNewspaper: null,
-
-
+            
         }), true, function (res) {
 
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
+
+                if ($("#TypeServiceRequestedId").val() != null) {
+                    saveFirstRequestForRating($("#TypeServiceRequestedId").val());
+                }
+
                 alertB("ثبت", res.message, "success");
                 $("SeeAllRequest").show();
                 //  goToUrl("/Customer/Customer/EditCustomer");
@@ -60,6 +64,19 @@
         }, true);
 
     }
+
+    function saveFirstRequestForRating(id) {
+       
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify({ Request: { KindOfRequest: isEmpty(id) ? null :id } }), true, function (res) {
+
+            if (!res.isSuccess) {
+                alertB("هشدار", res.message, "warning");
+            }
+
+        }, true);
+
+    }
+
 
     function systemSeting_Combo(resSingle) {
 
@@ -146,7 +163,8 @@
         SaveCustomer: saveCustomer,
         InitCustomer: initCustomer,
         SystemSeting_Combo: systemSeting_Combo,
-        CheckForFirstRequest: checkForFirstRequest
+        CheckForFirstRequest: checkForFirstRequest,
+        SaveFirstRequestForRating: saveFirstRequestForRating
     };
 
 })(Web, jQuery);

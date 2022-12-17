@@ -82,7 +82,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "1";
+                return "2";
             }
         }
 
@@ -93,12 +93,19 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "10";
             }
         }
+        public static int LevelStepIndex
+        {
+            get
+            {
+                return 1;
+            }
+        }
 
         public static string LevelStepStatus
         {
             get
             {
-                return "منتظر تکمیل و ارسال درخواست اولیه توسط مشتری";
+                return " ارسال درخواست اولیه توسط مشتری  و در انتظار بررسی";
             }
         }
 

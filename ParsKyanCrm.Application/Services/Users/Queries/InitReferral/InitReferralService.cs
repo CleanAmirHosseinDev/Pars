@@ -49,7 +49,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.InitReferral
 
                 }
 
-                if (q.Data.FirstOrDefault().LevelStepAccessRole != loginName)
+                if (q.Data.FirstOrDefault().DestLevelStepAccessRole != loginName)
                 {
 
                     return new ResultDto<IEnumerable<LevelStepSettingDto>>

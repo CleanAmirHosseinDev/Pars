@@ -34,12 +34,17 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess
                 var q = await DapperOperation.Run<RequestReferencesDto>(@$"
 
 
-select cus.CompanyName,rr.Comment,rr.DestLevelStepIndex,rr.LevelStepAccessRole,rr.LevelStepStatus,rr.ReferenceID,rr.Requestid,rr.SendTime,rr.SendUser,cus.AgentName,u.RealName,u.UserName,rol.RoleDesc,ss.Label as KindOfRequestName,rfr.RequestNo from {typeof(RequestReferences).Name} as rr
+select cus.CompanyName,rr.Comment,rr.DestLevelStepIndex,rr.LevelStepAccessRole,rr.LevelStepIndex,
+rr.LevelStepStatus,rr.ReferenceID,rr.Requestid,rr.SendTime,rr.SendUser,(select RoleDesc from UserRoles  as ur inner join Roles as r on ur.RoleID=r.RoleID where UserID=u.UserID)UserRoleDes,
+cus.AgentName,u.RealName,u.UserName,rol.RoleDesc,ss.Label as KindOfRequestName,rfr.RequestNo,
+(select distinct LevelStepAccessRole from LevelStepSetting where LevelStepIndex=rr.DestLevelStepIndex)as DestLevelStepAccessRole
+from {typeof(RequestReferences).Name} as rr
 left join {typeof(RequestForRating).Name} as rfr on rfr.RequestID = rr.Requestid
 left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
 left join {typeof(Domain.Entities.Users).Name} as u on u.UserID = rr.SendUser
 left join Roles as rol on rol.RoleID = cast(rr.LevelStepAccessRole as int)
 left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest
+left join LevelStepSetting  as ls on rr.LevelStepIndex=ls.LevelStepIndex
 {(request.Requestid.HasValue ? "where rr.Requestid = " + request.Requestid.Value : string.Empty)}
 
 ");

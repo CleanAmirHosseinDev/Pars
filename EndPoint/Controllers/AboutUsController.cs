@@ -9,34 +9,32 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Controllers
 {
-    public class HomeController : Controller
+    public class AboutUsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<AboutUsController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public AboutUsController(ILogger<AboutUsController> logger)
         {
             _logger = logger;
         }
 
+      
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult VisionAndMission()
+        {
+            return View();
+        }
+        public IActionResult OrganazationChart()
         {
             return View();
         }
 
-        public IActionResult Faq()
+        public IActionResult ContactUs()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

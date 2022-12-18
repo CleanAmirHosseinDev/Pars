@@ -14,7 +14,7 @@
                 <div class="slider_page" id="slide1">
                     <img src="~/image/landing/slider_1.webp" />
                     <div class="label">
-                        <h2 class="slider_text" id="cursor_node_1" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                        <h2 class="slider_text" id="cursor_node_1" cursor-speed-fixed="20"><span id="Moto1"></span><span style="color:red">پارس کیان</span></h2>
                     </div>
 
                 </div>
@@ -22,7 +22,7 @@
                     <img src="~/image/landing/slider_2.webp" />
                     <div class="label">
 
-                        <h2 class="slider_text" id="cursor_node_2" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                        <h2 class="slider_text" id="cursor_node_2" cursor-speed-fixed="20"><span id="Moto2"></span><span style="color:red">پارس کیان</span></h2>
                     </div>
                 </div>
                 <div class="slider_page" id="slide3">
@@ -30,7 +30,7 @@
 
                     <div class="label">
 
-                        <h2 class="slider_text" id="cursor_node_3" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                        <h2 class="slider_text" id="cursor_node_3" cursor-speed-fixed="20"><span id="Moto3"></span><span style="color:red">پارس کیان</span></h2>
                     </div>
                 </div>
                 <div class="slider_page" id="slide4">
@@ -38,7 +38,7 @@
 
                     <div class="label">
 
-                        <h2 class="slider_text" id="cursor_node_4" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                        <h2 class="slider_text" id="cursor_node_4" cursor-speed-fixed="20"><span id="Moto4"></span><span style="color:red">پارس کیان</span></h2>
                     </div>
                 </div>
                 <div class="slider_page" id="slide5">
@@ -46,7 +46,7 @@
 
                     <div class="label">
 
-                        <h2 class="slider_text" id="cursor_node_5" cursor-speed-fixed="20">رتبه بندی اعتباری شرکت ها با<span style="color:red">پارس کیان</span></h2>
+                        <h2 class="slider_text" id="cursor_node_5" cursor-speed-fixed="20"><span id="Moto5"></span><span style="color:red">پارس کیان</span></h2>
                     </div>
                 </div>
 
@@ -205,9 +205,9 @@
             </div>
             <div id="top_rating_cards">
 
-                <div class="top_rating_cards_parrent" toprateid="0">
+                <div class="top_rating_cards_parrent" toprateid="0" id="RankingOfCompanies">
 
-                    <div class="top_rateing_card">
+                    @*<div class="top_rateing_card">
                         <div class="c1">
                             <p>رتبه</p>
                             <div class="c2">
@@ -332,7 +332,7 @@
                                 <a class="btn" href="/doc/test.pdf">مشاهده</a>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
                 </div>
             </div>
@@ -458,12 +458,12 @@
     <script>
         function topRatingBtnOnclick(inelement) {
 
-            $("#top_rating_button .btn").each(function(index) {
+            $("#top_rating_button .btn").each(function (index) {
                 $(this).removeClass("selected");
             });
             $(inelement).addClass("selected");
 
-            $(".top_rating_cards_parrent").each(function(index) {
+            $(".top_rating_cards_parrent").each(function (index) {
                 $(this).hide();
             });
             let innerid = $(inelement).attr("toprateid");
@@ -480,4 +480,12 @@
 
     <script src="~/lib/particlesjs/particles.min.js"></script>
     <script src="~/lib/particlesjs/type1.js"></script>
+    <script src="~/js/InitProject.js"></script>
+    <script src="~/js/Utility.js"></script>
+    <script src="~/js/landing/AboutUs.js"></script>
+    <script src="~/js/landing/RankingOfCompanies.js"></script>
+    <script src="~/js/landing/IndexSetting.js"></script>
+    <script>
+        Web.IndexSetting.BaseIndexSetting();
+    </script>
 }

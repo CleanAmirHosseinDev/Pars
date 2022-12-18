@@ -26,7 +26,8 @@
 
     }
     web.Article = {
-        initArticle: initArticle
+        initArticle: initArticle,
+        initArticleList: InitArticleList
     };
 
 })(Web, jQuery);

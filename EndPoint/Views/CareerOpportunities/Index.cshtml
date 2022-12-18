@@ -3,7 +3,7 @@
 <div id="bg-img"></div>
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
-
+<link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 
 <section class="contact-page-section">
     <div class="container">
@@ -15,9 +15,9 @@
                     <div class="inner-column">
                         <ul class="list-info">
                             <li><i class="fas fa-globe"></i>ارسال درخواست همکاری</li>
-                           
+
                         </ul>
-                       
+
                     </div>
                 </div>
                 <!--Form Column-->
@@ -42,10 +42,10 @@
                                         <input type="text" name="Brithday" id="Brithday" value="" placeholder="تاریخ تولد" required>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 co-xs-12">
-                                        <select class="form-control select2" style="width:100% !important;" name="StateID" id="StateID"></select>
+                                        <select class="form-control select2" style="width:100% !important;" name="StateID" id="StateID"  onchange="Web.CareerOpportunities.GetCitys()" ></select>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 co-xs-12">
-                                        <select class="form-control select2" style="width:100% !important;" name="CityID" id="CityID"></select>
+                                        <select class="form-control select2" style="width:100% !important;" name="CityID" id="CityID" ></select>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 co-xs-12">
                                         <input type="text" name="Mobile" id="Mobile" value="" placeholder="موبایل" required>
@@ -60,10 +60,10 @@
                                         <input type="text" name="Education" id="Education" value="" placeholder="تحصیلات" required>
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 co-xs-12">
-                                        <input type="text" name="EducationLevel" id="EducationLevel" value="" placeholder="مدرک تحصیلی" required>
-                                    </div>
+                                        <select class="form-control select2" style="width:100% !important;" name="EducationLevel" id="EducationLevel"></select>
+                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 co-xs-12">
-                                        <input type="file" name="ResumeFile" id="ResumeFile" value="" placeholder="مدرک تحصیلی" required>
+                                        <input type="file" name="ResumeFile" id="ResumeFile" value="" placeholder="رزومه" required>
                                     </div>
 
                                     <div class="form-group col-md-12 col-sm-12 co-xs-12">
@@ -329,10 +329,12 @@
 </style>
 
 @section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script src="~/js/InitProject.js"></script>
     <script src="~/js/Utility.js"></script>
-    <script src="~/js/landing/AboutUs.js"></script>   
+    <script src="~/js/landing/CareerOpportunities.js"></script>
+    <script src="~/js/landing/City.js"></script>
     <script>
-        Web.AboutUs.InitAboutUs();
+        Web.CareerOpportunities.IntCareerOpportunitiesPage();
     </script>
 }

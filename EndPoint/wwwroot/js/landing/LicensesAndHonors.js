@@ -7,14 +7,7 @@
 
 (function (web, $) {
 
-    //Document Ready              
-
-    function textSearchOnKeyDown(event) {
-
-        if (event.keyCode == 13) $(`button[title='جستجو']`).click();
-
-    }
-
+  
     function filterGrid() {
 
         AjaxCallAction("POST", "/api/admin/LicensesAndHonors/Get_LicensesAndHonorss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
@@ -35,33 +28,7 @@
 
     }
 
-    function saveLicensesAndHonors(e) {
-
-        $(e).attr("disabled", "");
-
-        AjaxCallAction("POST", "/api/admin/LicensesAndHonors/Save_LicensesAndHonors", JSON.stringify({
-            Title: $("#Title").val(),
-            LicensesAndHonorsId: $("#LicensesAndHonorsId").val(),
-            Result_Final_Picture: $("#hid_Picture").val(),
-           
-        }), true, function (res) {
-
-            $(e).removeAttr("disabled");
-
-            if (res.isSuccess) {
-
-                goToUrl("/Admin/LicensesAndHonors/Index");
-
-            }
-            else {
-
-                alertB("خطا", res.message, "error");
-            }
-
-        }, true);
-
-    }
-
+  
     function initLicensesAndHonors(id = null) {
             AjaxCallAction("GET", "/api/admin/LicensesAndHonors/Get_LicensesAndHonors/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
@@ -77,10 +44,8 @@
 
   
     web.LicensesAndHonors = {
-        TextSearchOnKeyDown: textSearchOnKeyDown,
-        FilterGrid: filterGrid,
-        SaveLicensesAndHonors: saveLicensesAndHonors,
-        InitLicensesAndHonors: initLicensesAndHonors,      
+         FilterGrid: filterGrid,
+         InitLicensesAndHonors: initLicensesAndHonors,      
     };
 
 })(Web, jQuery);

@@ -43,16 +43,17 @@
                 $("#Mobile2").text(res.mobile2);
                 $("#FaxNumber").text(res.faxNumber);
                 $("#Email").text(res.email);
-                $("#Instagram").text(res.instagram);
-                $("#Whatsapp").text(res.whatsapp);
-                $("#Facebook").text(res.facebook);
-                $("#Telegram").text(res.telegram);              
+                $("#Instagram").attr("href", res.instagram);
+                $("#Whatsapp").attr("href", res.whatsapp);               
+                $("#Facebook").attr("href", res.facebook);
+                $("#Telegram").attr("href", res.telegram);
             }
 
         }, true);
 
     }
 
+   
     function initMoto() {
 
         AjaxCallAction("GET", "/api/AboutUs/Get_AboutUs/", null, true, function (res) {
@@ -81,12 +82,13 @@
 
     }
 
-    web.AboutUs = {
+    Web.AboutUs = {
         InitAboutUs: initAboutUs,
         InitVisionAndMission: initVisionAndMission,
         InitContanctUs: initContanctUs,
         InitMoto: initMoto,
-        InitOrganazationCharts:initOrganazationCharts
+        InitOrganazationCharts: initOrganazationCharts
+       
     };
 
 })(Web, jQuery);

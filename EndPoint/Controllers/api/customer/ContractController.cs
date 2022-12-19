@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EndPoint.Controllers.api.superVisor
+namespace EndPoint.Controllers.api.customer
 {
    
     public class ContractController : BaseController

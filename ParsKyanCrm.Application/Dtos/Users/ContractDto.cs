@@ -11,7 +11,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
     public class RequestContractDto : PageingParamerDto
     {
-
+        public int? KinfOfRequest { get; set; }
         public int? ContractId { get; set; }
 
     }

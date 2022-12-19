@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Contract.html" />
     <Content Remove="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Referral.html" />
+    <Content Remove="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Contract.html" />
     <Content Remove="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Customer.html" />
   </ItemGroup>
 
@@ -86,7 +88,9 @@
     <None Include="wwwroot\css\GlobalAreas\bower_components\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\css\GlobalAreas\bower_components\jquery\dist\jquery.min.map" />
     <None Include="wwwroot\css\GlobalAreas\bower_components\select2\dist\js\select2.full.min.js" />
+    <None Include="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Contract.html" />
     <None Include="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Referral.html" />
+    <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Contract.html" />
     <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Customer.html" />
     <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Referral.html" />
     <None Include="wwwroot\js\Utility.js" />

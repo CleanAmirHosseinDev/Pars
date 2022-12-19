@@ -4,6 +4,7 @@ using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveAboutUs;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveCity;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHonors;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsKyan;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveState;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.FillUserRoleAdminRoles;
@@ -70,6 +71,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetManagerOfParsKyanService GetManagerOfParsKyanService { get; }
 
         IGetManagerOfParsKyansService GetManagerOfParsKyansService { get; }
+
+        ISaveManagerOfParsKyanService SaveManagerOfParsKyanService { get; }
 
     }
 
@@ -199,7 +202,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveActivityService = _saveActivityService ?? new SaveActivityService(_context, _mapper,_env);
+                return _saveActivityService = _saveActivityService ?? new SaveActivityService(_context, _mapper, _env);
             }
         }
 
@@ -263,6 +266,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getManagerOfParsKyansService = _getManagerOfParsKyansService ?? new GetManagerOfParsKyansService(_context, _mapper);
+            }
+        }
+
+        private ISaveManagerOfParsKyanService _saveManagerOfParsKyanService;
+        public ISaveManagerOfParsKyanService SaveManagerOfParsKyanService
+        {
+            get
+            {
+                return _saveManagerOfParsKyanService = _saveManagerOfParsKyanService ?? new SaveManagerOfParsKyanService(_context, _mapper, _env);
             }
         }
 

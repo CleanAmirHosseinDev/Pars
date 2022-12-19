@@ -317,6 +317,7 @@ function AjaxCallActionPostSaveFormWithUploadFile(url, data, async, successCallB
             data: data,
             async: async,
             dataType: "json",
+            headers: { "Authorization": 'Bearer ' + getlstor("token") },
             cache: false,
             contentType: false,
             processData: false,

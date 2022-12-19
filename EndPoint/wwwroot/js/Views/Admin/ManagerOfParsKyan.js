@@ -31,22 +31,9 @@
 
     function saveManagerOfParsKyan(e) {
 
-        $(e).attr("disabled", "");
+        $(e).attr("disabled", "");             
 
-        AjaxCallAction("POST", "/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", JSON.stringify({
-            ManagerOfParsKyanName: $("#ManagerOfParsKyanName").val(),
-            ManagerOfParsKyanId: $("#ManagerOfParsKyanId").val(),
-            PositionID: $("#PositionID").val(),
-            TitleID: $("#TitleID").val(),
-            EmailAddress: $("#EmailAddress").val(),
-            TwitterId: $("#TwitterId").val(),
-            ResumeSummary: $("#ResumeSummary").val()
-            //,
-                
-           // ResumeFile
-           // Picture
-
-        }), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -68,25 +55,20 @@
 
         ComboBoxWithSearch('.select2', dir);
 
-        if (!isEmpty(id) && id != 0) {
+        AjaxCallAction("GET", "/api/admin/ManagerOfParsKyan/Get_ManagerOfParsKyan/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-            AjaxCallAction("GET", "/api/admin/ManagerOfParsKyan/Get_ManagerOfParsKyan/" + id, null, true, function (res) {                
+            if (res != null) {
 
-                if (res != null) {
+                $("#ManagersId").val(res.managersId);
+                $("#NameOfManager").val(res.nameOfManager);
+                $("#TwitterId").val(res.twitterId);
+                $("#ResumeSummary").val(res.resumeSummary);
+                $("#imgUpload_Picture").attr("src", res.pictureFull);
 
-                    $("#ManagerOfParsKyanId").val(res.managersId);
-                    $("#ManagerOfParsKyanName").val(res.nameOfManager);
-                    $("#TwitterId").val(res.twitterId);
-                    $("#ResumeSummary").val(res.resumeSummary);
-                    systemSeting_Combo(res);
-                }
+                systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
+            }
 
-            }, true);
-
-        }
-        else {
-            systemSeting_Combo(null);
-        }
+        }, true);
 
       
 

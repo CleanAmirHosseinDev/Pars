@@ -68,6 +68,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string ManagerOfParsKyanFolder
+        {
+            get
+            {
+                return "/FileUpload/ManagerOfParsKyan/";
+            }
+        }
+
         public static string No_Photo
         {
             get

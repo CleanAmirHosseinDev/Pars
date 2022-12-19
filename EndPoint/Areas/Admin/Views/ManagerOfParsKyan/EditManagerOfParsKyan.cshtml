@@ -5,6 +5,7 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link href="~/lib/cropperjs/cropper.css" rel="stylesheet" asp-append-version="true"/>
 }
 
 @section PageHeader{
@@ -47,10 +48,10 @@
             <div class="box-body" style="">
 
 
-                <form action="/Admin/ManagerOfParsKyan/Index" id="frmFormMain" method="post">
+                <form action="" id="frmFormMain" method="post">
                     <div class="form-horizontal">
 
-                        <input type="hidden" value="0" id="ManagerOfParsKyanId" name="ManagerOfParsKyanId" />
+                        <input type="hidden" value="0" id="ManagersId" name="ManagersId" />
 
                         <div class="row">
                             <div class="col-md-6">
@@ -60,7 +61,7 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="ManagerOfParsKyanName" id="ManagerOfParsKyanName" />
+                                        <input type="text" class="form-control" name="NameOfManager" id="NameOfManager" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -108,12 +109,13 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="hidden" id="hid_Picture" value="" />
+                                        <input type="hidden" id="hid_Picture" value="" name="Result_Final_Picture" />
                                         <input type="file" name="Picture" id="Picture" accept="image/*" onchange="onChangePicCropper(this,1200,'imgUpload_Picture','hid_Picture');" />
                                         <img src="" width="150" class="img-thumbnail" id="imgUpload_Picture" />
 
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         خلاصه رزومه
@@ -129,7 +131,8 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="file" name="ResumeFile" id="ResumeFile" class="form-control" />
+                                        <input type="file" name="ResumeFile" id="ResumeFile" accept="image/*,.pdf,.xlsx," />
+                                        <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -148,7 +151,6 @@
 
                     </div>
                 </form>
-
 
             </div>
         </div>

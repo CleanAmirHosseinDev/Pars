@@ -23,15 +23,20 @@ namespace EndPoint.Controllers
             return View();
         }
 
-        public IActionResult ContactUs()
+        public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult Article()
+        public IActionResult Faq()
         {
             return View();
         }
+        public IActionResult RequestForRating()
+        {
+            return View();
+        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

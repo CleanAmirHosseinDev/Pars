@@ -1,4 +1,8 @@
-﻿using ParsKyanCrm.Common;
+﻿using ClosedXML.Excel;
+using iTextSharp.text.pdf;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
@@ -12,7 +16,7 @@ namespace ParsKyanCrm.Infrastructure
 {
     public static class ServiceFileUploader
     {
-        public static Image LoadBase64(string base64)
+        public static string LoadBase64(string base64, string strMessage)
         {
             try
             {
@@ -22,15 +26,27 @@ namespace ParsKyanCrm.Infrastructure
                 {
                     image = Image.FromStream(ms);
                 }
-                return image;
+                return string.Empty;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return "لطفا " + strMessage + " به درستی بارگذاری کنید";
+            }
+        }
+        public static string LoadBase64(Stream stream, string strMessage)
+        {
+            try
+            {
+                Image image = Image.FromStream(stream);
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return "لطفا " + strMessage + " به درستی بارگذاری کنید";
             }
         }
 
-        public static string SaveImageByByte_InExistNextDelete(string source, string imgpath, string oldImage, string strMessage)
+        public static void SaveImageByByte_InExistNextDelete(string source, string imgpath, string oldImage, string strMessage)
         {
             try
             {
@@ -41,16 +57,56 @@ namespace ParsKyanCrm.Infrastructure
                 base64 = base64.Trim('\0');
 
                 //For Security ==> Only Image
-                LoadBase64(base64);
+                string strErr = LoadBase64(base64, strMessage);
+                if (!string.IsNullOrEmpty(strErr)) throw new Exception(strErr);
 
                 byte[] chartData = Convert.FromBase64String(base64);
 
-                if (chartData.Length > 5000000) return "" + strMessage + " باید کمتر از 5 مگ باشد";
+                if (chartData.Length > 5000000) throw new Exception("" + strMessage + " باید کمتر از 5 مگ باشد");
 
                 FileOperation.DeleteFile(oldImage);
                 System.IO.File.WriteAllBytes(imgpath, chartData);
 
-                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async static Task SaveFile(IFormFile formFile, string imgpath, string strMessage)
+        {
+            try
+            {
+
+                string strErr = string.Empty;
+
+                switch (Path.GetExtension(formFile.FileName.ToLower()).Replace(".", ""))
+                {
+                    case "pdf":
+
+                        strErr = IsPdf(formFile.OpenReadStream(), strMessage);
+
+                        break;
+                    case "xlsx":
+                    case "xls":
+
+                        strErr = IsExcel(formFile.OpenReadStream(), strMessage);
+
+                        break;
+                    default:
+                        strErr = LoadBase64(formFile.OpenReadStream(), strMessage);
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(strErr)) throw new Exception(strErr);
+
+                if (formFile.Length > 5000000) throw new Exception("" + strMessage + " باید کمتر از 5 مگ باشد");
+
+                using (Stream fileStream = new FileStream(imgpath, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(fileStream);
+                }
 
             }
             catch (Exception ex)
@@ -74,18 +130,59 @@ namespace ParsKyanCrm.Infrastructure
             }
         }
 
-        public static string GetFullPath(string filename, string path)
+        public static string GetFullPath(string filename, string path, bool isImage = true)
         {
-
             try
             {
-                return ConvertImageToByte((VaribleForName.IsDebug == true ? AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) : AppContext.BaseDirectory) + path + (string.IsNullOrEmpty(filename) ? VaribleForName.No_Photo : filename));
+
+                string strU = ((VaribleForName.IsDebug == true ? AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) : AppContext.BaseDirectory) + path + (string.IsNullOrEmpty(filename) ? VaribleForName.No_Photo : filename)).Replace("\\", "/").Replace("//", "/");
+
+                switch (!string.IsNullOrEmpty(filename) ? Path.GetExtension(filename.ToLower()).Replace(".", "") : string.Empty)
+                {
+                    case "pdf":
+                    case "xlsx":
+                    case "xls":
+
+                        return strU;
+
+                    default:
+
+                        return isImage ? ConvertImageToByte(strU) : strU;
+
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
 
+        public static string IsPdf(Stream stream, string strMessage)
+        {
+            try
+            {
+
+                PdfReader pdfReader = new PdfReader(stream);
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return "لطفا " + strMessage + " پی دی اف آپلود کنید";
+            }
+        }
+
+        public static string IsExcel(Stream stream, string strMessage)
+        {
+            try
+            {
+                XLWorkbook wb = new XLWorkbook(stream);
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return "لطفا " + strMessage + " اکسل آپلود کنید";
+            }
         }
 
     }

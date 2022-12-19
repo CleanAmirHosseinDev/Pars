@@ -37,7 +37,15 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 
         public string ResumeSummary { get; set; }
 
-        public string ResumeFile { get; set; }        
+        public string ResumeFile { get; set; }
+        public string ResumeFileFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ResumeFile, VaribleForName.ManagerOfParsKyanFolder, false);
+            }
+        }
+        public IFormFile Result_Final_ResumeFile { get; set; }
 
         public int? Userid { get; set; }
         public DateTime? SaveAndEditDate { get; set; }

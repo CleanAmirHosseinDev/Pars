@@ -11,13 +11,7 @@ namespace EndPoint.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult EditCareerOpportunities(int? id = null)
-        {
-            ViewBag.id = id;
-            return View();
-        }
+        }        
 
     }
 }

@@ -7,7 +7,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
 {
     public interface ISaveManagerOfParsKyanService
     {
-        Task<ResultDto<ManagerOfParsKyanDto>> Execute(ManagerOfParsKyanDto request, IFormCollection formCollection);
+        Task<ResultDto<ManagerOfParsKyanDto>> Execute(ManagerOfParsKyanDto request);
     }
 
 }

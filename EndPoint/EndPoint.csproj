@@ -366,6 +366,45 @@
     <None Include="wwwroot\lib\ckeditor\skins\moono-lisa\readme.md" />
     <None Include="wwwroot\lib\ckeditor\vendor\promise.js" />
     <None Include="wwwroot\lib\cropperjs\cropper.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\.gitignore" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\.npmignore" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\css\font-awesome.css.map" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\animated.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\bordered-pulled.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\core.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\fixed-width.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\font-awesome.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\icons.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\larger.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\list.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\mixins.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\path.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\rotated-flipped.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\stacked.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\less\variables.less" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\font-awesome.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_animated.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_core.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_fixed-width.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_icons.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_larger.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_list.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_mixins.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_path.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_stacked.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\css\fontawesome\scss\_variables.scss" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\ajaxmin.bat" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\angular.min.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\jquery-1.10.1.min.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\persianDatepicker.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\persianDatepicker.min.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\prism.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\prism.min.js" />
+    <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\vertical-responsive-menu.min.js" />
   </ItemGroup>
 
   <ItemGroup>

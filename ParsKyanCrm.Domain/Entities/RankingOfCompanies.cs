@@ -9,7 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public int RankingId { get; set; }
         public int? ComanyId { get; set; }
-        public DateTime? PublishDate { get; set; }
+        public string PublishDate { get; set; }
         public string LongTermRating { get; set; }
         public string ShortTermRating { get; set; }
         public string Vistion { get; set; }

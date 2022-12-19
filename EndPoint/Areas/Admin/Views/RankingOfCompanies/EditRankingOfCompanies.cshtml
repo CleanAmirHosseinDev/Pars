@@ -4,6 +4,7 @@
 }
 
 @section Styles{
+    <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
 
@@ -47,7 +48,7 @@
             <div class="box-body" style="">
 
 
-                <form action="/Admin/RankingOfCompanies/Index" id="frmFormMain" method="post">
+                <form action="" id="frmFormMain" method="post">
                     <div class="form-horizontal">
 
                         <input type="hidden" value="0" id="RankingId" name="RankingId" />
@@ -61,7 +62,7 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <select name="ComanyID" id="ComanyID" class="form-control select2" style="width:100% !important;"></select>
+                                        <select name="ComanyId" id="ComanyId" class="form-control select2" style="width:100% !important;"></select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -70,7 +71,7 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" name="PublishDate" id="PublishDate" class="form-control" />
+                                        <input type="text" name="PublishDate" id="PublishDate" class="form-control DatePicker" onkeypress = "return InputNoType(event);" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,9 +98,11 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" name="Vision" id="Vision" class="form-control" />
+                                        <input type="text" name="Vistion" id="Vistion" class="form-control" />
                                     </div>
                                 </div>
+
+
                                 <div class="form-group">
                                     <div class="col-md-3">
 
@@ -112,7 +115,33 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        فایل بیانیه مطبوعاتی
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="file" name="Result_Final_PressRelease" id="PressRelease" accept="image/*,.pdf,.xlsx," />
+                                        <div id="divDownload"></div>
+                                        <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="">
+                                        فایل خلاصه رتبه بندی
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="file" name="Result_Final_SummaryRanking" id="SummaryRanking" accept="image/*,.pdf,.xlsx," />
+                                        <div id="divDownload_SummaryRanking"></div>
+                                        <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -125,6 +154,7 @@
 </div>
 
 @section Scripts {
+    <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
         Web.RankingOfCompanies.InitRankingOfCompanies(@ViewBag.id);

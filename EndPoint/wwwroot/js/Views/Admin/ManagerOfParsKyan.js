@@ -31,7 +31,7 @@
 
     function saveManagerOfParsKyan(e) {
 
-        $(e).attr("disabled", "");             
+        $(e).attr("disabled", "");
 
         AjaxCallActionPostSaveFormWithUploadFile("/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
@@ -64,15 +64,18 @@
                 $("#TwitterId").val(res.twitterId);
                 $("#ResumeSummary").val(res.resumeSummary);
                 $("#imgUpload_Picture").attr("src", res.pictureFull);
+                $("#EmailAddress").val(res.emailAddress);
+                
+                $("#divDownload").html("<a href='/File/Download?path=" + res.resumeFileFull +"' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                 systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
             }
 
         }, true);
 
-      
 
-    }
+
+    }    
 
     function systemSeting_Combo(resSingle) {
 
@@ -81,13 +84,13 @@
             if (res.isSuccess) {
                 var strPositionID = '<option value="">انتخاب کنید</option>';
                 var strTitleID = '<option value="">انتخاب کنید</option>';
-               
+
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].parentCode == 1) {
                         strPositionID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 142) {
                         strTitleID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } 
+                    }
                 }
 
                 $("#PositionID").html(strPositionID);
@@ -95,12 +98,12 @@
                 if (resSingle != null) {
                     $("#PositionID").val(resSingle.positionId);
                     $("#TitleID").val(resSingle.titleId);
-                } 
+                }
             }
         }, true);
     }
 
-    web.ManagerOfParsKyan = {
+    web.ManagerOfParsKyan = {        
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveManagerOfParsKyan: saveManagerOfParsKyan,

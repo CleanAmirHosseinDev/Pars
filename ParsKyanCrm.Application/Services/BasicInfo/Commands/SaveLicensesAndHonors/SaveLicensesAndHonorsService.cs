@@ -58,18 +58,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
                     request.Picture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_Picture = _env.ContentRootPath + VaribleForName.LicensesAndHonorsFolder + request.Picture;
 
-                    string strMessage = ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر جایزه");
-                    if (!string.IsNullOrEmpty(strMessage))
-                    {
-
-                        return new ResultDto<LicensesAndHonorsDto>()
-                        {
-                            IsSuccess = false,
-                            Message = strMessage,
-                            Data = null
-                        };
-
-                    }
+                    ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر جایزه");                    
                 }
 
                 #endregion
@@ -130,7 +119,12 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
 
                 #endregion
 
-                throw ex;
+                return new ResultDto<LicensesAndHonorsDto>()
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null
+                };
             }
         }
 

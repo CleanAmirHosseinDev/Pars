@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].RankingOfCompaniesName + "</td><td><a title='ویرایش' href='/Admin/RankingOfCompanies/EditRankingOfCompanies?id=" + res.data[i].RankingOfCompaniesId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].comany != null ? res.data[i].comany.companyName : '') + "</td><td>" + res.data[i].publishDate + "</td><td>" + res.data[i].longTermRating + "</td><td>" + res.data[i].shortTermRating + "</td><td><a title='ویرایش' href='/Admin/RankingOfCompanies/EditRankingOfCompanies?id=" + res.data[i].rankingId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -39,7 +39,7 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/RankingOfCompanies/Save_RankingOfCompanies", JSON.stringify({ RankingOfCompaniesName: $("#RankingOfCompaniesName").val(), RankingOfCompaniesId: $("#RankingOfCompaniesId").val() }), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/admin/RankingOfCompanies/Save_RankingOfCompanies", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -58,47 +58,46 @@
     }
 
     function initRankingOfCompanies(id = null) {
+        PersianDatePicker(".DatePicker");
         ComboBoxWithSearch('.select2', 'dir');
-        if (!isEmpty(id) && id != 0) {
+        AjaxCallAction("GET", "/api/admin/RankingOfCompanies/Get_RankingOfCompanies/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-            AjaxCallAction("GET", "/api/admin/RankingOfCompanies/Get_RankingOfCompanies/" + id, null, true, function (res) {                
+            if (res != null) {
+                $("#ComanyId").val(res.ComanyId);
+                $("#PublishDate").val(res.publishDate);
+                $("#LongTermRating").val(res.longTermRating);
+                $("#ShortTermRating").val(res.shortTermRating);
+                $("#Vistion").val(res.vistion);
+                $("#RankingId").val(res.rankingId);
+                $("#divDownload").html("<a href='/File/Download?path=" + res.pressReleaseFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                $("#divDownload_SummaryRanking").html("<a href='/File/Download?path=" + res.summaryRankingFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
-                if (res != null) {
-                    $("#ComanyID").val(res.comanyId);
-                    $("#PublishDate").val(res.publishDate);
-                    $("#LongTermRating").val(res.longTermRating);
-                    $("#ShortTermRating").val(res.shortTermRating);
-                    $("#Vision").val(res.vision);                   
-                    systemSeting_Combo(res);
-                }
-            }, true);
-        }
-        else {
-            systemSeting_Combo(null);
-        }
+                systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
+            }
+        }, true);
 
     }
 
     function systemSeting_Combo(resSingle) {
 
-        AjaxCallAction("POST", "/api/admin/Companies/Get_Companiess", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Companies/Get_Companiess", JSON.stringify({ Search: null, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strCompany = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
-                    strCompany += " <option value=" + res.data[i].companyId + ">" + res.data[i].companyName + "</option>";
+                    strCompany += " <option value=" + res.data[i].companiesId + ">" + res.data[i].companyName + "</option>";
                 }
 
-                $("#ComanyID").html(strCompany);
-               
+                $("#ComanyId").html(strCompany);
+
                 if (resSingle != null) {
-                    $("#ComanyID").val(resSingle.comanyId);
+                    $("#ComanyId").val(resSingle.comanyId);
                 }
             }
 
         }, true);
-       
+
     }
 
 

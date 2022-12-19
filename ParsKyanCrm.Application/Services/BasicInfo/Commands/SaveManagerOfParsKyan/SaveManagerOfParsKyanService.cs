@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
@@ -11,8 +10,6 @@ using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsKyan
@@ -31,18 +28,17 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
             _env = env;
         }
 
-        public async Task<ResultDto<ManagerOfParsKyanDto>> Execute(ManagerOfParsKyanDto request, IFormCollection formCollection)
+        public async Task<ResultDto<ManagerOfParsKyanDto>> Execute(ManagerOfParsKyanDto request)
         {
             #region Upload Image
 
             string fileNameOldPic_Picture = string.Empty, path_Picture = string.Empty;
+            string fileNameOldPic_ResumeFile = string.Empty, path_ResumeFile = string.Empty;
 
             #endregion
 
             try
-            {
-
-                request.ManagersId = int.Parse(formCollection.FirstOrDefault(p=>p.Key == "ManagersId").Value);
+            {                
 
                 #region Validation
 
@@ -52,6 +48,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
 
                 var qFind = await _context.ManagerOfParsKyan.FindAsync(request.ManagersId);
                 request.Picture = qFind != null && !string.IsNullOrEmpty(qFind.Picture) ? qFind.Picture : string.Empty;
+                request.ResumeFile = qFind != null && !string.IsNullOrEmpty(qFind.ResumeFile) ? qFind.ResumeFile : string.Empty;
 
                 #region Upload Image
 
@@ -61,18 +58,15 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
                     request.Picture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_Picture = _env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + request.Picture;
 
-                    string strMessage = ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر یک");
-                    if (!string.IsNullOrEmpty(strMessage))
-                    {
+                    ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر یک");                    
+                }
 
-                        return new ResultDto<ManagerOfParsKyanDto>()
-                        {
-                            IsSuccess = false,
-                            Message = strMessage,
-                            Data = null
-                        };
-
-                    }
+                if (request.Result_Final_ResumeFile != null)
+                {
+                    fileNameOldPic_ResumeFile = request.ResumeFile;
+                    request.ResumeFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ResumeFile.FileName);
+                    path_ResumeFile = _env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + request.ResumeFile;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_ResumeFile, path_ResumeFile, "فایل رزومه");                    
                 }
 
                 #endregion
@@ -127,7 +121,11 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
                     if (request.Result_Final_Picture != null && request.Result_Final_Picture.Length > 10)
                         FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + fileNameOldPic_Picture);
 
+                    if (request.Result_Final_ResumeFile != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + fileNameOldPic_ResumeFile);
+
                     path_Picture = string.Empty;
+                    path_ResumeFile = string.Empty;
 
                     #endregion
 
@@ -147,10 +145,16 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
                 #region Upload Image
 
                 FileOperation.DeleteFile(path_Picture);
+                FileOperation.DeleteFile(path_ResumeFile);
 
                 #endregion
 
-                throw ex;
+                return new ResultDto<ManagerOfParsKyanDto>()
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null
+                };
             }
         }
 

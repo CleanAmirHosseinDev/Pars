@@ -790,7 +790,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasComment("لینک فایل بیانیه مطبوعاتی");
 
                 entity.Property(e => e.PublishDate)
-                    .HasColumnType("datetime")
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .IsFixedLength(true)
                     .HasComment("تاریخ انتشار");
 
                 entity.Property(e => e.ShortTermRating)
@@ -807,7 +809,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasComment("کاربر ثبت کننده");
 
                 entity.Property(e => e.Vistion)
-                    .HasMaxLength(100)
+                    .HasMaxLength(100).HasColumnName("Vision")
                     .HasComment("چشم انداز");
 
                 entity.HasOne(d => d.Comany)

@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveCity;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHonors;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsKyan;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveRankingOfCompanies;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveState;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveSystemSeting;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.FillUserRoleAdminRoles;
@@ -17,6 +18,8 @@ using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonors;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonorss;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKyan;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKyans;
+using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetRankingOfCompanies;
+using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetRankingOfCompaniess;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetState;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetStates;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetSystemSeting;
@@ -73,6 +76,12 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetManagerOfParsKyansService GetManagerOfParsKyansService { get; }
 
         ISaveManagerOfParsKyanService SaveManagerOfParsKyanService { get; }
+
+        IGetRankingOfCompaniessService GetRankingOfCompaniessService { get; }
+
+        IGetRankingOfCompaniesService GetRankingOfCompaniesService { get; }
+
+        ISaveRankingOfCompaniesService SaveRankingOfCompaniesService { get; }
 
     }
 
@@ -275,6 +284,33 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveManagerOfParsKyanService = _saveManagerOfParsKyanService ?? new SaveManagerOfParsKyanService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetRankingOfCompaniessService _getRankingOfCompaniessService;
+        public IGetRankingOfCompaniessService GetRankingOfCompaniessService
+        {
+            get
+            {
+                return _getRankingOfCompaniessService = _getRankingOfCompaniessService ?? new GetRankingOfCompaniessService(_context, _mapper);
+            }
+        }
+
+        private IGetRankingOfCompaniesService _getRankingOfCompaniesService;
+        public IGetRankingOfCompaniesService GetRankingOfCompaniesService
+        {
+            get
+            {
+                return _getRankingOfCompaniesService = _getRankingOfCompaniesService ?? new GetRankingOfCompaniesService(_context, _mapper);
+            }
+        }
+
+        private ISaveRankingOfCompaniesService _saveRankingOfCompaniesService;
+        public ISaveRankingOfCompaniesService SaveRankingOfCompaniesService
+        {
+            get
+            {
+                return _saveRankingOfCompaniesService = _saveRankingOfCompaniesService ?? new SaveRankingOfCompaniesService(_context, _mapper, _env);
             }
         }
 

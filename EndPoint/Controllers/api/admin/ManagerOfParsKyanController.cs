@@ -56,11 +56,12 @@ namespace EndPoint.Controllers.api.admin
         [HttpPost]
         [Route("[action]")]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.ManagerOfParsKyan_Save })]
-        public async Task<ResultDto<ManagerOfParsKyanDto>> Save_ManagerOfParsKyan()
+        public async Task<ResultDto<ManagerOfParsKyanDto>> Save_ManagerOfParsKyan([FromForm] ManagerOfParsKyanDto request)
         {
             try
             {
-                return await _basicInfoFacad.SaveManagerOfParsKyanService.Execute(new ManagerOfParsKyanDto() { Userid = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value) }, Request.Form);
+                request.Userid = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+                return await _basicInfoFacad.SaveManagerOfParsKyanService.Execute(request);
             }
             catch (Exception ex)
             {

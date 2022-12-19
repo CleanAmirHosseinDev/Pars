@@ -76,6 +76,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string RankingOfCompaniesFolder
+        {
+            get
+            {
+                return "/FileUpload/RankingOfCompanies/";
+            }
+        }
+
         public static string No_Photo
         {
             get

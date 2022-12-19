@@ -52,7 +52,7 @@
 
             if (res.isSuccess) {
 
-                goToUrl("/Admin/AboutUs/Index");
+                alertB("", res.message, "success");
 
             }
             else {

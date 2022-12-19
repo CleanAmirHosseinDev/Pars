@@ -8,7 +8,7 @@
                     <!--<span class="caption-subject bold uppercase">آب و هوا</span>-->
                 </div>
                 <div class="tools">
-                    <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="" />
+                   
                     <a href="" class="collapse" data-original-title="" title="">
                     </a>
                 </div>
@@ -29,10 +29,11 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">ارجاع</a></li>
-                        <li class=""><a onclick="" href="#timeline" data-toggle="tab" aria-expanded="false">مشخصات مشتری</a></li>
-                        <li class=""><a onclick="" href="#timeline_1" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
+                        <li class=""><a onclick="Web.RequestForRating.ShowCustomerInfo()" href="#timeline" data-toggle="tab" aria-expanded="false"  >مشخصات مشترcvcvی</a></li>
+                        <li class=""><a onclick="Web.RequestForRating.ShowContract()" href="#timeline_1" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
                     </ul>
                     <div class="tab-content">
+                        <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="" />
                         <div class="tab-pane active" id="activity">
 
                             <div class="form-group">
@@ -45,7 +46,8 @@
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="timeline">
-                           مشخصات مشتری
+                            <div id="customerInfo"></div>
+                            
                         </div>
                         <!-- /.tab-pane -->
 
@@ -61,3 +63,4 @@
 
     </div>
 </div>
+

@@ -10,7 +10,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].nameOfManager + "</td><td>" + res.data[i].title.label + "</td><td>" + res.data[i].position.label + "</td><td><a title='ویرایش' href='/Admin/ManagerOfParsKyan/EditManagerOfParsKyan?id=" + res.data[i].managersId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].nameOfManager + "</td><td>" + res.data[i].title.label + "</td><td>" + res.data[i].position.label + "</td><td><img src='" + res.data[i].pictureFull + "' style='max-width:50px' /></td><td><a href='/File/Download?path=" + res.data[i].resumeFileFull+"'>دانلود روزمه</a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -20,7 +20,7 @@
 
     }
     web.ManagerOfParsKyan = {
-        InManagerOfParsKyans: initManagerOfParsKyans,
+        InitManagerOfParsKyans: initManagerOfParsKyans,
     };
 
 })(Web, jQuery);

@@ -17,51 +17,53 @@
 
     function saveCustomer(e) {
 
-        $(e).attr("disabled", "");
+        $(e).attr("disabled", "");        
+        if ($("#TypeServiceRequestedId").val() != null && !isEmpty($("#TypeServiceRequestedId").val())) {
+            saveFirstRequestForRating($("#TypeServiceRequestedId").val());
+        }
+        else {
+            AjaxCallAction("POST", "/api/customer/Customers/Save_BasicInformationCustomers", JSON.stringify({
 
-        AjaxCallAction("POST", "/api/customer/Customers/Save_BasicInformationCustomers", JSON.stringify({
+                tel: $("#Tel").val(),
+                AddressCompany: $("#AddressCompany").val(),
+                CompanyName: $("#CompanyName").val(),
+                CeoName: $("#CeoName").val(),
+                EconomicCode: $("#EconomicCode").val(),
+                NationalCode: $("#NationalCode").val(),
+                CeoMobile: $("#CeoMobile").val(),
+                CeoNationalCode: $("#CeoNationalCode").val(),
+                AgentMobile: $("#AgentMobile").val(),
+                AgentName: $("#AgentName").val(),
+                NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
+                AmountOsLastSaels: isEmpty($("#AmountOsLastSaels").val()) ? null : $("#AmountOsLastSaels").val(),
+                CountOfPersonal: isEmpty($("#CountOfPersonal").val()) ? null : $("#CountOfPersonal").val(),
+                Email: $("#Email").val(),
+                Tel: $("#Tel").val(),
+                PostalCode: $("#PostalCode").val(),
+                HowGetKnowCompanyId: isEmpty($("#HowGetKnowCompany").val()) ? null : $("#HowGetKnowCompany").val(),
+                KindOfCompanyId: isEmpty($("#KindOfCompany").val()) ? null : $("#KindOfCompany").val(),
+                LastInsuranceList: null,
+                LastChangeOfficialNewspaper: null,
 
-            tel: $("#Tel").val(),
-            AddressCompany: $("#AddressCompany").val(),
-            CompanyName: $("#CompanyName").val(),
-            CeoName: $("#CeoName").val(),
-            EconomicCode: $("#EconomicCode").val(),
-            NationalCode: $("#NationalCode").val(),
-            CeoMobile: $("#CeoMobile").val(),
-            CeoNationalCode: $("#CeoNationalCode").val(),
-            AgentMobile: $("#AgentMobile").val(),
-            AgentName: $("#AgentName").val(),
-            NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
-            AmountOsLastSaels: isEmpty($("#AmountOsLastSaels").val()) ? null : $("#AmountOsLastSaels").val(),
-            CountOfPersonal: isEmpty($("#CountOfPersonal").val()) ? null : $("#CountOfPersonal").val(),
-            Email: $("#Email").val(),
-            Tel: $("#Tel").val(),
-            PostalCode: $("#PostalCode").val(),
-            HowGetKnowCompanyId: isEmpty($("#howGetKnowCompany").val()) ? null : $("#howGetKnowCompany").val(),
-            KindOfCompanyId: isEmpty($("#KindOfCompany").val()) ? null : $("#KindOfCompany").val(),
-            LastInsuranceList: null,
-            LastChangeOfficialNewspaper: null,
-            
-        }), true, function (res) {
+            }), true, function (res) {
 
-            $(e).removeAttr("disabled");
+                $(e).removeAttr("disabled");
 
-            if (res.isSuccess) {
+                if (res.isSuccess) {
 
-                if ($("#TypeServiceRequestedId").val() != null) {
-                    saveFirstRequestForRating($("#TypeServiceRequestedId").val());
+                    alertB("ثبت", res.message, "success");
+                    $("SeeAllRequest").show();
+                    //  goToUrl("/Customer/Customer/EditCustomer");
+
+                } else {
+
+                    alertB("خطا", res.message, "error");
                 }
 
-                alertB("ثبت", res.message, "success");
-                $("SeeAllRequest").show();
-                //  goToUrl("/Customer/Customer/EditCustomer");
+            }, true);
+        }
 
-            } else {
-
-                alertB("خطا", res.message, "error");
-            }
-
-        }, true);
+       
 
     }
 
@@ -138,6 +140,7 @@
                 $("#CeoName").val(res.ceoName);
                 $("#EconomicCode").val(res.economicCode);
                 $("#NationalCode").val(res.nationalCode);
+                $("#CeoNationalCode").val(res.ceoNationalCode);
                 $("#CeoMobile").val(res.ceoMobile);
                 $("#AgentMobile").val(res.agentMobile);
                 $("#AgentName").val(res.agentName);

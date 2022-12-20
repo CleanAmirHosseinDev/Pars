@@ -83,6 +83,10 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// </summary>
         public string CeoMobile { get; set; }
         /// <summary>
+        /// کد ملی مدیرعامل
+        /// </summary>
+        public string CeoNationalCode { get; set; }
+        /// <summary>
         /// تعداد پرسنل شرکت
         /// </summary>
         public int? CountOfPersonal { get; set; }
@@ -96,18 +100,29 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// کد احراز هویت
         /// </summary>
         public string AuthenticateCode { get; set; }
+        /// <summary>
+        /// آخرین تغییرات روزنامه رسمی
+        /// </summary>
+        public string LastChangeOfficialNewspaper { get; set; }
 
-        public string OfficialNewspape { get; set; }
-        public string InsuranceList { get; set; }
-
+        /// <summary>
+        /// آخرین اظهار نامه
+        /// </summary>
         public string LastAuditingTaxList { get; set; }
-
+        /// <summary>
+        /// آخرین لیست بیمه
+        /// </summary>
         public string LastInsuranceList { get; set; }
-
+        /// <summary>
+        /// آخرین صورتحسابهای مالی حسابرسی شده
+        /// </summary>
+        public string AuditedFinancialStatements { get; set; }
+       
         public CityDto City { get; set; }
         public SystemSetingDto HowGetKnowCompany { get; set; }
         public SystemSetingDto KindOfCompany { get; set; }
         public SystemSetingDto TypeServiceRequested { get; set; }
+
 
     }
 

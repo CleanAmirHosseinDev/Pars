@@ -48,3 +48,4 @@ log/
 
 /EndPoint.Api/wwwroot/js
 /EndPoint.Api/[obj/Debug/net5.0/].cache
+/EndPoint/FileUpload/Activity

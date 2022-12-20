@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].activityTitleNavigation.label + "</td><td><a title='ویرایش' href='/Admin/Activity/EditActivity?id=" + res.data[i].activityId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].activityTitleNavigation != null ? res.data[i].activityTitleNavigation.label : '') + "</td><td><a title='ویرایش' href='/Admin/Activity/EditActivity?id=" + res.data[i].activityId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -42,9 +42,9 @@
         AjaxCallAction("POST", "/api/admin/Activity/Save_Activity", JSON.stringify({
             ActivityTitle: $("#ActivityTitle").val(),
             ActivityId: $("#ActivityId").val(),
-            ActivityComment: $("#ActivityComment").val()//,
-            //Picture1: $("#Picture1").val(),
-            //Picture2: $("#Picture2").val()
+            ActivityComment: getDataCkeditor("ActivityComment"),
+            Result_Final_Picture1: $("#hid_Picture1").val(),
+            Result_Final_Picture2: $("#hid_Picture2").val(),
         }), true, function (res) {
 
             $(e).removeAttr("disabled");
@@ -67,22 +67,19 @@
 
         ComboBoxWithSearch('.select2', 'dir');
 
-        if (!isEmpty(id) && id != 0) {
+        AjaxCallAction("GET", "/api/admin/Activity/Get_Activity/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-            AjaxCallAction("GET", "/api/admin/Activity/Get_Activity/" + id, null, true, function (res) {
+            if (res != null) {
 
-                if (res != null) {
-                    
-                    $("#ActivityId").val(res.activityId);
-                    $("#ActivityComment").val(res.activityComment);
-                    systemSeting_Combo(res);
-                }
+                $("#ActivityId").val(res.activityId);               
+                $("#ActivityComment").val(res.activityComment);
+                Ckeditor("ActivityComment");
+                $("#imgUpload_Picture1").attr("src", res.picture1Full);
+                $("#imgUpload_Picture2").attr("src", res.picture2Full);
+                systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
+            }
 
-            }, true);
-
-        } else {
-            systemSeting_Combo(null);
-        }
+        }, true);
 
     }
 
@@ -92,19 +89,19 @@
 
             if (res.isSuccess) {
                 var strActivityTitle = '<option value="">انتخاب کنید</option>';
-               
+
                 for (var i = 0; i < res.data.length; i++) {
-                   
+
                     strActivityTitle += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    
+
                 }
-             
+
                 $("#ActivityTitle").html(strActivityTitle);
-                if (resSingle!=null) {
+                if (resSingle != null) {
                     $("#ActivityTitle").val(resSingle.activityTitle);
 
                 }
-             
+
 
 
             }

@@ -5,17 +5,18 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link href="~/lib/cropperjs/cropper.css" rel="stylesheet" asp-append-version="true"/>
 }
 
 @section PageHeader{
     <section class="content-header">
         <h1>
-            ثبت استان
+            ثبت ساختار مدیریت
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/ManagerOfParsKyan/Index"><i></i>ثبت ساختار مدیریت</a></li>
-            <li class="active"><a href="/Admin/ManagerOfParsKyan/EditManagerOfParsKyan@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت استان</a></li>
+            <li><a href="/Admin/ManagerOfParsKyan/Index"><i></i> ساختار مدیریت</a></li>
+            <li class="active"><a href="/Admin/ManagerOfParsKyan/EditManagerOfParsKyan@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت ساختار مدیریت</a></li>
         </ol>
     </section>
 }
@@ -47,10 +48,10 @@
             <div class="box-body" style="">
 
 
-                <form action="/Admin/ManagerOfParsKyan/Index" id="frmFormMain" method="post">
+                <form action="" id="frmFormMain" method="post">
                     <div class="form-horizontal">
 
-                        <input type="hidden" value="0" id="ManagerOfParsKyanId" name="ManagerOfParsKyanId" />
+                        <input type="hidden" value="0" id="ManagersId" name="ManagersId" />
 
                         <div class="row">
                             <div class="col-md-6">
@@ -60,7 +61,7 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="ManagerOfParsKyanName" id="ManagerOfParsKyanName" />
+                                        <input type="text" class="form-control" name="NameOfManager" id="NameOfManager" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -101,51 +102,58 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                
+
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         عکس
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="file" name="Picture" id="Picture" class="form-control" />
+                                        <input type="hidden" id="hid_Picture" value="" name="Result_Final_Picture" />
+                                        <input type="file" name="Picture" id="Picture" accept="image/*" onchange="onChangePicCropper(this,1200,'imgUpload_Picture','hid_Picture');" />
+                                        <img src="" width="150" class="img-thumbnail" id="imgUpload_Picture" />
+
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         خلاصه رزومه
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="text" name="ResumeSummary" id="ResumeSummary" class="form-control" />
+                                        <textarea name="ResumeSummary" id="ResumeSummary" class="form-control"></textarea>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         فایل رزومه
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="text" name="ResumeFile" id="ResumeFile" class="form-control" />
+                                        <input type="file" name="Result_Final_ResumeFile" id="ResumeFile" accept="image/*,.pdf,.xlsx," />
+                                        <div id="divDownload"></div>
+                                        <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="col-md-4">
 
                                     </div>
-                                        <div class="col-md-8">
-                                            <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.ManagerOfParsKyan.SaveManagerOfParsKyan(this);">
-                                                <i class="fa fa-save"></i>
-                                            </button>
-                                        </div>
+                                    <div class="col-md-8">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.ManagerOfParsKyan.SaveManagerOfParsKyan(this);">
+                                            <i class="fa fa-save"></i>
+                                        </button>
                                     </div>
-                                
+                                </div>
+
                             </div>
                         </div>
 
                     </div>
                 </form>
-
 
             </div>
         </div>
@@ -154,6 +162,8 @@
 
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropper.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropperOpp.js" asp-append-version="true"></script>
     <script>
         Web.ManagerOfParsKyan.InitManagerOfParsKyan(@ViewBag.id);
     </script>

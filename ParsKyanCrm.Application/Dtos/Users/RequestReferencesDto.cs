@@ -42,6 +42,11 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string RequestNo { get; set; }
 
+        public int? LevelStepIndex { get; set; }
+        public int? DestLevelStepAccessRole { get; set; }
+        public string UserRoleDes { get; set; }
+
+
     }
 
     public class ValidatorRequestReferencesDto : AbstractValidator<RequestReferencesDto>

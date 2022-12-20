@@ -46,189 +46,227 @@
             <div class="box-body" style="">
                 <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post">
                     <div class="form-horizontal">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نام شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="CompanyName" id="CompanyName" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نام مدیر عامل
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="CeoName" id="CeoName" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        موبایل مدیر عامل
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="CeoMobile" id="CeoMobile" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        کد اقتصادی
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        شناسه ملی  شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="NationalCode" id="NationalCode" class="form-control" />
-                                    </div>
-                                </div>
-                                @*<div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        شهر
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-4">
-                                        <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
-                                    </div>
-                                    
-                                    <div class="col-md-4">
-                                        <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
-                                    </div>
-                                </div>*@
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نام نماینده شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="AgentName" id="AgentName" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        شماره نماینده شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="AgentMobile" id="AgentMobile" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        اسامی امضاکنندگان مجاز
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <textarea rows="3" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        مبلغ کل فروش اظهار شده
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="AmountOsLastSaels" id="AmountOsLastSaels" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        تعداد کارکنان شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="CountOfPersonal" id="CountOfPersonal" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نوع خدمت مورد تقاضا
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select name="TypeServiceRequestedId" id="TypeServiceRequestedId" class="form-control select2" style="width:100% !important;"></select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نحوه آشنایی با شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select name="HowGetKnowCompany" id="HowGetKnowCompany" class="form-control select2" style="width:100% !important;"></select>
-                                    </div>
-                                </div>
+                        <div class="row" id="divTypeServiceRequestedId">
+                            <div class="col-md-12">
+                                <div style="background-color:#c2dae1; max-width: 600px; margin: auto; border: 2px solid #00c0ef; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+                                    <h4> نوع خدمت مورد تقاضا</h4>
+                                    <select name="TypeServiceRequestedId" id="TypeServiceRequestedId" class="form-control select2" style="width:100% !important;"></select>
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نوع شرکت
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select name="KindOfCompany" id="KindOfCompany" class="form-control select2" style="width:100% !important;"></select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        ایمیل
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="Email" id="Email" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        شماره تماس
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="Tel" id="Tel" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        کد پستی
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="PostalCode" id="PostalCode" class="form-control" />
-                                    </div>
-                                </div><div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        آدرس
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <textarea rows="3" name="AddressCompany" id="AddressCompany" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
-                                            ثبت اطلاعات  <i class="fa fa-save"></i>
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                </form>
+                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            نام شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CompanyName" id="CompanyName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            نام مدیر عامل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CeoName" id="CeoName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            موبایل مدیر عامل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CeoMobile" id="CeoMobile" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            کد ملی مدیر عامل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            کد اقتصادی
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            شناسه ملی  شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="NationalCode" id="NationalCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                        <label class="control-label col-md-4" for="">
+                            شهر
+                            <span class="RequiredLabel">*</span>
+                        </label>
+                        <div class="col-md-4">
+                            <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
+                        </div>
+                    </div>*@
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            نام نماینده شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="AgentName" id="AgentName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            شماره نماینده شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="AgentMobile" id="AgentMobile" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            اسامی امضاکنندگان مجاز
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <textarea rows="3" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            مبلغ کل فروش اظهار شده
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="AmountOsLastSaels" id="AmountOsLastSaels" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            تعداد کارکنان شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CountOfPersonal" id="CountOfPersonal" class="form-control" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            نحوه آشنایی با شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select name="HowGetKnowCompany" id="HowGetKnowCompany" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            نوع شرکت
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select name="KindOfCompany" id="KindOfCompany" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            ایمیل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Email" id="Email" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            شماره تماس
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Tel" id="Tel" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            کد پستی
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="PostalCode" id="PostalCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            آدرس
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <textarea rows="3" name="AddressCompany" id="AddressCompany" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            لیست آخرین بیمه
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="file" name="LastInsuranceList" id="LastInsuranceList" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            لیست آخرین تغییرات روزنامه رسمی
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="file" name="LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
+                                                ثبت اطلاعات  <i class="fa fa-save"></i>
+                                            </button>
+                                            <a href="~/customer/RequestForRating/index" class="btn btn-default fontForAllPage">مشاهده درخواست ها </a>                                           
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                        </div>
+
+</form>
 
 
             </div>

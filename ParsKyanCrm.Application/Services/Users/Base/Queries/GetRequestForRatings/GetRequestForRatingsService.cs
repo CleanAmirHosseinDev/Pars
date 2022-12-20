@@ -32,7 +32,7 @@ namespace ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatin
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
 
-select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) as DestLevelStepIndex from (
+select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,(select distinct LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) as DestLevelStepIndex from (
 
 	select top {request.PageSize} rfr.CustomerID,
                 rfr.DateOfConfirmed,

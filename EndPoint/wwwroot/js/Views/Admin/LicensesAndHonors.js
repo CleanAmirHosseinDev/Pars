@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + res.data[i].picture + "</td><td><a title='ویرایش' href='/Admin/LicensesAndHonors/EditLicensesAndHonors?id=" + res.data[i].licensesAndHonorsId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td><img src=" + res.data[i].pictureFull + " style='max-width:50px'/></td><td><a title='ویرایش' href='/Admin/LicensesAndHonors/EditLicensesAndHonors?id=" + res.data[i].licensesAndHonorsId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -41,7 +41,9 @@
 
         AjaxCallAction("POST", "/api/admin/LicensesAndHonors/Save_LicensesAndHonors", JSON.stringify({
             Title: $("#Title").val(),
-            LicensesAndHonorsId: $("#LicensesAndHonorsId").val()
+            LicensesAndHonorsId: $("#LicensesAndHonorsId").val(),
+            Result_Final_Picture: $("#hid_Picture").val(),
+           
         }), true, function (res) {
 
             $(e).removeAttr("disabled");
@@ -61,23 +63,16 @@
     }
 
     function initLicensesAndHonors(id = null) {
-
-       
-        if (!isEmpty(id) && id != 0) {
-
-            AjaxCallAction("GET", "/api/admin/LicensesAndHonors/Get_LicensesAndHonors/" + id, null, true, function (res) {
+            AjaxCallAction("GET", "/api/admin/LicensesAndHonors/Get_LicensesAndHonors/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res != null) {
                     
                     $("#LicensesAndHonorsId").val(res.licensesAndHonorsId);
                     $("#Title").val(res.title);
-                   
+                    $("#imgUpload_Picture").attr("src", res.pictureFull);
                 }
 
             }, true);
-
-        }
-
     }
 
   
@@ -85,8 +80,7 @@
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveLicensesAndHonors: saveLicensesAndHonors,
-        InitLicensesAndHonors: initLicensesAndHonors,
-       
+        InitLicensesAndHonors: initLicensesAndHonors,      
     };
 
 })(Web, jQuery);

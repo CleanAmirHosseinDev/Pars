@@ -1,0 +1,37 @@
+﻿
+
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+
+<section class="contact-page-section">
+    <div class="container">
+
+        <div class="inner-container">
+            <div style="background-color:white;padding:20px;direction:rtl;text-align:justify;padding-top:50px;padding-bottom:50px">
+                <h1>رتبه‌بندی اعتباری پارس کیان</h1>
+
+                <strong>نام شرکت:</strong>
+                <span id="CompanyName"></span><br />
+
+                <strong> عنوان:</strong>
+                <span id="Subject"></span><br />
+               
+                <strong> درباره ما:</strong>
+                <div id="AboutUSContent"></div><br />
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@section Scripts {
+    <script src="~/js/InitProject.js"></script>
+    <script src="~/js/Utility.js"></script>
+    <script src="~/js/landing/AboutUs.js"></script>   
+    <script>
+        Web.AboutUs.InitAboutUs();
+    </script>
+}

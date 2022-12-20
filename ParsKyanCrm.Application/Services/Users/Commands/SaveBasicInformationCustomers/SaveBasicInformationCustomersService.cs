@@ -182,7 +182,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 return new ResultDto()
                 {
                     IsSuccess = true,
-                    Message = "کاربر محترم اطلاعات اولیه و درخواست شما با موفقیت ثبت گردید از طریق همین ناحیه وضعیت درخواست خود را پیگیری بفرمایید"
+                    Message = "کاربر محترم اطلاعات اولیه شما با موفقیت ثبت گردید از طریق همین ناحیه وضعیت درخواست خود را پیگیری بفرمایید"
                 };
             }
             catch (Exception ex)

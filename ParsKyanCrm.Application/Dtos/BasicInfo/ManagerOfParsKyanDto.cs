@@ -1,10 +1,9 @@
-﻿using ParsKyanCrm.Application.Dtos.Users;
+﻿using Microsoft.AspNetCore.Http;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Common;
+using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Dtos.BasicInfo
 {
@@ -25,9 +24,29 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public int? TitleId { get; set; }
         public string EmailAddress { get; set; }
         public string TwitterId { get; set; }
+
         public string Picture { get; set; }
+        public string Result_Final_Picture { get; set; }
+        public string PictureFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(Picture, VaribleForName.ManagerOfParsKyanFolder);
+            }
+        }
+
         public string ResumeSummary { get; set; }
+
         public string ResumeFile { get; set; }
+        public string ResumeFileFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ResumeFile, VaribleForName.ManagerOfParsKyanFolder, false);
+            }
+        }
+        public IFormFile Result_Final_ResumeFile { get; set; }
+
         public int? Userid { get; set; }
         public DateTime? SaveAndEditDate { get; set; }
 

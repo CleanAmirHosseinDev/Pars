@@ -33,20 +33,7 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", JSON.stringify({
-            ManagerOfParsKyanName: $("#ManagerOfParsKyanName").val(),
-            ManagerOfParsKyanId: $("#ManagerOfParsKyanId").val(),
-            PositionID: $("#PositionID").val(),
-            TitleID: $("#TitleID").val(),
-            EmailAddress: $("#EmailAddress").val(),
-            TwitterId: $("#TwitterId").val(),
-            ResumeSummary: $("#ResumeSummary").val()
-            //,
-                
-           // ResumeFile
-           // Picture
-
-        }), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/admin/ManagerOfParsKyan/Save_ManagerOfParsKyan", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -68,29 +55,27 @@
 
         ComboBoxWithSearch('.select2', dir);
 
-        if (!isEmpty(id) && id != 0) {
+        AjaxCallAction("GET", "/api/admin/ManagerOfParsKyan/Get_ManagerOfParsKyan/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-            AjaxCallAction("GET", "/api/admin/ManagerOfParsKyan/Get_ManagerOfParsKyan/" + id, null, true, function (res) {                
+            if (res != null) {
 
-                if (res != null) {
+                $("#ManagersId").val(res.managersId);
+                $("#NameOfManager").val(res.nameOfManager);
+                $("#TwitterId").val(res.twitterId);
+                $("#ResumeSummary").val(res.resumeSummary);
+                $("#imgUpload_Picture").attr("src", res.pictureFull);
+                $("#EmailAddress").val(res.emailAddress);
+                
+                $("#divDownload").html("<a href='/File/Download?path=" + res.resumeFileFull +"' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
-                    $("#ManagerOfParsKyanId").val(res.managersId);
-                    $("#ManagerOfParsKyanName").val(res.nameOfManager);
-                    $("#TwitterId").val(res.twitterId);
-                    $("#ResumeSummary").val(res.resumeSummary);
-                    systemSeting_Combo(res);
-                }
+                systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
+            }
 
-            }, true);
+        }, true);
 
-        }
-        else {
-            systemSeting_Combo(null);
-        }
 
-      
 
-    }
+    }    
 
     function systemSeting_Combo(resSingle) {
 
@@ -99,13 +84,13 @@
             if (res.isSuccess) {
                 var strPositionID = '<option value="">انتخاب کنید</option>';
                 var strTitleID = '<option value="">انتخاب کنید</option>';
-               
+
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].parentCode == 1) {
                         strPositionID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 142) {
                         strTitleID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } 
+                    }
                 }
 
                 $("#PositionID").html(strPositionID);
@@ -113,12 +98,12 @@
                 if (resSingle != null) {
                     $("#PositionID").val(resSingle.positionId);
                     $("#TitleID").val(resSingle.titleId);
-                } 
+                }
             }
         }, true);
     }
 
-    web.ManagerOfParsKyan = {
+    web.ManagerOfParsKyan = {        
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveManagerOfParsKyan: saveManagerOfParsKyan,

@@ -42,7 +42,7 @@
         AjaxCallAction("POST", "/api/admin/NewsAndContent/Save_NewsAndContent", JSON.stringify({
             NewsID: $("#NewsID").val(),
             Title: $("#Title").val(),
-            Body: $("#Body").val(),
+            Body: getDataCkeditor("Body") ,//$("#Body").val(),
             KindOfContent: $("#KindOfContent").val(),
             Keywords: $("#Keywords").val(),
             IsConfirmByAdmin: $("#IsConfirmByAdmin").val()
@@ -65,6 +65,7 @@
     }
 
     function initNewsAndContent(id = null) {
+        ComboBoxWithSearch('.select2', 'dir');
 
         if (!isEmpty(id) && id != 0) {
 
@@ -75,15 +76,44 @@
                     $("#NewsID").val(res.NewsID);
                     $("#Title").val(res.title);
                     $("#Body").val(res.body);
+                    Ckeditor("Body");
                     $("#KindOfContent").val(res.kindOfContent);
+                    $("#ContentPic").val(res.contentPic);
+                    $("#MetaKeywords").val(res.metaKeywords);
+                    $("#MeteDesc").val(res.meteDesc);
                     $("#Keywords").val(res.keywords);
                     $("#IsConfirmByAdmin").val(res.isConfirmByAdmin);
+                    systemSeting_Combo(res);
                 }
 
             }, true);
 
         }
+        else {
+            Ckeditor("Body");
+            systemSeting_Combo(null);
+        }
 
+    }
+
+    function systemSeting_Combo(resSingle) {
+
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "60", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfContent= '<option value="">انتخاب کنید</option>';
+               
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfContent += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    
+                }              
+                $("#KindOfContent").html(strKindOfContent);
+                if (resSingle != null) {
+                   
+                    $("#KindOfContent").val(resSingle.kindOfContent);
+                }
+            }
+        }, true);
     }
 
     web.NewsAndContent = {

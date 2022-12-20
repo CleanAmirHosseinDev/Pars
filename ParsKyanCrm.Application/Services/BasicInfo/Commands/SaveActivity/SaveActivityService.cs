@@ -21,12 +21,12 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;        
+        private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
         public SaveActivityService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
             _env = env;
         }
 
@@ -49,6 +49,10 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
 
                 #endregion
 
+                var qFind = await _context.Activity.FindAsync(request.ActivityId);
+                request.Picture1 = qFind != null && !string.IsNullOrEmpty(qFind.Picture1) ? qFind.Picture1 : string.Empty;
+                request.Picture2 = qFind != null && !string.IsNullOrEmpty(qFind.Picture2) ? qFind.Picture2 : string.Empty;
+
                 #region Upload Image
 
                 if (request.Result_Final_Picture1 != null && request.Result_Final_Picture1.Length > 10)
@@ -57,18 +61,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
                     request.Picture1 = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_Picture1 = _env.ContentRootPath + VaribleForName.ActivityFolder + request.Picture1;
 
-                    string strMessage = ServiceImage.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture1, path_Picture1, string.Empty, "تصویر یک");
-                    if (!string.IsNullOrEmpty(strMessage))
-                    {
-
-                        return new ResultDto<ActivityDto>()
-                        {
-                            IsSuccess = false,
-                            Message = strMessage,
-                            Data = null
-                        };
-
-                    }
+                    ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture1, path_Picture1, string.Empty, "تصویر یک");
                 }
 
                 if (request.Result_Final_Picture2 != null && request.Result_Final_Picture2.Length > 10)
@@ -77,25 +70,14 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
                     request.Picture2 = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_Picture2 = _env.ContentRootPath + VaribleForName.ActivityFolder + request.Picture2;
 
-                    string strMessage = ServiceImage.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture2, path_Picture2, string.Empty, "تصویر دو");
-                    if (!string.IsNullOrEmpty(strMessage))
-                    {
-
-                        return new ResultDto<ActivityDto>()
-                        {
-                            IsSuccess = false,
-                            Message = strMessage,
-                            Data = null
-                        };
-
-                    }
+                    ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture2, path_Picture2, string.Empty, "تصویر دو");
                 }
 
                 #endregion
 
                 EntityEntry<Activity> q_Entity;
                 if (request.ActivityId == 0)
-                {                    
+                {
                     q_Entity = _context.Activity.Add(_mapper.Map<Activity>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<ActivityDto>(q_Entity.Entity);
@@ -103,7 +85,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
                 else
                 {
                     Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Activity).Name, new Dictionary<string, object>()
-                    {                        
+                    {
                         {
                             nameof(q_Entity.Entity.Picture1),request.Picture1
                         },
@@ -152,7 +134,12 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
 
                 #endregion
 
-                throw ex;
+                return new ResultDto<ActivityDto>()
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null
+                };
             }
         }
 

@@ -317,6 +317,7 @@ function AjaxCallActionPostSaveFormWithUploadFile(url, data, async, successCallB
             data: data,
             async: async,
             dataType: "json",
+            headers: { "Authorization": 'Bearer ' + getlstor("token") },
             cache: false,
             contentType: false,
             processData: false,
@@ -1587,7 +1588,9 @@ function UploadForGalleryChange(e, idDivHtml = "selectedFiles", idSpnError = "sp
 
 function Ckeditor(id) {
     try {
-        $("#" + id).ckeditor();
+
+        CKEDITOR.replace(id);
+
     } catch (e) {
 
     }
@@ -1611,6 +1614,11 @@ function EmptyCkeditors(ids) {
     } catch (e) {
 
     }
+}
+function getDataCkeditor(id) {
+
+    return CKEDITOR.instances[id].getData();
+
 }
 
 function Tagsinput(id) {

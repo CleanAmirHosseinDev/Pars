@@ -44,13 +44,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
             #endregion
 
             try
-            {                
+            {
 
                 #region Validation
 
 
 
                 #endregion
+
+                var qFind = await _context.BoardOfDirectors.FindAsync(request.BoardOfDirectorsId);
+                request.AcademicDegreePicture = qFind != null && !string.IsNullOrEmpty(qFind.AcademicDegreePicture) ? qFind.AcademicDegreePicture : string.Empty;
+                request.PictureOfEducationCourse = qFind != null && !string.IsNullOrEmpty(qFind.PictureOfEducationCourse) ? qFind.PictureOfEducationCourse : string.Empty;
 
                 #region Upload Image
 
@@ -60,18 +64,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                     request.AcademicDegreePicture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_AcademicDegreePicture = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + request.AcademicDegreePicture;
 
-                    string strMessage = ServiceImage.SaveImageByByte_InExistNextDelete(request.Result_Final_AcademicDegreePicture, path_AcademicDegreePicture, string.Empty, "تصویر مدرک تحصیلی");
-                    if (!string.IsNullOrEmpty(strMessage))
-                    {
-
-                        return new ResultDto<BoardOfDirectorsDto>()
-                        {
-                            IsSuccess = false,
-                            Message = strMessage,
-                            Data = null
-                        };
-
-                    }
+                    ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_AcademicDegreePicture, path_AcademicDegreePicture, string.Empty, "تصویر مدرک تحصیلی");
                 }
 
                 if (request.Result_Final_PictureOfEducationCourse != null && request.Result_Final_PictureOfEducationCourse.Length > 10)
@@ -80,18 +73,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                     request.PictureOfEducationCourse = Guid.NewGuid().ToString().Replace("-", "") + ".png";
                     path_PictureOfEducationCourse = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + request.PictureOfEducationCourse;
 
-                    string strMessage = ServiceImage.SaveImageByByte_InExistNextDelete(request.Result_Final_PictureOfEducationCourse, path_PictureOfEducationCourse, string.Empty, "تصویر دوره آموزشی");
-                    if (!string.IsNullOrEmpty(strMessage))
-                    {
-
-                        return new ResultDto<BoardOfDirectorsDto>()
-                        {
-                            IsSuccess = false,
-                            Message = strMessage,
-                            Data = null
-                        };
-
-                    }
+                    ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_PictureOfEducationCourse, path_PictureOfEducationCourse, string.Empty, "تصویر دوره آموزشی");
+                    
                 }
 
                 #endregion
@@ -189,7 +172,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
 
                 #endregion
 
-                throw ex;
+                return new ResultDto<BoardOfDirectorsDto>()
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null
+                };
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using ParsKyanCrm.Common;
+using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         {
             get
             {
-                if (VaribleForName.IsDebug == true)
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) + VaribleForName.ActivityFolder + (string.IsNullOrEmpty(Picture1) ? VaribleForName.No_Photo : Picture1));
-                else
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory + VaribleForName.ActivityFolder + (string.IsNullOrEmpty(Picture1) ? VaribleForName.No_Photo : Picture1));
+                return ServiceFileUploader.GetFullPath(Picture1, VaribleForName.ActivityFolder);
             }
         }
 
@@ -41,10 +39,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         {
             get
             {
-                if (VaribleForName.IsDebug == true)
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) + VaribleForName.ActivityFolder + (string.IsNullOrEmpty(Picture2) ? VaribleForName.No_Photo : Picture2));
-                else
-                    return ServiceImage.ConvertImageToByte(AppContext.BaseDirectory + VaribleForName.ActivityFolder + (string.IsNullOrEmpty(Picture2) ? VaribleForName.No_Photo : Picture2));
+                return ServiceFileUploader.GetFullPath(Picture2, VaribleForName.ActivityFolder);
             }
         }
         public string Result_Final_Picture2 { get; set; }

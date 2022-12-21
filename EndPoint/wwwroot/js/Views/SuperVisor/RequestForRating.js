@@ -80,15 +80,17 @@
 
     function showCustomerInfo() {
 
-        getCustomerInfo(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
+        getCustomerInfo();
     }
 
     function showContract() {
 
-        getContractInfo(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
+        getContractInfo();
     }
 
-    function getCustomerInfo(id = null) {
+    function getCustomerInfo() {
+
+      var id= decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker())
 
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
@@ -111,7 +113,9 @@
         }
     }
 
-    function getContractInfo(id = null) {
+    function getContractInfo() {
+
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
 
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {

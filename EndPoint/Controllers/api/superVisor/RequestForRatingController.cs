@@ -28,7 +28,7 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
                 request.CustomerId = null;
-                request.RequestId = null;
+              //  request.RequestId = null;
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }

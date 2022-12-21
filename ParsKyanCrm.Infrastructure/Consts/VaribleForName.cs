@@ -117,14 +117,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "10";
             }
         }
-        public static int LevelStepIndex
-        {
-            get
-            {
-                return 1;
-            }
-        }
-
+      
         public static string LevelStepStatus
         {
             get

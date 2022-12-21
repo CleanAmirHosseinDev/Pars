@@ -390,6 +390,8 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.TransactionRegulations)
                     .HasMaxLength(250)
                     .HasComment("آیین نامه معاملات");
+
+                                    
             });
 
             modelBuilder.Entity<CorporateGovernanceDetail>(entity =>
@@ -405,6 +407,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.ProductName).HasMaxLength(250);
 
                 entity.Property(e => e.WorkExperience).HasComment("تجربه کاری به ماه");
+
             });
 
             modelBuilder.Entity<Customers>(entity =>
@@ -523,7 +526,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.CustomersTypeServiceRequested)
                     .HasForeignKey(d => d.TypeServiceRequestedId)
                     .HasConstraintName("FK_Customers_SystemSeting1");
-            });
+            });            
 
             modelBuilder.Entity<LevelStepSetting>(entity =>
             {
@@ -606,6 +609,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasMaxLength(250)
                     .HasComment("مرجع صادرکننده");
 
+
                 entity.Property(e => e.GuidelinesAndRegulations)
                     .HasMaxLength(250)
                     .HasComment("دستورالعمل ها و آیین نامه ها");
@@ -649,8 +653,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ResumeFile).HasMaxLength(250);
 
-                entity.Property(e => e.ResumeSummary).HasMaxLength(250);
-
                 entity.Property(e => e.SaveAndEditDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TitleId)
@@ -679,21 +681,19 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<NewsAndContent>(entity =>
             {
-                entity.HasKey(e => e.NewsId);
+                entity.HasKey(e => e.ContentId);
 
                 entity.HasComment("اخبار و مطالب سایت");
 
-                entity.Property(e => e.NewsId)
-                    .HasColumnName("NewsID")
-                    .HasComment("اخبار سایت");
+                entity.Property(e => e.ContentId).HasComment("اخبار سایت");
 
                 entity.Property(e => e.Body).HasComment("متن اصلی خبر");
 
-                entity.Property(e => e.DateNews)
+                entity.Property(e => e.ContentPic).HasMaxLength(50);
+
+                entity.Property(e => e.DateSave)
                     .HasColumnType("datetime")
                     .HasComment("تاریخ خبر");
-
-                entity.Property(e => e.Isactive).HasColumnName("isactive");
 
                 entity.Property(e => e.KindOfContent).HasComment("نوع خبر یا مطلب");
 
@@ -701,9 +701,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasMaxLength(100)
                     .HasComment("عنوان خبر");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("userid")
-                    .HasComment("کاربر ثبت کننده");
+                entity.Property(e => e.UserId).HasComment("کاربر ثبت کننده");
 
                 entity.HasOne(d => d.KindOfContentNavigation)
                     .WithMany(p => p.NewsAndContent)
@@ -712,9 +710,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.NewsAndContent)
-                    .HasForeignKey(d => d.Userid)
+                    .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_NewsAndContent_Users");
-            });
+            });            
 
             modelBuilder.Entity<RankingCalculationResults>(entity =>
             {
@@ -791,7 +789,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.PublishDate)
                     .HasMaxLength(10)
-                    .IsUnicode(false)
                     .IsFixedLength(true)
                     .HasComment("تاریخ انتشار");
 
@@ -809,7 +806,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasComment("کاربر ثبت کننده");
 
                 entity.Property(e => e.Vistion)
-                    .HasMaxLength(100).HasColumnName("Vision")
+                    .HasMaxLength(100)
                     .HasComment("چشم انداز");
 
                 entity.HasOne(d => d.Comany)
@@ -887,7 +884,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.RequestReferences)
                     .HasForeignKey(d => d.SendUser)
                     .HasConstraintName("FK_RequestReferences_Users1");
-            });
+            });            
 
             modelBuilder.Entity<Roles>(entity =>
             {
@@ -1001,7 +998,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_Users_Customers");
             });
-            
+                 
         }
 
 

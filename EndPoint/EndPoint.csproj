@@ -411,6 +411,8 @@
     <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\prism.js" />
     <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\prism.min.js" />
     <None Include="wwwroot\lib\JQueryDatePickerPluginForPersian\js\vertical-responsive-menu.min.js" />
+    <None Include="wwwroot\lib\TagsInput\bootstrap-tagsinput.js" />
+    <None Include="wwwroot\lib\TagsInput\bootstrap-tagsinput.min.js" />
   </ItemGroup>
 
   <ItemGroup>

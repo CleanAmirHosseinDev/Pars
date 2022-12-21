@@ -424,7 +424,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasMaxLength(50)
                     .HasComment("نام رابط و نماینده شرکت");
 
-                entity.Property(e => e.AmountOsLastSaels)
+                entity.Property(e => e.AmountOsLastSales)
                     .HasColumnType("money")
                     .HasComment("مبلغ کل فروش اظهار شده");
 

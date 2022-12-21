@@ -166,7 +166,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             nameof(request.CountOfPersonal),request.CountOfPersonal
                         },
                     {
-                            nameof(request.AmountOsLastSaels),request.AmountOsLastSaels
+                            nameof(request.AmountOsLastSales),request.AmountOsLastSales
                         },
                     {
                             nameof(request.Email),request.Email

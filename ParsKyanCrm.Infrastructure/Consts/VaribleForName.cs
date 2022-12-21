@@ -84,6 +84,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string NewsAndContentFolder
+        {
+            get
+            {
+                return "/FileUpload/NewsAndContent/";
+            }
+        }
+
         public static string No_Photo
         {
             get

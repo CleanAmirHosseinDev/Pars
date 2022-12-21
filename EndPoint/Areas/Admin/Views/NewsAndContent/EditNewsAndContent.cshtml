@@ -5,6 +5,8 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link href="~/lib/cropperjs/cropper.css" rel="stylesheet" />
+    <link href="~/lib/TagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
 }
 
 @section PageHeader{
@@ -79,12 +81,25 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2" for="">
+                                <label class="control-label col-md-3" for="">
                                     تصویر محتوا
                                     <span class="RequiredLabel">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input type="file" id="ContentPic" name="ContentPic" class="form-control" />
+
+                                    <input type="hidden" id="hid_ContentPic" value="" />
+                                    <input type="file" name="ContentPic" id="ContentPic" accept="image/*" onchange="onChangePicCropper(this,1200,'imgUpload_ContentPic','hid_ContentPic');" />
+                                    <img src="" width="150" class="img-thumbnail" id="imgUpload_ContentPic" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="">
+                                    خلاصه متن
+                                    <span class="RequiredLabel">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <textarea id="Summary" name="Summary" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -93,7 +108,8 @@
                                     <span class="RequiredLabel">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input type="text" id="MetaKeywords" name="MetaKeywords" class="form-control" />
+                                    <input type="text" id="Keywords" name="Keywords" class="form-control" />
+                                    <span class="RequiredLabel">نکته : کلمات کلیدی را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -110,7 +126,7 @@
                                 <div class="col-md-2">
                                 </div>
                                 <div class="col-md-9">
-                                    <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.Activity.SaveActivity(this);">
+                                    <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.NewsAndContent.SaveNewsAndContent(this);">
                                         <i class="fa fa-save"></i>
                                     </button>
                                 </div>
@@ -130,6 +146,9 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/lib/cropperjs/cropper.js" asp-append-version="true"></script>
+    <script src="~/lib/cropperjs/cropperOpp.js" asp-append-version="true"></script>
+    <script src="~/lib/TagsInput/bootstrap-tagsinput.min.js"></script>
     <script>
         Web.NewsAndContent.InitNewsAndContent(@ViewBag.id);
     </script>

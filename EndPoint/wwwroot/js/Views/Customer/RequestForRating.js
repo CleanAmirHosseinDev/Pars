@@ -417,7 +417,7 @@
         objJ.LevelStepAccessRole = decrypt($(e).attr("data-LSAR"), keyMaker());
         objJ.LevelStepStatus = decrypt($(e).attr("data-LSS"), keyMaker());
         objJ.Request = {};
-        objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sb").val(), keyMaker());
+        objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         objJ.Request.KindOfRequest = '0';
 
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {

@@ -15,7 +15,6 @@ namespace ParsKyanCrm.Domain.Entities
         public string DestLevelStepIndex { get; set; }
         public string LevelStepAccessRole { get; set; }
         public string LevelStepStatus { get; set; }
-        public int? LevelStepIndex { get; set; }
         public virtual RequestForRating Request { get; set; }
         public virtual Users SendUserNavigation { get; set; }
     }

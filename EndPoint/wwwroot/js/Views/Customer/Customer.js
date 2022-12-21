@@ -18,12 +18,8 @@
     function saveCustomer(e) {
 
         $(e).attr("disabled", "");        
-        if ($("#TypeServiceRequestedId").val() != null && !isEmpty($("#TypeServiceRequestedId").val())) {
-            saveFirstRequestForRating($("#TypeServiceRequestedId").val());
-        }
-        else {
+       
             AjaxCallAction("POST", "/api/customer/Customers/Save_BasicInformationCustomers", JSON.stringify({
-
                 tel: $("#Tel").val(),
                 AddressCompany: $("#AddressCompany").val(),
                 CompanyName: $("#CompanyName").val(),
@@ -34,6 +30,7 @@
                 CeoNationalCode: $("#CeoNationalCode").val(),
                 AgentMobile: $("#AgentMobile").val(),
                 AgentName: $("#AgentName").val(),
+                TypeServiceRequestedId: $("#TypeServiceRequestedId").val(),
                 NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
                 AmountOsLastSaels: isEmpty($("#AmountOsLastSaels").val()) ? null : $("#AmountOsLastSaels").val(),
                 CountOfPersonal: isEmpty($("#CountOfPersonal").val()) ? null : $("#CountOfPersonal").val(),
@@ -61,22 +58,7 @@
                 }
 
             }, true);
-        }
-
        
-
-    }
-
-    function saveFirstRequestForRating(id) {
-       
-        AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify({ Request: { KindOfRequest: isEmpty(id) ? null :id } }), true, function (res) {
-
-            if (!res.isSuccess) {
-                alertB("هشدار", res.message, "warning");
-            }
-
-        }, true);
-
     }
 
 
@@ -167,7 +149,7 @@
         InitCustomer: initCustomer,
         SystemSeting_Combo: systemSeting_Combo,
         CheckForFirstRequest: checkForFirstRequest,
-        SaveFirstRequestForRating: saveFirstRequestForRating
+      
     };
 
 })(Web, jQuery);

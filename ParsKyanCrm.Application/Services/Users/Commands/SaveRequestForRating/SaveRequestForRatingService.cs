@@ -117,8 +117,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     {
                         DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
                         LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
-                        LevelStepStatus = VaribleForName.LevelStepStatus,
-                        LevelStepIndex=VaribleForName.LevelStepIndex,
+                        LevelStepStatus = VaribleForName.LevelStepStatus,                      
                         Request = new Domain.Entities.RequestForRating()
                         {
 

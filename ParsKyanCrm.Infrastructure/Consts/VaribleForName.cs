@@ -84,6 +84,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string NewsAndContentFolder
+        {
+            get
+            {
+                return "/FileUpload/NewsAndContent/";
+            }
+        }
+
         public static string No_Photo
         {
             get
@@ -109,14 +117,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "10";
             }
         }
-        public static int LevelStepIndex
-        {
-            get
-            {
-                return 1;
-            }
-        }
-
+      
         public static string LevelStepStatus
         {
             get

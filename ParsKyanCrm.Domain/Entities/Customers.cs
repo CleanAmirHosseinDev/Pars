@@ -34,7 +34,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string CeoMobile { get; set; }
         public string CeoNationalCode { get; set; }
         public int? CountOfPersonal { get; set; }
-        public decimal? AmountOsLastSaels { get; set; }
+        public decimal? AmountOsLastSales { get; set; }
         public DateTime SaveDate { get; set; }
         public byte IsActive { get; set; }
         public string Ip { get; set; }

@@ -93,7 +93,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// <summary>
         /// مبلغ کل فروش اظهار شده
         /// </summary>
-        public decimal? AmountOsLastSaels { get; set; }
+        public decimal? AmountOsLastSales { get; set; }
         public DateTime SaveDate { get; set; }
         public string Ip { get; set; }
         /// <summary>

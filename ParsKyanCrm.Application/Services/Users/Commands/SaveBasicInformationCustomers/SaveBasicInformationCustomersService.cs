@@ -138,6 +138,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     {
                             nameof(request.CompanyName),request.CompanyName
                         },
+                     {
+                            nameof(request.CeoNationalCode),request.CeoNationalCode
+                        },
                     {
                             nameof(request.KindOfCompanyId),request.KindOfCompanyId
                         },
@@ -153,6 +156,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     {
                             nameof(request.AddressCompany),request.AddressCompany
                         },
+                     {
+                            nameof(request.PostalCode),request.PostalCode
+                        },
                     {
                             nameof(request.NamesAuthorizedSignatories),request.NamesAuthorizedSignatories
                         },
@@ -160,7 +166,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             nameof(request.CountOfPersonal),request.CountOfPersonal
                         },
                     {
-                            nameof(request.AmountOsLastSaels),request.AmountOsLastSaels
+                            nameof(request.AmountOsLastSales),request.AmountOsLastSales
                         },
                     {
                             nameof(request.Email),request.Email

@@ -149,7 +149,7 @@
         //            $("#AgentMobile").val(res.agentMobile);
         //            $("#AgentName").val(res.agentName);
         //            $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-        //            $("#AmountOsLastSaels").val(res.amountOsLastSaels);
+        //            $("#AmountOsLastSales").val(res.AmountOsLastSales);
         //            $("#CountOfPersonal").val(res.countOfPersonal);
         //            $("#Email").val(res.email);
         //            $("#Tel").val(res.tel);

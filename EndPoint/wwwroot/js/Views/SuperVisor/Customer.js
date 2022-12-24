@@ -32,7 +32,7 @@
             AgentMobile: $("#AgentMobile").val(),
             AgentName: $("#AgentName").val(),
             NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
-            AmountOsLastSaels: isEmpty($("#AmountOsLastSaels").val()) ? null : $("#AmountOsLastSaels").val(),
+            AmountOsLastSales: isEmpty($("#AmountOsLastSales").val()) ? null : $("#AmountOsLastSales").val(),
             CountOfPersonal: isEmpty($("#CountOfPersonal").val()) ? null : $("#CountOfPersonal").val(),
             Email: $("#Email").val(),
             Tel: $("#Tel").val(),

@@ -1,0 +1,48 @@
+﻿
+
+<link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
+<div id="bg-img"></div>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+
+<section style="background: #325777cc;max-width: var(--max-site-width);z-index: 423;margin: auto;position: relative;padding: 20px;margin: 15px auto;border-radius: 20px;">
+ <h1 style="color:white;text-align: center;margin-bottom: 10px;">تمام اخبار</h1>
+    
+    <div style="display: flex;flex-wrap: wrap;width: auto;justify-content: space-around;">
+
+        @if(ViewData["news"] != null) {
+            @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["news"]) {
+
+                <figure class="snip1249" style="max-width: 444px;">
+                    <div class="image">
+                        <img class="postimg" src="@item.ContentPicFull" />
+                        <i><img class="icon" src="~/image/landing/news_outline.png" /></i>
+                    </div>
+                    <figcaption>
+                        <h3>@item.Title</h3>
+                        <p>@item.Summary</p>
+                        <div class="date">
+                            <l2>۲۴ مهر</l2>۱۴۰۱
+                        </div>
+                        <a href="/article/news?id=@item.ContentId" class="jbtn">ادامه مطلب</a>
+                    </figcaption>
+                </figure>
+
+            }
+
+        }
+    </div>
+
+</section>
+
+
+<style>
+
+    body { text-align: initial !important; }
+
+
+    #bg-img { background-image: url(/image/landing/contactus.jpg); width: 100vw; position: fixed; height: 100vh; margin-top: -85px; background-repeat: no-repeat; background-size: cover; }
+
+    li,
+    ul { list-style: none; padding: 0; margin: 0; }
+</style>

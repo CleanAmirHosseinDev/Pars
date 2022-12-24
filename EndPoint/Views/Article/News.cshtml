@@ -1,0 +1,90 @@
+﻿@{
+    var NewsData = (ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto)ViewData["news"];
+    ViewData["Title"] = @NewsData.Title;
+}
+
+<link rel="stylesheet" href="~/css/landing/Article.css" asp-append-version="true" />
+
+<div id="bg-img"></div>
+
+<section class="sec_title">
+
+    <div id="particles-js"></div>
+    <div class="inner_div">
+        <h1 style="
+    z-index: 10;
+    margin: 0;
+    border-bottom: 1px white solid;
+    margin: 0 50px 0 0;
+">
+            @NewsData.Title
+        </h1>
+    </div>
+</section>
+
+<section class="article_body">
+    <div class="right">
+        <img class="article_img" src="@NewsData.ContentPicFull" />
+        <div class="article_title_div">
+            <p class="article_titile_p">@NewsData.Title</p>
+            <div class="article_title_info_parrent">
+                <!--<p>نویسنده: پارس کیان</p>-->
+                <p>تاریخ انتشار: دوشنبه ۱۴ آبان ۱۴۰۱</p>
+            </div>
+        </div>
+        <p class="article_text">
+            @Html.Raw(NewsData.Body);
+        </p>
+    </div>
+
+    <div class="center">
+    </div>
+    <div class="left">
+        <div class="left_sec_item">
+            <div class="title">
+                <h4>جستجو</h4>
+            </div>
+            <div class="item">
+                <div class="search_bar">
+                    <input type="text" placeholder="جستجو..." />
+                    <a class="jbtn" href="#" onclick="">جستجو</a>
+                </div>
+            </div>
+        </div>
+        <div class="left_sec_item">
+            <div class="title">
+                <h4>نوشته های تازه</h4>
+            </div>
+            <div class="item">
+                @if(ViewData["NewNews"] != null) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["NewNews"]) {
+                <a href="#">@item.Title<span>(۱۴۰۱/۰۸/۲۴)</span></a>
+                    }
+
+                }
+            </div>
+        </div>
+        <div class="left_sec_item">
+            <div class="title">
+                <h4>دسته بندی ها</h4>
+            </div>
+            <div class="item" style="font-size: 18px;">
+                <a href="#">خبرها</a>
+                <a href="#">مقالات</a>
+                <a href="#">برگه‌ها</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+</style>
+
+
+
+<script src="~/lib/particlesjs/particles.min.js"></script>
+<script src="~/lib/particlesjs/type1.js"></script>

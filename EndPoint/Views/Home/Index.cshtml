@@ -120,7 +120,7 @@
 
                     </div>
                     <div class="bottom">
-                        <a class="btn" href="/account/loginc">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/loginc">ثبت درخواست</a>
                     </div>
 
                 </div>
@@ -140,7 +140,7 @@
 
                     </div>
                     <div class="bottom">
-                        <a class="btn" href="/account/loginc">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/loginc">ثبت درخواست</a>
                     </div>
 
                 </div>
@@ -162,7 +162,7 @@
 
                     </div>
                     <div class="bottom">
-                        <a class="btn" href="/account/loginc">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/loginc">ثبت درخواست</a>
                     </div>
 
                 </div>
@@ -182,7 +182,7 @@
 
                     </div>
                     <div class="bottom">
-                        <a class="btn" href="/account/loginc">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/loginc">ثبت درخواست</a>
                     </div>
 
                 </div>
@@ -197,149 +197,49 @@
         </div>
         <div>
             <div id="top_rating_button" style="display:none;">
-                <a class="btn selected" toprateid="0">همه</a>
-                <a class="btn" toprateid="1" onclick="topRatingBtnOnclick(this)">صنعتی</a>
-                <a class="btn" toprateid="2" onclick="topRatingBtnOnclick(this)">نفت، گاز و انرژی</a>
-                <a class="btn" toprateid="3" onclick="topRatingBtnOnclick(this)">سرمایه گذاری</a>
-                <a class="btn" toprateid="4" onclick="topRatingBtnOnclick(this)">دیگر</a>
+                <a class="jbtn selected" toprateid="0">همه</a>
+                <a class="jbtn" toprateid="1" onclick="topRatingBtnOnclick(this)">صنعتی</a>
+                <a class="jbtn" toprateid="2" onclick="topRatingBtnOnclick(this)">نفت، گاز و انرژی</a>
+                <a class="jbtn" toprateid="3" onclick="topRatingBtnOnclick(this)">سرمایه گذاری</a>
+                <a class="jbtn" toprateid="4" onclick="topRatingBtnOnclick(this)">دیگر</a>
             </div>
             <div id="top_rating_cards">
 
                 <div class="top_rating_cards_parrent" toprateid="0">
 
-                    <div class="top_rateing_card">
-                        <div class="c1">
-                            <p>رتبه</p>
-                            <div class="c2">
-                                <p>کوتاه مدت<span>AA+</span></p>
-                                <p>بلند مدت<span>AAA</span></p>
+                    @if(ViewData["ranks"] != null) {
+                        @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.RankingOfCompaniesDto>)ViewData["ranks"]) {
+                        
+                        <div class="top_rateing_card">
+                            <div class="c1">
+                                <p>رتبه</p>
+                                <div class="c2">
+                                    <p>کوتاه مدت<span>@item.ShortTermRating</span></p>
+                                    <p>بلند مدت<span>@item.LongTermRating</span></p>
+                                </div>
+                            </div>
+                            <div class="c3">
+                                <h5>@item.Comany.CompanyName</h5>
+                                <div class="c4">
+                                    <p>وضعیت:<span>در حال پایش</span></p>
+                                    <p>دورنما:<span>@item.Vision</span></p>
+                                    <p>بخش:<span>@item.Comany.CompanyGroupId</span></p>
+                                </div>
+                                <div class="c5">
+                                    <p>تاریخ:<span>@item.PublishDate</span></p>
+                                    <a class="jbtn" href="/doc/@item.SummaryRanking">مشاهده</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="c3">
-                            <h5>شرکت پتروشیمی شهرآرا</h5>
-                            <div class="c4">
-                                <p>وضعیت:<span>در حال پایش</span></p>
-                                <p>دورنما:<span>با ثبات</span></p>
-                                <p>بخش:<span>پتروشیمی</span></p>
-                            </div>
-                            <div class="c5">
-                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
-                                <a class="btn" href="/doc/test.pdf">مشاهده</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="top_rateing_card">
-                        <div class="c1">
-                            <p>رتبه</p>
-                            <div class="c2">
-                                <p>کوتاه مدت<span>AA+</span></p>
-                                <p>بلند مدت<span>AAA</span></p>
-                            </div>
-                        </div>
-                        <div class="c3">
-                            <h5>شرکت پتروشیمی شهرآرا</h5>
-                            <div class="c4">
-                                <p>وضعیت:<span>در حال پایش</span></p>
-                                <p>دورنما:<span>با ثبات</span></p>
-                                <p>بخش:<span>پتروشیمی</span></p>
-                            </div>
-                            <div class="c5">
-                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
-                                <a class="btn" href="/doc/test.pdf">مشاهده</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="top_rateing_card">
-                        <div class="c1">
-                            <p>رتبه</p>
-                            <div class="c2">
-                                <p>کوتاه مدت<span>AA+</span></p>
-                                <p>بلند مدت<span>AAA</span></p>
-                            </div>
-                        </div>
-                        <div class="c3">
-                            <h5>شرکت پتروشیمی شهرآرا</h5>
-                            <div class="c4">
-                                <p>وضعیت:<span>در حال پایش</span></p>
-                                <p>دورنما:<span>با ثبات</span></p>
-                                <p>بخش:<span>پتروشیمی</span></p>
-                            </div>
-                            <div class="c5">
-                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
-                                <a class="btn" href="/doc/test.pdf">مشاهده</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="top_rateing_card">
-                        <div class="c1">
-                            <p>رتبه</p>
-                            <div class="c2">
-                                <p>کوتاه مدت<span>AA+</span></p>
-                                <p>بلند مدت<span>AAA</span></p>
-                            </div>
-                        </div>
-                        <div class="c3">
-                            <h5>شرکت پتروشیمی شهرآرا</h5>
-                            <div class="c4">
-                                <p>وضعیت:<span>در حال پایش</span></p>
-                                <p>دورنما:<span>با ثبات</span></p>
-                                <p>بخش:<span>پتروشیمی</span></p>
-                            </div>
-                            <div class="c5">
-                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
-                                <a class="btn" href="/doc/test.pdf">مشاهده</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="top_rateing_card">
-                        <div class="c1">
-                            <p>رتبه</p>
-                            <div class="c2">
-                                <p>کوتاه مدت<span>AA+</span></p>
-                                <p>بلند مدت<span>AAA</span></p>
-                            </div>
-                        </div>
-                        <div class="c3">
-                            <h5>شرکت پتروشیمی شهرآرا</h5>
-                            <div class="c4">
-                                <p>وضعیت:<span>در حال پایش</span></p>
-                                <p>دورنما:<span>با ثبات</span></p>
-                                <p>بخش:<span>پتروشیمی</span></p>
-                            </div>
-                            <div class="c5">
-                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
-                                <a class="btn" href="/doc/test.pdf">مشاهده</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="top_rateing_card">
-                        <div class="c1">
-                            <p>رتبه</p>
-                            <div class="c2">
-                                <p>کوتاه مدت<span>AA+</span></p>
-                                <p>بلند مدت<span>AAA</span></p>
-                            </div>
-                        </div>
-                        <div class="c3">
-                            <h5>شرکت پتروشیمی شهرآرا</h5>
-                            <div class="c4">
-                                <p>وضعیت:<span>در حال پایش</span></p>
-                                <p>دورنما:<span>با ثبات</span></p>
-                                <p>بخش:<span>پتروشیمی</span></p>
-                            </div>
-                            <div class="c5">
-                                <p>تاریخ:<span>۱۴۰۱/۰۳/۱۹</span></p>
-                                <a class="btn" href="/doc/test.pdf">مشاهده</a>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
 
                 </div>
             </div>
         </div>
         <div style="font-size: 14px;margin: 10px auto 18px 3vw;display: block;">
 
-            <a class="btn" style="margin-right:5px;font-size: 14px;">مشاهده همه‌ی ارزیابی ها &gt;</a>
+            <a class="jbtn" style="margin-right:5px;font-size: 14px;" href="/home/ranklist">مشاهده همه‌ی ارزیابی ها &gt;</a>
         </div>
 
     </section>
@@ -351,65 +251,31 @@
                 <h3>
                     جدید ترین خبرها
                 </h3>
-                <a class="btn" onclick="alert('در دست ساخت')">آرشیو خبرها</a>
+                <a class="jbtn" href="/article/newslist/">آرشیو خبرها</a>
             </div>
             <div class="left_div">
-                <figure class="snip1249">
-                    <div class="image">
-                        <img class="postimg" src="~/image/landing/slider_1.webp" />
-                        <i><img class="icon" src="~/image/landing/news_outline.png" /></i>
-                    </div>
-                    <figcaption>
-                        <h3>نسخه جدید سایت</h3>
-                        <p>نسخه جدید وب‌سایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
-                        <div class="date">
-                            <l2>۲۴ مهر</l2>۱۴۰۱
-                        </div>
-                        <a href="/home/article" class="btn">ادامه مطلب</a>
-                    </figcaption>
-                </figure>
-                <figure class="snip1249">
-                    <div class="image">
-                        <img class="postimg" src="~/image/landing/slider_2.webp" />
-                        <img class="icon" src="~/image/landing/news_outline.png" />
-                    </div>
-                    <figcaption>
-                        <h3>نسخه جدید سایت</h3>
-                        <p>نسخه جدید وبسایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
-                        <div class="date">
-                            <l2>۲۴ مهر</l2>۱۴۰۱
-                        </div>
-                        <a href="/home/article" class="btn">ادامه مطلب</a>
-                    </figcaption>
-                </figure>
-                <figure class="snip1249">
-                    <div class="image">
-                        <img class="postimg" src="~/image/landing/slider_3.webp" />
-                        <img class="icon" src="~/image/landing/news_outline.png" />
-                    </div>
-                    <figcaption>
-                        <h3>نسخه جدید سایت</h3>
-                        <p>نسخه جدید وبسایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
-                        <div class="date">
-                            <l2>۲۴ مهر</l2>۱۴۰۱
-                        </div>
-                        <a href="/home/article" class="btn">ادامه مطلب</a>
-                    </figcaption>
-                </figure>
-                <figure class="snip1249">
-                    <div class="image">
-                        <img class="postimg" src="~/image/landing/slider_4.jpg" />
-                        <img class="icon" src="~/image/landing/news_outline.png" />
-                    </div>
-                    <figcaption>
-                        <h3>نسخه جدید سایت</h3>
-                        <p>نسخه جدید وبسایت شرکت پارس کیان به نشانی parscrc.ir لانچ شد. </p>
-                        <div class="date">
-                            <l2>۲۴ مهر</l2>۱۴۰۱
-                        </div>
-                        <a href="/home/article" class="btn">ادامه مطلب</a>
-                    </figcaption>
-                </figure>
+                @if(ViewData["news"] != null) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["news"]) {
+
+                        <figure class="snip1249">
+                            <div class="image">
+                                <img class="postimg" src="@item.ContentPicFull" />
+                                <i><img class="icon" src="~/image/landing/news_outline.png" /></i>
+                            </div>
+                            <figcaption>
+                                <h3>@item.Title</h3>
+                                <p>@item.Summary</p>
+                                <div class="date">
+                                    <l2>۲۴ مهر</l2>۱۴۰۱
+                                </div>
+                                <a href="/article/news?id=@item.ContentId" class="jbtn">ادامه مطلب</a>
+                            </figcaption>
+                        </figure>
+
+                    }
+
+                }
+
             </div>
         </div>
 
@@ -458,12 +324,12 @@
     <script>
         function topRatingBtnOnclick(inelement) {
 
-            $("#top_rating_button .btn").each(function (index) {
+            $("#top_rating_button .btn").each(function(index) {
                 $(this).removeClass("selected");
             });
             $(inelement).addClass("selected");
 
-            $(".top_rating_cards_parrent").each(function (index) {
+            $(".top_rating_cards_parrent").each(function(index) {
                 $(this).hide();
             });
             let innerid = $(inelement).attr("toprateid");

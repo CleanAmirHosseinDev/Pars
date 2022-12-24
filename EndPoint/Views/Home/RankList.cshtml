@@ -1,0 +1,191 @@
+﻿
+
+<link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
+<div id="bg-img"></div>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+
+<section style="background: #325777cc;max-width: var(--max-site-width);z-index: 423;margin: auto;position: relative;padding: 20px;margin: 15px auto;border-radius: 20px;">
+    <h1 style="color:white;text-align: center;margin-bottom: 10px;">لیست ارزیابی های انجام شده</h1>
+
+    <div style="display: flex;flex-wrap: wrap;width: auto;justify-content: space-around;">
+
+
+        <div class="jtwrapper">
+
+            <div class="jtable">
+
+                <div class="jtrow jtheader blue">
+                    <div class="jtcell">
+                        نام شرکت
+                    </div>
+
+                    <div class="jtcell">
+                        تاریخ
+                    </div>
+                    <div class="jtcell">
+                        نوع رتبه بندی
+                    </div>
+                    <div class="jtcell">
+                        وضعیت رتبه بندی
+                    </div>
+                    <div class="jtcell">
+                        رتبه در بلند مدت
+                    </div>
+                    <div class="jtcell">
+                        رتبه در کوتاه مدت
+                    </div>
+                    <div class="jtcell">
+                        دورنما
+                    </div>
+                    <div class="jtcell">
+                        جزئیات
+                    </div>
+                </div>
+
+                @if(ViewData["ranks"] != null) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.RankingOfCompaniesDto>)ViewData["ranks"]) {
+                        <div class="jtrow">
+                            <div class="jtcell" data-title="نام شرکت">
+                                @item.Comany.CompanyName
+                            </div>
+                            <div class="jtcell" data-title="تاریخ">
+                                @item.PublishDate
+                            </div>
+                            <div class="jtcell" data-title="نوع رتبه بندی">
+                                رتبه بندی اعتباری
+                            </div>
+                            <div class="jtcell" data-title="وضعیت رتبه بندی">
+                                در حال پایش
+                            </div>
+                            <div class="jtcell" data-title="رتبه در بلند مدت">
+                                @item.LongTermRating
+                            </div>
+                            <div class="jtcell" data-title="رتبه در کوتاه مدت">
+                                @item.ShortTermRating
+                            </div>
+                            <div class="jtcell" data-title="دورنما">
+                                @item.Vision
+                            </div>
+                            <div class="jtcell" data-title="جزئیات">
+                                <a style="font-size: 16px;" class="jbtn" href="/doc/@item.SummaryRanking">خلاصه‌وضعیت</a>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+
+
+        </div>
+
+    </div>
+    </div>
+
+</section>
+
+
+<style>
+
+        body { text-align: initial !important; }
+
+
+        #bg-img { background-image: url(/image/landing/contactus.jpg); width: 100vw; position: fixed; height: 100vh; margin-top: -85px; background-repeat: no-repeat; background-size: cover; }
+
+        li,
+        ul { list-style: none; padding: 0; margin: 0; }
+        body {
+      font-family: "Helvetica Neue", Helvetica, Arial;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      color: #3b3b3b;
+      -webkit-font-smoothing: antialiased;
+      font-smoothing: antialiased;
+      background: #2b2b2b;
+    }
+    @@media screen and (max-width: 1100px) {
+      body {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+
+    .jtwrapper {
+      margin: 0 auto;
+      padding: 40px;
+      padding-top: 20px;
+    }
+
+    .jtable {
+      margin: 0 0 40px 0;
+      width: 100%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      display: table;
+      font-size: 18px;
+    }
+    @@media screen and (max-width: 1100px) {
+      .jtable {
+        display: block;
+      }
+    }
+
+    .jtrow {
+      display: table-row;
+      background: #f6f6f6;
+    }
+    .jtrow:nth-of-type(odd) {
+      background: #e9e9e9;
+    }
+    .jtrow.jtheader {
+      font-weight: 900;
+      color: #ffffff;
+      background: #ea6153;
+    }
+    .jtrow.green {
+      background: #27ae60;
+    }
+    .jtrow.blue {
+      background: #2980b9;
+    }
+    @@media screen and (max-width: 1100px) {
+      .jtrow {
+        padding: 14px 0 7px;
+        display: block;
+      }
+      .jtrow.jtheader {
+        padding: 0;
+        height: 6px;
+      }
+      .jtrow.jtheader .jtcell {
+        display: none;
+      }
+      .jtrow .jtcell {
+        margin-bottom: 10px;
+      }
+      .jtrow .jtcell:before {
+        margin-bottom: 3px;
+        content: attr(data-title);
+        min-width: 98px;
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #969696;
+        display: block;
+      }
+    }
+
+    .jtcell {
+      padding: 6px 12px;
+      display: table-cell;
+      padding: 20px;
+    }
+    .jtrow.jtheader .jtcell {white-space: nowrap;}
+    @@media screen and (max-width: 1100px) {
+      .jtcell {
+        padding: 2px 16px;
+        display: block;
+      }
+    }
+</style>

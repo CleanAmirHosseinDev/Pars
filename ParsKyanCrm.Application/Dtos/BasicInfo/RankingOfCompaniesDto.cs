@@ -27,7 +27,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public string PublishDate { get; set; }
         public string LongTermRating { get; set; }
         public string ShortTermRating { get; set; }
-        public string Vistion { get; set; }
+        public string Vision { get; set; }
 
 
         public string PressRelease { get; set; }

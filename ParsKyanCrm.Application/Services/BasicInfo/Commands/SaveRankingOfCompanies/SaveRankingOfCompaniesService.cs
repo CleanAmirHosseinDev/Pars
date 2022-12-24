@@ -100,7 +100,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveRankingOfCompa
                             nameof(q_Entity.Entity.ShortTermRating),request.ShortTermRating
                         },
                         {
-                            "Vision",request.Vistion
+                            "Vision",request.Vision
                         },
                         {
                             nameof(q_Entity.Entity.SummaryRanking),request.SummaryRanking

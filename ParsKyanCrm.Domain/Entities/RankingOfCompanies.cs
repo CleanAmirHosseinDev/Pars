@@ -12,7 +12,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string PublishDate { get; set; }
         public string LongTermRating { get; set; }
         public string ShortTermRating { get; set; }
-        public string Vistion { get; set; }
+        public string Vision { get; set; }
         public string PressRelease { get; set; }
         public string SummaryRanking { get; set; }
         public int? UserId { get; set; }

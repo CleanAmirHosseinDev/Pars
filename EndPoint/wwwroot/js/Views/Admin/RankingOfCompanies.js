@@ -67,7 +67,7 @@
                 $("#PublishDate").val(res.publishDate);
                 $("#LongTermRating").val(res.longTermRating);
                 $("#ShortTermRating").val(res.shortTermRating);
-                $("#Vistion").val(res.vistion);
+                $("#Vision").val(res.Vision);
                 $("#RankingId").val(res.rankingId);
                 $("#divDownload").html("<a href='/File/Download?path=" + res.pressReleaseFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 $("#divDownload_SummaryRanking").html("<a href='/File/Download?path=" + res.summaryRankingFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");

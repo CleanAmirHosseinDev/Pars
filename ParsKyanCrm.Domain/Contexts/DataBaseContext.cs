@@ -805,7 +805,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasColumnName("UserID")
                     .HasComment("کاربر ثبت کننده");
 
-                entity.Property(e => e.Vistion)
+                entity.Property(e => e.Vision)
                     .HasMaxLength(100)
                     .HasComment("چشم انداز");
 

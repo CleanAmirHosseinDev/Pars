@@ -1,12 +1,55 @@
-﻿
+﻿@{
+    var ActivityData = (ParsKyanCrm.Application.Dtos.BasicInfo.ActivityDto)ViewData["data"];
+    ViewData["Title"] = @ActivityData.ActivityTitle;
+}
 
+<link rel="stylesheet" href="~/css/landing/Article.css" asp-append-version="true" />
 
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<div id="bg-img"></div>
 
-<section class="contact-page-section">
-    <div class="container">
-        <div class="inner-container">
-            
-        </div>
+<section class="sec_title">
+
+    <div id="particles-js"></div>
+    <div class="inner_div">
+        <h1 style="
+    z-index: 10;
+    margin: 0;
+    border-bottom: 1px white solid;
+    margin: 0 50px 0 0;
+">
+            @ActivityData.ActivityTitle
+        </h1>
     </div>
 </section>
+
+<section class="article_body">
+    <div class="right">
+        <img class="article_img" src="@ActivityData.Picture1Full" />
+        <div class="article_title_div">
+            <p class="article_titile_p">@ActivityData.ActivityTitle</p>
+            <div class="article_title_info_parrent">
+            </div>
+        </div>
+        <p class="article_text">
+            @Html.Raw(ActivityData.ActivityComment);
+            
+        </p>
+    </div>
+
+</section>
+
+
+<style>
+    .article_img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 20px 20px 0 0;
+    padding:20px;
+}
+</style>
+
+
+
+<script src="~/lib/particlesjs/particles.min.js"></script>
+<script src="~/lib/particlesjs/type1.js"></script>

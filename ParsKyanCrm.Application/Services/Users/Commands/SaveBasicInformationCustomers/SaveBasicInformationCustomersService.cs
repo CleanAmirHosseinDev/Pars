@@ -15,6 +15,7 @@ using ParsKyanCrm.Common;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Common.Enums;
 using Microsoft.EntityFrameworkCore;
+using ParsKyanCrm.Infrastructure.Consts;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
@@ -106,12 +107,27 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             {
                 throw ex;
             }
-        }        
+        }
+
+        private string MaxAllRequestNo()
+        {
+            try
+            {
+                List<RequestForRatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForRatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForRating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNoStr"));
+                if (q != null) return q.FirstOrDefault().RequestNoStr.ToString();
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async Task<ResultDto> Execute(CustomersDto request)
         {
             try
             {
+
                 #region Validation
 
                 string strValidation = await Validation_Execute(request);
@@ -125,6 +141,55 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 }
 
                 #endregion                                
+
+                DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+
+                var cus = await _context.Customers.FindAsync(request.CustomerId);
+                if (!cus.IsProfileComplete)
+                {
+
+                    if (!request.TypeServiceRequestedId.HasValue)
+                    {
+                        return new ResultDto()
+                        {
+                            IsSuccess = false,
+                            Message = "نوع خدمت مورد تقاضا را انتخاب کنید"
+                        };
+                    }
+
+                    var rr = _context.RequestReferences.Add(new RequestReferences()
+                    {
+                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
+                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
+                        LevelStepStatus = VaribleForName.LevelStepStatus,
+                        Request = new Domain.Entities.RequestForRating()
+                        {
+
+                            RequestNo = int.Parse(MaxAllRequestNo()),
+                            DateOfRequest = dt,
+                            KindOfRequest = request.TypeServiceRequestedId,
+                            CustomerId = cus.CustomerId,
+                            IsFinished = false,
+                        },
+                        Comment = null,
+                        SendUser = null,
+                        SendTime = dt,
+                    });
+                    await _context.SaveChangesAsync();
+
+                    _context.RequestReferences.Add(new RequestReferences()
+                    {
+                        Requestid = rr.Entity.Requestid,
+                        Comment = null,
+                        SendUser = null,
+                        SendTime = dt,
+                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
+                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
+                        LevelStepStatus = VaribleForName.LevelStepStatus1
+                    });
+                    await _context.SaveChangesAsync();
+
+                }
 
 
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()

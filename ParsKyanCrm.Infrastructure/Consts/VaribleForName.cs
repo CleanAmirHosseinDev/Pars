@@ -106,10 +106,9 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "2";
+                return "1";
             }
         }
-
         public static string LevelStepAccessRole
         {
             get
@@ -117,7 +116,6 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "10";
             }
         }
-      
         public static string LevelStepStatus
         {
             get
@@ -125,6 +123,31 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return " ارسال درخواست اولیه توسط مشتری  و در انتظار بررسی";
             }
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static string DestLevelStepIndex1
+        {
+            get
+            {
+                return "2";
+            }
+        }
+        public static string LevelStepAccessRole1
+        {
+            get
+            {
+                return "1";
+            }
+        }
+        public static string LevelStepStatus1
+        {
+            get
+            {
+                return "در حال بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+            }
+        }
+
 
         #endregion
 

@@ -55,7 +55,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
             {
 
                 ValidationResult result = await _validatorRequestReferencesDto.ValidateAsync(request);
-                if (!result.IsValid) return result.Errors.GetErrorsF();                
+                if (!result.IsValid) return result.Errors.GetErrorsF();
 
                 return string.Empty;
             }
@@ -113,11 +113,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                     }
 
-                    _context.RequestReferences.Add(new RequestReferences()
+                    var rr = _context.RequestReferences.Add(new RequestReferences()
                     {
                         DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
                         LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
-                        LevelStepStatus = VaribleForName.LevelStepStatus,                      
+                        LevelStepStatus = VaribleForName.LevelStepStatus,
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -133,6 +133,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     });
                     await _context.SaveChangesAsync();
 
+                    _context.RequestReferences.Add(new RequestReferences()
+                    {
+                        Requestid = rr.Entity.Requestid,
+                        Comment = null,
+                        SendUser = null,
+                        SendTime = dt,
+                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
+                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
+                        LevelStepStatus = VaribleForName.LevelStepStatus1
+                    });
+                    await _context.SaveChangesAsync();
 
 
                 }

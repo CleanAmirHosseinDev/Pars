@@ -18,8 +18,21 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
         public int ReferenceId { get; set; }
         public int? Requestid { get; set; }
-        public string DestLevelStepIndex { get; set; }        
+        public string DestLevelStepIndex { get; set; }
+
+
         public DateTime? SendTime { get; set; }
+        public string SendTimeStr
+        {
+            get
+            {
+
+                return SendTime.HasValue ? Infrastructure.DateTimeOperation.ToPersianDate(SendTime.Value) : string.Empty;
+
+            }
+        }
+
+
         public string Comment { get; set; }
         public int? SendUser { get; set; }
 

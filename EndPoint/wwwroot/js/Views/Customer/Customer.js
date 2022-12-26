@@ -18,7 +18,7 @@
     function saveCustomer(e) {
 
         $(e).attr("disabled", "");        
-       
+        RemoveAllCharForPrice("AmountOsLastSales");
             AjaxCallAction("POST", "/api/customer/Customers/Save_BasicInformationCustomers", JSON.stringify({
                 tel: $("#Tel").val(),
                 AddressCompany: $("#AddressCompany").val(),

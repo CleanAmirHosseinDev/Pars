@@ -32,6 +32,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
 
+        public string SendTimeTimeStr
+        {
+            get
+            {
+
+                return SendTime.HasValue ? SendTime.Value.ToShortTimeString() : string.Empty;
+
+            }
+        }
 
         public string Comment { get; set; }
         public int? SendUser { get; set; }

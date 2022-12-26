@@ -25,33 +25,40 @@ namespace ParsKyanCrm.Application.Services.WebService
             }
         public class CaptchaCheck :ActionFilterAttribute {
             public override void OnActionExecuting(ActionExecutingContext filterContext) {
-
-                /*for(int i = 0 ; i < filterContext.ActionArguments.Count ; i++) {
-                    filterContext.ActionArguments[filterContext.ActionArguments.Keys.ElementAt(i)] = decryptedParameters.Values.ElementAt(i);
-                }*/
-                var a = filterContext.ActionArguments["request"];
-
-                var b = new sampleDto();
-                var value = "";
-
-
-
-                var typeOfA = a.GetType();
-                foreach(var propertyOfA in typeOfA.GetProperties()) {
-                    if(propertyOfA.Name== "CaptchaCodes"){
-                        value = (string)propertyOfA.GetValue(a);
+                try {
+                    /*for(int i = 0 ; i < filterContext.ActionArguments.Count ; i++) {
+                        filterContext.ActionArguments[filterContext.ActionArguments.Keys.ElementAt(i)] = decryptedParameters.Values.ElementAt(i);
+                    }*/
+                    
+                    object a = filterContext.ActionArguments.First();
+                    if(a.GetType().GetProperties().Length == 2 &&
+                        a.GetType().GetProperties().Where(a => a.Name == "Value").Count() > 0) { 
+                        a=a.GetType().GetProperties().Where(a=>a.Name=="Value").First().GetValue(a);
                     }
+
+                    var b = new sampleDto();
+                    var value = "";
+
+
+
+                    var typeOfA = a.GetType();
+                    foreach(var propertyOfA in typeOfA.GetProperties()) {
+                        if(propertyOfA.Name == "CaptchaCodes") {
+                            value = (string)propertyOfA.GetValue(a);
+                        }
+                    }
+
+
+
+
+                    bool isOk = Helpers.CaptchaCheckInDatabase((string)value);
+
+                    if(!isOk) {
+                        filterContext.ModelState.AddModelError("CaptchaCodes", "لطفا کد امنیتی را به درستی وارد نمایید.");
+                    }
+                } catch(Exception ex) { 
+                    var message = ex.ToString();
                 }
-
-
-               
-
-                bool isOk = Helpers.CaptchaCheckInDatabase((string)value);
-
-                if(!isOk) {
-                    filterContext.ModelState.AddModelError("CaptchaCodes", "لطفا کد امنیتی را به درستی وارد نمایید.");
-                }
-
             }
 
 

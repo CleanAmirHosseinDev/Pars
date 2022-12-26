@@ -16,13 +16,13 @@
         dellstor("userID");
         dellstor("loginName");
 
-        goToUrl("/Account/LoginC");
+        goToUrl("/Account/Login");
 
     }
 
     function initLayout() {
 
-        if (isEmpty(getlstor("token"))) goToUrl("/Account/LoginC");
+        if (isEmpty(getlstor("token"))) goToUrl("/Account/Login");
         else {
 
             $(".fullNameInLayout").html(getlstor("fullName"));            

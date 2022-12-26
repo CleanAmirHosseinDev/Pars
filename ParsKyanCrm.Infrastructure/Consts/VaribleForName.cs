@@ -147,7 +147,20 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "در حال بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
             }
         }
-
+        public static string SmsContent1
+        {
+            get
+            {
+                return "یک درخواست جدید در سامانه ثبت گردید";
+            }
+        }
+        public static bool? SmsType1
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         #endregion
 

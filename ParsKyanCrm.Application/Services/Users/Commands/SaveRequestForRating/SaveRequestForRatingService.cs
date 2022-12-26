@@ -86,10 +86,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
 
+                var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
+
+                var cus = await _context.Customers.FindAsync(request.Request.CustomerId);
+
                 if (request.Request.RequestId == 0)
                 {
-
-                    var cus = await _context.Customers.FindAsync(request.Request.CustomerId);
+                    
                     if (!cus.IsProfileComplete)
                     {
 
@@ -137,14 +140,18 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     {
                         Requestid = rr.Entity.Requestid,
                         Comment = null,
-                        SendUser = null,
+                        SendUser = request.SendUser,
                         SendTime = dt,
                         DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
                         LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
-                        LevelStepStatus = VaribleForName.LevelStepStatus1
+                        LevelStepStatus = VaribleForName.LevelStepStatus1,
+                        SmsContent = VaribleForName.SmsContent1,
+                        SmsType = VaribleForName.SmsType1
                     });
                     await _context.SaveChangesAsync();
 
+                    WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                    WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
                 else
@@ -159,8 +166,29 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         SendTime = dt,
                         LevelStepAccessRole = request.LevelStepAccessRole,
                         LevelStepStatus = request.LevelStepStatus,
+                        SmsContent = request.SmsContent,
+                        SmsType = request.SmsType
                     });
                     await _context.SaveChangesAsync();
+
+                    switch (request.SmsType)
+                    {
+                        case true:
+
+                            WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
+                            WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
+
+                            break;
+                        case false:
+
+                            WebService.SMSService.Execute(cus.AgentMobile, request.SmsContent);
+
+                            break;
+
+                        default:
+
+                            break;
+                    }
 
                 }
 

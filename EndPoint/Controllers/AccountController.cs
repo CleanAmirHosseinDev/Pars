@@ -19,11 +19,11 @@ namespace EndPoint.Controllers
         public IActionResult Index( ) {            
             return View();
         }
-        public IActionResult LoginA( ) {
+        public IActionResult LoginUser( ) {
             return View();
         }
 
-        public IActionResult LoginC()
+        public IActionResult Login()
         {
             return View();
         }

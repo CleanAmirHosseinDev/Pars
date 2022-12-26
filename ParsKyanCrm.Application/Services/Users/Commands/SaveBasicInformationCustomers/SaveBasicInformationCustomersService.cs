@@ -185,9 +185,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         SendTime = dt,
                         DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
                         LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
-                        LevelStepStatus = VaribleForName.LevelStepStatus1
+                        LevelStepStatus = VaribleForName.LevelStepStatus1,
+                        SmsContent = VaribleForName.SmsContent1,
+                        SmsType = VaribleForName.SmsType1
                     });
                     await _context.SaveChangesAsync();
+
+                    var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
+                    WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                    WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
 

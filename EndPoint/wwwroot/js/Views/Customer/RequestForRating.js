@@ -337,7 +337,7 @@
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
 
-                        htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + encrypt(res.data[i].smsType, keyMaker()) +"'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
 
@@ -419,6 +419,8 @@
         objJ.Request = {};
         objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         objJ.Request.KindOfRequest = '0';
+        objJ.SmsContent = decrypt($(e).attr("data-SC"), keyMaker());
+        objJ.SmsType = !isEmpty(decrypt($(e).attr("data-ST"), keyMaker())) ? decrypt($(e).attr("data-ST"), keyMaker()) : null;
 
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 

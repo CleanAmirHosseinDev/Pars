@@ -858,6 +858,8 @@ namespace ParsKyanCrm.Domain.Contexts
             {
                 entity.HasKey(e => e.ReferenceId);
 
+                entity.Property(e => e.SmsContent).HasMaxLength(150);
+
                 entity.HasComment("جدول ارجاعات درخواست مشتری");
 
                 entity.Property(e => e.ReferenceId).HasColumnName("ReferenceID");
@@ -884,6 +886,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.RequestReferences)
                     .HasForeignKey(d => d.SendUser)
                     .HasConstraintName("FK_RequestReferences_Users1");
+
+                entity.Property(e => e.SmsType).HasComment("0= Customer , 1= ParsKeyan");
+
             });            
 
             modelBuilder.Entity<Roles>(entity =>

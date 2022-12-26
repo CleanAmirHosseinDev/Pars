@@ -38,6 +38,9 @@ namespace ParsKyanCrm.Application.Services.WebService
                 else
                 {
 
+                    if (string.IsNullOrEmpty(MobileNumber)) return "موبایل را وارد کنید";
+                    if (string.IsNullOrEmpty(Message)) return "متن پیام را وارد کنید";
+
                     Parameters param = new Parameters();
                     param.message = Message;
                     string Data = JsonConvert.SerializeObject(param);

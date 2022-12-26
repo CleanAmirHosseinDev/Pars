@@ -59,6 +59,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? DestLevelStepAccessRole { get; set; }
         public string UserRoleDes { get; set; }
 
+        public string SmsContent { get; set; }
+
+        public bool? SmsType { get; set; }
 
     }
 

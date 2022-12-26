@@ -219,7 +219,7 @@
                         strTimeLine += "<div class='timeline-entry-inner'>";
 
                         strTimeLine += "<time class='timeline-time' datetime=''>";
-                        strTimeLine += "<span class='date'>1401/09/26</span>";
+                        strTimeLine += "<span class='date'>" + res.data[i].dateOfRequestStr+"</span>";
                         strTimeLine += "<span class='LTRDirection'>14 :45</span>";
                         strTimeLine += "</time>";
 

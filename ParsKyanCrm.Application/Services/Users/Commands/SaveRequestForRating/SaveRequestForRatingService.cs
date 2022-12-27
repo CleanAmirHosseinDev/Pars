@@ -92,7 +92,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                 if (request.Request.RequestId == 0)
                 {
-                    
+
                     if (!cus.IsProfileComplete)
                     {
 
@@ -170,6 +170,16 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         SmsType = request.SmsType
                     });
                     await _context.SaveChangesAsync();
+
+                    if (request.DestLevelStepIndex == "14")
+                    {
+                        Ado_NetOperation.SqlUpdate(typeof(RequestForRating).Name, new Dictionary<string, object>()
+                        {
+                            {
+                                "IsFinished",true
+                            }
+                        }, " RequestID = " + request.Request.RequestId);
+                    }
 
                     switch (request.SmsType)
                     {

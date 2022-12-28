@@ -132,7 +132,7 @@
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
                 $("#PostalCode").val(res.postalCode);
-
+                $("#AmountOsLastSales").val(res.amountOsLastSales);
                 systemSeting_Combo(res);
                
 

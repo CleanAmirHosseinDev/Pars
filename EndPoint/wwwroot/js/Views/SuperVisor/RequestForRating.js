@@ -265,9 +265,9 @@
                             strTimeLine += "</ul>";
                         }
                         else {
-                            if (res.data[i].userRoleDes == null) {
-                                strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
-                                strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
+                            if (res.data[i].sendUser == null) {
+                               // strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
+                               // strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
                             } else {
                                 strTimeLine += "<span>" + res.data[i].userRoleDes + ": </span>";
                                 strTimeLine += "<span class='sender'>" + res.data[i].realName + "</span>";

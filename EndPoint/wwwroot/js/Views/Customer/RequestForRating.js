@@ -212,7 +212,7 @@
                 var left = false;
 
                 for (var i = 0; i < res.data.length; i++) {
-                    if (res.data[i].levelStepAccessRole == "10") {
+                    if (res.data[i].levelStepAccessRole == "10" || res.data[i].sendUser == null) {
                         var bgColor = i == 0 ? "bg-secondary" : "bg-info";
 
                         strTimeLine += "<article class='timeline-entry " + (left ? " left-aligned" : "") + "'>";
@@ -247,9 +247,9 @@
                             strTimeLine += "</ul>";
                         }
                         else {
-                            if (res.data[i].userRoleDes == null) {
-                                strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
-                                strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
+                            if (res.data[i].sendUser == null) {
+                              //  strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
+                              //  strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
                             } else {
                                 strTimeLine += "<span>" + res.data[i].userRoleDes + ": </span>";
                                 strTimeLine += "<span class='sender'>" + res.data[i].realName + "</span>";

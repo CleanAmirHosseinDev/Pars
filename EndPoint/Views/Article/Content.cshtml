@@ -1,0 +1,20 @@
+﻿@{
+    var ContentData = (ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto)ViewData["content"];
+    ViewData["Title"] = @ContentData.Title;
+    Layout = "_ArticleBase";
+}
+
+
+@if(!string.IsNullOrEmpty(ContentData.ContentPic)) {
+    <img class="article_img" src="@ContentData.ContentPicFull" />
+}
+<div class="article_title_div">
+    <p class="article_titile_p">@ContentData.Title</p>
+    <div class="article_title_info_parrent">
+        <p>نویسنده: پارس کیان</p>
+        <p>تاریخ انتشار: دوشنبه ۱۴ آبان ۱۴۰۱</p>
+    </div>
+</div>
+<div class="article_text">
+    @Html.Raw(ContentData.Body)
+</div>

@@ -2,12 +2,12 @@
 Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
-
+@import url("/lib/font/vazir.css");
 body
 {
 	/* Font */
 	/* Emoji fonts are added to visualise them nicely in Internet Explorer. */
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: 'Vazir',sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 12px;
 
 	/* Text color */

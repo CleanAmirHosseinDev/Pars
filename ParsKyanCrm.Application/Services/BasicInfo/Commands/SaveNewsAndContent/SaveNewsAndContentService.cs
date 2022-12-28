@@ -82,6 +82,9 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveNewsAndContent
                             nameof(q_Entity.Entity.Title),request.Title
                         },
                         {
+                            nameof(q_Entity.Entity.IsActive),request.IsActive
+                        },
+                        {
                             nameof(q_Entity.Entity.UserId),request.UserId
                         },
                         {
@@ -101,6 +104,8 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveNewsAndContent
                         },
                         {
                             nameof(q_Entity.Entity.Keywords),request.Keywords
+                        },{
+                            nameof(q_Entity.Entity.DirectLink),request.DirectLink
                         },
 
                     }, string.Format(nameof(q_Entity.Entity.ContentId) + " = {0} ", request.ContentId));

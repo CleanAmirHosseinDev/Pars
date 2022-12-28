@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "تماس با ما";
+}
+<link rel="stylesheet" href="~/css/landing/ContactUs.css" asp-append-version="true" />
+
+<div id="bg-img"></div>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+
+<section class="contact-page-section">
+    <div class="container">
+
+        <div class="inner-container">
+            <div class="row clearfix">
+
+                <!--Info Column-->
+                <div class="info-column col-md-4 col-sm-12 col-xs-12">
+                    <div class="inner-column">
+                        <ul class="list-info">
+                            <li><i class="fas fa-globe"></i>تهران – خیابان میرزای شیرازی – خیابان منصور – پلاک ۲</li>
+                            <li><i class="far fa-envelope"></i>info@parscrc.ir</li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+
+                                (۰۲۱) ۸۸۷۱ ۵۰۲۲
+                                <br>
+                                (۰۲۱) ۸۸۷۱ ۰۱۵۰
+                                <br>
+                                (۰۲۱) ۸۸۱۰ ۲۱۷۵
+                                <br>
+                                (۰۲۱) ۸۸۱۰ ۹۱۳۴
+                                <br>
+                                ۰۹۳۵ ۹۰۳ ۴۶۴۶
+                            </li>
+                            <li>
+                                <i class="fas fa-fax"></i>
+                                (۰۲۱) ۸۸۷۲ ۷۸۱۹
+                            </li>
+                        </ul>
+                        <ul class="social-icon-four">
+                            <li class="follow">شبکه های اجتماعی </li>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Form Column-->
+                <div class="form-column col-md-8 col-sm-12 col-xs-12">
+                    <div class="inner-column">
+
+                        <!--Contact Form-->
+                        <div class="contact-form">
+                            <form id="contact-form" onsubmit="return false">
+                                <div class="row clearfix">
+                                    <div class="form-group col-md-6 col-sm-6 co-xs-12">
+                                        <input type="text" name="name" value="" placeholder="نام شما" required>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 co-xs-12">
+                                        <input type="email" name="email" value="" placeholder="ایمیل شما" required>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 co-xs-12">
+                                        <input type="text" name="subject" value="" placeholder="موضوع" required>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 co-xs-12">
+                                        <input type="text" name="phone" value="" placeholder="تلفن" required>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 co-xs-12">
+                                        <textarea name="message" placeholder="پیام شما"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 co-xs-12" style="align-self: center;">
+                                        <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 co-xs-12">
+                                        <button type="submit" onclick="sendContactUs()" class="theme-btn btn-style-one">ارسال پیام</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--End Contact Form-->
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function jgetFormData(selector){
+    var unindexed_array = $(selector).serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+    return indexed_array;
+}
+
+function sendContactUs(){
+
+
+    $.ajax({
+        type: "post",
+        url: "/ContactUs/ContactUsForm",
+        data: jgetFormData("#contact-form"),
+        beforeSend: function() {
+        },
+        success: function(res) {
+            alert(res.message);
+            if (res.isSuccess) {
+                location.reload(true);
+            } 
+        },
+        complete: function() {
+        },
+        error: function(error) { 
+            alert('خطا در ارسال پیام');
+        }
+    });
+
+}
+
+</script>

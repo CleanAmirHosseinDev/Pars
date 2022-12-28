@@ -31,7 +31,8 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetNewsAndContents
             {
 
                 var lists = (from s in _context.NewsAndContent
-                             where (s.IsActive == request.IsActive || request.IsActive == null)
+                             where ((s.IsActive == request.IsActive || request.IsActive == null)
+                             && (s.KindOfContent == request.KindOfContent || request.KindOfContent == null))
                              select s).Include(p=>p.User).Include(p=>p.KindOfContentNavigation).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Title.Contains(request.Search));

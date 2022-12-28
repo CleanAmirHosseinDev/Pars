@@ -10,6 +10,7 @@ namespace EndPoint.Controllers
     {
         public IActionResult Code404()
         {
+            Response.StatusCode = 404;
             return View();
         }
     }

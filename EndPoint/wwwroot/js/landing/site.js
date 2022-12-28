@@ -55,11 +55,12 @@ $(function () {
 
 $(function () {
     var s = "";
-    $(".dropdown div .functiondiv").each(function (i) {
+    $(".jdropdown div .functiondiv").each(function (i) {
         s += "<div>" + $(this).html() + "</div>";
     });
     $("#sideslider_panel").html(s);
 });
+
 var sideSliderShown = false;
 function toggleSideSlider() {
     if (sideSliderShown) {

@@ -33,10 +33,20 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetNewsAndContent
 
                 if (request.ContentId != null && request.ContentId != 0)
                 {
-                    var q_Find = await _context.NewsAndContent.Include(p => p.User).Include(p => p.KindOfContentNavigation).FirstOrDefaultAsync(p => p.ContentId == request.ContentId.Value && (p.IsActive == request.IsActive || request.IsActive == null));                    
+                    var q_Find = await _context.NewsAndContent.Include(p => p.User).Include(p => p.KindOfContentNavigation).FirstOrDefaultAsync(p => p.ContentId == request.ContentId.Value && (p.IsActive == request.IsActive || request.IsActive == null));
                     res = _mapper.Map<NewsAndContentDto>(q_Find);
                     res.User = q_Find.User != null ? _mapper.Map<UsersDto>(q_Find.User) : new UsersDto();
                     res.KindOfContentNavigation = q_Find.KindOfContentNavigation != null ? _mapper.Map<SystemSetingDto>(q_Find.KindOfContentNavigation) : new SystemSetingDto();
+                }
+                else if (request.DirectLink != null && request.DirectLink.Length > 0)
+                {
+                    var q_Find = await _context.NewsAndContent.Include(p => p.User).Include(p => p.KindOfContentNavigation).FirstOrDefaultAsync(p => (p.DirectLink == request.DirectLink || request.DirectLink == null) && (p.IsActive == request.IsActive || request.IsActive == null));
+                    if (q_Find != null)
+                    {
+                        res = _mapper.Map<NewsAndContentDto>(q_Find);
+                        res.User = q_Find.User != null ? _mapper.Map<UsersDto>(q_Find.User) : new UsersDto();
+                        res.KindOfContentNavigation = q_Find.KindOfContentNavigation != null ? _mapper.Map<SystemSetingDto>(q_Find.KindOfContentNavigation) : new SystemSetingDto();
+                    }
                 }
 
                 return res;

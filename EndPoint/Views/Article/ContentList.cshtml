@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "آرشیو خبر‌ها";
+    ViewData["Title"] = "آرشیو مقالات";
 }
 
 <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
@@ -9,12 +9,12 @@
 <link rel="stylesheet" href="~/css/landing/ArticleListBase.css" asp-append-version="true" />
 
 <section id="section_list_x1">
- <h1 id="ListTitle">آرشیو خبرها</h1>
+ <h1 id="ListTitle">آرشیو مقالات</h1>
     
     <div class="inner_div">
 
-        @if(ViewData["news"] != null) {
-            @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["news"]) {
+        @if(ViewData["content"] != null) {
+            @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["content"]) {
 
                 <figure class="snip1249">
                     <div class="image">
@@ -27,7 +27,7 @@
                         <div class="date">
                             <l2>۲۴ مهر</l2>۱۴۰۱
                         </div>
-                        <a href="/Article/News/@item.ContentId" class="jbtn">ادامه مطلب</a>
+                        <a href="/Article/Content/@item.ContentId" class="jbtn">ادامه مطلب</a>
                     </figcaption>
                 </figure>
 

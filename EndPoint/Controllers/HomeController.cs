@@ -29,6 +29,7 @@ namespace EndPoint.Controllers
                 RequestNewsAndContentDto request = new RequestNewsAndContentDto();
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
                 request.PageSize = 4;
+                request.KindOfContent = 61;
                 request.PageIndex = 1;
                 var news = await _basicInfoFacad.GetNewsAndContentsService.Execute(request);
 

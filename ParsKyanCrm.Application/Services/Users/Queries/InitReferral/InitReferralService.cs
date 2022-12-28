@@ -60,13 +60,27 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.InitReferral
 
                 }
 
+                if (q.Rows == 1 && q.Data.FirstOrDefault().DestLevelStepIndex == "14")
+                {
+
+                    return new ResultDto<IEnumerable<LevelStepSettingDto>>
+                    {
+                        IsSuccess = false,
+                        Message = "فرایند اتمام یافت",                        
+                    };
+
+                }
+
                 var qLSI = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + q.Data.FirstOrDefault().DestLevelStepIndex);
                 foreach (var item in qLSI)
                 {
 
-                    var qqxcmcx = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + item.DestLevelStepIndex);
-                    item.LevelStepAccessRole = qqxcmcx.FirstOrDefault().LevelStepAccessRole;
-                    item.LevelStepStatus = qqxcmcx.FirstOrDefault().LevelStepStatus;
+                    if (!string.IsNullOrEmpty(item.DestLevelStepIndex))
+                    {
+                        var qqxcmcx = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + item.DestLevelStepIndex);
+                        item.LevelStepAccessRole = qqxcmcx.FirstOrDefault().LevelStepAccessRole;
+                        item.LevelStepStatus = qqxcmcx.FirstOrDefault().LevelStepStatus; 
+                    }
 
                 }
 

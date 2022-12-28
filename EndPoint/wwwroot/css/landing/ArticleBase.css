@@ -46,3 +46,14 @@
 @media only screen and (max-width: 700px) {
     .article_body .article_title_div { flex-direction: column; }
     .article_text { padding: 5px 7px; }
+}
+
+.sakhtar_style_x1 { display: flex; flex-wrap: wrap; }
+.sakhtar_style_x2 { min-height: 80px; display: flex; flex-direction: column; align-items: center; width: 290px; background: #eff3ff; padding: 12px; border-radius: 8px; margin: 15px; box-shadow: 0 4px 5px 1px #00000040; }
+.sakhtar_style_x3 { width: 100%; height: 232px; object-fit: contain; }
+.sakhtar_style_x4 { font-size: 16px; display: flex; height: 55px; align-items: center; margin-top: 7px; width: 95%; }
+.sakhtar_style_x5 { margin-right: auto; font-size: 24px; padding: 5px 10px; }
+.sakhtar_style_x6 { display: table; font-size: 16px; white-space: pre-line; }
+.sakhtar_style_h2 { margin: 0; }
+
+.sakhtar_style_x4 strong { display: block; }

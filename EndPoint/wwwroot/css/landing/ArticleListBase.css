@@ -6,7 +6,7 @@
 li,
 ul { list-style: none; padding: 0; margin: 0; }
 
-figure.snip1249 { max-width: 444px }
+figure.snip1249 { max-width: 330px }
 #ListTitle { color: white; text-align: center; margin-bottom: 10px; }
-#section_list_x1 { background: #325777cc; max-width: var(--max-site-width); z-index: 423; margin: auto; position: relative; padding: 20px; margin: 15px auto; border-radius: 20px; }
+#section_list_x1 { margin: 20px; background: #325777cc; max-width: var(--max-site-width); z-index: 423; margin: auto; position: relative; padding: 20px; margin: 15px auto; border-radius: 20px; }
     #section_list_x1 > .inner_div { display: flex; flex-wrap: wrap; width: auto; justify-content: space-around; }

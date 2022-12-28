@@ -65,127 +65,173 @@
 
                                                 <fieldset>
                                                     <div class="form-card">
-                                                        <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label " for="">
-                                                                            نام و نام خانوادگی
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="text" name="MemberName" id="MemberName" placeholder="نام و نام خانوادگی" class="form-control" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label " for="">
-                                                                            پست سازمانی
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <select id="MemberPostID" name="MemberPostID" class="form-control select2" style="width:100% !important;">
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label" for="">
-                                                                            مدرک تحصیلی
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <select id="MemberEductionID" name="MemberEductionID" class="form-control select2" style="width:100% !important;">
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label " for="">
-                                                                            محل تحصیل/ دانشگاه
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <select id="UniversityID" name="UniversityID" class="form-control select2" style="width:100% !important;"></select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label" for="">
-                                                                            تصویر مدرک تحصیلی
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="file" name="pwd" placeholder="سابقه مدیریتی" class="form-control" />
+                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
+
+                                                            <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label " for="">
+                                                                                نام و نام خانوادگی
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="text" name="MemberName" id="MemberName" placeholder="نام و نام خانوادگی" class="form-control" />
+                                                                        </div>
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label " for="">
+                                                                                پست سازمانی
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <select id="MemberPostID" name="MemberPostID" class="form-control select2" style="width:100% !important;">
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label" for="">
+                                                                                مدرک تحصیلی
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <select id="MemberEductionID" name="MemberEductionID" class="form-control select2" style="width:100% !important;">
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label " for="">
+                                                                                محل تحصیل/ دانشگاه
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <select id="UniversityID" name="UniversityID" class="form-control select2" style="width:100% !important;"></select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label" for="">
+                                                                                تصویر مدرک تحصیلی
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="file" name="pwd" placeholder="سابقه مدیریتی" class="form-control" />
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:15px">
+                                                                            <label class="control-label" for="">
+                                                                                عضو هیئت مدیره
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="checkbox" name="IsConcil" id="IsConcil" style="text-align:right;width:30px" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label" for="">
+                                                                                درصد سهام
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="text" name="pwd" placeholder="درصد سهام" class="form-control" data-toggle="tooltip" data-placement="left" title="به عدد" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label" for="">
+                                                                                تعداد سهام
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="text" name="pwd" placeholder="تعداد سهام" class="form-control" data-toggle="tooltip" data-placement="left" title="به عدد" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label" for="">
+                                                                                سابقه بیمه
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="text" name="pwd" placeholder="سابقه بیمه" class="form-control" data-toggle="tooltip" data-placement="left" title="به سال" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <label class="control-label" for="">
+                                                                                سابقه مدیریتی
+                                                                                <span class="RequiredLabel">*</span>
+                                                                            </label>
+                                                                            <input type="text" name="pwd" placeholder="سابقه مدیریتی" class="form-control" data-toggle="tooltip" data-placement="left" title="به سال" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12" style="margin-bottom:10px">
+                                                                            <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                <i class="fa fa-plus"></i>
+                                                                                افزودن
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                  
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:15px">
-                                                                        <label class="control-label" for="">
-                                                                            عضو هیئت مدیره
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="checkbox" name="IsConcil" id="IsConcil" style="text-align:right;width:30px" />
-                                                                    </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>ردیف</th>
+                                                                            <th>نام و نام خانوادگی</th>
+                                                                            <th>پست سازمانی</th>
+                                                                            <th>درصد سهام</th>
+                                                                            <th> تعداد سهام</th>
+                                                                            <th>عملیات</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>...</td>
+                                                                            <td>...</td>
+                                                                            <td>...</td>
+                                                                            <td>...</td>
+                                                                            <td>
+                                                                                <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                               
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label" for="">
-                                                                            درصد سهام
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="text" name="pwd" placeholder="درصد سهام" class="form-control" data-toggle="tooltip" data-placement="left" title="به عدد" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label" for="">
-                                                                            تعداد سهام
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="text" name="pwd" placeholder="تعداد سهام" class="form-control" data-toggle="tooltip" data-placement="left" title="به عدد" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label" for="">
-                                                                            سابقه بیمه
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="text" name="pwd" placeholder="سابقه بیمه" class="form-control" data-toggle="tooltip" data-placement="left" title="به سال" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12" style="margin-bottom:10px">
-                                                                        <label class="control-label" for="">
-                                                                            سابقه مدیریتی
-                                                                            <span class="RequiredLabel">*</span>
-                                                                        </label>
-                                                                        <input type="text" name="pwd" placeholder="سابقه مدیریتی" class="form-control" data-toggle="tooltip" data-placement="left" title="به سال" />
-                                                                    </div>
-                                                                </div>
-
                                                             </div>
+                                                        </div>
+                                                        <br />
+                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+
+
+                                                            <h2 class="fs-title">بارگزاری اسناد شرکت</h2>
+                                                            <p>مدارک ذیل بارگزاری شود</p>
+                                                            <p style="color:darkgrey;line-height:30px">
+
+                                                                <small> فرمت مجاز جهت بارگزاری  : pdf</small>
+                                                            </p>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+
+                                                                        <th>بارگزاری اسناد</th>
+                                                                        <th>تصویر سند</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="CompanyDocument">
+                                                                </tbody>
+
+                                                            </table>
+
+
 
                                                         </div>
-                                                        <h2 class="fs-title">بارگزاری اسناد شرکت</h2>
-                                                        <p>مدارک ذیل بارگزاری شود</p>
-                                                        <p style="color:darkgrey;line-height:30px">
-
-                                                            <small> فرمت مجاز جهت بارگزاری  : pdf</small>
-                                                        </p>
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-
-                                                                    <th>بارگزاری اسناد</th>
-                                                                    <th>تصویر سند</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="CompanyDocument">
-                                                            </tbody>
-
-                                                        </table>
+                                                        <br/>
                                                         <div class="row">
                                                             <div class="form-group">
                                                                 <div class="col-md-12 text-center">
@@ -196,34 +242,6 @@
                                                                         ارجاع جهت بررسی
                                                                     </button>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <br/>
-                                                        
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th>ردیف</th>
-                                                                        <th>نام و نام خانوادگی</th>
-                                                                        <th>پست سازمانی</th>
-                                                                        <th>درصد سهام</th>
-                                                                        <th> تعداد سهام</th>
-                                                                        <th>عملیات</th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>...</td>
-                                                                        <td>...</td>
-                                                                        <td>...</td>
-                                                                        <td>...</td>
-                                                                        <td>
-                                                                            <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
-                                                                            <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-edit fontForAllPage"> <i class="fa fa-edit"></i></a>
-
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -244,41 +262,58 @@
                                                                     </ul>
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormID12">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-6">
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <input type="file" name="GuidelinesAndRegulations" id="GuidelinesAndRegulations" class="form-control" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                بارگزاری فایل دستور العمل یا آیین نامه یا روش اجرایی
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <input type="file" name="GuidelinesAndRegulationsFile" id="GuidelinesAndRegulationsFile" class="form-control" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                روش اجرایی است یا دستور العمل?
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <select name="IsGuideLineOrProcess" id="IsGuideLineOrProcess" class="form-control">
-                                                                                                <option value="1">بلی</option>
-                                                                                                <option value="0">خیر</option>
+                                                                            <div class="row" style="border:1px solid silver;padding:10px">
+                                                                                <div class="col-lg-12">
 
-                                                                                            </select>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    <table class="table">
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th> عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی</th>
+                                                                                            <th>بارگزاری فایل دستور العمل یا آیین نامه یا روش اجرایی</th>
+                                                                                            <th> روش اجرایی است یا دستور العمل?</th>
+                                                                                            <th>افزودن</th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td></td>
+                                                                                            <td>
+                                                                                                <input type="text" name="GuidelinesAndRegulations" id="GuidelinesAndRegulations" class="form-control" />
+
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="file" name="GuidelinesAndRegulationsFile" id="GuidelinesAndRegulationsFile" class="form-control" />
+
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <select name="IsGuideLineOrProcess" id="IsGuideLineOrProcess" class="form-control">
+                                                                                                    <option value="1">بلی</option>
+                                                                                                    <option value="0">خیر</option>
+
+                                                                                                </select>
+                                                                                            </td>
+
+                                                                                            <td>
+                                                                                                <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                                    <i class="fa fa-plus"></i>
+                                                                                                </a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
+                                                                                            <td>
+                                                                                                <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                                            </td>
+                                                                                            <td>
+
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
                                                                                 </div>
+
                                                                             </div>
+                                                                            
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
@@ -294,46 +329,59 @@
                                                                         </div>
                                                                         <!-- /.tab-pane -->
                                                                         <div class="tab-pane" id="FormID13">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-6">
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                نام گواهینامه، مجوز، تاییدیه یا استاندارد
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <input type="file" name="CertificateAndPermitAndStandard" id="CertificateAndPermitAndStandard" class="form-control" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                بارگزاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <input type="file" name="CertificateAndPermitAndStandardFile" id="CertificateAndPermitAndStandardFile" class="form-control" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                مرجع صادر کننده
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <input type="text" name="ExporterReferenceForCertificate" id="ExporterReferenceForCertificate" class="form-control" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                                            <label class="control-label " for="">
-                                                                                                تاریخ انقضا
-                                                                                                <span class="RequiredLabel">*</span>
-                                                                                            </label>
-                                                                                            <input type="text" name="ExpireDate" id="ExpireDate" class="form-control" />
-                                                                                        </div>
-                                                                                    </div>
+                                                                            <div class="row" style="border:1px solid silver;padding:10px">
+                                                                                <div class="col-lg-12">
+                                                                                    <table class="table">
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th> بارگزاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th>  مرجع صادر کننده</th>
+                                                                                            <th> تاریخ انقضا</th>
+                                                                                            <th>افزودن</th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td></td>
+                                                                                            <td>
+                                                                                                <input type="text" name="CertificateAndPermitAndStandard" id="CertificateAndPermitAndStandard" class="form-control" />
+
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="file" name="CertificateAndPermitAndStandardFile" id="CertificateAndPermitAndStandardFile" class="form-control" />
+
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="text" name="ExporterReferenceForCertificate" id="ExporterReferenceForCertificate" class="form-control" />
+
+                                                                                                
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <input type="text" name="ExpireDate" id="ExpireDate" class="form-control" />
+                                                                                            </td>
+                                                                                          
+                                                                                            <td>
+                                                                                                <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                                    <i class="fa fa-plus"></i>
+                                                                                                </a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>1</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
+                                                                                            <td>
+                                                                                                <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
                                                                                 </div>
+
                                                                             </div>
+                                                                            
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
@@ -348,7 +396,6 @@
                                                                             </div>
                                                                         </div>
                                                                         <!-- /.tab-pane -->
-
                                                                         <div class="tab-pane" id="FormID14">
                                                                             <h4>جوایز معتبر </h4>
                                                                             <div class="row" style="border:1px solid silver;padding:10px">
@@ -390,6 +437,8 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>1</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
                                                                                             <td>...</td>
                                                                                             <td>...</td>
                                                                                             <td>
@@ -582,6 +631,7 @@
                                                                                     </div>
 
                                                                                 </div>
+                                                                                
                                                                                 <!-- ثبت اعضای کمیته حسابرسی  -->
 
                                                                                 <hr />
@@ -690,28 +740,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <table class="table">
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>عنوان مستند</th>
 
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td>1</td>
-                                                                                                <td>...</td>
-
-                                                                                                <td>
-                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
-                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-edit fontForAllPage"> <i class="fa fa-edit"></i></a>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -976,27 +1005,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <table class="table">
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>عنوان مستند</th>
-
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td>1</td>
-                                                                                                <td>...</td>
-
-                                                                                                <td>
-                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
+                                                                                
                                                                             </div>
                                                                         </div>
                                                                         <!-- /.tab-pane -->
@@ -1004,33 +1013,50 @@
                                                                         <div class="tab-pane" id="FormID4">
                                                                             <div class="form-card">
                                                                                 <h2 class="fs-title">برنامه ریزی بلند مدت</h2>
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-6">
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                <label class="control-label " for="">
-                                                                                                    مستندات تدوین برنامه ریزی استراتژیک
-                                                                                                    <span class="RequiredLabel">*</span>
-                                                                                                </label>
-                                                                                                <input type="file" name="SwotFile1" id="SwotFile1" class="form-control" />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                <label class="control-label " for="">
-                                                                                                    مستندات اجرا و بازخورد برنامه ریزی استراتژیک
-                                                                                                    <span class="RequiredLabel">*</span>
-                                                                                                </label>
-                                                                                                <input type="file" name="SwotFile2" id="SwotFile1" class="form-control" />
-                                                                                            </div>
-                                                                                        </div>
+                                                                                <div class="row" style="border:1px solid silver;padding:10px">
+                                                                                    <div class="col-lg-12">
+                                                                                        <table class="table">
+                                                                                            <tr>
+                                                                                                <th>ردیف</th>
+                                                                                                <th> مستندات تدوین برنامه ریزی استراتژیک</th>
+                                                                                                <th>مستندات اجرا و بازخورد برنامه ریزی استراتژیک</th>
+                                                                                                
+                                                                                                <th>افزودن</th>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td></td>
+                                                                                                <td>
+                                                                                                    <input type="file" name="SwotFile1" id="SwotFile1" class="form-control" />
 
-                                                                                    </div>
-                                                                                    <div class="col-lg-6">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="file" name="SwotFile2" id="SwotFile2" class="form-control" />
 
+                                                                                                </td>
+                                                                                               
+
+                                                                                                <td>
+                                                                                                    <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                                        <i class="fa fa-plus"></i>
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>1</td>
+                                                                                                <td>...</td>
+                                                                                                <td>...</td>
+                                                                                               
+                                                                                                <td>
+                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
                                                                                     </div>
 
                                                                                 </div>
+                                                                                
                                                                                 <div class="row" style="margin:20px">
                                                                                     <div class="form-group">
                                                                                         <div class="col-md-12 text-center">
@@ -1043,28 +1069,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <table class="table">
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>عنوان مستند</th>
-
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td>1</td>
-                                                                                                <td>...</td>
-
-                                                                                                <td>
-                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
-                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-edit fontForAllPage"> <i class="fa fa-edit"></i></a>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
+                                                                                
                                                                             </div>
                                                                         </div>
 
@@ -1263,6 +1268,8 @@
                                                                                             <td>1</td>
                                                                                             <td>...</td>
                                                                                             <td>...</td>
+                                                                                            <td>...</td>
+                                                                                            <td>...</td>
                                                                                             <td>
                                                                                                 <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
                                                                                             </td>
@@ -1380,19 +1387,53 @@
                                                                                                     <span class="RequiredLabel">*</span>
                                                                                                 </label>
                                                                                                 <input type="checkbox" name="IsPublicActivityFile" id="IsPublicActivityFile" />
-                                                                                                <input type="file" name="PublicActivityFile" id="PublicActivityFile" class="form-control" />
 
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:15px">
-                                                                                                <label class="control-label" for="">
-                                                                                                    میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال) <span class="RequiredLabel">*</span>
-                                                                                                </label>
-                                                                                                <input type="text" name="TotalPrice" id="TotalPrice" class="form-control" />
+                                                                                        <table class="table">
+                                                                                            <tr>
+                                                                                                <th>ردیف</th>
+                                                                                                <th>عنوان</th>
+                                                                                                <th>  مدرک</th>
+                                                                                                <th> میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)</th>
 
-                                                                                            </div>
-                                                                                        </div>
+                                                                                                <th>افزودن</th>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td></td>
+                                                                                                <td>
+                                                                                                    <input type="text" name="PublicActivityTitle" id="PublicActivityTitle" class="form-control" />
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="file" name="PublicActivityFile" id="PublicActivityFile" class="form-control" />
+
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="text" name="TotalPrice" id="TotalPrice" class="form-control" />
+
+                                                                                                </td>
+
+
+                                                                                                <td>
+                                                                                                    <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                                        <i class="fa fa-plus"></i>
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>1</td>
+                                                                                                <td>...</td>
+                                                                                                <td>...</td>
+                                                                                                <td>...</td>
+
+                                                                                                <td>
+                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-12" style="margin-bottom:15px">
                                                                                                 <label class="control-label" for="">
@@ -1403,16 +1444,45 @@
 
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:15px">
-                                                                                                <label class="control-label" for="">
-                                                                                                    بارگزاری سند سرمایه گذاری
-                                                                                                    <span class="RequiredLabel">*</span>
-                                                                                                </label>
-                                                                                                <input type="file" name="InvestmentFile" id="InvestmentFile" class="form-control" />
+                                                                                        <table class="table">
+                                                                                            <tr>
+                                                                                                <th>ردیف</th>
+                                                                                                <th>عنوان</th>
+                                                                                                <th>بارگزاری سند سرمایه گذاری</th>
 
-                                                                                            </div>
-                                                                                        </div>
+                                                                                                <th>افزودن</th>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td></td>
+                                                                                                <td>
+                                                                                                    <input type="text" name="InvestmentTitle" id="InvestmentTitle" class="form-control" />
+
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="file" name="InvestmentFile" id="InvestmentFile" class="form-control" />
+
+                                                                                                </td>
+
+
+
+                                                                                                <td>
+                                                                                                    <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                                        <i class="fa fa-plus"></i>
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>1</td>
+                                                                                                <td>...</td>
+                                                                                                <td>...</td>
+                                                                                                <td>
+                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-12" style="margin-bottom:15px">
                                                                                                 <label class="control-label" for="">
@@ -1423,19 +1493,49 @@
 
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:15px">
-                                                                                                <label class="control-label" for="">
-                                                                                                    بارگزاری سند مسئولیت پذیری
-                                                                                                    <span class="RequiredLabel">*</span>
-                                                                                                </label>
-                                                                                                <input type="file" name="EmploymentDisabledFile" id="EmploymentDisabledFile" class="form-control" />
+                                                                                        
+                                                                                        <table class="table">
+                                                                                            <tr>
+                                                                                                <th>ردیف</th>
+                                                                                                <th>عنوان</th>
+                                                                                                <th>بارگزاری سند مسئولیت پذیری</th>
 
-                                                                                            </div>
-                                                                                        </div>
+                                                                                                <th>افزودن</th>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td></td>
+                                                                                                <td>
+                                                                                                    <input type="text" name="EmploymentDisabledFileTitle" id="EmploymentDisabledFileTitle" class="form-control" />
+
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input type="file" name="EmploymentDisabledFile" id="EmploymentDisabledFile" class="form-control" />
+
+                                                                                                </td>
+
+
+
+                                                                                                <td>
+                                                                                                    <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                                                                                                        <i class="fa fa-plus"></i>
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>1</td>
+                                                                                                <td>...</td>
+                                                                                                <td>...</td>
+                                                                                                <td>
+                                                                                                    <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
                                                                                     </div>
 
                                                                                 </div>
+                                                                                
                                                                                 <div class="row" style="margin:20px">
                                                                                     <div class="form-group">
                                                                                         <div class="col-md-12 text-center">

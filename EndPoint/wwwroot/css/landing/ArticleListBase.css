@@ -1,0 +1,12 @@
+﻿body { text-align: initial !important; }
+
+
+#bg-img { background-image: url(/image/landing/contactus.jpg); width: 100vw; position: fixed; height: 100vh; margin-top: -85px; background-repeat: no-repeat; background-size: cover; }
+
+li,
+ul { list-style: none; padding: 0; margin: 0; }
+
+figure.snip1249 { max-width: 444px }
+#ListTitle { color: white; text-align: center; margin-bottom: 10px; }
+#section_list_x1 { background: #325777cc; max-width: var(--max-site-width); z-index: 423; margin: auto; position: relative; padding: 20px; margin: 15px auto; border-radius: 20px; }
+    #section_list_x1 > .inner_div { display: flex; flex-wrap: wrap; width: auto; justify-content: space-around; }

@@ -12,25 +12,14 @@ using System.Threading.Tasks;
 using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
 
 namespace EndPoint.Controllers {
-    public class AboutUsController :Controller {
-        private readonly ILogger<AboutUsController> _logger;
+    public class ContactUsController :Controller {
+        private readonly ILogger<ContactUsController> _logger;
 
-        public AboutUsController(ILogger<AboutUsController> logger) {
+        public ContactUsController(ILogger<ContactUsController> logger) {
             _logger = logger;
         }
 
-
         public IActionResult Index( ) {
-            return View();
-        }
-        public IActionResult VisionAndMission( ) {
-            return View();
-        }
-        public IActionResult OrganazationChart( ) {
-            return View();
-        }
-
-        public IActionResult ContactUs( ) {
             return View();
         }
         [CaptchaCheck]

@@ -5,7 +5,7 @@
 
 
 
-<link rel="stylesheet" href="~/css/landing/Article.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
 
 <div id="bg-img"></div>
 
@@ -13,12 +13,7 @@
 
     <div id="particles-js"></div>
     <div class="inner_div">
-        <h1 style="
-    z-index: 10;
-    margin: 0;
-    border-bottom: 1px white solid;
-    margin: 0 50px 0 0;
-">
+        <h1 id="h1_article">
             @ViewData["Title"]
         </h1>
     </div>
@@ -49,20 +44,34 @@
             <div class="item">
                 <div class="search_bar">
                     <input type="text" placeholder="جستجو..." />
-                    <a class="btn" href="#" onclick="">جستجو</a>
+                    <a class="jbtn" href="#" onclick="">جستجو</a>
                 </div>
             </div>
         </div>
         <div class="left_sec_item">
             <div class="title">
-                <h4>نوشته های تازه</h4>
+                <h4>خبر های تازه</h4>
             </div>
             <div class="item">
-                <a href="#">وبسایت جدید پارس کیان ریلیز شد<span>(۱۴۰۱/۰۸/۲۴)</span></a>
-                <a href="#">نسخه جدید تفاهم همکاری امضا شد<span>(۱۴۰۱/۰۸/۲۴)</span></a>
-                <a href="#">نمایش کلی فرایند های درخواست مقدور شد.<span>(۱۴۰۱/۰۸/۲۴)</span></a>
-                <a href="#">جلسه هماهنگی میان شرکا با امضا تفاهم نامه به پایان رسید.<span>(۱۴۰۱/۰۸/۲۴)</span></a>
-                <a href="#">وبسایت جدید پارس کیان ریلیز شد<span>(۱۴۰۱/۰۸/۲۴)</span></a>
+                @if(ViewData["NewNews"] != null) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["NewNews"]) {
+                <a href="/Article/News/@item.ContentId">@item.Title<span>(۱۴۰۱/۰۸/۲۴)</span></a>
+                    }
+
+                }
+            </div>
+        </div>
+                <div class="left_sec_item">
+            <div class="title">
+                <h4>مقالات تازه</h4>
+            </div>
+            <div class="item">
+                @if(ViewData["NewContent"] != null) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["NewContent"]) {
+                <a href="/Article/Content/@item.ContentId">@item.Title<span>(۱۴۰۱/۰۸/۲۴)</span></a>
+                    }
+
+                }
             </div>
         </div>
         <div class="left_sec_item">
@@ -70,14 +79,13 @@
                 <h4>دسته بندی ها</h4>
             </div>
             <div class="item" style="font-size: 18px;">
-                <a href="#">خبرها</a>
-                <a href="#">مقالات</a>
-                <a href="#">برگه‌ها</a>
+                <a href="/Article/NewsList">خبرها</a>
+                <a href="/Article/ContentList">مقالات</a>
             </div>
         </div>
+        <br />
 
     </div>
-
 </section>
 
 

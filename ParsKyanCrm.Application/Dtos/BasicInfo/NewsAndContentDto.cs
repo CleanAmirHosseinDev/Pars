@@ -15,6 +15,8 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
     {
 
         public int? ContentId { get; set; }
+        public int? KindOfContent { get; set; }
+        public string DirectLink { get; set; }
 
     }
 
@@ -47,6 +49,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 
         public SystemSetingDto KindOfContentNavigation { get; set; }
         public UsersDto User { get; set; }
+        public string DirectLink { get; set; }
 
     }
 }

@@ -22,5 +22,7 @@ namespace ParsKyanCrm.Domain.Entities
 
         public virtual SystemSeting KindOfContentNavigation { get; set; }
         public virtual Users User { get; set; }
+
+        public string DirectLink { get; set; }
     }
 }

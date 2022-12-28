@@ -132,9 +132,9 @@ header > .items > div:hover .header_dropdown_handle { color: var(--nv-color1); }
 
     #footer .right img { display: none; }
     #footer .left img { width: 26vw; height: 26vw; max-width: 125px; max-height: 125px; }
+    #footer .center { width: 45vw; height: 45vw; margin: auto; max-width: 250px; max-height: 250px; }
 }
 @media only screen and (max-width: 600px) {
-    #footer .center { width: 50vw; height: 50vw; margin: auto; }
     #footer .right { width: 100%; }
     #footer .left { flex-direction: column; }
 }

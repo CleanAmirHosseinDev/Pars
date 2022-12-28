@@ -62,6 +62,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.UserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 return await _basicInfoFacad.SaveNewsAndContentService.Execute(request);
             }
             catch (Exception ex)

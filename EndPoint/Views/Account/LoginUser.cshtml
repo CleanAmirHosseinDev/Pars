@@ -1,6 +1,4 @@
-﻿
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پارس کیان | ورود و ثبت نام</title>
+    <title>پارس کیان | ورود به سیستم</title>
     <meta name="copyright" content="پارس کیان" />
     <link rel="alternate" href="https://parscrc.ir/" hreflang="fa" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -21,13 +19,13 @@
     <meta name="language" content="fa" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="https://parscrc.ir/" />
-    <link rel="stylesheet" href="~/lib/font/vazir.css"  />
-    <link rel="stylesheet" href="~/css/landing/site.css"  />
-    <link rel="stylesheet" href="~/css/landing/AccountLogin.css"  />
+    <link rel="stylesheet" href="~/lib/font/vazir.css" />
+    <link rel="stylesheet" href="~/css/landing/site.css" />
+    <link rel="stylesheet" href="~/css/landing/AccountLogin.css" />
     @* asp-version نزارین این ها همشون باندل میشه *@
-    <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js" ></script>
+    <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js"></script>
 
-    <script src="~/lib/SweetAlert/sweetalert.min.js" ></script>
+    <script src="~/lib/SweetAlert/sweetalert.min.js"></script>
 
 
 </head>
@@ -43,22 +41,31 @@
 
 
     </div>
-    <div class="form-structor" >
+    <div class="form-structor">
         <div class="signup">
             <h2 class="form-title" id="signup"><span>یا</span>به حساب کاربری خود وارد شوید</h2>
-            <div class="form-holder"  id="form_n1">
+            <div class="form-holder" id="form_n1">
                 <input type="email" class="input" placeholder="شماره تلفن همراه" id="User" />
                 <input type="password" class="input" placeholder="رمز عبور" id="Password" />
                 <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
             </div>
             <button onclick="Web.AccountController.LoginA(this);" type="button" class="submit-btn">ورود</button>
-        </div>        
-    </div>    
-    <style>.form-structor::after {background-image:none !important;}</style>
-    <script src="~/js/InitProject.js" ></script>
-    <script src="~/js/Utility.js" ></script>
-    <script src="~/lib/Loader/Loader.js" ></script>
-    <script src="~/js/Views/AccountController.js" ></script>
-    
+        </div>
+    </div>
+    <style>.form-structor::after { background-image: none !important; }</style>
+    <script src="~/js/InitProject.js"></script>
+    <script src="~/js/Utility.js"></script>
+    <script src="~/lib/Loader/Loader.js"></script>
+    <script src="~/js/Views/AccountController.js"></script>
+    <script>
+        window.onkeyup = function(event) {
+            let key = event.key.toUpperCase();
+            if (key == "ENTER") {
+                Web.AccountController.LoginA(this);
+            }
+        }
+
+    </script>
+
 </body>
 </html>

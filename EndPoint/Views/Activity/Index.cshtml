@@ -1,6 +1,6 @@
 ﻿@{
     var ActivityData = (ParsKyanCrm.Application.Dtos.BasicInfo.ActivityDto)ViewData["data"];
-    ViewData["Title"] = @ActivityData.ActivityTitle;
+    ViewData["Title"] = @ActivityData.ActivityTitleNavigation.Label;
     Layout = "_ArticleBase";
 }
 
@@ -8,7 +8,7 @@
     <img class="article_img" src="@ActivityData.Picture1" />
 }
 <div class="article_title_div">
-    <p class="article_titile_p">@ActivityData.ActivityTitle</p>
+    <p class="article_titile_p">@ActivityData.ActivityTitleNavigation.Label</p>
     <div class="article_title_info_parrent">
     </div>
 </div>

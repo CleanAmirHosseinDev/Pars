@@ -136,11 +136,18 @@ namespace ParsKyanCrm.Application.Dtos.Users
         }
         public IFormFile Result_Final_LastInsuranceList { get; set; }
 
+        public IFormFile Result_Final_AuditedFinancialStatements { get; set; }
         /// <summary>
         /// آخرین صورتحسابهای مالی حسابرسی شده
         /// </summary>
         public string AuditedFinancialStatements { get; set; }
-       
+        public string AuditedFinancialStatementsFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(AuditedFinancialStatements, VaribleForName.CustomersFolder, false);
+            }
+        }
         public CityDto City { get; set; }
         public SystemSetingDto HowGetKnowCompany { get; set; }
         public SystemSetingDto KindOfCompany { get; set; }

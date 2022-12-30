@@ -132,7 +132,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             #region Upload Image
 
             string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
-            string fileNameOldPic_LastChangeOfficialNewspaper = string.Empty, path_LastChangeOfficialNewspaper = string.Empty;
+            string fileNameOldPic_AuditedFinancialStatements = string.Empty, path_AuditedFinancialStatements = string.Empty;
 
             #endregion
 
@@ -155,7 +155,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 var cus = await _context.Customers.FindAsync(request.CustomerId);
                 request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
-                request.LastChangeOfficialNewspaper = cus != null && !string.IsNullOrEmpty(cus.LastChangeOfficialNewspaper) ? cus.LastChangeOfficialNewspaper : string.Empty;
+                request.AuditedFinancialStatements = cus != null && !string.IsNullOrEmpty(cus.AuditedFinancialStatements) ? cus.AuditedFinancialStatements : string.Empty;
 
                 #region Upload Image
 
@@ -167,12 +167,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "لیست آخرین بیمه");
                 }
 
-                if (request.Result_Final_LastChangeOfficialNewspaper != null)
+                if (request.Result_Final_AuditedFinancialStatements != null)
                 {
-                    fileNameOldPic_LastChangeOfficialNewspaper = request.LastChangeOfficialNewspaper;
-                    request.LastChangeOfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastChangeOfficialNewspaper.FileName);
-                    path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastChangeOfficialNewspaper;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_LastChangeOfficialNewspaper, path_LastChangeOfficialNewspaper, "لیست آخرین تغییرات روزنامه رسمی");
+                    fileNameOldPic_AuditedFinancialStatements = request.AuditedFinancialStatements;
+                    request.AuditedFinancialStatements = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_AuditedFinancialStatements.FileName);
+                    path_AuditedFinancialStatements = _env.ContentRootPath + VaribleForName.CustomersFolder + request.AuditedFinancialStatements;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_AuditedFinancialStatements, path_AuditedFinancialStatements, "لیست آخرین تغییرات روزنامه رسمی");
                 }
 
                 #endregion
@@ -238,7 +238,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         nameof(request.LastInsuranceList),request.LastInsuranceList
                     },
                     {
-                        nameof(request.LastChangeOfficialNewspaper),request.LastChangeOfficialNewspaper
+                        nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
                     },
                     {
                         nameof(request.IsProfileComplete),true
@@ -301,11 +301,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 if (request.Result_Final_LastInsuranceList != null)
                     FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastInsuranceList);
 
-                if (request.Result_Final_LastChangeOfficialNewspaper != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastChangeOfficialNewspaper);
+                if (request.Result_Final_AuditedFinancialStatements != null)
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_AuditedFinancialStatements);
 
                 path_LastInsuranceList = string.Empty;
-                path_LastChangeOfficialNewspaper = string.Empty;
+                path_AuditedFinancialStatements = string.Empty;
 
                 #endregion
 
@@ -321,7 +321,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 #region Upload Image
 
                 FileOperation.DeleteFile(path_LastInsuranceList);
-                FileOperation.DeleteFile(path_LastChangeOfficialNewspaper);
+                FileOperation.DeleteFile(path_AuditedFinancialStatements);
 
                 #endregion
 

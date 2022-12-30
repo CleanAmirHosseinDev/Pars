@@ -58,6 +58,7 @@
 
                     $("#bLLSS").html(htmlB);
                     Ckeditor("ReferralExplanation");
+                   showCustomerInfo();
                 });
 
 
@@ -151,18 +152,58 @@
                     $("#CeoName").val(res.ceoName);
                     $("#EconomicCode").val(res.economicCode);
                     $("#NationalCode").val(res.nationalCode);
+                    $("#CeoNationalCode").val(res.ceoNationalCode);
                     $("#CeoMobile").val(res.ceoMobile);
                     $("#AgentMobile").val(res.agentMobile);
                     $("#AgentName").val(res.agentName);
                     $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-                    $("#AmountOsLastSales").val(res.AmountOsLastSales);
                     $("#CountOfPersonal").val(res.countOfPersonal);
                     $("#Email").val(res.email);
                     $("#Tel").val(res.tel);
                     $("#PostalCode").val(res.postalCode);
+                    $("#AmountOsLastSales").val(res.amountOsLastSales);
+
+                    $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                    systemSeting_Combo(res);
+
+
                 }
+
+
             }, true);
         } 
+    }
+    function systemSeting_Combo(resSingle) {
+
+        AjaxCallAction("POST", "/api/superVisor/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+                var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';
+                var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[i].parentCode == 56) {
+                        strHowGetKnowCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 63) {
+                        strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 27) {
+                        strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+                }
+
+                $("#KindOfCompany").html(strKindOfCompany);
+                $("#HowGetKnowCompany").html(strHowGetKnowCompany);
+                $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
+
+                $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
+                $("#KindOfCompany").val(resSingle.kindOfCompanyId);
+                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
+
+            }
+        }, true);
     }
 
     function initContract(id = null) {

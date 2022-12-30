@@ -114,18 +114,18 @@
                                         </div>
                                     </div>
                                     @*<div class="form-group">
-                        <label class="control-label col-md-4" for="">
-                            شهر
-                            <span class="RequiredLabel">*</span>
-                        </label>
-                        <div class="col-md-4">
-                            <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
-                        </div>
+            <label class="control-label col-md-4" for="">
+                شهر
+                <span class="RequiredLabel">*</span>
+            </label>
+            <div class="col-md-4">
+                <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+            </div>
 
-                        <div class="col-md-4">
-                            <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
-                        </div>
-                    </div>*@
+            <div class="col-md-4">
+                <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
+            </div>
+        </div>*@
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             نام نماینده شرکت
@@ -153,18 +153,7 @@
                                             <textarea rows="3" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4" for="">
-                                            مبلغ کل فروش اظهار شده
-                                            <span class="RequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <div><input type="text" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-
+                                   
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             تعداد کارکنان شرکت
@@ -174,8 +163,8 @@
                                             <input type="text" name="CountOfPersonal" id="CountOfPersonal" class="form-control" />
                                         </div>
                                     </div>
-
-
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             نحوه آشنایی با شرکت
@@ -232,6 +221,27 @@
                                             <textarea rows="3" name="AddressCompany" id="AddressCompany" class="form-control"></textarea>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div><input type="text" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
+                                            <div id="divDownload_AuditedFinancialStatements"></div>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             لیست آخرین بیمه
@@ -244,26 +254,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-4" for="">
-                                            لیست آخرین تغییرات روزنامه رسمی
-                                            <span class="RequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" accept="image/*,.pdf,.xlsx," />
-                                            <div id="divDownload_LastChangeOfficialNewspaper"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <div class="col-md-4">
                                         </div>
                                         <div class="col-md-8">
                                             <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
                                                 ثبت اطلاعات  <i class="fa fa-save"></i>
                                             </button>
-                                            <a href="~/customer/RequestForRating/index" class="btn btn-default fontForAllPage">مشاهده درخواست ها </a>                                           
+                                            <a href="~/customer/RequestForRating/index" class="btn btn-default fontForAllPage">مشاهده درخواست ها </a>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>

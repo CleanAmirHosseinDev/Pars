@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 
 namespace ParsKyanCrm.Application.Dtos.Users
 {
@@ -100,19 +103,39 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// کد احراز هویت
         /// </summary>
         public string AuthenticateCode { get; set; }
+
         /// <summary>
         /// آخرین تغییرات روزنامه رسمی
         /// </summary>
         public string LastChangeOfficialNewspaper { get; set; }
+        public string LastChangeOfficialNewspaperFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(LastChangeOfficialNewspaper, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_LastChangeOfficialNewspaper { get; set; }
 
         /// <summary>
         /// آخرین اظهار نامه
         /// </summary>
         public string LastAuditingTaxList { get; set; }
+
+
         /// <summary>
         /// آخرین لیست بیمه
         /// </summary>
         public string LastInsuranceList { get; set; }
+        public string LastInsuranceListFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(LastInsuranceList, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_LastInsuranceList { get; set; }
+
         /// <summary>
         /// آخرین صورتحسابهای مالی حسابرسی شده
         /// </summary>

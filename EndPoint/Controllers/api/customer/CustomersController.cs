@@ -40,7 +40,7 @@ namespace EndPoint.Controllers.api.customer
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<ResultDto> Save_BasicInformationCustomers([FromBody] CustomersDto request)
+        public async Task<ResultDto> Save_BasicInformationCustomers([FromForm] CustomersDto request)
         {
             try
             {

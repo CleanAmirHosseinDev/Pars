@@ -92,6 +92,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string CustomersFolder
+        {
+            get
+            {
+                return "/FileUpload/Customers/";
+            }
+        }
+
         public static string No_Photo
         {
             get

@@ -16,6 +16,7 @@ using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Common.Enums;
 using Microsoft.EntityFrameworkCore;
 using ParsKyanCrm.Infrastructure.Consts;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
@@ -26,13 +27,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IValidator<CustomersDto> _validator;
+        private readonly IWebHostEnvironment _env;
 
-        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IValidator<CustomersDto> validator)
+        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IValidator<CustomersDto> validator, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
             _validator = validator;
+            _env = env;
         }
 
         private bool Check_Remote(CustomersDto request)
@@ -125,6 +128,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
         public async Task<ResultDto> Execute(CustomersDto request)
         {
+
+            #region Upload Image
+
+            string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
+            string fileNameOldPic_LastChangeOfficialNewspaper = string.Empty, path_LastChangeOfficialNewspaper = string.Empty;
+
+            #endregion
+
             try
             {
 
@@ -142,9 +153,32 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 #endregion                                
 
-                DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
-
                 var cus = await _context.Customers.FindAsync(request.CustomerId);
+                request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
+                request.LastChangeOfficialNewspaper = cus != null && !string.IsNullOrEmpty(cus.LastChangeOfficialNewspaper) ? cus.LastChangeOfficialNewspaper : string.Empty;
+
+                #region Upload Image
+
+                if (request.Result_Final_LastInsuranceList != null)
+                {
+                    fileNameOldPic_LastInsuranceList = request.LastInsuranceList;
+                    request.LastInsuranceList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastInsuranceList.FileName);
+                    path_LastInsuranceList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastInsuranceList;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "لیست آخرین بیمه");
+                }
+
+                if (request.Result_Final_LastChangeOfficialNewspaper != null)
+                {
+                    fileNameOldPic_LastChangeOfficialNewspaper = request.LastChangeOfficialNewspaper;
+                    request.LastChangeOfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastChangeOfficialNewspaper.FileName);
+                    path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastChangeOfficialNewspaper;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_LastChangeOfficialNewspaper, path_LastChangeOfficialNewspaper, "لیست آخرین تغییرات روزنامه رسمی");
+                }
+
+                #endregion
+
+                DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+                
                 if (!cus.IsProfileComplete)
                 {
 
@@ -201,6 +235,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
                     {
+                        nameof(request.LastInsuranceList),request.LastInsuranceList
+                    },
+                    {
+                        nameof(request.LastChangeOfficialNewspaper),request.LastChangeOfficialNewspaper
+                    },
+                    {
                         nameof(request.IsProfileComplete),true
                     },
                         {
@@ -256,6 +296,19 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         }
                     }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
 
+                #region Upload Image
+
+                if (request.Result_Final_LastInsuranceList != null)
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastInsuranceList);
+
+                if (request.Result_Final_LastChangeOfficialNewspaper != null)
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastChangeOfficialNewspaper);
+
+                path_LastInsuranceList = string.Empty;
+                path_LastChangeOfficialNewspaper = string.Empty;
+
+                #endregion
+
                 return new ResultDto()
                 {
                     IsSuccess = true,
@@ -264,7 +317,20 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
             catch (Exception ex)
             {
-                throw ex;
+
+                #region Upload Image
+
+                FileOperation.DeleteFile(path_LastInsuranceList);
+                FileOperation.DeleteFile(path_LastChangeOfficialNewspaper);
+
+                #endregion
+
+                return new ResultDto()
+                {
+                    IsSuccess = false,
+                    Message = ex.Message                    
+                };
+
             }
         }
     }

@@ -41,7 +41,7 @@ namespace EndPoint.Controllers {
                 RequestNewsAndContentDto request = new RequestNewsAndContentDto();
                 request.ContentId = id;
                 var content = await _basicInfoFacad.GetNewsAndContentService.Execute(request);
-                if(content != null) {
+                if(content != null && content.ContentId > 0) {
                     ViewData["content"] = content;
                 } else {
                     throw new EntryPointNotFoundException();
@@ -59,7 +59,7 @@ namespace EndPoint.Controllers {
         public async Task<IActionResult> NewsList(string s = null, int offset = 1) {
 
             try {
-                RequestNewsAndContentDto request = new RequestNewsAndContentDto() { 
+                RequestNewsAndContentDto request = new RequestNewsAndContentDto() {
                     KindOfContent = 61,
                     IsActive = (byte)TablesGeneralIsActive.Active,
                     PageSize = 1000,
@@ -80,7 +80,7 @@ namespace EndPoint.Controllers {
                 RequestNewsAndContentDto request = new RequestNewsAndContentDto();
                 request.ContentId = id;
                 var news = await _basicInfoFacad.GetNewsAndContentService.Execute(request);
-                if(news != null) {
+                if(news != null && news.ContentId > 0) {
                     ViewData["news"] = news;
                 } else {
                     throw new EntryPointNotFoundException();
@@ -128,12 +128,12 @@ namespace EndPoint.Controllers {
 
         [Route("Page/{dlink?}")]//PageController Mixed with Action
         public async Task<IActionResult> Page(string dlink = null) {
-            if(dlink==null) return Redirect("/Error/Code404?fromlink=/Page/" + dlink);
+            if(dlink == null) return Redirect("/Error/Code404?fromlink=/Page/" + dlink);
 
             int id = 0;
-            if(dlink != null && dlink.Length>0){
+            if(dlink != null && dlink.Length > 0) {
                 char ch1 = dlink.ToCharArray()[0];
-                if(ch1>='0' && ch1<='9') {
+                if(ch1 >= '0' && ch1 <= '9') {
                     id = Convert.ToInt32(dlink);
                 }
             }
@@ -147,22 +147,24 @@ namespace EndPoint.Controllers {
                     request.DirectLink = dlink;
                 }
                 var news = await _basicInfoFacad.GetNewsAndContentService.Execute(request);
-                if(news != null) {
+                if(news == null || news.ContentId == 0) {
+                    news.Title = "صفحه یافت نشد";
+                    news.Body = $"صفحه‌ای با مسیر {{{dlink}}} یافت نشد!";
+                    Response.StatusCode = 404;
+                } else {
                     if(news.KindOfContent == 61) {
                         return RedirectPermanent("/Article/News/" + news.ContentId);
                     }
                     if(news.KindOfContent == 62) {
                         return RedirectPermanent("/Article/Content/" + news.ContentId);
                     }
-                    if(id!=0 && news.DirectLink!=null && news.DirectLink.Length > 0){
+                    if(id != 0 && news.DirectLink != null && news.DirectLink.Length > 0) {
                         return RedirectPermanent("/Page/" + news.DirectLink);
                     }
-                    ViewData["news"] = news;
-                } else {
-                    return Redirect("/Error/Code404?fromlink=/Page/" + dlink);
                 }
+                ViewData["news"] = news;
             } catch(Exception e) {
-                return Redirect("/Error/Code404?fromlink=/Page/" + dlink);
+                return Redirect("/Error/Code404?fromlink=/Page/" + dlink + "?e=AEE");
             }
 
 

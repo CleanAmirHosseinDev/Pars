@@ -196,6 +196,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
                         LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
                         LevelStepStatus = VaribleForName.LevelStepStatus,
+                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton,
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -221,7 +222,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
                         LevelStepStatus = VaribleForName.LevelStepStatus1,
                         SmsContent = VaribleForName.SmsContent1,
-                        SmsType = VaribleForName.SmsType1
+                        SmsType = VaribleForName.SmsType1,
+                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
                     });
                     await _context.SaveChangesAsync();
 

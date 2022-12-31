@@ -131,6 +131,13 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return " ارسال درخواست اولیه توسط مشتری  و در انتظار بررسی";
             }
         }
+        public static string DestLevelStepIndexButton
+        {
+            get
+            {
+                return "ارجاع به مسئول امور ارزیابی جهت بررسی مشخصات اولیه مشتری";
+            }
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -167,6 +174,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             get
             {
                 return true;
+            }
+        }
+
+        public static string DestLevelStepIndexButton1
+        {
+            get
+            {
+                return null;
             }
         }
 

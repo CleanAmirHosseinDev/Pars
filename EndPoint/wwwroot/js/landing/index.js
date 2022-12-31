@@ -29,7 +29,14 @@ function jvSlider_prev() {
     jvSlider_gotopage(jvSlider_currentPage);
 }
 var jvSliderTimeoutVar;
+var jvSliderTextEffect = setInterval(() => { }, 500);
+var jvSliderTextEffectCounter = 0;
+var jvSliderTextEffectToggle = false;
 function jvSlider_gotopage(inpage) {
+    clearInterval(jvSliderTextEffect);
+    jvSliderTextEffectCounter = 0;
+    $(`#cursor_node_${jvSlider_currentPage}`).html("");
+
     clearTimeout(jvSliderTimeoutVar);
     jvSlider_currentPage = inpage;
     $(".topslider .slider_page .label").each(function (index) {
@@ -38,13 +45,13 @@ function jvSlider_gotopage(inpage) {
 
     $(".slider_text").each(function (index) {
         //$(this).hide();
-        $(this).removeAttr('cursor-animate');
+        //$(this).removeAttr('cursor-animate');
     });
 
     setTimeout(() => {
         $(".topslider .slider_pages").children().eq(inpage - 1).find(".label").fadeIn();
-        $(`#cursor_node_${jvSlider_currentPage}`).attr('cursor-animate', '');
-        reAnimateEffectiveText("");
+        //$(`#cursor_node_${jvSlider_currentPage}`).attr('cursor-animate', '');
+        //reAnimateEffectiveText("");
     }, 1000);
 
     $(".topslider .slider_page:first").css({ "margin-right": ($(".topslider .slider_pages").width() * (inpage - 1) * -1) + "px" });
@@ -57,6 +64,21 @@ function jvSlider_gotopage(inpage) {
     $(".topslider .slider_buttons").children().eq(inpage - 1).addClass("selected");
 
     jvSliderTimeoutVar = setTimeout(jvSlider_next, 6000);
+
+
+    $(`#cursor_node_${jvSlider_currentPage}`).html("");
+    setTimeout(() => {
+        jvSliderTextEffect = setInterval(() => {
+            let selcur = `#cursor_node_${jvSlider_currentPage}`;
+            if (jvSliderTextEffectCounter <= $(selcur).attr("slider_text").length) {
+                $(selcur).html($(selcur).attr("slider_text").substring(0, jvSliderTextEffectCounter) + "|");
+            } else {
+                if (jvSliderTextEffectCounter % 6 == 0) { jvSliderTextEffectToggle = !jvSliderTextEffectToggle };
+                $(selcur).html($(selcur).attr("slider_text") + (jvSliderTextEffectToggle ? "":"|"));
+            }
+            jvSliderTextEffectCounter++;
+        }, 80);
+    }, 1000);
 }
 function jvSlider_init() {
     var maxcount = $(".topslider .slider_pages").children().length;

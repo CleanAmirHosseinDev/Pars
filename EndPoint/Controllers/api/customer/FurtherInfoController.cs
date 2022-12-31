@@ -73,5 +73,20 @@ namespace EndPoint.Controllers.api.customer
 
         #endregion        
 
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormQuestionsDto>>> Get_DataFormQuestionss([FromBody] RequestDataFormQuestionsDto request)
+        {
+            try
+            {                               
+                return await _userFacad.GetDataFormQuestionssService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

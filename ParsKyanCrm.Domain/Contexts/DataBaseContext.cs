@@ -45,6 +45,9 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<UserRoles> UserRoles { get; set; }
         DbSet<Users> Users { get; set; }
 
+        DbSet<DataFormQuestions> DataFormQuestions { get; set; }
+        DbSet<DataForms> DataForms { get; set; }
+        DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +67,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public virtual DbSet<DataFormQuestions> DataFormQuestions { get; set; }
+        public virtual DbSet<DataForms> DataForms { get; set; }
+        public virtual DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
 
         public virtual DbSet<AboutUs> AboutUs { get; set; }
         public virtual DbSet<Activity> Activity { get; set; }
@@ -97,6 +103,44 @@ namespace ParsKyanCrm.Domain.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DataFormQuestions>(entity =>
+            {
+                entity.HasKey(e => e.DataFormQuestionId)
+                    .HasName("PK_DataForm");
+
+                entity.Property(e => e.DataFormQuestionId).HasColumnName("DataFormQuestionID");
+
+                entity.Property(e => e.QuestionName).HasMaxLength(50);
+
+                entity.Property(e => e.QuestionText).HasMaxLength(50);
+
+                entity.Property(e => e.QuestionType).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<DataForms>(entity =>
+            {
+                entity.HasKey(e => e.FormId)
+                    .HasName("PK_Forms");
+
+                entity.Property(e => e.FormTitle).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<DataFormAnswerTables>(entity =>
+            {
+                entity.HasKey(e => e.AnswerTableId)
+                    .HasName("PK_DataFromAnswer");
+
+                entity.Property(e => e.AnswerTableId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("AnswerID");
+
+                entity.Property(e => e.Answer1).HasMaxLength(50);
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.FormId).HasColumnName("FormID");
+            });
+
             modelBuilder.Entity<AboutUs>(entity =>
             {
                 entity.Property(e => e.AboutUsId).HasColumnName("AboutUsID");

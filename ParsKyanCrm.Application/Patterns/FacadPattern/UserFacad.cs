@@ -33,6 +33,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -87,6 +88,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IInitReferralService InitReferralService { get; }
 
         IGetRequestReferencessService GetRequestReferencessService { get; }
+
+        IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
 
     }
 
@@ -334,6 +337,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getRequestReferencessService = _getRequestReferencessService ?? new GetRequestReferencessService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetDataFormQuestionssService _getDataFormQuestionssService;
+        public IGetDataFormQuestionssService GetDataFormQuestionssService
+        {
+            get
+            {
+                return _getDataFormQuestionssService = _getDataFormQuestionssService ?? new GetDataFormQuestionssService(_context, _mapper, _basicInfoFacad);
             }
         }
 

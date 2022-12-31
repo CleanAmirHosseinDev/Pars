@@ -856,6 +856,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<RequestReferences>(entity =>
             {
+
+                entity.Property(e => e.DestLevelStepIndexButton).HasMaxLength(100);
+
                 entity.HasKey(e => e.ReferenceId);
 
                 entity.Property(e => e.SmsContent).HasMaxLength(150);

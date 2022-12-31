@@ -17,48 +17,25 @@
 
     function saveCustomer(e) {
 
-        $(e).attr("disabled", "");        
+        $(e).attr("disabled", "");
         RemoveAllCharForPrice("AmountOsLastSales");
-            AjaxCallAction("POST", "/api/customer/Customers/Save_BasicInformationCustomers", JSON.stringify({
-                tel: $("#Tel").val(),
-                AddressCompany: $("#AddressCompany").val(),
-                CompanyName: $("#CompanyName").val(),
-                CeoName: $("#CeoName").val(),
-                EconomicCode: $("#EconomicCode").val(),
-                NationalCode: $("#NationalCode").val(),
-                CeoMobile: $("#CeoMobile").val(),
-                CeoNationalCode: $("#CeoNationalCode").val(),
-                AgentMobile: $("#AgentMobile").val(),
-                AgentName: $("#AgentName").val(),
-                TypeServiceRequestedId: isEmpty($("#TypeServiceRequestedId").val()) ? null : $("#TypeServiceRequestedId").val(),
-                NamesAuthorizedSignatories: $("#NamesAuthorizedSignatories").val(),
-                AmountOsLastSales: isEmpty($("#AmountOsLastSales").val()) ? null : $("#AmountOsLastSales").val(),
-                CountOfPersonal: isEmpty($("#CountOfPersonal").val()) ? null : $("#CountOfPersonal").val(),
-                Email: $("#Email").val(),
-                Tel: $("#Tel").val(),
-                PostalCode: $("#PostalCode").val(),
-                HowGetKnowCompanyId: isEmpty($("#HowGetKnowCompany").val()) ? null : $("#HowGetKnowCompany").val(),
-                KindOfCompanyId: isEmpty($("#KindOfCompany").val()) ? null : $("#KindOfCompany").val(),
-                LastInsuranceList: null,
-                LastChangeOfficialNewspaper: null,
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
-            }), true, function (res) {
+            $(e).removeAttr("disabled");
 
-                $(e).removeAttr("disabled");
+            if (res.isSuccess) {
 
-                if (res.isSuccess) {
+                /*alertB("ثبت", res.message, "success");*/
+                /*$("SeeAllRequest").show();*/
+                goToUrl("/Customer/Customer/EditCustomer");
 
-                    alertB("ثبت", res.message, "success");
-                    $("SeeAllRequest").show();
-                    //  goToUrl("/Customer/Customer/EditCustomer");
+            } else {
 
-                } else {
+                alertB("خطا", res.message, "error");
+            }
 
-                    alertB("خطا", res.message, "error");
-                }
+        }, true);
 
-            }, true);
-       
     }
 
 
@@ -81,13 +58,13 @@
                     }
                 }
 
-                $("#KindOfCompany").html(strKindOfCompany);
-                $("#HowGetKnowCompany").html(strHowGetKnowCompany);
+                $("#KindOfCompanyId").html(strKindOfCompany);
+                $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);
                 $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
 
-                $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
-                $("#KindOfCompany").val(resSingle.kindOfCompanyId);
-                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);              
+                $("#HowGetKnowCompanyId").val(resSingle.howGetKnowCompanyId);
+                $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);
+                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
 
             }
         }, true);
@@ -104,7 +81,7 @@
                 else {
                     $("#divTypeServiceRequestedId").show();
                 }
-            } 
+            }
 
         });
     }
@@ -127,14 +104,17 @@
                 $("#AgentMobile").val(res.agentMobile);
                 $("#AgentName").val(res.agentName);
                 $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-                $("#AmountOsLastSales").val(res.AmountOsLastSales);
                 $("#CountOfPersonal").val(res.countOfPersonal);
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
                 $("#PostalCode").val(res.postalCode);
                 $("#AmountOsLastSales").val(res.amountOsLastSales);
+
+                $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
                 systemSeting_Combo(res);
-               
+
 
             }
 
@@ -149,7 +129,7 @@
         InitCustomer: initCustomer,
         SystemSeting_Combo: systemSeting_Combo,
         CheckForFirstRequest: checkForFirstRequest,
-      
+
     };
 
 })(Web, jQuery);

@@ -58,12 +58,12 @@
                     }
                 }
 
-                $("#KindOfCompany").html(strKindOfCompany);
-                $("#HowGetKnowCompany").html(strHowGetKnowCompany);
+                $("#KindOfCompanyId").html(strKindOfCompany);
+                $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);
                 $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
 
-                $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
-                $("#KindOfCompany").val(resSingle.kindOfCompanyId);
+                $("#HowGetKnowCompanyId").val(resSingle.howGetKnowCompanyId);
+                $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);
                 $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
 
             }

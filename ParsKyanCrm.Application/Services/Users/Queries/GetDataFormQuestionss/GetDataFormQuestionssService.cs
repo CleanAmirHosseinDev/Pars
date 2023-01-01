@@ -50,7 +50,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                         lists = lists.OrderBy(s => s.DataFormQuestionId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.DataFormQuestionId);
+                        lists = lists.OrderBy(s => s.QuestionOrder);
                         break;
                 }
 

@@ -134,40 +134,81 @@
 
     function initFurtherInfo(dir = 'rtl') {
 
-        ComboBoxWithSearch('.select2', dir);
-       
-        //AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {            
-                
-
-        //        if (res != null) {
-        //            $("#AddressCompany").val(res.addressCompany);
-        //            $("#CompanyName").val(res.companyName);
-        //            $("#CeoName").val(res.ceoName);
-        //            $("#EconomicCode").val(res.economicCode);
-        //            $("#NationalCode").val(res.nationalCode);
-        //            $("#CeoMobile").val(res.ceoMobile);
-        //            $("#AgentMobile").val(res.agentMobile);
-        //            $("#AgentName").val(res.agentName);
-        //            $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-        //            $("#AmountOsLastSales").val(res.AmountOsLastSales);
-        //            $("#CountOfPersonal").val(res.countOfPersonal);
-        //            $("#Email").val(res.email);
-        //            $("#Tel").val(res.tel);
-        //            $("#PostalCode").val(res.postalCode);
-
-                    systemSeting_Combo();
-
-           //     }
-                           
-
-          //  }, true);       
-
+        intiForm(1);
+        intiForm(3);
+        intiForm(4);
+        intiForm(5);
+        intiForm(6);
+        intiForm(7);
+        intiForm(8);
+        intiForm(9);
+        intiForm(10);
+        intiForm(11);
+        intiForm(12);
+        intiForm(13);
+        intiForm(14);
+        intiForm(15);
+        intiForm(16);
+        intiForm(17);       
+        intiForm(18);
+        intiForm(19);
+        intiForm(20);
+        intiForm(21);
+        intiForm(22);
+        intiForm(23);
+        intiForm(24);
+        ComboBoxWithSearch('.select2', 'dir');
+        systemSeting_Combo(dir);
     }
+
+    function intiForm(FormID=null) {  
+
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+
+                var strFormId = '';
+                var strFormId = '';
+                
+                for (var i = 0; i < res.data.length; i++)
+                {
+                   
+                    if (i == 0) {
+                        strFormId += "<div class='col-lg-6'>";
+                    } else if (i == Math.round((res.data.length) / 2) && res.data.length>1)
+                    {
+                        strFormId += "</div><div class='col-lg-6'>";
+                    }
+                    
+                    strFormId += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
+                    if (res.data[i].questionType=='select') {
+                        strFormId += "<select name='" + res.data[i].questionName + "' id='" + res.data[i].questionName +"' class='form-control select2' ></select>";
+                    } else if (res.data[i].questionType == 'textarea') {
+                        strFormId += "<textarea name='" + res.data[i].questionName + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
+                    }
+                    else if (res.data[i].questionType == 'checkbox') {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='" + res.data[i].questionName + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
+
+                    } else {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='" + res.data[i].questionName + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
+                    }
+                    strFormId += "</div>";
+                    strFormId += "</div>";
+                    if (i == res.data.length  && res.data.length > 1) {
+                        strFormId += "</div>";
+                    } 
+                }
+                $("#FormDetail" + FormID).html(strFormId);
+            }
+        }, true);
+    }
+   
 
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         initFurtherInfo: initFurtherInfo,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        IntiForm: intiForm
     };
 
 })(Web, jQuery);

@@ -34,6 +34,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -90,6 +91,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetRequestReferencessService GetRequestReferencessService { get; }
 
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
+
+        IGetDataFormAnswerTablessService GetDataFormAnswerTablessService { get; }
 
     }
 
@@ -346,6 +349,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFormQuestionssService = _getDataFormQuestionssService ?? new GetDataFormQuestionssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetDataFormAnswerTablessService _getDataFormAnswerTablessService;
+        public IGetDataFormAnswerTablessService GetDataFormAnswerTablessService
+        {
+            get
+            {
+                return _getDataFormAnswerTablessService = _getDataFormAnswerTablessService ?? new GetDataFormAnswerTablessService(_context, _mapper, _basicInfoFacad);
             }
         }
 

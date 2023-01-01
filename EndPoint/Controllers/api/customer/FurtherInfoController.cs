@@ -88,5 +88,20 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormAnswerTablesDto>>> Get_DataFormAnswerTabless([FromBody] RequestDataFormAnswerTablesDto request)
+        {
+            try
+            {
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.GetDataFormAnswerTablessService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

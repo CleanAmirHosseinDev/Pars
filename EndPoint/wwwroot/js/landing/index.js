@@ -70,11 +70,16 @@ function jvSlider_gotopage(inpage) {
     setTimeout(() => {
         jvSliderTextEffect = setInterval(() => {
             let selcur = `#cursor_node_${jvSlider_currentPage}`;
-            if (jvSliderTextEffectCounter <= $(selcur).attr("slider_text").length) {
-                $(selcur).html($(selcur).attr("slider_text").substring(0, jvSliderTextEffectCounter) + "|");
+            let text1 = $(selcur).attr("slider_text");
+            let text2 = $(selcur).attr("slider_text2");
+            let text2Color = $(selcur).attr("slider_text2_color");
+            if (jvSliderTextEffectCounter <= text1.length) {
+                $(selcur).html(text1.substring(0, jvSliderTextEffectCounter) + "|");
+            } else if (jvSliderTextEffectCounter <= text1.length + text2.length) {
+                $(selcur).html(text1 + `<span style='color:${text2Color};'>` + text2.substring(0, jvSliderTextEffectCounter - text1.length) + "|</span>");
             } else {
                 if (jvSliderTextEffectCounter % 6 == 0) { jvSliderTextEffectToggle = !jvSliderTextEffectToggle };
-                $(selcur).html($(selcur).attr("slider_text") + (jvSliderTextEffectToggle ? "":"|"));
+                $(selcur).html(text1 + `<span style='color:${text2Color};'>` + text2+"</span>" + (jvSliderTextEffectToggle ? "":"|"));
             }
             jvSliderTextEffectCounter++;
         }, 80);

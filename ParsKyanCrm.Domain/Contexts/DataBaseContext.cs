@@ -35,6 +35,8 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         DbSet<NewsAndContent> NewsAndContent { get; set; }
         DbSet<RankingCalculationResults> RankingCalculationResults { get; set; }
+
+        DbSet<DataFromAnswers> DataFromAnswers { get; set; }
         DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         DbSet<RequestForRating> RequestForRating { get; set; }
         DbSet<RequestReferences> RequestReferences { get; set; }
@@ -71,6 +73,8 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<DataForms> DataForms { get; set; }
         public virtual DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
 
+        public virtual DbSet<DataFromAnswers> DataFromAnswers { get; set; }
+
         public virtual DbSet<AboutUs> AboutUs { get; set; }
         public virtual DbSet<Activity> Activity { get; set; }
         public virtual DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
@@ -103,6 +107,22 @@ namespace ParsKyanCrm.Domain.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DataFromAnswers>(entity =>
+            {
+                entity.HasKey(e => e.AnswerId)
+                    .HasName("PK_DataFromAnswer");
+
+                entity.Property(e => e.AnswerId).HasColumnName("AnswerID");
+
+                entity.Property(e => e.Answer).HasMaxLength(50);
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.DataFormQuestionId).HasColumnName("DataFormQuestionID");
+
+                entity.Property(e => e.FormId).HasColumnName("FormID");
+            });
+
             modelBuilder.Entity<DataFormQuestions>(entity =>
             {
                 entity.HasKey(e => e.DataFormQuestionId)

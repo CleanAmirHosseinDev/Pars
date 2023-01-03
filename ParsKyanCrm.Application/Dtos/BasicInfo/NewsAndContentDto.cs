@@ -1,5 +1,6 @@
 ﻿using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Common;
+using ParsKyanCrm.Common.PersianNumber;
 using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
 using System;
@@ -41,6 +42,35 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public int? KindOfContent { get; set; }
         public string Body { get; set; }
         public DateTime? DateSave { get; set; }
+        public string DatePersianYear {
+            get {
+                return DateSave.HasValue ? (PersianNumberHelper.EnglishToPersian(Infrastructure.DateTimeOperation.ToPersianDate(DateSave.Value).Substring(0, 4)) + "") : "----";
+            }
+        }
+        public string DatePersianDayAndMonth {
+            get {
+                var s = DateSave.HasValue ? (PersianNumberHelper.EnglishToPersian(Infrastructure.DateTimeOperation.ToStringShamsiDate(DateSave.Value)) + "") : "---- --";
+                if(s.Length > 5)
+                    s = s.Substring(0, s.Length - 5);
+                return s;
+
+            }
+        }
+        public string DatePersianDayOfWeek {
+            get {
+                return DateSave.HasValue ? (Infrastructure.DateTimeOperation.ToStringShamsiDayOfWeek(DateSave.Value) + "") : "-----";
+            }
+        }
+        public string DatePersianFullDate {
+            get {
+                return DatePersianDayOfWeek + " " + DatePersianDayAndMonth + " " + DatePersianYear;
+            }
+        }
+        public string DatePersianShortDate {
+            get {
+                return DateSave.HasValue ? (PersianNumberHelper.EnglishToPersian(Infrastructure.DateTimeOperation.ToPersianDate(DateSave.Value)) + "") : "--/--/----";
+            }
+        }
         public string Summary { get; set; }
         public string MeteDesc { get; set; }
         public string Keywords { get; set; }

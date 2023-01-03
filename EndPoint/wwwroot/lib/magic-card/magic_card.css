@@ -3,7 +3,7 @@
 :root { --card-height: 65vh; --card-width: calc(var(--card-height) / 1.5); }
 
 
-.magic_card { color: white; transition: all 0.2s ease-in-out; padding: 3px; position: relative; border-radius: 6px; justify-content: center; align-items: center; text-align: center; display: flex; font-size: 1.5em; color: rgb(88 199 250 / 0%); width: 250px; height: 325px; margin: 20px 30px; }
+.magic_card { color: white; transition: all 0.2s ease-in-out; padding: 3px; position: relative; border-radius: 6px; justify-content: center; align-items: center; text-align: center; display: flex; font-size: 1.5em; color: rgb(88 199 250 / 0%); width: 250px; height: 370px; margin: 20px 30px; }
 
     .magic_card:hover { transform:scale(1.05); }/*
         .magic_card:hover:before, .card:hover:after { animation: none; opacity: 0; }*/

@@ -15,7 +15,7 @@
 .article_title_info_parrent { text-align: left; flex: none; }
     .article_title_info_parrent p { color: gray; font-weight: 500; margin: 5px; }
 
-.article_text { text-align: justify; padding: 10px 20px; white-space: pre-line; font-size: 20px; margin: 0; }
+.article_text { text-align: justify; padding: 10px 20px; font-size: 20px; margin: 0; }
 
 
 

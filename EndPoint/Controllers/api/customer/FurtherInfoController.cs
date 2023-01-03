@@ -79,7 +79,7 @@ namespace EndPoint.Controllers.api.customer
         public async Task<ResultDto<IEnumerable<DataFormQuestionsDto>>> Get_DataFormQuestionss([FromBody] RequestDataFormQuestionsDto request)
         {
             try
-            {                               
+            {
                 return await _userFacad.GetDataFormQuestionssService.Execute(request);
             }
             catch (Exception ex)
@@ -96,6 +96,21 @@ namespace EndPoint.Controllers.api.customer
             {
                 request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return await _userFacad.GetDataFormAnswerTablessService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFromAnswersDto>>> Get_DataFromAnswerss([FromBody] RequestDataFromAnswersDto request)
+        {
+            try
+            {
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.GetDataFromAnswerssService.Execute(request);
             }
             catch (Exception ex)
             {

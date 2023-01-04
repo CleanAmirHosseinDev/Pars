@@ -93,6 +93,7 @@
     <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Contract.html" />
     <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Customer.html" />
     <None Include="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Referral.html" />
+    <None Include="wwwroot\image\Ckeditor\no-photo.png" />
     <None Include="wwwroot\js\Utility.js" />
     <None Include="wwwroot\lib\ckeditor\adapters\jquery.js" />
     <None Include="wwwroot\lib\ckeditor\lang\af.js" />

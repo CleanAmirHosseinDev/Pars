@@ -60,6 +60,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string CkeditorFolder
+        {
+            get
+            {
+                return "/wwwroot/image/Ckeditor/";
+            }
+        }
+
         public static string LicensesAndHonorsFolder
         {
             get

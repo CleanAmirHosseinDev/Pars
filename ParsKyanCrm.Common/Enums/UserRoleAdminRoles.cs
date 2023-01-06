@@ -98,6 +98,24 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 1)]
         SystemSeting_Save = 110,
 
+        [Display(Name = "مشاهده")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
+        [DisplayFiledAttribute1(Name = "/Admin/Customers/index")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مشتریان")]
+        [OrderAttribute(Order = 1)]
+        Customers = 833,
+
+        [Display(Name = "ویرایش و افزودن")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مشتریان")]
+        [OrderAttribute(Order = 1)]
+        Customers_Save = 834,
+
         #endregion
 
         #region اطلاعات پایه

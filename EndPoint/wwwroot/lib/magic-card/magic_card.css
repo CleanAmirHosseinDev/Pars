@@ -3,7 +3,7 @@
 :root { --card-height: 65vh; --card-width: calc(var(--card-height) / 1.5); }
 
 
-.magic_card { color: white; transition: all 0.2s ease-in-out; padding: 3px; position: relative; border-radius: 6px; justify-content: center; align-items: center; text-align: center; display: flex; font-size: 1.5em; color: rgb(88 199 250 / 0%); width: 250px; height: 370px; margin: 20px 30px; }
+.magic_card { color: white; transition: all 0.2s ease-in-out; padding: 3px; position: relative; border-radius: 6px; justify-content: center; align-items: center; text-align: center; display: flex; font-size: 1.5em; color: rgb(88 199 250 / 0%); width: 250px; height: 370px; margin: 15px 15px; }
 
     .magic_card:hover { transform:scale(1.05); }/*
         .magic_card:hover:before, .card:hover:after { animation: none; opacity: 0; }*/
@@ -20,8 +20,8 @@
 }
 
 .magic_card .inner_div { color:black; display: flex; flex-direction: column; justify-content: center; padding:16px; }
-    .magic_card .inner_div .center p { font-size: 14px; text-align: justify; font-weight: 200; }
-        .magic_card .inner_div .center p b { font-size: 18px; text-align: center; display: block; margin-bottom: -15px; }
+    .magic_card .inner_div .center p { line-height: 18px; font-size: 14px; text-align: justify; font-weight: 200; }
+        .magic_card .inner_div .center p b { font-size: 16px; text-align: center; display: block; margin-bottom: -15px; }
     .magic_card .inner_div .jbtn { font-size: 13px; }
     .magic_card .inner_div .top { font-size: 60px; width: 110px; height: 110px; display: flex; margin: auto; align-items: center; background: #0000001a; justify-content: center; border-radius: 100%; padding-left: 2px; }
         .magic_card .inner_div .top i:nth-child(odd) { color: #b3b3b3; }

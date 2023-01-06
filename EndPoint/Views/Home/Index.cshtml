@@ -12,7 +12,7 @@
         <div class="slider topslider">
             <div class="slider_pages">
                 <div class="slider_page" id="slide1">
-                    <img src="~/image/landing/slider_1.webp" />
+                    <img src="~/image/landing/slider_4.jpg" />
                     <div class="label">
                         <h2 class="slider_text" id="cursor_node_1" slider_text="ارزشیابی شاخصهای کسب و کار( کیفی) فعالان اقتصادی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
@@ -96,14 +96,14 @@
                     </div>
                     <div class="center">
                         <p>
-                            <b>رتبه بندی وزارت صمت</b>
+                            <b> ارزشیابی شاخصهای کسب و کار(کیفی) فعالان اقتصادی<br>(وزارت صمت)</b>
                             <br />
                             ارائه رتبه بندی اعتباری اصلی ترین خدمتی است که رتبه بندی اعتباری پارس کیان بعنوان یکی از شرکت های رتبه بندی اعتباری دارای مجوز از سازمان بورس و اوراق بهادار ایران ارائه می دهد.
                         </p>
 
                     </div>
                     <div class="bottom">
-                        <a class="jbtn" href="/account/login">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/login">ثبت درخواست رتبه‌بندی اعتباری</a>
                     </div>
 
                 </div>
@@ -116,14 +116,14 @@
                     </div>
                     <div class="center">
                         <p>
-                            <b>رتبه بندی شرکتهای بورسی</b>
+                            <b>رتبه بندی اعتباری</b>
                             <br />
                             ارائه رتبه بندی اعتباری اصلی ترین خدمتی است که رتبه بندی اعتباری پارس کیان بعنوان یکی از شرکت های رتبه بندی اعتباری دارای مجوز از سازمان بورس و اوراق بهادار ایران ارائه می دهد.
                         </p>
 
                     </div>
                     <div class="bottom">
-                        <a class="jbtn" href="/account/login">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/login">ثبت درخواست رتبه‌بندی اعتباری</a>
                     </div>
 
                 </div>
@@ -145,7 +145,7 @@
 
                     </div>
                     <div class="bottom">
-                        <a class="jbtn" href="/account/login">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/login">ثبت درخواست رتبه‌بندی اعتباری</a>
                     </div>
 
                 </div>
@@ -160,12 +160,12 @@
                         <p>
                             <b>آموزش و مشاوره</b>
                             <br />
-                     مشاوره به شرکت ها و ارائه راهکار جهت مدیریت ریسک اعتباری از خدماتی است که پارس کیان ارائه می دهد. همچنین در آموزش سعی داریم مفاهیم مرتبط با ادبیات رتبه بندی اعتباری را توسعه دهیم.
+                            مشاوره به شرکت ها و ارائه راهکار جهت مدیریت ریسک اعتباری از خدماتی است که پارس کیان ارائه می دهد. همچنین در آموزش سعی داریم مفاهیم مرتبط با ادبیات رتبه بندی اعتباری را توسعه دهیم.
                         </p>
 
                     </div>
                     <div class="bottom">
-                        <a class="jbtn" href="/account/login">ثبت درخواست</a>
+                        <a class="jbtn" href="/account/login">ثبت درخواست رتبه‌بندی اعتباری</a>
                     </div>
 
                 </div>
@@ -179,21 +179,14 @@
             <h3>جدیدترین ارزیابی ها</h3>
         </div>
         <div>
-            <div id="top_rating_button" style="display:none;">
-                <a class="jbtn selected" toprateid="0">همه</a>
-                <a class="jbtn" toprateid="1" onclick="topRatingBtnOnclick(this)">صنعتی</a>
-                <a class="jbtn" toprateid="2" onclick="topRatingBtnOnclick(this)">نفت، گاز و انرژی</a>
-                <a class="jbtn" toprateid="3" onclick="topRatingBtnOnclick(this)">سرمایه گذاری</a>
-                <a class="jbtn" toprateid="4" onclick="topRatingBtnOnclick(this)">دیگر</a>
-            </div>
-            <div id="top_rating_cards">
 
-                <div class="top_rating_cards_parrent" toprateid="0">
+            <div class="slider sslider">
+                <div class="slider_pages">
 
                     @if(ViewData["ranks"] != null) {
                         @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.RankingOfCompaniesDto>)ViewData["ranks"]) {
 
-                            <div class="top_rateing_card">
+                            <div class="top_rateing_card slider_page">
                                 <div class="c1">
                                     <p>رتبه</p>
                                     <div class="c2">
@@ -218,6 +211,10 @@
                     }
 
                 </div>
+                <div class="overlay">
+                    <div class="slider_buttons"></div>
+                </div>
+
             </div>
         </div>
         <div style="font-size: 14px;margin: 10px auto 18px 3vw;display: block;">
@@ -226,6 +223,7 @@
         </div>
 
     </section>
+
 
 
     <section class="sec4">

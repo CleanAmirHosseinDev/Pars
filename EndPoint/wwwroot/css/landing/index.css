@@ -154,7 +154,7 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
     .main .sec5 .slider_page .label { position: absolute; z-index: 10; display: flex; align-items: center; margin: 0 3%; color: white; display: flex; width: initial; flex-direction: column; justify-content: center; align-items: start; }
                         .main .sec5 .slider_page .label h3 { color: #82d8ff; margin: 0; font-size: 30px; }
                         .main .sec5 .slider_page .label h2 { font-size: 45px; margin: 0; }*/
-    .main .sec5 .slider .overlay { overflow: hidden; height: fit-content; margin-top: 220px; width: 100%; position: absolute; }
+    .main .sec5 .slider .overlay { overflow: hidden; height: fit-content; margin-top: 230px; width: 100%; position: absolute; }
         .main .sec5 .slider .overlay #thedot { position: absolute; border-radius: 100%; background-image: radial-gradient(circle closest-side,#1952a8 0,#1953a9c0 60%,transparent 100%); margin-right: -30%; transform: scale(1.5); }
         .main .sec5 .slider .overlay .slider_buttons { display: flex; justify-content: center; align-items: end; z-index: 20; }
             .main .sec5 .slider .overlay .slider_buttons button { background: #ddd; border: none; width: 10px; height: 12px; border-radius: 47px; margin: 8px 10px; cursor: pointer; box-shadow: 0 0 5px 1px #0000003f; }

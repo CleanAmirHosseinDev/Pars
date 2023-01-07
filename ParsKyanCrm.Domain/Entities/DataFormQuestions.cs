@@ -12,7 +12,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string QuestionText { get; set; }
         public string QuestionName { get; set; }
         public string QuestionType { get; set; }
-        public int? AnswerId { get; set; }
+        public bool IsShowInTabel { get; set; }
         public int? QuestionOrder { get; set; }
     }
 }

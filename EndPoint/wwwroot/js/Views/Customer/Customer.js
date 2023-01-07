@@ -39,7 +39,7 @@
     }
 
 
-    function systemSeting_Combo(resSingle) {
+    function systemSeting_Combo(resSingle,showdrp) {
 
         AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
@@ -60,26 +60,30 @@
 
                 $("#KindOfCompanyId").html(strKindOfCompany);
                 $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);
-                $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
 
                 $("#HowGetKnowCompanyId").val(resSingle.howGetKnowCompanyId);
                 $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);
-                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
 
+                if (showdrp) {
+                    $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
+                    $("#TypeServiceRequestedId").val('66');
+                } 
             }
         }, true);
     }
 
-    function checkForFirstRequest() {
+    function checkForFirstRequest(resSingle) {
         Web.RequestForRating.RegistingFirstRequest(function (res) {
 
             if (res.isSuccess) {
                 if (res.data.length > 0) {
                     $("#divTypeServiceRequestedId").hide();
+                    systemSeting_Combo(resSingle, false);
                 }
 
                 else {
-                    $("#divTypeServiceRequestedId").show();
+                    $("#divTypeServiceRequestedId").show();  
+                    systemSeting_Combo(resSingle,true);
                 }
             }
 
@@ -89,7 +93,7 @@
     function initCustomer(dir = 'rtl') {
 
         ComboBoxWithSearch('.select2', dir);
-        checkForFirstRequest();
+        
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
 
 
@@ -112,9 +116,9 @@
 
                 $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                systemSeting_Combo(res);
-
+                checkForFirstRequest(res);
+               // systemSeting_Combo(res);
+                
 
             }
 

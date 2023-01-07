@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;
@@ -40,7 +41,7 @@ namespace EndPoint.Controllers.api.customer
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<ResultDto> Save_BasicInformationCustomers([FromForm] CustomersDto request)
+        public async Task<ResultDto> Save_BasicInformationCustomers([FromForm] RequestSaveBasicInformationCustomersDto request)
         {
             try
             {

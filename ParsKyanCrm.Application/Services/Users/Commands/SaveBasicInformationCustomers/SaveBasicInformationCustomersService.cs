@@ -26,19 +26,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
-        private readonly IValidator<CustomersDto> _validator;
         private readonly IWebHostEnvironment _env;
 
-        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IValidator<CustomersDto> validator, IWebHostEnvironment env)
+        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
-            _validator = validator;
             _env = env;
         }
 
-        private bool Check_Remote(CustomersDto request)
+        private bool Check_Remote(RequestSaveBasicInformationCustomersDto request)
         {
             try
             {
@@ -74,32 +72,32 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
-        private async Task<string> Validation_Execute(CustomersDto request)
+        private async Task<string> Validation_Execute(RequestSaveBasicInformationCustomersDto request)
         {
             try
-            {
+            {                
 
-                ValidationResult result = await _validator.ValidateAsync(request);
+                ValidationResult result = await new ValidatorRequestSaveBasicInformationCustomersDto().ValidateAsync(request);
                 if (!result.IsValid) return result.Errors.GetErrorsF();
 
 
 
-                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
+                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
                 {
                     return "شناسه ملی مورد نظر ار قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, Email = request.Email }))
+                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, Email = request.Email }))
                 {
                     return "پست الکترونیکی مورد نظر ار قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile }))
+                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile }))
                 {
                     return "موبایل مدیر عامل مورد نظر ار قبل موجود می باشد لطفا موبایل مدیر عامل دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, EconomicCode = request.EconomicCode }))
+                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, EconomicCode = request.EconomicCode }))
                 {
                     return "کد اقتصادی مورد نظر ار قبل موجود می باشد لطفا کد اقتصادی دیگری وارد نمایید";
                 }
@@ -126,7 +124,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
-        public async Task<ResultDto> Execute(CustomersDto request)
+        public async Task<ResultDto> Execute(RequestSaveBasicInformationCustomersDto request)
         {
 
             #region Upload Image
@@ -178,7 +176,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 #endregion
 
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
-                
+
                 if (!cus.IsProfileComplete)
                 {
 
@@ -237,13 +235,16 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
                     {
+                        "SaveDate",dt
+                    },
+                    {
                         nameof(request.LastInsuranceList),request.LastInsuranceList
                     },
                     {
                         nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
                     },
                     {
-                        nameof(request.IsProfileComplete),true
+                        "IsProfileComplete",true
                     },
                         {
                             nameof(request.AgentName),request.AgentName
@@ -330,7 +331,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 return new ResultDto()
                 {
                     IsSuccess = false,
-                    Message = ex.Message                    
+                    Message = ex.Message
                 };
 
             }

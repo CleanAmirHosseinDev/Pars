@@ -10,6 +10,9 @@ namespace ParsKyanCrm.Infrastructure {
     public static class DateTimeOperation {
         public static string ToPersianDate(this DateTime dt, bool isTime = false) {
             try {
+
+                if (dt.ToString(FormatDate_yyyyMMdd) == "0001/01/01") return null;
+
                 if(!IsPersianDate(dt.ToString(FormatDate_yyyyMMdd))) {
                     PersianCalendar pc = new PersianCalendar();
                     int year = pc.GetYear(dt);

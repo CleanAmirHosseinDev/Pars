@@ -1,27 +1,12 @@
-﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
-using ParsKyanCrm.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
-using ParsKyanCrm.Infrastructure;
+﻿using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
+using Microsoft.AspNetCore.Http;
+using FluentValidation;
 
-namespace ParsKyanCrm.Application.Dtos.Users
+namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
 {
-
-    public class RequestCustomersDto : PageingParamerDto
+    public class RequestSaveBasicInformationCustomersDto
     {
-        public int? CustomerId { get; set; }
-    }
-
-    public class CustomersDto : BaseEntityDto
-    {
-
-        public bool IsProfileComplete { get; set; }
 
         public int CustomerId { get; set; }
         public int? CityId { get; set; }
@@ -98,21 +83,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// </summary>
         public decimal? AmountOsLastSales { get; set; }
 
-        public DateTime SaveDate { get; set; }
-        public string SaveDateStr
-        {
-            get
-            {
-                return DateTimeOperation.ToPersianDate(SaveDate);
-            }
-        }
-
-        public string Ip { get; set; }
-        /// <summary>
-        /// کد احراز هویت
-        /// </summary>
-        public string AuthenticateCode { get; set; }
-
         /// <summary>
         /// آخرین تغییرات روزنامه رسمی
         /// </summary>
@@ -157,12 +127,50 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 return ServiceFileUploader.GetFullPath(AuditedFinancialStatements, VaribleForName.CustomersFolder, false);
             }
         }
-        public CityDto City { get; set; }
-        public SystemSetingDto HowGetKnowCompany { get; set; }
-        public SystemSetingDto KindOfCompany { get; set; }
-        public SystemSetingDto TypeServiceRequested { get; set; }
 
+    }
 
-    }    
+    public class ValidatorRequestSaveBasicInformationCustomersDto : AbstractValidator<RequestSaveBasicInformationCustomersDto>
+    {
 
+        public ValidatorRequestSaveBasicInformationCustomersDto()
+        {
+
+            RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام شرکت را وارد کنید");
+
+            RuleFor(p => p.CeoName).NotEmpty().WithMessage("نام مدیر عامل را وارد کنید");
+
+            RuleFor(p => p.CeoMobile).NotEmpty().WithMessage("موبایل مدیر عامل را وارد کنید");
+
+            RuleFor(p => p.CeoNationalCode).NotEmpty().WithMessage("کد ملی مدیر عامل را وارد کنید");
+
+            RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("کد اقتصادی را وارد کنید");
+
+            RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید");
+
+            RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت را وارد کنید");
+
+            RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید");
+
+            RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
+
+            RuleFor(p => p.CountOfPersonal).NotEmpty().WithMessage("تعداد کارکنان شرکت را وارد کنید");
+
+            RuleFor(p => p.HowGetKnowCompanyId).NotEmpty().WithMessage("نحوه آشنایی با شرکت را انتخاب کنید");
+
+            RuleFor(p => p.KindOfCompanyId).NotEmpty().WithMessage("نوع شرکت را انتخاب کنید");
+
+            RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید");
+
+            RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تماس را وارد کنید");
+
+            RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید");
+
+            RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
+
+            RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
+
+        }
+
+    }
 }

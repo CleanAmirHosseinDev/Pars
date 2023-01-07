@@ -48,7 +48,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss
                         lists = lists.OrderBy(s => s.CustomerId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.CustomerId);
+                        lists = lists.OrderByDescending(s => s.SaveDate);
                         break;
                 }
 

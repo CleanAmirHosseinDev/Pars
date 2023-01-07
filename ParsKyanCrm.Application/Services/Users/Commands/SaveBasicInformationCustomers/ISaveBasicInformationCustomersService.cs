@@ -6,6 +6,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 {
     public interface ISaveBasicInformationCustomersService
     {
-        Task<ResultDto> Execute(CustomersDto request);
+        Task<ResultDto> Execute(RequestSaveBasicInformationCustomersDto request);
     }
 }

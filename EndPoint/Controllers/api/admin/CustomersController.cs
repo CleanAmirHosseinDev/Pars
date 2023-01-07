@@ -70,5 +70,21 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.Customers_Delete })]
+        public async Task<ResultDto> Delete_Customers(int id)
+        {
+            try
+            {
+                return await _userFacad.DeleteCustomersService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

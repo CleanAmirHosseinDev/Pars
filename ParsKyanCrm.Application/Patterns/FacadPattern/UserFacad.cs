@@ -36,6 +36,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -97,6 +99,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
 
+        IGetCustomerssService GetCustomerssService { get; }
+
+        ISaveCustomersService SaveCustomersService { get; }
+
     }
 
     public class UserFacad : IUserFacad
@@ -104,19 +110,17 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
-        private readonly IWebHostEnvironment _env;
-        private readonly IValidator<CustomersDto> _validator;
+        private readonly IWebHostEnvironment _env;        
         private readonly IBaseUserFacad _baseUserFacad;
 
         private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
 
-        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IValidator<CustomersDto> validator, IBaseUserFacad baseUserFacad, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
+        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IBaseUserFacad baseUserFacad, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
-            _env = env;
-            _validator = validator;
+            _env = env;            
             _baseUserFacad = baseUserFacad;
             _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
@@ -180,7 +184,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad, _validator,_env);
+                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad,_env);
             }
         }
 
@@ -370,6 +374,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetCustomerssService _getCustomerssService;
+        public IGetCustomerssService GetCustomerssService
+        {
+            get
+            {
+                return _getCustomerssService = _getCustomerssService ?? new GetCustomerssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveCustomersService _saveCustomersService;
+        public ISaveCustomersService SaveCustomersService
+        {
+            get
+            {
+                return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _basicInfoFacad,_env);
             }
         }
 

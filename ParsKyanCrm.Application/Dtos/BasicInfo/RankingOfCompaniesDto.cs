@@ -28,8 +28,8 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public string LongTermRating { get; set; }
         public string ShortTermRating { get; set; }
         public string Vision { get; set; }
-
-
+        public string StatusText { get; set; }
+        public string RankingTypeText { get; set; }
         public string PressRelease { get; set; }
         public string PressReleaseFull
         {

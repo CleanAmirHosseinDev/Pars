@@ -50,12 +50,12 @@
         </div>
         <div class="left_sec_item">
             <div class="title">
-                <h4>خبر های تازه</h4>
+                <h4><a href="/Article/NewsList">خبر های تازه</a></h4>
             </div>
             <div class="item">
                 @if(ViewData["NewNews"] != null) {
                     @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["NewNews"]) {
-                <a href="/Article/News/@item.ContentId">@item.Title<span>(۱۴۰۱/۰۸/۲۴)</span></a>
+                <a href="/Article/News/@item.ContentId">@item.Title<span>(@item.DatePersianShortDate)</span></a>
                     }
 
                 }
@@ -63,12 +63,12 @@
         </div>
                 <div class="left_sec_item">
             <div class="title">
-                <h4>مقالات تازه</h4>
+                <h4><a href="/Article/ContentList">مقالات تازه</a></h4>
             </div>
             <div class="item">
                 @if(ViewData["NewContent"] != null) {
                     @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["NewContent"]) {
-                <a href="/Article/Content/@item.ContentId">@item.Title<span>(۱۴۰۱/۰۸/۲۴)</span></a>
+                <a href="/Article/Content/@item.ContentId">@item.Title<span>(@item.DatePersianShortDate)</span></a>
                     }
 
                 }

@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
 
 namespace EndPoint
 {
@@ -71,9 +72,7 @@ namespace EndPoint
             services.AddScoped<IBaseSecurityFacad, BaseSecurityFacad>();
             services.AddScoped<ISecurityFacad, SecurityFacad>();
 
-            services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();
-
-            services.AddScoped<IValidator<CustomersDto>, ValidatorCustomersDto>();
+            services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();            
 
             services.AddScoped<IValidator<RequestReferencesDto>, ValidatorRequestReferencesDto>();
 

@@ -63,7 +63,7 @@ function jvSlider_gotopage(inpage) {
 
     $(".topslider .slider_buttons").children().eq(inpage - 1).addClass("selected");
 
-    jvSliderTimeoutVar = setTimeout(jvSlider_next, 6000);
+    jvSliderTimeoutVar = setTimeout(jvSlider_next, 8000);
 
 
     $(`#cursor_node_${jvSlider_currentPage}`).html("");
@@ -99,3 +99,54 @@ $(function () {
 });
 
 
+
+
+
+
+///////sec  5
+
+
+
+var countOfRateSlider = 3;
+jvRateSlider_currentPage = 1;
+function jvRateSlider_next() {
+    var maxcount = ($(".sslider .slider_pages").children().length) / 3;
+    if (jvRateSlider_currentPage < maxcount) {
+        jvRateSlider_currentPage++;
+    } else {
+        jvRateSlider_currentPage = 1;
+    }
+    jvRateSlider_gotopage(jvRateSlider_currentPage);
+}
+var jvRateSliderTimeoutVar;
+function jvRateSlider_gotopage(inpage) {
+    clearTimeout(jvRateSliderTimeoutVar);
+    jvRateSlider_currentPage = inpage;
+    $(".sslider .slider_page .label").each(function (index) {
+        $(this).hide();
+    });
+    setTimeout(() => { $(".sslider .slider_pages").children().eq(inpage - 1).find(".label").fadeIn(); }, 1000);
+
+    $(".sslider .slider_page:first").css({ "margin-right": (320 * (inpage - 1) * -1) + "px" });
+
+    $(".sslider .slider_buttons button").each(function (index) {
+        $(this).removeClass("selected");
+    });
+
+
+    $(".sslider .slider_buttons").children().eq(inpage - 1).addClass("selected");
+
+    jvRateSliderTimeoutVar = setTimeout(jvRateSlider_next, 5000);
+}
+function jvRateSlider_init() {
+    var maxcount = $(".sslider .slider_pages").children().length;
+    var btns = '';
+    for (var i = 1; i <= maxcount; i++) {
+        btns += `<button onclick="jvRateSlider_gotopage(` + i + `)"></button>`;
+    }
+    $(".sslider  .slider_buttons").html(btns);
+    jvRateSlider_gotopage(1);
+}
+$(function () {
+    jvRateSlider_init();
+});

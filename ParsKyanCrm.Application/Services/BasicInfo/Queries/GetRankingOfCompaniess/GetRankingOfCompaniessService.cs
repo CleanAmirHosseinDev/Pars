@@ -32,10 +32,17 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetRankingOfCompani
 
                 var lists = (from s in _context.RankingOfCompanies
                              where (s.IsActive == request.IsActive || request.IsActive == null)
-                             select s).Include(p => p.User).Include(p => p.Comany).AsQueryable();
+                             select s).Include(p => p.User).Include(p => p.Comany).Include(p=>p.Comany.CompanyGroup).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Comany.CompanyName.Contains(request.Search));
-
+                /*
+                for(int i =0 ;i<lists.Count() ;i++) {
+                    if(lists.ElementAt(i).Comany.CompanyGroupId != null) {
+                        int x = Convert.ToInt32(lists.ElementAt(i).Comany.CompanyGroupId + "");
+                        lists.ElementAt(i).Comany.CompanyGroup = _context.SystemSeting.Where(a=>a.SystemSetingId == x).First();
+                    }
+                    
+                }*/
                 switch (request.SortOrder)
                 {
                     case "RankingId_D":

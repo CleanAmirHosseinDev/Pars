@@ -1,34 +1,29 @@
 ﻿using AutoMapper;
-using FluentValidation;
-using FluentValidation.Results;
+using Microsoft.AspNetCore.Hosting;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ParsKyanCrm.Common;
-using ParsKyanCrm.Domain.Entities;
-using ParsKyanCrm.Common.Enums;
-using Microsoft.EntityFrameworkCore;
-using ParsKyanCrm.Infrastructure.Consts;
-using Microsoft.AspNetCore.Hosting;
 
-namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers
+namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
 {
 
-    public class SaveBasicInformationCustomersService : ISaveBasicInformationCustomersService
+    public class SaveCustomersService : ISaveCustomersService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IWebHostEnvironment _env;
 
-        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        public SaveCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
@@ -36,7 +31,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             _env = env;
         }
 
-        private bool Check_Remote(RequestSaveBasicInformationCustomersDto request)
+        private bool Check_Remote(CustomersDto request)
         {
             try
             {
@@ -72,32 +67,27 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
-        private async Task<string> Validation_Execute(RequestSaveBasicInformationCustomersDto request)
+        private string Validation_Execute(CustomersDto request)
         {
             try
-            {                
+            {
 
-                ValidationResult result = await new ValidatorRequestSaveBasicInformationCustomersDto().ValidateAsync(request);
-                if (!result.IsValid) return result.Errors.GetErrorsF();
-
-
-
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
+                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
                 {
                     return "شناسه ملی مورد نظر ار قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, Email = request.Email }))
+                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, Email = request.Email }))
                 {
                     return "پست الکترونیکی مورد نظر ار قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile }))
+                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile }))
                 {
                     return "موبایل مدیر عامل مورد نظر ار قبل موجود می باشد لطفا موبایل مدیر عامل دیگری وارد نمایید";
                 }
 
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, EconomicCode = request.EconomicCode }))
+                if (!Check_Remote(new CustomersDto() { CustomerId = request.CustomerId, EconomicCode = request.EconomicCode }))
                 {
                     return "کد اقتصادی مورد نظر ار قبل موجود می باشد لطفا کد اقتصادی دیگری وارد نمایید";
                 }
@@ -110,21 +100,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
-        private string MaxAllRequestNo()
-        {
-            try
-            {
-                List<RequestForRatingDto> q = Ado_NetOperation.ConvertDataTableToList<RequestForRatingDto>(Ado_NetOperation.GetAll_Table(typeof(RequestForRating).Name, "cast(isnull((max(cast((isnull(RequestNo,'1')) as bigint))+1),1) as nvarchar(max)) as RequestNoStr"));
-                if (q != null) return q.FirstOrDefault().RequestNoStr.ToString();
-                return "1";
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<ResultDto> Execute(RequestSaveBasicInformationCustomersDto request)
+        public async Task<ResultDto> Execute(CustomersDto request)
         {
 
             #region Upload Image
@@ -139,7 +115,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 #region Validation
 
-                string strValidation = await Validation_Execute(request);
+                string strValidation = Validation_Execute(request);
                 if (!string.IsNullOrEmpty(strValidation))
                 {
                     return new ResultDto()
@@ -173,64 +149,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     await ServiceFileUploader.SaveFile(request.Result_Final_AuditedFinancialStatements, path_AuditedFinancialStatements, "لیست آخرین تغییرات روزنامه رسمی");
                 }
 
-                #endregion
+                #endregion                                
 
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
-
-                if (!cus.IsProfileComplete)
-                {
-
-                    if (!request.TypeServiceRequestedId.HasValue)
-                    {
-                        return new ResultDto()
-                        {
-                            IsSuccess = false,
-                            Message = "نوع خدمت مورد تقاضا را انتخاب کنید"
-                        };
-                    }
-
-                    var rr = _context.RequestReferences.Add(new RequestReferences()
-                    {
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
-                        LevelStepStatus = VaribleForName.LevelStepStatus,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton,
-                        Request = new Domain.Entities.RequestForRating()
-                        {
-
-                            RequestNo = int.Parse(MaxAllRequestNo()),
-                            DateOfRequest = dt,
-                            KindOfRequest = request.TypeServiceRequestedId,
-                            CustomerId = cus.CustomerId,
-                            IsFinished = false,
-                        },
-                        Comment = null,
-                        SendUser = null,
-                        SendTime = dt,
-                    });
-                    await _context.SaveChangesAsync();
-
-                    _context.RequestReferences.Add(new RequestReferences()
-                    {
-                        Requestid = rr.Entity.Requestid,
-                        Comment = null,
-                        SendUser = null,
-                        SendTime = dt,
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
-                        LevelStepStatus = VaribleForName.LevelStepStatus1,
-                        SmsContent = VaribleForName.SmsContent1,
-                        SmsType = VaribleForName.SmsType1,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
-                    });
-                    await _context.SaveChangesAsync();
-
-                    var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
-                    WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                    WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
-
-                }
-
 
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
@@ -242,9 +163,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     },
                     {
                         nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
-                    },
-                    {
-                        "IsProfileComplete",true
                     },
                         {
                             nameof(request.AgentName),request.AgentName
@@ -315,7 +233,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 return new ResultDto()
                 {
                     IsSuccess = true,
-                    Message = "کاربر محترم اطلاعات اولیه شما با موفقیت ثبت گردید از طریق همین ناحیه وضعیت درخواست خود را پیگیری بفرمایید"
+                    Message = "مشتری موردنظر با موفقیت ثبت شد"
                 };
             }
             catch (Exception ex)

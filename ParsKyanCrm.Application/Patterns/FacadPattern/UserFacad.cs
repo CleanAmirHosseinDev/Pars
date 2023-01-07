@@ -38,6 +38,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -102,6 +103,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetCustomerssService GetCustomerssService { get; }
 
         ISaveCustomersService SaveCustomersService { get; }
+
+        IDeleteCustomersService DeleteCustomersService { get; }
 
     }
 
@@ -392,6 +395,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _basicInfoFacad,_env);
+            }
+        }
+
+        private IDeleteCustomersService _deleteCustomersService;
+        public IDeleteCustomersService DeleteCustomersService
+        {
+            get
+            {
+                return _deleteCustomersService = _deleteCustomersService ?? new DeleteCustomersService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 

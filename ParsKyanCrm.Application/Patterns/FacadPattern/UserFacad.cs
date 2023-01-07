@@ -36,6 +36,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -96,6 +98,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetDataFormAnswerTablessService GetDataFormAnswerTablessService { get; }
 
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
+
+        IGetCustomerssService GetCustomerssService { get; }
+
+        ISaveCustomersService SaveCustomersService { get; }
 
     }
 
@@ -370,6 +376,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetCustomerssService _getCustomerssService;
+        public IGetCustomerssService GetCustomerssService
+        {
+            get
+            {
+                return _getCustomerssService = _getCustomerssService ?? new GetCustomerssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveCustomersService _saveCustomersService;
+        public ISaveCustomersService SaveCustomersService
+        {
+            get
+            {
+                return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _basicInfoFacad,_env);
             }
         }
 

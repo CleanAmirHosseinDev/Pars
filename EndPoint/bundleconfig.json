@@ -19,7 +19,7 @@
       "wwwroot/js/Views/Customer/Layout.js",
       "wwwroot/js/Views/Customer/RequestForRating.js",
       "wwwroot/js/Views/Customer/SystemSeting.js",
-      "wwwroot/js/Views/Customer/FurtherInfo.js",
+      "wwwroot/js/Views/Customer/FurtherInfo.js"
      
 
     ],
@@ -28,14 +28,14 @@
       "renameLocals": true
     },
     "sourceMap": false
-  },
-  
+  },  
   /////////////////////////////////////////////////////////////////////////////////////Start SuperVisor/////////////////////////////////////////////////////////////////////////////////////////////////////////////
   {
     "outputFileName": "wwwroot/js/Views/SuperVisor/all.min.js",
     "inputFiles": [
       "wwwroot/js/Views/SuperVisor/Layout.js",
-      "wwwroot/js/Views/SuperVisor/RequestForRating.js"
+      "wwwroot/js/Views/SuperVisor/RequestForRating.js",
+      "wwwroot/js/Views/SuperVisor/Customer.js"
     ],
     "minify": {
       "enabled": true,
@@ -60,8 +60,8 @@
       "wwwroot/js/Views/Admin/AboutUs.js",
       "wwwroot/js/Views/Admin/ManagerOfParsKyan.js",
       "wwwroot/js/Views/Admin/NewsAndContent.js",
-      "wwwroot/js/Views/Admin/RankingOfCompanies.js"
-
+      "wwwroot/js/Views/Admin/RankingOfCompanies.js",
+      "wwwroot/js/Views/Admin/Customer.js"
     ],
     "minify": {
       "enabled": true,
@@ -69,7 +69,4 @@
     },
     "sourceMap": false
   }
-
-
-
 ]

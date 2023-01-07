@@ -166,8 +166,8 @@
                                                                 <div class="nav-tabs-custom">
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab3" data-toggle="tab" aria-expanded="false">نظامنامه کیفیت</a></li>
-                                                                        <li class=""><a onclick="" href="#FormID13" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
-                                                                        <li class=""><a onclick="" href="#FormID14" data-toggle="tab" aria-expanded="false">جوایز معتبر</a></li>
+                                                                        <li class=""><a  onclick="Web.FurtherInfo.IntiFormShow(4,'1,2,3,4')" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
+                                                                        <li class=""><a  onclick="" href="#FormID14" data-toggle="tab" aria-expanded="false">جوایز معتبر</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormDetailTab3">
@@ -219,7 +219,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <!-- /.tab-pane -->
-                                                                        <div class="tab-pane" id="FormID13">
+                                                                        <div class="tab-pane" id="FormDetailTab4">
                                                                             <h2 class="fs-title">استاندارد</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <div class="row" id="FormDetail4">
@@ -239,27 +239,20 @@
                                                                                 </div>
 
                                                                                 <table class="table">
-                                                                                    <tr>
-                                                                                        <th>ردیف</th>
-                                                                                        <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
-                                                                                        <th> بارگزاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
-                                                                                        <th>  مرجع صادر کننده</th>
-                                                                                        <th> تاریخ انقضا</th>
-                                                                                        <th>عملیات</th>
-                                                                                    </tr>
+                                                                                    <thead>
+                                                                                        <tr>
 
-                                                                                    <tr>
-                                                                                        <td>1</td>
-                                                                                        <td>...</td>
-                                                                                        <td>...</td>
-                                                                                        <td>...</td>
-                                                                                        <td>...</td>
-                                                                                        <td>
-                                                                                            <a style="margin-right:5px" title="مشاهده جزییات" class="btn btn-detail fontForAllPage"> <i class="fa fa-eye"></i></a>
-                                                                                        </td>
-                                                                                        <td>
-                                                                                        </td>
-                                                                                    </tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th> بارگزاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th>  مرجع صادر کننده</th>
+                                                                                            <th> تاریخ انقضا</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer4">
+                                                                                      
+                                                                                    </tbody>                                                                                   
                                                                                 </table>
 
 

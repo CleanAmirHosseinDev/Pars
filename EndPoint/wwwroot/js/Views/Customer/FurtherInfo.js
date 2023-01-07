@@ -137,10 +137,10 @@
 
     function initFurtherInfo(dir = 'rtl') {
 
-        intiForm(1);
-        intiFormAnswer(1,"1,2,7,8");
+       // intiForm(1);
+       // intiFormAnswer(1,"1,2,7,8");
         intiForm(3);
-        intiFormAnswer(1, "1,2,3");
+        intiFormAnswer(3, "1,2,3");
         //intiForm(4);
         //intiForm(5);
         //intiForm(6);
@@ -165,6 +165,14 @@
         ComboBoxWithSearch('.select2', 'dir');
         systemSeting_Combo(dir);
     }
+
+    function intiFormShow(Id=null,Columns=null) {
+
+        intiForm(Id);
+        intiFormAnswer(Id, Columns);
+       
+    }
+
 
     function intiForm(FormID=null) {  
 
@@ -272,7 +280,8 @@
         initFurtherInfo: initFurtherInfo,
         SystemSeting_Combo: systemSeting_Combo,
         IntiForm: intiForm,
-        IntiFormAnswer: intiFormAnswer
+        IntiFormAnswer: intiFormAnswer,
+        IntiFormShow: intiFormShow
 
 
     };

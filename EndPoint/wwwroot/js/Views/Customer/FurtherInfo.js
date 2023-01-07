@@ -130,33 +130,38 @@
         }, true);
     }
 
+   
+
+
    // $('.OpenUpload').click(function () { $('#CustomeFileupload').trigger('click'); });
 
     function initFurtherInfo(dir = 'rtl') {
 
         intiForm(1);
+        intiFormAnswer(1,"1,2,7,8");
         intiForm(3);
-        intiForm(4);
-        intiForm(5);
-        intiForm(6);
-        intiForm(7);
-        intiForm(8);
-        intiForm(9);
-        intiForm(10);
-        intiForm(11);
-        intiForm(12);
-        intiForm(13);
-        intiForm(14);
-        intiForm(15);
-        intiForm(16);
-        intiForm(17);       
-        intiForm(18);
-        intiForm(19);
-        intiForm(20);
-        intiForm(21);
-        intiForm(22);
-        intiForm(23);
-        intiForm(24);
+        intiFormAnswer(1, "1,2,3");
+        //intiForm(4);
+        //intiForm(5);
+        //intiForm(6);
+        //intiForm(7);
+        //intiForm(8);
+        //intiForm(9);
+        //intiForm(10);
+        //intiForm(11);
+        //intiForm(12);
+        //intiForm(13);
+        //intiForm(14);
+        //intiForm(15);
+        //intiForm(16);
+        //intiForm(17);       
+        //intiForm(18);
+        //intiForm(19);
+        //intiForm(20);
+        //intiForm(21);
+        //intiForm(22);
+        //intiForm(23);
+        //intiForm(24);
         ComboBoxWithSearch('.select2', 'dir');
         systemSeting_Combo(dir);
     }
@@ -167,7 +172,6 @@
 
             if (res.isSuccess) {
 
-                var strFormId = '';
                 var strFormId = '';
                 
                 for (var i = 0; i < res.data.length; i++)
@@ -202,13 +206,75 @@
             }
         }, true);
     }
-   
+
+
+    function intiFormAnswer(FormID = null,ColumNum=null) {
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+
+                var separatedArray = ColumNum.split(',');
+                let strFormAnswer = '';
+                for (let i = 0; i < res.data.length; i++) {
+
+                    strFormAnswer += "<tr><td>" +( i+1) + "</td><td>";
+
+                    for (var j = 0; j < separatedArray.length; j++) {
+
+                        var m = separatedArray[j];
+
+                            switch (separatedArray[j]) {
+                                case"1":
+                                    strFormAnswer += res.data[i].answer1 + "</td><td>";
+                                    break;
+                                case "2":
+                                    strFormAnswer += res.data[i].answer2 + "</td><td>";
+                                    break;
+                                case "3":
+                                    strFormAnswer += res.data[i].answer3 + "</td><td>";
+                                    break;
+                                case "4":
+                                    strFormAnswer += res.data[i].answer4 + "</td><td>";
+                                    break;
+                                case "5":
+                                    strFormAnswer += res.data[i].answer5 + "</td><td>";
+                                    break;
+                                case "6":
+                                    strFormAnswer += res.data[i].answer6 + "</td><td>";
+                                    break;
+                                case "7":
+                                    strFormAnswer += res.data[i].answer7 + "</td><td>";
+                                    break;
+                                case "8":
+                                    strFormAnswer += res.data[i].answer8 + "</td><td>";
+                                    break;
+                                case "9":
+                                    strFormAnswer += res.data[i].answer6 + "</td><td>";
+                                    break;
+                                case "10":
+                                    strFormAnswer += res.data[i].answer6 + "</td><td>";
+                                    break;
+                            }
+                                         
+
+                    }
+                       
+                    strFormAnswer += "<a title='ویرایش' href='/Customer/FurtherInfo/EditAnswerTableId?id=" + res.data[i].answerTableId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                }
+                $("#FormDetailAnswer" + FormID).html(strFormAnswer);
+            }
+        }, true);
+    }
+
 
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         initFurtherInfo: initFurtherInfo,
         SystemSeting_Combo: systemSeting_Combo,
-        IntiForm: intiForm
+        IntiForm: intiForm,
+        IntiFormAnswer: intiFormAnswer
+
+
     };
 
 })(Web, jQuery);

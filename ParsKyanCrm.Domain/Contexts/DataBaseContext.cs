@@ -152,7 +152,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.AnswerTableId)
                     .ValueGeneratedNever()
-                    .HasColumnName("AnswerID");
+                    .HasColumnName("AnswerTableId");
 
                 entity.Property(e => e.Answer1).HasMaxLength(50);
 

@@ -137,10 +137,10 @@
 
     function initFurtherInfo(dir = 'rtl') {
 
-       // intiForm(1);
-       // intiFormAnswer(1,"1,2,7,8");
-        intiForm(3);
-        intiFormAnswer(3, "1,2,3");
+        intiForm(1);
+        intiFormAnswer(1,"1,2,7,8");
+       // intiForm(3);
+       // intiFormAnswer(3, "1,2,3");
         //intiForm(4);
         //intiForm(5);
         //intiForm(6);

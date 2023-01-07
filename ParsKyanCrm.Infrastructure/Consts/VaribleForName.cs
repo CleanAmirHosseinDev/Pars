@@ -48,7 +48,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/BoardOfDirectors/";
+                return "/wwwroot/FileUpload/BoardOfDirectors/";
             }
         }
 
@@ -56,7 +56,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/Activity/";
+                return "/wwwroot/FileUpload/Activity/";
             }
         }
 
@@ -64,7 +64,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/image/Ckeditor/";
+                return "/wwwroot/FileUpload/Ckeditor/";
             }
         }
 
@@ -72,7 +72,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/LicensesAndHonors/";
+                return "/wwwroot/FileUpload/LicensesAndHonors/";
             }
         }
 
@@ -80,7 +80,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/ManagerOfParsKyan/";
+                return "/wwwroot/FileUpload/ManagerOfParsKyan/";
             }
         }
 
@@ -88,7 +88,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/RankingOfCompanies/";
+                return "/wwwroot/FileUpload/RankingOfCompanies/";
             }
         }
 
@@ -96,7 +96,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/NewsAndContent/";
+                return "/wwwroot/FileUpload/NewsAndContent/";
             }
         }
 
@@ -104,7 +104,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/FileUpload/Customers/";
+                return "/wwwroot/FileUpload/Customers/";
             }
         }
 

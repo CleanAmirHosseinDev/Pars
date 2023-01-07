@@ -116,6 +116,15 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 1)]
         Customers_Save = 834,
 
+        [Display(Name = "حذف")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مشتریان")]
+        [OrderAttribute(Order = 1)]
+        Customers_Delete = 835,
+
         #endregion
 
         #region اطلاعات پایه

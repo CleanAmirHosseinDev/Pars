@@ -42,19 +42,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             {
                 string strCondition = string.Empty;
 
-                if (!string.IsNullOrEmpty(request.Email))
-                {
-                    strCondition = " " + nameof(request.Email) + " = " + "N'" + request.Email + "'";
-                }
-                else if (!string.IsNullOrEmpty(request.EconomicCode))
-                {
-                    strCondition = " " + nameof(request.EconomicCode) + " = " + "N'" + request.EconomicCode + "'";
-                }
-                else if (!string.IsNullOrEmpty(request.CeoMobile))
-                {
-                    strCondition = " " + nameof(request.CeoMobile) + " = " + "N'" + request.CeoMobile + "'";
-                }
-                else if (!string.IsNullOrEmpty(request.NationalCode))
+                if (!string.IsNullOrEmpty(request.NationalCode))
                 {
                     strCondition = " " + nameof(request.NationalCode) + " = " + "N'" + request.NationalCode + "'";
                 }
@@ -75,31 +63,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         private async Task<string> Validation_Execute(RequestSaveBasicInformationCustomersDto request)
         {
             try
-            {                
+            {
 
                 ValidationResult result = await new ValidatorRequestSaveBasicInformationCustomersDto().ValidateAsync(request);
                 if (!result.IsValid) return result.Errors.GetErrorsF();
 
-
-
                 if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
                 {
                     return "شناسه ملی مورد نظر ار قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
-                }
-
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, Email = request.Email }))
-                {
-                    return "پست الکترونیکی مورد نظر ار قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
-                }
-
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, CeoMobile = request.CeoMobile }))
-                {
-                    return "موبایل مدیر عامل مورد نظر ار قبل موجود می باشد لطفا موبایل مدیر عامل دیگری وارد نمایید";
-                }
-
-                if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, EconomicCode = request.EconomicCode }))
-                {
-                    return "کد اقتصادی مورد نظر ار قبل موجود می باشد لطفا کد اقتصادی دیگری وارد نمایید";
                 }
 
                 return string.Empty;

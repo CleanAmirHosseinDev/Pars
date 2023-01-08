@@ -70,5 +70,20 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.RankingOfCompanies_Delete })]
+        public ResultDto Delete_RankingOfCompanies(int id)
+        {
+            try
+            {
+                return  _basicInfoFacad.DeleteRankingOfCompaniesService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

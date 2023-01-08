@@ -15,7 +15,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 
     }
 
-    public class ManagerOfParsKyanDto
+    public class ManagerOfParsKyanDto : BaseEntityDto
     {
 
         public int ManagersId { get; set; }

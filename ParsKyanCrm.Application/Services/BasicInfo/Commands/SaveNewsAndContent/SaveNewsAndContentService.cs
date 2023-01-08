@@ -66,6 +66,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveNewsAndContent
                 EntityEntry<NewsAndContent> q_Entity;
                 if (request.ContentId == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     request.DateSave = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     q_Entity = _context.NewsAndContent.Add(_mapper.Map<NewsAndContent>(request));
                     await _context.SaveChangesAsync();
@@ -80,10 +81,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveNewsAndContent
                         },
                         {
                             nameof(q_Entity.Entity.Title),request.Title
-                        },
-                        {
-                            nameof(q_Entity.Entity.IsActive),request.IsActive
-                        },
+                        },                        
                         {
                             nameof(q_Entity.Entity.UserId),request.UserId
                         },

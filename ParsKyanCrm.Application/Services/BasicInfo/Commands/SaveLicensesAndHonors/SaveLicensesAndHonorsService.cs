@@ -66,6 +66,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveLicensesAndHon
                 EntityEntry<LicensesAndHonors> q_Entity;
                 if (request.LicensesAndHonorsId == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     request.SaveOrEditDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     q_Entity = _context.LicensesAndHonors.Add(_mapper.Map<LicensesAndHonors>(request));
                     await _context.SaveChangesAsync();

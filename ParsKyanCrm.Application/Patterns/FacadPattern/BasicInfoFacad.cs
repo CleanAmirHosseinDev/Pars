@@ -1,5 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteActivity;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteLicensesAndHonors;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteManagerOfParsKyan;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteNewsAndContent;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteRankingOfCompanies;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveAboutUs;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveCity;
@@ -91,6 +96,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetNewsAndContentService GetNewsAndContentService { get; }
 
         ISaveNewsAndContentService SaveNewsAndContentService { get; }
+
+        IDeleteNewsAndContentService DeleteNewsAndContentService { get; }
+
+        IDeleteRankingOfCompaniesService DeleteRankingOfCompaniesService { get; }
+
+        IDeleteActivityService DeleteActivityService { get; }
+
+        IDeleteLicensesAndHonorsService DeleteLicensesAndHonorsService { get; }
+
+        IDeleteManagerOfParsKyanService DeleteManagerOfParsKyanService { get; }
 
     }
 
@@ -347,6 +362,51 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveNewsAndContentService = _saveNewsAndContentService ?? new SaveNewsAndContentService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteNewsAndContentService _deleteNewsAndContentService;
+        public IDeleteNewsAndContentService DeleteNewsAndContentService
+        {
+            get
+            {
+                return _deleteNewsAndContentService = _deleteNewsAndContentService ?? new DeleteNewsAndContentService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteRankingOfCompaniesService _deleteRankingOfCompaniesService;
+        public IDeleteRankingOfCompaniesService DeleteRankingOfCompaniesService
+        {
+            get
+            {
+                return _deleteRankingOfCompaniesService = _deleteRankingOfCompaniesService ?? new DeleteRankingOfCompaniesService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteActivityService _deleteActivityService;
+        public IDeleteActivityService DeleteActivityService
+        {
+            get
+            {
+                return _deleteActivityService = _deleteActivityService ?? new DeleteActivityService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteLicensesAndHonorsService _deleteLicensesAndHonorsService;
+        public IDeleteLicensesAndHonorsService DeleteLicensesAndHonorsService
+        {
+            get
+            {
+                return _deleteLicensesAndHonorsService = _deleteLicensesAndHonorsService ?? new DeleteLicensesAndHonorsService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteManagerOfParsKyanService _deleteManagerOfParsKyanService;
+        public IDeleteManagerOfParsKyanService DeleteManagerOfParsKyanService
+        {
+            get
+            {
+                return _deleteManagerOfParsKyanService = _deleteManagerOfParsKyanService ?? new DeleteManagerOfParsKyanService(_context, _mapper, _env);
             }
         }
 

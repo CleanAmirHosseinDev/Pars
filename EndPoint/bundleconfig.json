@@ -35,7 +35,8 @@
     "inputFiles": [
       "wwwroot/js/Views/SuperVisor/Layout.js",
       "wwwroot/js/Views/SuperVisor/RequestForRating.js",
-      "wwwroot/js/Views/SuperVisor/Customer.js"
+      "wwwroot/js/Views/SuperVisor/Customer.js",
+      "wwwroot/js/Views/SuperVisor/Users.js"
     ],
     "minify": {
       "enabled": false,

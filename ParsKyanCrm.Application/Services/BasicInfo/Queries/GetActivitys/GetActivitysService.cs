@@ -31,6 +31,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetActivitys
             {
 
                 var lists = (from s in _context.Activity
+                             where (s.IsActive == request.IsActive || request.IsActive == null)
                              select s).Include(p => p.ActivityTitleNavigation).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.ActivityTitleNavigation.Label.Contains(request.Search));

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Users.Commands.UpdatePassUsers;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure.Filters;
@@ -94,7 +95,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                var q= await _userFacad.GetAccessLevelsService.Execute(id);
+                var q = await _userFacad.GetAccessLevelsService.Execute(id);
 
                 return q;
             }
@@ -118,6 +119,40 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.Users_Delete })]
+        public ResultDto Delete_Users(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteUsersService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.Users_UpdatePass })]
+        public async Task<ResultDto> UpdatePass_Users([FromBody] RequestUpdatePassUsersDto request)
+        {
+            try
+            {
+                request.UserID = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+                return await _userFacad.UpdatePassUsersService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
     }
 }

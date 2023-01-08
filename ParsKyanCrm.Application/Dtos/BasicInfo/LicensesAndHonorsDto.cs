@@ -18,7 +18,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 
     }
 
-    public class LicensesAndHonorsDto
+    public class LicensesAndHonorsDto : BaseEntityDto
     {
 
         public int LicensesAndHonorsId { get; set; }

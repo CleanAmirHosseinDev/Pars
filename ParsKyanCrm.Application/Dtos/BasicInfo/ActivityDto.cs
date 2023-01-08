@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 
     }
 
-    public class ActivityDto
+    public class ActivityDto : BaseEntityDto
     {
 
         public int ActivityId { get; set; }

@@ -19,6 +19,8 @@ namespace ParsKyanCrm.Domain.Entities
         public int? Userid { get; set; }
         public DateTime? SaveAndEditDate { get; set; }
 
+        public byte IsActive { get; set; }
+
         public virtual SystemSeting Position { get; set; }
         public virtual SystemSeting Title { get; set; }
         public virtual Users User { get; set; }

@@ -61,11 +61,25 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                request.UserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
-                request.IsActive = (byte)TablesGeneralIsActive.Active;
+                request.UserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);                
                 return await _basicInfoFacad.SaveNewsAndContentService.Execute(request);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.NewsAndContent_Delete })]
+        public ResultDto Delete_NewsAndContent(int id)
+        {
+            try
+            {
+                return _basicInfoFacad.DeleteNewsAndContentService.Execute(id);
+            }
+            catch (Exception)
             {
                 throw;
             }

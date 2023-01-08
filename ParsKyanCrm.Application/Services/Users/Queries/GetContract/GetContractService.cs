@@ -35,7 +35,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContract
 
                 if (request.ContractId != null && request.ContractId != 0)
                 {
-                    var q_Find = await _context.Contract.FirstOrDefaultAsync(p => p.ContractId == request.ContractId.Value);
+                    var q_Find = await _context.Contract.FirstOrDefaultAsync(p => p.ContractId == request.ContractId.Value && (p.IsActive == request.IsActive || request.IsActive == null));
 
                     res = _mapper.Map<ContractDto>(q_Find);
                     res.KinfOfRequestNavigation = q_Find.KinfOfRequestNavigation != null ? _mapper.Map<SystemSetingDto>(q_Find.KinfOfRequestNavigation) : new SystemSetingDto();

@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].activityTitleNavigation != null ? res.data[i].activityTitleNavigation.label : '') + "</td><td><a title='ویرایش' href='/Admin/Activity/EditActivity?id=" + res.data[i].activityId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].activityTitleNavigation != null ? res.data[i].activityTitleNavigation.label : '') + "</td><td><a title='ویرایش' href='/Admin/Activity/EditActivity?id=" + res.data[i].activityId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Activity.Delete_Activity(" + res.data[i].activityId + ");'><i class='fa fa-remove'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -108,12 +108,50 @@
         }, true);
     }
 
+    function delete_Activity(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/Activity/Delete_Activity/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
+
+    }
+
     web.Activity = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveActivity: saveActivity,
         InitActivity: initActivity,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        Delete_Activity: delete_Activity
     };
 
 })(Web, jQuery);

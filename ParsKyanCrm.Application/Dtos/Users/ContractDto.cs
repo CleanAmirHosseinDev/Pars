@@ -16,7 +16,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
     }
 
-    public class ContractDto
+    public class ContractDto : BaseEntityDto
     {
 
         public int ContractId { get; set; }

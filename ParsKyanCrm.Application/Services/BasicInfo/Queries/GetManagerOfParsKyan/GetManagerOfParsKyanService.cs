@@ -35,7 +35,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKya
 
                 if (request.ManagersId != null && request.ManagersId != 0)
                 {
-                    var q_Find = await _context.ManagerOfParsKyan.Include(p => p.User).Include(p => p.Position).Include(p => p.Title).FirstOrDefaultAsync(p => p.ManagersId == request.ManagersId.Value);
+                    var q_Find = await _context.ManagerOfParsKyan.Include(p => p.User).Include(p => p.Position).Include(p => p.Title).FirstOrDefaultAsync(p => p.ManagersId == request.ManagersId.Value && (p.IsActive == request.IsActive || request.IsActive == null));
                     res = _mapper.Map<ManagerOfParsKyanDto>(q_Find);
                     res.User = q_Find.User != null ? _mapper.Map<UsersDto>(q_Find.User) : new UsersDto();
                     res.Position = q_Find.Position != null ? _mapper.Map<SystemSetingDto>(q_Find.Position) : new SystemSetingDto();

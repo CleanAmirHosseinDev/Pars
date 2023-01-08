@@ -47,7 +47,7 @@ namespace EndPoint.Controllers
 
                 RequestRankingOfCompaniesDto request2 = new RequestRankingOfCompaniesDto();
                 request2.IsActive = (byte)TablesGeneralIsActive.Active;
-                request2.PageSize = 6;
+                request2.PageSize = 10;
                 request2.PageIndex = 1;
                 var ranks = await _basicInfoFacad.GetRankingOfCompaniessService.Execute(request2);
 

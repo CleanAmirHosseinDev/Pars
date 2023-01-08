@@ -43,7 +43,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         /// </summary>
         public string PostalCode { get; set; }
         /// <summary>
-        /// کد اقتصادی
+        /// کد اقتصادی( به شماره ثبت تغییر کرد
         /// </summary>
         public string EconomicCode { get; set; }
         /// <summary>
@@ -144,7 +144,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
             RuleFor(p => p.CeoNationalCode).NotEmpty().WithMessage("کد ملی مدیر عامل را وارد کنید");
 
-            RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("کد اقتصادی را وارد کنید");
+            RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("شماره ثبت را وارد کنید");
 
             RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید");
 

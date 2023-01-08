@@ -521,7 +521,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.EconomicCode)
                     .HasMaxLength(50)
-                    .HasComment("کد اقتصادی");
+                    .HasComment("شماره ثبت");
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 

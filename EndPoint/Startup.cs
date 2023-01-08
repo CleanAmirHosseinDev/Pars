@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -19,11 +19,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
+using Microsoft.AspNetCore.Http;
 
 namespace EndPoint
 {
     public class Startup
     {
+
+        public static Dictionary<string, string> redirectList = new Dictionary<string, string>();
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -100,6 +103,7 @@ namespace EndPoint
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -112,6 +116,38 @@ namespace EndPoint
                   );
 
             });
+
+            app.UseMiddleware<EndRequestMiddleware>();
+
+
+            ///////////Important LowerCase , Dest Location
+            redirectList.Add("contact", "ContactUs");
+            redirectList.Add("درباره-ما", "Page/AboutUs");
+            redirectList.Add("ساختار-مدیریت", "Page/ManagerOfParsKyan");
+            redirectList.Add("رتبه-بندی-اعتباری-پارس", "Page/رتبه_بندی_اعتباری");
+            redirectList.Add("مشتریان-عمده", "Page/مشتریان_عمده");
+            redirectList.Add("نمودار-سازمانی", "Page/OrganazationChart");
+        }
+}
+
+internal class EndRequestMiddleware {
+    private readonly RequestDelegate _next;
+
+
+    public EndRequestMiddleware(RequestDelegate next) {
+        _next = next;
+    }
+
+    public async Task Invoke(HttpContext context) {
+        // Do tasks before other middleware here, aka 'BeginRequest'
+        // ...
+        string clearpath = context.Request.Path.Value.ToLower().Replace("/", "");
+        if(Startup.redirectList.ContainsKey(clearpath)) {
+            context.Response.StatusCode = 301;
+            context.Response.Headers.Add("Location", "/" + Startup.redirectList[clearpath]);
+        } else {
+            await _next(context);
         }
     }
+}
 }

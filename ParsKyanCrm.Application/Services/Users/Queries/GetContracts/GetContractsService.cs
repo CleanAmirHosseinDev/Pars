@@ -33,6 +33,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContracts
             {
 
                 var lists = (from s in _context.Contract
+                             where (s.IsActive == request.IsActive || request.IsActive == null)
                              select s).Include(p => p.KinfOfRequestNavigation).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p =>

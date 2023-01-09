@@ -31,8 +31,24 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 1)]
         Users_Save = 103,
 
-        
-        
+        [Display(Name = "حذف")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "کاربران سیستم")]
+        [OrderAttribute(Order = 1)]
+        Users_Delete = 301,
+
+        [Display(Name = "تغییر کلمه عبور")]
+        [Category("SystemStructure")]
+        [DisplayFiledAttribute(Name = "ساختار سیستم")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "کاربران سیستم")]
+        [OrderAttribute(Order = 1)]
+        Users_UpdatePass = 893,
+
         [Display(Name = "مشاهده و ویرایش و افزودن")]
         [Category("SystemStructure")]
         [DisplayFiledAttribute(Name = "ساختار سیستم")]
@@ -147,6 +163,14 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 2)]
         Companies_Save = 897,
 
+        [Display(Name = "حذف")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "اطلاعات پایه")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "شرکت ها")]
+        [OrderAttribute(Order = 2)]
+        Companies_Delete = 798,
 
         [Display(Name = "مشاهده")]
         [Category("BaseInfo")]
@@ -166,6 +190,14 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 2)]
         ServiceFee_Save = 190,
 
+        [Display(Name = "حذف")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "اطلاعات پایه")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "نرخ نامه قرارداد")]
+        [OrderAttribute(Order = 2)]
+        ServiceFee_Delete = 901,
 
         [Display(Name = "مشاهده")]
         [Category("BaseInfo")]
@@ -184,6 +216,15 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute3(Name = "قرارداد و اصلاحیه قرارداد")]
         [OrderAttribute(Order = 2)]
         Contract_Save = 334,
+
+        [Display(Name = "حذف")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "اطلاعات پایه")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "قرارداد و اصلاحیه قرارداد")]
+        [OrderAttribute(Order = 2)]
+        Contract_Delete = 433,
 
         #endregion
 
@@ -206,6 +247,15 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute3(Name = "محتوای سایت")]
         [OrderAttribute(Order = 3)]
         NewsAndContent_Save = 654,
+
+        [Display(Name = "حذف")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "محتوای سایت")]
+        [OrderAttribute(Order = 3)]
+        NewsAndContent_Delete = 456,
 
         [Display(Name = "مشاهده")]
         [Category("Landing")]
@@ -244,6 +294,15 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 3)]
         RankingOfCompanies_Save = 760,
 
+        [Display(Name = "حذف")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "امتیازات شرکت ها")]
+        [OrderAttribute(Order = 3)]
+        RankingOfCompanies_Delete = 607,
+
         [Display(Name = "مشاهده")]
         [Category("Landing")]
         [DisplayFiledAttribute(Name = "امور سایت")]
@@ -261,6 +320,15 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
         [OrderAttribute(Order = 3)]
         Activity_Save = 189,
+
+        [Display(Name = "حذف")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
+        [OrderAttribute(Order = 3)]
+        Activity_Delete = 981,
 
         [Display(Name = "مشاهده")]
         [Category("Landing")]
@@ -289,6 +357,15 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 3)]
         ManagerOfParsKyan_Save = 910,
 
+        [Display(Name = "حذف")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "ساختار مدیریت")]
+        [OrderAttribute(Order = 3)]
+        ManagerOfParsKyan_Delete = 921,
+
 
 
         [Display(Name = "مشاهده")]
@@ -308,6 +385,15 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute3(Name = "جوایز و افتخارات")]
         [OrderAttribute(Order = 3)]
         LicensesAndHonors_Save = 556,
+
+        [Display(Name = "حذف")]
+        [Category("Landing")]
+        [DisplayFiledAttribute(Name = "امور سایت")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "جوایز و افتخارات")]
+        [OrderAttribute(Order = 3)]
+        LicensesAndHonors_Delete = 655,
 
 
         #endregion

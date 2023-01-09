@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].companyName + "</td><td>" + res.data[i].kindOfCompanyNavigation.label+ "</td><td>" + res.data[i].companyGroup.label +"</td><td><a title='ویرایش' href='/Admin/Companies/EditCompanies?id=" + res.data[i].companiesId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].companyName + "</td><td>" + res.data[i].kindOfCompanyNavigation.label + "</td><td>" + res.data[i].companyGroup.label + "</td><td><a title='ویرایش' href='/Admin/Companies/EditCompanies?id=" + res.data[i].companiesId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Companies.Delete_Companies(" + res.data[i].companiesId + ");'><i class='fa fa-remove'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -119,12 +119,50 @@
         }, true);
     }
 
+    function delete_Companies(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/Companies/Delete_Companies/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
+
+    }
+
     web.Companies = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveCompanies: saveCompanies,
         InitCompanies: initCompanies,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        Delete_Companies: delete_Companies
     };
 
 })(Web, jQuery);

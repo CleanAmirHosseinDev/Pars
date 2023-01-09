@@ -25,10 +25,10 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].user.userName == "admin" || res.data[i].role.roleDesc == "مشتری") {
-                        strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].user.realName + "</td><td>" + res.data[i].user.userName + "</td><td>" + res.data[i].role.roleDesc + "</td><td>" + (res.data[i].user.status == true ? "فعال" : "غیر فعال") + "</td><td>" + res.data[i].user.mobile + "</td><td><a title='ویرایش' href='/Admin/Users/EditUser?id=" + res.data[i].userId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>" + "</td></tr>";
+                        strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].user.realName + "</td><td>" + res.data[i].user.userName + "</td><td>" + res.data[i].role.roleDesc + "</td><td>" + (res.data[i].user.status == true ? "فعال" : "غیر فعال") + "</td><td>" + res.data[i].user.mobile + "</td><td><a title='ویرایش' href='/Admin/Users/EditUser?id=" + res.data[i].userId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Users.Delete_Users(" + res.data[i].userId + ");'><i class='fa fa-remove'></i></a>" + "</td></tr>";
 
                     } else {
-                        strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].user.realName + "</td><td>" + res.data[i].user.userName + "</td><td>" + res.data[i].role.roleDesc + "</td><td>" + (res.data[i].user.status == true ? "فعال" : "غیر فعال") + "</td><td>" + res.data[i].user.mobile + "</td><td><a title='ویرایش' href='/Admin/Users/EditUser?id=" + res.data[i].userId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>" + "<a style='margin-right:5px' Title='تنظیمات دسترسی کاربر' href='/Admin/Users/EditUserAccessLevel?id=" + res.data[i].userId + "' class='btn btn-info fontForAllPage'><i class='fa fa-cog'></i></a>" + "</td></tr>";
+                        strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].user.realName + "</td><td>" + res.data[i].user.userName + "</td><td>" + res.data[i].role.roleDesc + "</td><td>" + (res.data[i].user.status == true ? "فعال" : "غیر فعال") + "</td><td>" + res.data[i].user.mobile + "</td><td><a title='ویرایش' href='/Admin/Users/EditUser?id=" + res.data[i].userId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>" + "<a style='margin-right:5px' Title='تنظیمات دسترسی کاربر' href='/Admin/Users/EditUserAccessLevel?id=" + res.data[i].userId + "' class='btn btn-info fontForAllPage'><i class='fa fa-cog'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Users.Delete_Users(" + res.data[i].userId + ");'><i class='fa fa-remove'></i></a>" + "</td></tr>";
                     }
                   }
                 $("#tBodyList").html(strM);
@@ -217,7 +217,64 @@
         }
     }
 
-   
+    function delete_Users(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/Users/Delete_Users/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
+
+    }
+
+    function updatePass() {
+
+        AjaxCallAction("POST", "/api/admin/Users/UpdatePass_Users", JSON.stringify({ OldPassword: $("#OldPassword").val(), NewPassword: $("#NewPassword").val(), ConfirmPassword: $("#ConfirmPassword").val() }), true, function (result) {
+
+            debuggerWeb();
+
+            if (result.isSuccess) {                
+
+                alertB("", result.message, "success");
+
+            }
+            else {
+
+                alertB("خطا", result.message, "error");
+
+            }
+
+        }, true);
+
+    }
+    
     web.Users = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
@@ -226,7 +283,9 @@
         InitUser: initUser,
         GetGetAccessLevels: getGetAccessLevels,
         SaveUserAccessLevel: saveUserAccessLevel,
-        InitUserAccessLevel: initUserAccessLevel
+        InitUserAccessLevel: initUserAccessLevel,
+        Delete_Users: delete_Users,
+        UpdatePass: updatePass
       
     };
 

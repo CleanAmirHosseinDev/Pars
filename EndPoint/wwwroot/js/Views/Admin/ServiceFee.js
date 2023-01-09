@@ -28,7 +28,7 @@
                         "</td><td>" + res.data[i].fromCompanyRange + "</td><td>" + res.data[i].toCompanyRange +
                         "</td><td>" + moneyCommaSepWithReturn(res.data[i].fixedCost.toString()) + "</td><td>" + moneyCommaSepWithReturn(res.data[i].variableCost.toString()) +
                         "</td><td><a title='ویرایش' href='/Admin/ServiceFee/EditServiceFee?id=" +
-                        res.data[i].serviceFeeId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                        res.data[i].serviceFeeId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.ServiceFee.Delete_ServiceFee(" + res.data[i].serviceFeeId + ");'><i class='fa fa-remove'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -124,12 +124,50 @@
         }, true);
     }
 
+    function delete_ServiceFee(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/ServiceFee/Delete_ServiceFee/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
+
+    }
+
     web.ServiceFee = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveServiceFee: saveServiceFee,
         InitServiceFee: initServiceFee,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        Delete_ServiceFee: delete_ServiceFee
     };
 
 })(Web, jQuery);

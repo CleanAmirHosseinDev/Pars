@@ -39,6 +39,11 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteCompanies;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteServiceFee;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteContract;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteUsers;
+using ParsKyanCrm.Application.Services.Users.Commands.UpdatePassUsers;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -105,6 +110,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveCustomersService SaveCustomersService { get; }
 
         IDeleteCustomersService DeleteCustomersService { get; }
+
+        IDeleteCompaniesService DeleteCompaniesService { get; }
+
+        IDeleteServiceFeeService DeleteServiceFeeService { get; }
+
+        IDeleteContractService DeleteContractService { get; }
+
+        IDeleteUsersService DeleteUsersService { get; }
+
+        IUpdatePassUsersService UpdatePassUsersService { get; }
 
     }
 
@@ -404,6 +419,51 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _deleteCustomersService = _deleteCustomersService ?? new DeleteCustomersService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IDeleteCompaniesService _deleteCompaniesService;
+        public IDeleteCompaniesService DeleteCompaniesService
+        {
+            get
+            {
+                return _deleteCompaniesService = _deleteCompaniesService ?? new DeleteCompaniesService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IDeleteServiceFeeService _deleteServiceFeeService;
+        public IDeleteServiceFeeService DeleteServiceFeeService
+        {
+            get
+            {
+                return _deleteServiceFeeService = _deleteServiceFeeService ?? new DeleteServiceFeeService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IDeleteContractService _deleteContractService;
+        public IDeleteContractService DeleteContractService
+        {
+            get
+            {
+                return _deleteContractService = _deleteContractService ?? new DeleteContractService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IDeleteUsersService _deleteUsersService;
+        public IDeleteUsersService DeleteUsersService
+        {
+            get
+            {
+                return _deleteUsersService = _deleteUsersService ?? new DeleteUsersService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IUpdatePassUsersService _updatePassUsersService;
+        public IUpdatePassUsersService UpdatePassUsersService
+        {
+            get
+            {
+                return _updatePassUsersService = _updatePassUsersService ?? new UpdatePassUsersService(_context, _mapper, _basicInfoFacad);
             }
         }
 

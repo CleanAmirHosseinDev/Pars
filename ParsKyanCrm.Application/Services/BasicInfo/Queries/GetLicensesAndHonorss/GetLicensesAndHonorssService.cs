@@ -30,7 +30,8 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonor
             try
             {
 
-                var lists = (from s in _context.LicensesAndHonors                             
+                var lists = (from s in _context.LicensesAndHonors
+                             where (s.IsActive == request.IsActive || request.IsActive == null)
                              select s).Include(p => p.User).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Title.Contains(request.Search));

@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].comany != null ? res.data[i].comany.companyName : '') + "</td><td>" + res.data[i].publishDate + "</td><td>" + res.data[i].longTermRating + "</td><td>" + res.data[i].shortTermRating + "</td><td><a title='ویرایش' href='/Admin/RankingOfCompanies/EditRankingOfCompanies?id=" + res.data[i].rankingId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].comany != null ? res.data[i].comany.companyName : '') + "</td><td>" + res.data[i].publishDate + "</td><td>" + res.data[i].longTermRating + "</td><td>" + res.data[i].shortTermRating + "</td><td><a title='ویرایش' href='/Admin/RankingOfCompanies/EditRankingOfCompanies?id=" + res.data[i].rankingId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.RankingOfCompanies.Delete_RankingOfCompanies(" + res.data[i].rankingId + ");'><i class='fa fa-remove'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -102,13 +102,51 @@
 
     }
 
+    function delete_RankingOfCompanies(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/RankingOfCompanies/Delete_RankingOfCompanies/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
+
+    }
+
 
     web.RankingOfCompanies = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveRankingOfCompanies: saveRankingOfCompanies,
         InitRankingOfCompanies: initRankingOfCompanies,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        Delete_RankingOfCompanies: delete_RankingOfCompanies
     };
 
 })(Web, jQuery);

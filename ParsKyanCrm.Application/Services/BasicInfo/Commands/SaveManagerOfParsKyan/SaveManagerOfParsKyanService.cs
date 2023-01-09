@@ -74,6 +74,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveManagerOfParsK
                 EntityEntry<ManagerOfParsKyan> q_Entity;
                 if (request.ManagersId == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     request.SaveAndEditDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     q_Entity = _context.ManagerOfParsKyan.Add(_mapper.Map<ManagerOfParsKyan>(request));
                     await _context.SaveChangesAsync();

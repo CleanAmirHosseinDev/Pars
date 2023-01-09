@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "تغییر کلمه عبور";
+}
+
+@section Styles{
+
+}
+
+@section PageHeader{
+    <section class="content-header">
+        <h1>
+            تغییر کلمه عبور
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>            
+            <li class="active"><a href="/Admin/Users/UpdatePass"><i></i> تغییر کلمه عبور</a></li>
+        </ol>
+    </section>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                @*<i class="fa fa-cloud"></i>*@
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body" style="">
+                
+                    <div class="form-horizontal">                        
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        کلمه عبور جاری
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="OldPassword" id="OldPassword" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        کلمه عبور جدید
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="NewPassword" id="NewPassword" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        تکرار کلمه عبور جدید
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-3">
+
+                                    </div>
+                                    <div class="col-md-9">
+                                        <button title="تغییر کلمه عبور" class="btn btn-info fontForAllPage" onclick="Web.Users.UpdatePass(this);">
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+
+                    </div>                
+
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+  
+}

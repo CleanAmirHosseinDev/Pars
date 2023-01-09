@@ -13,6 +13,8 @@ namespace ParsKyanCrm.Domain.Entities
         public int? UserId { get; set; }
         public DateTime? SaveOrEditDate { get; set; }
 
+        public byte IsActive { get; set; }
+
         public virtual Users User { get; set; }
     }
 }

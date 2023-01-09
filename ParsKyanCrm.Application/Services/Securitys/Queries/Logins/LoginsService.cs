@@ -86,13 +86,26 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 }
                 else
                 {
+
+                    if (string.IsNullOrEmpty(request.NationalCode))
+                    {
+
+                        return new ResultDto<ResultLoginDto>
+                        {
+                            Data = null,
+                            IsSuccess = false,
+                            Message = "شناسه ملی شرکت را وارد کنید",
+                        };
+
+                    }
+
                     //Customer
                     LoginName = "Customer";
                     bool needSms = false;
 
                     string r = RandomDjcode.randnu(5);
 
-                    var cusUser = await _context.Customers.FirstOrDefaultAsync(p => p.AgentMobile == request.Mobile);
+                    var cusUser = await _context.Customers.FirstOrDefaultAsync(p => p.AgentMobile == request.Mobile && p.NationalCode == request.NationalCode);
                     if (cusUser != null)
                     {
                         if (cusUser.IsActive == (byte)Common.Enums.TablesGeneralIsActive.InActive)
@@ -126,12 +139,27 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     else
                     {
 
+                        var qCheckNatinalCode = await _context.Customers.FirstOrDefaultAsync(p => p.NationalCode == request.NationalCode);
+                        if(qCheckNatinalCode != null)
+                        {
+
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "شناسه ملی شرکت از قبل موجود می باشد لطفا شناسه ملی شرکت دیگری وارد کنید",
+                            };
+
+                        }
+
+
                         var cusUserA = _context.Customers.Add(new Domain.Entities.Customers()
                         {
                             AgentMobile = request.Mobile,
                             IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
                             SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
-                            AuthenticateCode = r
+                            AuthenticateCode = r,
+                            NationalCode = request.NationalCode
                         });
 
                         await _context.SaveChangesAsync();

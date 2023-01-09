@@ -903,6 +903,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasColumnType("datetime")
                     .HasComment("تاریخ درخواست");
 
+                entity.Property(e => e.ChangeDate)
+                    .HasColumnType("datetime");                    
+
                 entity.Property(e => e.KindOfRequest).HasComment("نوع درخواست ");
 
                 entity.Property(e => e.RequestNo).HasComment("شماره درخواست");

@@ -130,6 +130,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                             KindOfRequest = request.Request.KindOfRequest,
                             CustomerId = cus.CustomerId,
                             IsFinished = false,
+                            ChangeDate = dt
                         },
                         Comment = null,
                         SendUser = request.SendUser,
@@ -205,6 +206,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                 }
 
+                Ado_NetOperation.SqlUpdate(typeof(RequestForRating).Name, new Dictionary<string, object>()
+                {
+                    {
+                        "ChangeDate",dt
+                    }
+                }, " RequestID = " + request.Request.RequestId);
 
                 return new ResultDto()
                 {

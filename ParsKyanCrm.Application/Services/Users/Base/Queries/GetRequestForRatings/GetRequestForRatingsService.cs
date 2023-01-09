@@ -50,6 +50,7 @@ select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConf
                  left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
                  {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
                  {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}
+                 order by rfr.ChangeDate desc  
 ) as cte"
                  );
 

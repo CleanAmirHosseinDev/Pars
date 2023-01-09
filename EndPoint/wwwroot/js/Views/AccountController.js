@@ -57,12 +57,19 @@
 
     function loginC(e) {
 
-        console.log("dsf");
+        
         try {
+
+
+            if (isEmpty($("#User").val())) {
+
+                alertB("خطا", "شماره تلفن همراه را وارد کنید", "error");
+                return;
+            }
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
                 debugger;
@@ -108,6 +115,13 @@
     function autenticatedCode(e) {
 
         try {
+
+
+            if (isEmpty($("#Code").val())) {
+
+                alertB("خطا", "کد احراز را وارد کنید", "error");
+                return;
+            }
 
             $(e).attr("disabled", "");
 

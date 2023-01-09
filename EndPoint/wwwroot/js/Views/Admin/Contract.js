@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kinfOfRequestNavigation.label + "</td><td><a title='ویرایش' href='/Admin/Contract/EditContract?id=" + res.data[i].contractId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].kinfOfRequestNavigation.label + "</td><td><a title='ویرایش' href='/Admin/Contract/EditContract?id=" + res.data[i].contractId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Contract.Delete_Contract(" + res.data[i].contractId + ");'><i class='fa fa-remove'></i></a></td></tr>";
 
                 }
                 $("#tBodyList").html(strM);
@@ -112,12 +112,50 @@
         }, true);
     }
 
+    function delete_Contract(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/Contract/Delete_Contract/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
+
+    }
+
     web.Contract = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveContract: saveContract,
         InitContract: initContract,
-        SystemSeting_Combo: systemSeting_Combo
+        SystemSeting_Combo: systemSeting_Combo,
+        Delete_Contract: delete_Contract
     };
 
 })(Web, jQuery);

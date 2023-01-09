@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "لیست ارزیابی های انجام شده";
+    ViewData["Title"] = "رتبه های اعتباری";
 }
 
 <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
@@ -10,29 +10,29 @@
 <link rel="stylesheet" href="~/css/landing/RankList.css" asp-append-version="true" />
 
 <section style="background: #325777cc;max-width: var(--max-site-width);z-index: 423;margin: auto;position: relative;padding: 20px;margin: 15px auto;border-radius: 20px;">
-    <h1 style="color:white;text-align: center;margin-bottom: 10px;">لیست ارزیابی های انجام شده</h1>
+    <h1 style="color:white;text-align: center;margin-bottom: 10px;">رتبه های اعتباری</h1>
 
     <div style="display: flex;flex-wrap: wrap;width: auto;justify-content: space-around;">
 
 
         <div class="jtwrapper">
-
             <div class="jtable">
 
                 <div class="jtrow jtheader blue">
                     <div class="jtcell">
-                        نام شرکت
+                        نام ناشر
                     </div>
 
                     <div class="jtcell">
                         تاریخ
                     </div>
                     <div class="jtcell">
+                        نوع رتبه بندی
+                    </div>
+                    <div class="jtcell">
                         بخش
                     </div>
-                    @*<div class="jtcell">
-                        نوع رتبه بندی
-                    </div>*@
+
                     <div class="jtcell">
                         وضعیت رتبه بندی
                     </div>
@@ -59,12 +59,13 @@
                             <div class="jtcell" data-title="تاریخ">
                                 @item.PublishDate
                             </div>
+                            <div class="jtcell" data-title="نوع رتبه بندی">
+                                @item.RankingTypeText
+                            </div>
                             <div class="jtcell" data-title="بخش">
                                 @item.Comany.CompanyGroup.Label
                             </div>
-                            @*<div class="jtcell" data-title="نوع رتبه بندی">
-                                @item.RankingTypeText
-                            </div>*@
+
                             <div class="jtcell" data-title="وضعیت رتبه بندی">
                                 @item.StatusText
                             </div>
@@ -79,8 +80,8 @@
                             </div>
                             <div class="jtcell" data-title="جزئیات">
                                 <div style="display: flex;/*flex-wrap: wrap;*/">
-                                    <a style="font-size: 14px;margin:4px;" class="jbtn" href="/ContactUs/">خلاصه‌گزارش</a>
-                                    <a style="font-size: 14px;margin:4px;" class="jbtn" href="/FileUpload/RankingOfCompanies/@item.PressRelease">بیانیه‌مطبوعاتی</a>
+                                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/ContactUs/" target="_blank">خلاصه‌گزارش</a>
+                                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/FileUpload/RankingOfCompanies/@item.PressRelease" target="_blank">بیانیه‌مطبوعاتی</a>
                                 </div>
                             </div>
                         </div>

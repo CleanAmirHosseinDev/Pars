@@ -13,6 +13,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string Picture1 { get; set; }
         public string Picture2 { get; set; }
 
+        public byte IsActive { get; set; }
+
         public virtual SystemSeting ActivityTitleNavigation { get; set; }
     }
 }

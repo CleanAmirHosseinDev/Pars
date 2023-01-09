@@ -30,17 +30,7 @@
                     } else {
                         rlink = "/Page/" + res.data[i].contentId;
                     }
-                    strM += `
-                    <tr>
-                        <td>${(i + 1)}</td > 
-                        <td>${res.data[i].contentId}</td > 
-                        <td>${res.data[i].title}</td >
-                        <td>${(res.data[i].kindOfContentNavigation != null ? res.data[i].kindOfContentNavigation.label : '')}</td>
-                        <td>${res.data[i].directLink == null ? "<span style='color: gray; '> - </span>" : res.data[i].directLink}</td >
-                            <td><a title='ویرایش' href='/Admin/NewsAndContent/EditNewsAndContent?id=${res.data[i].contentId}' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>
-                            <a title='مشاهده' href='javascript:void(0)' onclick="window.open('${rlink}', '_blank')" class='btn btn-primary fontForAllPage'><i class='fa fa-eye'></i></a>
-                        </td>
-                    </tr > `;
+                    strM += `<tr><td>${(i + 1)}</td > <td>${res.data[i].contentId}</td > <td>${res.data[i].title}</td ><td>${(res.data[i].kindOfContentNavigation != null ? res.data[i].kindOfContentNavigation.label : '')}</td><td>${res.data[i].directLink == null ? "<span style='color: gray; '> - </span>" : res.data[i].directLink}</td ><td><a title='ویرایش' href='/Admin/NewsAndContent/EditNewsAndContent?id=${res.data[i].contentId}' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='مشاهده' href='javascript:void(0)' onclick="window.open('${rlink}', '_blank')" class='btn btn-primary fontForAllPage'><i class='fa fa-eye'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.NewsAndContent.Delete_NewsAndContent(${res.data[i].contentId});'><i class='fa fa-remove'></i></a></td></tr> `;
 
                 }
                 $("#tBodyList").html(strM);
@@ -48,6 +38,43 @@
             }
 
         }, true);
+
+    }
+
+    function delete_NewsAndContent(id) {
+
+        try {
+
+            debuggerWeb();
+
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+
+                AjaxCallAction("GET", "/api/admin/NewsAndContent/Delete_NewsAndContent/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+
+                    debuggerWeb();
+
+                    if (result.isSuccess) {
+
+                        filterGrid();
+
+                        alertB("", result.message, "success");
+
+                    }
+                    else {
+
+                        alertB("خطا", result.message, "error");
+
+                    }
+
+                }, true);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        } catch (e) {
+
+        }
 
     }
 
@@ -143,7 +170,8 @@
         TextSearchOnKeyDown: textSearchOnKeyDown,
         FilterGrid: filterGrid,
         SaveNewsAndContent: saveNewsAndContent,
-        InitNewsAndContent: initNewsAndContent
+        InitNewsAndContent: initNewsAndContent,
+        Delete_NewsAndContent: delete_NewsAndContent
     };
 
 })(Web, jQuery);

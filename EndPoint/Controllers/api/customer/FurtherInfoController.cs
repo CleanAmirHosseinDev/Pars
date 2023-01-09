@@ -118,5 +118,35 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFormAnswerTablesDto>> Save_DataFormAnswerTabless([FromBody] DataFormAnswerTablesDto request)
+        {
+            try
+            {
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.SaveDataFormAnswerTablesService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswers([FromBody] DataFromAnswersDto request)
+        {
+            try
+            {
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.SaveDataFromAnswersService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         /// </summary>
         public string PostalCode { get; set; }
         /// <summary>
-        /// کد اقتصادی
+        /// کد اقتصادی   (تغییر کرد به شماره ثبت شرکت)
         /// </summary>
         public string EconomicCode { get; set; }
         /// <summary>

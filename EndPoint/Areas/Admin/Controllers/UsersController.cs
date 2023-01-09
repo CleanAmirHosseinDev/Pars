@@ -23,5 +23,10 @@ namespace EndPoint.Areas.Admin.Controllers
             ViewBag.id = id;
             return View();
         }
+
+        public IActionResult UpdatePass()
+        {
+            return View();
+        }
     }
 }

@@ -41,6 +41,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContract
                 EntityEntry<Contract> q_Entity;
                 if (request.ContractId == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     q_Entity = _context.Contract.Add(_mapper.Map<Contract>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<ContractDto>(q_Entity.Entity);

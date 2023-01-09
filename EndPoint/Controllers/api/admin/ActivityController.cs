@@ -30,6 +30,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 return await _basicInfoFacad.GetActivitysService.Execute(request);
             }
             catch (Exception ex)
@@ -45,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetActivityService.Execute(new RequestActivityDto() { ActivityId = id });
+                return await _basicInfoFacad.GetActivityService.Execute(new RequestActivityDto() { ActivityId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -63,6 +64,21 @@ namespace EndPoint.Controllers.api.admin
                 return await _basicInfoFacad.SaveActivityService.Execute(request);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.Activity_Delete })]
+        public ResultDto Delete_Activity(int id)
+        {
+            try
+            {
+                return _basicInfoFacad.DeleteActivityService.Execute(id);
+            }
+            catch (Exception)
             {
                 throw;
             }

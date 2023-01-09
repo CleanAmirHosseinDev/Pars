@@ -174,6 +174,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             KindOfRequest = request.TypeServiceRequestedId,
                             CustomerId = cus.CustomerId,
                             IsFinished = false,
+                            ChangeDate = dt
                         },
                         Comment = null,
                         SendUser = null,

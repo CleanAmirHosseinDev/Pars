@@ -30,6 +30,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 return await _basicInfoFacad.GetManagerOfParsKyansService.Execute(request);
             }
             catch (Exception ex)
@@ -45,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetManagerOfParsKyanService.Execute(new RequestManagerOfParsKyanDto() { ManagersId = id });
+                return await _basicInfoFacad.GetManagerOfParsKyanService.Execute(new RequestManagerOfParsKyanDto() { ManagersId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -64,6 +65,21 @@ namespace EndPoint.Controllers.api.admin
                 return await _basicInfoFacad.SaveManagerOfParsKyanService.Execute(request);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.ManagerOfParsKyan_Delete })]
+        public ResultDto Delete_ManagerOfParsKyan(int id)
+        {
+            try
+            {
+                return _basicInfoFacad.DeleteManagerOfParsKyanService.Execute(id);
+            }
+            catch (Exception)
             {
                 throw;
             }

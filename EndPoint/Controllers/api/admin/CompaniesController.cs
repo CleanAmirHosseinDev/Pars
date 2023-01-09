@@ -47,7 +47,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _userFacad.GetCompaniesService.Execute(new RequestCompaniesDto() {CompaniesId = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetCompaniesService.Execute(new RequestCompaniesDto() { CompaniesId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -65,6 +65,22 @@ namespace EndPoint.Controllers.api.admin
                 return await _userFacad.SaveCompaniesService.Execute(request);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.Companies_Delete })]
+        public ResultDto Delete_Companies(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteCompaniesService.Execute(id);
+            }
+            catch (Exception)
             {
                 throw;
             }

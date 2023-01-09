@@ -32,7 +32,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonor
 
                 if (request.LicensesAndHonorsId != null && request.LicensesAndHonorsId != 0)
                 {
-                    var q_Find = await _context.LicensesAndHonors.Include(p => p.User).FirstOrDefaultAsync(p => p.LicensesAndHonorsId == request.LicensesAndHonorsId.Value);
+                    var q_Find = await _context.LicensesAndHonors.Include(p => p.User).FirstOrDefaultAsync(p => p.LicensesAndHonorsId == request.LicensesAndHonorsId.Value && (p.IsActive == request.IsActive || request.IsActive == null));
                     res = _mapper.Map<LicensesAndHonorsDto>(q_Find);
                     res.User = q_Find.User != null ? _mapper.Map<UsersDto>(q_Find.User) : new UsersDto();
                 }

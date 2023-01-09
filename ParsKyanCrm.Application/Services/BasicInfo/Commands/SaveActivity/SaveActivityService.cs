@@ -78,6 +78,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity
                 EntityEntry<Activity> q_Entity;
                 if (request.ActivityId == 0)
                 {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     q_Entity = _context.Activity.Add(_mapper.Map<Activity>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<ActivityDto>(q_Entity.Entity);

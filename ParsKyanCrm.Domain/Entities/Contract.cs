@@ -11,6 +11,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string ContractText { get; set; }
         public int? KinfOfRequest { get; set; }
 
+        public byte IsActive { get; set; }
+
         public virtual SystemSeting KinfOfRequestNavigation { get; set; }
     }
 }

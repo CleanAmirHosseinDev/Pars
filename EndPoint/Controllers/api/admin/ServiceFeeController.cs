@@ -71,5 +71,20 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.ServiceFee_Delete })]
+        public ResultDto Delete_ServiceFee(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteServiceFeeService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

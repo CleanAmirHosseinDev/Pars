@@ -30,6 +30,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 return await _basicInfoFacad.GetLicensesAndHonorssService.Execute(request);
             }
             catch (Exception ex)
@@ -45,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetLicensesAndHonorsService.Execute(new RequestLicensesAndHonorsDto() { LicensesAndHonorsId = id });
+                return await _basicInfoFacad.GetLicensesAndHonorsService.Execute(new RequestLicensesAndHonorsDto() { LicensesAndHonorsId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -64,6 +65,21 @@ namespace EndPoint.Controllers.api.admin
                 return await _basicInfoFacad.SaveLicensesAndHonorsService.Execute(request);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.LicensesAndHonors_Delete })]
+        public ResultDto Delete_LicensesAndHonors(int id)
+        {
+            try
+            {
+                return _basicInfoFacad.DeleteLicensesAndHonorsService.Execute(id);
+            }
+            catch (Exception)
             {
                 throw;
             }

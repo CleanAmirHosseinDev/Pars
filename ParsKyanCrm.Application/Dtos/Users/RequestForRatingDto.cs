@@ -49,7 +49,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 if (DateOfConfirmed.HasValue) return DateTimeOperation.ToPersianDate(DateOfConfirmed.Value);
                 return string.Empty;
             }
-        }        
+        }
+
+        public DateTime? ChangeDate { get; set; }
 
         public int? KindOfRequest { get; set; }
 

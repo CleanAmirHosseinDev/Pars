@@ -521,7 +521,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.EconomicCode)
                     .HasMaxLength(50)
-                    .HasComment("کد اقتصادی");
+                    .HasComment("شماره ثبت");
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 
@@ -902,6 +902,9 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.DateOfRequest)
                     .HasColumnType("datetime")
                     .HasComment("تاریخ درخواست");
+
+                entity.Property(e => e.ChangeDate)
+                    .HasColumnType("datetime");                    
 
                 entity.Property(e => e.KindOfRequest).HasComment("نوع درخواست ");
 

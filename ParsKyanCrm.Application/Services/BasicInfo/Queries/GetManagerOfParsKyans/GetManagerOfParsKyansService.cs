@@ -31,6 +31,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKya
             {
 
                 var lists = (from s in _context.ManagerOfParsKyan
+                             where (s.IsActive == request.IsActive || request.IsActive == null)
                              select s).Include(p => p.User).Include(p=>p.Title).Include(p=>p.Position).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.NameOfManager.Contains(request.Search));

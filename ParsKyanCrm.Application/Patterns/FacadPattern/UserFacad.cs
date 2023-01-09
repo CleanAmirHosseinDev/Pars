@@ -44,6 +44,8 @@ using ParsKyanCrm.Application.Services.Users.Commands.DeleteServiceFee;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteContract;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteUsers;
 using ParsKyanCrm.Application.Services.Users.Commands.UpdatePassUsers;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTables;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -120,6 +122,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IDeleteUsersService DeleteUsersService { get; }
 
         IUpdatePassUsersService UpdatePassUsersService { get; }
+
+        ISaveDataFormAnswerTablesService SaveDataFormAnswerTablesService { get; }
+
+        ISaveDataFromAnswersService SaveDataFromAnswersService { get; }
 
     }
 
@@ -464,6 +470,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _updatePassUsersService = _updatePassUsersService ?? new UpdatePassUsersService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveDataFormAnswerTablesService _saveDataFormAnswerTablesService;
+        public ISaveDataFormAnswerTablesService SaveDataFormAnswerTablesService
+        {
+            get
+            {
+                return _saveDataFormAnswerTablesService = _saveDataFormAnswerTablesService ?? new SaveDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private ISaveDataFromAnswersService _saveDataFromAnswersService;
+        public ISaveDataFromAnswersService SaveDataFromAnswersService
+        {
+            get
+            {
+                return _saveDataFromAnswersService = _saveDataFromAnswersService ?? new SaveDataFromAnswersService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 

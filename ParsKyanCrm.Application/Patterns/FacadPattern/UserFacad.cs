@@ -46,6 +46,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.DeleteUsers;
 using ParsKyanCrm.Application.Services.Users.Commands.UpdatePassUsers;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormAnswerTables;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -126,6 +127,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveDataFormAnswerTablesService SaveDataFormAnswerTablesService { get; }
 
         ISaveDataFromAnswersService SaveDataFromAnswersService { get; }
+
+        IDeleteDataFormAnswerTablesService DeleteDataFormAnswerTablesService { get; }
 
     }
 
@@ -488,6 +491,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveDataFromAnswersService = _saveDataFromAnswersService ?? new SaveDataFromAnswersService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IDeleteDataFormAnswerTablesService _deleteDataFormAnswerTablesService;
+        public IDeleteDataFormAnswerTablesService DeleteDataFormAnswerTablesService
+        {
+            get
+            {
+                return _deleteDataFormAnswerTablesService = _deleteDataFormAnswerTablesService ?? new DeleteDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 

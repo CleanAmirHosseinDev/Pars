@@ -43,7 +43,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
 
                 EntityEntry<DataFormAnswerTables> q_Entity;
                 if (request.AnswerTableId == 0)
-                {                    
+                {
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     q_Entity = _context.DataFormAnswerTables.Add(_mapper.Map<DataFormAnswerTables>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<DataFormAnswerTablesDto>(q_Entity.Entity);

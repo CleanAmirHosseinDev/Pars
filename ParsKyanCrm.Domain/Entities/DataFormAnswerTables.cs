@@ -7,6 +7,10 @@ namespace ParsKyanCrm.Domain.Entities
 {
     public partial class DataFormAnswerTables
     {
+
+        public string FileName1 { get; set; }
+        public string FileName2 { get; set; }
+
         public int AnswerTableId { get; set; }
         public int? FormId { get; set; }
         public int? CustomerId { get; set; }

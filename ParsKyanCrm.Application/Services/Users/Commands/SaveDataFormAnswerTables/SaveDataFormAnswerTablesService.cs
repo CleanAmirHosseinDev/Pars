@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +35,42 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
 
         public async Task<ResultDto<DataFormAnswerTablesDto>> Execute(DataFormAnswerTablesDto request)
         {
+            #region Upload Image
+
+            string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
+            string fileNameOldPic_FileName2 = string.Empty, path_FileName2 = string.Empty;
+
+            #endregion
+
             try
             {
                 #region Validation
 
 
+
+                #endregion
+
+                var qFind = await _context.DataFormAnswerTables.FindAsync(request.AnswerTableId);
+                request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
+                request.FileName2 = qFind != null && !string.IsNullOrEmpty(qFind.FileName2) ? qFind.FileName2 : string.Empty;
+
+                #region Upload Image
+
+                if (request.Result_Final_FileName1 != null)
+                {
+                    fileNameOldPic_FileName1 = request.FileName1;
+                    request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName1.FileName);
+                    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName1;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName1, path_FileName1, "فایل یک");
+                }
+
+                if (request.Result_Final_FileName2 != null)
+                {
+                    fileNameOldPic_FileName2 = request.FileName2;
+                    request.FileName2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName2.FileName);
+                    path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName2;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName2, path_FileName2, "فایل دو");
+                }
 
                 #endregion
 
@@ -88,7 +121,26 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                         {
                             nameof(q_Entity.Entity.Answer10),request.Answer10
                         },
+                        {
+                            nameof(q_Entity.Entity.FileName1),request.FileName1
+                        },
+                        {
+                            nameof(q_Entity.Entity.FileName2),request.FileName2
+                        }
                     }, string.Format(nameof(q_Entity.Entity.AnswerTableId) + " = {0} ", request.AnswerTableId));
+                    #region Upload Image
+
+                    if (request.Result_Final_FileName1 != null)
+                        
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName1);
+
+                    if (request.Result_Final_FileName2 != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName2);
+
+                    path_FileName1 = string.Empty;
+                    path_FileName2 = string.Empty;
+
+                    #endregion
                 }
 
                 return new ResultDto<DataFormAnswerTablesDto>()
@@ -102,6 +154,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
             }
             catch (Exception ex)
             {
+                #region Upload Image
+
+                FileOperation.DeleteFile(path_FileName1);
+                FileOperation.DeleteFile(path_FileName2);
+
+                #endregion
                 throw ex;
             }
         }

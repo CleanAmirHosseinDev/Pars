@@ -52,7 +52,7 @@
                                     @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
                                     <div class="row">
                                         <div class="col-md-12 mx-0">
-                                            <form id="msform">
+                                            <div id="msform">
                                                 <!-- progressbar -->
                                                 <ul id="progressbar">
                                                     <li class="active" id="account"><strong>مدارک واطلاعات عمومی شرکت</strong></li>
@@ -70,40 +70,41 @@
                                                             <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
 
                                                             <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
-                                                            <div class="row" id="FormDetail1">
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-12" style="margin-bottom:10px">
-                                                                            <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
-                                                                                <i class="fa fa-plus"></i>
-                                                                                افزودن
-                                                                            </a>
+                                                            <form id="frmFrom1">
+                                                                <input type="hidden" id="FormId" name="FormId" value="1"/>
+                                                                <div class="row" id="FormDetail1">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,1,'1,2,7,8');">
+                                                                                    افزودن   <i class="fa fa-plus"></i>
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>ردیف</th>
-                                                                                <th>نام و نام خانوادگی</th>
-                                                                                <th>پست سازمانی</th>
-                                                                                <th>درصد سهام</th>
-                                                                                <th> تعداد سهام</th>
-                                                                                <th>عملیات</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="FormDetailAnswer1">
-                                                                           
-                                                                        </tbody>
+                                                                </form>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>ردیف</th>
+                                                                                    <th>نام و نام خانوادگی</th>
+                                                                                    <th>پست سازمانی</th>
+                                                                                    <th>درصد سهام</th>
+                                                                                    <th> تعداد سهام</th>
+                                                                                    <th>عملیات</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="FormDetailAnswer1">
+                                                                            </tbody>
 
-                                                                    </table>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
                                                         </div>
                                                         <br />
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
@@ -739,10 +740,10 @@
                                                                                     <div class="col-lg-6">
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
-                                                                                                    <i class="fa fa-plus"></i>
-                                                                                                    افزودن
-                                                                                                </a>
+                                                                                                
+                                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3','SocietyName','ExpireDate','PostInSociety','')">
+                                                                                                    افزودن   <i class="fa fa-plus"></i>
+                                                                                                </button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -797,10 +798,9 @@
                                                                                     <div class="col-lg-6">
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
-                                                                                                    <i class="fa fa-plus"></i>
-                                                                                                    افزودن
-                                                                                                </a>
+                                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,15,'1,2,11','PublicActivityTitle','TotalPrice','','PublicActivityFile')">
+                                                                                                    افزودن   <i class="fa fa-plus"></i>
+                                                                                                </button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -830,17 +830,16 @@
                                                                                 </div>
 
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-6">
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
-                                                                                                    <i class="fa fa-plus"></i>
-                                                                                                    افزودن
-                                                                                                </a>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,22,'1,11','InvestmentTitle','','','InvestmentFile')">
+                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    </button>                                                                                                   
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -863,42 +862,46 @@
 
                                                                                 </div>
                                                                                 <hr />
-                                                                                <div class="row" id="FormDetail24">
+                                                                                
+                                                                                <form id="frmFrom24">
+                                                                                    <input type="text" id="FormID" name="FormID" value="24"/>
+                                                                                    <div class="row" id="FormDetail24">
 
-                                                                                </div>
-
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-6">
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                <a href="/Customer/..." class="btn btn-success fontForAllPage" style="margin-bottom:10px">
-                                                                                                    <i class="fa fa-plus"></i>
-                                                                                                    افزودن
-                                                                                                </a>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,24,'1,11');">
+                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    </button>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <table class="table">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            <th>ردیف</th>
-                                                                                            <th>عنوان</th>
-                                                                                            <th>بارگزاری سند مسئولیت پذیری</th>
+                                                                                </form>
+                                                                                   
+                                                                                   
+                                                                                    <table class="table">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>ردیف</th>
+                                                                                                <th>عنوان</th>
+                                                                                                <th> سند مسئولیت پذیری</th>
 
-                                                                                            <th>عملیات</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody id="FormDetailAnswer24">
-                                                                                    </tbody>
-                                                                                </table>
+                                                                                                <th>عملیات</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody id="FormDetailAnswer24">
+                                                                                        </tbody>
+                                                                                    </table>
                                                                             </div>
 
 
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px" onclick="Web.FurtherInfo.SaveFormDetailTab(14)" >
+                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px" onclick="Web.FurtherInfo.SaveFormDetailTab14(this)" >
                                                                                             ثبت موقت
                                                                                         </button>
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
@@ -937,7 +940,7 @@
                                                     </div>
                                                 </fieldset>
 
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

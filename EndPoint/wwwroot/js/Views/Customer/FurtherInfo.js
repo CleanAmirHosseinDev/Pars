@@ -1,10 +1,4 @@
 ﻿
-
-
-
-
-
-
 (function (web, $) {
 
     //Document Ready              
@@ -117,17 +111,13 @@
                 intiFormShow(10, '1,2');
                 break; 
             case 14:
-                //intiFormShow(15, '1,2,3');
-                //intiFormShow(22, '1,2');
-                
-                //intiForm(14);
 
-               
-                intiFormShow(24, '1,2');
-
+                intiFormShow(15, '1,2,3');
+                intiFormShow(22, '1,2');                
+                intiForm(14);               
+                intiFormShow(24, '1,11');
                 intiForm(21);
                 intiFormSingelAnswer(21);
-
                 intiForm(23);                
                 intiFormSingelAnswer(23);
 
@@ -137,10 +127,9 @@
 
     }
 
-    function systemSeting_Combo(dir = 'rtl') {
+    function systemSeting_Combo() {
 
-        ComboBoxWithSearch('.select2', dir);
-
+       
         AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "5,9,20,30,125",  PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
@@ -166,30 +155,21 @@
                     }
 
                 }
-                
-
                 $("#MemberPostID").html(strMemberPostID);
                 $("#MemberEductionID").html(strMemberEductionID);
                 $("#UniversityID").html(strUniversityID);
                 $("#CompanyDocument").html(strCompanyDocument);
                 $("#OtherDocument").html(strOtherDocument);
-
-              //  $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
-              //  $("#KindOfCompany").val(resSingle.kindOfCompanyId);
-              //  $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
-
-                
-
             }
         }, true);
     }
 
-   
 
-    function initFurtherInfo(dir = 'rtl') {
-        intiTab(1);
-        ComboBoxWithSearch('.select2', 'dir');
-        systemSeting_Combo(dir);
+    function initFurtherInfo() {
+        intiTab(1);       
+        systemSeting_Combo();
+        ComboBoxWithSearch('.select2', 'rtl');
+
     }
 
     function intiFormShow(Id=null,Columns=null) {
@@ -207,7 +187,7 @@
             if (res.isSuccess) {
 
                 var strFormId = '';
-                
+                var Filename = 1;
                 for (var i = 0; i < res.data.length; i++)
                 {
                    
@@ -220,15 +200,20 @@
                     
                     strFormId += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
                     if (res.data[i].questionType=='select') {
-                        strFormId += "<select name='" + res.data[i].questionName + "' id='" + res.data[i].questionName +"' class='form-control select2' ></select>";
+                        strFormId += "<select name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName +"' class='form-control select2' ></select>";
                     } else if (res.data[i].questionType == 'textarea') {
-                        strFormId += "<textarea name='" + res.data[i].questionName + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
+                        strFormId += "<textarea name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
                     }
                     else if (res.data[i].questionType == 'checkbox') {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='" + res.data[i].questionName + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
-
-                    } else {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='" + res.data[i].questionName + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
+                    } else if (res.data[i].questionType == 'file')
+                    {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='Result_Final_FileName" + Filename + "' id='" + res.data[i].questionName + "' />";
+                        Filename++;
+                    }
+                    
+                    else {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
                     }
                     strFormId += "</div>";
                     strFormId += "</div>";
@@ -310,6 +295,12 @@
                                 case "10":
                                     strFormAnswer += res.data[i].answer6 + "</td><td>";
                                     break;
+                                case "11":
+                                    strFormAnswer += "<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" + "</td><td>";
+                                    break;
+                                case "12":
+                                    strFormAnswer += "<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" + "</td><td>";
+                                    break;
                             }
                                          
 
@@ -321,8 +312,70 @@
             }
         }, true);
     }
+   
+    function saveForm(e, FormId = null, ColumnNum=null) {
 
-    
+        $(e).attr("disabled", "");
+
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_DataFormAnswerTabless", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFrom" + FormId), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+                if (FormId==1) {
+                    initFurtherInfo();
+                } else {
+
+                    intiFormShow(FormId, ColumnNum);
+                }
+
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
+
+    function saveFormDetailTab14(e) {
+        try {
+            saveSingelAnswerForm(e, 14, 'IsPublicActivityFile', 87);
+            saveSingelAnswerForm(e, 23, 'EmploymentDisabled', 94);
+            saveSingelAnswerForm(e, 21, 'Investment', 91);
+            alertB("ثبت", "اطلاعات ثبت شد", "success");
+        } catch (e) {
+
+        }
+       
+    }
+
+    function saveSingelAnswerForm(e,formId=null, answer=null, dataFormQuestionId=null) {
+
+        $(e).attr("disabled", "");
+
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Save_DataFromAnswers", JSON.stringify({
+            Answer: $('#'+answer).val(),
+            FormID: formId,
+            DataFormQuestionID: dataFormQuestionId
+        }), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+                
+              //  alertB("ثبت", res.message, "success");
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
+
 
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
@@ -332,7 +385,11 @@
         IntiFormAnswer: intiFormAnswer,
         IntiFormShow: intiFormShow,
         IntiTab: intiTab,
-        IntiFormSingelAnswer: intiFormSingelAnswer,        
+        IntiFormSingelAnswer: intiFormSingelAnswer,
+        SaveForm: saveForm,
+        SaveSingelAnswerForm: saveSingelAnswerForm,
+        SaveFormDetailTab14: saveFormDetailTab14,
+       
     };
 
 })(Web, jQuery);

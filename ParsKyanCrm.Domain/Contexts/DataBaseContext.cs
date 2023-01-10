@@ -150,11 +150,13 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasKey(e => e.AnswerTableId)
                     .HasName("PK_DataFromAnswer");
 
-                entity.Property(e => e.AnswerTableId)
-                    .ValueGeneratedNever()
+                entity.Property(e => e.AnswerTableId)                    
                     .HasColumnName("AnswerTableId");
 
                 entity.Property(e => e.Answer1).HasMaxLength(50);
+
+                entity.Property(e=>e.FileName1).HasMaxLength(50);
+                entity.Property(e => e.FileName2).HasMaxLength(50);
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 

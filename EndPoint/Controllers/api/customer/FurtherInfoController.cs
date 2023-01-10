@@ -120,7 +120,7 @@ namespace EndPoint.Controllers.api.customer
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResultDto<DataFormAnswerTablesDto>> Save_DataFormAnswerTabless([FromBody] DataFormAnswerTablesDto request)
+        public async Task<ResultDto<DataFormAnswerTablesDto>> Save_DataFormAnswerTabless([FromForm] DataFormAnswerTablesDto request)
         {
             try
             {

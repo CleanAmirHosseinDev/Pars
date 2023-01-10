@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Common
             {
                 Microsoft.AspNetCore.Http.HttpContext context;
                 //return context.Connection.RemoteIpAddress?.ToString();
-                return "دینه";
+                return "1::1";
             }
             catch (Exception ex)
             {

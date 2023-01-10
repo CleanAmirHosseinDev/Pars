@@ -20,8 +20,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? DataFormId { get; set; }
         public string QuestionText { get; set; }
         public string QuestionName { get; set; }
-        public string QuestionType { get; set; }
-        public int? AnswerId { get; set; }
+        public string QuestionType { get; set; }       
         public int? QuestionOrder { get; set; }
 
     }

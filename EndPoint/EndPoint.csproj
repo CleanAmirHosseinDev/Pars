@@ -9,6 +9,7 @@
     <Content Remove="wwwroot\css\GlobalAreas\Views\Customer\RequestForRating\P_Referral.html" />
     <Content Remove="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Contract.html" />
     <Content Remove="wwwroot\css\GlobalAreas\Views\SuperVisor\RequestForRating\P_Customer.html" />
+    <Content Remove="wwwroot\FileUpload\Customers\FurtherInfo\54a0d273168448b89fb8201a162663dc.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -108,6 +109,7 @@
     <None Include="wwwroot\FileUpload\Customers\9c5ce8a5e80d4b8888d7964bac2ed851.pdf" />
     <None Include="wwwroot\FileUpload\Customers\b20c981e72f446898ecdec791af9a336.pdf" />
     <None Include="wwwroot\FileUpload\Customers\e099f28e829e450c80639038f4a8d99d.jpg" />
+    <None Include="wwwroot\FileUpload\Customers\FurtherInfo\54a0d273168448b89fb8201a162663dc.png" />
     <None Include="wwwroot\FileUpload\Customers\no-photo.png" />
     <None Include="wwwroot\FileUpload\LicensesAndHonors\54a0d273168448b89fb8201a162663dc.png" />
     <None Include="wwwroot\FileUpload\LicensesAndHonors\5fbbd59a1c3d454885487abbadbdf597.png" />

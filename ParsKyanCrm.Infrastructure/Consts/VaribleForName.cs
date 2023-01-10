@@ -76,6 +76,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string CustomerFurtherInfoFolder
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/Customers/FurtherInfo/";
+            }
+        }
+
         public static string ManagerOfParsKyanFolder
         {
             get

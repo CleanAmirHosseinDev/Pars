@@ -94,6 +94,7 @@ namespace EndPoint.Controllers.api.customer
         {
             try
             {
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
                 request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return await _userFacad.GetDataFormAnswerTablessService.Execute(request);
             }
@@ -143,6 +144,20 @@ namespace EndPoint.Controllers.api.customer
                 return await _userFacad.SaveDataFromAnswersService.Execute(request);
             }
             catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]        
+        public ResultDto Delete_DataFormAnswerTables(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteDataFormAnswerTablesService.Execute(id);
+            }
+            catch (Exception)
             {
                 throw;
             }

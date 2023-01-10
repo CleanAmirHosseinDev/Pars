@@ -32,7 +32,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTables
             try
             {
 
-                var q = await Infrastructure.DapperOperation.Run<DataFormAnswerTablesDto>("exec [dbo].[GetDataFormAnswerTables] " + (request.FormId.HasValue ? request.FormId.Value : string.Empty) + (request.CustomerId.HasValue ? "," + request.CustomerId.Value : string.Empty));
+                var q = await Infrastructure.DapperOperation.Run<DataFormAnswerTablesDto>("exec [dbo].[GetDataFormAnswerTables] " + (request.FormId.HasValue ? request.FormId.Value : string.Empty) + (request.CustomerId.HasValue ? "," + request.CustomerId.Value : string.Empty) + (request.AnswerTableId.HasValue ? "," + request.AnswerTableId.Value : string.Empty));
 
                 return new ResultDto<IEnumerable<DataFormAnswerTablesDto>>
                 {

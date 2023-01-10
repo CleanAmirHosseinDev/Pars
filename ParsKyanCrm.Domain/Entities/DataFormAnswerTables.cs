@@ -24,5 +24,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string Answer8 { get; set; }
         public string Answer9 { get; set; }
         public string Answer10 { get; set; }
+
+        public byte IsActive { get; set; }
+
     }
 }

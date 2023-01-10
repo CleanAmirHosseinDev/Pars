@@ -87,6 +87,18 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 else
                 {
 
+                    if (request.Mobile.Substring(0, 2) != "09")
+                    {
+
+                        return new ResultDto<ResultLoginDto>
+                        {
+                            Data = null,
+                            IsSuccess = false,
+                            Message = "شماره تلفن همراه را بدرستی وارد کنید",
+                        };                        
+
+                    }
+
                     if (string.IsNullOrEmpty(request.NationalCode))
                     {
 

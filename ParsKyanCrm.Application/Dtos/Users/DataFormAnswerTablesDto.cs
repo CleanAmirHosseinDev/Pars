@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
@@ -16,8 +16,10 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? FormId { get; set; }
         public int? CustomerId { get; set; }
 
+        public int? AnswerTableId { get; set; }
+
     }
-    public class DataFormAnswerTablesDto
+    public class DataFormAnswerTablesDto : BaseEntityDto
     {
 
         public int AnswerTableId { get; set; }

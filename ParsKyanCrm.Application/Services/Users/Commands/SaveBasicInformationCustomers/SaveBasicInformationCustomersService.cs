@@ -133,7 +133,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     fileNameOldPic_LastInsuranceList = request.LastInsuranceList;
                     request.LastInsuranceList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastInsuranceList.FileName);
                     path_LastInsuranceList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastInsuranceList;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "لیست آخرین بیمه");
+                    await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "آخرین لیست بیمه");
                 }
 
                 if (request.Result_Final_AuditedFinancialStatements != null)

@@ -69,7 +69,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                             LoginName = qCheckUserRole.Role.RoleTitle;
 
-                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.UserName) ? user.UserName : string.Empty;
+                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(user.RealName) ? user.RealName : string.Empty;
                             res_ResultLoginDto.UserID = user.UserId;
                             res_ResultLoginDto.CustomerID = null;
 

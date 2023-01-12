@@ -22,7 +22,7 @@
 
     function initLayout() {
 
-        if (isEmpty(getlstor("token"))) goToUrl("/Account/LoginUser");
+        if (isEmpty(getlstor("token")) || isEmpty(getlstor("menu"))) goToUrl("/Account/LoginUser");
         else {
 
             $(".fullNameInLayout").html(getlstor("fullName"));

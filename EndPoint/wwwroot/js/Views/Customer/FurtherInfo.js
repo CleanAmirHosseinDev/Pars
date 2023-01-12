@@ -88,7 +88,7 @@
                 intiFormShow(1, "1,2,7,8");
                 break;
             case 2:
-                intiFormShow(3, "1,2,3");
+                intiFormShow(3, "1,3,11");
                 break;
             case 3:
                 intiForm(6);
@@ -127,58 +127,73 @@
 
     }
 
-    function systemSeting_Combo(dir = 'rtl') {
+    function systemSeting_Combo(FormId = null) {
 
-        ComboBoxWithSearch('.select2', dir);
+        if (FormId == 1 || FormId==3) {
+        var PC = '';
+        switch (FormId) {
+            case 1:
+                PC = '5,9,20,30,125';
+                break;
+            case 3:
+                PC = '209';
+            default:
+            }
 
-        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "5,9,20,30,125",  PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: PC, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
-                var strMemberPostID = '<option value="">انتخاب کنید</option>';
-                var strMemberEductionID = '<option value="">انتخاب کنید</option>';
-                var strUniversityID = '<option value="">انتخاب کنید</option>';
-                var strCompanyDocument = '';
-                var strOtherDocument = '';
-                for (var i = 0; i < res.data.length; i++) {
-                    if (res.data[i].parentCode == 5) {
-                        strMemberPostID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } else if (res.data[i].parentCode == 9) {
-                        strMemberEductionID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } else if (res.data[i].parentCode == 20) {
-                        strUniversityID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    }
-                     else if (res.data[i].parentCode == 30) {
-                        strCompanyDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='#'>مشاهده </a></td></tr>";
-                    }
-                    else if (res.data[i].parentCode == 125) {
-                       
-                        strOtherDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='#'>مشاهده </a></td></tr>";
+                if (FormId==1) {
+                    var strMemberPostID = '<option value="">انتخاب کنید</option>';
+                    var strMemberEductionID = '<option value="">انتخاب کنید</option>';
+                    var strUniversityID = '<option value="">انتخاب کنید</option>';
+                    var strCompanyDocument = '';
+                    var strOtherDocument = '';
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].parentCode == 5) {
+                            strMemberPostID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        } else if (res.data[i].parentCode == 9) {
+                            strMemberEductionID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        } else if (res.data[i].parentCode == 20) {
+                            strUniversityID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
+                        else if (res.data[i].parentCode == 30) {
+                            strCompanyDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='#'>مشاهده </a></td></tr>";
+                        }
+                        else if (res.data[i].parentCode == 125) {
+
+                            strOtherDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='#'>مشاهده </a></td></tr>";
+                        }
+
                     }
 
+
+                    $("#MemberPostID").html(strMemberPostID);
+                    $("#MemberEductionID").html(strMemberEductionID);
+                    $("#UniversityID").html(strUniversityID);
+                    $("#CompanyDocument").html(strCompanyDocument);
+                    $("#OtherDocument").html(strOtherDocument);
                 }
-                
+                else if (FormId==3) {
+                    var strIsGuideLineOrProcess = '<option value="">انتخاب کنید</option>';
+                  
+                    for (var i = 0; i < res.data.length; i++) {                       
+                        strIsGuideLineOrProcess += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
 
-                $("#MemberPostID").html(strMemberPostID);
-                $("#MemberEductionID").html(strMemberEductionID);
-                $("#UniversityID").html(strUniversityID);
-                $("#CompanyDocument").html(strCompanyDocument);
-                $("#OtherDocument").html(strOtherDocument);
-
-              //  $("#HowGetKnowCompany").val(resSingle.howGetKnowCompanyId);
-              //  $("#KindOfCompany").val(resSingle.kindOfCompanyId);
-              //  $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
-
-                
-
+                    $("#IsGuideLineOrProcess").html(strIsGuideLineOrProcess);
+                    
+                }
             }
         }, true);
+        }
     }
 
 
     function initFurtherInfo(dir = 'rtl') {
         intiTab(1);
-        ComboBoxWithSearch('.select2', 'dir');
-        systemSeting_Combo(dir);
+        ComboBoxWithSearch('.select2', dir);
+       // systemSeting_Combo(dir);
     }
 
     function intiFormShow(Id=null,Columns=null) {
@@ -229,8 +244,9 @@
                     if (i == res.data.length  && res.data.length > 1) {
                         strFormId += "</div>";
                     } 
-                }
+                }               
                 $("#FormDetail" + FormID).html(strFormId);
+                systemSeting_Combo(FormID);
             }
         }, true);
     }
@@ -260,7 +276,8 @@
         }, true);
     }
 
-    function intiFormAnswer(FormID = null,ColumNum=null) {
+    function intiFormAnswer(FormID = null, ColumNum = null) {
+
         AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {

@@ -107,13 +107,13 @@
                 intiForm(19);
                 intiForm(20);
             case 9:
-                intiFormShow(9, '1,2');
-                intiFormShow(10, '1,2');
+                intiFormShow(9, '1,2,11');
+                intiFormShow(10, '1,11');
                 break; 
             case 14:
 
-                intiFormShow(15, '1,2,3');
-                intiFormShow(22, '1,2');                
+                intiFormShow(15, '1,2,11');
+                intiFormShow(22, '1,11');                
                 intiForm(14);               
                 intiFormShow(24, '1,11');
                 intiForm(21);
@@ -129,7 +129,7 @@
 
     function systemSeting_Combo(FormId = null) {
 
-        if (FormId == 1 || FormId==3) {
+        if (FormId == 1 || FormId == 3 || FormId == 16 || FormId == 9 || FormId==13) {
         var PC = '';
         switch (FormId) {
             case 1:
@@ -137,18 +137,27 @@
                 break;
             case 3:
                 PC = '209';
-            default:
+                break;
+            case 16:
+                PC = '9';
+                break;
+            case 9:
+                PC = '9';
+                break;
+            case 13:
+                PC = '5';
+                break;
             }
 
         AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: PC, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
-                if (FormId==1) {
+                if (FormId == 1) {
                     var strMemberPostID = '<option value="">انتخاب کنید</option>';
                     var strMemberEductionID = '<option value="">انتخاب کنید</option>';
                     var strUniversityID = '<option value="">انتخاب کنید</option>';
-                    var strCompanyDocument = '';
-                    var strOtherDocument = '';
+                    var strCompanyDocument = 'option value="">انتخاب کنید</option>';
+                    var strOtherDocument = 'option value="">انتخاب کنید</option>';
                     for (var i = 0; i < res.data.length; i++) {
                         if (res.data[i].parentCode == 5) {
                             strMemberPostID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
@@ -174,15 +183,35 @@
                     $("#CompanyDocument").html(strCompanyDocument);
                     $("#OtherDocument").html(strOtherDocument);
                 }
-                else if (FormId==3) {
+                else if (FormId == 3) {
                     var strIsGuideLineOrProcess = '<option value="">انتخاب کنید</option>';
-                  
-                    for (var i = 0; i < res.data.length; i++) {                       
+
+                    for (var i = 0; i < res.data.length; i++) {
                         strIsGuideLineOrProcess += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
 
                     $("#IsGuideLineOrProcess").html(strIsGuideLineOrProcess);
-                    
+
+                }
+                else if (FormId == 16 || FormId==9) {
+                    var strDegreeOfEducation = strDegreeOfEducation2= '<option value="">انتخاب کنید</option>';
+
+                    for (var i = 0; i < res.data.length; i++) {
+                        strDegreeOfEducation += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+
+                    $("#DegreeOfEducation").html(strDegreeOfEducation);
+                    $("#DegreeOfEducation2").html(strDegreeOfEducation);
+                }
+                else if (FormId == 13) {
+                    var strPostInSociety  = '<option value="">انتخاب کنید</option>';
+
+                    for (var i = 0; i < res.data.length; i++) {
+                        strPostInSociety += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+
+                    $("#PostInSociety").html(strPostInSociety);
+                   
                 }
             }
         }, true);

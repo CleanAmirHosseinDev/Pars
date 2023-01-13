@@ -47,6 +47,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.UpdatePassUsers;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormAnswerTables;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTables;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -105,6 +106,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
 
         IGetDataFormAnswerTablessService GetDataFormAnswerTablessService { get; }
+
+        IGetDataFormAnswerTablesService GetDataFormAnswerTablesService { get; }
 
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
 
@@ -386,6 +389,14 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private IGetDataFormAnswerTablesService _getDataFormAnswerTablesService;
+        public IGetDataFormAnswerTablesService GetDataFormAnswerTablesService
+        {
+            get
+            {
+                return _getDataFormAnswerTablesService = _getDataFormAnswerTablesService ?? new GetDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad);
+            }
+        }
         private IGetDataFormAnswerTablessService _getDataFormAnswerTablessService;
         public IGetDataFormAnswerTablessService GetDataFormAnswerTablessService
         {

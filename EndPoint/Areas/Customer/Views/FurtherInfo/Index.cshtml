@@ -71,21 +71,26 @@
 
                                                             <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
                                                             <form id="frmFrom1">
-                                                                <input type="hidden" id="FormId" name="FormId" value="1"/>
+                                                                <input type="hidden" id="FormId" name="FormId" value="1" />
+                                                                <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                 <div class="row" id="FormDetail1">
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-6">
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,1,'1,2,7,8');">
-                                                                                    افزودن   <i class="fa fa-plus"></i>
+                                                                                <button class="btn btn-success fontForAllPage" type="button" id="btnform1" onclick="Web.FurtherInfo.SaveForm(this,1,'1,2,7,8');">
+                                                                                    افزودن
+                                                                                </button>
+                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform1').html('افزودن');$('#DivAcademicDegreePicture').html('')  ">
+                                                                                    انصراف
                                                                                 </button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                </form>
+                                                            </form>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <table class="table">
@@ -156,7 +161,7 @@
                                                                 <div class="nav-tabs-custom">
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab3" data-toggle="tab" aria-expanded="false">نظامنامه کیفیت</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(4,'1,3,11,4');" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(5,'1,3,11,4')" href="#FormDetailTab5" data-toggle="tab" aria-expanded="false">جوایز معتبر</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
@@ -165,6 +170,8 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom3">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="3" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail3">
 
                                                                                     </div>
@@ -172,14 +179,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,3,'1,3,11');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform3" onclick="Web.FurtherInfo.SaveForm(this,3,'1,3,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform3').html('افزودن');$('#DivGuidelinesAndRegulationsFile').html('')  ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -215,6 +225,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom4">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="4" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail4">
 
@@ -223,8 +234,11 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform4" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
+                                                                                                        افزودن  
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن');$('#DivCertificateAndPermitAndStandardFile').html('')  ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
@@ -270,6 +284,8 @@
 
                                                                                 <form id="frmFrom5">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="5" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail5">
 
                                                                                     </div>
@@ -277,14 +293,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform5" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
+                                                                                                        افزودن 
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن');$('#DivAwardsFile').html('')  ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
 
                                                                                     <table class="table">
                                                                                         <thead>
@@ -361,6 +380,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom16">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="16" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail16">
 
@@ -369,14 +389,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,16,'1,2,3');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform16" onclick="Web.FurtherInfo.SaveForm(this,16,'1,2,3');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');  ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -398,6 +421,8 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom17">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="17" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail17">
 
                                                                                     </div>
@@ -405,14 +430,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button  class="btn btn-success fontForAllPage" id="btnform17" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2');">
+                                                                                                        افزودن 
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');  ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -497,6 +525,8 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom8">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="8" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail8">
 
                                                                                     </div>
@@ -504,14 +534,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,8,'11,12');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'11,12');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html('');$('#DivSwotFile1').html('') ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -548,6 +581,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom9">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="9" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail9">
 
@@ -556,14 +590,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform9" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
+                                                                                                        افزودن 
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن');$('#DivDegreeFile').html('') ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -586,6 +623,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom10">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="10" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail10">
 
@@ -594,14 +632,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button  class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن');$('#DivReportFile').html('') ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -684,6 +725,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom12">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="12" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail12">
 
@@ -692,14 +734,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن'); ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -751,6 +796,8 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom13">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="13" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail13">
 
                                                                                     </div>
@@ -758,14 +805,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3')">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" id="btnform13" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3')">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن'); ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -809,6 +859,8 @@
                                                                                 </div>
                                                                                 <form id="frmFrom15">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="15" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail15">
 
                                                                                     </div>
@@ -817,14 +869,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,15,'1,2,11')">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button  class="btn btn-success fontForAllPage" id="btnform15" type="button" onclick="Web.FurtherInfo.SaveForm(this,15,'1,2,11')">
+                                                                                                        افزودن 
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform15').html('افزودن'); $('#DivPublicActivityFile').html(''); ">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -847,6 +902,8 @@
                                                                                 </div>
                                                                                 <form id="frmFrom22">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="22" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail22">
 
                                                                                     </div>
@@ -855,14 +912,17 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,22,'1,11')">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button  class="btn btn-success fontForAllPage" id="btnform22" type="button" onclick="Web.FurtherInfo.SaveForm(this,22,'1,11')">
+                                                                                                        افزودن 
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform22').html('افزودن');$('#DivInvestmentFile').html('')">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    </form>
+                                                                                </form>
                                                                                     <table class="table">
                                                                                         <thead>
                                                                                             <tr>
@@ -886,7 +946,9 @@
                                                                                 <hr />
                                                                                 
                                                                                 <form id="frmFrom24">
-                                                                                    <input type="hidden" id="FormID" name="FormID" value="24"/>
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="24" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
                                                                                     <div class="row" id="FormDetail24">
 
                                                                                     </div>
@@ -894,8 +956,11 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm(this,24,'1,11');">
-                                                                                                        افزودن   <i class="fa fa-plus"></i>
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform24" type="button" onclick="Web.FurtherInfo.SaveForm(this,24,'1,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage"  type="reset" onclick="$('#btnform24').html('افزودن');$('#DivEmploymentDisabledFile').html('')">
+                                                                                                        انصراف
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </div>

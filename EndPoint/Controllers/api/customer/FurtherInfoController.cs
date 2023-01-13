@@ -103,6 +103,20 @@ namespace EndPoint.Controllers.api.customer
                 throw;
             }
         }
+        [Route("[action]/{id}/")]
+        [HttpGet]
+       
+        public async Task<DataFormAnswerTablesDto> Get_DataFormAnswerTables(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormAnswerTablesService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]

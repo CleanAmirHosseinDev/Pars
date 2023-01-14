@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
@@ -72,8 +73,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 #endregion
 
-                 var qFind = await _context.DataFromAnswers.FindAsync(request.AnswerId);
-               // var qFind = await _context.DataFromAnswers.FirstOrDefault(m=>m.CustomerId==request.CustomerId&& m.DataFormQuestionId==request.DataFormQuestionId);
+                 //var qFind = await _context.DataFromAnswers.FindAsync(request.AnswerId);
+               var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.CustomerId==request.CustomerId && m.DataFormQuestionId==request.DataFormQuestionId);
 
                 request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
                 

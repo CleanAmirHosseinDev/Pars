@@ -13,5 +13,6 @@ namespace ParsKyanCrm.Domain.Entities
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
         public string Answer { get; set; }
+        public string FileName1 { get; set; }
     }
 }

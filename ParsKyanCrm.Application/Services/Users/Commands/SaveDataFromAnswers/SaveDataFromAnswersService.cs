@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,11 +63,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
         {
             try
             {
-                #region Upload Image
-
                 string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
 
-                #endregion
+              
+                
 
                 #region Validation
 
@@ -73,11 +74,21 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 #endregion
 
-                 //var qFind = await _context.DataFromAnswers.FindAsync(request.AnswerId);
-               var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.CustomerId==request.CustomerId && m.DataFormQuestionId==request.DataFormQuestionId);
 
-                request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
-                
+                var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.CustomerId==request.CustomerId && m.DataFormQuestionId==request.DataFormQuestionId);
+                 request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
+
+                #region Upload Image
+
+
+                if (request.Result_Final_FileName1 != null)
+                {
+                    fileNameOldPic_FileName1 = request.FileName1;
+                    request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName1.FileName);
+                    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName1;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName1, path_FileName1, "فایل یک");
+                }
+                #endregion
 
                 EntityEntry<DataFromAnswers> q_Entity;
                 if (Check_Remote(request) == false)
@@ -101,9 +112,24 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                         },
                         {
                             nameof(q_Entity.Entity.Answer),request.Answer
+                        }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.FileName1),request.FileName1
                         },
                     }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and CustomerId={1} ", request.DataFormQuestionId,request.CustomerId));
                 }
+                #region Upload Image
+
+                if (request.Result_Final_FileName1 != null)
+
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName1);
+
+                
+                path_FileName1 = string.Empty;
+               
+
+                #endregion
 
                 return new ResultDto<DataFromAnswersDto>()
                 {

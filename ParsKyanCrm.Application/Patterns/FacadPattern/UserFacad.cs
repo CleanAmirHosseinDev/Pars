@@ -48,6 +48,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTables;
+using ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustomerByRequest;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -132,6 +133,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveDataFromAnswersService SaveDataFromAnswersService { get; }
 
         IDeleteDataFormAnswerTablesService DeleteDataFormAnswerTablesService { get; }
+
+        IGetServiceFeeAndCustomerByRequestService GetServiceFeeAndCustomerByRequestService { get; }
 
     }
 
@@ -412,6 +415,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetServiceFeeAndCustomerByRequestService _getServiceFeeAndCustomerByRequestService;
+        public IGetServiceFeeAndCustomerByRequestService GetServiceFeeAndCustomerByRequestService
+        {
+            get
+            {
+                return _getServiceFeeAndCustomerByRequestService = _getServiceFeeAndCustomerByRequestService ?? new GetServiceFeeAndCustomerByRequestService(_context, _mapper, _basicInfoFacad);
             }
         }
 

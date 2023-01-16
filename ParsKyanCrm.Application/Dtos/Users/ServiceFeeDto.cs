@@ -23,6 +23,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? ToCompanyRange { get; set; }
         public decimal? FixedCost { get; set; }
         public decimal? VariableCost { get; set; }
+
+        public string SumPrice
+        {
+            get
+            {
+                return ((FixedCost.HasValue ? FixedCost.Value : 0) + (VariableCost.HasValue ? VariableCost.Value : 0)).ToString();
+            }
+        }
+
         public int? ChangeBy { get; set; }
         public DateTime? ChangeDate { get; set; }
 

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustomerByRequest;
 using ParsKyanCrm.Common.Dto;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,20 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
                 return await _userFacad.GetRequestReferencessService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultGetServiceFeeAndCustomerByRequestDto> Get_ServiceFeeAndCustomerByRequest(int id)
+        {
+            try
+            {
+                return await _userFacad.GetServiceFeeAndCustomerByRequestService.Execute(id);
             }
             catch (Exception ex)
             {

@@ -34,7 +34,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess
                 var q = await DapperOperation.Run<RequestReferencesDto>(@$"
 
 
-select cus.CompanyName,rr.Comment,rr.DestLevelStepIndex,rr.LevelStepAccessRole,
+select cus.CompanyName,rr.Comment,rr.DestLevelStepIndex,rr.LevelStepAccessRole,rr.DestLevelStepIndexButton,
 rr.LevelStepStatus,rr.ReferenceID,rr.Requestid,rr.SendTime,rr.SendUser,(select RoleDesc from UserRoles  as ur inner join Roles as r on ur.RoleID=r.RoleID where UserID=u.UserID)UserRoleDes,
 cus.AgentName,u.RealName,u.UserName,rol.RoleDesc,ss.Label as KindOfRequestName,rfr.RequestNo
 from {typeof(RequestReferences).Name} as rr

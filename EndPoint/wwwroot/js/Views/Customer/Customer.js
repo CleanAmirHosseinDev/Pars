@@ -27,7 +27,7 @@
 
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
-                goToUrl("/Customer/Customer/EditCustomer");
+                goToUrl("/Customer/RequestForRating/Index");
 
             } else {
 

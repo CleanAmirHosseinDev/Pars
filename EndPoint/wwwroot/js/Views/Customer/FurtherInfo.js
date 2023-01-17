@@ -86,6 +86,8 @@
         switch (TabId) {
             case 1:
                 intiFormShow(1, "1,2,7,8");
+                intiFormQuestion(2, "R");
+                intiFormSingelAnswer(2);
                 break;
             case 2:
                 intiFormShow(3, "1,3,11");
@@ -170,13 +172,13 @@
                         } else if (res.data[i].parentCode == 20) {
                             strUniversityID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                         }
-                        else if (res.data[i].parentCode == 30) {
-                            strCompanyDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='/File/Download?path=" + "#" + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a></td></tr>";
-                        }
-                        else if (res.data[i].parentCode == 125) {
+                        //else if (res.data[i].parentCode == 30) {
+                        //    strCompanyDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='/File/Download?path=" + "#" + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a></td></tr>";
+                        //}
+                        //else if (res.data[i].parentCode == 125) {
 
-                            strOtherDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='/File/Download?path=" + "#" + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a></td></tr>";
-                        }
+                        //    strOtherDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='/File/Download?path=" + "#" + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a></td></tr>";
+                        //}
 
                     }
 
@@ -512,6 +514,26 @@
                                 $("#DivProceedings").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             //
+                        }
+                    }
+
+                }
+                if (FormID == 2) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        switch (res.data[i].dataFormQuestionId) {
+                            case 97:
+                                $("#DivLastAuditingTaxList").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                break;
+                            case 98:
+                                $("#DivLastChangeOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                break;
+                            case 99:
+                                $("#DivstatuteDoc").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                break;
+                            case 100:
+                                $("#DivOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                break;
+                            
                         }
                     }
 

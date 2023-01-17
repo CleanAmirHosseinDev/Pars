@@ -15,8 +15,6 @@
 
             if (res.isSuccess) {
 
-
-
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
@@ -114,6 +112,7 @@
         }
     }
 
+
     function getContractInfo() {
 
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
@@ -161,8 +160,7 @@
                     $("#Email").val(res.email);
                     $("#Tel").val(res.tel);
                     $("#PostalCode").val(res.postalCode);
-                    $("#AmountOsLastSales").val(res.amountOsLastSales);
-
+                    $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
                     $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
@@ -175,6 +173,7 @@
             }, true);
         } 
     }
+
     function systemSeting_Combo(resSingle) {
 
         AjaxCallAction("POST", "/api/superVisor/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56", PageIndex: 0, PageSize: 0 }), true, function (res) {
@@ -323,8 +322,14 @@
                             // strTimeLine += "<text> [رئیس شورا] </text>";
                             // strTimeLine += " </span>";
                             strTimeLine += "<span class='smallFontSize'>";
-                            strTimeLine += "[" + res.data[i].levelStepStatus + "]";
+                            if (i>1) {
+                                strTimeLine += "[" +  res.data[i].destLevelStepIndexButton + "]";
                             // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
+                            } else {
+                                strTimeLine += "[" +res.data[i].levelStepStatus "]";
+                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
+                            }
+                         
                             strTimeLine += "</span>";
                             strTimeLine += "</li>";
                             strTimeLine += "</ul>";

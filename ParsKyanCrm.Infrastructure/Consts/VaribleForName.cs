@@ -144,14 +144,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return " ارسال درخواست اولیه توسط مشتری  و در انتظار بررسی";
+                return " ارسال درخواست اولیه توسط مشتری ";
             }
         }
         public static string DestLevelStepIndexButton
         {
             get
             {
-                return "ارجاع به مسئول امور ارزیابی جهت بررسی مشخصات اولیه مشتری";
+                return "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
             }
         }
 
@@ -175,7 +175,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "در حال بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+                return "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
             }
         }
         public static string SmsContent1

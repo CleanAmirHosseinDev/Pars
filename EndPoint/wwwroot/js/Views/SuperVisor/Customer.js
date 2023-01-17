@@ -44,7 +44,7 @@
                 $("#Email").html(res.email);
                 $("#Tel").html(res.tel);
                 $("#PostalCode").html(res.postalCode);
-
+               
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
 
                 $("#HowGetKnowCompanyId").html(res.howGetKnowCompany != null ? res.howGetKnowCompany.label : '');

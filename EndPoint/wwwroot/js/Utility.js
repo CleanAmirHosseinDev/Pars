@@ -232,7 +232,17 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
                 if (isWait)
                     hideWait();
             },
-            error: function (error) { }
+            error: function (error) {
+
+                if (error.status == 401) {
+                                        
+                    if (url.indexOf("admin") == -1 && url.indexOf("superVisor") == -1) goToUrl("/Account/Login");
+                    else goToUrl("/Account/LoginUser");
+
+
+                }
+
+            }
         });
 
     } catch (e) {

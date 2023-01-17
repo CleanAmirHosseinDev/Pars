@@ -326,7 +326,7 @@
                                 strTimeLine += "[" +  res.data[i].destLevelStepIndexButton + "]";
                             // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
                             } else {
-                                strTimeLine += "[" +res.data[i].levelStepStatus "]";
+                                strTimeLine += "[" +res.data[i].levelStepStatus+ "]";
                             // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
                             }
                          

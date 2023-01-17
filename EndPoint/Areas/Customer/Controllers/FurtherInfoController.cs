@@ -13,7 +13,7 @@ namespace EndPoint.Areas.Customer.Controllers
             return View();
         }
 
-        public IActionResult OtherDoc()
+        public IActionResult NotAccess()
         {
             return View();
         }

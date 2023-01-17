@@ -81,7 +81,10 @@
         return false;
     });
 
+
+
     function intiTab(TabId = null) {
+
       
         switch (TabId) {
             case 1:
@@ -163,7 +166,7 @@
                     var strMemberEductionID = '<option value="">انتخاب کنید</option>';
                     var strUniversityID = '<option value="">انتخاب کنید</option>';
                     var strCompanyDocument = 'option value="">انتخاب کنید</option>';
-                    var strOtherDocument = 'option value="">انتخاب کنید</option>';
+                   
                     for (var i = 0; i < res.data.length; i++) {
                         if (res.data[i].parentCode == 5) {
                             strMemberPostID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
@@ -172,14 +175,7 @@
                         } else if (res.data[i].parentCode == 20) {
                             strUniversityID += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                         }
-                        //else if (res.data[i].parentCode == 30) {
-                        //    strCompanyDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='/File/Download?path=" + "#" + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a></td></tr>";
-                        //}
-                        //else if (res.data[i].parentCode == 125) {
-
-                        //    strOtherDocument += " <tr><td>" + " <div class='form-group'><label class='control-label col-md-4' for=''>" + res.data[i].label + "<span class='RequiredLabel'>*</span></label><div class='col-md-8'><input type='file'  class='form-control'/></div></div></td> <td><a href='/File/Download?path=" + "#" + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a></td></tr>";
-                        //}
-
+                      
                     }
 
 
@@ -187,7 +183,7 @@
                     $("#MemberEductionID").html(strMemberEductionID);
                     $("#UniversityID").html(strUniversityID);
                     $("#CompanyDocument").html(strCompanyDocument);
-                    $("#OtherDocument").html(strOtherDocument);
+                   
                 }
                 else if (FormId == 3) {
                     var strIsGuideLineOrProcess = '<option value="">انتخاب کنید</option>';
@@ -861,6 +857,8 @@
         }
        
     }
+
+
     function saveForm25(e) {
         saveSingelAnswerForm(e, 6, String($("#HaveRepresentative").prop('checked')), 34);
         saveSingelAnswerForm(e, 6, $('#CompanyWebSite').val(), 94);
@@ -894,6 +892,8 @@
         }, true);
 
     }
+
+
 
 
     web.FurtherInfo = {

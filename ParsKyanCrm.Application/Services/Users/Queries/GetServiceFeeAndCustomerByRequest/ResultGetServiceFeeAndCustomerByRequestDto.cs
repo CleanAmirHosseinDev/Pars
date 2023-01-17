@@ -8,5 +8,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
         public ServiceFeeDto ServiceFee { get; set; }
 
+        public ContractDto Contract { get; set; }
+
     }
 }

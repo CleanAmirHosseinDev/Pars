@@ -118,6 +118,21 @@
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
 
         if (!isEmpty(id) && id != 0) {
+           
+                    getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
+
+                        $("#contractInfo").html(resG);
+                        initContract(id);
+
+                    });              
+        }
+    }
+
+    function getContractInfoOld() {
+
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+
+        if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
 
                 if (res.isSuccess) {
@@ -209,14 +224,12 @@
        
         if (!isEmpty(id) && id != 0) {
 
-            AjaxCallAction("POST", "/api/superVisor/Contract/Get_Contracts/", JSON.stringify({ KinfOfRequest:id ,Search:null, PageIndex: 1, PageSize:1}), true, function (res) {
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+          
+                if (res != null) {
 
-                if (res.isSuccess) {
-                    for (var i = 0; i < res.data.length; i++) {
-                        $("#ContractText").val(res.data[0].contractText);
-                        Ckeditor("ContractText");
-                    }
-                   
+                    $("#ContractText").val(res.contract.contractText);
+                    Ckeditor("ContractText");
                 }
 
             }, true);

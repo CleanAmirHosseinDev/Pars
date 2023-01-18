@@ -22,18 +22,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? FromCompanyRange { get; set; }
         public int? ToCompanyRange { get; set; }
         public decimal? FixedCost { get; set; }
-        public decimal? VariableCost { get; set; }
-
-        public string SumPrice
-        {
-            get
-            {
-                return ((FixedCost.HasValue ? FixedCost.Value : 0) + (VariableCost.HasValue ? VariableCost.Value : 0)).ToString();
-            }
-        }
+        public decimal? VariableCost { get; set; }        
 
         public int? ChangeBy { get; set; }
         public DateTime? ChangeDate { get; set; }
+
+        public string StartDate { get; set; }
+
+        public decimal? Fee1 { get; set; }
+
+        public decimal? Fee2 { get; set; }
 
         public SystemSetingDto KindOfServiceNavigation { get; set; }
 

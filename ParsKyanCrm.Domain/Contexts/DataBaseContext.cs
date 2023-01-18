@@ -989,6 +989,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.FixedCost).HasColumnType("money");
 
+                entity.Property(e => e.Fee1).HasColumnType("money");
+                entity.Property(e => e.Fee2).HasColumnType("money");
+
                 entity.Property(e => e.FromCompanyRange).HasComment("از تعداد کارمند");
 
                 entity.Property(e => e.KindOfService).HasComment("نوع خدمت از جدول سیستم ستینگ");
@@ -1001,6 +1004,11 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.ServiceFee)
                     .HasForeignKey(d => d.KindOfService)
                     .HasConstraintName("FK_ServiceFee_SystemSeting");
+
+                entity.Property(e => e.StartDate)
+                    .HasMaxLength(10)
+                    .IsFixedLength(true);
+
             });
 
             modelBuilder.Entity<State>(entity =>

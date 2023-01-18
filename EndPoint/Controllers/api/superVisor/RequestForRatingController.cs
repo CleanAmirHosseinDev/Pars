@@ -28,8 +28,7 @@ namespace EndPoint.Controllers.api.superVisor
         {
             try
             {
-                request.CustomerId = null;
-                //  request.RequestId = null;
+                request.CustomerId = null;              
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
@@ -68,12 +67,14 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+
         [Route("[action]/{id}/")]
         [HttpGet]
         public async Task<ResultDto<IEnumerable<LevelStepSettingDto>>> InitReferral(int? id = null)
         {
             try
             {
+               int m=  int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
                 return await _userFacad.InitReferralService.Execute(User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value, id);
             }
             catch (Exception ex)

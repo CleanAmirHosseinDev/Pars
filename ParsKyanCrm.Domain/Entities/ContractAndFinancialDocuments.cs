@@ -10,9 +10,15 @@ namespace ParsKyanCrm.Domain.Entities
         public int FinancialId { get; set; }
         public string FinancialDocument { get; set; }
         public string ContractDocument { get; set; }
+        public int? RequestID { get; set; }
         public int? CustomerId { get; set; }
         public DateTime? SaveDate { get; set; }
-
+        public string ContentContract { get; set; }
+        public decimal? PriceContract { get; set; }
+        public decimal? Tax { get; set; }
         public virtual Customers Customer { get; set; }
+        public virtual RequestForRating RequestForRating { get; set; }
+
+
     }
 }

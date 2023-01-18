@@ -54,6 +54,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
              
                 // مبلع فرمول
                 strContract = strContract.Replace("ServiceFeePriceValue", "46000000");
+                qContract.ContractText = strContract;
 
                 return new ResultGetServiceFeeAndCustomerByRequestDto()
                 {
@@ -69,5 +70,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
             }
 
         }
+
+
     }
 }

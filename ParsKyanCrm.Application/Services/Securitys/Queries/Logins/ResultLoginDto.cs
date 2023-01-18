@@ -22,5 +22,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public string LoginName { get; set; }
 
+        public bool aslkewkdkmscedkwlssdjcm { get; set; }
+
     }
 }

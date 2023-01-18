@@ -55,9 +55,9 @@
 
     }
 
-    function loginC(e) {
+    function loginC(e, aslkewkdkmscedkwlssdjcm = false) {
 
-        
+
         try {
 
 
@@ -69,7 +69,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val() }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm:aslkewkdkmscedkwlssdjcm }), true, function (res) {
 
                 $(e).removeAttr("disabled");
                 debugger;
@@ -88,7 +88,18 @@
                 }
                 else {
 
-                    alertB("خطا", res.message, "error");
+                    if (res.data != null && res.data.aslkewkdkmscedkwlssdjcm == true) {
+
+                        confirmB("", res.message, "warning", function () {
+
+                            loginC(e, true);
+
+                        }, function () {
+
+                        }, ["خیر", "بلی"]);
+
+                    }
+                    else alertB("خطا", res.message, "error");
 
                 }
 

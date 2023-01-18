@@ -18,7 +18,9 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         public string NationalCode { get; set; }
 
         public string CaptchaCodes { get; set; }
-        
+
+        public bool aslkewkdkmscedkwlssdjcm { get; set; }
+
 
 
 

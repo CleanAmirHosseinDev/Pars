@@ -95,7 +95,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             Data = null,
                             IsSuccess = false,
                             Message = "شماره تلفن همراه را بدرستی وارد کنید",
-                        };                        
+                        };
 
                     }
 
@@ -117,83 +117,99 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                     string r = RandomDjcode.randnu(5);
 
-                    var cusUser = await _context.Customers.FirstOrDefaultAsync(p => p.AgentMobile == request.Mobile && p.NationalCode == request.NationalCode);
-                    if (cusUser != null)
+                    var cusUser = await _context.Customers.Where(p => p.AgentMobile == request.Mobile).ToListAsync();
+                    if (cusUser != null && cusUser.Count() > 0)
                     {
-                        if (cusUser.IsActive == (byte)Common.Enums.TablesGeneralIsActive.InActive)
+
+                        var objSingleCus = cusUser.FirstOrDefault(p => p.NationalCode == request.NationalCode);
+
+                        
+
+                        if (objSingleCus != null)
                         {
-                            return new ResultDto<ResultLoginDto>
+
+                            if (objSingleCus.IsActive == (byte)Common.Enums.TablesGeneralIsActive.InActive)
                             {
-                                Data = null,
-                                IsSuccess = false,
-                                Message = "اکانت شما توسط مدیران سامانه غیر فعال شده است لطفا برای استفاده مجدد از اکانت به قسمت پشتیبانی سامانه تماس حاصل فرمایید",
-                            };
-                        }
-
-                        var customerUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == cusUser.CustomerId);
-
-                        res_ResultLoginDto.FullName = !string.IsNullOrEmpty(cusUser.AgentName) ? cusUser.AgentName : "فاقد نام";
-                        res_ResultLoginDto.UserID = customerUser.UserId;
-                        res_ResultLoginDto.CustomerID = cusUser.CustomerId.ToString().Encrypt_Advanced_For_Number();
-
-                        Ado_NetOperation.SqlUpdate(nameof(Customers), new Dictionary<string, object>()
-                        {
-                            {
-                                nameof(cusUser.AuthenticateCode),r
+                                return new ResultDto<ResultLoginDto>
+                                {
+                                    Data = null,
+                                    IsSuccess = false,
+                                    Message = "اکانت شما توسط مدیران سامانه غیر فعال شده است لطفا برای استفاده مجدد از اکانت به قسمت پشتیبانی سامانه تماس حاصل فرمایید",
+                                };
                             }
-                        }, nameof(cusUser.CustomerId) + " = " + "'" + cusUser.CustomerId + "'");
 
-                        needSms = true;
+                            var customerUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == objSingleCus.CustomerId);
 
+                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(objSingleCus.AgentName) ? objSingleCus.AgentName : "فاقد نام";
+                            res_ResultLoginDto.UserID = customerUser.UserId;
+                            res_ResultLoginDto.CustomerID = objSingleCus.CustomerId.ToString().Encrypt_Advanced_For_Number();
+
+                            Ado_NetOperation.SqlUpdate(nameof(Customers), new Dictionary<string, object>()
+                        {
+                            {
+                                nameof(objSingleCus.AuthenticateCode),r
+                            }
+                        }, nameof(objSingleCus.CustomerId) + " = " + "'" + objSingleCus.CustomerId + "'");
+
+                            needSms = true;
+
+                        }
+                        else
+                        {
+                            if (!request.aslkewkdkmscedkwlssdjcm)
+                            {
+
+                                return new ResultDto<ResultLoginDto>
+                                {
+                                    Data = new ResultLoginDto()
+                                    {
+                                        aslkewkdkmscedkwlssdjcm = true
+                                    },
+                                    IsSuccess = false,
+                                    Message = "کاربر محترم شما قبلا در سامانه ثبت نام کرده اید آیا مایل هستید برای این شناسه ملی یک کاربری جدید ایجاد شود؟",
+
+                                };
+
+                            }
+                            else
+                            {
+
+                                string strMessage = await SaveCustomer(request, res_ResultLoginDto, r);
+                                if (!string.IsNullOrEmpty(strMessage))
+                                {
+
+                                    return new ResultDto<ResultLoginDto>
+                                    {
+                                        Data = null,
+                                        IsSuccess = false,
+                                        Message = strMessage,
+                                    };
+
+                                }
+
+                                needSms = true;
+
+                            }
+                        }
 
 
                     }
                     else
                     {
 
-                        var qCheckNatinalCode = await _context.Customers.FirstOrDefaultAsync(p => p.NationalCode == request.NationalCode);
-                        if(qCheckNatinalCode != null)
+                        string strMessage = await SaveCustomer(request, res_ResultLoginDto, r);
+                        if (!string.IsNullOrEmpty(strMessage))
                         {
 
                             return new ResultDto<ResultLoginDto>
                             {
                                 Data = null,
                                 IsSuccess = false,
-                                Message = "شناسه ملی شرکت از قبل موجود می باشد لطفا شناسه ملی شرکت دیگری وارد کنید",
+                                Message = strMessage,
                             };
 
                         }
 
-
-                        var cusUserA = _context.Customers.Add(new Domain.Entities.Customers()
-                        {
-                            AgentMobile = request.Mobile,
-                            IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
-                            SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
-                            AuthenticateCode = r,
-                            NationalCode = request.NationalCode
-                        });
-
-                        await _context.SaveChangesAsync();
-
-                        var userC = _context.UserRoles.Add(new UserRoles()
-                        {
-                            User = new Domain.Entities.Users()
-                            {
-                                CustomerId = cusUserA.Entity.CustomerId,
-                                UserName = cusUserA.Entity.AgentMobile,
-                                Ip = Common.Utility.GetUserHostAddress(),
-                                IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
-                                Status = true,
-                                Mobile = cusUserA.Entity.AgentMobile
-                            },
-                            RoleId = 10
-                        });
-                        await _context.SaveChangesAsync();
-
-                        res_ResultLoginDto.FullName = "فاقد نام";
-                        res_ResultLoginDto.UserID = userC.Entity.UserId;
-                        res_ResultLoginDto.CustomerID = cusUserA.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                         needSms = true;
 
@@ -239,6 +255,55 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             {
                 throw ex;
             }
+        }
+
+        private async Task<string> SaveCustomer(RequestLoginDto request, ResultLoginDto res_ResultLoginDto, string r)
+        {
+
+            try
+            {
+
+                var qCheckNatinalCode = await _context.Customers.FirstOrDefaultAsync(p => p.NationalCode == request.NationalCode);
+                if (qCheckNatinalCode != null) return "شناسه ملی شرکت از قبل موجود می باشد لطفا شناسه ملی شرکت دیگری وارد کنید";
+
+                var cusUserA = _context.Customers.Add(new Domain.Entities.Customers()
+                {
+                    AgentMobile = request.Mobile,
+                    IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
+                    SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
+                    AuthenticateCode = r,
+                    NationalCode = request.NationalCode
+                });
+
+                await _context.SaveChangesAsync();
+
+                var userC = _context.UserRoles.Add(new UserRoles()
+                {
+                    User = new Domain.Entities.Users()
+                    {
+                        CustomerId = cusUserA.Entity.CustomerId,
+                        UserName = cusUserA.Entity.AgentMobile,
+                        Ip = Common.Utility.GetUserHostAddress(),
+                        IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
+                        Status = true,
+                        Mobile = cusUserA.Entity.AgentMobile
+                    },
+                    RoleId = 10
+                });
+                await _context.SaveChangesAsync();
+
+                res_ResultLoginDto.FullName = "فاقد نام";
+                res_ResultLoginDto.UserID = userC.Entity.UserId;
+                res_ResultLoginDto.CustomerID = cusUserA.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
     }

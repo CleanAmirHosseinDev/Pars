@@ -57,6 +57,8 @@ namespace EndPoint.Controllers.api
         [CaptchaCheck]
         public async Task<ResultDto<ResultLoginDto>> AutenticatedCode( RequestAutenticatedCodeDto request)
         {
+
+            ModelState.Remove("CaptchaCodes");
             var error = "";
             if(ModelState.IsValid) {
                 try {

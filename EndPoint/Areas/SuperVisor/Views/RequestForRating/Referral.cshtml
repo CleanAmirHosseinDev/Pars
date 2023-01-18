@@ -23,6 +23,18 @@
 
 @section Scripts {
     <script src="~/lib/ckeditor/ckeditor.js"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type=text]').each(function () {
+            var text_classname = $(this).attr('name');
+            var value = $(this).text();
+            var new_html = ('<label for="'  + text_classname + '" id="'  + '">' + value + '</label>')
+            $(this).replaceWith(new_html);
+        });
+       // $(this).attr('hidden', 'true');
+    })
+
+</script>
     <script>
         Web.RequestForRating.InitReferral(@ViewBag.id);
     </script>

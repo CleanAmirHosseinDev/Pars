@@ -200,11 +200,29 @@
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
-          
-                if (res != null) {
 
-                    $("#ContractText").val(res.contract.contractText);
-                    Ckeditor("ContractText");
+                if (res != null) {
+                    if (getlstor("loginName") === "1") {
+                        $("#ContentCKeditor").html("<textarea name='ContractText' id='ContractText'>" + res.contract.contractText+"</textarea>");                       
+                        Ckeditor("ContractText");
+
+                    }
+                    else {
+                        
+                        $("#ContractShow").html(res.contract.contractText);
+                        $('input[type="text"], textarea').each(function () {
+                          //  $(this).attr('readonly', 'readonly');
+                            var text_classname = $(this).attr('name');
+                            var value = $(this).val();
+                                var new_html = ('<label for="' + text_classname + '" id="' + '">' + value + '</label>')
+                             $(this).replaceWith(new_html);
+                        });
+                    //$('input[type=text]').each(function () {
+                   
+                    //});
+                   //
+                    }
+                  
                 }
 
             }, true);

@@ -392,9 +392,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ContractDocument)
                     .HasMaxLength(200)
-                    .HasComment("آدرس قراداد امضا شده و بارگزاری شده");
-
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+                    .HasComment("آدرس قراداد امضا شده و بارگزاری شده");                
 
                 entity.Property(e => e.FinancialDocument)
                     .HasMaxLength(200)
@@ -402,10 +400,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.SaveDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.ContractAndFinancialDocuments)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_ContractAndFinancialDocuments_Customers");
             });
 
             modelBuilder.Entity<CorporateGovernance>(entity =>

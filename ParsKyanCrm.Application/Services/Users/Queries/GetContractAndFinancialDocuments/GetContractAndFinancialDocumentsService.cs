@@ -1,0 +1,50 @@
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using ParsKyanCrm.Application.Dtos.Users;
+using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Domain.Contexts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancialDocuments
+{
+
+    public class GetContractAndFinancialDocumentsService : IGetContractAndFinancialDocumentsService
+    {
+        private readonly IDataBaseContext _context;
+        private readonly IMapper _mapper;
+        private readonly IBasicInfoFacad _basicInfoFacad;
+        public GetContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        {
+            _context = context;
+            _mapper = mapper;
+            _basicInfoFacad = basicInfoFacad;
+        }
+
+        public async Task<ContractAndFinancialDocumentsDto> Execute(RequestContractAndFinancialDocumentsDto request)
+        {
+            try
+            {
+                ContractAndFinancialDocumentsDto res = new ContractAndFinancialDocumentsDto();                
+
+                if (request.RequestID != null && request.RequestID != 0)
+                {
+                    var q_Find = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == request.RequestID);
+
+                    res = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Find);                    
+
+                }
+
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    }
+}

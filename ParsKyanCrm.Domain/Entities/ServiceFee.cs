@@ -17,6 +17,12 @@ namespace ParsKyanCrm.Domain.Entities
         public DateTime? ChangeDate { get; set; }
         public int IsActive { get; set; }
 
+        public string StartDate { get; set; }
+
+        public decimal? Fee1 { get; set; }
+
+        public decimal? Fee2 { get; set; }
+
         public virtual SystemSeting KindOfServiceNavigation { get; set; }
     }
 }

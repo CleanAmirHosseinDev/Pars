@@ -96,6 +96,33 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ContractAndFinancialDocumentsDto> Get_ContractAndFinancialDocuments(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetContractAndFinancialDocumentsService.Execute(new RequestContractAndFinancialDocumentsDto() { RequestID = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromBody] ContractAndFinancialDocumentsDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
     }

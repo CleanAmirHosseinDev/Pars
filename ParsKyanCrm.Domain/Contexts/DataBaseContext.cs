@@ -392,9 +392,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ContractDocument)
                     .HasMaxLength(200)
-                    .HasComment("آدرس قراداد امضا شده و بارگزاری شده");
-
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+                    .HasComment("آدرس قراداد امضا شده و بارگزاری شده");                
 
                 entity.Property(e => e.FinancialDocument)
                     .HasMaxLength(200)
@@ -402,10 +400,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.SaveDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.ContractAndFinancialDocuments)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_ContractAndFinancialDocuments_Customers");
             });
 
             modelBuilder.Entity<CorporateGovernance>(entity =>
@@ -989,6 +983,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.FixedCost).HasColumnType("money");
 
+                entity.Property(e => e.Fee1).HasColumnType("money");
+                entity.Property(e => e.Fee2).HasColumnType("money");
+
                 entity.Property(e => e.FromCompanyRange).HasComment("از تعداد کارمند");
 
                 entity.Property(e => e.KindOfService).HasComment("نوع خدمت از جدول سیستم ستینگ");
@@ -1001,6 +998,11 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.ServiceFee)
                     .HasForeignKey(d => d.KindOfService)
                     .HasConstraintName("FK_ServiceFee_SystemSeting");
+
+                entity.Property(e => e.StartDate)
+                    .HasMaxLength(10)
+                    .IsFixedLength(true);
+
             });
 
             modelBuilder.Entity<State>(entity =>

@@ -28,8 +28,7 @@ namespace EndPoint.Controllers.api.superVisor
         {
             try
             {
-                request.CustomerId = null;
-              //  request.RequestId = null;
+                request.CustomerId = null;              
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
@@ -44,7 +43,7 @@ namespace EndPoint.Controllers.api.superVisor
         public async Task<ResultDto> Save_Request([FromBody] RequestReferencesDto request)
         {
             try
-            {                
+            {
                 request.SendUser = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
                 return await _userFacad.SaveRequestForRatingService.Execute(request);
             }
@@ -68,12 +67,14 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+
         [Route("[action]/{id}/")]
         [HttpGet]
         public async Task<ResultDto<IEnumerable<LevelStepSettingDto>>> InitReferral(int? id = null)
         {
             try
             {
+               int m=  int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
                 return await _userFacad.InitReferralService.Execute(User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value, id);
             }
             catch (Exception ex)
@@ -103,6 +104,35 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
                 return await _userFacad.GetServiceFeeAndCustomerByRequestService.Execute(id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ContractAndFinancialDocumentsDto> Get_ContractAndFinancialDocuments(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetContractAndFinancialDocumentsService.Execute(new RequestContractAndFinancialDocumentsDto() { RequestID = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromBody] ContractAndFinancialDocumentsDto request)
+        {
+            try
+            {                
+                return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
             }
             catch (Exception ex)
             {

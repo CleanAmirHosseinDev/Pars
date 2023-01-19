@@ -49,6 +49,8 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustomerByRequest;
+using ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancialDocuments;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinancialDocuments;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -136,6 +138,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetServiceFeeAndCustomerByRequestService GetServiceFeeAndCustomerByRequestService { get; }
 
+        IGetContractAndFinancialDocumentsService GetContractAndFinancialDocumentsService { get; }
+
+        ISaveContractAndFinancialDocumentsService SaveContractAndFinancialDocumentsService { get; }
+
     }
 
     public class UserFacad : IUserFacad
@@ -164,6 +170,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getUserssService = _getUserssService ?? new GetUserssService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetContractAndFinancialDocumentsService _getContractAndFinancialDocumentsService;
+        public IGetContractAndFinancialDocumentsService GetContractAndFinancialDocumentsService
+        {
+            get
+            {
+                return _getContractAndFinancialDocumentsService = _getContractAndFinancialDocumentsService ?? new GetContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad);
             }
         }
 
@@ -523,6 +538,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _deleteDataFormAnswerTablesService = _deleteDataFormAnswerTablesService ?? new DeleteDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private ISaveContractAndFinancialDocumentsService _saveContractAndFinancialDocumentsService;
+        public ISaveContractAndFinancialDocumentsService SaveContractAndFinancialDocumentsService
+        {
+            get
+            {
+                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad);
             }
         }
 

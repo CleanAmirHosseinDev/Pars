@@ -6,7 +6,7 @@
       "wwwroot/js/Utility.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -24,7 +24,7 @@
 
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -39,7 +39,7 @@
       "wwwroot/js/Views/SuperVisor/Users.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -65,7 +65,7 @@
       "wwwroot/js/Views/Admin/Customer.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false

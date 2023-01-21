@@ -45,7 +45,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string LastChangeOfficialNewspaper { get; set; }
         public string Statute { get; set; }
         public string AuditedFinancialStatements { get; set; }
-
+        public bool CanSeeFurtherInfo { get; set; }
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
         public virtual SystemSeting KindOfCompany { get; set; }

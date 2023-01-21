@@ -8,13 +8,13 @@
             اطلاعات تکمیلی
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/FurtherInfo/Index"><i></i> اطلاعات تکمیلی</a></li>
+            <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            @*<li><a href="/SuperVisor/FurtherInfo/Index"><i></i> اطلاعات تکمیلی</a></li>*@
         </ol>
     </section>
 }
 @section Styles{
-    <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/GlobalAreas/Views/SuperVisor/FurtherInfo.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
 <div class="row">
@@ -179,26 +179,26 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th> عنوان </th>
-                                                                                                <th> روش اجرایی است یا دستور العمل?</th>
-                                                                                                <th> فایل </th>
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer3">
-                                                                                        </tbody>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th> عنوان </th>
+                                                                                            <th> روش اجرایی است یا دستور العمل?</th>
+                                                                                            <th> فایل </th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer3">
+                                                                                    </tbody>
 
-                                                                                    </table>
-</div>
+                                                                                </table>
+                                                                            </div>
 
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                       
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -222,7 +222,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform4" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
-                                                                                                        افزودن  
+                                                                                                        افزودن
                                                                                                     </button>
                                                                                                     <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن');$('#DivCertificateAndPermitAndStandardFile').html('')  ">
                                                                                                         انصراف
@@ -232,21 +232,21 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
 
-                                                                                                <th>ردیف</th>
-                                                                                                <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
-                                                                                                <th>  مرجع صادر کننده</th>
-                                                                                                <th>  فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
-                                                                                                <th> تاریخ انقضا</th>
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer4">
-                                                                                        </tbody>
-                                                                                    </table>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th>  مرجع صادر کننده</th>
+                                                                                            <th>  فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th> تاریخ انقضا</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer4">
+                                                                                    </tbody>
+                                                                                </table>
 
 
                                                                             </div>
@@ -254,7 +254,7 @@
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                       
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -279,7 +279,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform5" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
-                                                                                                        افزودن 
+                                                                                                        افزودن
                                                                                                     </button>
                                                                                                     <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن');$('#DivAwardsFile').html('')  ">
                                                                                                         انصراف
@@ -290,21 +290,21 @@
                                                                                     </div>
                                                                                 </form>
 
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>عنوان جایزه</th>
-                                                                                                <th>مرجع صادر کننده</th>
-                                                                                                <th> سند جایزه</th>
-                                                                                                <th>تاریخ صدور</th>
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer5">
-                                                                                        </tbody>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>عنوان جایزه</th>
+                                                                                            <th>مرجع صادر کننده</th>
+                                                                                            <th> سند جایزه</th>
+                                                                                            <th>تاریخ صدور</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer5">
+                                                                                    </tbody>
 
-                                                                                    </table>
+                                                                                </table>
 
 
                                                                             </div>
@@ -312,7 +312,7 @@
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                       
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -452,7 +452,7 @@
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                        
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -494,7 +494,7 @@
 
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">                                                                                      
+                                                                                    <div class="col-md-12 text-center">
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -531,24 +531,24 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th> مستندات تدوین برنامه ریزی استراتژیک</th>
-                                                                                                <th>مستندات اجرا و بازخورد برنامه ریزی استراتژیک</th>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th> مستندات تدوین برنامه ریزی استراتژیک</th>
+                                                                                            <th>مستندات اجرا و بازخورد برنامه ریزی استراتژیک</th>
 
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer8">
-                                                                                        </tbody>
-                                                                                    </table>
-</div>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer8">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                       
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -575,7 +575,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform9" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
-                                                                                                        افزودن 
+                                                                                                        افزودن
                                                                                                     </button>
                                                                                                     <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن');$('#DivDegreeFile').html('') ">
                                                                                                         انصراف
@@ -585,21 +585,21 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>نام و نام خانوادگی </th>
-                                                                                                <th>مدرک تحصیلی</th>
-                                                                                                <th>
-                                                                                                    بارگزاری مدرک تحصیلی
-                                                                                                </th>
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer9">
-                                                                                        </tbody>
-                                                                                    </table>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام و نام خانوادگی </th>
+                                                                                            <th>مدرک تحصیلی</th>
+                                                                                            <th>
+                                                                                                بارگزاری مدرک تحصیلی
+                                                                                            </th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer9">
+                                                                                    </tbody>
+                                                                                </table>
                                                                             </div>
 
                                                                             <h2 class="fs-title">گزارشات تیم تحقیق و توسعه </h2>
@@ -616,7 +616,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button  class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
                                                                                                         افزودن
                                                                                                     </button>
                                                                                                     <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن');$('#DivReportFile').html('') ">
@@ -627,24 +627,24 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>گزارش و خروجی تیم تحقیق و توسعه </th>
-                                                                                                <th>بارگزاری مدرک مربوطه</th>
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer10">
-                                                                                        </tbody>
-                                                                                    </table>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>گزارش و خروجی تیم تحقیق و توسعه </th>
+                                                                                            <th>بارگزاری مدرک مربوطه</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer10">
+                                                                                    </tbody>
+                                                                                </table>
                                                                             </div>
 
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                        
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -704,7 +704,7 @@
                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SavesingleForm(this,11)">
                                                                                         ثبت
                                                                                     </button>
-                                                                                 </form>
+                                                                                </form>
                                                                             </div>
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
@@ -827,26 +827,26 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </form>
-                                                                                    <table class="table">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>ردیف</th>
-                                                                                                <th>نام انجمن </th>
-                                                                                                <th>تاریخ پایان عضویت</th>
-                                                                                                <th>سمت در انجمن</th>
-                                                                                                <th>عملیات</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody id="FormDetailAnswer13">
-                                                                                        </tbody>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام انجمن </th>
+                                                                                            <th>تاریخ پایان عضویت</th>
+                                                                                            <th>سمت در انجمن</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer13">
+                                                                                    </tbody>
 
-                                                                                    </table>
+                                                                                </table>
                                                                             </div>
 
                                                                             <div class="row" style="margin:20px">
                                                                                 <div class="form-group">
                                                                                     <div class="col-md-12 text-center">
-                                                                                        
+
                                                                                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
                                                                                             ارجاع جهت بررسی
                                                                                         </button>
@@ -1011,7 +1011,7 @@
                                                                         </div>
 
 
-                                                                        </div>
+                                                                    </div>
                                                                     <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
@@ -1058,7 +1058,7 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
-        Web.FurtherInfo.InitFurtherInfo();
+        Web.FurtherInfo.InitFurtherInfo(@ViewBag.id);
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();

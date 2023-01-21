@@ -289,6 +289,28 @@
 
     function showDocument() {
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        //var stepIndex = decrypt($(e).attr("data-DLSI"), keyMaker());
+      
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+                if (res.isSuccess) {
+                        for (var i = 0; i < res.data.length; i++) {
+
+                            if (res.data[i].destLevelStepIndex >= 3) {
+                                getShowDoument(id);
+                            }
+                        }
+                }
+
+            }, true);
+        }
+      
+       
+        
+    }
+
+    function getShowDoument(id=null) {
         if (!isEmpty(id) && id != 0) {
             getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Document.html", function (resG) {
 
@@ -297,8 +319,8 @@
 
             });
         }
-        
     }
+
     function getDocument(id=null) {
         if (!isEmpty(id) && id != 0) {
 
@@ -312,6 +334,8 @@
                     if (res.contractDocument != null) {
                         $("#divDownload_ContractDocument").html("<a href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
+
+                    //$("#divCustomerFurtherInfo").html("<a href='/SuperVisor/FurtherInfo/Index/" + "90" + "' target='_blank'><i class='fa fa-download'></i>نمایش مشخصات تکمیلی</a>");                    
 
                 }
 
@@ -498,7 +522,8 @@
         SaveContractAndFinancialDocuments: saveContractAndFinancialDocuments,
         GetContractCustomer: getContractCustomer,
         ShowDocument: showDocument,
-        GetDocument: getDocument
+        GetDocument: getDocument,
+        GetShowDoument: getShowDoument
        
     };
 

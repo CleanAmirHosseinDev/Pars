@@ -222,17 +222,33 @@
         }
     }
 
-    function getCustomer() {
+    //function getCustomer() {
 
-        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
-            if (res != null) {               
-                $("#CanSeeFurtherInfo").val(res.tel);
-            }
-        }, true);
-    }
+    //    AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+    //        if (res != null) {               
+    //            $("#CanSeeFurtherInfo").val(res.tel);
+    //        }
+    //    }, true);
+    //}
 
     function initFurtherInfo() {
-        intiTab(1);      
+          
+        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+
+
+            if (res != null) {
+               
+                if (res.canSeeFurtherInfo == false) {
+                   
+                   goToUrl("/Customer/FurtherInfo/NotAccess");
+                }
+                else {
+                    intiTab(1);
+                }
+            }
+
+
+        }, true);
        
     }
 
@@ -918,7 +934,7 @@
         SavesingleForm: savesingleForm,
         IntiFormQuestion: intiFormQuestion,
         SaveForm25: saveForm25,
-        GetCustomer: getCustomer
+       
     };
 
 })(Web, jQuery);

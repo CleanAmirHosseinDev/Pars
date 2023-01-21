@@ -405,6 +405,42 @@
         }
     }
 
+    function getDocument() {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res != null) {
+
+                    $("#FinancialID").val(res.financialId);
+                    $("#RequestID").val(res.requestID);
+                    $("#ContentContract").val(res.contentContract);
+                    $("#PriceContract").val(res.priceContract);
+                    $("#Tax").val(res.tax);
+                    if (res.financialDocument != null) {
+                        $("#divDownloadFinancialDocument").html("<a href='/File/Download?path=" + res.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.contractDocument != null) {
+                        $("#divDownload_ContractDocument").html("<a href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                }
+
+            }, true);
+        }
+    }
+
+    function showDocument() {
+
+        getU("/css/GlobalAreas/Views/customer/RequestForRating/P_Document.html", function (resG) {
+
+            $("#showDocumentRep").html(resG);
+            getDocument();
+
+        });
+    }
+
     function initContract(id = null) {
 
         if (!isEmpty(id) && id != 0) {
@@ -414,17 +450,6 @@
                 if (res != null) {
                   
                     $("#ContractShow").html(res.contentContract);
-                    $("#FinancialID").val(res.financialId);
-                    $("#RequestID").val(res.requestID);
-                    $("#ContentContract").val(res.contentContract);
-                    $("#PriceContract").val(res.priceContract);
-                    $("#Tax").val(res.tax);
-                    if (res.financialDocument!=null) {
-                        $("#divDownloadFinancialDocument").html("<a href='/File/Download?path=" + res.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-                    }
-                    if (res.contractDocument != null) {
-                        $("#divDownload_ContractDocument").html("<a href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-                    }
                    
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
@@ -516,7 +541,8 @@
         ShowContract: showContract,
         PrintContract: printContract,
         SaveContractAndFinancialDocument: saveContractAndFinancialDocument,
-       
+        ShowDocument: showDocument,
+        GetDocument: getDocument
 
     };
 

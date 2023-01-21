@@ -112,7 +112,7 @@ namespace EndPoint.Controllers.api.customer
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromBody] ContractAndFinancialDocumentsDto request)
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromForm] ContractAndFinancialDocumentsDto request)
         {
             try
             {

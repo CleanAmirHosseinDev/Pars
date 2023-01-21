@@ -157,6 +157,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 return ServiceFileUploader.GetFullPath(AuditedFinancialStatements, VaribleForName.CustomersFolder, false);
             }
         }
+
+        public bool CanSeeFurtherInfo { get; set; }
         public CityDto City { get; set; }
         public SystemSetingDto HowGetKnowCompany { get; set; }
         public SystemSetingDto KindOfCompany { get; set; }

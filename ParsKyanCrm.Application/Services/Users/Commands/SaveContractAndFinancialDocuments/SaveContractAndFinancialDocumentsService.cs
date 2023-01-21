@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,22 +23,55 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
-        public SaveContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IWebHostEnvironment _env;
+        public SaveContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
+            _env = env;
         }
 
         public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(ContractAndFinancialDocumentsDto request)
         {
+            #region Upload Image
+
+            string fileNameOldPic_FinancialDocument = string.Empty, path_FinancialDocument = string.Empty;
+            string fileNameOldPic_ContractDocument = string.Empty, path_ContractDocument = string.Empty;
+
+            #endregion
             try
             {
+               
                 #region Validation
 
 
 
                 #endregion
+
+                var con = await _context.ContractAndFinancialDocuments.FindAsync(request.FinancialId);
+                request.ContractDocument = con != null && !string.IsNullOrEmpty(con.ContractDocument) ? con.ContractDocument : string.Empty;
+                request.FinancialDocument = con != null && !string.IsNullOrEmpty(con.FinancialDocument) ? con.FinancialDocument : string.Empty;
+
+                #region Upload Image
+
+                if (request.Result_Final_ContractDocument != null)
+                {
+                    fileNameOldPic_FinancialDocument = request.FinancialDocument;
+                    request.FinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FinancialDocument.FileName);
+                    path_FinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.FinancialDocument;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FinancialDocument, path_FinancialDocument, "سند تسویه");
+                }
+
+                if (request.Result_Final_ContractDocument != null)
+                {
+                    fileNameOldPic_ContractDocument = request.ContractDocument;
+                    request.ContractDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocument.FileName);
+                    path_ContractDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ContractDocument;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocument, path_ContractDocument, "قرارداد مشتری");
+                }
+
+                #endregion                                
 
                 EntityEntry<ContractAndFinancialDocuments> q_Entity;
                 if (request.FinancialId == 0)
@@ -72,6 +108,18 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                             nameof(q_Entity.Entity.SaveDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
                         },
                     }, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
+                    #region Upload Image
+
+                    if (request.Result_Final_ContractDocument != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ContractDocument);
+
+                    if (request.Result_Final_FinancialDocument != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_FinancialDocument);
+
+                    path_ContractDocument = string.Empty;
+                    path_FinancialDocument = string.Empty;
+
+                    #endregion
                 }
 
                 return new ResultDto<ContractAndFinancialDocumentsDto>()
@@ -85,6 +133,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             }
             catch (Exception ex)
             {
+                #region Upload Image
+
+                FileOperation.DeleteFile(path_ContractDocument);
+                FileOperation.DeleteFile(path_FinancialDocument);
+
+                #endregion
                 throw ex;
             }
         }

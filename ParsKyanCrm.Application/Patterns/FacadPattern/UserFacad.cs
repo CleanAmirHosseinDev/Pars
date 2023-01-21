@@ -546,7 +546,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad);
+                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad,_env);
             }
         }
 

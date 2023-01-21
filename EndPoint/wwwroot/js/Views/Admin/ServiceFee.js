@@ -45,6 +45,8 @@
 
         RemoveAllCharForPrice("FixedCost");
         RemoveAllCharForPrice("VariableCost");
+        RemoveAllCharForPrice("Fee1");
+        RemoveAllCharForPrice("Fee2");
 
         AjaxCallAction("POST", "/api/admin/ServiceFee/Save_ServiceFee", JSON.stringify({
            
@@ -55,6 +57,8 @@
             FixedCost: $("#FixedCost").val(),
             VariableCost: $("#VariableCost").val(),
             KindOfService: $("#KindOfService").val(),
+            Fee1: $("#Fee1").val(),
+            Fee2: $("#Fee2").val()
 
 
         }), true, function (res) {
@@ -70,6 +74,8 @@
 
                 $("#FixedCost").val(moneyCommaSepWithReturn($("#FixedCost").val()));
                 $("#VariableCost").val(moneyCommaSepWithReturn($("#VariableCost").val()));
+                $("#Fee1").val(moneyCommaSepWithReturn($("#Fee1").val()));
+                $("#Fee2").val(moneyCommaSepWithReturn($("#Fee2").val()));
 
                 alertB("خطا", res.message, "error");
             }
@@ -92,6 +98,9 @@
                     $("#ToCompanyRange").val(res.toCompanyRange);
                     $("#FixedCost").val(moneyCommaSepWithReturn(res.fixedCost.toString()));
                     $("#VariableCost").val(moneyCommaSepWithReturn(res.variableCost.toString()));
+                    $("#Fee1").val(moneyCommaSepWithReturn(!isEmpty(res.fee1) ? res.fee1.toString() : ''));
+                    $("#Fee2").val(moneyCommaSepWithReturn(!isEmpty(res.fee2) ? res.fee2.toString() : ''));
+
                     systemSeting_Combo(res);
                 }
 

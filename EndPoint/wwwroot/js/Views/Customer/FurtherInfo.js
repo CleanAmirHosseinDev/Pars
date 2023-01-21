@@ -222,6 +222,14 @@
         }
     }
 
+    function getCustomer() {
+
+        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+            if (res != null) {               
+                $("#CanSeeFurtherInfo").val(res.tel);
+            }
+        }, true);
+    }
 
     function initFurtherInfo() {
         intiTab(1);      
@@ -893,9 +901,6 @@
 
     }
 
-
-
-
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         InitFurtherInfo: initFurtherInfo,
@@ -912,7 +917,8 @@
         Delete_DataFormAnswerTables: delete_DataFormAnswerTables,
         SavesingleForm: savesingleForm,
         IntiFormQuestion: intiFormQuestion,
-        SaveForm25: saveForm25
+        SaveForm25: saveForm25,
+        GetCustomer: getCustomer
     };
 
 })(Web, jQuery);

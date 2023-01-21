@@ -131,7 +131,8 @@ namespace EndPoint.Controllers.api.superVisor
         public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromBody] ContractAndFinancialDocumentsDto request)
         {
             try
-            {                
+            {
+                request.PriceContract = Convert.ToDecimal((request.PriceContractStr).ToString().Replace(",", ""));
                 return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
             }
             catch (Exception ex)

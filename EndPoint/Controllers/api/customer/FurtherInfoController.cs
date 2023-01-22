@@ -94,8 +94,8 @@ namespace EndPoint.Controllers.api.customer
         {
             try
             {
+                
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return await _userFacad.GetDataFormAnswerTablessService.Execute(request);
             }
             catch (Exception ex)
@@ -124,7 +124,6 @@ namespace EndPoint.Controllers.api.customer
         {
             try
             {
-                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return await _userFacad.GetDataFromAnswerssService.Execute(request);
             }
             catch (Exception ex)
@@ -139,7 +138,6 @@ namespace EndPoint.Controllers.api.customer
         {
             try
             {
-                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return await _userFacad.SaveDataFormAnswerTablesService.Execute(request);
             }
             catch (Exception ex)
@@ -154,7 +152,6 @@ namespace EndPoint.Controllers.api.customer
         {
             try
             {
-                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
                 return await _userFacad.SaveDataFromAnswersService.Execute(request);
             }
             catch (Exception ex)

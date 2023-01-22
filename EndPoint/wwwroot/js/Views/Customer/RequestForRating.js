@@ -32,7 +32,12 @@
                         + "<a style='margin-right:5px' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'"      + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title=' مشاهده گردش کار' /></a>";
                         if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
                         strM += "<a style='margin-right:5px' title='ارجاع' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i></a>";
-                         }
+                    }
+                    if (res.data[i].destLevelStepIndex >= 7) {
+
+                        strM += "<a style='margin-right:5px' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'> اطلاعات تکمیلی</a>";
+
+                    }
 
                       
                     //if (res.data[i].destLevelStepIndex == 4) {

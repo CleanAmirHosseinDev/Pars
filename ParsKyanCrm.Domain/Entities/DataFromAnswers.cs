@@ -9,7 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     public partial class DataFromAnswers
     {
         public int AnswerId { get; set; }
-        public int? CustomerId { get; set; }
+        public int? RequestId { get; set; }
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
         public string Answer { get; set; }

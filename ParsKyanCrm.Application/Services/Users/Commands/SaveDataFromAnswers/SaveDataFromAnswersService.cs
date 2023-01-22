@@ -47,7 +47,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.DataFromAnswers).Name, "*", strCondition + " AND " + nameof(request.CustomerId) + " = " + request.CustomerId);
+                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.DataFromAnswers).Name, "*", strCondition + " AND " + nameof(request.RequestId) + " = " + request.RequestId);
                     return q != null && q.Rows.Count > 0 ? true : false;
                 }
                 return true;
@@ -75,7 +75,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                 #endregion
 
 
-                var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.CustomerId==request.CustomerId && m.DataFormQuestionId==request.DataFormQuestionId);
+                var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.RequestId==request.RequestId && m.DataFormQuestionId==request.DataFormQuestionId);
                  request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
 
                 #region Upload Image
@@ -102,7 +102,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                     Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.DataFromAnswers).Name, new Dictionary<string, object>()
                     {
                         {
-                            nameof(q_Entity.Entity.CustomerId),request.CustomerId
+                            nameof(q_Entity.Entity.RequestId),request.RequestId
                         },
                         {
                             nameof(q_Entity.Entity.FormId),request.FormId
@@ -117,7 +117,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                         {
                             nameof(q_Entity.Entity.FileName1),request.FileName1
                         },
-                    }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and CustomerId={1} ", request.DataFormQuestionId,request.CustomerId));
+                    }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and CustomerId={1} ", request.DataFormQuestionId,request.RequestId));
                 }
                 #region Upload Image
 

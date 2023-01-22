@@ -90,7 +90,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                             nameof(q_Entity.Entity.FormId),request.FormId
                         },
                         {
-                            nameof(q_Entity.Entity.CustomerId),request.CustomerId
+                            nameof(q_Entity.Entity.RequestId),request.RequestId
                         },
                         {
                             nameof(q_Entity.Entity.Answer1),request.Answer1

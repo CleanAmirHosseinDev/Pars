@@ -58,7 +58,8 @@
             VariableCost: $("#VariableCost").val(),
             KindOfService: $("#KindOfService").val(),
             Fee1: $("#Fee1").val(),
-            Fee2: $("#Fee2").val()
+            Fee2: $("#Fee2").val(),
+            StartDate: $("#StartDate").val()
 
 
         }), true, function (res) {
@@ -86,13 +87,15 @@
 
     function initServiceFee(id = null) {
         ComboBoxWithSearch('.select2', 'dir');
+        PersianDatePicker(".DatePicker");
 
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/admin/ServiceFee/Get_ServiceFee/" + id, null, true, function (res) {
 
                 if (res != null) {
-                    
+
+                    $("#StartDate").val(res.startDate);
                     $("#ServiceFeeId").val(res.serviceFeeId);                   
                     $("#FromCompanyRange").val(res.fromCompanyRange);
                     $("#ToCompanyRange").val(res.toCompanyRange);

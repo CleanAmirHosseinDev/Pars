@@ -52,6 +52,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveServiceFee
                     Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ServiceFee).Name, new Dictionary<string, object>()
                     {
                         {
+                            "StartDate",request.StartDate
+                        },
+                        {
                             "Fee1",request.Fee1
                         },
                         {

@@ -84,52 +84,52 @@
 
 
     function intiTab(TabId = null) {
-
+        var ID = $("#RequestId").val();
       
         switch (TabId) {
             case 1:
-                intiFormShow(1, "1,2,7,8");
+                intiFormShow(1, "1,2,7,8",ID);
                 intiFormQuestion(2, "R");
                 intiFormSingelAnswer(2);
                 break;
             case 2:
-                intiFormShow(3, "1,3,11");
+                intiFormShow(3, "1,3,11",ID);
                 break;
             case 3:
                 intiForm(6);
                 intiFormQuestion(25, "A");
-                intiFormSingelAnswer(25);
-                intiFormShow(16, "1,2,3");
-                intiFormShow(17, "1,2");
+                intiFormSingelAnswer(25,ID);
+                intiFormShow(16, "1,2,3",ID);
+                intiFormShow(17, "1,2",ID);
                 break;
             case 4:
                 intiForm(11);
-                intiFormSingelAnswer(11);
+                intiFormSingelAnswer(11,ID);
                 break;
             case 5:
-                intiFormShow(13, "1,2,3");
+                intiFormShow(13, "1,2,3",ID);
                 break;
             case 7:
                 intiFormQuestion(7, "D");
-                intiFormSingelAnswer(7);
+                intiFormSingelAnswer(7,ID);
                 intiFormQuestion(18, "D");
-                intiFormSingelAnswer(18);
+                intiFormSingelAnswer(18,ID);
                 intiFormQuestion(19, "D");
-                intiFormSingelAnswer(18);
+                intiFormSingelAnswer(18,ID);
                 intiFormQuestion(20, "D");
-                intiFormSingelAnswer(20);
+                intiFormSingelAnswer(20,ID);
            
             case 9:
-                intiFormShow(9, '1,2,11');
-                intiFormShow(10, '1,11');
+                intiFormShow(9, '1,2,11',ID);
+                intiFormShow(10, '1,11',ID);
                 break; 
             case 14:
 
                 intiForm(14);
-                intiFormSingelAnswer(14);
-                intiFormShow(15, '1,2,11');
-                intiFormShow(22, '1,11'); 
-                intiFormShow(24, '1,11');
+                intiFormSingelAnswer(14,ID);
+                intiFormShow(15, '1,2,11',ID);
+                intiFormShow(22, '1,11',ID); 
+                intiFormShow(24, '1,11',ID);
                 break;
 
         }
@@ -231,31 +231,15 @@
     //    }, true);
     //}
 
-    function initFurtherInfo() {
-          
-        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
-
-
-            if (res != null) {
-               
-                if (res.canSeeFurtherInfo == false) {
-                   
-                   goToUrl("/Customer/FurtherInfo/NotAccess");
-                }
-                else {
-                    intiTab(1);
-                }
-            }
-
-
-        }, true);
-       
+    function initFurtherInfo(id = null) {
+        $("#RequestId").val(id);
+        intiTab(1);
     }
 
-    function intiFormShow(Id=null,Columns=null) {
+    function intiFormShow(Id = null, Columns = null, RequestId=null) {
 
         intiForm(Id);
-        intiFormAnswer(Id, Columns);
+        intiFormAnswer(Id, Columns, RequestId);
        
     }
 
@@ -358,8 +342,8 @@
         }, true);
     }
 
-    function intiFormSingelAnswer(FormID = null) {
-        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFromAnswerss", JSON.stringify({ FormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+    function intiFormSingelAnswer(FormID = null,Id=null) {
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFromAnswerss", JSON.stringify({ FormId: FormID, RequestId:Id, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 if (FormID==14) {
@@ -563,9 +547,9 @@
         }, true);
     }
 
-    function intiFormAnswer(FormID = null, ColumNum = null) {
+    function intiFormAnswer(FormID = null, ColumNum = null, RequestId = null) {
 
-        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, RequestId: RequestId, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                
@@ -895,11 +879,13 @@
     function saveSingelAnswerForm(e,formId=null, answer=null, dataFormQuestionId=null) {
 
         $(e).attr("disabled", "");
-
+        var requestId = $("#RequestId").val();
         AjaxCallAction("POST", "/api/customer/FurtherInfo/Save_DataFromAnswers", JSON.stringify({
             Answer: answer ,
             FormID: formId,
-            DataFormQuestionID: dataFormQuestionId
+            RequestId: requestId,
+            DataFormQuestionID: dataFormQuestionId,
+
         }), true, function (res) {
 
             $(e).removeAttr("disabled");

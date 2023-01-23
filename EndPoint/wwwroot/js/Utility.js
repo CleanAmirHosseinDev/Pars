@@ -2246,7 +2246,7 @@ Web.Resources = {
     ShowMessageForUser: "ShowMessageForUser",
     MessageWarningForOnlyUploadPhotos: "شما فقط میتوانید تصویر آپلود نمایید",
     MessageTypeWarning: "اخطار",
-    MessageFileSuccessfullyLoaded: "فایل با موفقیت بارگزاری شد",
+    MessageFileSuccessfullyLoaded: "فایل با موفقیت بارگذاری شد",
     MessageAreYouSure: "آیا مطمئن هستید؟",
     Select: "انتخاب",
     Code301: "301",

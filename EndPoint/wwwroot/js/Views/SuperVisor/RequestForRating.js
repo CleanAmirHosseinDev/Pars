@@ -14,11 +14,24 @@
         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
 
             if (res.isSuccess) {
-
+              
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].requestNo + "</td><td>" + res.data[i].agentName + "</td><td>" + res.data[i].agentMobile + "</td><td>" + res.data[i].dateOfRequestStr +"</td><td>" + res.data[i].levelStepStatus + "</td><td>"+ "<a style='margin-right:5px' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'"  + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title=' مشاهده گردش کار' /></a>"+ (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px' title='ارجاع' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i></a>" : "")+ "</td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>"
+                        + res.data[i].requestNo + "</td><td>"
+                        + res.data[i].agentName + "</td><td>"
+                        + res.data[i].agentMobile + "</td>" +
+                        "<td>" + res.data[i].levelStepStatus + "</td><td>"
+                        + "<a style='margin-right:5px' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'"  + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title=' مشاهده گردش کار' /></a>"
+                        + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px' title='ارجاع' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i></a>" : "")
+                        + "<a style='margin-right:5px' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'> اطلاعات تکمیلی</a>";
+
+                        + "</td></tr>";
+                    //if (res.data[i].levelStepIndex >= 7) {
+
+                       
+                   // }
                 }
 
                 $("#tBodyList").html(strM);
@@ -46,6 +59,7 @@
                         htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + encrypt(res.data[i].smsType, keyMaker()) + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker())+"'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
+
 
                     $("#bLLSS").html(htmlB);
                     Ckeditor("ReferralExplanation");

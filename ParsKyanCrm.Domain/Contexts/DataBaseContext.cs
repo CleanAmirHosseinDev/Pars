@@ -116,7 +116,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.Answer).HasMaxLength(50);
 
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+                entity.Property(e => e.RequestId).HasColumnName("RequestId");
 
                 entity.Property(e => e.DataFormQuestionId).HasColumnName("DataFormQuestionID");
 
@@ -158,7 +158,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e=>e.FileName1).HasMaxLength(50);
                 entity.Property(e => e.FileName2).HasMaxLength(50);
 
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+                entity.Property(e => e.RequestId).HasColumnName("RequestId");
 
                 entity.Property(e => e.FormId).HasColumnName("FormID");
             });
@@ -392,7 +392,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ContractDocument)
                     .HasMaxLength(200)
-                    .HasComment("آدرس قراداد امضا شده و بارگزاری شده");                
+                    .HasComment("آدرس قراداد امضا شده و بارگذاری شده");                
 
                 entity.Property(e => e.FinancialDocument)
                     .HasMaxLength(200)

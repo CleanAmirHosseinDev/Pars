@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
 
                 var lists = (from s in _context.DataFromAnswers
                              where (s.FormId == request.FormId || request.FormId == null) &&
-                             (s.CustomerId == request.CustomerId || request.CustomerId == null)
+                             (s.RequestId == request.RequestId || request.RequestId == null)
                              select s);
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Answer.Contains(request.Search));

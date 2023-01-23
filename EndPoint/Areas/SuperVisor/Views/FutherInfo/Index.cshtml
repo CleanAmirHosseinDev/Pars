@@ -8,15 +8,18 @@
             اطلاعات تکمیلی
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            @*<li><a href="/SuperVisor/FurtherInfo/Index"><i></i> اطلاعات تکمیلی</a></li>*@
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/FurtherInfo/Index"><i></i> اطلاعات تکمیلی</a></li>
         </ol>
     </section>
 }
 @section Styles{
-    <link rel="stylesheet" href="~/css/GlobalAreas/Views/SuperVisor/FurtherInfo.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
+
+
+<input type="hidden" id="RequestId" name="RequestId" value="0" />
 <div class="row">
     <section class="col-lg-12 col-md-12">
         <div class="box box-info">
@@ -70,7 +73,6 @@
 
                                                             <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
 
-
                                                             <form id="frmFrom1">
                                                                 <input type="hidden" id="FormId" name="FormId" value="1" />
                                                                 <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
@@ -113,30 +115,21 @@
                                                             </div>
                                                         </div>
                                                         <br />
-                                                        <h2 class="fs-title">بارگزاری اسناد شرکت</h2>
+                                                        <h2 class="fs-title">بارگذاری اسناد شرکت</h2>
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px;  margin-bottom: 20px">
 
 
-                                                            <p>مدارک ذیل بارگزاری شود</p>
+                                                            <p>مدارک ذیل بارگذاری شود</p>
                                                             <p style="color:darkgrey;line-height:30px">
 
-                                                                <small> فرمت مجاز جهت بارگزاری  : pdf</small>
+                                                                <small> فرمت مجاز جهت بارگذاری  : pdf</small>
                                                             </p>
                                                             <div class="row" id="FormDetail2">
 
                                                             </div>
                                                         </div>
                                                         <br />
-                                                        <div class="row">
-                                                            <div class="form-group">
-                                                                <div class="col-md-12 text-center">
-
-                                                                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                        ارجاع جهت بررسی
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </div>
                                                     <input type="button" name="next" class="next action-button" value=" بعدی" />
                                                 </fieldset>
@@ -150,8 +143,8 @@
                                                                 <div class="nav-tabs-custom">
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab3" data-toggle="tab" aria-expanded="false">نظامنامه کیفیت</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(4,'1,3,11,4');" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(5,'1,3,11,4')" href="#FormDetailTab5" data-toggle="tab" aria-expanded="false">جوایز معتبر</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(4, '1,3,11,4', $('#RequestId').val());" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(5,'1,3,11,4',$('#RequestId').val())" href="#FormDetailTab5" data-toggle="tab" aria-expanded="false">جوایز معتبر</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormDetailTab3">
@@ -195,16 +188,6 @@
                                                                                 </table>
                                                                             </div>
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
                                                                         </div>
                                                                         <!-- /.tab-pane -->
                                                                         <div class="tab-pane" id="FormDetailTab4">
@@ -251,16 +234,6 @@
 
                                                                             </div>
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
                                                                         </div>
                                                                         <!-- /.tab-pane -->
                                                                         <div class="tab-pane" id="FormDetailTab5">
@@ -309,16 +282,7 @@
 
                                                                             </div>
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                            
                                                                         </div>
 
 
@@ -344,7 +308,7 @@
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab6" data-toggle="tab" aria-expanded="false">حاکمیت شرکتی</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiTab(7);" href="#FormDetailTab7" data-toggle="tab" aria-expanded="false">زنجیره ارزش</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'11,12')" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'11,12',$('#RequestId').val())" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiTab(9);" href="#FormDetailTab9" data-toggle="tab" aria-expanded="false">تحقیق و توسعه</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
@@ -409,6 +373,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <h2 class="fs-title">ثبت محصولات شرکت</h2>
+                                                                            <p>نام محصولاتی که توسط شرکت تولید یا به فروش می رسد.</p>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom17">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="17" />
@@ -449,16 +414,7 @@
                                                                             </div>
 
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                            
 
                                                                         </div>
 
@@ -489,16 +445,6 @@
 
                                                                                 <div class="row" id="FormDetail20">
 
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
                                                                                 </div>
                                                                             </div>
 
@@ -545,18 +491,7 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
+                                                                           
                                                                         </div>
 
                                                                         <div class="tab-pane" id="FormDetailTab9">
@@ -592,7 +527,7 @@
                                                                                             <th>نام و نام خانوادگی </th>
                                                                                             <th>مدرک تحصیلی</th>
                                                                                             <th>
-                                                                                                بارگزاری مدرک تحصیلی
+                                                                                                بارگذاری مدرک تحصیلی
                                                                                             </th>
                                                                                             <th>عملیات</th>
                                                                                         </tr>
@@ -632,7 +567,7 @@
                                                                                         <tr>
                                                                                             <th>ردیف</th>
                                                                                             <th>گزارش و خروجی تیم تحقیق و توسعه </th>
-                                                                                            <th>بارگزاری مدرک مربوطه</th>
+                                                                                            <th>بارگذاری مدرک مربوطه</th>
                                                                                             <th>عملیات</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -641,16 +576,6 @@
                                                                                 </table>
                                                                             </div>
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
 
 
                                                                         </div>
@@ -677,13 +602,13 @@
                                                                 <div class="nav-tabs-custom">
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab11" data-toggle="tab" aria-expanded="false">اطلاعات منابع انسانی</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(12,'1,2,3,4')" href="#FormDetailTab12" data-toggle="tab" aria-expanded="false">گواهی دوره های آموزشی پرسنل</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(12,'1,2,3,4',$('#RequestId').val())" href="#FormDetailTab12" data-toggle="tab" aria-expanded="false">گواهی دوره های آموزشی پرسنل</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormDetailTab11">
                                                                             <h2 class="fs-title">اطلاعات منابع انسانی</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <p>لطفا فایل نمونه اکسل را از لینک ذیل کلیک کنید و پس از تکمیل بارگزاری کنید:</p>
+                                                                                <p>لطفا فایل نمونه اکسل را از لینک ذیل کلیک کنید و پس از تکمیل بارگذاری کنید:</p>
 
                                                                                 <div class="row" style="margin:20px">
                                                                                     <div class="form-group">
@@ -706,16 +631,7 @@
                                                                                     </button>
                                                                                 </form>
                                                                             </div>
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                           
 
                                                                         </div>
 
@@ -761,14 +677,7 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div><div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
+                                                                               
                                                                             </div>
 
                                                                         </div>
@@ -843,16 +752,7 @@
                                                                                 </table>
                                                                             </div>
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                           
 
 
                                                                         </div>
@@ -870,7 +770,7 @@
                                                                                     ثبت
                                                                                 </button>
                                                                             </div>
-                                                                            <h2 class="fs-title">بارگزاری مدارک های انجمن های خیریه</h2>
+                                                                            <h2 class="fs-title">بارگذاری مدارک های انجمن های خیریه</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <form id="frmFrom15">
@@ -912,7 +812,7 @@
                                                                                 </table>
 
                                                                             </div>
-                                                                            <h2 class="fs-title">بارگزاری مدارک  های سرمایه گذاری در مناطق محروم</h2>
+                                                                            <h2 class="fs-title">بارگذاری مدارک  های سرمایه گذاری در مناطق محروم</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
@@ -944,7 +844,7 @@
                                                                                         <tr>
                                                                                             <th>ردیف</th>
                                                                                             <th>عنوان</th>
-                                                                                            <th>بارگزاری سند سرمایه گذاری</th>
+                                                                                            <th>بارگذاری سند سرمایه گذاری</th>
 
                                                                                             <th>افزودن</th>
                                                                                         </tr>
@@ -954,7 +854,7 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
-                                                                            <h2 class="fs-title">بارگزاری مدارک  های مسئولیت پذیری اجتماعی</h2>
+                                                                            <h2 class="fs-title">بارگذاری مدارک  های مسئولیت پذیری اجتماعی</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
@@ -998,16 +898,7 @@
                                                                             </div>
 
 
-                                                                            <div class="row" style="margin:20px">
-                                                                                <div class="form-group">
-                                                                                    <div class="col-md-12 text-center">
-
-                                                                                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                                            ارجاع جهت بررسی
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                           
                                                                         </div>
 
 
@@ -1033,6 +924,16 @@
                                                         <div class="row justify-content-center">
                                                             <div class="col-7 text-center">
                                                                 <h5>اطلاعات تکمیلی شما کامل شد</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="margin:20px">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 text-center">
+
+                                                                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
+                                                                        ارجاع جهت بررسی
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

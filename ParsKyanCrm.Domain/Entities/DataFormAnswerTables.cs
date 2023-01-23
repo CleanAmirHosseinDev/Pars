@@ -13,7 +13,7 @@ namespace ParsKyanCrm.Domain.Entities
 
         public int AnswerTableId { get; set; }
         public int? FormId { get; set; }
-        public int? CustomerId { get; set; }
+        public int? RequestId { get; set; }
         public string Answer1 { get; set; }
         public string Answer2 { get; set; }
         public string Answer3 { get; set; }

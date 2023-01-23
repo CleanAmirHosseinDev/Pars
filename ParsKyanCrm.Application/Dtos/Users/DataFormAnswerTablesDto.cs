@@ -15,7 +15,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
 
         public int? FormId { get; set; }
-        public int? CustomerId { get; set; }
+        public int? RequestId { get; set; }
 
         public int? AnswerTableId { get; set; }
 
@@ -25,7 +25,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int AnswerTableId { get; set; }
         public int? FormId { get; set; }
-        public int? CustomerId { get; set; }
+        public int? RequestId { get; set; }
         public string Answer1 { get; set; }
         public string Answer2 { get; set; }
         public string Answer2Val { get; set; }

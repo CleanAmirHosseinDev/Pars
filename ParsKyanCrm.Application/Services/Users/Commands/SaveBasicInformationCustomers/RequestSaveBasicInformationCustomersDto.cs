@@ -128,47 +128,42 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             }
         }
 
+        public int? CustomerPersonalityType { get; set; }
+        public int? TypeGroupCompanies { get; set; }
+
     }
 
     public class ValidatorRequestSaveBasicInformationCustomersDto : AbstractValidator<RequestSaveBasicInformationCustomersDto>
-    {
+    {        
 
         public ValidatorRequestSaveBasicInformationCustomersDto()
         {
 
-            RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام شرکت را وارد کنید");
 
-            RuleFor(p => p.CeoName).NotEmpty().WithMessage("نام مدیر عامل را وارد کنید");
-
-            RuleFor(p => p.CeoMobile).NotEmpty().WithMessage("موبایل مدیر عامل را وارد کنید");
-
-            RuleFor(p => p.CeoNationalCode).NotEmpty().WithMessage("کد ملی مدیر عامل را وارد کنید");
-
-            RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("شماره ثبت را وارد کنید");
-
-            RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید");
-
-            RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت را وارد کنید");
-
+            RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام و نام خانوادگی را وارد کنید");
             RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید");
-
-            RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
-
-            RuleFor(p => p.CountOfPersonal).NotEmpty().WithMessage("تعداد کارکنان شرکت را وارد کنید");
-
-            RuleFor(p => p.HowGetKnowCompanyId).NotEmpty().WithMessage("نحوه آشنایی با شرکت را انتخاب کنید");
-
-            RuleFor(p => p.KindOfCompanyId).NotEmpty().WithMessage("نوع شرکت را انتخاب کنید");
-
-            RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید");
-
-            RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تماس را وارد کنید");
-
-            RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید");
-
             RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
-            RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
+
+            When(b => b.CustomerPersonalityType == null || b.CustomerPersonalityType != 165, () =>
+              {
+
+                  RuleFor(p => p.CeoName).NotEmpty().WithMessage("نام مدیر عامل را وارد کنید");
+                  RuleFor(p => p.CeoMobile).NotEmpty().WithMessage("موبایل مدیر عامل را وارد کنید");
+                  RuleFor(p => p.CeoNationalCode).NotEmpty().WithMessage("کد ملی مدیر عامل را وارد کنید");
+                  RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("شماره ثبت را وارد کنید");
+                  RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید");
+                  RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت را وارد کنید");
+                  RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
+                  RuleFor(p => p.CountOfPersonal).NotEmpty().WithMessage("تعداد کارکنان شرکت را وارد کنید");
+                  RuleFor(p => p.HowGetKnowCompanyId).NotEmpty().WithMessage("نحوه آشنایی با شرکت را انتخاب کنید");
+                  RuleFor(p => p.KindOfCompanyId).NotEmpty().WithMessage("نوع شرکت را انتخاب کنید");
+                  RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید");
+                  RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تماس را وارد کنید");
+                  RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید");
+                  RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
+
+              });
 
         }
 

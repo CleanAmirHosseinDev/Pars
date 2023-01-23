@@ -41,24 +41,44 @@
     }
 
 
-    function systemSeting_Combo(resSingle,showdrp) {
+    function systemSeting_Combo(resSingle, showdrp) {
 
-        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56", PageIndex: 0, PageSize: 0 }), true, function (res) {
+        var codeCustomerPersonalityType = 1;
+        var codeTypeGroupCompanies = 5;
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56," + codeCustomerPersonalityType + "," + codeTypeGroupCompanies, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
                 var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';
                 var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
+                var strCustomerPersonalityType = '<option value="">انتخاب کنید</option>';
+                var strTypeGroupCompanies = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].parentCode == 56) {
                         strHowGetKnowCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } else if (res.data[i].parentCode == 63) {
+                    }
+                    else if (res.data[i].parentCode == 63) {
                         strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } else if (res.data[i].parentCode == 27) {
+                    }
+                    else if (res.data[i].parentCode == 27) {
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
+                    else if (res.data[i].parentCode == codeCustomerPersonalityType) {
+                        strCustomerPersonalityType += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+                    else if (res.data[i].parentCode == codeTypeGroupCompanies) {
+                        strTypeGroupCompanies += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
                 }
+
+                $("#CustomerPersonalityType").html(strCustomerPersonalityType);
+                $("#CustomerPersonalityType").val(resSingle.customerPersonalityType);
+
+                $("#CustomerPersonalityType").change();
+
+                $("#TypeGroupCompanies").html(strTypeGroupCompanies);
+                $("#TypeGroupCompanies").val(resSingle.typeGroupCompanies);
 
                 $("#KindOfCompanyId").html(strKindOfCompany);
                 $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);
@@ -69,7 +89,7 @@
                 if (showdrp) {
                     $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
                     $("#TypeServiceRequestedId").val('66');
-                } 
+                }
             }
         }, true);
     }
@@ -84,8 +104,8 @@
                 }
 
                 else {
-                    $("#divTypeServiceRequestedId").show();  
-                    systemSeting_Combo(resSingle,true);
+                    $("#divTypeServiceRequestedId").show();
+                    systemSeting_Combo(resSingle, true);
                 }
             }
 
@@ -96,6 +116,7 @@
 
         ComboBoxWithSearch('.select2', dir);
         
+
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
 
 
@@ -114,19 +135,35 @@
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
                 $("#PostalCode").val(res.postalCode);
-                
+
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
 
                 $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 checkForFirstRequest(res);
-               // systemSeting_Combo(res);
-                
+                // systemSeting_Combo(res);
+
 
             }
 
 
         }, true);
+
+    }
+
+    function onChangeCustomerPersonalityType(e) {
+
+        if ($(e).val() == "165") {
+
+            $(".form-group").hide();
+            $(".form-group.FormIsShow").show();
+
+        }
+        else {
+
+            $(".form-group").show();
+
+        }
 
     }
 
@@ -136,7 +173,7 @@
         InitCustomer: initCustomer,
         SystemSeting_Combo: systemSeting_Combo,
         CheckForFirstRequest: checkForFirstRequest,
-
+        OnChangeCustomerPersonalityType: onChangeCustomerPersonalityType
     };
 
 })(Web, jQuery);

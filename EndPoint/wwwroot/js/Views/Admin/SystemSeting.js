@@ -116,7 +116,10 @@
                 $(o).html($("#NewLabel").val());
                 $("#SubCodes").append(o);
                 $("#NewLabel").val("");
-               // goToUrl("/Admin/SystemSeting/EditSystemSeting?id=" + $("#SystemSetingID").val());
+                // goToUrl("/Admin/SystemSeting/EditSystemSeting?id=" + $("#SystemSetingID").val());
+
+                alertB("", res.message, "success");
+
             }
             else {
 

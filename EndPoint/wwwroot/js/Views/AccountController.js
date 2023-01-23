@@ -25,6 +25,7 @@
                     setlstor("fullName", res.data.fullName);
                     setlstor("userID", res.data.userID);
                     setlstor("loginName", res.data.loginName);
+                    setlstor("roleDesc", res.data.roleDesc);
 
                     goToUrl(res.message);
 

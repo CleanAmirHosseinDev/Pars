@@ -164,6 +164,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public SystemSetingDto KindOfCompany { get; set; }
         public SystemSetingDto TypeServiceRequested { get; set; }
 
+        public int? CustomerPersonalityType { get; set; }
+        public int? TypeGroupCompanies { get; set; }
 
     }    
 

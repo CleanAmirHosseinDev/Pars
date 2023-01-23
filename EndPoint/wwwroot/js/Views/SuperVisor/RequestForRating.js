@@ -21,12 +21,12 @@
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].requestNo + "</td><td>"
                         + res.data[i].agentName + "</td><td>"
-                        + res.data[i].agentMobile + "</td>" +
-                        "<td>" + res.data[i].levelStepStatus + "</td><td>"
-                        + "<a style='margin-right:5px' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'"  + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title=' مشاهده گردش کار' /></a>"
-                        + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px' title='ارجاع' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i></a>" : "")
-                        + "<a style='margin-right:5px' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'> اطلاعات تکمیلی</a>";
-
+                        + res.data[i].agentMobile + "</td><td>"
+                        + res.data[i].dateOfRequestStr + "</td>" 
+                        +"<td>" + res.data[i].levelStepStatus + "</td><td>"
+                        + "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title=' مشاهده گردش کار' /> مشاهده گردش کار</a>"
+                        + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='ارجاع' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> ارجاع </a>" : "")
+                        + "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
                         + "</td></tr>";
                     //if (res.data[i].levelStepIndex >= 7) {
 

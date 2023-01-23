@@ -60,7 +60,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.InitReferral
 
                 }
 
-                if (q.Rows == 1 && q.Data.FirstOrDefault().DestLevelStepIndex == "14")
+                if (q.Rows == 1 && q.Data.FirstOrDefault().DestLevelStepIndex == "15")
                 {
 
                     return new ResultDto<IEnumerable<LevelStepSettingDto>>

@@ -175,7 +175,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     });
                     await _context.SaveChangesAsync();
 
-                    if (request.DestLevelStepIndex == "14")
+                    if (request.DestLevelStepIndex == "15")
                     {
                         Ado_NetOperation.SqlUpdate(typeof(RequestForRating).Name, new Dictionary<string, object>()
                         {

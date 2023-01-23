@@ -24,5 +24,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public bool aslkewkdkmscedkwlssdjcm { get; set; }
 
+        public string RoleDesc { get; set; }
+
     }
 }

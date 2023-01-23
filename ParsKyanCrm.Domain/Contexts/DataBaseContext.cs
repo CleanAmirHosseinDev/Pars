@@ -529,6 +529,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasColumnName("KindOfCompanyID")
                     .HasComment("نوع شرکت");
 
+                entity.Property(e => e.CustomerPersonalityType).HasColumnName("CustomerPersonalityType");
+                entity.Property(e => e.TypeGroupCompanies).HasColumnName("TypeGroupCompanies");
+
                 entity.Property(e => e.LastAuditingTaxList)
                     .HasMaxLength(250)
                     .HasComment("لیست آخرین اظهارنامه مالیاتی");

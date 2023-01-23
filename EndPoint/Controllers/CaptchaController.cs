@@ -61,12 +61,12 @@ namespace EndPoint {
                 Bitmap SecImage = new Bitmap(Environment.WebRootPath + "/image/"+ "captcha_bg.jpg");
                 Graphics graphImage = Graphics.FromImage(SecImage);
                 graphImage.SmoothingMode = SmoothingMode.AntiAlias;
-                Brush brush = new SolidBrush(Color.Gray);
+                Brush brush = new SolidBrush(Color.Blue);
                 graphImage.DrawString(PersianNumberHelper.PersianToEnglish(" " + showcode + " "), new Font("arial", 20, FontStyle.Bold), brush, 0.1f, 4f);
 
 
-                graphImage.DrawLine(new Pen(Color.Gray, 3), 0, RndCode.GenerateInt(10, 15), 200, RndCode.GenerateInt(20, 30));
-                graphImage.DrawLine(new Pen(Color.Black, 2), 0, RndCode.GenerateInt(28, 38), 200, RndCode.GenerateInt(1, 2 ));
+                graphImage.DrawLine(new Pen(Color.Blue, 3), 0, RndCode.GenerateInt(10, 15), 200, RndCode.GenerateInt(20, 30));
+                graphImage.DrawLine(new Pen(Color.Red, 2), 0, RndCode.GenerateInt(28, 38), 200, RndCode.GenerateInt(1, 2 ));
                 SecImage = Blur(SecImage, 1);
 
 

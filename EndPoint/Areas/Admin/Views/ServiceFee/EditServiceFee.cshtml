@@ -4,6 +4,7 @@
 }
 
 @section Styles{
+    <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
 
@@ -114,7 +115,7 @@
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                        فی 1
+                                       کارمزد ارزیابی
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
@@ -124,13 +125,23 @@
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                        فی 2
+                                        کارمزد ارزیابی مبنای یک ده هزارم
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="Fee2" id="Fee2" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
                                     </div>
                                 </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            تاریخ موثر
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="StartDate" id="StartDate" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
+                                        </div>
+                                    </div>
 
                             </div>
                         </div>
@@ -145,6 +156,7 @@
 </div>
 
 @section Scripts {
+    <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script><script>
         Web.ServiceFee.InitServiceFee(@ViewBag.id);
     </script>

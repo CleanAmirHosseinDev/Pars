@@ -8,7 +8,7 @@ namespace ParsKyanCrm.Domain.Entities
     public partial class Customers
     {
         public Customers()
-        {            
+        {
             ManagementSystem = new HashSet<ManagementSystem>();
             RequestForRating = new HashSet<RequestForRating>();
             Users = new HashSet<Users>();
@@ -46,11 +46,15 @@ namespace ParsKyanCrm.Domain.Entities
         public string Statute { get; set; }
         public string AuditedFinancialStatements { get; set; }
         public bool CanSeeFurtherInfo { get; set; }
+
+        public int? CustomerPersonalityType { get; set; }
+        public int? TypeGroupCompanies { get; set; }
+
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
         public virtual SystemSeting KindOfCompany { get; set; }
         public virtual SystemSeting TypeServiceRequested { get; set; }
-        
+
         public virtual ICollection<ManagementSystem> ManagementSystem { get; set; }
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }
         public virtual ICollection<Users> Users { get; set; }

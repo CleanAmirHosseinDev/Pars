@@ -15,6 +15,7 @@
         dellstor("userID");
         dellstor("loginName");
         dellstor("menu");
+        dellstor("roleDesc");
 
         goToUrl("/Account/LoginUser");
 
@@ -26,7 +27,7 @@
         else {
 
             $(".fullNameInLayout").html(getlstor("fullName"));
-
+            $(".roleDescNameElementLayout").html(getlstor("roleDesc"));
         }
 
     }

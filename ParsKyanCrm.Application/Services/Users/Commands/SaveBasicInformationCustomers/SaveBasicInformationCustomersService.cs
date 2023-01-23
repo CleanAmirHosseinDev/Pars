@@ -207,6 +207,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
                     {
+                        "CustomerPersonalityType",request.CustomerPersonalityType
+                    },
+                    {
+                        "TypeGroupCompanies",request.TypeGroupCompanies
+                    },
+                    {
                         "SaveDate",dt
                     },
                     {

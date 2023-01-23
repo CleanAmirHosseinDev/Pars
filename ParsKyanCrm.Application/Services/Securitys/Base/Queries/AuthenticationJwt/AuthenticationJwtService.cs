@@ -81,6 +81,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Base.Queries.Authentication
                 res_ResultLoginDto.Token = tokenHandler.WriteToken(token);
 
                 if (obj_fillUserRoleCustomerRoles != null) res_ResultLoginDto.Menus = obj_fillUserRoleCustomerRoles;
+
+                res_ResultLoginDto.RoleDesc = qCheckUserRole.Role.RoleDesc;
             }
             catch (Exception ex)
             {

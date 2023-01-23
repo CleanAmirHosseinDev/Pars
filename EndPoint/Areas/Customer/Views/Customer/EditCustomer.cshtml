@@ -55,17 +55,34 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row" id="divCustomerPersonalityType">
+                            <div class="col-md-12">
+                                <div style="background-color:#c2dae1; max-width: 600px; margin: auto; border: 2px solid #00c0ef; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+                                    <h4> نوع شخصیت مشتری</h4>
+                                    <select onchange="Web.Customer.OnChangeCustomerPersonalityType(this);" name="CustomerPersonalityType" id="CustomerPersonalityType" class="form-control select2" style="width:100% !important;"></select>
+                                </div>
+                            </div>
+                        </div>
                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
-                                            نام شرکت
+                                            نام و نام خانوادگی
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
                                             <input type="text" name="CompanyName" id="CompanyName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            موبایل مدیر عامل
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CeoMobile" id="CeoMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -79,20 +96,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
-                                            موبایل مدیر عامل
-                                            <span class="RequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input type="text" name="CeoMobile" id="CeoMobile" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4" for="">
                                             کد ملی مدیر عامل
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -101,7 +109,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -110,7 +118,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="NationalCode" id="NationalCode" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="NationalCode" id="NationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     @*<div class="form-group">
@@ -135,25 +143,26 @@
                                             <input type="text" name="AgentName" id="AgentName" class="form-control" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             شماره نماینده شرکت
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="AgentMobile" id="AgentMobile" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="AgentMobile" id="AgentMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    
+                                    <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
-                                            اسامی امضاکنندگان مجاز
+                                            آدرس
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <textarea rows="3" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control"></textarea>
+                                            <textarea rows="3" name="AddressCompany" id="AddressCompany" class="form-control"></textarea>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             تعداد کارکنان شرکت
@@ -187,6 +196,16 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
+                                            نوع گروه شرکتها
+                                            <span class="RequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select name="TypeGroupCompanies" id="TypeGroupCompanies" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
                                             ایمیل
                                             <span class="RequiredLabel">*</span>
                                         </label>
@@ -200,7 +219,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="Tel" id="Tel" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="Tel" id="Tel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -209,16 +228,17 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="PostalCode" id="PostalCode" class="form-control" onkeypress = "return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="PostalCode" id="PostalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
-                                            آدرس
+                                            اسامی امضاکنندگان مجاز
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <textarea rows="3" name="AddressCompany" id="AddressCompany" class="form-control"></textarea>
+                                            <textarea rows="3" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control"></textarea>
                                         </div>
                                     </div>
 
@@ -253,23 +273,21 @@
                                             <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-md-4">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
-                                                ثبت اطلاعات  <i class="fa fa-save"></i>
-                                            </button>
-                                          
-                                        </div>
 
-                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
-                         </div>
-                        </div>
 
-</form>
+                            <div class="row">
+                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
+                                    ثبت اطلاعات  <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
 
 
             </div>
@@ -279,7 +297,7 @@
 
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
-    <script>        
+    <script>
         Web.Customer.InitCustomer();
     </script>
 }

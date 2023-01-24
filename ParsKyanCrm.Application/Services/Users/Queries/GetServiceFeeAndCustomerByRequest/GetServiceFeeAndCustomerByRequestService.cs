@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
@@ -46,6 +47,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
 
+                //if(qServiceFee == null)
+                //{
+                //    return new ResultDto<ResultGetServiceFeeAndCustomerByRequestDto>()
+                //    {
+                //        IsSuccess = true,
+                //        Message = "ثبت قرارداد و اصلاحیه قرارداد با موفقیت انجام شد",
+                //        Data = null
+                //    };
+                //}
 
                 strContract = strContract.Replace("CompanyNameValue", qCustomer.CompanyName).Replace("KindOfCompanyValue", qKindOfCompany.Label).Replace("EconomicCodeValue", qCustomer.EconomicCode).Replace("NationalCodeValue", qCustomer.NationalCode);
                 strContract = strContract.Replace("AddressCompanyValue", qCustomer.AddressCompany).Replace("PostalCodeValue", qCustomer.PostalCode).Replace("AgentNameValue", qCustomer.AgentName);

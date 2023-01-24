@@ -158,7 +158,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
 
-        public bool CanSeeFurtherInfo { get; set; }
+       
         public CityDto City { get; set; }
         public SystemSetingDto HowGetKnowCompany { get; set; }
         public SystemSetingDto KindOfCompany { get; set; }

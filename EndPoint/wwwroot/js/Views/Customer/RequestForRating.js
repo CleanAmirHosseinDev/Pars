@@ -29,13 +29,13 @@
                         + res.data[i].kindOfRequestName + "</td><td>"
                         + res.data[i].dateOfRequestStr + "</td><td>"
                         + res.data[i].levelStepStatus + "</td><td>"
-                        + "<a style='margin-right:5px' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'"      + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title=' مشاهده گردش کار' /></a>";
+                        + "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> گردش کار</a>";
                         if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
-                        strM += "<a style='margin-right:5px' title='ارجاع' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i></a>";
+                            strM += "<a style='margin-right:5px;color:black' title=' ارسال به پارس کیان' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  ارسال به پارس کیان </a>";
                     }
                     if (res.data[i].destLevelStepIndex >= 7) {
 
-                        strM += "<a style='margin-right:5px' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'> اطلاعات تکمیلی</a>";
+                        strM += "<a style='margin-right:5px' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
 
                     }
 

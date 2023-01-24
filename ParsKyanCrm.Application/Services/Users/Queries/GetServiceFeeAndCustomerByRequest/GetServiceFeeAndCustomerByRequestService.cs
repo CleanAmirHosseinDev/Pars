@@ -52,7 +52,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                 //    return new ResultDto<ResultGetServiceFeeAndCustomerByRequestDto>()
                 //    {
                 //        IsSuccess = true,
-                //        Message = "ثبت قرارداد و اصلاحیه قرارداد با موفقیت انجام شد",
+                //        Message = "نرخ قرارداد برای این درخواست تعریف نشده است.",
                 //        Data = null
                 //    };
                 //}

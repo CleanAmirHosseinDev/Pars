@@ -35,9 +35,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
         public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(ContractAndFinancialDocumentsDto request)
         {
             #region Upload Image
+            //
 
             string fileNameOldPic_FinancialDocument = string.Empty, path_FinancialDocument = string.Empty;
             string fileNameOldPic_ContractDocument = string.Empty, path_ContractDocument = string.Empty;
+            string fileNameOldPic_EvaluationFile = string.Empty, path_EvaluationFile = string.Empty;
 
             #endregion
             try
@@ -52,6 +54,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 var con = await _context.ContractAndFinancialDocuments.FindAsync(request.FinancialId);
                 request.ContractDocument = con != null && !string.IsNullOrEmpty(con.ContractDocument) ? con.ContractDocument : string.Empty;
                 request.FinancialDocument = con != null && !string.IsNullOrEmpty(con.FinancialDocument) ? con.FinancialDocument : string.Empty;
+                request.EvaluationFile = con != null && !string.IsNullOrEmpty(con.EvaluationFile) ? con.EvaluationFile : string.Empty;
 
                 #region Upload Image
 
@@ -69,6 +72,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     request.ContractDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocument.FileName);
                     path_ContractDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ContractDocument;
                     await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocument, path_ContractDocument, "قرارداد مشتری");
+                }
+
+                if (request.Result_Final_EvaluationFile != null)
+                {
+                    fileNameOldPic_EvaluationFile = request.EvaluationFile;
+                    request.EvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_EvaluationFile.FileName);
+                    path_EvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.EvaluationFile;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_EvaluationFile, path_EvaluationFile, " نتایج ارزیابی");
                 }
 
                 #endregion                                
@@ -107,6 +118,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             nameof(q_Entity.Entity.SaveDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
                         },
+                        {
+                            nameof(q_Entity.Entity.EvaluationFile),request.EvaluationFile
+                        },
                     }, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
                     #region Upload Image
 
@@ -116,8 +130,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     if (request.Result_Final_FinancialDocument != null)
                         FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_FinancialDocument);
 
+                    if (request.Result_Final_EvaluationFile != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_EvaluationFile);
+
                     path_ContractDocument = string.Empty;
                     path_FinancialDocument = string.Empty;
+                    path_EvaluationFile = string.Empty;
 
                     #endregion
                 }
@@ -137,7 +155,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
 
                 FileOperation.DeleteFile(path_ContractDocument);
                 FileOperation.DeleteFile(path_FinancialDocument);
-
+                FileOperation.DeleteFile(path_EvaluationFile);
                 #endregion
                 throw ex;
             }

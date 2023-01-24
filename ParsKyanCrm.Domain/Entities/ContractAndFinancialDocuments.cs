@@ -15,7 +15,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string ContentContract { get; set; }
         public decimal? PriceContract { get; set; }
         public decimal? Tax { get; set; }        
-
+        public string EvaluationFile { get; set; }
 
     }
 }

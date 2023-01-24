@@ -43,9 +43,8 @@
 
     function systemSeting_Combo(resSingle, showdrp) {
 
-        var codeCustomerPersonalityType = 1;
-        var codeTypeGroupCompanies = 5;
-        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56," + codeCustomerPersonalityType + "," + codeTypeGroupCompanies, PageIndex: 0, PageSize: 0 }), true, function (res) {
+       
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "215,63,27,56,219" , PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
@@ -64,10 +63,10 @@
                     else if (res.data[i].parentCode == 27) {
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
-                    else if (res.data[i].parentCode == codeCustomerPersonalityType) {
+                    else if (res.data[i].parentCode == 215) {
                         strCustomerPersonalityType += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
-                    else if (res.data[i].parentCode == codeTypeGroupCompanies) {
+                    else if (res.data[i].parentCode == 219) {
                         strTypeGroupCompanies += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
                 }
@@ -153,7 +152,7 @@
 
     function onChangeCustomerPersonalityType(e) {
 
-        if ($(e).val() == "165") {
+        if ($(e).val() == "216") {
 
             $(".form-group").hide();
             $(".form-group.FormIsShow").show();

@@ -145,7 +145,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
 
-            When(b => b.CustomerPersonalityType == null || b.CustomerPersonalityType != 165, () =>
+            When(b => b.CustomerPersonalityType == null || b.CustomerPersonalityType != 216, () =>
               {
 
                   RuleFor(p => p.CeoName).NotEmpty().WithMessage("نام مدیر عامل را وارد کنید");

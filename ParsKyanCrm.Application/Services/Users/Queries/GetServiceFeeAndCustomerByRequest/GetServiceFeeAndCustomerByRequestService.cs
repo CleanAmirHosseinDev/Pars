@@ -47,15 +47,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
 
-                //if(qServiceFee == null)
-                //{
-                //    return new ResultDto<ResultGetServiceFeeAndCustomerByRequestDto>()
-                //    {
-                //        IsSuccess = true,
-                //        Message = "ثبت قرارداد و اصلاحیه قرارداد با موفقیت انجام شد",
-                //        Data = null
-                //    };
-                //}
+                if (qServiceFee == null)
+                {
+                    return new ResultGetServiceFeeAndCustomerByRequestDto()
+                    {
+                        Contract = null,
+                        Customers = null,
+                        ServiceFee = null
+                    };
+                }
 
                 strContract = strContract.Replace("CompanyNameValue", qCustomer.CompanyName).Replace("KindOfCompanyValue", qKindOfCompany.Label).Replace("EconomicCodeValue", qCustomer.EconomicCode).Replace("NationalCodeValue", qCustomer.NationalCode);
                 strContract = strContract.Replace("AddressCompanyValue", qCustomer.AddressCompany).Replace("PostalCodeValue", qCustomer.PostalCode).Replace("AgentNameValue", qCustomer.AgentName);
@@ -92,7 +92,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                     decimal N1 = countOfPer > 0 ? (serviceFee.FixedCost.HasValue ? serviceFee.FixedCost.Value : 0) : 0;
                     decimal N2 = Yek10000 < (serviceFee.Fee1.HasValue ? serviceFee.Fee1.Value : 0) ? Yek10000 : 0;
-                    return double.Parse((Math.Round(N1 + N2, 0)).ToString()).ToString("N0"); 
+                    return double.Parse((Math.Round(N1 + N2, 0)).ToString()).ToString("N0");
                 }
                 else
                 {

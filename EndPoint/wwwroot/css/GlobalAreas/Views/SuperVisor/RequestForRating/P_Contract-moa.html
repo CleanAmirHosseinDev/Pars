@@ -1,0 +1,60 @@
+﻿<style>
+    input {
+        text-align: right;
+    }
+    .ContractShowStyle {
+        border: 1px solid silver;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 10px
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+           
+            <div id="ContractBox">
+                <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="">
+                                    تخفیف ریالی
+                                </label>
+                                <div class="col-md-8">
+                                    <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="">
+                                    تخفیف درصدی
+                                </label>
+                                <div class="col-md-8">
+                                    <input type="text" name="DicCountPerecent" id="DicCountPerecent" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.SaveContractAndFinancialDocument(this);">
+                                اعمال تخفیف   <i class="fa fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 right">
+                           
+                        </div>
+                    </div>
+                  </div>
+                    <strong>قرارداد</strong>
+                    <div id="ContractShow"></div>
+                </div>
+                <div id="ContentCKeditor">
+
+                </div>
+            </div>
+    </div>
+</div>

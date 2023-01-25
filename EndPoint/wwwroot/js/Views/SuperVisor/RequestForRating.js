@@ -60,7 +60,7 @@
                     if (res.data[0].levelStepAccessRole == "9") {
                         $("#svisorShowContract").remove();
                     }
-                    if (res.data[0].destLevelStepIndex <=2) {
+                    if (res.data[0].destLevelStepIndex <=4) {
                         $("#svisorShowEvaluationFile").remove();
                         $("#svisorShowDocument").remove();
                     }
@@ -70,7 +70,6 @@
                         htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + encrypt(res.data[i].smsType, keyMaker()) + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker())+"'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
-
 
                     $("#bLLSS").html(htmlB);
                     Ckeditor("ReferralExplanation");
@@ -135,13 +134,23 @@
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
 
         if (!isEmpty(id) && id != 0) {
-           
-                    getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
 
-                        $("#contractInfo").html(resG);
-                        initContract(id);
+            if ((getlstor("loginName") === "1")) {
+                getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moa.html", function (resG) {
 
-                    });              
+                    $("#contractInfo").html(resG);
+                    initContract(id);
+
+                });
+            } else {
+                getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
+
+                    $("#contractInfo").html(resG);
+                    initContract(id);
+
+                });
+            }
+                                
         }
     }
 
@@ -218,13 +227,13 @@
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res != null) {
-                    if (getlstor("loginName") === "1") {
+                    if (getlstor("loginName") === "1") {                        
                         $("#ContentCKeditor").html("<textarea name='ContractText' id='ContractText'>" + res.contract.contractText+"</textarea>");                       
                         Ckeditor("ContractText");
 
                     }
                     else {
-
+                        
                         getContractCustomer(id);
                     }
                   
@@ -245,6 +254,7 @@
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res != null) {
+
                     $("#ContractShow").addClass("ContractShowStyle");
                     $("#ContractShow").html(res.contentContract);
                     $('input[type="text"], textarea').each(function () {

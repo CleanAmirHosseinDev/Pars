@@ -60,6 +60,10 @@
                     if (res.data[0].levelStepAccessRole == "9") {
                         $("#svisorShowContract").remove();
                     }
+                    if (res.data[0].destLevelStepIndex <=2) {
+                        $("#svisorShowEvaluationFile").remove();
+                        $("#svisorShowDocument").remove();
+                    }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
 

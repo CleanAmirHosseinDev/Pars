@@ -156,12 +156,13 @@
 
             $(".form-group").hide();
             $(".form-group.FormIsShow").show();
+            $(".NotShowRequiredLabel").hide();
 
         }
         else {
 
             $(".form-group").show();
-
+            $(".NotShowRequiredLabel").show();
         }
 
     }

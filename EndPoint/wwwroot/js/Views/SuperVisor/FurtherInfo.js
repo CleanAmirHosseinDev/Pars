@@ -239,11 +239,8 @@
     function intiFormShow(Id = null, Columns = null, RequestId=null) {
 
         intiForm(Id);
-        intiFormAnswer(Id, Columns, RequestId);
-       
+        intiFormAnswer(Id, Columns, RequestId);       
     }
-
-
     function intiForm(FormID = null) {
 
         AjaxCallAction("POST", "/api/superVisor/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {

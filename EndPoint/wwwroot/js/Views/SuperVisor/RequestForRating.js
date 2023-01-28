@@ -6,7 +6,6 @@
     function textSearchOnKeyDown(event) {
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
-
     }
 
     function filterGrid() {
@@ -43,7 +42,6 @@
             }
 
         }, true);
-
     }
 
     function initReferral(id = null) {

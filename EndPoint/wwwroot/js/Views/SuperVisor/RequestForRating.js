@@ -6,6 +6,7 @@
     function textSearchOnKeyDown(event) {
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
+
     }
 
     function filterGrid() {
@@ -13,7 +14,7 @@
         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
 
             if (res.isSuccess) {
-              
+
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
@@ -26,22 +27,23 @@
                         + "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> گردش کار </a>"
                         + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='ارجاع' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> ارجاع </a>" : "");
 
-                      if (res.data[i].destLevelStepIndex>=7) {
+                    if (res.data[i].destLevelStepIndex >= 7) {
 
-                        strM +="<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
+                        strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
 
-                       }
-                     strM += "</td></tr>";
+                    }
+                    strM += "</td></tr>";
                     //if (res.data[i].levelStepIndex >= 7) {
 
-                       
-                   // }
+
+                    // }
                 }
 
                 $("#tBodyList").html(strM);
             }
 
         }, true);
+
     }
 
     function initReferral(id = null) {
@@ -55,23 +57,28 @@
                     $("#divMAS").html(resG);
                     $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
                     $("#phch").show();
-                    if (res.data[0].levelStepAccessRole == "9") {
+                    if (getlstor("loginName") === "9") {
                         $("#svisorShowContract").remove();
                     }
-                    if (res.data[0].destLevelStepIndex <=4) {
-                        $("#svisorShowEvaluationFile").remove();
+                    var m = getlstor("loginName");
+                    if (res.data[0].destLevelStepIndex <= 2 || getlstor("loginName") === "5") {
+
                         $("#svisorShowDocument").remove();
+                    }
+                    if (res.data[0].destLevelStepIndex <= 6) {
+                        $("#svisorShowEvaluationFile").remove();
+
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
 
-                        htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + encrypt(res.data[i].smsType, keyMaker()) + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker())+"'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + encrypt(res.data[i].smsType, keyMaker()) + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
 
                     $("#bLLSS").html(htmlB);
                     Ckeditor("ReferralExplanation");
-                   showCustomerInfo();
+                    showCustomerInfo();
                 });
 
 
@@ -86,8 +93,8 @@
             }
 
         }, true);
-      //  Ckeditor("ReferralExplanation");
-        
+        //  Ckeditor("ReferralExplanation");
+
 
     }
 
@@ -104,7 +111,7 @@
 
     function getCustomerInfo() {
 
-      var id= decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker())
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker())
 
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
@@ -117,7 +124,7 @@
                         for (var i = 0; i < res.data.length; i++) {
 
                             initCustomer(res.data[i].customerId);
-                        }                       
+                        }
 
                     });
 
@@ -148,7 +155,7 @@
 
                 });
             }
-                                
+
         }
     }
 
@@ -184,7 +191,7 @@
 
 
             }, true);
-        } 
+        }
     }
 
     function systemSeting_Combo(resSingle) {
@@ -219,28 +226,28 @@
     }
 
     function initContract(id = null) {
-       
+
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res != null) {
-                    if (getlstor("loginName") === "1") {                        
-                        $("#ContentCKeditor").html("<textarea name='ContractText' id='ContractText'>" + res.contract.contractText+"</textarea>");                       
+                    if (getlstor("loginName") === "1") {
+                        $("#ContentCKeditor").html("<textarea name='ContractText' id='ContractText'>" + res.contract.contractText + "</textarea>");
                         Ckeditor("ContractText");
 
                     }
                     else {
-                        
+
                         getContractCustomer(id);
                     }
-                  
+
                 }
 
             }, true);
 
         }
-       
+
 
     }
 
@@ -278,7 +285,7 @@
 
         var objJ = {};
         objJ.DestLevelStepIndex = decrypt($(e).attr("data-DLSI"), keyMaker());
-        objJ.Comment =getDataCkeditor("ReferralExplanation");
+        objJ.Comment = getDataCkeditor("ReferralExplanation");
         objJ.LevelStepAccessRole = decrypt($(e).attr("data-LSAR"), keyMaker());
         objJ.LevelStepStatus = decrypt($(e).attr("data-LSS"), keyMaker());
         objJ.Request = {};
@@ -324,7 +331,7 @@
                     for (var i = 0; i < res.data.length; i++) {
 
                         if (res.data[i].destLevelStepIndex >= 3) {
-                            getShowEvaluationFile(id,res);
+                            getShowEvaluationFile(id, res);
                         }
                     }
                 }
@@ -338,28 +345,28 @@
     function showDocument() {
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         //var stepIndex = decrypt($(e).attr("data-DLSI"), keyMaker());
-      
+
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
 
                 if (res.isSuccess) {
-                        for (var i = 0; i < res.data.length; i++) {
+                    for (var i = 0; i < res.data.length; i++) {
 
-                            if (res.data[i].destLevelStepIndex >= 3) {
-                                getShowDoument(id);
-                            }
+                        if (res.data[i].destLevelStepIndex >= 3) {
+                            getShowDoument(id);
                         }
+                    }
                 }
 
             }, true);
         }
-      
-       
-        
+
+
+
     }
 
 
-    function getShowDoument(id=null) {
+    function getShowDoument(id = null) {
         if (!isEmpty(id) && id != 0) {
             getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Document.html", function (resG) {
 
@@ -370,7 +377,7 @@
         }
     }
 
-    function getShowEvaluationFile(id = null,res=null) {
+    function getShowEvaluationFile(id = null, res = null) {
         if (!isEmpty(id) && id != 0) {
             getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_EvaluationFile.html", function (resG) {
 
@@ -384,7 +391,7 @@
         }
     }
 
-    function getDocument(id=null) {
+    function getDocument(id = null) {
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
@@ -413,13 +420,13 @@
     }
 
 
-    function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice=null) {
+    function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice = null) {
 
         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", JSON.stringify({ RequestID: RequestID, ContentContract: ContentContract, PriceContractStr: FeePrice }), true, function (res) {
 
             if (res.isSuccess) {
 
-               // goToUrl("/SuperVisor/RequestForRating/Index");
+                // goToUrl("/SuperVisor/RequestForRating/Index");
 
             }
             else {
@@ -441,90 +448,90 @@
                 var left = false;
 
                 for (var i = 0; i < res.data.length; i++) {
-                   
-                        var bgColor = i == 0 ? "bg-secondary" : "bg-info";
 
-                        strTimeLine += "<article class='timeline-entry " + (left ? " left-aligned" : "") + "'>";
-                        strTimeLine += "<div class='timeline-entry-inner'>";
+                    var bgColor = i == 0 ? "bg-secondary" : "bg-info";
 
-                        strTimeLine += "<time class='timeline-time' datetime=''>";
-                        strTimeLine += "<span class='date'>" + res.data[i].sendTimeStr + "</span>";
-                        strTimeLine += "<span class='LTRDirection'>" + res.data[i].sendTimeTimeStr + "</span>";
-                        strTimeLine += "</time>";
+                    strTimeLine += "<article class='timeline-entry " + (left ? " left-aligned" : "") + "'>";
+                    strTimeLine += "<div class='timeline-entry-inner'>";
 
-                        strTimeLine += "<div class='timeline-icon " + bgColor + "'>";
-                        strTimeLine += "<i class='entypo-feather'></i>";
-                        strTimeLine += "</div>";
+                    strTimeLine += "<time class='timeline-time' datetime=''>";
+                    strTimeLine += "<span class='date'>" + res.data[i].sendTimeStr + "</span>";
+                    strTimeLine += "<span class='LTRDirection'>" + res.data[i].sendTimeTimeStr + "</span>";
+                    strTimeLine += "</time>";
 
-                        strTimeLine += "<div class='timeline-label'>";
-                        if (i == 0) {
-                            strTimeLine += "<h2>";
-                            strTimeLine += "<span>ایجاد درخواست توسط : </span>";
-                            strTimeLine += "<span class='sender'>" + res.data[i].agentName + " (" + res.data[i].roleDesc + ") " + "</span >";
-                            strTimeLine += "</h2>";
+                    strTimeLine += "<div class='timeline-icon " + bgColor + "'>";
+                    strTimeLine += "<i class='entypo-feather'></i>";
+                    strTimeLine += "</div>";
 
-                            //  strTimeLine += "<p><strong>گیرنده ها :</strong></p>";
-                            strTimeLine += "<ul>";
-                            strTimeLine += "<li>";
-                            // strTimeLine += "<span class='reciver' > علی احمدی </span >";
-                            // strTimeLine += "<span class='PostText'>";                        
-                            // strTimeLine += "<text > [رئیس شورا] </text>";                           
-                            // strTimeLine += "</span>";
-                            strTimeLine += "<span class='smallFontSize'> [" + res.data[i].levelStepStatus + "]</span>";
-                            // strTimeLine += "<span class='redColor'>[ خوانده نشده ]</span>";
-                            strTimeLine += "</li>";
-                            strTimeLine += "</ul>";
-                        }
-                        else {
-                            if (res.data[i].sendUser == null) {
-                               // strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
-                               // strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
-                            } else {
-                                strTimeLine += "<span>" + res.data[i].userRoleDes + ": </span>";
-                                strTimeLine += "<span class='sender'>" + res.data[i].realName + "</span>";
-                            }
-                            strTimeLine += "<br/>";
-                            //  strTimeLine += "<span> گیرنده ها : </span>";
-                            strTimeLine += "<ul>";
-                            strTimeLine += "<li>";
-                            // strTimeLine += "<span class='reciver'>مینا</span>";
-                            // strTimeLine += "<span class='PostText'>";
-                            // strTimeLine += "<text> [رئیس شورا] </text>";
-                            // strTimeLine += " </span>";
-                            strTimeLine += "<span class='smallFontSize'>";
-                            if (i>1) {
-                                strTimeLine += "[" +  res.data[i].destLevelStepIndexButton + "]";
-                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
-                            } else {
-                                strTimeLine += "[" +res.data[i].levelStepStatus +"]";
-                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
-                            }
-                         
-                            strTimeLine += "</span>";
-                            strTimeLine += "</li>";
-                            strTimeLine += "</ul>";
+                    strTimeLine += "<div class='timeline-label'>";
+                    if (i == 0) {
+                        strTimeLine += "<h2>";
+                        strTimeLine += "<span>ایجاد درخواست توسط : </span>";
+                        strTimeLine += "<span class='sender'>" + res.data[i].agentName + " (" + res.data[i].roleDesc + ") " + "</span >";
+                        strTimeLine += "</h2>";
 
-                        }
-                        strTimeLine += "<span></span>";
-                        if (i == 0) {
-                            strTimeLine += "<div class='customDiv'>";
-                            strTimeLine += "<span class='Transcript'>" + res.data[i].kindOfRequestName + "</span>";
-                            strTimeLine += "</div>";
+                        //  strTimeLine += "<p><strong>گیرنده ها :</strong></p>";
+                        strTimeLine += "<ul>";
+                        strTimeLine += "<li>";
+                        // strTimeLine += "<span class='reciver' > علی احمدی </span >";
+                        // strTimeLine += "<span class='PostText'>";                        
+                        // strTimeLine += "<text > [رئیس شورا] </text>";                           
+                        // strTimeLine += "</span>";
+                        strTimeLine += "<span class='smallFontSize'> [" + res.data[i].levelStepStatus + "]</span>";
+                        // strTimeLine += "<span class='redColor'>[ خوانده نشده ]</span>";
+                        strTimeLine += "</li>";
+                        strTimeLine += "</ul>";
+                    }
+                    else {
+                        if (res.data[i].sendUser == null) {
+                            // strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
+                            // strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
                         } else {
-                            if (res.data[i].comment != null) {
-
-                                strTimeLine += "<div class='customDiv'>توضیحات<hr/>";
-                                strTimeLine += "<span class='Transcript'>" + res.data[i].comment + "</span>";
-                                strTimeLine += "</div>";
-                            }
+                            strTimeLine += "<span>" + res.data[i].userRoleDes + ": </span>";
+                            strTimeLine += "<span class='sender'>" + res.data[i].realName + "</span>";
                         }
-                        strTimeLine += "</div>";
-                        //res.data[i].kindOfRequestName
+                        strTimeLine += "<br/>";
+                        //  strTimeLine += "<span> گیرنده ها : </span>";
+                        strTimeLine += "<ul>";
+                        strTimeLine += "<li>";
+                        // strTimeLine += "<span class='reciver'>مینا</span>";
+                        // strTimeLine += "<span class='PostText'>";
+                        // strTimeLine += "<text> [رئیس شورا] </text>";
+                        // strTimeLine += " </span>";
+                        strTimeLine += "<span class='smallFontSize'>";
+                        if (i > 1) {
+                            strTimeLine += "[" + res.data[i].destLevelStepIndexButton + "]";
+                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
+                        } else {
+                            strTimeLine += "[" + res.data[i].levelStepStatus + "]";
+                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
+                        }
 
+                        strTimeLine += "</span>";
+                        strTimeLine += "</li>";
+                        strTimeLine += "</ul>";
+
+                    }
+                    strTimeLine += "<span></span>";
+                    if (i == 0) {
+                        strTimeLine += "<div class='customDiv'>";
+                        strTimeLine += "<span class='Transcript'>" + res.data[i].kindOfRequestName + "</span>";
                         strTimeLine += "</div>";
-                        strTimeLine += "</article>";
-                        left = !left;
-                  
+                    } else {
+                        if (res.data[i].comment != null) {
+
+                            strTimeLine += "<div class='customDiv'>توضیحات<hr/>";
+                            strTimeLine += "<span class='Transcript'>" + res.data[i].comment + "</span>";
+                            strTimeLine += "</div>";
+                        }
+                    }
+                    strTimeLine += "</div>";
+                    //res.data[i].kindOfRequestName
+
+                    strTimeLine += "</div>";
+                    strTimeLine += "</article>";
+                    left = !left;
+
 
                 }
                 if (isFinish) {
@@ -557,9 +564,9 @@
 
     }
 
-     function initRequestReferences(id = null) {
+    function initRequestReferences(id = null) {
 
-         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1, RequestId: id }), true, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1, RequestId: id }), true, function (res) {
 
             if (res.isSuccess) {
                 for (var i = 0; i < res.data.length; i++) {
@@ -571,8 +578,8 @@
                 }
             }
 
-        }, true);       
-          
+        }, true);
+
     }
 
     web.RequestForRating = {
@@ -595,7 +602,7 @@
         GetShowDoument: getShowDoument,
         ShowEvaluationFile: showEvaluationFile,
         GetShowEvaluationFile: getShowEvaluationFile
-       
+
     };
 
 })(Web, jQuery);

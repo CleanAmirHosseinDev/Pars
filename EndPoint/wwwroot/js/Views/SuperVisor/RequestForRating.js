@@ -57,10 +57,11 @@
                     $("#divMAS").html(resG);
                     $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
                     $("#phch").show();
-                    if (res.data[0].levelStepAccessRole == "9") {
+                    if (getlstor("loginName") === "9") {
                         $("#svisorShowContract").remove();
                     }
-                    if (res.data[0].destLevelStepIndex <= 2 && res.data[0].levelStepAccessRole != "5") {
+                    var m = getlstor("loginName");
+                    if (res.data[0].destLevelStepIndex <= 2 || getlstor("loginName") === "5") {
                        
                         $("#svisorShowDocument").remove();
                     }

@@ -605,9 +605,9 @@
         }, true);
     }
 
-    function getFormAnswer(FormID = null, AnswerTableId = null, RequestId=null) {
+    function getFormAnswer(FormID = null, AnswerTableId=null) {
 
-        AjaxCallAction("POST", "/api/superVisor/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, AnswerTableId: AnswerTableId, RequestId: RequestId, PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, AnswerTableId: AnswerTableId, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 for (var i = 0; i < res.data.length; i++) {
@@ -838,7 +838,7 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
-                intiFormSingelAnswer(FormId, $('#frmFrom' + FormID).find('input[name=RequestId]').val());
+                intiFormSingelAnswer(FormId);
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
             else {

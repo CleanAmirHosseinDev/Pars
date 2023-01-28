@@ -82,12 +82,12 @@
     });
 
     function intiTab(TabId = null) {
-        var ID = $("#RequestIdForms").val();
+        var ID = $("#RequestId").val();
       
         switch (TabId) {
             case 1:
                 intiFormShow(1, "1,2,7,8",ID);
-                intiFormQuestion(2, "R",ID);
+                intiFormQuestion(2, "R");
                 intiFormSingelAnswer(2);
                 break;
             case 2:
@@ -95,7 +95,7 @@
                 break;
             case 3:
                 intiForm(6);
-                intiFormQuestion(25, "A",ID);
+                intiFormQuestion(25, "A");
                 intiFormSingelAnswer(25,ID);
                 intiFormShow(16, "1,2,3",ID);
                 intiFormShow(17, "1,2",ID);
@@ -230,19 +230,19 @@
     //}
 
     function initFurtherInfo(id = null) {
-        $("#RequestIdForms").val(id);
+        $("#RequestId").val(id);
         intiTab(1);
     }
 
     function intiFormShow(Id = null, Columns = null, RequestId=null) {
 
-        intiForm(Id, RequestId);
+        intiForm(Id);
         intiFormAnswer(Id, Columns, RequestId);
        
     }
 
 
-    function intiForm(FormID = null, RequestId=null) {
+    function intiForm(FormID = null) {
 
         AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
@@ -251,10 +251,7 @@
                 var strFormId = '';
                 var Filename = 1;
                 for (var i = 0; i < res.data.length; i++) {
-                    if (i == 0) {
-                        strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/>";
-                    }
-                   
+
                     if (i == 0) {
                         strFormId += "<div class='col-lg-6'>";
                     } else if (i == Math.round((res.data.length) / 2) && res.data.length > 1) {
@@ -290,7 +287,7 @@
     }
 
 
-    function intiFormQuestion(FormID = null, Name = null, RequestId = null) {
+    function intiFormQuestion(FormID=null,Name=null) {  
        
         AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
@@ -310,12 +307,7 @@
                     }
 
                     strFormId += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><form id='frmFrom" + Name + (i) + "'> <input type='hidden' id='FormID' name='FormID' value='" + FormID + "' />";
-                    strFormId += "<input type='hidden' id='DataFormQuestionID' name='DataFormQuestionID' value='" + res.data[i].dataFormQuestionId + "' />";
-                   
-                        strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/>";
-
-
-                    strFormId +="<label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
+                    strFormId +="<input type='hidden' id='DataFormQuestionID' name='DataFormQuestionID' value='" + res.data[i].dataFormQuestionId + "' /><label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
                     if (res.data[i].questionType=='select') {
                         strFormId += "<select name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName +"' class='form-control select2' ></select>";
                     } else if (res.data[i].questionType == 'textarea') {
@@ -491,24 +483,13 @@
                     for (var i = 0; i < res.data.length; i++) {
                         switch (res.data[i].dataFormQuestionId) {
                             case 28:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1!="") {
-                                    $("#DivOrganazationChart").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                                 break;
+                                $("#DivOrganazationChart").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                break;
                             case 29:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivOrganizationalDuties").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                              //  $("#DivOrganizationalDuties").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                $("#DivOrganizationalDuties").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 30:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivRiskManagementGuidelines").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                               // $("#DivRiskManagementGuidelines").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                $("#DivRiskManagementGuidelines").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 31:
                                 $("#DivTransactionRegulations").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -543,32 +524,16 @@
                     for (var i = 0; i < res.data.length; i++) {
                         switch (res.data[i].dataFormQuestionId) {
                             case 97:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivLastAuditingTaxList").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                               // $("#DivLastAuditingTaxList").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                $("#DivLastAuditingTaxList").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 98:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivLastChangeOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                               // $("#DivLastChangeOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                $("#DivLastChangeOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 99:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivstatuteDoc").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                               // $("#DivstatuteDoc").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                $("#DivstatuteDoc").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 100:
-                                if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-
-                                }
-                               // $("#DivOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                $("#DivOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             
                         }
@@ -641,14 +606,11 @@
         }, true);
     }
 
-    function getFormAnswer(FormID = null, AnswerTableId = null) {
-        var RequestId = $("#RequestIdForms").val();
+    function getFormAnswer(FormID = null, AnswerTableId=null) {
 
-        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, AnswerTableId: AnswerTableId, RequestId: RequestId, PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormAnswerTabless", JSON.stringify({ FormId: FormID, AnswerTableId: AnswerTableId, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
-
-               // $("#RequestId").val(res.data[0].requestId);
                 for (var i = 0; i < res.data.length; i++) {
 
                     $('#frmFrom' + FormID).find('input[name=AnswerTableId]').val(res.data[0].answerTableId);
@@ -815,7 +777,7 @@
 
                     if (result.isSuccess) {
 
-                        intiFormShow(FormID, ColumNum, $("#RequestIdForms").val());
+                        intiFormShow(FormID, ColumNum);                        
                         $('#frmFrom' + FormID).find('input[name=AnswerTableId]').val('0');
                         alertB("", result.message, "success");
                         $("#btnform" + FormID).html('افزودن');
@@ -851,10 +813,10 @@
             if (res.isSuccess) {
                  $('#frmFrom' + FormId).find('input[name=AnswerTableId]').val('0');
                 if (FormId==1) {
-                    initFurtherInfo($("#RequestIdForms").val());
+                    initFurtherInfo('rtl');
                 } else {
 
-                    intiFormShow(FormId, ColumnNum, $("#RequestIdForms").val());
+                    intiFormShow(FormId, ColumnNum);
                     $(e).html('افزودن');
                 }
 
@@ -877,7 +839,7 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
-                intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                intiFormSingelAnswer(FormId);
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
             else {

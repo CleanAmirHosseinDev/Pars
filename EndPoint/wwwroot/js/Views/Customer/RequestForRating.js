@@ -35,7 +35,7 @@
                     }
                     if (res.data[i].destLevelStepIndex >= 7) {
 
-                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
+                        strM += "<a style='margin-right:5px' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
 
                     }
 
@@ -424,11 +424,11 @@
                     $("#ContentContract").val(res.contentContract);
                     $("#PriceContract").val(res.priceContract);
                     $("#Tax").val(res.tax);
-                    if (res.financialDocument != null && res.financialDocument != "") {
-                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    if (res.financialDocument != null) {
+                        $("#divDownloadFinancialDocument").html("<a href='/File/Download?path=" + res.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
-                    if (res.contractDocument != null && res.contractDocument != "") {
-                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    if (res.contractDocument != null) {
+                        $("#divDownload_ContractDocument").html("<a href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                 }
 

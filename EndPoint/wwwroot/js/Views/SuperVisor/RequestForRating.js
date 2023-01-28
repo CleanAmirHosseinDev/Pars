@@ -60,9 +60,13 @@
                     if (res.data[0].levelStepAccessRole == "9") {
                         $("#svisorShowContract").remove();
                     }
-                    if (res.data[0].destLevelStepIndex <=4) {
-                        $("#svisorShowEvaluationFile").remove();
+                    if (res.data[0].destLevelStepIndex <= 2 && res.data[0].levelStepAccessRole != "5") {
+                       
                         $("#svisorShowDocument").remove();
+                    }
+                    if (res.data[0].destLevelStepIndex <=6) {
+                        $("#svisorShowEvaluationFile").remove();
+                        
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {

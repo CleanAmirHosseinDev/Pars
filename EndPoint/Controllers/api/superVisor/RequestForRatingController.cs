@@ -128,11 +128,11 @@ namespace EndPoint.Controllers.api.superVisor
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromBody] ContractAndFinancialDocumentsDto request)
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocuments([FromForm] ContractAndFinancialDocumentsDto request)
         {
             try
             {
-                request.PriceContract = Convert.ToDecimal((request.PriceContractStr).ToString().Replace(",", ""));
+               // request.PriceContract = Convert.ToDecimal((request.PriceContractStr).ToString().Replace(",", ""));
                 return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
             }
             catch (Exception ex)

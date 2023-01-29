@@ -28,7 +28,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string PriceContractStr { get; set; }
         public decimal? Tax { get; set; }
         public string EvaluationFile { get; set; }
-
+        public decimal? DisCountMoney { get; set; }
+        public float? DicCountPerecent { get; set; }
         public string FinancialDocumentFull
         {
             get

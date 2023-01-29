@@ -1630,6 +1630,9 @@ function getDataCkeditor(id) {
     return CKEDITOR.instances[id].getData();
 
 }
+function setDataCkeditor(id,html) {
+    CKEDITOR.instances[id].setData(html);
+}
 
 function Tagsinput(id) {
     try {

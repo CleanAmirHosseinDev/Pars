@@ -60,9 +60,9 @@
                     if (getlstor("loginName") === "9") {
                         $("#svisorShowContract").remove();
                     }
-                    var m = getlstor("loginName");
+                  
                     if (res.data[0].destLevelStepIndex <= 2 || getlstor("loginName") === "5") {
-
+                       
                         $("#svisorShowDocument").remove();
                     }
                     if (res.data[0].destLevelStepIndex <= 6) {
@@ -109,9 +109,53 @@
         getContractInfo();
     }
 
+
+    function initContract(id=null) {
+       
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res != null) {
+
+                    $("#FinancialID").val(res.financialId);
+                    $("#RequestID").val(res.requestID);
+                    $("#PriceContract").val(res.priceContract);
+                    $("#FinancialDocument").val(res.financialDocument);
+                    $("#ContractDocument").val(res.contractDocument);
+                    
+                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.disCountMoney));
+                    $("#DicCountPerecent").val(moneyCommaSepWithReturn(res.dicCountPerecent));
+                    
+                    if (getlstor("loginName") === "1") {
+                        $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.contentContract + "</textarea>");
+                        Ckeditor("ContentContract");
+
+                    }
+                    else {
+
+                        $("#ContractShow").addClass("ContractShowStyle");
+                        $("#ContractShow").html(res.contentContract);
+                        $('input[type="text"], textarea').each(function () {
+                            //  $(this).attr('readonly', 'readonly');
+                            var text_classname = $(this).attr('name');
+                            var value = $(this).val();
+                            var new_html = ('<label for="' + text_classname + '" id="' + '">' + value + '</label>')
+                            $(this).replaceWith(new_html);
+                        });
+                    }
+
+                }
+                else {
+                    initContractNew();
+                }
+            }, true);
+        }
+    }
+
     function getCustomerInfo() {
 
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker())
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
 
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
@@ -144,7 +188,10 @@
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moa.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                    initContract(id);
+                   
+                        initContract(id);
+                   
+                   
 
                 });
             } else {
@@ -225,7 +272,7 @@
         }, true);
     }
 
-    function initContract(id = null) {
+    function initContractNew(id = null) {
 
         if (!isEmpty(id) && id != 0) {
 
@@ -233,15 +280,13 @@
 
                 if (res != null) {
                     if (getlstor("loginName") === "1") {
-                        $("#ContentCKeditor").html("<textarea name='ContractText' id='ContractText'>" + res.contract.contractText + "</textarea>");
-                        Ckeditor("ContractText");
+                        $("#RequestID").val(id);
+                        $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.contract.contractText + "</textarea>");
+                        var m = res.contract.contractText;
+                        $("#PriceContract").val(removeComaForString($(m).find('input[name="ServiceFeePrice"]').val()));
+                        Ckeditor("ContentContract");
 
                     }
-                    else {
-
-                        getContractCustomer(id);
-                    }
-
                 }
 
             }, true);
@@ -300,12 +345,12 @@
             $(".ButtonOpperationLSSlss").removeAttr("disabled");
 
             if (res.isSuccess) {
-                if (objJ.DestLevelStepIndex == "3") {
-                    var m = getDataCkeditor("ContractText");
-                    var FeePrice = $(m).find('input[name="ServiceFeePrice"]').val();// 
-                    // var Price = RemoveAllCharForPrice(FeePrice);
-                    saveContractAndFinancialDocuments(objJ.Request.Requestid, getDataCkeditor("ContractText"), FeePrice);
-                }
+                //if (objJ.DestLevelStepIndex == "3") {
+                //    var m = getDataCkeditor("ContractText");
+                //    var FeePrice = $(m).find('input[name="ServiceFeePrice"]').val();// 
+                //    // var Price = RemoveAllCharForPrice(FeePrice);
+                //   // saveContractAndFinancialDocuments(objJ.Request.Requestid, getDataCkeditor("ContractText"), FeePrice);
+                //}
 
                 goToUrl("/SuperVisor/RequestForRating/Index");
 
@@ -398,17 +443,17 @@
 
                 if (res != null) {
 
-                    if (res.financialDocument != null) {
+                    if (res.financialDocument != null && res.financialDocument!="" ) {
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
-                    if (res.contractDocument != null) {
+                    if (res.contractDocument != null && res.contractDocument !="") {
                         $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
-                    if (res.evaluationFile != null) {
+                    if (res.evaluationFile != null && res.evaluationFile !="" ) {
                         $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
@@ -419,25 +464,47 @@
         }
     }
 
+    function saveContractAndFinancialDocuments(e) {
 
-    function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice = null) {
+        $(e).attr("disabled", "");
 
-        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", JSON.stringify({ RequestID: RequestID, ContentContract: ContentContract, PriceContractStr: FeePrice }), true, function (res) {
+        RemoveAllCharForPrice("DisCountMoney");
+        AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmContract"), true, function (res) {
+
+            $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
 
-                // goToUrl("/SuperVisor/RequestForRating/Index");
+                alertB("ثبت", " با موفقیت ثبت شد.", "success");
+                
 
-            }
-            else {
+            } else {
 
-                alertB("هشدار", res.message, "warning");
+                $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
 
+                alertB("خطا", res.message, "error");
             }
 
         }, true);
-
     }
+    //function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice = null, DicCountPerecent = null, DisCountMoney=null) {
+
+    //    AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", JSON.stringify({ RequestID: RequestID, ContentContract: ContentContract, PriceContractStr: FeePrice }), true, function (res) {
+
+    //        if (res.isSuccess) {
+
+    //            // goToUrl("/SuperVisor/RequestForRating/Index");
+
+    //        }
+    //        else {
+
+    //            alertB("هشدار", res.message, "warning");
+
+    //        }
+
+    //    }, true);
+
+    //}
 
     function createTimeLine(id = null, isFinish) {
 
@@ -582,6 +649,38 @@
 
     }
 
+
+    function disconut(e) {
+      
+        var dicMoney = removeComaForString($('#DisCountMoney').val());
+        var disPerecent = $('#DicCountPerecent').val();
+        var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
+        var Total = null;
+        var FeePrice= removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
+         if (dicMoney != null && dicMoney != "") {
+
+             Total = FeePrice - dicMoney;
+        }
+        if (disPerecent != null && disPerecent != "") {
+
+             Total = FeePrice - ((FeePrice * disPerecent) / 100);
+        }
+        $("#PriceContract").val(Total);
+        $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
+        $("#ContractShow").hide();
+        $("#ContractShow").html(m);
+        $('input[type="text"], textarea').each(function () {
+            if ($(this).attr("name") == "ServiceFeePrice") {
+                var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + Total + '"/>');
+                $(this).replaceWith(new_html);
+            }
+        });
+
+        var elements = $("#ContractShow").html();
+        setDataCkeditor('ContentContract', elements);  
+        saveContractAndFinancialDocuments(e);
+    }
+
     web.RequestForRating = {
         FilterGrid: filterGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,
@@ -601,7 +700,9 @@
         GetDocument: getDocument,
         GetShowDoument: getShowDoument,
         ShowEvaluationFile: showEvaluationFile,
-        GetShowEvaluationFile: getShowEvaluationFile
+        GetShowEvaluationFile: getShowEvaluationFile,
+        Disconut: disconut,
+        InitContractNew: initContractNew
 
     };
 

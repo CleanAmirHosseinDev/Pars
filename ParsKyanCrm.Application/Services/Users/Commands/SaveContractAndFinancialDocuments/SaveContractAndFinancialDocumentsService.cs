@@ -119,6 +119,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                             nameof(q_Entity.Entity.SaveDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
                         },
                         {
+                            nameof(q_Entity.Entity.DicCountPerecent),request.DicCountPerecent
+                        }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.DisCountMoney),request.DisCountMoney
+                        }
+                        ,
+                        {
                             nameof(q_Entity.Entity.EvaluationFile),request.EvaluationFile
                         },
                     }, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));

@@ -71,12 +71,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
 
                 if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { Email = request.User.Email } }))
                 {
-                    return "پست الکترونیکی مورد نظر ار قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
+                    return "پست الکترونیکی مورد نظر از قبل موجود می باشد لطفا پست الکترونیکی دیگری وارد نمایید";
                 }
 
                 if (!Check_Remote(new UserRolesDto() { UserId = request.UserId, User = new UsersDto() { UserName = request.User.UserName } }))
                 {
-                    return "نام کاربری مورد نظر ار قبل موجود می باشد لطفا نام کاربری دیگری وارد نمایید";
+                    return "نام کاربری مورد نظر از قبل موجود می باشد لطفا نام کاربری دیگری وارد نمایید";
                 }
 
                 return string.Empty;

@@ -116,7 +116,7 @@
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (res != null) {
+                if (res.isSuccess) {
 
                     $("#FinancialID").val(res.financialId);
                     $("#RequestID").val(res.requestID);
@@ -147,7 +147,7 @@
 
                 }
                 else {
-                    initContractNew();
+                    initContractNew(id);
                 }
             }, true);
         }

@@ -32,7 +32,8 @@
                         + "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> گردش کار</a>";
                         if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
                             strM += "<a style='margin-right:5px;color:black' title=' ارسال به پارس کیان' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  ارسال به پارس کیان </a>";
-                    }
+                          
+                        }
                     if (res.data[i].destLevelStepIndex >= 7) {
 
                         strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
@@ -397,6 +398,7 @@
                     getU("/css/GlobalAreas/Views/customer/RequestForRating/P_Contract.html", function (resG) {
 
                         $("#contractInfo").html(resG);
+                        $("#RequestId").val(id);
                         for (var i = 0; i < res.data.length; i++) {
 
                             initContract(res.data[i].requestId);
@@ -476,18 +478,44 @@
     }
 
     function printContract(e) {
+        var id = $("#RequestId").val();
+        goToUrl("/Customer/RequestForRating/ContractPrint/" + id);
       
-        var divToPrint = document.getElementById('ContractShow');
+        //var divToPrint = document.getElementById('ContractShow');
 
-        var newWin = window.open('', 'Print-Window');
+        //var newWin = window.open('', 'Print-Window');
 
-        newWin.document.open();
+        //newWin.document.open();
 
-        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        //newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
 
-        newWin.document.close();
+        //newWin.document.close();
 
-        setTimeout(function () { newWin.close(); }, 10);
+        //setTimeout(function () { newWin.close(); }, 10);
+    }
+
+    function printContracting(id = null) {
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res != null) {
+
+                    $("#ContractShow").html(res.contentContract);
+                    $("#SaveDate").html(res.saveDate);
+                    $('input[type="text"], textarea').each(function () {
+                        //  $(this).attr('readonly', 'readonly');
+                        var text_classname = $(this).attr('name');
+                        var value = $(this).val();
+                        var new_html = ('<label for="' + text_classname + '" id="' + '">' + value + '</label>')
+                        $(this).replaceWith(new_html);
+                    });
+                    window.print();
+                }
+
+            }, true);
+        }
     }
 
     function showContract() {
@@ -551,7 +579,8 @@
         PrintContract: printContract,
         SaveContractAndFinancialDocument: saveContractAndFinancialDocument,
         ShowDocument: showDocument,
-        GetDocument: getDocument
+        GetDocument: getDocument,
+        PrintContracting: printContracting
 
     };
 

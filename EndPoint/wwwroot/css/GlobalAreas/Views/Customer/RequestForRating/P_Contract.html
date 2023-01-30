@@ -1,15 +1,19 @@
-﻿<div class="row">
+﻿
+
+<div class="row">
     <div class="col-md-12">
         <label for="ContractText">متن قرارداد</label>
-       <br/>
+       
+        <br />
         <div class="form-group">
-            <button id="btnPrint" class="btn btn-default fontForAllPage"  onclick="Web.RequestForRating.PrintContract(this)"> <i class="fa fa-print"></i> چاپ</button>
+            <input type="hidden" id="RequestId" name="RequestId" />
+            <button id="btnPrint" class="btn btn-default fontForAllPage" onclick="Web.RequestForRating.PrintContract(this)"> <i class="fa fa-print"></i> چاپ</button>
+        </div>
+       
+        <div id="ContractShow" style="border:1px solid silver;margin:10px;padding:20px;border-radius:10px;color:red">
 
         </div>
-        <div id="ContractShow" style="border:1px solid silver;margin:10px;padding:20px;border-radius:10px">
 
-        </div>
-        
     </div>
 </div>
 

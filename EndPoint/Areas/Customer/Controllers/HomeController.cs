@@ -12,5 +12,7 @@ namespace EndPoint.Areas.Customer.Controllers
         {
             return View();
         }
+
+        
     }
 }

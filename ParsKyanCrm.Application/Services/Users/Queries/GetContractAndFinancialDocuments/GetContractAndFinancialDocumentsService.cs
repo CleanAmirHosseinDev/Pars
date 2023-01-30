@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
             _basicInfoFacad = basicInfoFacad;
         }
 
-        public async Task<ContractAndFinancialDocumentsDto> Execute(RequestContractAndFinancialDocumentsDto request)
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(RequestContractAndFinancialDocumentsDto request)
         {
             try
             {
@@ -34,11 +35,26 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
                 {
                     var q_Find = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == request.RequestID);
 
-                    res = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Find);                    
+                    res = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Find);
+
+                    if (res == null)
+                    {
+                        return new ResultDto<ContractAndFinancialDocumentsDto>
+                        {
+                            Data = null,
+                            IsSuccess = false,
+                            Message = "قراردادی تنظیم نشده است",
+                        };
+                    }
 
                 }
 
-                return res;
+                return new ResultDto<ContractAndFinancialDocumentsDto>
+                {
+                    Data = res,
+                    IsSuccess = true,
+                    Message = string.Empty,                    
+                };
 
             }
             catch (Exception ex)

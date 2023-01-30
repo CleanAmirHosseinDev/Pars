@@ -98,7 +98,7 @@ namespace EndPoint.Controllers.api.customer
 
         [Route("[action]/{id}/")]
         [HttpGet]
-        public async Task<ContractAndFinancialDocumentsDto> Get_ContractAndFinancialDocuments(int? id = null)
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>>Get_ContractAndFinancialDocuments(int? id = null)
         {
             try
             {

@@ -22,7 +22,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string FinancialDocument { get; set; }
         public string ContractDocument { get; set; }
         public int? RequestID { get; set; }
+
         public DateTime? SaveDate { get; set; }
+        public string SaveDateStr
+        {
+            get
+            {
+                return SaveDate.HasValue ? SaveDate.Value.ToPersianDate() : string.Empty;
+            }
+        }
+
         public string ContentContract { get; set; }
         public decimal? PriceContract { get; set; }
         public string PriceContractStr { get; set; }

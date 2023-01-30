@@ -118,24 +118,24 @@
 
                 if (res.isSuccess) {
 
-                    $("#FinancialID").val(res.financialId);
-                    $("#RequestID").val(res.requestID);
-                    $("#PriceContract").val(res.priceContract);
-                    $("#FinancialDocument").val(res.financialDocument);
-                    $("#ContractDocument").val(res.contractDocument);
+                    $("#FinancialID").val(res.data.financialId);
+                    $("#RequestID").val(res.data.requestID);
+                    $("#PriceContract").val(res.data.priceContract);
+                    $("#FinancialDocument").val(res.data.financialDocument);
+                    $("#ContractDocument").val(res.data.contractDocument);
                     
-                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.disCountMoney));
-                    $("#DicCountPerecent").val(moneyCommaSepWithReturn(res.dicCountPerecent));
+                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney));
+                    $("#DicCountPerecent").val(moneyCommaSepWithReturn(res.data.dicCountPerecent));
                     
                     if (getlstor("loginName") === "1") {
-                        $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.contentContract + "</textarea>");
+                        $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.data.contentContract + "</textarea>");
                         Ckeditor("ContentContract");
 
                     }
                     else {
 
                         $("#ContractShow").addClass("ContractShowStyle");
-                        $("#ContractShow").html(res.contentContract);
+                        $("#ContractShow").html(res.data.contentContract);
                         $('input[type="text"], textarea').each(function () {
                             //  $(this).attr('readonly', 'readonly');
                             var text_classname = $(this).attr('name');
@@ -316,10 +316,10 @@
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (res != null) {
+                if (res.isSuccess) {
 
                     $("#ContractShow").addClass("ContractShowStyle");
-                    $("#ContractShow").html(res.contentContract);
+                    $("#ContractShow").html(res.data[0].contentContract);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
                         var text_classname = $(this).attr('name');

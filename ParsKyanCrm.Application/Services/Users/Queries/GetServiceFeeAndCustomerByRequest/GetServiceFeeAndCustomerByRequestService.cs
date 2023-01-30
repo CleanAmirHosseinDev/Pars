@@ -66,6 +66,14 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     if (qKindOfCompany!=null)
                     {
                         strContract = strContract.Replace("KindOfCompanyValue", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
+                        strContract = strContract.Replace("KindOfCompany2Value", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
+
+                    }
+                    else
+                    {
+                        strContract = strContract.Replace("KindOfCompanyValue", "");
+                        strContract = strContract.Replace("KindOfCompany2Value", "");
+
                     }
                     strContract = strContract.Replace("EconomicCodeValue", (qCustomer.EconomicCode == null ? "" : qCustomer.EconomicCode));
                     strContract= strContract.Replace("NationalCodeValue", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
@@ -74,11 +82,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("AgentNameValue", (qCustomer.AgentName == null ? "" : qCustomer.AgentName));
                     strContract = strContract.Replace("EmailValue", (qCustomer.Email == null ? "" : qCustomer.Email));
                     strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
-                    if (qKindOfCompany != null)
-                    {
-                        strContract = strContract.Replace("KindOfCompany2Value", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
-
-                    }
+                  
                     strContract = strContract.Replace("NamesAuthorizedSignatoriesValue", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));
                     strContract = strContract.Replace("CompanyName3Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                     strContract = strContract.Replace("NationalCode2Value", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));

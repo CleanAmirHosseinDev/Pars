@@ -159,12 +159,14 @@
             $(".form-group").hide();
             $(".form-group.FormIsShow").show();
             $(".NotShowRequiredLabel").hide();
+            $("#LabelTypeGroupCompanies").html("نوع فعالیت");
 
         }
         else {
 
             $(".form-group").show();
             $(".NotShowRequiredLabel").show();
+            $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
         }
 
     }

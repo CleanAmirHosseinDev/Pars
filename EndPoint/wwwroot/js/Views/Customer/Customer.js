@@ -23,11 +23,12 @@
 
             $(e).removeAttr("disabled");
 
-            if (res.isSuccess) {
-
-                /*alertB("ثبت", res.message, "success");*/
-                /*$("SeeAllRequest").show();*/
-                goToUrl("/Customer/RequestForRating/Index");
+            if (res.isSuccess) {               
+                if ($("#TypeServiceRequestedId").val()==null) {
+                    alertB("ثبت", "پروفایل شما ویرایش شد.", "success");
+                } else {
+                    goToUrl("/Customer/RequestForRating/Index");
+                }
 
             } else {
 
@@ -136,6 +137,7 @@
                 $("#PostalCode").val(res.postalCode);
 
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
+               
 
                 $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");

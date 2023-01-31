@@ -43,7 +43,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
  
-                if (qServiceFee == null || qCustomer==null || qContract==null)
+
+                if ( qContract==null)
                 {
                     return new ResultGetServiceFeeAndCustomerByRequestDto()
                     {
@@ -87,11 +88,25 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("CompanyName3Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                     strContract = strContract.Replace("NationalCode2Value", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
                     strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
+                    strContract = strContract.Replace("CompanyName5Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                     strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));                   
-                    strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());                    // مبلع فرمول
-                    strContract = strContract.Replace("ServiceFeePriceValue", CalcContractPrice(qCustomer, qServiceFee));
+                    strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());  
+                    // مبلع فرمول
+                    strContract = strContract.Replace("ServiceFeePriceValue",qServiceFee!=null? CalcContractPrice(qCustomer, qServiceFee):"0");
                     qContract.ContractText = strContract;
                 }
+
+               
+                    if (qServiceFee == null)
+                    {
+                        return new ResultGetServiceFeeAndCustomerByRequestDto()
+                        {
+                            Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract()),
+                            Customers = _mapper.Map<CustomersDto>(qCustomer),
+                            ServiceFee = null
+                        };
+                    }
+                
 
                 return new ResultGetServiceFeeAndCustomerByRequestDto()
                 {

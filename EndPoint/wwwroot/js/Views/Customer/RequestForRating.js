@@ -458,9 +458,10 @@
            
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (res != null) {
+                if (res.isSuccess) {
+
                   
-                    $("#ContractShow").html(res.contentContract);
+                    $("#ContractShow").html(res.data.contentContract);
                    
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
@@ -500,10 +501,11 @@
 
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (res != null) {
+                if (res.isSuccess) {
 
-                    $("#ContractShow").html(res.contentContract);
-                    $("#SaveDate").html(res.saveDate);
+                    $("#ContractShow").html(res.data.contentContract);
+                    $("#SaveDate").html(res.data.saveDateStr);
+                    $("#ContractCode").html(res.data.contractCode);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
                         var text_classname = $(this).attr('name');

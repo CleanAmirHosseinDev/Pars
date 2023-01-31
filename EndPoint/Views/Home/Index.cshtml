@@ -187,25 +187,32 @@
                         @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.RankingOfCompaniesDto>)ViewData["ranks"]) {
 
                             <div class="top_rateing_card slider_page">
-                                <div class="c1">
-                                    <p>رتبه</p>
-                                    <div class="c2">
-                                        <p>کوتاه مدت<span>@item.ShortTermRating</span></p>
-                                        <p>بلند مدت<span>@item.LongTermRating</span></p>
-                                    </div>
-                                </div>
-                                <div class="c3">
-                                    <h5>@item.Comany.CompanyName</h5>
-                                    <div class="c4">
-                                        <p>وضعیت:<span>@item.StatusText</span></p>
-                                        <p>دورنما:<span>@item.Vision</span></p>
-                                        <p>بخش:<span>@item.Comany.CompanyGroup.Label</span></p>
+                                <div style="z-index:5;">
+                                    <div style="display:flex;">
+                                        <div class="c1">
+                                            <p>رتبه</p>
+                                            <div class="c2">
+                                                <p>کوتاه مدت<span>@item.ShortTermRating</span></p>
+                                                <p>بلند مدت<span>@item.LongTermRating</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="c3">
+                                            <h5>@item.Comany.CompanyName</h5>
+                                            <div class="c4">
+                                                <p>وضعیت:<span>@item.StatusText</span></p>
+                                                <p>دورنما:<span>@item.Vision</span></p>
+                                                <p>بخش:<span>@item.Comany.CompanyGroup.Label</span></p>
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div class="c5">
-                                        <p>تاریخ:<span>@item.PublishDate</span></p>
+                                        <p>تاریخ انتشار: <span>@item.PublishDate</span></p>
                                         <a class="jbtn" href="/FileUpload/RankingOfCompanies/@item.PressRelease" target="_blank">مشاهده</a>
                                     </div>
+
                                 </div>
+                                <img src="/image/landing/logo.png" class="top_rateing_card_under_img"/>
                             </div>
                         }
                     }

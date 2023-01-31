@@ -9,13 +9,29 @@
     <link href="~/lib/Loader/Loader.css" asp-append-version="true" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+   
     <!-- jQuery 3 -->
     <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/SweetAlert/sweetalert.min.js" asp-append-version="true"></script>
 
     <script src="~/js/iu.min.js" asp-append-version="true"></script>
     <style>
+        @@font-face {
+            font-family: Nazanin;
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot');
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/Nazanin.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/Nazanin.ttf') format('truetype');
+            font-weight: normal;
+        }
+        @@font-face {
+            font-family: Nazanin;
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot');
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/Nazanin.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/Nazanin.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        * {
+            font-family: Nazanin;
+        }
 
         @@page {
             margin: 0
@@ -159,7 +175,7 @@
             background-size: 100%;
             background-repeat: repeat-y;
             background-position: left top;
-            color: forestgreen;
+            color: black;
             border: 1px solid silver;
         }
 
@@ -199,22 +215,20 @@
                 <div class="row">
                     <div>
                         <div style="width:50%;float:right;text-align:right">
-                            <img src="~/Images/logo/" style="width:85px" />
+                            <p></p>
                         </div>
                         <div style="width:50%;float:right">
                             <div style="float:left;text-align:right;padding-right:7px">
-                                <p>
-                                    @ViewBag.id<br />
+                                <p style="font-weight: bold; font-size: 16px">
+                                    <span id="ContractCode"></span><br />
                                     <span id="SaveDate"></span><br />
 
                                 </p>
                             </div>
                             <div style="float:left">
-                                <p>
-                                    شماره  : <br />
+                                <p style="font-weight:bold;font-size:16px">
+                                    شماره  : <br/>
                                     تاریخ : <br />
-
-
                                 </p>
                             </div>
                             <div style="clear:both"></div>
@@ -223,7 +237,7 @@
                     </div>
                 </div>
 
-                <div class="row text-right ">
+                <div class="row text-right " style="padding-top:20px">
                     <div id="ContractShow"></div>
                 </div>
             </div>

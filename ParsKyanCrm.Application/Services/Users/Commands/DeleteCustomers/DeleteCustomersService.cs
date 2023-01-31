@@ -55,6 +55,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers
                     }
                     }, string.Format("CustomerID" + " = '{0}' ", id));
 
+                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users).Name, new Dictionary<string, object>()
+                    {
+                    {
+                        "IsActive",(byte)Common.Enums.TablesGeneralIsActive.InActive
+                    }
+                    }, string.Format("CustomerID" + " = '{0}' ", id));
+
                 return new ResultDto()
                 {
                     IsSuccess = true,

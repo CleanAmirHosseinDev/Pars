@@ -27,6 +27,9 @@
 
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
+
+                setlstor("fullName", $("#CompanyName").val());
+
                 goToUrl("/Customer/RequestForRating/Index");
 
             } else {
@@ -158,6 +161,7 @@
             $(".form-group.FormIsShow").show();
             $(".NotShowRequiredLabel").hide();
             $("#LabelTypeGroupCompanies").html("نوع فعالیت");
+            $("#LabelEconomicCode").html("شماره کارت بازرگانی");
 
         }
         else {
@@ -165,6 +169,7 @@
             $(".form-group").show();
             $(".NotShowRequiredLabel").show();
             $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
+            $("#LabelEconomicCode").html("شماره ثبت");
         }
 
     }

@@ -36,7 +36,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss
                              select s).Include(p => p.City).Include(p => p.HowGetKnowCompany).Include(p => p.KindOfCompany).Include(p => p.TypeServiceRequested).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.AgentName.Contains(request.Search)
-                || p.AgentMobile.Contains(request.Search)
+                || p.AgentMobile.Contains(request.Search) ||
+                p.NationalCode.Contains(request.Search)
                 );
 
                 switch (request.SortOrder)

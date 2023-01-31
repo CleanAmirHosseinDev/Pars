@@ -134,14 +134,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
     }
 
     public class ValidatorRequestSaveBasicInformationCustomersDto : AbstractValidator<RequestSaveBasicInformationCustomersDto>
-    {        
+    {
 
         public ValidatorRequestSaveBasicInformationCustomersDto()
         {
 
 
             RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام و نام خانوادگی را وارد کنید");
-            RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید");
+            RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده را وارد کنید");
             RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
 

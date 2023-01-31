@@ -35,30 +35,41 @@
 
     function systemSeting_Combo(resSingle) {
 
-        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63,27,56", PageIndex: 0, PageSize: 0 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "126,63,27,56,221", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
-                var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';
-                var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
+                var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';                
+                var strTypeGroupCompanies = '<option value="">انتخاب کنید</option>';
+                var strCustomerPersonalityType = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].parentCode == 56) {
                         strHowGetKnowCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } else if (res.data[i].parentCode == 63) {
-                        strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    } else if (res.data[i].parentCode == 27) {
+                    }  else if (res.data[i].parentCode == 27) {
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+                    else if (res.data[i].parentCode == 126) {
+                        strTypeGroupCompanies += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+                    else if (res.data[i].parentCode == 221) {
+                        strCustomerPersonalityType += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
                 }
 
+                $("#CustomerPersonalityType").html(strCustomerPersonalityType);
+                $("#CustomerPersonalityType").val(resSingle.customerPersonalityType);
+
+                $("#CustomerPersonalityType").change();
+
+                $("#TypeGroupCompanies").html(strTypeGroupCompanies);
+                $("#TypeGroupCompanies").val(resSingle.typeGroupCompanies);
+
                 $("#KindOfCompanyId").html(strKindOfCompany);
-                $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);
-                $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
+                $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);                
 
                 $("#HowGetKnowCompanyId").val(resSingle.howGetKnowCompanyId);
-                $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);
-                $("#TypeServiceRequestedId").val(resSingle.typeServiceRequestedId);
+                $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);                
 
             }
         }, true);
@@ -158,13 +169,35 @@
 
     }
 
+    function onChangeCustomerPersonalityType(e) {
+
+        if ($(e).val() == "223") {
+
+            $(".form-group").hide();
+            $(".form-group.FormIsShow").show();
+            $(".NotShowRequiredLabel").hide();
+            $("#LabelTypeGroupCompanies").html("نوع فعالیت");
+            $("#LabelEconomicCode").html("شماره کارت بازرگانی");
+
+        }
+        else {
+
+            $(".form-group").show();
+            $(".NotShowRequiredLabel").show();
+            $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
+            $("#LabelEconomicCode").html("شماره ثبت");
+        }
+
+    }
+
     web.Customer = {
         FilterGrid: filterGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,
         SaveCustomer: saveCustomer,
         InitCustomer: initCustomer,
         SystemSeting_Combo: systemSeting_Combo,
-        Delete_Customers: delete_Customers
+        Delete_Customers: delete_Customers,
+        OnChangeCustomerPersonalityType: onChangeCustomerPersonalityType
     };
 
 })(Web, jQuery);

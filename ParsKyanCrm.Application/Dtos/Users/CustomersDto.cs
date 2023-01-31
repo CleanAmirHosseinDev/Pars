@@ -166,6 +166,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? CustomerPersonalityType { get; set; }
         public int? TypeGroupCompanies { get; set; }
+        public string TypeGroupCompaniesName { get; set; }
 
     }    
 

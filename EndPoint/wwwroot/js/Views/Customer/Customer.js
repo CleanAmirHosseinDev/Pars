@@ -23,8 +23,13 @@
 
             $(e).removeAttr("disabled");
 
-            if (res.isSuccess) {               
-                if ($("#TypeServiceRequestedId").val()==null) {
+            if (res.isSuccess) {
+
+                /*alertB("ثبت", res.message, "success");*/
+                /*$("SeeAllRequest").show();*/
+                setlstor("fullName", $("#CompanyName").val());
+
+                if ($("#TypeServiceRequestedId").val() == null) {
                     alertB("ثبت", "پروفایل شما ویرایش شد.", "success");
                 } else {
                     goToUrl("/Customer/RequestForRating/Index");
@@ -160,6 +165,7 @@
             $(".form-group.FormIsShow").show();
             $(".NotShowRequiredLabel").hide();
             $("#LabelTypeGroupCompanies").html("نوع فعالیت");
+            $("#LabelEconomicCode").html("شماره کارت بازرگانی");
 
         }
         else {
@@ -167,6 +173,7 @@
             $(".form-group").show();
             $(".NotShowRequiredLabel").show();
             $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
+            $("#LabelEconomicCode").html("شماره ثبت");
         }
 
     }

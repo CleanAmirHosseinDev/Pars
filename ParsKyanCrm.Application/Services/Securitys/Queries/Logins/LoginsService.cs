@@ -140,7 +140,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                             var customerUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == objSingleCus.CustomerId);
 
-                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(objSingleCus.AgentName) ? objSingleCus.AgentName : "فاقد نام";
+                            res_ResultLoginDto.FullName = !string.IsNullOrEmpty(objSingleCus.CompanyName) ? objSingleCus.CompanyName : "فاقد نام";
                             res_ResultLoginDto.UserID = customerUser.UserId;
                             res_ResultLoginDto.CustomerID = objSingleCus.CustomerId.ToString().Encrypt_Advanced_For_Number();
 

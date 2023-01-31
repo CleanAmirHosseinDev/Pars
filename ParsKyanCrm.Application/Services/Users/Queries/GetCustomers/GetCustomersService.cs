@@ -42,6 +42,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomers
                     res.KindOfCompany = q_Find.KindOfCompany != null ? _mapper.Map<Dtos.BasicInfo.SystemSetingDto>(q_Find.KindOfCompany) : new Dtos.BasicInfo.SystemSetingDto();
                     res.TypeServiceRequested = q_Find.TypeServiceRequested != null ? _mapper.Map<Dtos.BasicInfo.SystemSetingDto>(q_Find.TypeServiceRequested) : new Dtos.BasicInfo.SystemSetingDto();
 
+                    res.TypeGroupCompaniesName = q_Find.TypeGroupCompanies != null ? (await _context.SystemSeting.FindAsync(q_Find.TypeGroupCompanies.Value)).Label : string.Empty;
                 }
 
                 return res;

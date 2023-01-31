@@ -103,10 +103,10 @@
                                             <input type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
-                                            شماره ثبت
-                                            <span class="RequiredLabel">*</span>
+                                            <span id="LabelEconomicCode">شماره ثبت</span>
+                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
                                             <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
@@ -145,7 +145,7 @@
                                     </div>
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
-                                            شماره نماینده شرکت
+                                            شماره نماینده <span class="NotShowRequiredLabel">شرکت</span>
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">

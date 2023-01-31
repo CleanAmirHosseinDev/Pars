@@ -145,9 +145,14 @@
 
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
                
+                if (res.lastInsuranceList != null && res.lastInsuranceList !="" ) {
+                    $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
-                $("#divDownload").html("<a href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-                $("#divDownload_AuditedFinancialStatements").html("<a href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                }
+                if (res.auditedFinancialStatements != null && res.auditedFinancialStatements != "") {
+                    $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
                 checkForFirstRequest(res);
                 // systemSeting_Combo(res);
 
@@ -168,7 +173,7 @@
             $(".NotShowRequiredLabel").hide();
             $("#LabelTypeGroupCompanies").html("نوع فعالیت");
             $("#LabelEconomicCode").html("شماره کارت بازرگانی");
-
+            $("#LabelCompanyName").html("نام و نام خانوادگی");
         }
         else {
 
@@ -176,6 +181,7 @@
             $(".NotShowRequiredLabel").show();
             $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
             $("#LabelEconomicCode").html("شماره ثبت");
+            $("#LabelCompanyName").html("نام شرکت");
         }
 
     }

@@ -465,9 +465,9 @@
                    
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
-                        var text_classname = $(this).attr('name');
+                       // var text_classname = $(this).attr('name');
                         var value = $(this).val();
-                        var new_html = ('<label for="' + text_classname + '" id="' + '">' + value + '</label>')
+                        var new_html = ('<storang>' + value + '</storang>');
                         $(this).replaceWith(new_html);
                     });
                 }
@@ -508,9 +508,9 @@
                     $("#ContractCode").html(res.data.contractCode);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
-                        var text_classname = $(this).attr('name');
+                       // var text_classname = $(this).attr('name');
                         var value = $(this).val();
-                        var new_html = ('<label for="' + text_classname + '" id="' + '">' + value + '</label>')
+                        var new_html = ('<storang>' + value + '</storang>');
                         $(this).replaceWith(new_html);
                     });
                     window.print();

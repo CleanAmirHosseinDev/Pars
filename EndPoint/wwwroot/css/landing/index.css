@@ -103,7 +103,7 @@ h4 { font-size: 35px; }
             .top_rateing_card .c5 p span { font-size: 15px; font-weight: 600; }
         .top_rateing_card .c5 .jbtn { font-size: 13px; padding: 9px; margin-right: auto; }
 
-.top_rateing_card_under_img { position: absolute; opacity: 0.15; height: 157px; transform: rotate(315deg); margin-right: 130px; }
+.top_rateing_card_under_img { position: absolute; opacity: 0.25; height: 157px; transform: rotate(315deg); margin-right: 130px; }
 
 @media only screen and (max-width: 400px) { .top_rateing_card { width: 300px; margin: 10px 0; }
 }

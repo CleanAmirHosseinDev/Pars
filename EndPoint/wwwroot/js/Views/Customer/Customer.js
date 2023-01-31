@@ -35,7 +35,8 @@
                     goToUrl("/Customer/RequestForRating/Index");
                 }
 
-            } else {
+            }
+            else {
 
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
 

@@ -30,6 +30,7 @@
                 setlstor("fullName", $("#CompanyName").val());
 
                 if ($("#TypeServiceRequestedId").val() == null) {
+                    $(".fullNameInLayout").html(getlstor("fullName"));
                     alertB("ثبت", "پروفایل شما ویرایش شد.", "success");
                 } else {
                     goToUrl("/Customer/RequestForRating/Index");

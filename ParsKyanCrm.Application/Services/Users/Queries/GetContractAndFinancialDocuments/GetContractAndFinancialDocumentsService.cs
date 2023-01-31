@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Domain.Entities;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancialDocuments
 {
@@ -23,6 +25,20 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
+        }
+
+        private string MaxAllContractCode()
+        {
+            try
+            {
+                List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "cast(isnull((max(cast((isnull(ContractCode,'999')) as bigint))+1),1) as nvarchar(max)) as ContractCode"));
+                if (q != null) return q.FirstOrDefault().ContractCode.ToString();
+                return "1000";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(RequestContractAndFinancialDocumentsDto request)
@@ -45,6 +61,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
                             IsSuccess = false,
                             Message = "قراردادی تنظیم نشده است",
                         };
+                    }
+
+                    if (string.IsNullOrEmpty(q_Find.ContractCode))
+                    {
+                        Ado_NetOperation.SqlUpdate("ContractAndFinancialDocuments",new Dictionary<string, object>() {
+                            {
+                                "ContractCode",MaxAllContractCode()
+                            }
+                        }, string.Format(nameof(q_Find.FinancialId) + " = '{0}' ", q_Find.FinancialId));
                     }
 
                 }

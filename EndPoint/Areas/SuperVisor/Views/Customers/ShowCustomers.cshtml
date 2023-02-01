@@ -50,46 +50,46 @@
                     <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">                        
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group FormIsShow">
                                     <label class="control-label col-md-4" for="">
-                                        نام شرکت
-                                        
+                                        <span id="LabelCompanyName">نام شرکت</span>
+
                                     </label>
-                                    <div class="col-md-8">                                        
+                                    <div class="col-md-8">
                                         <span id="CompanyName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         نام مدیر عامل
-                                        
+
                                     </label>
-                                    <div class="col-md-8">                                        
+                                    <div class="col-md-8">
                                         <span id="CeoName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         موبایل مدیر عامل
-                                        
+
                                     </label>
-                                    <div class="col-md-8">                                        
+                                    <div class="col-md-8">
                                         <span id="CeoMobile"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         کد ملی مدیر عامل
-                                        
+
                                     </label>
-                                    <div class="col-md-8">                                        
+                                    <div class="col-md-8">
                                         <span id="CeoNationalCode"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group FormIsShow">
                                     <label class="control-label col-md-4" for="">
-                                        شماره ثبت
-                                        
+                                        <span id="LabelEconomicCode">شماره ثبت</span>
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="EconomicCode"></span>
@@ -98,7 +98,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         شناسه ملی  شرکت
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="NationalCode"></span>
@@ -107,37 +107,37 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         نام نماینده شرکت
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="AgentName"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group FormIsShow">
                                     <label class="control-label col-md-4" for="">
-                                        شماره نماینده شرکت
-                                        
+                                        شماره نماینده <span class="NotShowRequiredLabel">شرکت</span>
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="AgentMobile"></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                
+                                <div class="form-group FormIsShow">
                                     <label class="control-label col-md-4" for="">
-                                        اسامی امضاکنندگان مجاز
-                                        
+                                        آدرس
+
                                     </label>
                                     <div class="col-md-8">
-                                        <p id="NamesAuthorizedSignatories"></p>
+                                        <p id="AddressCompany"></p>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
+                                <div class="form-group FormIsShow">
                                     <label class="control-label col-md-4" for="">
-                                        تعداد کارکنان شرکت
-                                        
+                                        تعداد کارکنان <span class="NotShowRequiredLabel">شرکت</span>
+
                                     </label>
-                                    <div class="col-md-8">                                        
+                                    <div class="col-md-8">
                                         <p id="CountOfPersonal"></p>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         نحوه آشنایی با شرکت
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="HowGetKnowCompanyId"></span>
@@ -156,17 +156,28 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         نوع شرکت
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="KindOfCompanyId"></span>
                                     </div>
                                 </div>
 
+                                <div class="form-group FormIsShow">
+                                    <label class="control-label col-md-4" for="">
+
+                                        <span id="LabelTypeGroupCompanies">نوع گروه شرکتها</span>
+
+                                    </label>
+                                    <div class="col-md-8">
+                                        <span id="TypeGroupCompanies"></span>                                        
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         ایمیل
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="Email"></span>
@@ -175,7 +186,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         شماره تماس
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="Tel"></span>
@@ -184,7 +195,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
                                         کد پستی
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="PostalCode"></span>
@@ -192,39 +203,39 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="">
-                                        آدرس
-                                        
+                                        اسامی امضاکنندگان مجاز
+
                                     </label>
                                     <div class="col-md-8">
-                                        <p id="AddressCompany"></p>
+                                        <p id="NamesAuthorizedSignatories"></p>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group FormIsShow">
                                     <label class="control-label col-md-4" for="">
                                         درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده
-                                        
+
                                     </label>
                                     <div class="col-md-8">
                                         <span id="AmountOsLastSales"></span>
                                     </div>
                                 </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4" for="">
-                                            آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی                                            
-                                        </label>
-                                        <div class="col-md-8">                                            
-                                            <div id="divDownload_AuditedFinancialStatements"></div>
-                                        </div>
+                                <div class="form-group FormIsShow">
+                                    <label class="control-label col-md-4" for="">
+                                        آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div id="divDownload_AuditedFinancialStatements"></div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4" for="">
-                                            لیست آخرین بیمه                                            
-                                        </label>
-                                        <div class="col-md-8">                                            
-                                            <div id="divDownload"></div>                                            
-                                        </div>
+                                </div>
+                                <div class="form-group FormIsShow">
+                                    <label class="control-label col-md-4" for="">
+                                        لیست آخرین بیمه
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div id="divDownload"></div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>

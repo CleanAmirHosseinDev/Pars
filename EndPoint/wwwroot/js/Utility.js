@@ -1,4 +1,5 @@
 ﻿
+
 setlstor = function (k, v) {
     var key = encrypt(k.toString(), keyMaker());
     var val = encrypt(v.toString(), keyMaker());
@@ -32,6 +33,11 @@ encrypt = function (text, key, revert = false) {
 
     if (isEmpty(text))
         return '';
+    
+    if (typeof text == "boolean") {
+        text = text.toString();
+    }
+
     var newText = '';
     for (var i = 0; i < text.length; i++)
         newText += String.fromCharCode(text.charCodeAt(i) + (revert ? key.charCodeAt(Math.abs(key.length - i) % key.length) : key.charCodeAt(i % key.length)));

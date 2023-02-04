@@ -28,7 +28,7 @@ namespace ParsKyanCrm.Common
         {
             try
             {
-                if (modelState != null) return string.Join("\n", modelState.Select(p => p.ErrorMessage));
+                if (modelState != null && modelState.Count() > 0) return string.Join("\n", modelState.FirstOrDefault().ErrorMessage);
 
                 return string.Empty;
             }

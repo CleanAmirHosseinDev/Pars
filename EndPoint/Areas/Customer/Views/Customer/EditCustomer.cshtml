@@ -5,6 +5,7 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link href="~/lib/TagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
 }
 
 @section PageHeader{
@@ -73,7 +74,7 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span> 
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="CompanyName" id="CompanyName" class="form-control" />
+                                            <input type="text" name="CompanyName" id="CompanyName" class="form-control" maxlength="50" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -82,7 +83,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="CeoMobile" id="CeoMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input maxlength="11" type="text" name="CeoMobile" id="CeoMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -91,7 +92,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="CeoName" id="CeoName" class="form-control" />
+                                            <input type="text" name="CeoName" id="CeoName" class="form-control" maxlength="50"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -100,7 +101,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input maxlength="10" type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group FormIsShow">
@@ -109,7 +110,7 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input type="text" maxlength="50" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -118,7 +119,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="NationalCode" id="NationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input maxlength="11" type="text" name="NationalCode" id="NationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     @*<div class="form-group">
@@ -140,7 +141,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="AgentName" id="AgentName" class="form-control" />
+                                            <input type="text" name="AgentName" id="AgentName" class="form-control" maxlength="50" />
                                         </div>
                                     </div>
                                     <div class="form-group FormIsShow">
@@ -149,7 +150,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="AgentMobile" id="AgentMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input type="text" maxlength="11" name="AgentMobile" id="AgentMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     
@@ -169,7 +170,7 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="CountOfPersonal" id="CountOfPersonal" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input type="text" maxlength="9" name="CountOfPersonal" id="CountOfPersonal" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +211,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="Email" id="Email" class="form-control" />
+                                            <input type="text" name="Email" id="Email" class="form-control" maxlength="50" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -219,7 +220,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="Tel" id="Tel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input type="text" maxlength="11" name="Tel" id="Tel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -228,7 +229,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" name="PostalCode" id="PostalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                            <input type="text" name="PostalCode" id="PostalCode" class="form-control" maxlength="10" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
 
@@ -237,8 +238,9 @@
                                             اسامی امضاکنندگان مجاز
                                             <span class="RequiredLabel">*</span>
                                         </label>
-                                        <div class="col-md-8">
-                                            <textarea rows="3" name="NamesAuthorizedSignatories" id="NamesAuthorizedSignatories" class="form-control"></textarea>
+                                        <div class="col-md-8">                                            
+                                            <input type="text" id="NamesAuthorizedSignatories" name="NamesAuthorizedSignatories" class="form-control" />
+                                            <span class="RequiredLabel">نکته : اسامی امضاکنندگان مجاز را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
                                         </div>
                                     </div>
 
@@ -248,7 +250,7 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <div><input type="text" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
+                                            <div><input type="text" maxlength="14" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
                                         </div>
                                     </div>
                                         <div class="form-group FormIsShow">
@@ -297,6 +299,7 @@
 
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/TagsInput/bootstrap-tagsinput.min.js"></script>
     <script>
         Web.Customer.InitCustomer();
     </script>

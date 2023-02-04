@@ -31,6 +31,7 @@
 
                 if ($("#TypeServiceRequestedId").val() == null) {
                     $(".fullNameInLayout").html(getlstor("fullName"));
+                    $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     alertB("ثبت", "پروفایل شما ویرایش شد.", "success");
                 } else {
                     goToUrl("/Customer/RequestForRating/Index");
@@ -121,8 +122,7 @@
 
     function initCustomer(dir = 'rtl') {
 
-        ComboBoxWithSearch('.select2', dir);
-        
+        ComboBoxWithSearch('.select2', dir);        
 
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
 
@@ -138,14 +138,17 @@
                 $("#AgentMobile").val(res.agentMobile);
                 $("#AgentName").val(res.agentName);
                 $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
+
+                Tagsinput("NamesAuthorizedSignatories");
+
                 $("#CountOfPersonal").val(res.countOfPersonal);
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
                 $("#PostalCode").val(res.postalCode);
 
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
-               
-                if (res.lastInsuranceList != null && res.lastInsuranceList !="" ) {
+
+                if (res.lastInsuranceList != null && res.lastInsuranceList != "") {
                     $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                 }
@@ -158,7 +161,9 @@
 
 
             }
-
+            else {
+                Tagsinput("NamesAuthorizedSignatories");
+            }
 
         }, true);
 

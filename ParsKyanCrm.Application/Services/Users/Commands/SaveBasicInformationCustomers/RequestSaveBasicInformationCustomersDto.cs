@@ -144,50 +144,52 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
               {
 
                   RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام و نام خانوادگی را وارد کنید").Length(5, 50).WithMessage("نام و نام خانوادگی باید حداقل 5 حرف و حداکثر 50 حرف باشد");
-                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده را به درستی وارد کنید");
+                  RuleFor(p => p.EconomicCode).Length(3, 50).WithMessage("شماره کارت بازرگانی باید حداقل 3 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده را به درستی وارد کنید");                  
 
-                  RuleFor(p => p.EconomicCode).Length(3,50).WithMessage("شماره کارت بازرگانی باید حداقل 3 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
-              });
-
-
-
-            RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
+              });            
 
 
             When(b => b.CustomerPersonalityType == null || b.CustomerPersonalityType != 223, () =>
               {
 
-                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده شرکت را به درستی وارد کنید");
-
                   RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام شرکت را وارد کنید").Length(5, 50).WithMessage("نام شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
-
-                  RuleFor(p => p.CeoName).NotEmpty().WithMessage("نام مدیر عامل را وارد کنید").Length(5,50).WithMessage("نام مدیر عامل باید حداقل 5 حرف و حداکثر 50 حرف باشد");
 
                   RuleFor(p => p.CeoMobile).NotEmpty().WithMessage("موبایل مدیر عامل را وارد کنید").Must(Utility.CheckMobile).WithMessage("موبایل مدیر عامل را به درستی وارد کنید");
 
+                  RuleFor(p => p.CeoName).NotEmpty().WithMessage("نام مدیر عامل را وارد کنید").Length(5, 50).WithMessage("نام مدیر عامل باید حداقل 5 حرف و حداکثر 50 حرف باشد");
+
                   RuleFor(p => p.CeoNationalCode).NotEmpty().WithMessage("کد ملی مدیر عامل را وارد کنید").Length(10).WithMessage("کد ملی مدیر عامل باید 10 حرف باشد");
 
-                  RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("شماره ثبت را وارد کنید").Length(3,50).WithMessage("شماره ثبت باید حداقل 3 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.EconomicCode).NotEmpty().WithMessage("شماره ثبت را وارد کنید").Length(3, 50).WithMessage("شماره ثبت باید حداقل 3 حرف و حداکثر 50 حرف باشد");
 
-                  RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید").Length(10,11).WithMessage("شناسه ملی شرکت باید حداقل 10 حرف و حداکثر 11 حرف باشد");
+                  RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید").Length(10, 11).WithMessage("شناسه ملی شرکت باید حداقل 10 حرف و حداکثر 11 حرف باشد");
 
-                  RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت را وارد کنید").Length(5,50).WithMessage("نام نماینده شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت را وارد کنید").Length(5, 50).WithMessage("نام نماینده شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
 
-                  RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
+                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده شرکت را به درستی وارد کنید");
+
+                  RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
                   RuleFor(p => p.CountOfPersonal).NotEmpty().WithMessage("تعداد کارکنان شرکت را وارد کنید");
 
                   RuleFor(p => p.HowGetKnowCompanyId).NotEmpty().WithMessage("نحوه آشنایی با شرکت را انتخاب کنید");
+
                   RuleFor(p => p.KindOfCompanyId).NotEmpty().WithMessage("نوع شرکت را انتخاب کنید");
 
-                  RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید").Length(5,50).WithMessage("ایمیل باید حدقل 5 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.TypeGroupCompanies).NotEmpty().WithMessage("نوع گروه شرکتها را انتخاب کنید");
+
+                  RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید").Length(5, 50).WithMessage("ایمیل باید حدقل 5 حرف و حداکثر 50 حرف باشد");
 
                   RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تلفن ثابت را وارد کنید").Must(Utility.CheckTel).WithMessage("شماره تلفن ثابت را به درستی وارد کنید");
 
-                  RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");
+                  RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");                                                                                                              
 
                   RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
+
+                  RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
 
               });
 

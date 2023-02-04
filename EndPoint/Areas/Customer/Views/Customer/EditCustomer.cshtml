@@ -52,7 +52,7 @@
                 <!-- /. tools -->
             </div>
             <div class="box-body" style="">
-                <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post">
+                <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post" onchange="$('#btnOpperationRun').click();">
                     
                     <div class="form-horizontal">
                         <div class="row" id="divTypeServiceRequestedId">
@@ -262,49 +262,36 @@
                                             <div><input type="text" maxlength="14" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
                                         </div>
                                     </div>
-                                    
-                                    <div style="border:1px solid silver;border-radius:7px;margin-top:10px;margin-bottom:10px">
-                                        <div style="background-color:#e3e1e1">
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx </span><br />
-                                            <span> حداکثر 5 مگابایت</span>
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
+                                            @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
+                                            <div id="divDownload_AuditedFinancialStatements"></div>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
                                         </div>
-                                            <div class="panel-body">
-                                                <div class="form-group FormIsShow">
-                                                    <label class="control-label col-md-4" for="">
-                                                        آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                                        <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                                    </label>
-                                                    <div class="col-md-4">
-                                                        <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
-
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div id="divDownload_AuditedFinancialStatements"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group FormIsShow">
-                                                    <label class="control-label col-md-4" for="">
-                                                        لیست آخرین بیمه
-                                                        <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                                    </label>
-                                                    <div class="col-md-4">
-                                                        <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," />
-
-
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div id="divDownload"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
-                                       
                                     </div>
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            لیست آخرین بیمه
+                                            @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," />
+                                            <div id="divDownload"></div>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                        </div>
                                     </div>
+
+
+
+                                </div>
                             </div>
 
                             <div class="row">
-                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
+                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);" id="btnOpperationRun">
                                     ثبت اطلاعات  <i class="fa fa-save"></i>
                                 </button>
                             </div>

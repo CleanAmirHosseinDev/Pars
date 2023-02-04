@@ -49,7 +49,7 @@
                 <!-- /. tools -->
             </div>
             <div class="box-body" style="">
-                <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post">
+                <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post" onchange="$('#btnOpperationRun').click();">
                     
                     <div class="form-horizontal">
                         <div class="row" id="divTypeServiceRequestedId">
@@ -262,7 +262,7 @@
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
                                         </label>
                                         <div class="col-md-8">
                                             <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
@@ -273,7 +273,7 @@
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             لیست آخرین بیمه
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
                                         </label>
                                         <div class="col-md-8">
                                             <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," />
@@ -288,7 +288,7 @@
                             </div>
 
                             <div class="row">
-                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);">
+                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);" id="btnOpperationRun">
                                     ثبت اطلاعات  <i class="fa fa-save"></i>
                                 </button>
                             </div>

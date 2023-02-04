@@ -183,7 +183,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید").Length(5,50).WithMessage("ایمیل باید حدقل 5 حرف و حداکثر 50 حرف باشد");
 
-                  RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تماس را وارد کنید").Must(Utility.CheckTel).WithMessage("شماره تماس را به درستی وارد کنید");
+                  RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تلفن ثابت را وارد کنید").Must(Utility.CheckTel).WithMessage("شماره تلفن ثابت را به درستی وارد کنید");
 
                   RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");
 

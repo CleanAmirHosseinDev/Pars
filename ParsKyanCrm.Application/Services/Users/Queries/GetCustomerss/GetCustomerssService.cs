@@ -37,7 +37,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.AgentName.Contains(request.Search)
                 || p.AgentMobile.Contains(request.Search) ||
-                p.NationalCode.Contains(request.Search)
+                p.NationalCode.Contains(request.Search)   ||
+                p.AddressCompany.Contains(request.Search) ||
+                p.CeoMobile.Contains(request.Search)||
+                p.CeoName.Contains(request.Search)||               
+                p.CompanyName.Contains(request.Search)||
+                p.EconomicCode.Contains(request.Search)||
+                p.PostalCode.Contains(request.Search)            
                 );
 
                 switch (request.SortOrder)

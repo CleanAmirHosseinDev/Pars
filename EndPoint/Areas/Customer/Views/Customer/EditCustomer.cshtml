@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
     <link href="~/lib/TagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
     <style>
-      
+      .tooltip{
+          font-size:1em;
+          font-family:vazir;
+      }
            
     </style>
 }
@@ -246,7 +249,7 @@
                                         </label>
                                         <div class="col-md-8">
                                             <input type="text" id="NamesAuthorizedSignatories" name="NamesAuthorizedSignatories" class="form-control" />
-                                            <span class="RequiredLabel">نکته : اسامی امضاکنندگان مجاز را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
+                                            <span>نکته :  اسامی این افراد در قرارداد ذکر خواهد شد، اسامی امضاکنندگان مجاز را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
                                         </div>
                                     </div>
 
@@ -259,32 +262,45 @@
                                             <div><input type="text" maxlength="14" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
                                         </div>
                                     </div>
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
-                                            <div id="divDownload_AuditedFinancialStatements"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
+                                    
+                                    <div style="border:1px solid silver;border-radius:7px;margin-top:10px;margin-bottom:10px">
+                                        <div style="background-color:#e3e1e1">
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx </span><br />
+                                            <span> حداکثر 5 مگابایت</span>
                                         </div>
+                                            <div class="panel-body">
+                                                <div class="form-group FormIsShow">
+                                                    <label class="control-label col-md-4" for="">
+                                                        آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
+                                                        <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                                    </label>
+                                                    <div class="col-md-4">
+                                                        <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="divDownload_AuditedFinancialStatements"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group FormIsShow">
+                                                    <label class="control-label col-md-4" for="">
+                                                        لیست آخرین بیمه
+                                                        <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                                    </label>
+                                                    <div class="col-md-4">
+                                                        <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," />
+
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="divDownload"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                       
                                     </div>
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            لیست آخرین بیمه
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," />
-                                            <div id="divDownload"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
-                                        </div>
                                     </div>
-
-
-
-                                </div>
                             </div>
 
                             <div class="row">

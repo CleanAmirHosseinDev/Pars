@@ -69,7 +69,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
         {
             try
             {
-                string  smsmessage = "";
+                string smsmessage = "";
 
                 #region Validation
 
@@ -154,8 +154,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     });
                     await _context.SaveChangesAsync();
 
-                    smsmessage= WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                    smsmessage= WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
+                    smsmessage = WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                    smsmessage = WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
                 else
@@ -186,17 +186,20 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         }, " RequestID = " + request.Request.RequestId);
                     }
 
+
+
                     switch (request.SmsType)
                     {
                         case true:
 
-                          smsmessage= WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
-                           WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
+                            smsmessage = WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
+                            WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 
                             break;
                         case false:
 
-                            WebService.SMSService.Execute(cus.AgentMobile, request.SmsContent);
+                            var requestForRating = await _context.RequestForRating.Include(p => p.Customer).FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
+                            WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
 
                             break;
 

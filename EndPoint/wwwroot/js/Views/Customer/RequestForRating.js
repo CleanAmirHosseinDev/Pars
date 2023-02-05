@@ -153,7 +153,9 @@
 
             if (res.isSuccess) {
 
-                goToUrl("/Customer/RequestForRating/Index");
+                alertB("پیام", res.message, "success");
+
+              //  goToUrl("/Customer/RequestForRating/Index");
 
             }
             else {

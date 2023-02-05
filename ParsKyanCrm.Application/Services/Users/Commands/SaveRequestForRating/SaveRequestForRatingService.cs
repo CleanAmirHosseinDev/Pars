@@ -69,6 +69,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
         {
             try
             {
+                string  smsmessage = "";
 
                 #region Validation
 
@@ -153,8 +154,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     });
                     await _context.SaveChangesAsync();
 
-                    WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                    WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
+                    smsmessage= WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                    smsmessage= WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
                 else
@@ -189,8 +190,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     {
                         case true:
 
-                            WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
-                            WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
+                          smsmessage= WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
+                           WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 
                             break;
                         case false:
@@ -216,7 +217,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                 return new ResultDto()
                 {
                     IsSuccess = true,
-                    Message = "اطلاعات شما با موفقیت ثبت شد"
+                    Message = "اطلاعات شما با موفقیت ثبت شد" + smsmessage,
                 };
             }
             catch (Exception ex)

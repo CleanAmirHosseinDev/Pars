@@ -52,8 +52,8 @@ namespace ParsKyanCrm.Application.Services.WebService
                     }
                     else
                     {
-                        return "ارسال با خطا مواجعه شد دوباره سعی کنید";
-
+                        // return "ارسال با خطا مواجعه شد دوباره سعی کنید";
+                        return "ارسال با خطا مواجعه شد دوباره سعی کنید"+result;
                     }
 
                 }

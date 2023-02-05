@@ -79,7 +79,7 @@
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             <span id="LabelCompanyName">نام شرکت</span>
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
                                             <input type="text"  name="CompanyName" id="CompanyName" class="form-control" data-toggle="tooltip" data-placement="top" maxlength="50" title=" نام شرکت را بطور کامل وارد کنید" />
@@ -268,7 +268,7 @@
                                             @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," />
+                                            <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی');" />
                                             <div id="divDownload_AuditedFinancialStatements"></div>
                                             <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
                                         </div>
@@ -279,7 +279,7 @@
                                             @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," />
+                                            <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'لیست آخرین بیمه');" />
                                             <div id="divDownload"></div>
                                             <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
                                         </div>

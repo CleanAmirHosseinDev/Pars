@@ -33,7 +33,7 @@ encrypt = function (text, key, revert = false) {
 
     if (isEmpty(text))
         return '';
-    
+
     if (typeof text == "boolean") {
         text = text.toString();
     }
@@ -241,7 +241,7 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
             error: function (error) {
 
                 if (error.status == 401) {
-                                        
+
                     if (url.indexOf("admin") == -1 && url.indexOf("superVisor") == -1) goToUrl("/Account/Login");
                     else goToUrl("/Account/LoginUser");
 
@@ -1602,6 +1602,47 @@ function UploadForGalleryChange(e, idDivHtml = "selectedFiles", idSpnError = "sp
 
 }
 
+function checkUpload(input, inputName) {
+
+    if (input.files && input.files[0]) {
+
+        var isOk = false;
+
+        switch (GetExtension(input.files[0].name).toLowerCase()) {
+
+            case 'pdf':
+            case 'xlsx':
+            case 'xls':
+
+                isOk = true;
+
+                break;
+            default:
+
+                if (isImage(GetExtension(input.files[0].name).toLowerCase()))
+                    isOk = true;
+                else isOk = false;
+
+                break;
+        }
+
+        if (!isOk) {
+            input.value = '';
+            alertB('', inputName + " " + 'فرمت های مجاز برای Pdf,Excel,All Images', 'error');
+            return;
+        }
+
+        if (input.files[0].size > 5000000) {
+            input.value = '';
+            alertB('', inputName + " " + " باید کمتر از 5 مگ باشد", 'error');
+            return;
+        }
+
+
+    }
+
+}
+
 function Ckeditor(id) {
     try {
 
@@ -1636,7 +1677,7 @@ function getDataCkeditor(id) {
     return CKEDITOR.instances[id].getData();
 
 }
-function setDataCkeditor(id,html) {
+function setDataCkeditor(id, html) {
     CKEDITOR.instances[id].setData(html);
 }
 

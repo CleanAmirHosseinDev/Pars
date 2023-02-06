@@ -28,30 +28,23 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">ارجاع</a></li>
-                        <li class=""><a onclick="Web.RequestForRating.ShowContract()" href="#timeline_1" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
-                        <li class=""><a onclick="Web.RequestForRating.ShowDocument()" href="#timeline_2" data-toggle="tab" aria-expanded="false">بارگزای اسناد قرارداد و پرداخت</a></li>
+                        <!--<li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">ارجاع</a></li>-->
+                        <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">قرارداد</a></li>
+                        <li class=""><a onclick="Web.RequestForRating.ShowDocument()" href="#timeline_2" data-toggle="tab" aria-expanded="false">بارگذاری اسناد قرارداد و پرداخت</a></li>
 
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="activity">
-
-                            <div class="form-group">
+                            <div id="contractInfo"></div>
+                            <!--<div class="form-group">
                                 <label for="ReferralExplanation">توضیح ارجاع</label>
                                 <textarea class="form-control" id="ReferralExplanation" rows="5"></textarea>
-                            </div>
+                            </div>-->
 
-                            <div id="bLLSS"></div>
-
-                        </div>
-
-                        <!-- /.tab-pane -->
-
-                        <div class="tab-pane" id="timeline_1">
-                            <div id="contractInfo"></div>
+                            <div id="bLLSS" style="display:none"></div>
 
                         </div>
-
+                        
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="timeline_2">
                             <div id="showDocumentRep"></div>

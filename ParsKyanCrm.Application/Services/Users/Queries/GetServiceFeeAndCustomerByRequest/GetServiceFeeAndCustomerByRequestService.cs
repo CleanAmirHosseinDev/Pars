@@ -80,7 +80,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract= strContract.Replace("NationalCodeValue", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
                     strContract = strContract.Replace("AddressCompanyValue", (qCustomer.AddressCompany == null ? "" : qCustomer.AddressCompany));
                     strContract = strContract.Replace("PostalCodeValue", (qCustomer.PostalCode == null ? "" : qCustomer.PostalCode));
-                    strContract = strContract.Replace("AgentNameValue", (qCustomer.AgentName == null ? "" : qCustomer.AgentName));
+                    strContract = strContract.Replace("AgentNameValue", (qCustomer.CeoName == null ? qCustomer.CompanyName : qCustomer.CeoName));
                     strContract = strContract.Replace("EmailValue", (qCustomer.Email == null ? "" : qCustomer.Email));
                     strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                   

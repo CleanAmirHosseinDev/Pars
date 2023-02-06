@@ -18,34 +18,33 @@
                     <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
                         <input type="hidden" id="FinancialID" name="FinancialID" value="0" />
                         <input type="hidden" id="RequestID" name="RequestID" value="0" />
-                        <input type="hidden" id="PriceContract" name="PriceContract" value="0" />
                         <input type="hidden" id="FinancialDocument" name="FinancialDocument" value="" />
                         <input type="hidden" id="ContractDocument" name="ContractDocument" value="" />
-                        
+
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
-                                            مبلغ اولیه 
+                                            مبلغ اولیه
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" onfocus="$('#DicCountPerecent').val('')" />
+                                            <input type="text" name="PriceContract" id="PriceContract" class="form-control" readonly="readonly" />
                                         </div>
                                     </div>
-                                    
+
                                 </div>
-                                <div class="row">                                  
-                                        <div class="form-group">
-                                            <label class="control-label col-md-6" for="">
-                                                مبلغ نهایی
-                                            </label>
-                                            <div class="col-md-6">
-                                                <input type="text" style="margin-top: 5px;"  name="DicCountPerecent" id="DicCountPerecent" class="form-control" onfocus="$('#DisCountMoney').val('')" />
-                                            </div>                                       
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="">
+                                            مبلغ نهایی
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" style="margin-top: 5px;" name="FinalPriceContract" id="FinalPriceContract" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                        </div>
                                     </div>
                                 </div>
-                               </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="form-group">
@@ -55,7 +54,7 @@
                                         <div class="col-md-6">
                                             <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" onfocus="$('#DicCountPerecent').val('')" />
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
@@ -63,7 +62,7 @@
                                             تخفیف درصدی
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onfocus="$('#DisCountMoney').val('')" />
+                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="$('#DisCountMoney').val('')" onfocus="$('#DisCountMoney').val('')" />
                                         </div>
                                     </div>
                                 </div>
@@ -78,23 +77,49 @@
                                     </div>
 
                                 </div>
-                               <div class="row">
-                                   <div class="col-md-12" >
-                                       <button style="margin-top: 5px; width: 120px" title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
-                                           تایید و نمایش   <i class="fa fa-print"></i>
-                                       </button>
-                                   </div>
-                               </div>
-                            </div>
-                            
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 right">
-                                <div class="col-md-3">
-                                   
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button style="margin-top: 5px; width: 120px" title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
+                                            تایید و نمایش   <i class="fa fa-print"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+                        <div class="row" id="ContractUp">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="">
+                                            آپلود قرارداد مشتری
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="file" name="Result_Final_ContractDocumentCustomer" id="ContractDocumentCustomer" accept=".pdf" />
+                                            <div id="divDownloadContractDocumentCustomer"></div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                           
+                            <div class="col-md-4">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" style="width:120px;margin-top: 5px;" type="button" onclick="Web.RequestForRating.Disconut(this,true);">
+                                            آپلود   <i class="fa fa-file"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
                         <div id="ContentCKeditor">
 

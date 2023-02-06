@@ -1,0 +1,270 @@
+﻿@{
+    ViewData["Title"] = "چاپ قرارداد";
+    Layout = null;
+}
+
+
+<html>
+<head>
+    <link href="~/lib/Loader/Loader.css" asp-append-version="true" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+   
+    <!-- jQuery 3 -->
+    <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/SweetAlert/sweetalert.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/iu.min.js" asp-append-version="true"></script>
+    <style>
+        @@font-face {
+            font-family: Nazanin;
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot');
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/Nazanin.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/Nazanin.ttf') format('truetype');
+            font-weight: normal;
+        }
+
+        @@font-face {
+            font-family: Nazanin;
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot');
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/Nazanin.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/Nazanin.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        * {
+            font-family: Nazanin;
+        }
+
+        @@page {
+            margin: 0
+        }
+
+
+
+        .sheet {
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+
+        /** Paper sizes **/
+        body.A3 .sheet {
+            width: 297mm;
+            height: 419mm
+        }
+
+        body.A3.landscape .sheet {
+            width: 420mm;
+            height: 296mm
+        }
+
+        body.A4 .sheet {
+            width: 210mm;
+            height: 296mm
+        }
+
+        body.A4.landscape .sheet {
+            width: 297mm;
+            height: 209mm
+        }
+
+        body.A5 .sheet {
+            width: 148mm;
+            height: 209mm
+        }
+
+        body.A5.landscape .sheet {
+            width: 210mm;
+            height: 147mm
+        }
+
+        body.letter .sheet {
+            width: 216mm;
+            height: 279mm
+        }
+
+        body.letter.landscape .sheet {
+            width: 280mm;
+            height: 215mm
+        }
+
+        body.legal .sheet {
+            width: 216mm;
+            height: 356mm
+        }
+
+        body.legal.landscape .sheet {
+            width: 357mm;
+            height: 215mm
+        }
+
+        /** Padding area **/
+        .sheet.padding-10mm {
+            padding: 10mm
+        }
+
+        .sheet.padding-15mm {
+            padding: 15mm
+        }
+
+        .sheet.padding-20mm {
+            padding: 20mm
+        }
+
+        .sheet.padding-25mm {
+            padding: 25mm
+        }
+
+        /** For screen preview **/
+        @@media screen {
+            body {
+                background: #e0e0e0
+            }
+
+            .sheet {
+                background: white;
+                box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
+                margin: 5mm auto;
+            }
+        }
+
+        /** Fix for Chrome issue #273306 **/
+        @@media print {
+            body.A3.landscape {
+                width: 420mm
+            }
+
+            body.A3, body.A4.landscape {
+                width: 297mm
+            }
+
+            body.A4, body.A5.landscape {
+                width: 210mm
+            }
+
+            body.A5 {
+                width: 148mm
+            }
+
+            body.letter, body.legal {
+                width: 216mm
+            }
+
+                body.letter.landscape {
+                    width: 280mm
+                }
+
+                body.legal.landscape {
+                    width: 357mm
+                }
+        }
+
+
+
+        table, tr, th, td, div {
+            font-family: Nazanin;
+            font-size: 12px;
+        }
+
+        .Detail {
+            font-size: 13px;
+        }
+
+        .graph-7 {
+            background-image: url(/image/a4template-1.jpg);
+            background-size: 100%;
+            background-repeat: repeat-y;
+            background-position: left top;
+            color: black;
+            border: 1px solid silver;
+        }
+
+        .graph-image img {
+        }
+
+        .ContentLetter p:first-child {
+            text-indent: 30px;
+            text-align: justify;
+        }
+
+        p {
+            direction: rtl;
+        }
+
+        body {
+            margin: 2em;
+            color: #fff;
+            background-color: #000;
+        }
+
+        /* override styles when printing */
+        @@media print {
+
+            body {
+                margin: 0;
+                color: #000;
+                background-color: #fff;
+            }
+        }
+
+
+    * {
+        color: black !important;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="graph-image graph-7">
+        <section class="sheet padding-20mm">
+            <div class="print-part">
+                <div class="row">
+                    <div>
+                        <div style="width:50%;float:right;text-align:right">
+                            <p></p>
+                        </div>
+                        <div style="width:50%;float:right">
+                            <div style="float:left;text-align:right;padding-right:7px">
+                                <p style="font-weight: bold; font-size: 16px">
+                                    <span id="ContractCode"></span><br />
+                                    <span id="SaveDate"></span><br />
+
+                                </p>
+                            </div>
+                            <div style="float:left">
+                                <p style="font-weight:bold;font-size:16px">
+                                    شماره  : <br/>
+                                    تاریخ : <br />
+                                </p>
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+
+                <div class="row text-right " style="padding-top:20px">
+                    <div id="ContractShow"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+  
+    <script src="~/lib/Noty/jquery.noty.js" asp-append-version="true"></script>
+
+    <script src="~/lib/Loader/Loader.js" asp-append-version="true"></script>
+
+    <script src="~/js/Views/SuperVisor/all.min.js" asp-append-version="true"></script>
+
+    <script>
+        Web.Layout.InitLayout();
+        Web.RequestForRating.PrintContracting(@ViewBag.id);
+        
+    </script>
+   
+
+
+</body>
+</html>
+

@@ -18,5 +18,10 @@ namespace EndPoint.Areas.Admin.Controllers
         ViewBag.id = id;
         return View();
     }
-}
+        public IActionResult ContractPrint(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+    }
 }

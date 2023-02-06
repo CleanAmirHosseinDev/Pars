@@ -96,6 +96,35 @@
 
     }
 
+    function printContract(e) {
+        disconut(e, false);
+    }
+
+    function printContracting(id = null) {
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+
+                    $("#ContractShow").html(res.data.contentContract);
+                    $("#SaveDate").html(res.data.saveDateStr);
+                    $("#ContractCode").html(res.data.contractCode);
+                    $('input[type="text"], textarea').each(function () {
+                        //  $(this).attr('readonly', 'readonly');
+                        // var text_classname = $(this).attr('name');
+                        var value = $(this).val();
+                        var new_html = ('<storang>' + value + '</storang>');
+                        $(this).replaceWith(new_html);
+                    });
+                    window.print();
+                }
+
+            }, true);
+        }
+    }
+
 
     function showCustomerInfo() {
 
@@ -188,9 +217,6 @@
                     $("#contractInfo").html(resG);
                    
                         initContract(id);
-                   
-                   
-
                 });
             } else {
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
@@ -489,7 +515,7 @@
         }
     }
 
-    function saveContractAndFinancialDocuments(e) {
+    function saveContractAndFinancialDocuments(e,IsShowMsg=null) {
 
         $(e).attr("disabled", "");
 
@@ -500,10 +526,14 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
-
-                alertB("ثبت", " با موفقیت ثبت شد.", "success");
-                
-
+                if (IsShowMsg) {
+                    alertB("ثبت", " با موفقیت ثبت شد.", "success");
+                }
+                else {
+                    var id =decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+                    goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);
+                }
+            
             } else {
 
                 $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
@@ -513,6 +543,8 @@
 
         }, true);
     }
+
+
     //function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice = null, DicCountPerecent = null, DisCountMoney=null) {
 
     //    AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", JSON.stringify({ RequestID: RequestID, ContentContract: ContentContract, PriceContractStr: FeePrice }), true, function (res) {
@@ -676,7 +708,7 @@
     }
 
 
-    function disconut(e) {
+    function disconut(e, ShowMsg = true) {
       
         var dicMoney = removeComaForString($('#DisCountMoney').val());
         var disPerecent = $('#DicCountPerecent').val();
@@ -707,7 +739,7 @@
 
         var elements = $("#ContractShow").html();
         setDataCkeditor('ContentContract', elements);  
-        saveContractAndFinancialDocuments(e);
+        saveContractAndFinancialDocuments(e, ShowMsg);
     }
 
     web.RequestForRating = {
@@ -731,7 +763,9 @@
         ShowEvaluationFile: showEvaluationFile,
         GetShowEvaluationFile: getShowEvaluationFile,
         Disconut: disconut,
-        InitContractNew: initContractNew
+        InitContractNew: initContractNew,
+        PrintContract: printContract,
+        PrintContracting: printContracting
 
     };
 

@@ -6,13 +6,6 @@
 @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
     <link href="~/lib/TagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
-    <style>
-      .tooltip{
-          font-size:1em;
-          font-family:vazir;
-      }
-           
-    </style>
 }
 
 @section PageHeader{
@@ -53,7 +46,9 @@
             </div>
             <div class="box-body" style="">
                 <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post">
-                    
+
+
+
                     <div class="form-horizontal">
                         <div class="row" id="divTypeServiceRequestedId">
                             <div class="col-md-12">
@@ -82,16 +77,16 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text"  name="CompanyName" id="CompanyName" class="form-control" data-toggle="tooltip" data-placement="top" maxlength="50" title=" نام شرکت را بطور کامل وارد کنید" />
+                                            <input type="text" name="CompanyName" id="CompanyName" class="form-control" maxlength="50" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             موبایل مدیر عامل
                                             <span class="RequiredLabel">*</span>
-                                        </label>                                        
+                                        </label>
                                         <div class="col-md-8">
-                                            <input maxlength="11" type="text" name="CeoMobile" id="CeoMobile" class="form-control" data-toggle="tooltip" data-placement="top" onkeypress="return TextBoxOnlyNumber(event);" title=" شماره موبایل مدیرعامل که در مالکیت ایشان هست وارد کنید" />
+                                            <input maxlength="11" type="text" name="CeoMobile" id="CeoMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -110,7 +105,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input maxlength="10" type="text" name="CeoNationalCode" id="CeoNationalCode" data-toggle="tooltip" data-placement="top" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" title=" کد ملی مدیر عامل را بطور صحیح وارد کنید"/>
+                                            <input maxlength="10" type="text" name="CeoNationalCode" id="CeoNationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group FormIsShow">
@@ -119,7 +114,7 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                                <input type="text" maxlength="50" name="EconomicCode" id="EconomicCode" data-toggle="tooltip" data-placement="top" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" title=" شماره ثبت شرکت را وارد کنید" />
+                                            <input type="text" maxlength="50" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -128,22 +123,22 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                                <input maxlength="11" type="text" name="NationalCode" id="NationalCode" data-toggle="tooltip" data-placement="top" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" title=" شناسه ملی شرکت را وارد کنید این شناسه 11 رقم می باشد" />
+                                            <input maxlength="11" type="text" name="NationalCode" id="NationalCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
                                     @*<div class="form-group">
-                            <label class="control-label col-md-4" for="">
-                                شهر
-                                <span class="RequiredLabel">*</span>
-                            </label>
-                            <div class="col-md-4">
-                                <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
-                            </div>
+                                            <label class="control-label col-md-4" for="">
+                                                شهر
+                                                <span class="RequiredLabel">*</span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+                                            </div>
 
-                            <div class="col-md-4">
-                                <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
-                            </div>
-                        </div>*@
+                                            <div class="col-md-4">
+                                                <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
+                                            </div>
+                                        </div>*@
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             نام نماینده شرکت
@@ -190,7 +185,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <select name="HowGetKnowCompanyId" id="HowGetKnowCompanyId" class="form-control select2" style="width:100% !important;"></select>
+                                            <select onchange="onChangeSelectValidation(this);" name="HowGetKnowCompanyId" id="HowGetKnowCompanyId" class="form-control select2" style="width:100% !important;"></select>
                                         </div>
                                     </div>
 
@@ -200,7 +195,7 @@
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <select name="KindOfCompanyId" id="KindOfCompanyId" class="form-control select2" style="width:100% !important;"></select>
+                                            <select onchange="onChangeSelectValidation(this);" name="KindOfCompanyId" id="KindOfCompanyId" class="form-control select2" style="width:100% !important;"></select>
                                         </div>
                                     </div>
 
@@ -210,7 +205,7 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <select name="TypeGroupCompanies" id="TypeGroupCompanies" class="form-control select2" style="width:100% !important;"></select>
+                                            <select onchange="onChangeSelectValidation(this);" name="TypeGroupCompanies" id="TypeGroupCompanies" class="form-control select2" style="width:100% !important;"></select>
                                         </div>
                                     </div>
 
@@ -259,29 +254,29 @@
                                             <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <div><input type="text" maxlength="14" name="AmountOsLastSales" id="AmountOsLastSales" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
+                                            <div><input type="text" name="AmountOsLastSales" id="AmountOsLastSales" maxlength="18" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" /></div>
                                         </div>
                                     </div>
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                            @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
+                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
                                             <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی');" />
                                             <div id="divDownload_AuditedFinancialStatements"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 10 مگابایت</span>
                                         </div>
                                     </div>
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             لیست آخرین بیمه
-                                            @*<span class="RequiredLabel NotShowRequiredLabel">*</span>*@
+                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
                                             <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'لیست آخرین بیمه');" />
                                             <div id="divDownload"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 10 مگابایت</span>
                                         </div>
                                     </div>
 
@@ -291,7 +286,7 @@
                             </div>
 
                             <div class="row">
-                                <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.Customer.SaveCustomer(this);" id="btnOpperationRun">
+                                <button title="ثبت" class="btn btn-info fontForAllPage" type="submit" id="btnOpperationRun">
                                     ثبت اطلاعات  <i class="fa fa-save"></i>
                                 </button>
                             </div>
@@ -309,10 +304,8 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script src="~/lib/TagsInput/bootstrap-tagsinput.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script>
-        Web.Customer.InitCustomer();
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        Web.Customer.InitCustomer();                
     </script>
 }

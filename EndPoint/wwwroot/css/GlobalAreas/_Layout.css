@@ -3,6 +3,10 @@
     /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
 }
 
+.error {
+    color:red;
+}
+
 /* ——— StartPagination ——— */
 .block-pagination {
     text-align: center;

@@ -61,8 +61,8 @@ namespace ParsKyanCrm.Infrastructure
                 if (!string.IsNullOrEmpty(strErr)) throw new Exception(strErr);
 
                 byte[] chartData = Convert.FromBase64String(base64);
-
-                if (chartData.Length > 5000000) throw new Exception("" + strMessage + " باید کمتر از 5 مگ باشد");
+                
+                if (chartData.Length > 10000000) throw new Exception("" + strMessage + " باید کمتر از 10 مگ باشد");
 
                 FileOperation.DeleteFile(oldImage);
                 System.IO.File.WriteAllBytes(imgpath, chartData);

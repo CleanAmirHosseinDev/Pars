@@ -34,7 +34,7 @@ namespace ParsKyanCrm.Common
 
                 if (str.Substring(0, 2) != "09") return false;
 
-                if (str.Length > 11) return false;
+                if (str.Length != 11) return false;
 
                 return true;
 
@@ -53,7 +53,7 @@ namespace ParsKyanCrm.Common
 
                 if (str.Substring(0, 2) == "09") return false;
 
-                if (str.Length > 11) return false;
+                if (str.Length != 11) return false;
 
                 return true;
 

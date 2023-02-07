@@ -9,6 +9,13 @@
 
     //Document Ready              
 
+
+    $("#frmFormMain input,textarea").on("focusout", function () {
+
+        $(this).valid();
+
+    });
+
     function textSearchOnKeyDown(event) {
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
@@ -17,11 +24,11 @@
 
     function saveCustomer(e) {
 
-        $(e).attr("disabled", "");
+        $("#btnOpperationRun").attr("disabled", "");
         RemoveAllCharForPrice("AmountOsLastSales");
         AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
-            $(e).removeAttr("disabled");
+            $("#btnOpperationRun").removeAttr("disabled");
 
             if (res.isSuccess) {
 
@@ -47,13 +54,12 @@
 
         }, true);
 
-    }
-
+    }    
 
     function systemSeting_Combo(resSingle, showdrp) {
 
-       
-        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "126,63,27,56,221" , PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+        AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "126,63,27,56,221", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
@@ -98,8 +104,284 @@
                     $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
                     $("#TypeServiceRequestedId").val('66');
                 }
+
+                validate();
+
             }
         }, true);
+    }
+
+    function validate() {
+
+        $.validator.addMethod(
+            "CeoMobileValidation",
+            function (value, element) {
+                return CheckMobile(value);
+            },
+            "موبایل مدیر عامل خود را به درستی وارد نمایید"
+        );
+        $.validator.addMethod(
+            "AgentMobileValidation",
+            function (value, element) {
+                return CheckMobile(value);
+            },
+            function () {
+                return "شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " خود را به درستی وارد نمایید";
+            }
+        );
+        $.validator.addMethod(
+            "TelValidation",
+            function (value, element) {
+                return CheckTel(value);
+            },
+            function () {
+                return "شماره تلفن ثابت خود را به درستی وارد نمایید";
+            }
+        );        
+
+        $("form[id='frmFormMain']").validate({
+            // Specify validation rules
+            rules: {                
+                "CompanyName": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+                "CeoMobile": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 11,
+                    maxlength: 11,
+                    CeoMobileValidation: $("#CeoMobile").val(),
+                },
+                "CeoName": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+                "CeoNationalCode": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 10,
+                    maxlength: 10
+                },
+                "EconomicCode": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 3,
+                    maxlength: 50
+                },
+                "NationalCode": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 10,
+                    maxlength: 11
+                },
+                "AgentName": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+                "AgentMobile": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 11,
+                    maxlength: 11,
+                    AgentMobileValidation: $("#AgentMobile").val(),
+                },
+                "AddressCompany": {
+                    required: function () {
+                        return true;
+                    },
+                },
+                "CountOfPersonal": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    maxlength: 9
+                },
+                "HowGetKnowCompanyId": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                },
+                "KindOfCompanyId": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                },
+                "TypeGroupCompanies": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                },
+                "Email": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 5,
+                    maxlength: 50,
+                    email: true
+                },
+                "Tel": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 11,
+                    maxlength: 11,
+                    TelValidation: $("#Tel").val(),
+                },
+                "PostalCode": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    minlength: 10,
+                    maxlength: 10
+                },
+                "AmountOsLastSales": {
+                    required: function () {
+                        return $("#CustomerPersonalityType").val() != "223";
+                    },
+                    maxlength: 18
+                },
+            },
+            // Specify validation error messages
+            messages: {
+                "CompanyName": {
+                    required: function () {
+                        return "لطفا " + $("#LabelCompanyName").text() + " را وارد کنید";
+                    },
+                    minlength: $("#LabelCompanyName").text() + " باید حداقل 5 حرف باشد",
+                    maxlength: $("#LabelCompanyName").text() + " باید حداکثر 50 حرف باشد"
+                },
+                "CeoMobile": {
+                    required: function () {
+                        return "لطفا موبایل مدیر عامل را وارد کنید";
+                    },
+                    minlength: "موبایل مدیر عامل باید حداقل 11 حرف باشد",
+                    maxlength: "موبایل مدیر عامل باید حداکثر 11 حرف باشد",
+                },
+                "CeoName": {
+                    required: function () {
+                        return "لطفا نام مدیر عامل را وارد کنید";
+                    },
+                    minlength: "نام مدیر عامل باید حداقل 5 حرف باشد",
+                    maxlength: "نام مدیر عامل باید حداکثر 50 حرف باشد"
+                },
+                "CeoNationalCode": {
+                    required: function () {
+                        return "لطفا کد ملی مدیر عامل را وارد کنید";
+                    },
+                    minlength: "کد ملی مدیر عامل باید حداقل 10 حرف باشد",
+                    maxlength: "کد ملی مدیر عامل باید حداکثر 10 حرف باشد"
+                },
+                "EconomicCode": {
+                    required: function () {
+                        return "لطفا " + $("#LabelEconomicCode").text() + " را وارد کنید";
+                    },
+                    minlength: $("#LabelEconomicCode").text() + " باید حداقل 3 حرف باشد",
+                    maxlength: $("#LabelEconomicCode").text() + " باید حداکثر 50 حرف باشد"
+                },
+                "NationalCode": {
+                    required: function () {
+                        return "لطفا شناسه ملی  شرکت را وارد کنید";
+                    },
+                    minlength: "شناسه ملی  شرکت باید حداقل 10 حرف باشد",
+                    maxlength: "شناسه ملی  شرکت باید حداکثر 11 حرف باشد"
+                },
+                "AgentName": {
+                    required: function () {
+                        return "لطفا نام نماینده شرکت را وارد کنید";
+                    },
+                    minlength: "نام نماینده شرکت باید حداقل 5 حرف باشد",
+                    maxlength: "نام نماینده شرکت باید حداکثر 50 حرف باشد"
+                },
+                "AgentMobile": {
+                    required: function () {
+                        return "لطفا شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " را وارد کنید";
+                    },
+                    minlength: function () {
+                        return "شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداقل 11 حرف باشد";
+                    },
+                    maxlength: function () {
+                        return "شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداکثر 11 حرف باشد";
+                    }
+                },
+                "AddressCompany": {
+                    required: function () {
+                        return "لطفا آدرس را وارد کنید";
+                    },
+                },
+                "CountOfPersonal": {
+                    required: function () {
+                        return "لطفا تعداد کارکنان " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " را وارد کنید";
+                    },
+                    maxlength: function () {
+                        return "تعداد کارکنان " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداکثر 9 حرف باشد";
+                    }
+                },
+                "HowGetKnowCompanyId": {
+                    required: function () {
+                        return "لطفا نحوه آشنایی با شرکت را انتخاب کنید";
+                    },
+                },
+                "KindOfCompanyId": {
+                    required: function () {
+                        return "لطفا نوع شرکت را انتخاب کنید";
+                    },
+                },
+                "TypeGroupCompanies": {
+                    required: function () {
+                        return "لطفا " + $("#LabelTypeGroupCompanies").text() + " را انتخاب کنید";
+                    },
+                },
+                "Email": {
+                    required: function () {
+                        return "لطفا ایمیل را وارد کنید";
+                    },
+                    minlength: "ایمیل باید حداقل 5 حرف باشد",
+                    maxlength: "ایمیل باید حداکثر 50 حرف باشد",
+                    email: "لطفا ایمیل معتبر وارد کنید"
+                },
+                "Tel": {
+                    required: function () {
+                        return "لطفا شماره تلفن ثابت را وارد کنید";
+                    },
+                    minlength: "شماره تلفن ثابت باید حداقل 11 حرف باشد",
+                    maxlength: "شماره تلفن ثابت باید حداکثر 11 حرف باشد"
+                },
+                "PostalCode": {
+                    required: function () {
+                        return "لطفا کد پستی را وارد کنید";
+                    },
+                    minlength: "کد پستی باید حداقل 10 حرف باشد",
+                    maxlength: "کد پستی باید حداکثر 10 حرف باشد"
+                },
+                "AmountOsLastSales": {
+                    required: function () {
+                        return "لطفا درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید";
+                    },
+                    maxlength: "درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده باید حداکثر 18 حرف باشد"
+                },
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.Customer.SaveCustomer(this);
+            }
+        });        
+        
     }
 
     function checkForFirstRequest(resSingle) {
@@ -122,7 +404,7 @@
 
     function initCustomer(dir = 'rtl') {
 
-        ComboBoxWithSearch('.select2', dir);        
+        ComboBoxWithSearch('.select2', dir);
 
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
 
@@ -171,6 +453,8 @@
 
     function onChangeCustomerPersonalityType(e) {
 
+        $("label[class='error']").text('');
+
         if ($(e).val() == "223") {
 
             $(".form-group").hide();
@@ -197,7 +481,7 @@
         InitCustomer: initCustomer,
         SystemSeting_Combo: systemSeting_Combo,
         CheckForFirstRequest: checkForFirstRequest,
-        OnChangeCustomerPersonalityType: onChangeCustomerPersonalityType
+        OnChangeCustomerPersonalityType: onChangeCustomerPersonalityType,
     };
 
 })(Web, jQuery);

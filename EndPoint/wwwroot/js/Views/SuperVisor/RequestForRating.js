@@ -25,7 +25,7 @@
                         + res.data[i].dateOfRequestStr + "</td>"
                         + "<td>" + res.data[i].levelStepStatus + "</td><td>"
                         + "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> گردش کار </a>"
-                        + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='ارجاع' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> ارجاع </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-info fontForAllPage'><i class='fa fa-eye'></i> مشخصات </a>");
+                        + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> مشاهده و اقدام </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-info fontForAllPage'><i class='fa fa-eye'></i> مشخصات </a>");
 
                     if (res.data[i].destLevelStepIndex >= 7) {
                         strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
@@ -510,7 +510,7 @@
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (res.isSuccess != null) {
+                if (res.isSuccess) {
 
                     if (res.data.financialDocument != null && res.data.financialDocument!="" ) {
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -617,7 +617,7 @@
                     if (i == 0) {
                         strTimeLine += "<h2>";
                         strTimeLine += "<span>ایجاد درخواست توسط : </span>";
-                        strTimeLine += "<span class='sender'>" + res.data[i].agentName + " (" + res.data[i].roleDesc + ") " + "</span >";
+                        strTimeLine += "<span class='sender'>" + (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " (" + res.data[i].roleDesc + ") " + "</span >";
                         strTimeLine += "</h2>";
 
                         //  strTimeLine += "<p><strong>گیرنده ها :</strong></p>";
@@ -732,9 +732,20 @@
 
     }
 
+    function uploadContractCustomer(e) {
+        if (document.getElementById("ContractDocumentCustomer").files.length == 0) {
+            alertB("هشدار", "فایلی قرارداد را انتخاب نکرده اید!.", "warning");
+        } else {
+            disconut(e,  true);
+        }
+
+    }
+
 
     function disconut(e, ShowMsg = true) {
-      
+
+        
+        
         var dicMoney = removeComaForString($('#DisCountMoney').val());
         var disPerecent = $('#DicCountPerecent').val();
         var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
@@ -794,7 +805,8 @@
         Disconut: disconut,
         InitContractNew: initContractNew,
         PrintContract: printContract,
-        PrintContracting: printContracting
+        PrintContracting: printContracting,
+        UploadContractCustomer: uploadContractCustomer,
 
     };
 

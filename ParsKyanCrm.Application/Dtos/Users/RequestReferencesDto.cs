@@ -73,6 +73,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public bool? SmsType { get; set; }
 
         public string DestLevelStepIndexButton { get; set; }
+        public string CompanyName { get; set; }
 
     }
 

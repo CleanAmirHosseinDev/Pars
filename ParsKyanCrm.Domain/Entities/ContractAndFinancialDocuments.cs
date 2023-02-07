@@ -23,5 +23,7 @@ namespace ParsKyanCrm.Domain.Entities
 
         public string ContractDocumentCustomer { get; set; }
 
+        public string ContractMainCode { get; set; }
+
     }
 }

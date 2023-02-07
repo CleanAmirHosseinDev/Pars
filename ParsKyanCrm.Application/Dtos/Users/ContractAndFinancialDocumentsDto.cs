@@ -79,6 +79,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public IFormFile Result_Final_EvaluationFile { get; set; }
 
         public string ContractCode { get; set; }
+        public string ContractMainCode { get; set; }
 
     }
 }

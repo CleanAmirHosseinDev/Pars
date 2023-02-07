@@ -34,11 +34,23 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string ContentContract { get; set; }
         public decimal? PriceContract { get; set; }
+        public decimal? FinalPriceContract { get; set; }
         public string PriceContractStr { get; set; }
+        public string FinalPriceContractStr { get; set; }
         public decimal? Tax { get; set; }
         public string EvaluationFile { get; set; }
         public decimal? DisCountMoney { get; set; }
         public float? DicCountPerecent { get; set; }
+
+        public string ContractDocumentCustomer { get; set; }
+        public string ContractDocumentCustomerFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ContractDocumentCustomer, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_ContractDocumentCustomer { get; set; }
         public string FinancialDocumentFull
         {
             get

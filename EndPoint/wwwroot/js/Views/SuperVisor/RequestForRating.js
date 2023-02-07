@@ -69,8 +69,9 @@
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
+                        $("#sdklsslks3498sjdkxhjsd_823sb").val(res.data[0].levelStepIndex);
 
-                        htmlB += "<button type='button' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button'  style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
 
@@ -97,6 +98,7 @@
     }
 
     function printContract(e) {
+
         disconut(e, false);
     }
 
@@ -147,14 +149,18 @@
 
                     $("#FinancialID").val(res.data.financialId);
                     $("#RequestID").val(res.data.requestID);
-                    $("#PriceContract").val(res.data.priceContract);
+                    $("#PriceContract").val(moneyCommaSepWithReturn(res.data.priceContract==null?"":res.data.priceContract.toString()));
+                    $("#FinalPriceContract").val(moneyCommaSepWithReturn(res.data.finalPriceContract==null?"":res.data.finalPriceContract.toString()));
                     $("#FinancialDocument").val(res.data.financialDocument);
                     $("#ContractDocument").val(res.data.contractDocument);
-                    
-                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney));
-                    $("#DicCountPerecent").val(moneyCommaSepWithReturn(res.data.dicCountPerecent));
+
+                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney==null?"":res.data.disCountMoney.toString()));
+                    $("#DicCountPerecent").val(moneyCommaSepWithReturn(res.data.dicCountPerecent==null?"":res.data.dicCountPerecent.toString()));
                     
                     if (getlstor("loginName") === "1" || getlstor("loginName") === "4") {
+                        if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
+                            $("#divDownloadContractDocumentCustomer").html("<a  href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
                         $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.data.contentContract + "</textarea>");
                         Ckeditor("ContentContract");
 
@@ -179,6 +185,8 @@
             }, true);
         }
     }
+
+
 
     function getCustomerInfo() {
 
@@ -215,7 +223,15 @@
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moa.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                   
+                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val()>2) {
+                        $('#FinalPriceContract').prop('readonly', true);
+                        $('#DisCountMoney').prop('readonly', true);
+                        $('#DicCountPerecent').prop('readonly', true);
+                       
+                    }
+                    if (getlstor("loginName") === "1") {
+                        $("#ContractUp").hide();
+                    }
                         initContract(id);
                 });
             } else {
@@ -329,7 +345,9 @@
                             $("#RequestID").val(id);
                             $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.contract.contractText + "</textarea>");
                             var m = res.contract.contractText;
-                            $("#PriceContract").val(removeComaForString($(m).find('input[name="ServiceFeePrice"]').val()));
+                           // $("#PriceContract").val(removeComaForString($(m).find('input[name="ServiceFeePrice"]').val()));
+                            $("#PriceContract").val($(m).find('input[name="ServiceFeePrice"]').val());
+                            $("#FinalPriceContract").val($(m).find('input[name="ServiceFeePrice"]').val());
                             Ckeditor("ContentContract");
                             if (res.serviceFee == null) {
                                 alertB("خطا", "نرخی برای شرایط مشتری پیدا نشد", "error");
@@ -492,20 +510,20 @@
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (res != null) {
+                if (res.isSuccess != null) {
 
-                    if (res.financialDocument != null && res.financialDocument!="" ) {
-                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    if (res.data.financialDocument != null && res.data.financialDocument!="" ) {
+                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
-                    if (res.contractDocument != null && res.contractDocument !="") {
-                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    if (res.data.contractDocument != null && res.data.contractDocument !="") {
+                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
-                    if (res.evaluationFile != null && res.evaluationFile !="" ) {
-                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    if (res.data.evaluationFile != null && res.data.evaluationFile !="" ) {
+                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
@@ -527,9 +545,16 @@
 
             if (res.isSuccess) {
                 if (IsShowMsg) {
+                   
+                    $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
+                    $("#FinalPriceContract").val(moneyCommaSepWithReturn($("#FinalPriceContract").val()));
+                    $("#PriceContract").val(moneyCommaSepWithReturn($("#PriceContract").val()));
+                    
                     alertB("ثبت", " با موفقیت ثبت شد.", "success");
+                    initContract(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
                 }
                 else {
+
                     var id =decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
                     goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);
                 }
@@ -714,7 +739,7 @@
         var disPerecent = $('#DicCountPerecent').val();
         var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
         var Total = null;
-        var FeePrice= removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
+        var FeePrice = removeComaForString($("#PriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
          if (dicMoney != null && dicMoney != "") {
 
              Total = FeePrice - dicMoney;
@@ -725,8 +750,11 @@
          } else {
 
              Total = FeePrice;
-         }
-        $("#PriceContract").val(Total);
+        }
+      
+        $("#FinalPriceContract").val(Total);
+        Total = moneyCommaSepWithReturn(Total.toString());
+       // $("#DisCountMoney").val(moneyCommaSepWithReturn(dicMoney.toString()));
         $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
         $("#ContractShow").hide();
         $("#ContractShow").html(m);
@@ -740,6 +768,7 @@
         var elements = $("#ContractShow").html();
         setDataCkeditor('ContentContract', elements);  
         saveContractAndFinancialDocuments(e, ShowMsg);
+        $("#FinalPriceContract").val(moneyCommaSepWithReturn(Total));
     }
 
     web.RequestForRating = {

@@ -32,6 +32,34 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             _env = env;
         }
 
+        private string MaxAllContractCode()
+        {
+            try
+            {
+                List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "cast(isnull((max(cast((isnull(ContractCode,'999')) as bigint))+1),1) as nvarchar(max)) as ContractCode"));
+                if (q != null) return q.FirstOrDefault().ContractCode.ToString();
+                return "1000";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private string MaxAllContractMainCode()
+        {
+            try
+            {
+                List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "cast(isnull((max(cast((isnull(ContractMainCode,'999')) as bigint))+1),1) as nvarchar(max)) as ContractMainCode"));
+                if (q != null) return q.FirstOrDefault().ContractMainCode.ToString();
+                return "1000";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(ContractAndFinancialDocumentsDto request)
         {
             #region Upload Image
@@ -41,11 +69,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             string fileNameOldPic_ContractDocument = string.Empty, path_ContractDocument = string.Empty;
             string fileNameOldPic_EvaluationFile = string.Empty, path_EvaluationFile = string.Empty;
             string fileNameOldPic_ContractDocumentCustomer = string.Empty, path_ContractDocumentCustomer = string.Empty;
-            
+
             #endregion
             try
             {
-               
+
                 #region Validation
 
 
@@ -84,7 +112,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     await ServiceFileUploader.SaveFile(request.Result_Final_EvaluationFile, path_EvaluationFile, " نتایج ارزیابی");
                 }
 
-                 if (request.Result_Final_ContractDocumentCustomer != null)
+                if (request.Result_Final_ContractDocumentCustomer != null)
                 {
                     fileNameOldPic_EvaluationFile = request.ContractDocumentCustomer;
                     request.ContractDocumentCustomer = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocumentCustomer.FileName);
@@ -92,12 +120,22 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocumentCustomer, path_ContractDocumentCustomer, " فرم بدون امضا مشتری");
                 }
 
-                #endregion                                
+                #endregion                
 
                 EntityEntry<ContractAndFinancialDocuments> q_Entity;
                 if (request.FinancialId == 0)
                 {
                     request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+
+                    if (!request.IsCustomer)
+                    {
+                        request.ContractCode = MaxAllContractCode();
+                    }
+                    else
+                    {
+                        request.ContractMainCode = MaxAllContractMainCode();
+                    }
+
                     request.Tax = Math.Round((request.PriceContract.HasValue ? request.PriceContract.Value * 9 : 0) / 100, 0);
                     q_Entity = _context.ContractAndFinancialDocuments.Add(_mapper.Map<ContractAndFinancialDocuments>(request));
                     await _context.SaveChangesAsync();
@@ -141,6 +179,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.ContractDocumentCustomer),request.ContractDocumentCustomer
+                        },
+                        {
+                            request.IsCustomer?"ContractMainCode":"ContractCode",request.IsCustomer?MaxAllContractMainCode():MaxAllContractCode()
                         }
                     }, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
                     #region Upload Image

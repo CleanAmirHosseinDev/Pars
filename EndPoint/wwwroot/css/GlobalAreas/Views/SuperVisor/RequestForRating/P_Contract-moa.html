@@ -52,7 +52,7 @@
                                             تخفیف ریالی
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" onfocus="$('#DicCountPerecent').val('')" />
+                                            <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this); $('#DicCountPerecent').val('');" />
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                             تخفیف درصدی
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="$('#DisCountMoney').val('')" onfocus="$('#DisCountMoney').val('')" />
+                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="$('#DisCountMoney').val('')"  />
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                 <div class="row">
 
                                     <div class="col-md-12">
-                                        <button title="ثبت" class="btn btn-info fontForAllPage" style="width:120px;margin-top: 5px;" type="button" onclick="Web.RequestForRating.Disconut(this,true);">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" style="width:120px;margin-top: 5px;" type="button" onclick="Web.RequestForRating.UploadContractCustomer(this);">
                                             آپلود   <i class="fa fa-file"></i>
                                         </button>
                                     </div>

@@ -44,9 +44,7 @@ left join {typeof(Domain.Entities.Users).Name} as u on u.UserID = rr.SendUser
 left join Roles as rol on rol.RoleID = cast(rr.LevelStepAccessRole as int)
 left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest
 
-{(request.Requestid.HasValue ? "where rr.Requestid = " + request.Requestid.Value : string.Empty)}
-
-");
+{(request.Requestid.HasValue ? "where rr.Requestid = " + request.Requestid.Value : string.Empty)} order by SendTime");
 
                 return new ResultDto<IEnumerable<RequestReferencesDto>>
                 {

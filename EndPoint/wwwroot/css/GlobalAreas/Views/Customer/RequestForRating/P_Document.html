@@ -14,45 +14,51 @@
 
     <input type="hidden" id="Tax" name="Tax" value="0" />
     <div class="form-horizontal">
-        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="">
-                            آپلود سند پرداخت
-                            <span class="RequiredLabel">*</span>
-                        </label>
-                        <div class="col-md-8">
-                            <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" accept="image/*,.pdf,.xlsx," />
-                            <div id="divDownloadFinancialDocument"></div>
-                            <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
+        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px" >
+            
+            <div id="LoadContractCustomer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="">
+                                آپلود سند پرداخت
+                                <span class="RequiredLabel">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" accept="image/*,.pdf,.xlsx," />
+                                <div id="divDownloadFinancialDocument"></div>
+                                <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="">
-                            آپلود قرارداد امضاء شده
-                            <span class="RequiredLabel">*</span>
-                        </label>
-                        <div class="col-md-8">
-                            <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf,.xlsx," />
-                            <div id="divDownload_ContractDocument"></div>
-                            <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="">
+                                آپلود قرارداد امضاء شده
+                                <span class="RequiredLabel">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf,.xlsx," />
+                                <div id="divDownload_ContractDocument"></div>
+                                <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
+                            </div>
                         </div>
+
+
                     </div>
-
-
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.SaveContractAndFinancialDocument(this);">
+                            ثبت و ارسال قرارداد به پارس کیان   <i class="fa fa-save"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="row" >
-                <div class="col-md-12">
-                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.SaveContractAndFinancialDocument(this);">
-                        ثبت و ارسال قرارداد به پارس کیان   <i class="fa fa-save"></i>
-                    </button>
-                </div>
-            </div>
+
+           <div id="ContractCusmerMsg">
+               <p> ابتدا قرارداد را تایید بفرمایید تا امکان بارگذاری قرارداد برای شما ایجاد شود.</p>
+           </div>
 
         </div>
     </div>

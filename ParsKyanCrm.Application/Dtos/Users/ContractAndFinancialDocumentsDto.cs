@@ -80,6 +80,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string ContractCode { get; set; }
         public string ContractMainCode { get; set; }
+        public bool IsCustomer { get; set; }
 
     }
 }

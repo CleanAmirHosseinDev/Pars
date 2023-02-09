@@ -19,6 +19,8 @@ namespace ParsKyanCrm.Domain.Entities
         public decimal? DisCountMoney { get; set; }
         public float? DicCountPerecent { get; set; }
         public string ContractCode { get; set; }
+
+        public string ContractMainCode { get; set; }
         public decimal? FinalPriceContract { get; set; }
 
         public string ContractDocumentCustomer { get; set; }

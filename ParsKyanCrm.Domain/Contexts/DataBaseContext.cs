@@ -393,6 +393,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.FinancialId).HasColumnName("FinancialID");
 
                 entity.Property(e => e.ContractCode).HasMaxLength(50);
+                entity.Property(e => e.ContractMainCode).HasMaxLength(50);
 
                 entity.Property(e => e.ContractDocument)
                     .HasMaxLength(200)

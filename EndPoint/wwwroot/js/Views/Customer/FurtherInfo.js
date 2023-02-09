@@ -42,6 +42,8 @@
         });
     });
 
+    
+
     $(".previous").click(function () {
 
         var countform = Number($("#FormLoadCode").val()) - 1;
@@ -89,8 +91,7 @@
         switch (TabId) {
             case 1:
                 intiFormShow(1, "1,2,7,8", ID);
-                intiFormQuestion(2, "R", ID);
-                intiFormSingelAnswer(2);
+                getFurtherInfo(ID);
                 break;
             case 2:
                 intiFormShow(3, "1,3,11", ID);
@@ -291,6 +292,85 @@
         }, true);
     }
 
+    function intiFormQrid(FormID = null, Name = null, RequestId = null) {
+
+        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+
+                var strFormId = '';
+                var Filename = 1;
+
+                for (var i = 0; i < res.data.length; i++) {
+
+                    if (i == 0) {
+                        strFormId += "<div class='col-lg-6'>";
+                    } else if (i == Math.round((res.data.length) / 2) && res.data.length > 1) {
+                        strFormId += "</div><div class='col-lg-6'>";
+                    }
+
+                    strFormId += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><form id='frmFrom" + Name + (i) + "'> <input type='hidden' id='FormID' name='FormID' value='" + FormID + "' />";
+                    strFormId += "<input type='hidden' id='DataFormQuestionID' name='DataFormQuestionID' value='" + res.data[i].dataFormQuestionId + "' />";
+
+                    strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/>";
+
+
+                    strFormId += "<label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
+                    if (res.data[i].questionType == 'select') {
+                        strFormId += "<select name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control select2' ></select>";
+                    } else if (res.data[i].questionType == 'textarea') {
+                        strFormId += "<textarea name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
+                    }
+                    else if (res.data[i].questionType == 'checkbox') {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
+                    } else if (res.data[i].questionType == 'file') {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='Result_Final_FileName" + Filename + "' id='" + res.data[i].questionName + "' /><div id='Div" + res.data[i].questionName + "'></div>";
+
+                    }
+
+                    else {
+                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
+                    }
+                    strFormId += "<button title='ثبت' class='btn btn-default fontForAllPage' type='button' onclick='Web.FurtherInfo.SavesingleForm(this," + '"' + Name + (i) + '"' + ")'> ثبت </button ></form>";
+
+                    strFormId += "</div>";
+                    strFormId += "</div>";
+                    if (i == res.data.length && res.data.length > 1) {
+                        strFormId += "</div>";
+                    }
+
+
+                }
+                $("#FormDetail" + FormID).html(strFormId);
+                systemSeting_Combo(FormID);
+            }
+        }, true);
+    }
+
+    function getFurtherInfo(id = null) {
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/customer/FurtherInfo/Get_FurtherInfo/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+                    if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
+                        $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.lastChangeOfficialNewspaper != null && res.data.lastChangeOfficialNewspaper != "") {
+                        $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.LastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.statuteDoc != null && res.data.statuteDoc != "") {
+                        $("#divDownloadStatuteDoc").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statuteDocFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.officialNewspaper != null && res.data.officialNewspaper != "") {
+                        $("#divDownloadOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.officialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                }
+
+            }, true);
+        }
+    }
 
     function intiFormQuestion(FormID = null, Name = null, RequestId = null) {
 
@@ -888,6 +968,28 @@
 
     }
 
+    function savesingleFormGrid(e) {
+
+        $(e).attr("disabled", "");
+
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_FurtherInfo", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDe2"), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+               // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                alertB("ثبت", "اطلاعات ثبت شد", "success");
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
+
+
     function saveFormDetailTab14(e) {
         try {
 
@@ -955,7 +1057,9 @@
         SavesingleForm: savesingleForm,
         IntiFormQuestion: intiFormQuestion,
         SaveForm25: saveForm25,
-
+        IntiFormQrid: intiFormQrid,
+        SavesingleFormGrid: savesingleFormGrid,
+        GetFurtherInfo: getFurtherInfo
     };
 
 })(Web, jQuery);

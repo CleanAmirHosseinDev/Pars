@@ -34,9 +34,6 @@
                         if (res.data[i].destLevelStepIndex==4) {
                             strM += "<a style='margin-right:5px;color:black' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> تایید قرارداد و بارگذاری قرارداد </a>";
 
-                        } else {
-                            strM += "<a style='margin-right:5px;color:black' title=' ارسال به پارس کیان' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  ارسال به پارس کیان </a>";
-
                         }
                           
                         }

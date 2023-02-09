@@ -51,7 +51,7 @@
                         <div class="row justify-content-center mt-0">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                                    <h4><strong>ثبت اطلاعات تکمیلی</strong></h4>
+                                    
                                     @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
                                     <div class="row">
                                         <div class="col-md-12 mx-0">
@@ -67,10 +67,12 @@
                                                 <!-- مدارک واطلاعات عمومی شرکت -->
 
                                                 <fieldset>
-                                                    <div class="form-card">
-                                                        <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
-                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                    <div class="form-card">
+                                                       
+                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                            <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
                                                             <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
 
                                                             <form id="frmFrom1">
@@ -114,29 +116,111 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <br />
-                                                        <h2 class="fs-title">بارگذاری اسناد شرکت</h2>
+                                                        
+                                                        
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px;  margin-bottom: 20px">
+                                                            <h2 class="fs-title">بارگذاری اسناد شرکت</h2>
 
-
-                                                            <p>مدارک ذیل بارگذاری شود</p>
-                                                            <p style="color:darkgrey;line-height:30px">
-
-                                                                <small> فرمت مجاز جهت بارگذاری  : pdf</small>
+                                                            <p>مدارک ذیل بارگذاری شود
+                                                                <small style="color:darkgrey;line-height:30px"> فرمت مجاز جهت بارگذاری  : pdf</small>
                                                             </p>
+                                                           
                                                             <div class="row" id="FormDetail2">
+                                                                <form id="FormDe2">
+                                                                    <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>عنوان</th>
+                                                                                <th> انتخاب فایل</th>
+                                                                                <th>مشاهده فایل</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    صورتهای مالی حسابرسی شده
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList">
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadLastAuditingTaxList"> </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    آخرین تغییرات روزنامه رسمی
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper">
 
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadLastChangeOfficialNewspaper">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+
+                                                                                    اساسنامه
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc">
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadStatuteDoc">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+
+                                                                                    روزنامه رسمی
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper">
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadOfficialNewspaper">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+
+                                                                    </table>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12" style="margin-bottom:10px">
+
+                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SavesingleFormGrid(this)"> ثبت </button>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                
+                                                             
                                                             </div>
+                                                            @*<div class="row" id="FormDetail2">
+                                                            </div>*@
                                                         </div>
-                                                        <br />
+                                                       
 
                                                     </div>
-                                                    <input type="button" name="next" class="next action-button" value=" بعدی" />
+                                                    <button type="button" name="next" class="next action-button" style="width:100px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
                                                 </fieldset>
 
                                                 <!-- نظام مدیریتی -->
 
                                                 <fieldset>
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -294,8 +378,9 @@
                                                         </div>
 
                                                     </div>
-                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
-                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                 </fieldset>
 
                                                 <!-- برنامه ریزی راهبردی -->

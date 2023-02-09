@@ -58,12 +58,12 @@ namespace EndPoint.Controllers.api.customer
 
         [HttpPost]
         [Route("[action]")]
-        public async Task<ResultDto<BoardOfDirectorsDto>> Save_BoardOfDirectorsCustomers([FromBody] BoardOfDirectorsDto request)
+        public async Task<ResultDto<FurtherInfoDto>> Save_FurtherInfo([FromForm] FurtherInfoDto request)
         {
             try
             {
-                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
-                return await _userFacad.SaveBoardOfDirectorsService.Execute(request);
+               
+                return await _userFacad.SaveFurtherInfoService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -173,6 +173,22 @@ namespace EndPoint.Controllers.api.customer
                 throw;
             }
         }
+
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<FurtherInfoDto>> Get_FurtherInfo(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetFurtherInfoService.Execute(new RequestFurtherInfoDto() { RequestId = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
     }
 }

@@ -3,7 +3,7 @@
 
 /*form styles*/
 #msform {
-    text-align: center;
+    
     position: relative;
     margin-top: 20px;
 }
@@ -95,7 +95,7 @@
 
 /*progressbar*/
 #progressbar {
-    margin-bottom: 30px;
+    
     overflow: hidden;
     color: lightgrey;
 }

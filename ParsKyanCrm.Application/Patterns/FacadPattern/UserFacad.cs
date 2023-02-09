@@ -51,6 +51,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTables;
 using ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustomerByRequest;
 using ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancialDocuments;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinancialDocuments;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo;
+using ParsKyanCrm.Application.Services.Users.Queries.GetFurtherInfo;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -139,8 +141,12 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetServiceFeeAndCustomerByRequestService GetServiceFeeAndCustomerByRequestService { get; }
 
         IGetContractAndFinancialDocumentsService GetContractAndFinancialDocumentsService { get; }
+      
 
         ISaveContractAndFinancialDocumentsService SaveContractAndFinancialDocumentsService { get; }
+        ISaveFurtherInfoService SaveFurtherInfoService { get; }
+
+        IGetFurtherInfoService GetFurtherInfoService { get; }
 
     }
 
@@ -179,6 +185,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getContractAndFinancialDocumentsService = _getContractAndFinancialDocumentsService ?? new GetContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+
+        private IGetFurtherInfoService _getFurtherInfoService;
+        public IGetFurtherInfoService GetFurtherInfoService
+        {
+            get
+            {
+                return _getFurtherInfoService = _getFurtherInfoService ?? new GetFurtherInfoService(_context, _mapper, _basicInfoFacad);
             }
         }
 
@@ -547,6 +563,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad,_env);
+            }
+        }
+
+        private ISaveFurtherInfoService _saveFurtherInfoService;
+        public ISaveFurtherInfoService SaveFurtherInfoService
+        {
+            get
+            {
+                return _saveFurtherInfoService = _saveFurtherInfoService ?? new SaveFurtherInfoService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 

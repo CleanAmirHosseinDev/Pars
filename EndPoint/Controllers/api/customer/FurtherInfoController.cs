@@ -71,6 +71,38 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<CorporateGovernanceDto>> Save_CorporateGovernance([FromForm] CorporateGovernanceDto request)
+        {
+            try
+            {
+
+                return await _userFacad.SaveCorporateGovernanceService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<ValueChainDto>> Save_ValueChain([FromForm] ValueChainDto request)
+        {
+            try
+            {
+
+                return await _userFacad.SaveValueChainService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion        
 
 

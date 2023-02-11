@@ -78,6 +78,25 @@ namespace ParsKyanCrm.Application.Dtos.Users
         }
         public IFormFile Result_Final_EvaluationFile { get; set; }
 
+        public string LastFinancialDocument { get; set; }
+        public string LastFinancialDocumentFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(LastFinancialDocument, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_LastFinancialDocument { get; set; }
+
+        public string CommitteeEvaluationFile { get; set; }
+        public string CommitteeEvaluationFileFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(CommitteeEvaluationFile, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_CommitteeEvaluationFile { get; set; }
         public string ContractCode { get; set; }
         public string ContractMainCode { get; set; }
         public bool IsCustomer { get; set; }

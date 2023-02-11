@@ -27,7 +27,7 @@
                         + "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> گردش کار </a>"
                         + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-info fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> مشاهده و اقدام </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-info fontForAllPage'><i class='fa fa-eye'></i> مشخصات </a>");
 
-                    if (res.data[i].destLevelStepIndex >= 7) {
+                    if (getlstor("loginName") === 5) {
                         strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
                     }
                     strM += "</td></tr>";
@@ -63,9 +63,8 @@
                        
                         $("#svisorShowDocument").remove();
                     }
-                    if (res.data[0].destLevelStepIndex <= 6) {
+                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "8" || (getlstor("loginName") === "1" && res.data[0].levelStepIndex>=8)) || res.data[0].destLevelStepIndex < 5 ) {
                         $("#svisorShowEvaluationFile").remove();
-
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
@@ -496,10 +495,13 @@
             getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_EvaluationFile.html", function (resG) {
 
                 $("#showEvaluationFile").html(resG);
-                if (res.data[0].levelStepAccessRole == "9") {
-                    $("#frmFormMain2").hide();
+                if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8") {
+                    $("#frmFormMain2").remove();
                 }
-                getDocument(id);
+                    if (getlstor("loginName") !== "8") {
+                        $("#frmFormMain3").remove();
+                    }
+                  getDocument(id);
 
             });
         }
@@ -511,6 +513,22 @@
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res.isSuccess) {
+                    $("#FinancialID").val(res.data.financialId);
+                    $("#RequestID").val(res.data.requestID);
+                    $("#ContentContract").val(res.data.contentContract);
+                    $("#PriceContract").val(res.data.priceContract);
+                    $("#Tax").val(res.data.tax);
+                    if (getlstor("loginName") === "8") {
+                        $("#EvaluationFile").val(res.data.evaluationFile);
+                    }                   
+                    $("#DisCountMoney").val(res.data.disCountMoney);
+                    $("#DicCountPerecent").val(res.data.dicCountPerecent);
+                    $("#FinalPriceContract").val(res.data.finalPriceContract);
+                                       
+                    $("#ContractMainCode").val(res.data.contractMainCode);
+                    $("#FinancialDocument").val(res.data.financialDocument);
+                    $("#ContractDocument").val(res.data.contractDocument);
+                    $("#ContractCode").val(res.data.contractCode);
 
                     if (res.data.financialDocument != null && res.data.financialDocument!="" ) {
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -526,6 +544,63 @@
                         $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                    if (res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") {
+                        $("#divDownload_CommitteeEvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.committeeEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownload_CommitteeEvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                    if (res.data.lastFinancialDocument != null && res.data.lastFinancialDocument != "") {
+                        $("#divDownload_LastFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.lastFinancialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownload_LastFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                }
+
+            }, true);
+        }
+    }
+
+    function getDocumentArzyab(id = null) {
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+                    $("#FinancialID").val(res.data.financialId);
+                    $("#RequestID").val(res.data.requestID);
+                    $("#ContentContract").val(res.data.contentContract);
+                    $("#PriceContract").val(res.data.priceContract);
+                    $("#Tax").val(res.data.tax);
+                    // $("#EvaluationFile").val(res.data.evaluationFile);
+                    $("#DisCountMoney").val(res.data.disCountMoney);
+                    $("#DicCountPerecent").val(res.data.dicCountPerecent);
+                    $("#FinalPriceContract").val(res.data.finalPriceContract);
+                    $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
+                    $("#ContractMainCode").val(res.data.contractMainCode);
+                    $("#FinancialDocument").val(res.data.financialDocument);
+                    $("#ContractDocument").val(res.data.contractDocument);
+                    $("#ContractCode").val(res.data.contractCode);
+
+                    if (res.data.financialDocument != null && res.data.financialDocument != "") {
+                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                    if (res.data.contractDocument != null && res.data.contractDocument != "") {
+                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                    if (res.data.evaluationFile != null && res.data.evaluationFile != "") {
+                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                    if (res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") {
+                        $("#divDownload_CommitteeEvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.committeeEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownload_CommitteeEvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                 }
 
@@ -567,6 +642,61 @@
             }
 
         }, true);
+    }
+
+    function saveContractAndFinancialDocumentsArzyab(e) {
+
+        if (document.getElementById("EvaluationFile").files.length == 0) {
+            alertB("هشدار", "فایل اکسل را انتخاب نکرده اید!.", "warning");
+        } else {
+          
+        
+        $(e).attr("disabled", "");
+
+       
+            AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain2"), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+                
+                   
+                    alertB("ثبت", " با موفقیت ثبت شد.", "success");
+
+            } else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+            }
+    }
+    function saveContractAndFinancialDocumentsCommittee(e) {
+
+        if (document.getElementById("CommitteeEvaluationFile").files.length == 0) {
+            alertB("هشدار", "فایل اکسل را انتخاب نکرده اید!.", "warning");
+        } else {
+
+
+            $(e).attr("disabled", "");
+
+
+            AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain3"), true, function (res) {
+
+                $(e).removeAttr("disabled");
+
+                if (res.isSuccess) {
+
+
+                    alertB("ثبت", " با موفقیت ثبت شد.", "success");
+
+                } else {
+
+                    alertB("خطا", res.message, "error");
+                }
+
+            }, true);
+        }
     }
 
 
@@ -807,6 +937,9 @@
         PrintContract: printContract,
         PrintContracting: printContracting,
         UploadContractCustomer: uploadContractCustomer,
+        SaveContractAndFinancialDocumentsArzyab: saveContractAndFinancialDocumentsArzyab,
+        SaveContractAndFinancialDocumentsCommittee: saveContractAndFinancialDocumentsCommittee,
+        GetDocumentArzyab: getDocumentArzyab,
 
     };
 

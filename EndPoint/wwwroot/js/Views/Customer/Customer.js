@@ -420,14 +420,11 @@
                 $("#AgentMobile").val(res.agentMobile);
                 $("#AgentName").val(res.agentName);
                 $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
-
                 Tagsinput("NamesAuthorizedSignatories");
-
                 $("#CountOfPersonal").val(res.countOfPersonal);
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
                 $("#PostalCode").val(res.postalCode);
-
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
 
                 if (res.lastInsuranceList != null && res.lastInsuranceList != "") {

@@ -10,14 +10,15 @@
     <input type="hidden" id="DicCountPerecent" name="DicCountPerecent" value="0" />
     <input type="hidden" id="ContractCode" name="ContractCode" value="0" />
     <input type="hidden" id="FinalPriceContract" name="FinalPriceContract" value="0" />
-    <input type="hidden" id="ContractDocumentCustomer" name="ContractDocumentCustomer" value="0" />   
-
+    <input type="hidden" id="ContractDocumentCustomer" name="ContractDocumentCustomer" value="0" />
+    <input type="hidden" id="ContractMainCode" name="ContractMainCode" value="0" />
+    <input type="hidden" id="CommitteeEvaluationFile" name="CommitteeEvaluationFile" value="0" />
     <input type="hidden" id="Tax" name="Tax" value="0" />
     <div class="form-horizontal">
-        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px" >
-            
+        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+
             <div id="LoadContractCustomer">
-                <div class="row">
+                <div class="row" id="FirstDoc">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-4" for="">
@@ -26,6 +27,35 @@
                             </label>
                             <div class="col-md-8">
                                 <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" accept="image/*,.pdf,.xlsx," />
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="">
+                                آپلود قرارداد امضاء شده
+                                <span class="RequiredLabel">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" />
+
+                               
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="">
+                                آپلود سند پرداخت
+                                <span class="RequiredLabel">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                
                                 <div id="divDownloadFinancialDocument"></div>
                                 <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
                             </div>
@@ -38,7 +68,7 @@
                                 <span class="RequiredLabel">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf,.xlsx," />
+
                                 <div id="divDownload_ContractDocument"></div>
                                 <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
                             </div>
@@ -46,6 +76,25 @@
 
 
                     </div>
+                </div>
+                <div class="row" id="UpLastFinancialDocument">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="">
+                                <input type="hidden" name="ContractDocument" id="ContractDocument" />
+                                <input type="hidden" name="FinancialDocument" id="FinancialDocument" />
+                                آپلود سند تسویه
+                                <span class="RequiredLabel">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="file" name="Result_Final_LastFinancialDocument" id="LastFinancialDocument" accept="image/*,.pdf,.xlsx," />
+                                <div id="divDownloadLastFinancialDocument"></div>
+                                <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -56,9 +105,9 @@
                 </div>
             </div>
 
-           <div id="ContractCusmerMsg">
-               <p> ابتدا قرارداد را تایید بفرمایید تا امکان بارگذاری قرارداد برای شما ایجاد شود.</p>
-           </div>
+            <div id="ContractCusmerMsg">
+                <p> ابتدا قرارداد را تایید بفرمایید تا امکان بارگذاری قرارداد برای شما ایجاد شود.</p>
+            </div>
 
         </div>
     </div>

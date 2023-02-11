@@ -22,7 +22,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
         public int FurtherInfoId { get; set; }
         public int? RequestId { get; set; }
-        public string LastAuditingTaxList { get; set; }      
+
+     
+        public string LastAuditingTaxList { get; set; }
         public string LastAuditingTaxListFull
         {
             get
@@ -59,7 +61,13 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_OfficialNewspaper { get; set; }
+       
 
-    }    
+        
+
+
+
+
+    }
 
 }

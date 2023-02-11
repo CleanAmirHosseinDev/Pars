@@ -1,36 +1,28 @@
 ﻿
-
+<style>
+    .bc {
+        border: 2px solid #00c0ef;
+        padding: 30px;
+        border-radius: 5px;
+        text-align: center;
+        margin-bottom: 20px;
+        max-width: 500px;
+        margin: auto
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
         <label for="ContractText">متن قرارداد</label>
 
         <br />
         <div class="form-group">
-            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px;max-width:500px;margin:auto" id="divOkContract">
+            <div id="divOkContract">          
 
-                <p>آیا قرارداد را تایید می کنید؟ در صورت عدم تایید قرارداد، در خواست شما به کارشناس ارسال خواهد شد </p>
-                <input type="hidden" id="RequestId" name="RequestId" />
-                <input type="hidden" id="Comment" name="Comment" />
-
-                <table>
-                    <tr>
-                        <td>
-                            <button id="btnPrint" style="margin-left:5px" class="btn btn-success fontForAllPage" onclick="Web.RequestForRating.OkContract(this)">  تایید  قرارداد  </button>
-                        </td>
-                        <td>
-                            <button style="margin-left:5px" class="btn btn-edit fontForAllPage" onclick="Web.RequestForRating.CancelContract(this)">  عدم تایید قرارداد </button>
-
-                        </td>
-
-                    </tr>
-                </table>
-                <br />
-
+               
             </div>
         </div>
-        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px;max-width:600px;margin:auto" id="divDownloadContract">
-            <p> قرارداد زیر را دانلود و سپس آن را امضاء کنید و سپس آن را از تب <span style="color:forestgreen;font-weight:bolder">بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p>
-            <div id="divDownloadContractDocumentCustomer"></div>
+        <div  id="divDownloadContract">
+            
          </div>
             <div id="ContractShow" style="border:1px solid silver;margin:10px;padding:20px;border-radius:10px;">
 

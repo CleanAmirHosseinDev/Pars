@@ -69,6 +69,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             string fileNameOldPic_ContractDocument = string.Empty, path_ContractDocument = string.Empty;
             string fileNameOldPic_EvaluationFile = string.Empty, path_EvaluationFile = string.Empty;
             string fileNameOldPic_ContractDocumentCustomer = string.Empty, path_ContractDocumentCustomer = string.Empty;
+            string fileNameOldPic_CommitteeEvaluationFile = string.Empty, path_CommitteeEvaluationFile = string.Empty;
+            string fileNameOldPic_LastFinancialDocument = string.Empty, path_LastFinancialDocument = string.Empty;
 
             #endregion
             try
@@ -85,6 +87,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 request.FinancialDocument = con != null && !string.IsNullOrEmpty(con.FinancialDocument) ? con.FinancialDocument : string.Empty;
                 request.EvaluationFile = con != null && !string.IsNullOrEmpty(con.EvaluationFile) ? con.EvaluationFile : string.Empty;
                 request.ContractDocumentCustomer = con != null && !string.IsNullOrEmpty(con.ContractDocumentCustomer) ? con.ContractDocumentCustomer : string.Empty;
+                request.LastFinancialDocument = con != null && !string.IsNullOrEmpty(con.LastFinancialDocument) ? con.LastFinancialDocument : string.Empty;
+                request.CommitteeEvaluationFile = con != null && !string.IsNullOrEmpty(con.CommitteeEvaluationFile) ? con.CommitteeEvaluationFile : string.Empty;
 
                 #region Upload Image
 
@@ -118,6 +122,21 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     request.ContractDocumentCustomer = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocumentCustomer.FileName);
                     path_ContractDocumentCustomer = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ContractDocumentCustomer;
                     await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocumentCustomer, path_ContractDocumentCustomer, " فرم بدون امضا مشتری");
+                }
+
+                if (request.Result_Final_CommitteeEvaluationFile != null)
+                {
+                    fileNameOldPic_CommitteeEvaluationFile = request.CommitteeEvaluationFile;
+                    request.CommitteeEvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_CommitteeEvaluationFile.FileName);
+                    path_CommitteeEvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.CommitteeEvaluationFile;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_CommitteeEvaluationFile, path_CommitteeEvaluationFile, "فایل ارزیابی کمیته");
+                }
+                if (request.Result_Final_LastFinancialDocument != null)
+                {
+                    fileNameOldPic_LastFinancialDocument = request.LastFinancialDocument;
+                    request.LastFinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastFinancialDocument.FileName);
+                    path_LastFinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastFinancialDocument;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_LastFinancialDocument, path_LastFinancialDocument, "فایل تسویه نهایی");
                 }
 
                 #endregion                
@@ -182,7 +201,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             request.IsCustomer?"ContractMainCode":"ContractCode",request.IsCustomer?MaxAllContractMainCode():MaxAllContractCode()
+                        },
+                        {
+                            nameof(q_Entity.Entity.LastFinancialDocument),request.LastFinancialDocument
                         }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.CommitteeEvaluationFile),request.CommitteeEvaluationFile
+                        }
+
                     }, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
                     #region Upload Image
 
@@ -198,10 +225,18 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     if (request.Result_Final_ContractDocumentCustomer != null)
                         FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ContractDocumentCustomer);
 
+                    if (request.Result_Final_LastFinancialDocument != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastFinancialDocument);
+
+                    if (request.Result_Final_CommitteeEvaluationFile != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_CommitteeEvaluationFile);
+
                     path_ContractDocument = string.Empty;
                     path_FinancialDocument = string.Empty;
                     path_EvaluationFile = string.Empty;
                     path_ContractDocumentCustomer = string.Empty;
+                    path_LastFinancialDocument = string.Empty;
+                    path_CommitteeEvaluationFile = string.Empty;
 
                     #endregion
                 }
@@ -223,6 +258,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 FileOperation.DeleteFile(path_FinancialDocument);
                 FileOperation.DeleteFile(path_EvaluationFile);
                 FileOperation.DeleteFile(path_ContractDocumentCustomer);
+                FileOperation.DeleteFile(path_CommitteeEvaluationFile);
+                FileOperation.DeleteFile(path_LastFinancialDocument);
                 #endregion
                 throw ex;
             }

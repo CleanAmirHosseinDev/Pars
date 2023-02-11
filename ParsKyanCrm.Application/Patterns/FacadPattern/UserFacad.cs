@@ -53,6 +53,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancialDocu
 using ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinancialDocuments;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo;
 using ParsKyanCrm.Application.Services.Users.Queries.GetFurtherInfo;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernances;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveValueChain;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -145,8 +147,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         ISaveContractAndFinancialDocumentsService SaveContractAndFinancialDocumentsService { get; }
         ISaveFurtherInfoService SaveFurtherInfoService { get; }
-
         IGetFurtherInfoService GetFurtherInfoService { get; }
+
+        ISaveCorporateGovernanceService SaveCorporateGovernanceService { get; }
+        ISaveValueChainService SaveValueChainService { get; }
 
     }
 
@@ -572,6 +576,25 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveFurtherInfoService = _saveFurtherInfoService ?? new SaveFurtherInfoService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+
+        private ISaveCorporateGovernanceService _saveCorporateGovernanceService;
+        public ISaveCorporateGovernanceService SaveCorporateGovernanceService
+        {
+            get
+            {
+                return _saveCorporateGovernanceService = _saveCorporateGovernanceService ?? new SaveCorporateGovernanceService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private ISaveValueChainService _saveValueChainService;
+        public ISaveValueChainService SaveValueChainService
+        {
+            get
+            {
+                return _saveValueChainService = _saveValueChainService ?? new SaveValueChainService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 

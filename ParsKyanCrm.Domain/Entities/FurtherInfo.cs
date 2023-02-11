@@ -12,8 +12,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string LastAuditingTaxList { get; set; }
         public string LastChangeOfficialNewspaper { get; set; }
         public string StatuteDoc { get; set; }
-
-        public string OfficialNewspaper { get; set; }
-
+        public string OfficialNewspaper { get; set; }      
+     
     }
 }

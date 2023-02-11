@@ -24,8 +24,10 @@ namespace ParsKyanCrm.Domain.Entities
         public decimal? FinalPriceContract { get; set; }
 
         public string ContractDocumentCustomer { get; set; }
+        public string CommitteeEvaluationFile { get; set; }
+        public string LastFinancialDocument { get; set; }
 
-        public string ContractMainCode { get; set; }
+
 
     }
 }

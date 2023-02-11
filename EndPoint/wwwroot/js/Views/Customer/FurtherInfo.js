@@ -16,6 +16,11 @@
 
         var countform = Number($("#FormLoadCode").val()) + 1;
         $("#FormLoadCode").val(countform);
+
+        if (countform==6) {
+            initReferral($("#RequestIdForms").val());
+        }
+
         intiTab(countform);
 
         current_fs = $(this).parent();
@@ -96,10 +101,7 @@
             case 2:
                 intiFormShow(3, "1,3,11", ID);
                 break;
-            case 3:
-                intiForm(6);
-                intiFormQuestion(25, "A", ID);
-                intiFormSingelAnswer(25, ID);
+            case 3:              
                 intiFormShow(16, "1,2,3", ID);
                 intiFormShow(17, "1,2", ID);
                 break;
@@ -111,12 +113,12 @@
                 intiFormShow(13, "1,2,3", ID);
                 break;
             case 7:
-                intiFormQuestion(7, "D");
-                intiFormSingelAnswer(7, ID);
-                intiFormQuestion(18, "D");
-                intiFormSingelAnswer(18, ID);
+               // intiFormQuestion(7, "D");
+               // intiFormSingelAnswer(7, ID);
+               // intiFormQuestion(18, "D");
+               // intiFormSingelAnswer(18, ID);
                 intiFormQuestion(19, "D");
-                intiFormSingelAnswer(18, ID);
+               // intiFormSingelAnswer(18, ID);
                 intiFormQuestion(20, "D");
                 intiFormSingelAnswer(20, ID);
 
@@ -146,7 +148,7 @@
                     PC = '5,9,20,30,125';
                     break;
                 case 3:
-                    PC = '209';
+                    PC = '250';
                     break;
                 case 16:
                     PC = '9';
@@ -968,7 +970,7 @@
 
     }
 
-    function savesingleFormGrid(e) {
+    function saveFurtherInfo(e) {
 
         $(e).attr("disabled", "");
 
@@ -989,6 +991,47 @@
 
     }
 
+    function saveCorporateGovernance(e) {
+
+        $(e).attr("disabled", "");
+
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_CorporateGovernance", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDe2"), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+                // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                alertB("ثبت", "اطلاعات ثبت شد", "success");
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
+
+    function saveValueChain(e) {
+
+        $(e).attr("disabled", "");
+
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDe7"), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+                // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                alertB("ثبت", "اطلاعات ثبت شد", "success");
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
 
     function saveFormDetailTab14(e) {
         try {
@@ -1010,6 +1053,28 @@
         saveSingelAnswerForm(e, 6, $('#HighProductKnowledge').val(), 38);
         saveSingelAnswerForm(e, 6, String($("#HaveAuditCommittee").prop('checked')), 39);
         alertB("ثبت", "اطلاعات ثبت شد", "success");
+
+    }
+
+    function initReferral(id = null) {
+
+        AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
+
+            if (res.isSuccess) {
+
+                $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
+                var htmlB = "";
+                for (var i = 0; i < res.data.length; i++) {
+
+                    htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+
+                }
+                $("#bLLSS").html(htmlB);
+                
+            }
+           
+
+        }, true);
 
     }
 
@@ -1058,8 +1123,11 @@
         IntiFormQuestion: intiFormQuestion,
         SaveForm25: saveForm25,
         IntiFormQrid: intiFormQrid,
-        SavesingleFormGrid: savesingleFormGrid,
-        GetFurtherInfo: getFurtherInfo
+        SaveFurtherInfo: saveFurtherInfo,
+        SaveCorporateGovernance: saveCorporateGovernance,
+        GetFurtherInfo: getFurtherInfo,
+        SaveValueChain: saveValueChain,
+        InitReferral: initReferral
     };
 
 })(Web, jQuery);

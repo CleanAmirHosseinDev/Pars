@@ -264,5 +264,216 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 throw ex;
             }
         }
+
+
+        //public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(ContractAndFinancialDocumentsDto request)
+        //{
+        //    #region Upload Image
+        //    //
+
+        //    string fileNameOldPic_FinancialDocument = string.Empty, path_FinancialDocument = string.Empty;
+        //    string fileNameOldPic_ContractDocument = string.Empty, path_ContractDocument = string.Empty;
+        //    string fileNameOldPic_EvaluationFile = string.Empty, path_EvaluationFile = string.Empty;
+        //    string fileNameOldPic_ContractDocumentCustomer = string.Empty, path_ContractDocumentCustomer = string.Empty;
+        //    string fileNameOldPic_CommitteeEvaluationFile = string.Empty, path_CommitteeEvaluationFile = string.Empty;
+        //    string fileNameOldPic_LastFinancialDocument = string.Empty, path_LastFinancialDocument = string.Empty;
+
+        //    #endregion
+        //    try
+        //    {
+
+        //        #region Validation
+
+
+
+        //        #endregion
+
+        //        request.Values = request.Values != null ? request.Values : new List<NormalJsonClassDto>();
+
+        //        var con = await _context.ContractAndFinancialDocuments.FindAsync(request.FinancialId);
+        //        request.ContractDocument = con != null && !string.IsNullOrEmpty(con.ContractDocument) ? con.ContractDocument : string.Empty;
+        //        request.FinancialDocument = con != null && !string.IsNullOrEmpty(con.FinancialDocument) ? con.FinancialDocument : string.Empty;
+        //        request.EvaluationFile = con != null && !string.IsNullOrEmpty(con.EvaluationFile) ? con.EvaluationFile : string.Empty;
+        //        request.ContractDocumentCustomer = con != null && !string.IsNullOrEmpty(con.ContractDocumentCustomer) ? con.ContractDocumentCustomer : string.Empty;
+        //        request.LastFinancialDocument = con != null && !string.IsNullOrEmpty(con.LastFinancialDocument) ? con.LastFinancialDocument : string.Empty;
+        //        request.CommitteeEvaluationFile = con != null && !string.IsNullOrEmpty(con.CommitteeEvaluationFile) ? con.CommitteeEvaluationFile : string.Empty;
+
+        //        #region Upload Image
+
+        //        if (request.Result_Final_FinancialDocument != null)
+        //        {
+        //            fileNameOldPic_FinancialDocument = request.FinancialDocument;
+        //            request.FinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FinancialDocument.FileName);
+        //            path_FinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.FinancialDocument;
+
+        //            await ServiceFileUploader.SaveFile(request.Result_Final_FinancialDocument, path_FinancialDocument, "سند تسویه");
+
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "FinancialDocument",
+        //                ValueObj = request.FinancialDocument
+        //            });
+        //        }
+
+        //        if (request.Result_Final_ContractDocument != null)
+        //        {
+        //            fileNameOldPic_ContractDocument = request.ContractDocument;
+        //            request.ContractDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocument.FileName);
+        //            path_ContractDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ContractDocument;
+        //            await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocument, path_ContractDocument, "قرارداد مشتری");
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "ContractDocument",
+        //                ValueObj = request.ContractDocument
+        //            });
+        //        }
+
+        //        if (request.Result_Final_EvaluationFile != null)
+        //        {
+        //            fileNameOldPic_EvaluationFile = request.EvaluationFile;
+        //            request.EvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_EvaluationFile.FileName);
+        //            path_EvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.EvaluationFile;
+        //            await ServiceFileUploader.SaveFile(request.Result_Final_EvaluationFile, path_EvaluationFile, " نتایج ارزیابی");
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "EvaluationFile",
+        //                ValueObj = request.EvaluationFile
+        //            });
+        //        }
+
+        //        if (request.Result_Final_ContractDocumentCustomer != null)
+        //        {
+        //            fileNameOldPic_EvaluationFile = request.ContractDocumentCustomer;
+        //            request.ContractDocumentCustomer = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocumentCustomer.FileName);
+        //            path_ContractDocumentCustomer = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ContractDocumentCustomer;
+        //            await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocumentCustomer, path_ContractDocumentCustomer, " فرم بدون امضا مشتری");
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "ContractDocumentCustomer",
+        //                ValueObj = request.ContractDocumentCustomer
+        //            });
+        //        }
+
+        //        if (request.Result_Final_CommitteeEvaluationFile != null)
+        //        {
+        //            fileNameOldPic_CommitteeEvaluationFile = request.CommitteeEvaluationFile;
+        //            request.CommitteeEvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_CommitteeEvaluationFile.FileName);
+        //            path_CommitteeEvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.CommitteeEvaluationFile;
+        //            await ServiceFileUploader.SaveFile(request.Result_Final_CommitteeEvaluationFile, path_CommitteeEvaluationFile, "فایل ارزیابی کمیته");
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "CommitteeEvaluationFile",
+        //                ValueObj = request.CommitteeEvaluationFile
+        //            });
+        //        }
+        //        if (request.Result_Final_LastFinancialDocument != null)
+        //        {
+        //            fileNameOldPic_LastFinancialDocument = request.LastFinancialDocument;
+        //            request.LastFinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastFinancialDocument.FileName);
+        //            path_LastFinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastFinancialDocument;
+        //            await ServiceFileUploader.SaveFile(request.Result_Final_LastFinancialDocument, path_LastFinancialDocument, "فایل تسویه نهایی");
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "LastFinancialDocument",
+        //                ValueObj = request.LastFinancialDocument
+        //            });
+
+        //        }
+
+        //        #endregion                
+
+        //        EntityEntry<ContractAndFinancialDocuments> q_Entity;
+        //        if (request.FinancialId == 0)
+        //        {
+        //            request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+
+        //            if (!request.IsCustomer)
+        //            {
+        //                request.ContractCode = MaxAllContractCode();
+        //            }
+        //            else
+        //            {
+        //                request.ContractMainCode = MaxAllContractMainCode();
+        //            }
+
+        //            request.Tax = Math.Round((request.PriceContract.HasValue ? request.PriceContract.Value * 9 : 0) / 100, 0);
+        //            q_Entity = _context.ContractAndFinancialDocuments.Add(_mapper.Map<ContractAndFinancialDocuments>(request));
+        //            await _context.SaveChangesAsync();
+        //            request = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Entity.Entity);
+        //        }
+        //        else
+        //        {
+
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = "SaveDate",
+        //                ValueObj = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+        //            });
+        //            request.Values.Add(new NormalJsonClassDto()
+        //            {
+        //                Text = request.IsCustomer ? "ContractMainCode" : "ContractCode",
+        //                ValueObj = request.IsCustomer ? MaxAllContractMainCode() : MaxAllContractCode()
+        //            });
+
+        //            var q_Dic = new Dictionary<string, object>();
+        //            foreach (var item in request.Values) q_Dic.Add(item.Text, item.ValueObj);
+
+
+        //            Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, q_Dic, string.Format("FinancialId" + " = {0} ", request.FinancialId));
+
+
+        //            #region Upload Image
+
+        //            if (request.Result_Final_ContractDocument != null)
+        //                FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ContractDocument);
+
+        //            if (request.Result_Final_FinancialDocument != null)
+        //                FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_FinancialDocument);
+
+        //            if (request.Result_Final_EvaluationFile != null)
+        //                FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_EvaluationFile);
+
+        //            if (request.Result_Final_ContractDocumentCustomer != null)
+        //                FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ContractDocumentCustomer);
+
+        //            if (request.Result_Final_LastFinancialDocument != null)
+        //                FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastFinancialDocument);
+
+        //            if (request.Result_Final_CommitteeEvaluationFile != null)
+        //                FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_CommitteeEvaluationFile);
+
+        //            path_ContractDocument = string.Empty;
+        //            path_FinancialDocument = string.Empty;
+        //            path_EvaluationFile = string.Empty;
+        //            path_ContractDocumentCustomer = string.Empty;
+        //            path_LastFinancialDocument = string.Empty;
+        //            path_CommitteeEvaluationFile = string.Empty;
+
+        //            #endregion
+        //        }
+
+        //        return new ResultDto<ContractAndFinancialDocumentsDto>()
+        //        {
+        //            IsSuccess = true,
+        //            Message = "ثبت نرخ نامه قرارداد با موفقیت انجام شد",
+        //            Data = request
+        //        };
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        #region Upload Image
+
+        //        FileOperation.DeleteFile(path_ContractDocument);
+        //        FileOperation.DeleteFile(path_FinancialDocument);
+        //        FileOperation.DeleteFile(path_EvaluationFile);
+        //        FileOperation.DeleteFile(path_ContractDocumentCustomer);
+        //        FileOperation.DeleteFile(path_CommitteeEvaluationFile);
+        //        FileOperation.DeleteFile(path_LastFinancialDocument);
+        //        #endregion
+        //        throw ex;
+        //    }
+        //}
     }
 }

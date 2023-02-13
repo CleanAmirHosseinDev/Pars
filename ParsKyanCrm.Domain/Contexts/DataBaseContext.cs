@@ -52,6 +52,7 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<DataForms> DataForms { get; set; }
         DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
         DbSet<ValueChain> ValueChain { get; set; }
+        DbSet<PublicActivities> PublicActivities { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +107,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<FurtherInfo> FurtherInfo { get; set; }
         public virtual DbSet<ValueChain> ValueChain { get; set; }
+        public virtual DbSet<PublicActivities> PublicActivities { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

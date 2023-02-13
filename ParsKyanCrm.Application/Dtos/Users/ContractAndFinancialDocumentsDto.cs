@@ -18,6 +18,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
     public class ContractAndFinancialDocumentsDto
     {
 
+        public List<Common.Dto.NormalJsonClassDto> Values { get; set; }
+
         public int FinancialId { get; set; }
         public string FinancialDocument { get; set; }
         public string ContractDocument { get; set; }

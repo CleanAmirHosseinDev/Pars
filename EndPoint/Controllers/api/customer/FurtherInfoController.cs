@@ -103,6 +103,21 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<PublicActivitiesDto>> Save_PublicActivities([FromForm] PublicActivitiesDto request)
+        {
+            try
+            {
+
+                return await _userFacad.SavePublicActivitiesService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion        
 
 
@@ -214,6 +229,50 @@ namespace EndPoint.Controllers.api.customer
             try
             {
                 return await _userFacad.GetFurtherInfoService.Execute(new RequestFurtherInfoDto() { RequestId = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<CorporateGovernanceDto>> Get_CorporateGovernances(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetCorporateGovernancesService.Execute(new RequestCorporateGovernanceDto() { RequestId = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<ValueChainDto>> Get_ValueChain(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetValueChainService.Execute(new RequestValueChainDto() { RequestId = id });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<PublicActivitiesDto>> Get_PublicActivities(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetPublicActivitiesService.Execute(new RequestPublicActivitiesDto() { RequestId = id });
             }
             catch (Exception ex)
             {

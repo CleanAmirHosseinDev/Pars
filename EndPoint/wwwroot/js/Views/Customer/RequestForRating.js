@@ -29,10 +29,10 @@
                         + res.data[i].kindOfRequestName + "</td><td>"
                         + res.data[i].dateOfRequestStr + "</td><td>"
                         + res.data[i].levelStepStatus + "</td><td>"
-                        + "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> گردش کار</a>";
+                        + "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> </a>";
                     if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
                         if (res.data[i].destLevelStepIndex==4) {
-                            strM += "<a style='margin-right:5px;color:black' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> تایید قرارداد و بارگذاری قرارداد </a>";
+                            strM += "<a style='margin-right:5px;' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward'></i> تایید قرارداد و بارگذاری قرارداد </a>";
 
                         }
 
@@ -43,7 +43,7 @@
                         }
                     if (res.data[i].destLevelStepIndex >= 7) {
 
-                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-info fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
+                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
 
                     }
 
@@ -160,9 +160,9 @@
 
             if (res.isSuccess) {
 
-                alertB("پیام", res.message, "success");
+              //  alertB("پیام", res.message, "success");
 
-              //  goToUrl("/Customer/RequestForRating/Index");
+                goToUrl("/Customer/RequestForRating/Index");
 
             }
             else {
@@ -176,7 +176,7 @@
     }
 
     function saveContractAndFinancialDocument(e) {
-        if ($("#EvaluationFile").val()!=null) {
+        if ($("#EvaluationFile").val() != null && $("#EvaluationFile").val()!="") {
             if (document.getElementById("LastFinancialDocument").files.length == 0) {
                 alertB("هشدار", "فایل  سند تسویه را انتخاب نکرده اید!.", "warning");
             } else {
@@ -303,7 +303,8 @@
                         if (i == 0) {
                             strTimeLine += "<h2>";
                             strTimeLine += "<span>ایجاد درخواست توسط : </span>";
-                            strTimeLine += "<span class='sender'>" + res.data[i].agentName + " (" + res.data[i].roleDesc + ") " + "</span >";
+                            strTimeLine += "<span class='sender'>" + (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " (" + res.data[i].roleDesc + ") " + "</span >";
+
                             strTimeLine += "</h2>";
 
                             //  strTimeLine += "<p><strong>گیرنده ها :</strong></p>";
@@ -465,9 +466,10 @@
                 if (res.isSuccess) {
                     if (res.data.contractMainCode == null) {
                         $("#LoadContractCustomer").remove();
+                       
 
                     } else {
-
+                        $("#frmOkContract").remove();
                         $("#ContractCusmerMsg").remove();
                         $("#FinancialID").val(res.data.financialId);
                         $("#RequestID").val(res.data.requestID);
@@ -482,11 +484,14 @@
                         $("#ContractMainCode").val(res.data.contractMainCode);
                         $("#CommitteeEvaluationFile").val(res.data.committeeEvaluationFile);
                         $("#Tax").val(res.data.tax);
-                        if (res.data.committeeEvaluationFile != null || res.data.evaluationFile !=null) {
+                        if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile!="")) {
                             $("#FirstDoc").remove();
                             $("#ContractDocument").val(res.data.contractDocument);
                             $("#FinancialDocument").val(res.data.financialDocument);
                              
+                        }
+                        else {
+                            $("#UpLastFinancialDocument").remove();
                         }
                         
                         if (res.data.financialDocument != null && res.data.financialDocument != "") {
@@ -523,22 +528,36 @@
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res.isSuccess) {
-                    if (res.data.contractMainCode != null && res.data.committeeEvaluationFile == null || res.data.EvaluationFile == null )
+                    if (res.data.contractMainCode != null )
                     {
-                        var strhtml = "<div class='bc'><p> قرارداد زیر را دانلود و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p>< div id = 'divDownloadContractDocumentCustomer' ></div ></div>";
+                        if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile != "")) {
+                            $("#divDownloadContract").hide();
+                        } else {
+                            var strhtml = "<div class='bc'><p> قرارداد زیر را دانلود و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ></div>";
 
-                        $("#divDownloadContract").hide();
-                        if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
-                            $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#divDownloadContract").html(strhtml);
+
+                            if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
+                                $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            }
                         }
+
                     } else {
-                        var strhtml = "<div class='bc'><p>آیا قرارداد را تایید می کنید؟ در صورت عدم تایید قرارداد، در خواست شما به کارشناس ارسال خواهد شد </p>< input type = 'hidden' id ='RequestId' name ='RequestId' /><input type='hidden' id='Comment' name='Comment' />";
-                        strhtml += " <table><tr><td><button id='btnPrint' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this)'>تایید  قرارداد</button></td><td><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.CancelContract(this)'>  عدم تایید قرارداد </button></td></tr></table><br /></div>";
-                        $("#divOkContract").html(strhtml);
-                        
+                        $("#FinancialID").val(res.data.financialId);
+                        $("#RequestID").val(res.data.requestID);
+                        $("#ContentContract").val(res.data.contentContract);
+                        $("#PriceContract").val(res.data.priceContract);
+
+                        $("#DisCountMoney").val(res.data.disCountMoney);
+                        $("#DicCountPerecent").val(res.data.dicCountPerecent);
+                        $("#ContractCode").val(res.data.contractCode);
+                        $("#FinalPriceContract").val(res.data.finalPriceContract);
+                        $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
+
+                        var strhtml = "<div class='bc'><p>آیا قرارداد را تایید می کنید؟ در صورت عدم تایید قرارداد، در خواست شما به کارشناس ارسال خواهد شد </p><input type = 'hidden' id ='RequestId' name ='RequestId' value='"+id+"' /><input type='hidden' id='Comment' name='Comment' />";
+                        strhtml += " <table><tr><td><button type='button' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this)'>تایید  قرارداد</button></td><td><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.CancelContract(this)'>  عدم تایید قرارداد </button></td></tr></table><br /></div>";
+                        $("#divOkContract").html(strhtml);                        
                     }
-                    
-                  
                     $("#ContractShow").html(res.data.contentContract);                   
                    
                     $('input[type="text"], textarea').each(function () {
@@ -556,25 +575,65 @@
 
     }
 
+    //function okContract(e) {
+
+    //    var id = $("#RequestId").val();
+    //    if (!isEmpty(id) && id != 0) {
+
+    //        var objJ = {};
+    //        //objJ.Values = [];
+    //        //objJ.Values.push({ Text: "test1", ValueObj:"12345"});;
+    //        objJ.FinancialId = 46;
+
+    //        AjaxCallAction("POST", "/api/customer/RequestForRating/Save_ContractAndFinancialDocumentsNoForm", JSON.stringify(objJ), true, function (res) {
+
+    //            if (res.isSuccess) {
+
+    //                if (res.data.contractMainCode != null && res.data.contractMainCode != "") {
+    //                    $("#divOkContract").remove();
+    //                    var strhtml = "<div class='bc'><p> قرارداد زیر را دانلود و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ></div>";
+    //                    $("#divDownloadContract").html(strhtml);
+
+    //                    $("#divDownloadContract").show();
+
+    //                    $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+    //                }
+    //            }
+
+    //        }, true);
+    //    }
+    //}
+
     function okContract(e) {
 
-        var id = $("#RequestId").val();
-        if (!isEmpty(id) && id != 0) {
 
-            AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+        $(e).removeAttr("disabled");
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmOkContract"), true, function (res) {
 
-                if (res.isSuccess) {
+           
 
-                    if (res.data.contractMainCode != null && res.data.contractMainCode != "") {
-                        $("#divOkContract").remove();
-                        $("#divDownloadContract").show();
+            if (res.isSuccess) {               
+               
+                $("#divOkContract").remove();
+                var strhtml = "<div class='bc'><p> قرارداد زیر را دانلود و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ></div>";
+                $("#divDownloadContract").html(strhtml);
 
-                        $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-                    }
-                }
+                $("#divDownloadContract").show();
 
-            }, true);
-        }
+                $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+
+            } else {
+
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+
+
+       
     }
 
     function cancelContract(e) {

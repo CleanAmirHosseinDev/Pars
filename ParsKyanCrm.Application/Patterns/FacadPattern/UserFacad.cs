@@ -55,6 +55,11 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo;
 using ParsKyanCrm.Application.Services.Users.Queries.GetFurtherInfo;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernances;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveValueChain;
+using ParsKyanCrm.Application.Services.Users.Queries.GetCorporateGovernances;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveValueChainService;
+using ParsKyanCrm.Application.Services.Users.Queries.GetValueChain;
+using ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities;
+using ParsKyanCrm.Application.Services.Users.Queries.GetPublicActivities;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -150,7 +155,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetFurtherInfoService GetFurtherInfoService { get; }
 
         ISaveCorporateGovernanceService SaveCorporateGovernanceService { get; }
+
+        IGetCorporateGovernancesService GetCorporateGovernancesService { get; }
+
         ISaveValueChainService SaveValueChainService { get; }
+
+        IGetValueChainService GetValueChainService { get; }
+
+        ISavePublicActivitiesService SavePublicActivitiesService { get; }
+
+        IGetPublicActivitiesService GetPublicActivitiesService { get; }
 
     }
 
@@ -199,6 +213,25 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getFurtherInfoService = _getFurtherInfoService ?? new GetFurtherInfoService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetPublicActivitiesService _getPublicActivitiesService;
+        public IGetPublicActivitiesService GetPublicActivitiesService
+        {
+            get
+            {
+                return _getPublicActivitiesService = _getPublicActivitiesService ?? new GetPublicActivitiesService(_context, _mapper, _basicInfoFacad);
+            }
+
+        }
+
+        private IGetCorporateGovernancesService _getCorporateGovernancesService;
+        public IGetCorporateGovernancesService GetCorporateGovernancesService
+        {
+            get
+            {
+                return _getCorporateGovernancesService = _getCorporateGovernancesService ?? new GetCorporateGovernancesService(_context, _mapper, _basicInfoFacad);
             }
         }
 
@@ -595,6 +628,25 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveValueChainService = _saveValueChainService ?? new SaveValueChainService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
+        private IGetValueChainService _getValueChainService;
+        public IGetValueChainService GetValueChainService
+        {
+            get
+            {
+                return _getValueChainService=_getValueChainService??new GetValueChainService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+
+        private ISavePublicActivitiesService _savePublicActivitiesService;
+        public ISavePublicActivitiesService SavePublicActivitiesService
+        {
+            get
+            {
+                return _savePublicActivitiesService= _savePublicActivitiesService ?? new SavePublicActivitiesService(_context, _mapper, _basicInfoFacad);
             }
         }
 

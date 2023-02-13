@@ -17,9 +17,9 @@
         var countform = Number($("#FormLoadCode").val()) + 1;
         $("#FormLoadCode").val(countform);
 
-        if (countform==6) {
-            initReferral($("#RequestIdForms").val());
-        }
+       
+           
+        
 
         intiTab(countform);
 
@@ -92,47 +92,57 @@
 
     function intiTab(TabId = null) {
         var ID = $("#RequestIdForms").val();
-
+        
         switch (TabId) {
             case 1:
                 intiFormShow(1, "1,2,7,8", ID);
                 getFurtherInfo(ID);
+                
                 break;
             case 2:
                 intiFormShow(3, "1,3,11", ID);
+                
                 break;
-            case 3:              
+            case 3:
+                getCorporateGovernance(ID);
                 intiFormShow(16, "1,2,3", ID);
                 intiFormShow(17, "1,2", ID);
+               
                 break;
             case 4:
                 intiForm(11);
                 intiFormSingelAnswer(11, ID);
+               
                 break;
             case 5:
                 intiFormShow(13, "1,2,3", ID);
+              
                 break;
             case 7:
-               // intiFormQuestion(7, "D");
-               // intiFormSingelAnswer(7, ID);
-               // intiFormQuestion(18, "D");
-               // intiFormSingelAnswer(18, ID);
-                intiFormQuestion(19, "D");
-               // intiFormSingelAnswer(18, ID);
-                intiFormQuestion(20, "D");
-                intiFormSingelAnswer(20, ID);
-
+                getValueChain(ID);
+                //intiFormQuestion(7, "D");
+                //intiFormSingelAnswer(7, ID);
+                //intiFormQuestion(18, "D");
+                //intiFormSingelAnswer(18, ID);
+                //intiFormQuestion(19, "D");
+                //intiFormSingelAnswer(18, ID);
+                //intiFormQuestion(20, "D");
+                //intiFormSingelAnswer(20, ID);
+                
             case 9:
                 intiFormShow(9, '1,2,11', ID);
                 intiFormShow(10, '1,11', ID);
+                
                 break;
             case 14:
 
-                intiForm(14);
-                intiFormSingelAnswer(14, ID);
+                //intiForm(14);
+                //intiFormSingelAnswer(14, ID);
+                getPublicActivities(ID);
                 intiFormShow(15, '1,2,11', ID);
                 intiFormShow(22, '1,11', ID);
                 intiFormShow(24, '1,11', ID);
+               
                 break;
 
         }
@@ -235,8 +245,13 @@
     //}
 
     function initFurtherInfo(id = null) {
+        PersianDatePicker(".DatePicker");
+        
+
         $("#RequestIdForms").val(id);
+        initReferral(id);        
         intiTab(1);
+
     }
 
     function intiFormShow(Id = null, Columns = null, RequestId = null) {
@@ -244,54 +259,55 @@
         intiForm(Id, RequestId);
         intiFormAnswer(Id, Columns, RequestId);
 
+
     }
 
 
     function intiForm(FormID = null, RequestId = null) {
 
-        AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+        //AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
-            if (res.isSuccess) {
+        //    if (res.isSuccess) {
 
-                var strFormId = '';
-                var Filename = 1;
-                for (var i = 0; i < res.data.length; i++) {
-                    if (i == 0) {
-                        strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/>";
-                    }
+        //        var strFormId = '';
+        //        var Filename = 1;
+        //        for (var i = 0; i < res.data.length; i++) {
+        //            if (i == 0) {
+        //                strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/>";
+        //            }
 
-                    if (i == 0) {
-                        strFormId += "<div class='col-lg-6'>";
-                    } else if (i == Math.round((res.data.length) / 2) && res.data.length > 1) {
-                        strFormId += "</div><div class='col-lg-6'>";
-                    }
+        //            if (i == 0) {
+        //                strFormId += "<div class='col-lg-6'>";
+        //            } else if (i == Math.round((res.data.length) / 2) && res.data.length > 1) {
+        //                strFormId += "</div><div class='col-lg-6'>";
+        //            }
 
-                    strFormId += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
-                    if (res.data[i].questionType == 'select') {
-                        strFormId += "<select name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control select2' ></select>";
-                    } else if (res.data[i].questionType == 'textarea') {
-                        strFormId += "<textarea name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
-                    }
-                    else if (res.data[i].questionType == 'checkbox') {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
-                    } else if (res.data[i].questionType == 'file') {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='Result_Final_FileName" + Filename + "' id='" + res.data[i].questionName + "' /><div id='Div" + res.data[i].questionName + "'></div>";
-                        Filename++;
-                    }
+        //            strFormId += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'  for=''>" + res.data[i].questionText + "<span class='RequiredLabel'>*</span></label>";
+        //            if (res.data[i].questionType == 'select') {
+        //                strFormId += "<select name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control select2' ></select>";
+        //            } else if (res.data[i].questionType == 'textarea') {
+        //                strFormId += "<textarea name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
+        //            }
+        //            else if (res.data[i].questionType == 'checkbox') {
+        //                strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
+        //            } else if (res.data[i].questionType == 'file') {
+        //                strFormId += "<input type='" + res.data[i].questionType + "' name='Result_Final_FileName" + Filename + "' id='" + res.data[i].questionName + "' /><div id='Div" + res.data[i].questionName + "'></div>";
+        //                Filename++;
+        //            }
 
-                    else {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
-                    }
-                    strFormId += "</div>";
-                    strFormId += "</div>";
-                    if (i == res.data.length && res.data.length > 1) {
-                        strFormId += "</div>";
-                    }
-                }
-                $("#FormDetail" + FormID).html(strFormId);
-                systemSeting_Combo(FormID);
-            }
-        }, true);
+        //            else {
+        //                strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
+        //            }
+        //            strFormId += "</div>";
+        //            strFormId += "</div>";
+        //            if (i == res.data.length && res.data.length > 1) {
+        //                strFormId += "</div>";
+        //            }
+        //        }
+        //        $("#FormDetail" + FormID).html(strFormId);
+           systemSeting_Combo(FormID);
+        //    }
+        //}, true);
     }
 
     function intiFormQrid(FormID = null, Name = null, RequestId = null) {
@@ -349,6 +365,162 @@
         }, true);
     }
 
+    function getCorporateGovernance(id = null) {
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/customer/FurtherInfo/Get_CorporateGovernances/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+                    $("#CorporateGovernanceId").val(res.data.corporateGovernanceId);
+                    $("#RequestId").val(res.data.requestId);
+                    $("#CompanyWebSite").val(res.data.companyWebSite);
+                    $("#HighProductKnowledge").val(res.data.highProductKnowledge);
+                    $("#HaveRepresentative").val(res.data.haveRepresentative);
+                    $("#HaveAuditCommittee").val(res.data.haveAuditCommittee);
+                   
+                    if (res.data.organazationChart != null && res.data.organazationChart != "") {
+                        $("#DivOrganazationChart").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.organazationChartFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.organizationalDuties != null && res.data.organizationalDuties != "") {
+                        $("#DivOrganizationalDuties").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.organizationalDutiesFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.riskManagementGuidelines != null && res.data.riskManagementGuidelines != "") {
+                        $("#DivRiskManagementGuidelines").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.riskManagementGuidelinesFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.transactionRegulations != null && res.data.transactionRegulations != "") {
+                        $("#DivTransactionRegulations").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.transactionRegulationsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.deductionTaxAccount != null && res.data.deductionTaxAccount != "") {
+                        $("#DivDeductionTaxAccount").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.deductionTaxAccountFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.crmSoftwareContract != null && res.data.crmSoftwareContract != "") {
+                        $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.crmSoftwareContract != null && res.data.crmSoftwareContract != "") {
+                        $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.representativeFile != null && res.data.representativeFile != "") {
+                        $("#DivRepresentativeFile").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.RepresentativeFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.letterOfCommendation != null && res.data.letterOfCommendation != "") {
+                        $("#DivLetterOfCommendation").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.LetterOfCommendationFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.proceedings != null && res.data.proceedings != "") {
+                        $("#DivProceedings").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.proceedingsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.inovationFile != null && res.data.inovationFile != "") {
+                        $("#DivInovationFile").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.inovationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    
+                }
+
+            }, true);
+        }
+    }
+
+    function getValueChain(id = null) {
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/customer/FurtherInfo/Get_ValueChain/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+                    $("#ValueChainId").val(res.data.valueChainId);
+                    $("#RequestId").val(res.data.requestId);
+                   
+
+                    if (res.data.vc1 != null && res.data.vc1 != "") {
+                        $("#DivVc1").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+
+                    if (res.data.vc2 != null && res.data.vc2 != "") {
+                        $("#DivVc2").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+
+                    if (res.data.vc3 != null && res.data.vc3 != "") {
+                        $("#DivVc3").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+
+                    if (res.data.vc4 != null && res.data.vc4 != "") {
+                        $("#DivVc4").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+
+                    if (res.data.vc4 != null && res.data.vc4 != "") {
+                        $("#DivVc4").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc5 != null && res.data.vc5 != "") {
+                        $("#DivVc5").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc5Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc6 != null && res.data.vc6 != "") {
+                        $("#DivVc6").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc6Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc7 != null && res.data.vc7 != "") {
+                        $("#DivVc7").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc7Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc8 != null && res.data.vc8 != "") {
+                        $("#DivVc8").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc8Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc9 != null && res.data.vc9 != "") {
+                        $("#DivVc9").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc9Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc10 != null && res.data.vc10 != "") {
+                        $("#DivVc10").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc10Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc11 != null && res.data.vc11 != "") {
+                        $("#DivVc11").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc11Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc12 != null && res.data.vc12 != "") {
+                        $("#DivVc12").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc12Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc13 != null && res.data.vc13 != "") {
+                        $("#DivVc13").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc13Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc14 != null && res.data.vc14 != "") {
+                        $("#DivVc14").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc14Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc15 != null && res.data.vc15 != "") {
+                        $("#DivVc15").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc15Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc16 != null && res.data.vc16 != "") {
+                        $("#DivVc16").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc16Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc17 != null && res.data.vc17 != "") {
+                        $("#DivVc17").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc17Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc18 != null && res.data.vc18 != "") {
+                        $("#DivVc18").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc18Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc19 != null && res.data.vc19 != "") {
+                        $("#DivVc19").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc19Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc20 != null && res.data.vc20 != "") {
+                        $("#DivVc20").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc20Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc21 != null && res.data.vc21 != "") {
+                        $("#DivVc21").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc21Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc22 != null && res.data.vc22 != "") {
+                        $("#DivVc22").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc22Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc23 != null && res.data.vc23 != "") {
+                        $("#DivVc23").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc23Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc24 != null && res.data.vc24 != "") {
+                        $("#DivVc24").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc24Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.vc25 != null && res.data.vc25!= "") {
+                        $("#DivVc25").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc25Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+
+                }
+
+            }, true);
+        }
+    }
+
+
+
     function getFurtherInfo(id = null) {
 
         if (!isEmpty(id) && id != 0) {
@@ -374,6 +546,24 @@
         }
     }
 
+
+    function getPublicActivities(id = null) {
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/customer/FurtherInfo/Get_PublicActivities/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+                    $("#IsPublicActivityFile").val(res.data.isPublicActivityFile);
+                    $("#Investment").val(res.data.investment);
+                    $("#EmploymentDisabled").val(res.data.employmentDisabled);
+                    $("#PublicActivitiesID").val(res.data.publicActivitiesID);
+                   
+                }
+
+            }, true);
+        }
+    }
     function intiFormQuestion(FormID = null, Name = null, RequestId = null) {
 
         AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
@@ -714,7 +904,11 @@
                         }
                     }
 
-                    strFormAnswer += "<button title='ویرایش' class='btn btn-warring fontForAllPage' type='button' onclick='Web.FurtherInfo.GetFormAnswer(" + FormID + "," + res.data[i].answerTableId + ")' ><i class='fa fa-edit'></i></button><button style='margin-right:5px' type='button' title='حذف' class='btn btn-warrnig fontForAllPage' onclick='Web.FurtherInfo.Delete_DataFormAnswerTables(" + FormID + ',"' + ColumNum + '",' + res.data[i].answerTableId + ");'><i class='fa fa-remove'></i></button></td></tr>";
+                    strFormAnswer += "<button title='ویرایش' class='btn btn-warring fontForAllPage' type='button' onclick='Web.FurtherInfo.GetFormAnswer(" + FormID + "," + res.data[i].answerTableId + ")' ><i class='fa fa-edit'></i></button>";
+                    if ($("#sdfcddf").val()=="1") {
+                        strFormAnswer += "<button style='margin-right:5px' type='button' title='حذف' class='btn btn-warrnig fontForAllPage changeData' onclick='Web.FurtherInfo.Delete_DataFormAnswerTables(" + FormID + ',"' + ColumNum + '",' + res.data[i].answerTableId + ");'><i class='fa fa-remove'></i></button>";
+                    }
+                    strFormAnswer += "</td></tr>";
                 }
                 $("#FormDetailAnswer" + FormID).html(strFormAnswer);
             }
@@ -824,12 +1018,19 @@
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
+                        if (res.data[0].fileName1Full != null) {
+                            $("#DivCertificationCourses").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
                         $("#btnform12").html("ویرایش");
                     }
                     else if (FormID == 13) {
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
                         $('#PostInSociety').val(res.data[0].answer3Val);
+                        if (res.data[0].fileName1Full != null) {
+                            $("#DivCertificationSociety").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        
                         comboBoxWithSearchUpdateText("PostInSociety", res.data[0].answer3);
                         $("#btnform13").html("ویرایش");
                     }
@@ -995,7 +1196,7 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_CorporateGovernance", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDe2"), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_CorporateGovernance", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDe6"), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -1016,7 +1217,28 @@
 
         $(e).attr("disabled", "");
 
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDe7"), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDem7"), true, function (res) {
+
+            $(e).removeAttr("disabled");
+
+            if (res.isSuccess) {
+                // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                alertB("ثبت", "اطلاعات ثبت شد", "success");
+            }
+            else {
+
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+    }
+
+    function savePublicActivities(e) {
+
+        $(e).attr("disabled", "");
+
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_PublicActivities", fill_AjaxCallActionPostSaveFormWithUploadFile("FormPublicActivities"), true, function (res) {
 
             $(e).removeAttr("disabled");
 
@@ -1065,11 +1287,17 @@
                 $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
                 var htmlB = "";
                 for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[0].levelStepIndex == 7 && res.data[0].levelStepAccessRole==5) {
+                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
-                    htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
-
+                    } 
                 }
                 $("#bLLSS").html(htmlB);
+                $("#sdfcddf").val(1);
+                
+            } else {
+                $(".changeData").remove();
+                $("#EndfurtherInfo").html("اطلاعات شما برای پارس کیان جهت بررسی و ارزیابی ارسال شده است و قابل ویرایش نمی باشد.");
                 
             }
            
@@ -1127,7 +1355,11 @@
         SaveCorporateGovernance: saveCorporateGovernance,
         GetFurtherInfo: getFurtherInfo,
         SaveValueChain: saveValueChain,
-        InitReferral: initReferral
+        InitReferral: initReferral,
+        GetCorporateGovernance: getCorporateGovernance,
+        GetValueChain: getValueChain,
+        SavePublicActivities: savePublicActivities,
+        GetPublicActivities: getPublicActivities
     };
 
 })(Web, jQuery);

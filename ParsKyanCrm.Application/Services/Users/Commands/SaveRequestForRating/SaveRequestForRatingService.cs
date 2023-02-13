@@ -154,8 +154,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     });
                     await _context.SaveChangesAsync();
 
-                    smsmessage = WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                    smsmessage = WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
+                      WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                      WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
                 else
@@ -192,7 +192,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     {
                         case true:
 
-                            smsmessage = WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
+                            WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
                             WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 
                             break;
@@ -220,7 +220,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                 return new ResultDto()
                 {
                     IsSuccess = true,
-                    Message = "اطلاعات شما با موفقیت ثبت شد" + smsmessage,
+                    Message = "اطلاعات شما با موفقیت ثبت شد" ,
                 };
             }
             catch (Exception ex)

@@ -22,6 +22,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string vc8 { get; set; }
         public string vc9 { get; set; }
         public string vc10 { get; set; }
+        public string vc11 { get; set; }
         public string vc12 { get; set; }
         public string vc13 { get; set; }
         public string vc14 { get; set; }

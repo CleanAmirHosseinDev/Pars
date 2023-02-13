@@ -92,6 +92,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public IFormFile Result_Final_CrmSoftwareContract { get; set; }
 
         public bool HaveRepresentative { get; set; }
+        public bool HaveAuditCommittee { get; set; }
 
         public string RepresentativeFile { get; set; }
         public string RepresentativeFileFull
@@ -105,15 +106,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
 
 
-        public string letterOfCommendation { get; set; }
-        public string letterOfCommendationFull
+        public string LetterOfCommendation { get; set; }
+        public string LetterOfCommendationFull
         {
             get
             {
-                return ServiceFileUploader.GetFullPath(letterOfCommendation, VaribleForName.CustomersFolder, false);
+                return ServiceFileUploader.GetFullPath(LetterOfCommendation, VaribleForName.CustomersFolder, false);
             }
         }
-        public IFormFile Result_Final_letterOfCommendation { get; set; }
+        public IFormFile Result_Final_LetterOfCommendation { get; set; }
 
 
         public string InovationFile { get; set; }
@@ -130,8 +131,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string HighProductKnowledge { get; set; }
 
-        public bool HaveAuditCommittee { get; set; }
-
+       
         public string Proceedings { get; set; }
         public string ProceedingsFull
         {

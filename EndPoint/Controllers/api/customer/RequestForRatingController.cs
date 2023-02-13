@@ -126,5 +126,21 @@ namespace EndPoint.Controllers.api.customer
         }
 
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_ContractAndFinancialDocumentsNoForm([FromBody] ContractAndFinancialDocumentsDto request)
+        {
+            try
+            {
+                request.IsCustomer = true;
+                return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

@@ -25,7 +25,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? CustomerID { get; set; }
         public bool IsPublicActivityFile { get; set; }
-      
+        public string IsPublicActivityFileStr { get; set; }
         public string Investment { get; set; }
 
         public string EmploymentDisabled { get; set; }

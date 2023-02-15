@@ -93,7 +93,7 @@
                                                                         </div><div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">پست سازمانی <span class="RequiredLabel">*</span></label>
-                                                                                <select name="Answer2" id="MemberPostID" class="form-control select2"></select>
+                                                                                <input type="text" name="Answer2" id="MemberPostID" class="form-control" placeholder="پست سازمانی"/>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -156,7 +156,7 @@
                                                                                 <button class="btn btn-success fontForAllPage" type="button" id="btnform1" onclick="Web.FurtherInfo.SaveForm(this,1,'1,2,7,8');">
                                                                                     افزودن
                                                                                 </button>
-                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform1').html('افزودن');$('#DivAcademicDegreePicture').html('')  ">
+                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform1').html('افزودن'); $('#AnswerTableId').val(0); ">
                                                                                     انصراف
                                                                                 </button>
                                                                             </div>
@@ -345,7 +345,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform3" onclick="Web.FurtherInfo.SaveForm(this,3,'1,3,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform3').html('افزودن');$('#DivGuidelinesAndRegulationsFile').html('')  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform3').html('افزودن'); $('#DivGuidelinesAndRegulationsFile').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -417,7 +417,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform4" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن');$('#DivCertificateAndPermitAndStandardFile').html('')  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن'); $('#DivCertificateAndPermitAndStandardFile').html('');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -493,7 +493,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform5" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن');$('#DivAwardsFile').html('')  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن'); $('#DivAwardsFile').html('');$('#AnswerTableId').val(0);   ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -574,7 +574,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for=""> آیا شرکت نمایندگی از شرکتهای خارجی / داخلی دارد؟<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="checkbox" name="HaveRepresentative" id="HaveRepresentative" style="text-align:right; width: 30px" />
+                                                                                                    <input type="checkbox" name="HaveRepresentativeStr" id="HaveRepresentativeStr" style="text-align:right; width: 30px" />
                                                                                                 </div>
                                                                                             </div>
 
@@ -589,7 +589,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for=""> آیا کمیته حسابرسی دارید ؟<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="checkbox" name="HaveAuditCommittee" id="HaveAuditCommittee" style="text-align:right; width: 30px" />
+                                                                                                    <input type="checkbox" name="HaveAuditCommitteeStr" id="HaveAuditCommitteeStr" style="text-align:right; width: 30px" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -772,7 +772,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform16" onclick="Web.FurtherInfo.SaveForm(this,16,'1,2,3');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');$('#AnswerTableId').val(0);   ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -830,7 +830,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform17" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');$('#AnswerTableId').val(0);   ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1209,7 +1209,7 @@
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'11,12');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html('');$('#DivSwotFile1').html('') ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html(''); $('#DivSwotFile1').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1275,7 +1275,7 @@
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform9" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن');$('#DivDegreeFile').html('') ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن'); $('#DivDegreeFile').html('');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1334,7 +1334,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن');$('#DivReportFile').html('') ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن'); $('#DivReportFile').html('');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1413,7 +1413,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for=""> بارگزاری فایل اکسل کامل شده<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx," />
                                                                                                     <div id="DivHumanResourcesFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1481,7 +1481,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن'); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1569,7 +1569,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">سمت در انجمن<span class="RequiredLabel">*</span></label>
-                                                                                                    <select name="Answer3" id="PostInSociety" class="form-control select2"></select>
+                                                                                                    <input type="text" name="Answer3" id="PostInSociety" class="form-control" placeholder="سمت در انجمن" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
@@ -1587,7 +1587,7 @@
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" id="btnform13" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن'); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1630,7 +1630,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for=""> آیا واحد تجاری در انجمن های خیریه عضویت داشته است؟ در صورت مثبت بودن مدرک بارگزاری شود<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="checkbox" name="IsPublicActivityFile" id="IsPublicActivityFile" style="text-align:right; width: 30px" />
+                                                                                                    <input type="checkbox" name="IsPublicActivityFileStr" id="IsPublicActivityFileStr" style="text-align:right; width: 30px" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
@@ -1697,7 +1697,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform15" type="button" onclick="Web.FurtherInfo.SaveForm(this,15,'1,2,11')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform15').html('افزودن'); $('#DivPublicActivityFile').html(''); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform15').html('افزودن'); $('#DivPublicActivityFile').html(''); $('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1757,7 +1757,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform22" type="button" onclick="Web.FurtherInfo.SaveForm(this,22,'1,11')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform22').html('افزودن');$('#DivInvestmentFile').html('')">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform22').html('افزودن'); $('#DivInvestmentFile').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -1815,7 +1815,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform24" type="button" onclick="Web.FurtherInfo.SaveForm(this,24,'1,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform24').html('افزودن');$('#DivEmploymentDisabledFile').html('')">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform24').html('افزودن'); $('#DivEmploymentDisabledFile').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>

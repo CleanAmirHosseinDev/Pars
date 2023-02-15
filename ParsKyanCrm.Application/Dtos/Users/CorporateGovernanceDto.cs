@@ -92,8 +92,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public IFormFile Result_Final_CrmSoftwareContract { get; set; }
 
         public bool HaveRepresentative { get; set; }
+        public string HaveRepresentativeStr { get; set; }
         public bool HaveAuditCommittee { get; set; }
-
+        public string HaveAuditCommitteeStr { get; set; }
         public string RepresentativeFile { get; set; }
         public string RepresentativeFileFull
         {

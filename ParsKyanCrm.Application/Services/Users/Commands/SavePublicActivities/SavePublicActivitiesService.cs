@@ -37,14 +37,24 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
             
             try
             {
-               
+
                 #region Validation
 
 
 
                 #endregion
 
-              
+                if (request.IsPublicActivityFileStr!=null)
+                {
+                    if (request.IsPublicActivityFileStr == "on")
+                    {
+                        request.IsPublicActivityFile = true;
+                    }
+                    else
+                    {
+                        request.IsPublicActivityFile = false;
+                    }
+                }
 
                 EntityEntry<PublicActivities> q_Entity;
                 if (request.PublicActivitiesID == 0)

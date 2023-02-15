@@ -61,6 +61,27 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
             try
             {
 
+                if (request.HaveAuditCommitteeStr!=null)
+                {
+                   if( request.HaveAuditCommitteeStr=="on")
+                    {
+                        request.HaveAuditCommittee = true;
+                    }else
+                    {
+                        request.HaveAuditCommittee = false;
+                    }
+                }
+                if (request.HaveRepresentativeStr != null)
+                {
+                    if (request.HaveRepresentativeStr == "on")
+                    {
+                        request.HaveRepresentative = true;
+                    }
+                    else
+                    {
+                        request.HaveRepresentative = false;
+                    }
+                }
                 //شروع کنیم yes tnx
 
                 #region Validation

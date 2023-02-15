@@ -27,7 +27,7 @@
                         + "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
                         + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-default fontForAllPage'><i class='fa fa-eye'></i> </a>");
 
-                    if ( n== res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole=="5") {
+                    if ((n == res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole == "5") || (n == "5" && res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex=="7")) {
                         strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> </a>";
                     }
                     strM += "</td></tr>";
@@ -529,7 +529,10 @@
                     $("#FinancialDocument").val(res.data.financialDocument);
                     $("#ContractDocument").val(res.data.contractDocument);
                     $("#ContractCode").val(res.data.contractCode);
-
+                    if (getlstor("loginName") !== "4" && getlstor("loginName") !== "1" ) {
+                     $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
+                    }
+                   
                     if (res.data.financialDocument != null && res.data.financialDocument!="" ) {
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {

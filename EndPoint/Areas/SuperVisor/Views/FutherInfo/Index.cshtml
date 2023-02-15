@@ -14,12 +14,15 @@
     </section>
 }
 @section Styles{
-    <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/GlobalAreas/Views/SuperVisor/FurtherInfo.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
+
 }
 
 
-<input type="hidden" id="RequestId" name="RequestId" value="0" />
+<input type="hidden" id="RequestIdForms" name="RequestIdForms" value="0" />
+<input type="hidden" id="sdfcddf" name="sdfcddf" value="0" />
 <div class="row">
     <section class="col-lg-12 col-md-12">
         <div class="box box-info">
@@ -51,6 +54,7 @@
                         <div class="row justify-content-center mt-0">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+
                                     @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
                                     <div class="row">
                                         <div class="col-md-12 mx-0">
@@ -66,10 +70,10 @@
                                                 <!-- مدارک واطلاعات عمومی شرکت -->
 
                                                 <fieldset>
-                                                    <input type="button" name="next" class="next action-button" value=" بعدی" />
-                                                    <div class="form-card">
 
-                                                        <h2 class="fs-title">اطلاعات هیئت مدdfgیره</h2>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                    <div class="form-card">
+                                                        <h2 class="fs-title">اطلاعات هیئت مدیره</h2>
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
                                                             <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
@@ -79,15 +83,80 @@
                                                                 <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                 <div class="row" id="FormDetail1">
+                                                                    <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">نام و نام خانوادگی<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer1" id="MemberName" placeholder="نام و نام خانوادگی" class="form-control" />
+                                                                            </div>
+                                                                        </div><div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">پست سازمانی <span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer2" id="MemberPostID" class="form-control" placeholder="پست سازمانی"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">مدرک تحصیلی <span class="RequiredLabel">*</span></label>
+                                                                                <select name="Answer3" id="MemberEductionID" class="form-control select2"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">محل تحصیل/ دانشگاه<span class="RequiredLabel">*</span></label>
+                                                                                <select name="Answer4" id="UniversityID" class="form-control select2"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">عضو هیئت مدیره<span class="RequiredLabel">*</span></label>
+                                                                                <input type="checkbox" name="Answer6" id="IsMemeberOfBoard" style="text-align:right; width: 30px" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">درصد سهام<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer7" id="OwnershipPercentage" placeholder="درصد سهام" class="form-control" maxlength="3" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تعداد سهام<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">سابقه بیمه<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه" class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">سابقه مدیریتی<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی" class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                <input type="file" name="Result_Final_FileName1" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx," />
+                                                                                <div id="DivAcademicDegreePicture"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row changeData">
                                                                     <div class="col-lg-6">
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <button class="btn btn-success fontForAllPage" type="button" id="btnform1" onclick="Web.FurtherInfo.SaveForm(this,1,'1,2,7,8');">
                                                                                     افزودن
                                                                                 </button>
-                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform1').html('افزودن');$('#DivAcademicDegreePicture').html('')  ">
+                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform1').html('افزودن'); $('#AnswerTableId').val(0); ">
                                                                                     انصراف
                                                                                 </button>
                                                                             </div>
@@ -115,31 +184,116 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <br />
+
                                                         <h2 class="fs-title">بارگذاری اسناد شرکت</h2>
+
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px;  margin-bottom: 20px">
 
-
-                                                            <p>مدارک ذیل بارگذاری شود</p>
-                                                            <p style="color:darkgrey;line-height:30px">
-
-                                                                <small> فرمت مجاز جهت بارگذاری  : pdf</small>
+                                                            <p>
+                                                                مدارک ذیل بارگذاری شود
+                                                                <small style="color:darkgrey;line-height:30px"> فرمت مجاز جهت بارگذاری  : pdf</small>
                                                             </p>
+
                                                             <div class="row" id="FormDetail2">
+                                                                <form id="FormDe2">
+                                                                    <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>عنوان</th>
+                                                                                <th> انتخاب فایل</th>
+                                                                                <th>مشاهده فایل</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="text-align:right">
+                                                                                    <label class="control-label" for=""> صورتهای مالی حسابرسی شده<span class="RequiredLabel">*</span></label>
+
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadLastAuditingTaxList"> </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align:right">
+                                                                                
+                                                                                    <label class="control-label" for=""> آخرین تغییرات روزنامه رسمی<span class="RequiredLabel">*</span></label>
+
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" accept="image/*,.pdf,.xlsx," />
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadLastChangeOfficialNewspaper">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align:right">
+                                                                                    <label class="control-label" for=""> اساسنامه<span class="RequiredLabel">*</span></label>
+
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," />
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadStatuteDoc">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align:right">
+                                                                                    <label class="control-label" for="">  روزنامه رسمی<span class="RequiredLabel">*</span></label>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadOfficialNewspaper">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+
+                                                                    </table>
+                                                                    <div class="row changeData">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12" style="margin-bottom:10px">
+
+                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveFurtherInfo(this)"> ثبت </button>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+
 
                                                             </div>
+
                                                         </div>
-                                                        <br />
+
 
                                                     </div>
-                                                    <input type="button" name="next" class="next action-button" value=" بعدی" />
+                                                    <button type="button" name="next" class="next action-button" style="width:100px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
                                                 </fieldset>
 
                                                 <!-- نظام مدیریتی -->
 
                                                 <fieldset>
-                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
-                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -158,16 +312,40 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail3">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for=""> عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="GuidelinesAndRegulations" placeholder=" عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">روش اجرایی است یا دستور العمل?<span class="RequiredLabel">*</span></label>
+                                                                                                    <select name="Answer3" id="IsGuideLineOrProcess" class="form-control select2"></select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری فایل دستور العمل یا آیین نامه یا روش اجرایی<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="GuidelinesAndRegulationsFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivGuidelinesAndRegulationsFile">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform3" onclick="Web.FurtherInfo.SaveForm(this,3,'1,3,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform3').html('افزودن');$('#DivGuidelinesAndRegulationsFile').html('')  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform3').html('افزودن'); $('#DivGuidelinesAndRegulationsFile').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -201,16 +379,45 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail4">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">نام گواهینامه، مجوز، تاییدیه یا استاندارد<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="CertificateAndPermitAndStandard" placeholder="نام گواهینامه، مجوز، تاییدیه یا استاندارد" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مرجع صادر کننده<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer3" id="ExporterReferenceForCertificate" placeholder="مرجع صادر کننده" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">تاریخ انقضا<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer4" id="ExpireDate" placeholder="تاریخ انقضا" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivCertificateAndPermitAndStandardFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform4" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن');$('#DivCertificateAndPermitAndStandardFile').html('')  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن'); $('#DivCertificateAndPermitAndStandardFile').html('');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -248,16 +455,45 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail5">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان جایزه<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="Awards" placeholder="عنوان جایزه" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مرجع صادر کننده<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer3" id="ExporterReferenceForAwards" placeholder="مرجع صادر کننده" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">تاریخ صدور<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer4" id="DateOfExporter" placeholder="تاریخ صدور" class="form-control DatePicker" onkeypress="return InputNoType(event);"/>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری سند جایزه<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="AwardsFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivAwardsFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform5" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن');$('#DivAwardsFile').html('')  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن'); $('#DivAwardsFile').html('');$('#AnswerTableId').val(0);   ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -297,13 +533,17 @@
                                                         </div>
 
                                                     </div>
-                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
-                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                 </fieldset>
 
                                                 <!-- برنامه ریزی راهبردی -->
 
                                                 <fieldset>
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -317,20 +557,180 @@
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormDetailTab6">
                                                                             <h2 class="fs-title">حاکمیت شرکتی</h2>
-                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <div class="row" id="FormDetail6">
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px;  margin-bottom: 20px">
+
+
+                                                                                <div class="row" id="FormDetail2">
+                                                                                    <form id="FormDe6">
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <input type="hidden" id="CorporateGovernanceId" name="CorporateGovernanceId" value="0">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">آدرس وبسایت شرکت <span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="url" name="CompanyWebSite" id="CompanyWebSite" placeholder="آدرس وبسایت شرکت " class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for=""> آیا شرکت نمایندگی از شرکتهای خارجی / داخلی دارد؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="checkbox" name="HaveRepresentativeStr" id="HaveRepresentativeStr" style="text-align:right; width: 30px" />
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for=""> آیا محصول تولید شده  در شرکت نیازمند دانش فنی بالایی است؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <textarea name="HighProductKnowledge" id="HighProductKnowledge" class="form-control"></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for=""> آیا کمیته حسابرسی دارید ؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="checkbox" name="HaveAuditCommitteeStr" id="HaveAuditCommitteeStr" style="text-align:right; width: 30px" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <table class="table">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>عنوان</th>
+                                                                                                    <th> انتخاب فایل</th>
+                                                                                                    <th>مشاهده فایل</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> بارگزاری چارت سازمانی<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_OrganazationChart" id="OrganazationChart" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <div id="DivOrganazationChart"></div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">بارگزاری فایل شرح وظایف شغلی پرسنل<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_OrganizationalDuties" id="OrganizationalDuties" accept="image/*,.pdf,.xlsx," />
+
+                                                                                                    </td>
+                                                                                                    <td><div id="DivOrganizationalDuties"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">بارگزاری دستورالعمل مدیریت ریسک<span class="RequiredLabel">*</span></label>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_RiskManagementGuidelines" id="RiskManagementGuidelines" accept="image/*,.pdf,.xlsx," />
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <div id="DivRiskManagementGuidelines"></div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> بارگزاری آیین نامه معاملات<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_TransactionRegulations" id="TransactionRegulations" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <div id="DivTransactionRegulations"></div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> بارگزاری مفاصا حساب مالیاتی<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_DeductionTaxAccount" id="DeductionTaxAccount" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivDeductionTaxAccount"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> بارگزاری تصویرقراداد نرم افزار امور مشتریان<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_CrmSoftwareContract" id="CrmSoftwareContract" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <div id="DivCrmSoftwareContract"></div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> بارگزاری مستندات نمایندگی<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td>  <input type="file" name="Result_Final_RepresentativeFile" id="RepresentativeFile" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivRepresentativeFile"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> در صورت داشتن تقدیر نامه از تامین کنندگان یا مشتریان خود بارگزاری کنید<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_LetterOfCommendation" id="LetterOfCommendation" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <div id="DivLetterOfCommendation"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> در صورت داشتن اختراع مدرک مربوطه را بارگزاری کنید<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_InovationFile" id="InovationFile" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivInovationFile"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">  بارگزاری نمونه صورتجلسه حسابرسی<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_Proceedings" id="Proceedings" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <div id="DivProceedings"></div></td>
+                                                                                                </tr>
+
+                                                                                            </tbody>
+
+                                                                                        </table>
+
+                                                                                        <div class="row changeData">
+                                                                                            <div class="col-lg-6">
+                                                                                                <div class="form-group">
+                                                                                                    <div class="col-md-12" style="margin-bottom:10px">
+
+                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveCorporateGovernance(this)"> ثبت </button>
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </form>
 
                                                                                 </div>
-                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm25(this)">
-                                                                                    ثبت
-                                                                                </button>
-                                                                            </div>
-                                                                            <h2 class="fs-title">مدارک حاکمیت شرکتی</h2>
-                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <div class="row" id="FormDetail25">
 
-                                                                                </div>
                                                                             </div>
+
                                                                             <!-- ثبت اعضای کمیته حسابرسی  -->
 
                                                                             <h2 class="fs-title">ثبت اعضای کمیته حسابرسی</h2>
@@ -341,16 +741,38 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail16">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">نام اعضای کمیته حسابرسی<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="NameOfAuditCommittee" placeholder="نام اعضای کمیته حسابرسی" class="form-control">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                                    <select name="Answer2" id="DegreeOfEducation" class="form-control select2"></select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">  تجربه کاری (به ماه)<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer3" id="WorkExperience" placeholder="  تجربه کاری (به ماه)" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" maxlength="3" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform16" onclick="Web.FurtherInfo.SaveForm(this,16,'1,2,3');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');$('#AnswerTableId').val(0);   ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -383,16 +805,32 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail17">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">نام محصول<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="ProductName" placeholder="نام محصول" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">کد محصول<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer2" id="ProductCode" placeholder="کد محصول" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform17" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');$('#AnswerTableId').val(0);   ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -416,42 +854,324 @@
                                                                                 </table>
                                                                             </div>
 
-
-                                                                            
-
                                                                         </div>
 
 
                                                                         <!-- /.tab-pane -->
                                                                         <div class="tab-pane" id="FormDetailTab7">
                                                                             <h2 class="fs-title">لجستیک درونی</h2>
-                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <div class="row" id="FormDetail7">
+                                                                            <form id="FormDem7">
+                                                                                <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                <input type="hidden" id="ValueChainId" name="ValueChainId" value="0">
+                                                                                
+                                                                                <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                    <div class="row">
 
+                                                                                        <table class="table">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>عنوان</th>
+                                                                                                    <th> انتخاب فایل</th>
+                                                                                                    <th>مشاهده فایل</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">تصویر انبار / سند مالکیت انبار (در صورت برون سپاری قرارداد مربوطه ارسال گردد)<span class="RequiredLabel">*</span></label>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc1" id="vc1" accept="image/*,.pdf,.xlsx," />
+
+                                                                                                    </td>
+                                                                                                    <td><div id="DivVc1"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">عکس/سند تجهیزات انبارش و بارگیری (در صورت برون سپاری قرارداد مربوطه ارسال گردد) <span class="RequiredLabel">*</span></label>
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_vc2" id="vc2" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <div id="DivVc2"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">
+                                                                                                            عکس/سند مالکیت تجهیزات حمل و نقل به/ از  انبار  (در صورت برون سپاری قرارداد مربوطه ارسال گردد) <span class="RequiredLabel">*</span>
+
+                                                                                                        </label>
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc3" id="vc3" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc3"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right"><label class="control-label" for="">  عکس / قراداد نرم افزار انبارداری<span class="RequiredLabel">*</span></label></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc4" id="vc4" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc4"></div></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+
+                                                                                        </table>
+
+
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <h2 class="fs-title">زیر ساخت</h2>
-                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <h3 style="color: darkmagenta; font-weight: bold"> </h3>
-                                                                                <div class="row" id="FormDetail18">
+                                                                                <h2 class="fs-title">زیر ساخت</h2>
+                                                                                <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                    <h3 style="color: darkmagenta; font-weight: bold"> </h3>
+                                                                                    <div class="row">
+                                                                                        <table class="table">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>عنوان</th>
+                                                                                                    <th> انتخاب فایل</th>
+                                                                                                    <th>مشاهده فایل</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> دفتر مرکزی(اجاره نامه یا سند مالکیت)<span class="RequiredLabel">*</span></label>
 
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_Vc5" id="Vc5">
+                                                                                                    </td>
+                                                                                                    <td>  <div id="DivVc5"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> دفتر خارج از کشور (اجاره نامه یا سند مالکیت)<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc6" id="vc6" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td> <div id="DivVc6"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">یک نمونه فیش حقوقی پرسنل نشان دهنده واریز پاداش<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc7" id="vc7" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td> <div id="DivVc7"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> عکس یا قرارداد نرم افزار های یکپارچه مدیریتی<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_vc8" id="vc8" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc8"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> عکس از آزمایشگاه  (در صورت برون سپاری قرارداد مربوطه ارسال گردد)<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc9" id="vc9" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc9"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> تصویر مجوز دانش بنیان<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc10" id="vc10" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc10"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc11" id="vc11" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc11"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">درصورت وجود یک مدل جهت ردیابی محصول با بارکد یا کد رجیستری تصویر مربوطه بارگزاری شود<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc12" id="vc12" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc12"></div></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+
+
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <h2 class="fs-title">بازاریابی و فروش</h2>
-                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <div class="row" id="FormDetail19">
+                                                                                <h2 class="fs-title">بازاریابی و فروش</h2>
+                                                                                <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                    <div class="row">
+                                                                                        <table class="table">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>عنوان</th>
+                                                                                                    <th> انتخاب فایل</th>
+                                                                                                    <th>مشاهده فایل</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right"> <label class="control-label" for="">آیا شرکت نمایندگی  دارد؟<span class="RequiredLabel">*</span></label></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc13" id="vc13" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <div id="DivVc13"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> آیا شرکت نمایندگان خودد را ارزیابی کرده است؟<span class="RequiredLabel">*</span></label>
 
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc14" id="vc14" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td> <div id="DivVc14"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> تصویر یا آدرس سایت و فعالیت در شبکه های اجتماعی<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc15" id="vc15" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td><div id="DivVc15"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">عکس/اجاره نامه / سند مالکیت فروشگاه<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc16" id="vc16" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td> <div id="DivVc16"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> تصویر یا آدرس سایت فروش آنلاین<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc17" id="vc17" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td><div id="DivVc17"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> گزارش های بازاریابی حضوری<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc18" id="vc18" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td> <div id="DivVc18"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> عکس یا مجوز حضور در نمایشگاه ها<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc19" id="vc19" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td> <div id="DivVc19"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for="">قرارداد های فروش به سازمان ها<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_vc20" id="vc20" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc20"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> عکس از نمونه تبلیغات محیطی<span class="RequiredLabel">*</span></label>
+
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc21" id="vc21" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td><div id="DivVc21"></div></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <h2 class="fs-title">خدمات پس از فروش</h2>
-                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <h2 class="fs-title">خدمات پس از فروش</h2>
+                                                                                <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
-                                                                                <div class="row" id="FormDetail20">
+                                                                                    <div class="row">
+                                                                                        <table class="table">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>عنوان</th>
+                                                                                                    <th> انتخاب فایل</th>
+                                                                                                    <th>مشاهده فایل</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> کارت گارانتی<span class="RequiredLabel">*</span></label>
 
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <input type="file" name="Result_Final_vc22" id="vc22" accept="image/*,.pdf,.xlsx," />
+                                                                                                    </td>
+                                                                                                    <td><div id="DivVc22"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> عکس از واحد خدمات پس از فروش یا سایر مستندات<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc23" id="vc23" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc23"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش<span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td><input type="file" name="Result_Final_vc24" id="vc24" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc24"></div></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td style="text-align:right">
+                                                                                                        <label class="control-label" for=""> عکس از تجهیزات  واحد خدمات پس از فروش <span class="RequiredLabel">*</span></label>
+
+
+                                                                                                    </td>
+                                                                                                    <td>  <input type="file" name="Result_Final_vc25" id="vc25" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><div id="DivVc25"></div></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
+                                                                                <div class="row changeData">
+                                                                                    <div class="col-lg-6">
+                                                                                        <div class="form-group">
+                                                                                            <div class="col-md-12" style="margin-bottom:10px">
 
+                                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveValueChain(this)"> ثبت </button>
 
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
                                                                         <!-- /.tab-pane -->
 
@@ -463,16 +1183,33 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail8">
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مستندات تدوین برنامه ریزی استراتژیک<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="SwotFile1" accept="image/*,.pdf,.xlsx,"><div id="DivSwotFile1"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
 
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مستندات اجرا و بازخورد برنامه ریزی استراتژیک<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName2" id="SwotFile2" accept="image/*,.pdf,.xlsx," /><div id="DivSwotFile2"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'11,12');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html('');$('#DivSwotFile1').html('') ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html(''); $('#DivSwotFile1').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -494,7 +1231,7 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
-                                                                           
+
                                                                         </div>
 
                                                                         <div class="tab-pane" id="FormDetailTab9">
@@ -506,16 +1243,39 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail9">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">نام و نام خانوادگی<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="Name" placeholder="نام و نام خانوادگی" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                                    <select name="Answer2" id="DegreeOfEducation2" class="form-control select2"></select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="DegreeFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivDegreeFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform9" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن');$('#DivDegreeFile').html('') ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن'); $('#DivDegreeFile').html('');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -548,16 +1308,33 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail10">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">گزارش و خروجی تیم تحقیق و توسعه<span class="RequiredLabel">*</span></label>
+                                                                                                    <textarea name="Answer1" id="ReportTitle" class="form-control"></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری مدرک مربوطه<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="ReportFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivReportFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن');$('#DivReportFile').html('') ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن'); $('#DivReportFile').html('');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -592,13 +1369,17 @@
 
                                                     </div>
 
-                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
-                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                 </fieldset>
 
                                                 <!-- وضعیت اشتغال -->
 
                                                 <fieldset>
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -613,7 +1394,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 <p>لطفا فایل نمونه اکسل را از لینک ذیل کلیک کنید و پس از تکمیل بارگذاری کنید:</p>
 
-                                                                                <div class="row" style="margin:20px">
+                                                                                <div class="row changeData" style="margin:20px">
                                                                                     <div class="form-group">
                                                                                         <div class="col-md-12">
                                                                                             <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:200px">
@@ -627,14 +1408,23 @@
                                                                                     <input type="hidden" id="DataFormQuestionID" name="DataFormQuestionID" value="79" />
 
                                                                                     <div class="row" id="FormDetail11">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for=""> بارگزاری فایل اکسل کامل شده<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx," />
+                                                                                                    <div id="DivHumanResourcesFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SavesingleForm(this,11)">
+                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage changeData" type="button" onclick="Web.FurtherInfo.SavesingleForm(this,11)">
                                                                                         ثبت
                                                                                     </button>
                                                                                 </form>
                                                                             </div>
-                                                                           
+
 
                                                                         </div>
 
@@ -648,16 +1438,50 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail12">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">نام و نام خانوادگی<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="Name" placeholder="نام و نام خانوادگی" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان دوره<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer2" id="TitelCourses" placeholder="عنوان دوره" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">طول دوره<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">محل برگزاری<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer4" id="PlaceOfTraining" placeholder="محل برگزاری" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">فایل گواهی دوره<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx,"><div id="DivCertificationCourses"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن'); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -680,7 +1504,7 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div><div class="row" style="margin:20px">
-                                                                               
+
                                                                             </div>
 
                                                                         </div>
@@ -694,13 +1518,16 @@
                                                         </div>
 
                                                     </div>
-                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
-                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+
                                                 </fieldset>
 
                                                 <!-- عضویت در تشکل /انجمن و فعالیت عام المنفعه -->
 
                                                 <fieldset>
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                    
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -722,16 +1549,44 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail13">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">نام انجمن<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="SocietyName" placeholder="نام انجمن" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">تاریخ پایان عضویت<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer2" id="ExpireDate" placeholder="تاریخ پایان عضویت" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">سمت در انجمن<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer3" id="PostInSociety" class="form-control" placeholder="سمت در انجمن" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">فایل گواهی عضویت<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," /><div id="DivCertificationSociety"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" id="btnform13" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن'); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن');$('#AnswerTableId').val(0);  ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -755,7 +1610,7 @@
                                                                                 </table>
                                                                             </div>
 
-                                                                           
+
 
 
                                                                         </div>
@@ -766,12 +1621,39 @@
                                                                             <h2 class="fs-title">فعالیت های عام المنفعه و محرومیت زدایی</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <div class="row" id="FormDetail14">
-
-                                                                                </div>
-                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveFormDetailTab14(this)">
-                                                                                    ثبت
-                                                                                </button>
+                                                                                <form id="FormPublicActivities" method="post">
+                                                                                    <div class="row" id="FormDetail14">
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <input type="hidden" id="PublicActivitiesID" name="PublicActivitiesID" value="0">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for=""> آیا واحد تجاری در انجمن های خیریه عضویت داشته است؟ در صورت مثبت بودن مدرک بارگزاری شود<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="checkbox" name="IsPublicActivityFileStr" id="IsPublicActivityFileStr" style="text-align:right; width: 30px" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">  آیا واحد تجاری در مناطق محروم سرمایه گذاری نموده است؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <textarea name="Investment" id="Investment" class="form-control"></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">
+                                                                                                        آیا واحد تجاری به منظورانجام  مسئولیت پذیری اجتماعی  بصورت کمک غیر مادی از قبیل جذب معلولین انجام داده است؟
+                                                                                                        <span class="RequiredLabel">*</span>
+                                                                                                    </label><textarea name="EmploymentDisabled" id="EmploymentDisabled" class="form-control"></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage changeData" type="button" onclick="Web.FurtherInfo.SavePublicActivities(this)">
+                                                                                        ثبت
+                                                                                    </button>
+                                                                                    </form>
                                                                             </div>
                                                                             <h2 class="fs-title">بارگذاری مدارک های انجمن های خیریه</h2>
 
@@ -781,17 +1663,40 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail15">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="PublicActivityTitle" placeholder="عنوان" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer2" id="TotalPrice" placeholder="میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">مدرک<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="PublicActivityFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivPublicActivityFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
 
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform15" type="button" onclick="Web.FurtherInfo.SaveForm(this,15,'1,2,11')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform15').html('افزودن'); $('#DivPublicActivityFile').html(''); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform15').html('افزودن'); $('#DivPublicActivityFile').html(''); $('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -824,17 +1729,34 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail22">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="InvestmentTitle" placeholder="عنوان" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری سند سرمایه گذاری<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="InvestmentFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivInvestmentFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
 
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform22" type="button" onclick="Web.FurtherInfo.SaveForm(this,22,'1,11')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform22').html('افزودن');$('#DivInvestmentFile').html('')">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform22').html('افزودن'); $('#DivInvestmentFile').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -866,16 +1788,33 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail24">
-
+                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="text" name="Answer1" id="EmploymentDisabledFileTitle" placeholder="عنوان" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">بارگزاری سند مسئولیت پذیری<span class="RequiredLabel">*</span></label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="EmploymentDisabledFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <div id="DivEmploymentDisabledFile"></div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="row">
+                                                                                    <div class="row changeData">
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform24" type="button" onclick="Web.FurtherInfo.SaveForm(this,24,'1,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform24').html('افزودن');$('#DivEmploymentDisabledFile').html('')">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform24').html('افزودن'); $('#DivEmploymentDisabledFile').html('');$('#AnswerTableId').val(0); ">
                                                                                                         انصراف
                                                                                                     </button>
                                                                                                 </div>
@@ -901,7 +1840,7 @@
                                                                             </div>
 
 
-                                                                           
+
                                                                         </div>
 
 
@@ -912,35 +1851,14 @@
                                                         </div>
 
                                                     </div>
-                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
-                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+
+                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                   
                                                 </fieldset>
 
-                                                <!-- اتمام مراحل -->
+                                                
 
-                                                <fieldset>
-                                                    <div class="form-card">
-                                                        <div class="text-center">
-                                                            <h2 class=" text-center">تمام شد !</h2>
-                                                            <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image" style="max-width:50px">
-                                                        </div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-7 text-center">
-                                                                <h5>اطلاعات تکمیلی شما کامل شد</h5>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row" style="margin:20px">
-                                                            <div class="form-group">
-                                                                <div class="col-md-12 text-center">
-
-                                                                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
-                                                                        ارجاع جهت بررسی
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
+                                                
 
                                             </div>
                                         </div>
@@ -960,7 +1878,10 @@
 
 
 @section Scripts {
+    <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
+
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script>
         Web.FurtherInfo.InitFurtherInfo(@ViewBag.id);
 

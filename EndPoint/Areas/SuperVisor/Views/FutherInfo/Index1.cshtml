@@ -1,0 +1,971 @@
+﻿@{
+    ViewData["Title"] = "اطلاعات تکمیلی";
+}
+
+@section PageHeader{
+    <section class="content-header">
+        <h1>
+            اطلاعات تکمیلی
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/FurtherInfo/Index"><i></i> اطلاعات تکمیلی</a></li>
+        </ol>
+    </section>
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+}
+
+
+<input type="hidden" id="RequestId" name="RequestId" value="0" />
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                @*<i class="fa fa-cloud"></i>*@
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body" style="">
+                <div class="row">
+                    <!-- MultiStep Form -->
+                    <div class="container-fluid" id="grad1">
+                        <div class="row justify-content-center mt-0">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
+                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                                    @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
+                                    <div class="row">
+                                        <div class="col-md-12 mx-0">
+                                            <div id="msform">
+                                                <!-- progressbar -->
+                                                <ul id="progressbar">
+                                                    <li class="active" id="account"><strong>مدارک واطلاعات عمومی شرکت</strong></li>
+                                                    <li id="personal"><strong>نظام مدیریتی</strong></li>
+                                                    <li id="payment"><strong>برنامه ریزی راهبردی</strong></li>
+                                                    <li id="confirm"><strong>وضعیت اشتغال</strong></li>
+                                                    <li id="confirm"><strong>عضویت در تشکل /انجمن و فعالیت عام المنفعه</strong></li>
+                                                </ul>
+                                                <!-- مدارک واطلاعات عمومی شرکت -->
+
+                                                <fieldset>
+                                                    <input type="button" name="next" class="next action-button" value=" بعدی" />
+                                                    <div class="form-card">
+
+                                                        <h2 class="fs-title">اطلاعات هیئت مدdfgیره</h2>
+                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+
+                                                            <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
+
+                                                            <form id="frmFrom1">
+                                                                <input type="hidden" id="FormId" name="FormId" value="1" />
+                                                                <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                <div class="row" id="FormDetail1">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <button class="btn btn-success fontForAllPage" type="button" id="btnform1" onclick="Web.FurtherInfo.SaveForm(this,1,'1,2,7,8');">
+                                                                                    افزودن
+                                                                                </button>
+                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform1').html('افزودن');$('#DivAcademicDegreePicture').html('')  ">
+                                                                                    انصراف
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>ردیف</th>
+                                                                                <th>نام و نام خانوادگی</th>
+                                                                                <th>پست سازمانی</th>
+                                                                                <th>درصد سهام</th>
+                                                                                <th> تعداد سهام</th>
+                                                                                <th>عملیات</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="FormDetailAnswer1">
+                                                                        </tbody>
+
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <h2 class="fs-title">بارگذاری اسناد شرکت</h2>
+                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px;  margin-bottom: 20px">
+
+
+                                                            <p>مدارک ذیل بارگذاری شود</p>
+                                                            <p style="color:darkgrey;line-height:30px">
+
+                                                                <small> فرمت مجاز جهت بارگذاری  : pdf</small>
+                                                            </p>
+                                                            <div class="row" id="FormDetail2">
+
+                                                            </div>
+                                                        </div>
+                                                        <br />
+
+                                                    </div>
+                                                    <input type="button" name="next" class="next action-button" value=" بعدی" />
+                                                </fieldset>
+
+                                                <!-- نظام مدیریتی -->
+
+                                                <fieldset>
+                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
+                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                    <div class="form-card">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="nav-tabs-custom">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#FormDetailTab3" data-toggle="tab" aria-expanded="false">نظامنامه کیفیت</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(4, '1,3,11,4', $('#RequestId').val());" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">استاندارد</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(5,'1,3,11,4',$('#RequestId').val())" href="#FormDetailTab5" data-toggle="tab" aria-expanded="false">جوایز معتبر</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="FormDetailTab3">
+                                                                            <h2 class="fs-title">نظامنامه کیفیت</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom3">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="3" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail3">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform3" onclick="Web.FurtherInfo.SaveForm(this,3,'1,3,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform3').html('افزودن');$('#DivGuidelinesAndRegulationsFile').html('')  ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th> عنوان </th>
+                                                                                            <th> روش اجرایی است یا دستور العمل?</th>
+                                                                                            <th> فایل </th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer3">
+                                                                                    </tbody>
+
+                                                                                </table>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <!-- /.tab-pane -->
+                                                                        <div class="tab-pane" id="FormDetailTab4">
+                                                                            <h2 class="fs-title">استاندارد</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom4">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="4" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail4">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform4" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform4').html('افزودن');$('#DivCertificateAndPermitAndStandardFile').html('')  ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+
+                                                                                            <th>ردیف</th>
+                                                                                            <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th>  مرجع صادر کننده</th>
+                                                                                            <th>  فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
+                                                                                            <th> تاریخ انقضا</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer4">
+                                                                                    </tbody>
+                                                                                </table>
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <!-- /.tab-pane -->
+                                                                        <div class="tab-pane" id="FormDetailTab5">
+                                                                            <h2 class="fs-title">جوایز معتبر</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+
+                                                                                <form id="frmFrom5">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="5" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail5">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform5" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن');$('#DivAwardsFile').html('')  ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>عنوان جایزه</th>
+                                                                                            <th>مرجع صادر کننده</th>
+                                                                                            <th> سند جایزه</th>
+                                                                                            <th>تاریخ صدور</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer5">
+                                                                                    </tbody>
+
+                                                                                </table>
+
+
+                                                                            </div>
+
+
+                                                                        </div>
+
+
+                                                                        <!-- /.tab-pane -->
+                                                                    </div>
+                                                                    <!-- /.tab-content -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
+                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                </fieldset>
+
+                                                <!-- برنامه ریزی راهبردی -->
+
+                                                <fieldset>
+                                                    <div class="form-card">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="nav-tabs-custom">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#FormDetailTab6" data-toggle="tab" aria-expanded="false">حاکمیت شرکتی</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiTab(7);" href="#FormDetailTab7" data-toggle="tab" aria-expanded="false">زنجیره ارزش</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'11,12',$('#RequestId').val())" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiTab(9);" href="#FormDetailTab9" data-toggle="tab" aria-expanded="false">تحقیق و توسعه</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="FormDetailTab6">
+                                                                            <h2 class="fs-title">حاکمیت شرکتی</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <div class="row" id="FormDetail6">
+
+                                                                                </div>
+                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveForm25(this)">
+                                                                                    ثبت
+                                                                                </button>
+                                                                            </div>
+                                                                            <h2 class="fs-title">مدارک حاکمیت شرکتی</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <div class="row" id="FormDetail25">
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- ثبت اعضای کمیته حسابرسی  -->
+
+                                                                            <h2 class="fs-title">ثبت اعضای کمیته حسابرسی</h2>
+
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom16">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="16" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail16">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform16" onclick="Web.FurtherInfo.SaveForm(this,16,'1,2,3');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');  ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام اعضای کمیته حسابرسی</th>
+                                                                                            <th>مدرک تحصیلی</th>
+                                                                                            <th>
+                                                                                                تجربه کاری (به ماه)
+                                                                                            </th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer16">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <h2 class="fs-title">ثبت محصولات شرکت</h2>
+                                                                            <p>نام محصولاتی که توسط شرکت تولید یا به فروش می رسد.</p>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom17">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="17" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail17">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform17" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');  ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام محصول</th>
+                                                                                            <th>کد محصول</th>
+
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer17">
+                                                                                    </tbody>
+
+                                                                                </table>
+                                                                            </div>
+
+
+                                                                            
+
+                                                                        </div>
+
+
+                                                                        <!-- /.tab-pane -->
+                                                                        <div class="tab-pane" id="FormDetailTab7">
+                                                                            <h2 class="fs-title">لجستیک درونی</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <div class="row" id="FormDetail7">
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <h2 class="fs-title">زیر ساخت</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <h3 style="color: darkmagenta; font-weight: bold"> </h3>
+                                                                                <div class="row" id="FormDetail18">
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <h2 class="fs-title">بازاریابی و فروش</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <div class="row" id="FormDetail19">
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <h2 class="fs-title">خدمات پس از فروش</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+
+                                                                                <div class="row" id="FormDetail20">
+
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                        <!-- /.tab-pane -->
+
+                                                                        <div class="tab-pane" id="FormDetailTab8">
+                                                                            <h2 class="fs-title">برنامه ریزی بلند مدت</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom8">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="8" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail8">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'11,12');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html('');$('#DivSwotFile1').html('') ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th> مستندات تدوین برنامه ریزی استراتژیک</th>
+                                                                                            <th>مستندات اجرا و بازخورد برنامه ریزی استراتژیک</th>
+
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer8">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                           
+                                                                        </div>
+
+                                                                        <div class="tab-pane" id="FormDetailTab9">
+
+                                                                            <h2 class="fs-title">مشخصات تیم تحقیق و توسعه و گزارشات </h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom9">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="9" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail9">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform9" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن');$('#DivDegreeFile').html('') ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام و نام خانوادگی </th>
+                                                                                            <th>مدرک تحصیلی</th>
+                                                                                            <th>
+                                                                                                بارگذاری مدرک تحصیلی
+                                                                                            </th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer9">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+
+                                                                            <h2 class="fs-title">گزارشات تیم تحقیق و توسعه </h2>
+
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom10">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="10" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail10">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن');$('#DivReportFile').html('') ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>گزارش و خروجی تیم تحقیق و توسعه </th>
+                                                                                            <th>بارگذاری مدرک مربوطه</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer10">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+
+
+
+                                                                        </div>
+
+                                                                        <!-- /.tab-pane -->
+                                                                    </div>
+                                                                    <!-- /.tab-content -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
+                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                </fieldset>
+
+                                                <!-- وضعیت اشتغال -->
+
+                                                <fieldset>
+                                                    <div class="form-card">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="nav-tabs-custom">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#FormDetailTab11" data-toggle="tab" aria-expanded="false">اطلاعات منابع انسانی</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(12,'1,2,3,4',$('#RequestId').val())" href="#FormDetailTab12" data-toggle="tab" aria-expanded="false">گواهی دوره های آموزشی پرسنل</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="FormDetailTab11">
+                                                                            <h2 class="fs-title">اطلاعات منابع انسانی</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <p>لطفا فایل نمونه اکسل را از لینک ذیل کلیک کنید و پس از تکمیل بارگذاری کنید:</p>
+
+                                                                                <div class="row" style="margin:20px">
+                                                                                    <div class="form-group">
+                                                                                        <div class="col-md-12">
+                                                                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:200px">
+                                                                                                دانلود فایل اکسل نمونه
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <form id="frmFrom11">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="11" />
+                                                                                    <input type="hidden" id="DataFormQuestionID" name="DataFormQuestionID" value="79" />
+
+                                                                                    <div class="row" id="FormDetail11">
+
+                                                                                    </div>
+                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SavesingleForm(this,11)">
+                                                                                        ثبت
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>
+                                                                           
+
+                                                                        </div>
+
+                                                                        <!-- /.tab-pane -->
+                                                                        <div class="tab-pane" id="FormDetailTab12">
+
+                                                                            <h2 class="fs-title">دوره های آموزشی </h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom12">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="12" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail12">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن'); ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام و نام خانوادگی </th>
+                                                                                            <th>عنوان دوره</th>
+                                                                                            <th>طول دوره </th>
+                                                                                            <th>محل برگزاری</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer12">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div><div class="row" style="margin:20px">
+                                                                               
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <!-- /.tab-pane -->
+
+
+                                                                    </div>
+                                                                    <!-- /.tab-content -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
+                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                </fieldset>
+
+                                                <!-- عضویت در تشکل /انجمن و فعالیت عام المنفعه -->
+
+                                                <fieldset>
+                                                    <div class="form-card">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="nav-tabs-custom">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#FormDetailTab13" data-toggle="tab" aria-expanded="false">عضویت در اتحادیه ها و تشکل ها</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiTab(14)" href="#FormDetailTab14" data-toggle="tab" aria-expanded="false">فعالیت های عام المنفعه</a></li>
+
+                                                                    </ul>
+                                                                    <div class="tab-content">
+
+                                                                        <!-- /.tab-pane -->
+                                                                        <div class="tab-pane active" id="FormDetailTab13">
+
+                                                                            <h2 class="fs-title">عضویت در تشکلها / انجمن ها</h2>
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom13">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="13" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail13">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" id="btnform13" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3')">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن'); ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>نام انجمن </th>
+                                                                                            <th>تاریخ پایان عضویت</th>
+                                                                                            <th>سمت در انجمن</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer13">
+                                                                                    </tbody>
+
+                                                                                </table>
+                                                                            </div>
+
+                                                                           
+
+
+                                                                        </div>
+
+                                                                        <!-- /.tab-pane -->
+                                                                        <div class="tab-pane  " id="FormDetailTab14">
+
+                                                                            <h2 class="fs-title">فعالیت های عام المنفعه و محرومیت زدایی</h2>
+
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <div class="row" id="FormDetail14">
+
+                                                                                </div>
+                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveFormDetailTab14(this)">
+                                                                                    ثبت
+                                                                                </button>
+                                                                            </div>
+                                                                            <h2 class="fs-title">بارگذاری مدارک های انجمن های خیریه</h2>
+
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+                                                                                <form id="frmFrom15">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="15" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail15">
+
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform15" type="button" onclick="Web.FurtherInfo.SaveForm(this,15,'1,2,11')">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform15').html('افزودن'); $('#DivPublicActivityFile').html(''); ">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>عنوان</th>
+
+                                                                                            <th> میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)</th>
+                                                                                            <th>  مدرک</th>
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer15">
+                                                                                    </tbody>
+                                                                                </table>
+
+                                                                            </div>
+                                                                            <h2 class="fs-title">بارگذاری مدارک  های سرمایه گذاری در مناطق محروم</h2>
+
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+
+                                                                                <form id="frmFrom22">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="22" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail22">
+
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform22" type="button" onclick="Web.FurtherInfo.SaveForm(this,22,'1,11')">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform22').html('افزودن');$('#DivInvestmentFile').html('')">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>عنوان</th>
+                                                                                            <th>بارگذاری سند سرمایه گذاری</th>
+
+                                                                                            <th>افزودن</th>
+                                                                                        </tr>
+                                                                                    </thead>
+
+                                                                                    <tbody id="FormDetailAnswer22">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <h2 class="fs-title">بارگذاری مدارک  های مسئولیت پذیری اجتماعی</h2>
+
+                                                                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+
+                                                                                <form id="frmFrom24">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="24" />
+                                                                                    <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                                    <div class="row" id="FormDetail24">
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform24" type="button" onclick="Web.FurtherInfo.SaveForm(this,24,'1,11');">
+                                                                                                        افزودن
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform24').html('افزودن');$('#DivEmploymentDisabledFile').html('')">
+                                                                                                        انصراف
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+
+
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>ردیف</th>
+                                                                                            <th>عنوان</th>
+                                                                                            <th> سند مسئولیت پذیری</th>
+
+                                                                                            <th>عملیات</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody id="FormDetailAnswer24">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+
+
+                                                                           
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <!-- /.tab-content -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <input type="button" name="previous" class="previous action-button-previous" value="قبلی">
+                                                    <input type="button" name="next" class="next action-button" value="بعدی" />
+                                                </fieldset>
+
+                                                <!-- اتمام مراحل -->
+
+                                                <fieldset>
+                                                    <div class="form-card">
+                                                        <div class="text-center">
+                                                            <h2 class=" text-center">تمام شد !</h2>
+                                                            <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image" style="max-width:50px">
+                                                        </div>
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-7 text-center">
+                                                                <h5>اطلاعات تکمیلی شما کامل شد</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="margin:20px">
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 text-center">
+
+                                                                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" style="width:120px">
+                                                                        ارجاع جهت بررسی
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script>
+        Web.FurtherInfo.InitFurtherInfo(@ViewBag.id);
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

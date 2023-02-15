@@ -465,7 +465,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="Areas\SuperVisor\Views\FutherInfo\Index.cshtml">
+	  <Content Update="Areas\SuperVisor\Views\FutherInfo\Index1.cshtml">
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>

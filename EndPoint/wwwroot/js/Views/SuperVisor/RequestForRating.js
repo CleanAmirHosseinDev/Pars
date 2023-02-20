@@ -9,9 +9,31 @@
 
     }
 
+    function fillComboLevelStepSettingList() {
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0  }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+        }, true);
+
+    }
+
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        ComboBoxWithSearch('.select2', 'rtl');
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val() }), true, function (res) {
 
             if (res.isSuccess) {
                 var n = getlstor("loginName");
@@ -38,6 +60,9 @@
                 }
 
                 $("#tBodyList").html(strM);
+
+                
+
             }
 
         }, true);
@@ -943,7 +968,7 @@
         SaveContractAndFinancialDocumentsArzyab: saveContractAndFinancialDocumentsArzyab,
         SaveContractAndFinancialDocumentsCommittee: saveContractAndFinancialDocumentsCommittee,
         GetDocumentArzyab: getDocumentArzyab,
-
+        FillComboLevelStepSettingList: fillComboLevelStepSettingList
     };
 
 })(Web, jQuery);

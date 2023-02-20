@@ -56,7 +56,7 @@
 
     }
 
-    function loginC(e, aslkewkdkmscedkwlssdjcm = false) {
+    function loginC(e, aslkewkdkmscedkwlssdjcm = false, nkekkfjdkjjkjkdjkdjkjkkj = false) {
 
 
         try {
@@ -68,19 +68,38 @@
                 return;
             }
 
+            if (isEmpty($("#NationalCode").val())) {
+                alertB("خطا", ($("input[name='RadioSelectSha']:checked").val() == "0" ? "شناسه ملی شرکت " :"کد ملی ")+ "را وارد کنید", "error");
+                return;
+            }
+
+            if ($("#NationalCode").val().length < 10) {
+                alertB("خطا", ($("input[name='RadioSelectSha']:checked").val() == "0" ? "شناسه ملی شرکت " : "کد ملی ") + "نمی تواند کمتر از 10 حرف باشد", "error");
+                return;
+            }
+
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm:aslkewkdkmscedkwlssdjcm }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm: aslkewkdkmscedkwlssdjcm, nkekkfjdkjjkjkdjkdjkjkkj: nkekkfjdkjjkjkdjkdjkjkkj }), true, function (res) {
 
                 $(e).removeAttr("disabled");
                 debugger;
                 if (res.isSuccess) {
-                    showTab2();
 
-                    $("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(encrypt(res.data.customerID, keyMaker()));
+                    if (res.data.iNSt2 == true) {
 
-                    $("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(encrypt(res.data.fullName, keyMaker()));
+                        alertB("", res.message, "success");
 
+                    }
+                    else {
+
+                        showTab2();
+
+                        $("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(encrypt(res.data.customerID, keyMaker()));
+
+                        $("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(encrypt(res.data.fullName, keyMaker()));
+
+                    }
 
 
                     //$("#divLogin").hide();
@@ -98,6 +117,19 @@
                         }, function () {
 
                         }, ["خیر", "بلی"]);
+
+                    }
+                    else if (res.data != null && res.data.nkekkfjdkjjkjkdjkdjkjkkj == true) {
+
+                        confirmB("", res.message, "warning", function () {
+
+                            
+
+                        }, function () {
+
+                            loginC(e, false, true);
+
+                        }, ["دسترسی با شماره جدید", "بله متوجه شدم"]);
 
                     }
                     else alertB("خطا", res.message, "error");
@@ -182,13 +214,25 @@
 
     }
 
+    function onChangeCSh(e) {
+
+        if ($(e).val() == "0") {
+            $("#NationalCode").attr("placeholder", "شناسه ملی شرکت");
+        }
+        else {
+            $("#NationalCode").attr("placeholder", "کد ملی");
+        }
+
+    }
+
     web.AccountController = {
         LoginA: loginA,
         LoginShowPass: loginShowPass,
         LoginC: loginC,
         AutenticatedCode: autenticatedCode,
         InitLoginC: initLoginC,
-        PrevLoginC: prevLoginC
+        PrevLoginC: prevLoginC,
+        OnChangeCSh: onChangeCSh
     };
 
 })(Web, jQuery);

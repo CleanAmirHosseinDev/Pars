@@ -54,7 +54,7 @@
 
         }, true);
 
-    }    
+    }
 
     function systemSeting_Combo(resSingle, showdrp) {
 
@@ -65,7 +65,7 @@
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
                 var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';
                 var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
-                var strCustomerPersonalityType = '<option value="">انتخاب کنید</option>';
+                var strCustomerPersonalityType = '<input type="hidden" name="CustomerPersonalityType" id="CustomerPersonalityType">';
                 var strTypeGroupCompanies = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
@@ -79,17 +79,17 @@
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
                     else if (res.data[i].parentCode == 221) {
-                        strCustomerPersonalityType += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strCustomerPersonalityType += "<input type='radio' value=" + res.data[i].systemSetingId + " name='CustomerPersonalityTypeStr' id='CustomerPersonalityTypeStr' onchange='Web.Customer.OnChangeCustomerPersonalityType(this);' style='margin-right: 30px;'>" + res.data[i].label;
                     }
                     else if (res.data[i].parentCode == 126) {
                         strTypeGroupCompanies += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
                 }
 
-                $("#CustomerPersonalityType").html(strCustomerPersonalityType);
-                $("#CustomerPersonalityType").val(resSingle.customerPersonalityType);
+                $("#divCustomerPersonalityTypeRadio").html(strCustomerPersonalityType);
+                $("#CustomerPersonalityTypeStr[value='" + resSingle.customerPersonalityType + "']").prop("checked", true);
 
-                $("#CustomerPersonalityType").change();
+                $("#CustomerPersonalityType").val(resSingle.customerPersonalityType);
 
                 $("#TypeGroupCompanies").html(strTypeGroupCompanies);
                 $("#TypeGroupCompanies").val(resSingle.typeGroupCompanies);
@@ -107,6 +107,8 @@
 
                 validate();
 
+                $("#CountOfPersonal").keyup();
+                $("#AmountOsLastSales").keyup();
             }
         }, true);
     }
@@ -126,7 +128,7 @@
                 return CheckMobile(value);
             },
             function () {
-                return "شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " خود را به درستی وارد نمایید";
+                return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " خود را به درستی وارد نمایید";
             }
         );
         $.validator.addMethod(
@@ -137,11 +139,11 @@
             function () {
                 return "شماره تلفن ثابت خود را به درستی وارد نمایید";
             }
-        );        
+        );
 
         $("form[id='frmFormMain']").validate({
             // Specify validation rules
-            rules: {                
+            rules: {
                 "CompanyName": {
                     required: function () {
                         return true;
@@ -309,13 +311,13 @@
                 },
                 "AgentMobile": {
                     required: function () {
-                        return "لطفا شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " را وارد کنید";
+                        return "لطفا " + $("#Span_Label_AgentMobile").text() + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " را وارد کنید";
                     },
                     minlength: function () {
-                        return "شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداقل 11 حرف باشد";
+                        return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداقل 11 حرف باشد";
                     },
                     maxlength: function () {
-                        return "شماره نماینده " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداکثر 11 حرف باشد";
+                        return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداکثر 11 حرف باشد";
                     }
                 },
                 "AddressCompany": {
@@ -380,8 +382,8 @@
             submitHandler: function (form) {
                 Web.Customer.SaveCustomer(this);
             }
-        });        
-        
+        });
+
     }
 
     function checkForFirstRequest(resSingle) {
@@ -421,7 +423,9 @@
                 $("#AgentName").val(res.agentName);
                 $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
                 Tagsinput("NamesAuthorizedSignatories");
+
                 $("#CountOfPersonal").val(res.countOfPersonal);
+
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
                 $("#PostalCode").val(res.postalCode);
@@ -460,6 +464,7 @@
             $("#LabelTypeGroupCompanies").html("نوع فعالیت");
             $("#LabelEconomicCode").html("شماره کارت بازرگانی");
             $("#LabelCompanyName").html("نام و نام خانوادگی");
+            $("#Span_Label_AgentMobile").html("شماره موبایل");
         }
         else {
 
@@ -468,7 +473,36 @@
             $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
             $("#LabelEconomicCode").html("شماره ثبت");
             $("#LabelCompanyName").html("نام شرکت");
+            $("#Span_Label_AgentMobile").html("شماره نماینده");
         }
+
+        $("#CustomerPersonalityType").val($(e).val());
+
+    }
+
+    function onKeyPressInCountOfPersonal(event) {
+
+        if ($(event).val() == "0") {
+            $("#spanListLastBimeReq").hide();
+        }
+        else {
+            $("#spanListLastBimeReq").show();
+        }
+
+    }
+
+    function onkeuUpInAmountOsLastSales(e) {
+
+        if ($(e).val() == "0") {
+
+            $("#Span_Label_Result_Final_AuditedFinancialStatements").hide();
+
+        }
+        else {
+            $("#Span_Label_Result_Final_AuditedFinancialStatements").show();
+        }
+
+        TextBoxOnlyPrice(e);
 
     }
 
@@ -479,6 +513,8 @@
         SystemSeting_Combo: systemSeting_Combo,
         CheckForFirstRequest: checkForFirstRequest,
         OnChangeCustomerPersonalityType: onChangeCustomerPersonalityType,
+        OnKeyPressInCountOfPersonal: onKeyPressInCountOfPersonal,
+        OnkeuUpInAmountOsLastSales: onkeuUpInAmountOsLastSales
     };
 
 })(Web, jQuery);

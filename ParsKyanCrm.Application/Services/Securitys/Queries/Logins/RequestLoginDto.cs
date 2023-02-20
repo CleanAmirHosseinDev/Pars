@@ -21,7 +21,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public bool aslkewkdkmscedkwlssdjcm { get; set; }
 
-
+        public bool nkekkfjdkjjkjkdjkdjkjkkj { get; set; }
 
 
     }

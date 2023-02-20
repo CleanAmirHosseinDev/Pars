@@ -60,6 +60,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveValueChainService;
 using ParsKyanCrm.Application.Services.Users.Queries.GetValueChain;
 using ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities;
 using ParsKyanCrm.Application.Services.Users.Queries.GetPublicActivities;
+using ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSettings;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -165,6 +166,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISavePublicActivitiesService SavePublicActivitiesService { get; }
 
         IGetPublicActivitiesService GetPublicActivitiesService { get; }
+
+        IGetLevelStepSettingsService GetLevelStepSettingsService { get; }
 
     }
 
@@ -637,6 +640,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getValueChainService=_getValueChainService??new GetValueChainService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private IGetLevelStepSettingsService _getLevelStepSettingsService;
+        public IGetLevelStepSettingsService GetLevelStepSettingsService
+        {
+            get
+            {
+                return _getLevelStepSettingsService = _getLevelStepSettingsService ?? new GetLevelStepSettingsService(_context, _mapper, _basicInfoFacad);
             }
         }
 

@@ -26,5 +26,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public string RoleDesc { get; set; }
 
+        public bool nkekkfjdkjjkjkdjkdjkjkkj { get; set; }
+
+        public bool iNSt2 { get; set; }
+
+
     }
 }

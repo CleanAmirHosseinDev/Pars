@@ -145,11 +145,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام و نام خانوادگی را وارد کنید").Length(5, 50).WithMessage("نام و نام خانوادگی باید حداقل 5 حرف و حداکثر 50 حرف باشد");
                   RuleFor(p => p.EconomicCode).Length(3, 50).WithMessage("شماره کارت بازرگانی باید حداقل 3 حرف و حداکثر 50 حرف باشد");
-                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده را به درستی وارد کنید");                  
+                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره موبایل را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده را به درستی وارد کنید");
 
                   RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
-              });            
+              });
 
 
             When(b => b.CustomerPersonalityType == null || b.CustomerPersonalityType != 223, () =>
@@ -185,15 +185,23 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تلفن ثابت را وارد کنید").Must(Utility.CheckTel).WithMessage("شماره تلفن ثابت را به درستی وارد کنید");
 
-                  RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");                                                                                                              
+                  RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");
 
                   RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
 
                   RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
 
-                  RuleFor(p => p.Result_Final_AuditedFinancialStatements).NotNull().WithMessage("آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی را بارگذاری کنید");
+                  When(v => v.AmountOsLastSales != null && v.AmountOsLastSales != 0, () =>
+                     {
+                         RuleFor(p => p.Result_Final_AuditedFinancialStatements).NotNull().WithMessage("آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی را بارگذاری کنید");
+                     });
 
-                  RuleFor(p => p.Result_Final_LastInsuranceList).NotNull().WithMessage("لیست آخرین بیمه را بارگذاری کنید");
+                  When(c => c.CountOfPersonal != null && c.CountOfPersonal != 0, () =>
+                    {
+
+                        RuleFor(p => p.Result_Final_LastInsuranceList).NotNull().WithMessage("لیست آخرین بیمه را بارگذاری کنید");
+
+                    });
 
               });
 

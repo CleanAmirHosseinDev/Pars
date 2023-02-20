@@ -127,10 +127,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
 
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
-                    {
-                    {
-                        "SaveDate",dt
-                    },
+                    {                    
                     {
                         nameof(request.LastInsuranceList),request.LastInsuranceList
                     },

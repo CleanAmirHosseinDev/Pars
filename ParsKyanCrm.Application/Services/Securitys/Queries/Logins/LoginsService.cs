@@ -123,7 +123,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                         var objSingleCus = cusUser.FirstOrDefault(p => p.NationalCode == request.NationalCode);
 
-                        
+
 
                         if (objSingleCus != null)
                         {
@@ -174,18 +174,9 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             else
                             {
 
-                                string strMessage = await SaveCustomer(request, res_ResultLoginDto, r);
-                                if (!string.IsNullOrEmpty(strMessage))
-                                {
-
-                                    return new ResultDto<ResultLoginDto>
-                                    {
-                                        Data = null,
-                                        IsSuccess = false,
-                                        Message = strMessage,
-                                    };
-
-                                }
+                                var objMessage = await SaveCustomer(request, res_ResultLoginDto, r);
+                                if (objMessage != null)
+                                    return objMessage;
 
                                 needSms = true;
 
@@ -197,22 +188,30 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     else
                     {
 
-                        string strMessage = await SaveCustomer(request, res_ResultLoginDto, r);
-                        if (!string.IsNullOrEmpty(strMessage))
+                        if (!request.nkekkfjdkjjkjkdjkdjkjkkj)
                         {
+                            var ObjMessage = await SaveCustomer(request, res_ResultLoginDto, r);
+                            if (ObjMessage != null) return ObjMessage;
+
+                            needSms = true;
+
+                        }
+                        else
+                        {
+
+                            MailSender.SendMail("mobin2352@gmail.com", "مبین مریداحمدی", "فرم تست", "ادمین سامانه پارس کیان  لطفا نسبت به تغییر پروفایل اینجانب با کد ملی " + request.NationalCode + " با شماره جدید " + request.Mobile + " اقدام فرمایید با تشکر", "info@parscrc.ir");
 
                             return new ResultDto<ResultLoginDto>
                             {
-                                Data = null,
-                                IsSuccess = false,
-                                Message = strMessage,
+                                Data = new ResultLoginDto()
+                                {
+                                    iNSt2 = true
+                                },
+                                IsSuccess = true,
+                                Message = "درخواست تغییر شماره موبایل شما جهت دسترسی به پروفایل به ادمین ارسال گردید لطفا منتظر تماس باشید.",
                             };
 
                         }
-
-
-                        needSms = true;
-
 
                     }
 
@@ -257,14 +256,23 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             }
         }
 
-        private async Task<string> SaveCustomer(RequestLoginDto request, ResultLoginDto res_ResultLoginDto, string r)
+        private async Task<ResultDto<ResultLoginDto>> SaveCustomer(RequestLoginDto request, ResultLoginDto res_ResultLoginDto, string r)
         {
 
             try
             {
 
                 var qCheckNatinalCode = await _context.Customers.FirstOrDefaultAsync(p => p.NationalCode == request.NationalCode);
-                if (qCheckNatinalCode != null) return "شناسه ملی شرکت از قبل موجود می باشد لطفا شناسه ملی شرکت دیگری وارد کنید";
+                if (qCheckNatinalCode != null)
+                    return new ResultDto<ResultLoginDto>
+                    {
+                        Data = new ResultLoginDto()
+                        {
+                            nkekkfjdkjjkjkdjkdjkjkkj = true
+                        },
+                        IsSuccess = false,
+                        Message = "شناسه ملی شرکت از قبل موجود می باشد لطفا شناسه ملی شرکت دیگری وارد کنید",
+                    };
 
                 var cusUserA = _context.Customers.Add(new Domain.Entities.Customers()
                 {
@@ -296,7 +304,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                 res_ResultLoginDto.UserID = userC.Entity.UserId;
                 res_ResultLoginDto.CustomerID = cusUserA.Entity.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
-                return string.Empty;
+                return null;
             }
             catch (Exception ex)
             {

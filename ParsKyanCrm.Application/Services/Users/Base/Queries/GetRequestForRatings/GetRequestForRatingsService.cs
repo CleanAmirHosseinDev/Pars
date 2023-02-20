@@ -50,9 +50,12 @@ select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConf
                  left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest
                  left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
                  {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
-                 {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}
+                 {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                 
                  order by rfr.ChangeDate desc  
-) as cte"
+) as cte
+{(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
+{(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" : string.Empty)}
+"
                  );
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>

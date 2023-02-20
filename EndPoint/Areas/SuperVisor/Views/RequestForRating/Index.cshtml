@@ -78,6 +78,13 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12" style="display:flex;">
+                                <label>وضعیت &nbsp;</label>
+                                <select class="form-control BorderRadius_30 select2" id="cboSelectLS" name="cboSelectLS">
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -98,7 +105,7 @@
                                 <th>
                                     موبایل مشتری
                                 </th>
-                               
+
                                 <th>
                                     تاریخ درخواست
                                 </th>
@@ -121,8 +128,14 @@
     </section>
 </div>
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">    
+}
+
 @section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
         Web.RequestForRating.FilterGrid();
+        Web.RequestForRating.FillComboLevelStepSettingList();
     </script>
 }

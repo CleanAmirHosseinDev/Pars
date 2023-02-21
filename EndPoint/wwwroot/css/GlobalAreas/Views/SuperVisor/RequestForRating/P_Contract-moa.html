@@ -62,7 +62,10 @@
                                             تخفیف درصدی
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="$('#DisCountMoney').val('')"  />
+                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="Web.RequestForRating.CalDisPerecent(this);" />
+                                            <label class="control-label col-md-6" id="lblDicCountPerecent">
+                                                
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -133,6 +136,4 @@
     </div>
 </div>
 
-<script>
 
-</script>

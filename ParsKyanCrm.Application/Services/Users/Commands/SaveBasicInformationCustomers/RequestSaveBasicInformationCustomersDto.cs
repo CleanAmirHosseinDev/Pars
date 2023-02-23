@@ -191,12 +191,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
 
-                  When(v => v.AmountOsLastSales != null && v.AmountOsLastSales != 0, () =>
+                  When(v => (v.AmountOsLastSales != null && v.AmountOsLastSales != 0) && string.IsNullOrEmpty(v.AuditedFinancialStatements), () =>
                      {
                          RuleFor(p => p.Result_Final_AuditedFinancialStatements).NotNull().WithMessage("آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی را بارگذاری کنید");
                      });
 
-                  When(c => c.CountOfPersonal != null && c.CountOfPersonal != 0, () =>
+                  When(c => (c.CountOfPersonal != null && c.CountOfPersonal != 0) && string.IsNullOrEmpty(c.LastInsuranceList), () =>
                     {
 
                         RuleFor(p => p.Result_Final_LastInsuranceList).NotNull().WithMessage("لیست آخرین بیمه را بارگذاری کنید");

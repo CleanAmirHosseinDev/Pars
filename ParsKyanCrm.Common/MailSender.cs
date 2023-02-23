@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Common
                         "<span>کلیک کنید</span>" +
                         "</b></a><br><br>" + body;
                     mailMsg.IsBodyHtml = true;
-                    mailMsg.From = new MailAddress("vam30forms@outlook.com", "Parscrc_mailsender", Encoding.UTF8);
+                    mailMsg.From = new MailAddress("parscrc@outlook.com", "Parscrc_mailsender", Encoding.UTF8);
                     //mailMsg.Sender = new MailAddress(fromMail, fromName, Encoding.UTF8);                    
 
                     //if (attachments != null) foreach (var item in attachments) mailMsg.Attachments.Add(item);
@@ -41,7 +41,7 @@ namespace ParsKyanCrm.Common
                     {
                         EnableSsl = true,
                         Port = 587,
-                        Credentials = new NetworkCredential("vam30forms@outlook.com", "vam30@10155")
+                        Credentials = new NetworkCredential("parscrc@outlook.com", "1qaz@WSX10155")
                         // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
                     };
                     //smtpServer.Send("mohammadjv7@gmail.com", "info@vam30.com", "subssss", "textttt");

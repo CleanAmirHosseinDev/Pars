@@ -431,6 +431,10 @@
                 $("#PostalCode").val(res.postalCode);
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
 
+
+                $("input[name='AuditedFinancialStatements']").val(res.auditedFinancialStatements);
+                $("input[name='LastInsuranceList']").val(res.lastInsuranceList);
+
                 if (res.lastInsuranceList != null && res.lastInsuranceList != "") {
                     $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
@@ -442,6 +446,7 @@
                 checkForFirstRequest(res);
                 // systemSeting_Combo(res);
 
+                
 
             }
             else {

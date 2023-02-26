@@ -135,14 +135,21 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     decimal N1 = countOfPer > 0 ? (serviceFee.FixedCost.HasValue ? serviceFee.FixedCost.Value : 0) : 0;
                     decimal N2 = Yek10000 < (serviceFee.Fee1.HasValue ? serviceFee.Fee1.Value : 0) ? Yek10000 : 0;
                     decimal N3 = (countOfPer * (serviceFee.VariableCost.HasValue ? serviceFee.VariableCost.Value : 0));
-                    return double.Parse((Math.Round(N1 + N2 + N3, 0)).ToString()).ToString("N0"); 
+
+
+
+                    decimal Res = (Math.Round(N1 + N2 + N3, 0) / 1000000) * 1000000;
+
+                    return double.Parse((Res).ToString()).ToString("N0"); 
                 }
                 else
                 {
                     decimal N1 = (countOfPer * (serviceFee.VariableCost.HasValue ? serviceFee.VariableCost.Value : 0)) > (serviceFee.Fee1.HasValue ? serviceFee.Fee1.Value : 0) ? (serviceFee.Fee1.HasValue ? serviceFee.Fee1.Value : 0) : (countOfPer * (serviceFee.VariableCost.HasValue ? serviceFee.VariableCost.Value : 0));
                     decimal N2 = countOfPer > 0 ? (serviceFee.FixedCost.HasValue ? serviceFee.FixedCost.Value : 0) : 0;
                     decimal N3 = Yek10000 < (serviceFee.Fee2.HasValue ? serviceFee.Fee2.Value : 0) ? Yek10000 : (serviceFee.Fee2.HasValue ? serviceFee.Fee2.Value : 0);
-                    return double.Parse((Math.Round(N1 + N2 + N3, 0)).ToString()).ToString("N0");
+
+                    decimal res = (Math.Round(N1 + N2 + N3, 0) / 1000000) * 1000000;
+                    return double.Parse((res).ToString()).ToString("N0");
                 }
 
             }

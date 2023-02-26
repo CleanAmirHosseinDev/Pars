@@ -117,6 +117,23 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                     string r = RandomDjcode.randnu(5);
 
+                    if (request.nkekkfjdkjjkjkdjkdjkjkkj)
+                    {
+
+                        MailSender.SendMail("parscrc@outlook.com", "ارسال از سامانه", "درخواست تغییر شماره موبایل کاربری", "ادمین سامانه پارس کیان  لطفا نسبت به تغییر پروفایل اینجانب با کد ملی " + request.NationalCode + " با شماره جدید " + request.Mobile + " اقدام فرمایید با تشکر", "info@parscrc.ir");
+
+                        return new ResultDto<ResultLoginDto>
+                        {
+                            Data = new ResultLoginDto()
+                            {
+                                iNSt2 = true
+                            },
+                            IsSuccess = true,
+                            Message = "درخواست تغییر شماره موبایل شما جهت دسترسی به پروفایل به ادمین سامانه ارسال گردید لطفا منتظر تماس باشید.",
+                        };
+
+                    }
+
                     var cusUser = await _context.Customers.Where(p => p.AgentMobile == request.Mobile).ToListAsync();
                     if (cusUser != null && cusUser.Count() > 0)
                     {
@@ -188,30 +205,11 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     else
                     {
 
-                        if (!request.nkekkfjdkjjkjkdjkdjkjkkj)
-                        {
-                            var ObjMessage = await SaveCustomer(request, res_ResultLoginDto, r);
-                            if (ObjMessage != null) return ObjMessage;
+                        var ObjMessage = await SaveCustomer(request, res_ResultLoginDto, r);
+                        if (ObjMessage != null) return ObjMessage;
 
-                            needSms = true;
+                        needSms = true;
 
-                        }
-                        else
-                        {
-
-                            MailSender.SendMail("mobin2352@gmail.com", "مبین مریداحمدی", "فرم تست", "ادمین سامانه پارس کیان  لطفا نسبت به تغییر پروفایل اینجانب با کد ملی " + request.NationalCode + " با شماره جدید " + request.Mobile + " اقدام فرمایید با تشکر", "info@parscrc.ir");
-
-                            return new ResultDto<ResultLoginDto>
-                            {
-                                Data = new ResultLoginDto()
-                                {
-                                    iNSt2 = true
-                                },
-                                IsSuccess = true,
-                                Message = "درخواست تغییر شماره موبایل شما جهت دسترسی به پروفایل به ادمین ارسال گردید لطفا منتظر تماس باشید.",
-                            };
-
-                        }
 
                     }
 

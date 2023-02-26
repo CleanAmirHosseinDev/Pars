@@ -906,8 +906,10 @@
              var dis = null;
              var FeePrice = removeComaForString($("#PriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
              if (disPerecent != null && disPerecent != "") {
-
-                 $("#lblDicCountPerecent").html(moneyCommaSepWithReturn(((FeePrice * disPerecent) / 100).toString()));
+                 let disprice = ((FeePrice * disPerecent) / 100).toString();
+                 let len = disprice.length;
+                 disprice = disprice.slice(0, len - 5) + "000";
+                 $("#lblDicCountPerecent").html(moneyCommaSepWithReturn(disprice));
              } else {
 
                  $("#lblDicCountPerecent").html(0);
@@ -929,8 +931,10 @@
              Total = FeePrice - dicMoney;
         }
         else if (disPerecent != null && disPerecent != "") {
-
-             Total = FeePrice - ((FeePrice * disPerecent) / 100);
+             let disprice = ((FeePrice * disPerecent) / 100).toString();
+             let len = disprice.length;
+             disprice = disprice.slice(0, len - 5) + "000";
+             Total = FeePrice - disprice;
          } else {
 
              Total = FeePrice;

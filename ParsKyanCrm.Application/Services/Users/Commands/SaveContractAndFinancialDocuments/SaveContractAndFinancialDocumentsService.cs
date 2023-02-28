@@ -75,7 +75,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             #endregion
             try
             {
-
+                if (request.DicCountPerecent==0)
+                {
+                    request.DicCountPerecent = null;
+                }
                 #region Validation
 
 
@@ -155,7 +158,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         request.ContractMainCode = MaxAllContractMainCode();
                     }
 
-                    request.Tax = Math.Round((request.PriceContract.HasValue ? request.PriceContract.Value * 9 : 0) / 100, 0);
+                    request.Tax = Math.Round((request.FinalPriceContract.HasValue ? request.FinalPriceContract.Value * 9 : 0) / 100, 0);
                     q_Entity = _context.ContractAndFinancialDocuments.Add(_mapper.Map<ContractAndFinancialDocuments>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Entity.Entity);

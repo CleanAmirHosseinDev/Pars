@@ -43,7 +43,7 @@
                         }
                     if (res.data[i].destLevelStepIndex >= 7) {
 
-                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-info'></i> اطلاعات تکمیلی</a>";
+                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> اطلاعات تکمیلی</a>";
 
                     }
 
@@ -567,6 +567,7 @@
                         var new_html = ('<storang>' + value + '</storang>');
                         $(this).replaceWith(new_html);
                     });
+                    $(".hClass").remove();
                 }
 
             }, true);

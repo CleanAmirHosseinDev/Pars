@@ -93,9 +93,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());  
                     // مبلع فرمول
                     strContract = strContract.Replace("ServiceFeePriceValue",qServiceFee!=null? CalcContractPrice(qCustomer, qServiceFee):"0");
-                    qContract.ContractText = strContract;
+                    qContract.ContractText = strContract;                    
                 }
-
                
                     if (qServiceFee == null)
                     {
@@ -103,9 +102,10 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                         {
                             Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract()),
                             Customers = _mapper.Map<CustomersDto>(qCustomer),
-                            ServiceFee = null
-                        };
-                    }
+                            ServiceFee = null,
+                           
+                };
+              }
                 
 
                 return new ResultGetServiceFeeAndCustomerByRequestDto()

@@ -103,5 +103,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string ContractMainCode { get; set; }
         public bool IsCustomer { get; set; }
 
+        public string LeaderEvaluationFile { get; set; }
+        public string LeaderEvaluationFileFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(LeaderEvaluationFile, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_LeaderEvaluationFile { get; set; }
+
     }
 }

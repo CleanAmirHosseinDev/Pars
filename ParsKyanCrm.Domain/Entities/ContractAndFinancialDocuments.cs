@@ -26,8 +26,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string ContractDocumentCustomer { get; set; }
         public string CommitteeEvaluationFile { get; set; }
         public string LastFinancialDocument { get; set; }
-
-
+        public string LeaderEvaluationFile { get; set; }
 
     }
 }

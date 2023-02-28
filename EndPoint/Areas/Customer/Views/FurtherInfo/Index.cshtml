@@ -93,7 +93,7 @@
                                                                         </div><div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">پست سازمانی <span class="RequiredLabel">*</span></label>
-                                                                                <input type="text" name="Answer2" id="MemberPostID" class="form-control" placeholder="پست سازمانی"/>
+                                                                                <input type="text" name="Answer2" id="MemberPostID" class="form-control" placeholder="پست سازمانی" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -114,37 +114,65 @@
                                                                                 <input type="checkbox" name="Answer6" id="IsMemeberOfBoard" style="text-align:right; width: 30px" />
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6">
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">درصد سهام<span class="RequiredLabel">*</span></label>
+                                                                                <label class="control-label" for="">درصد سهام</label>
                                                                                 <input type="text" name="Answer7" id="OwnershipPercentage" placeholder="درصد سهام" class="form-control" maxlength="3" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تعداد سهام<span class="RequiredLabel">*</span></label>
+                                                                                <label class="control-label" for="">تعداد سهام</label>
                                                                                 <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">سابقه بیمه<span class="RequiredLabel">*</span></label>
-                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه" class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <label class="control-label" for="">سابقه بیمه (به ماه)</label>
+                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">سابقه مدیریتی<span class="RequiredLabel">*</span></label>
-                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی" class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <label class="control-label" for="">سابقه عضویت در هیئت مدیره (به ماه)</label>
+                                                                                <input type="text" name="Answer10" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تصویر مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                <label class="control-label" for="">سابقه مدیریتی (به ماه)</label>
+                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر مدرک تحصیلی</label>
                                                                                 <input type="file" name="Result_Final_FileName1" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx," />
                                                                                 <div id="DivAcademicDegreePicture"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر سابقه بیمه</label>
+                                                                                <input type="file" name="Result_Final_FileName2" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx," />
+                                                                                <div id="DivAcademicDegreePicture"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر سابقه مدیریتی </label>
+                                                                                <input type="file" name="Result_Final_FileName3" id="ManageHistoryPicture" accept="image/*,.pdf,.xlsx," />
+                                                                                <div id="DivManageHistoryPicture"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر سابقه عضویت </label>
+                                                                                <input type="file" name="Result_Final_FileName4" id="JoinHistoryPicture" accept="image/*,.pdf,.xlsx," />
+                                                                                <div id="DivJoinHistoryPicture"></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -208,7 +236,7 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td style="text-align:right">
-                                                                                    <label class="control-label" for=""> صورتهای مالی حسابرسی شده<span class="RequiredLabel">*</span></label>
+                                                                                    <label class="control-label" for=""> صورتهای مالی حسابرسی شده</label>
 
 
                                                                                 </td>
@@ -222,7 +250,7 @@
                                                                             <tr>
                                                                                 <td style="text-align:right">
                                                                                 
-                                                                                    <label class="control-label" for=""> آخرین تغییرات روزنامه رسمی<span class="RequiredLabel">*</span></label>
+                                                                                    <label class="control-label" for=""> آخرین تغییرات روزنامه رسمی </label>
 
 
                                                                                 </td>
@@ -237,7 +265,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align:right">
-                                                                                    <label class="control-label" for=""> اساسنامه<span class="RequiredLabel">*</span></label>
+                                                                                    <label class="control-label" for=""> اساسنامه </label>
 
 
                                                                                 </td>
@@ -252,7 +280,7 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align:right">
-                                                                                    <label class="control-label" for="">  روزنامه رسمی<span class="RequiredLabel">*</span></label>
+                                                                                    <label class="control-label" for="">  روزنامه رسمی </label>
                                                                                 </td>
                                                                                 <td>
                                                                                     <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," />
@@ -567,13 +595,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">آدرس وبسایت شرکت <span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">آدرس وبسایت شرکت  </label>
                                                                                                     <input type="url" name="CompanyWebSite" id="CompanyWebSite" placeholder="آدرس وبسایت شرکت " class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for=""> آیا شرکت نمایندگی از شرکتهای خارجی / داخلی دارد؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for=""> آیا شرکت نمایندگی از شرکتهای خارجی / داخلی دارد؟ </label>
                                                                                                     <input type="checkbox" name="HaveRepresentativeStr" id="HaveRepresentativeStr" style="text-align:right; width: 30px" />
                                                                                                 </div>
                                                                                             </div>
@@ -582,13 +610,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for=""> آیا محصول تولید شده  در شرکت نیازمند دانش فنی بالایی است؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for=""> آیا محصول تولید شده  در شرکت نیازمند دانش فنی بالایی است؟ </label>
                                                                                                     <textarea name="HighProductKnowledge" id="HighProductKnowledge" class="form-control"></textarea>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for=""> آیا کمیته حسابرسی دارید ؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for=""> آیا کمیته حسابرسی دارید ؟ </label>
                                                                                                     <input type="checkbox" name="HaveAuditCommitteeStr" id="HaveAuditCommitteeStr" style="text-align:right; width: 30px" />
                                                                                                 </div>
                                                                                             </div>
@@ -604,7 +632,7 @@
                                                                                             <tbody>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> بارگزاری چارت سازمانی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> بارگزاری چارت سازمانی </label>
 
 
                                                                                                     </td>
@@ -617,7 +645,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">بارگزاری فایل شرح وظایف شغلی پرسنل<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">بارگزاری فایل شرح وظایف شغلی پرسنل </label>
 
 
                                                                                                     </td>
@@ -629,7 +657,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">بارگزاری دستورالعمل مدیریت ریسک<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">بارگزاری دستورالعمل مدیریت ریسک </label>
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <input type="file" name="Result_Final_RiskManagementGuidelines" id="RiskManagementGuidelines" accept="image/*,.pdf,.xlsx," />
@@ -641,7 +669,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> بارگزاری آیین نامه معاملات<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> بارگزاری آیین نامه معاملات </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -653,7 +681,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> بارگزاری مفاصا حساب مالیاتی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> بارگزاری مفاصا حساب مالیاتی </label>
 
 
                                                                                                     </td>
@@ -662,7 +690,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> بارگزاری تصویرقراداد نرم افزار امور مشتریان<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> بارگزاری تصویرقراداد نرم افزار امور مشتریان </label>
 
 
                                                                                                     </td>
@@ -675,7 +703,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> بارگزاری مستندات نمایندگی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> بارگزاری مستندات نمایندگی </label>
 
 
                                                                                                     </td>
@@ -684,7 +712,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> در صورت داشتن تقدیر نامه از تامین کنندگان یا مشتریان خود بارگزاری کنید<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> در صورت داشتن تقدیر نامه از تامین کنندگان یا مشتریان خود بارگزاری کنید </label>
 
 
                                                                                                     </td>
@@ -693,7 +721,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> در صورت داشتن اختراع مدرک مربوطه را بارگزاری کنید<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> در صورت داشتن اختراع مدرک مربوطه را بارگزاری کنید </label>
 
 
                                                                                                     </td>
@@ -702,7 +730,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">  بارگزاری نمونه صورتجلسه حسابرسی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">  بارگزاری نمونه صورتجلسه حسابرسی </label>
 
 
                                                                                                     </td>
@@ -745,13 +773,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">نام اعضای کمیته حسابرسی<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">نام اعضای کمیته حسابرسی </label>
                                                                                                     <input type="text" name="Answer1" id="NameOfAuditCommittee" placeholder="نام اعضای کمیته حسابرسی" class="form-control">
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">مدرک تحصیلی </label>
                                                                                                     <select name="Answer2" id="DegreeOfEducation" class="form-control select2"></select>
                                                                                                 </div>
                                                                                             </div>
@@ -759,7 +787,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">  تجربه کاری (به ماه)<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">  تجربه کاری (به ماه) </label>
                                                                                                     <input type="text" name="Answer3" id="WorkExperience" placeholder="  تجربه کاری (به ماه)" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" maxlength="3" />
                                                                                                 </div>
                                                                                             </div>
@@ -809,7 +837,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">نام محصول<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">نام محصول </label>
                                                                                                     <input type="text" name="Answer1" id="ProductName" placeholder="نام محصول" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
@@ -817,7 +845,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">کد محصول<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">کد محصول </label>
                                                                                                     <input type="text" name="Answer2" id="ProductCode" placeholder="کد محصول" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
@@ -878,7 +906,7 @@
                                                                                             <tbody>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">تصویر انبار / سند مالکیت انبار (در صورت برون سپاری قرارداد مربوطه ارسال گردد)<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">تصویر انبار / سند مالکیت انبار (در صورت برون سپاری قرارداد مربوطه ارسال گردد) </label>
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <input type="file" name="Result_Final_vc1" id="vc1" accept="image/*,.pdf,.xlsx," />
@@ -888,7 +916,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">عکس/سند تجهیزات انبارش و بارگیری (در صورت برون سپاری قرارداد مربوطه ارسال گردد) <span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">عکس/سند تجهیزات انبارش و بارگیری (در صورت برون سپاری قرارداد مربوطه ارسال گردد)  </label>
                                                                                                     </td>
                                                                                                     <td><input type="file" name="Result_Final_vc2" id="vc2" accept="image/*,.pdf,.xlsx," /></td>
                                                                                                     <td> <div id="DivVc2"></div></td>
@@ -896,7 +924,7 @@
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for="">
-                                                                                                            عکس/سند مالکیت تجهیزات حمل و نقل به/ از  انبار  (در صورت برون سپاری قرارداد مربوطه ارسال گردد) <span class="RequiredLabel">*</span>
+                                                                                                            عکس/سند مالکیت تجهیزات حمل و نقل به/ از  انبار  (در صورت برون سپاری قرارداد مربوطه ارسال گردد)  
 
                                                                                                         </label>
                                                                                                     </td>
@@ -904,7 +932,7 @@
                                                                                                     <td><div id="DivVc3"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td style="text-align:right"><label class="control-label" for="">  عکس / قراداد نرم افزار انبارداری<span class="RequiredLabel">*</span></label></td>
+                                                                                                    <td style="text-align:right"><label class="control-label" for="">  عکس / قراداد نرم افزار انبارداری </label></td>
                                                                                                     <td> <input type="file" name="Result_Final_vc4" id="vc4" accept="image/*,.pdf,.xlsx," /></td>
                                                                                                     <td><div id="DivVc4"></div></td>
                                                                                                 </tr>
@@ -930,7 +958,7 @@
                                                                                             <tbody>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> دفتر مرکزی(اجاره نامه یا سند مالکیت)<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> دفتر مرکزی(اجاره نامه یا سند مالکیت) </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -940,7 +968,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> دفتر خارج از کشور (اجاره نامه یا سند مالکیت)<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> دفتر خارج از کشور (اجاره نامه یا سند مالکیت) </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -950,7 +978,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">یک نمونه فیش حقوقی پرسنل نشان دهنده واریز پاداش<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">یک نمونه فیش حقوقی پرسنل نشان دهنده واریز پاداش </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -960,7 +988,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> عکس یا قرارداد نرم افزار های یکپارچه مدیریتی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> عکس یا قرارداد نرم افزار های یکپارچه مدیریتی </label>
 
 
                                                                                                     </td>
@@ -969,7 +997,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> عکس از آزمایشگاه  (در صورت برون سپاری قرارداد مربوطه ارسال گردد)<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> عکس از آزمایشگاه  (در صورت برون سپاری قرارداد مربوطه ارسال گردد) </label>
 
 
                                                                                                     </td>
@@ -978,7 +1006,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> تصویر مجوز دانش بنیان<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> تصویر مجوز دانش بنیان </label>
 
                                                                                                     </td>
                                                                                                     <td> <input type="file" name="Result_Final_vc10" id="vc10" accept="image/*,.pdf,.xlsx," /></td>
@@ -986,7 +1014,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل </label>
 
                                                                                                     </td>
                                                                                                     <td> <input type="file" name="Result_Final_vc11" id="vc11" accept="image/*,.pdf,.xlsx," /></td>
@@ -994,7 +1022,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">درصورت وجود یک مدل جهت ردیابی محصول با بارکد یا کد رجیستری تصویر مربوطه بارگزاری شود<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">درصورت وجود یک مدل جهت ردیابی محصول با بارکد یا کد رجیستری تصویر مربوطه بارگزاری شود </label>
 
                                                                                                     </td>
                                                                                                     <td> <input type="file" name="Result_Final_vc12" id="vc12" accept="image/*,.pdf,.xlsx," /></td>
@@ -1019,13 +1047,13 @@
                                                                                             </thead>
                                                                                             <tbody>
                                                                                                 <tr>
-                                                                                                    <td style="text-align:right"> <label class="control-label" for="">آیا شرکت نمایندگی  دارد؟<span class="RequiredLabel">*</span></label></td>
+                                                                                                    <td style="text-align:right"> <label class="control-label" for="">آیا شرکت نمایندگی  دارد؟ </label></td>
                                                                                                     <td><input type="file" name="Result_Final_vc13" id="vc13" accept="image/*,.pdf,.xlsx," /></td>
                                                                                                     <td> <div id="DivVc13"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> آیا شرکت نمایندگان خودد را ارزیابی کرده است؟<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> آیا شرکت نمایندگان خودد را ارزیابی کرده است؟ </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1035,7 +1063,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> تصویر یا آدرس سایت و فعالیت در شبکه های اجتماعی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> تصویر یا آدرس سایت و فعالیت در شبکه های اجتماعی </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1045,7 +1073,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">عکس/اجاره نامه / سند مالکیت فروشگاه<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">عکس/اجاره نامه / سند مالکیت فروشگاه </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1055,7 +1083,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> تصویر یا آدرس سایت فروش آنلاین<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> تصویر یا آدرس سایت فروش آنلاین </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1065,7 +1093,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> گزارش های بازاریابی حضوری<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> گزارش های بازاریابی حضوری </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1075,7 +1103,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> عکس یا مجوز حضور در نمایشگاه ها<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> عکس یا مجوز حضور در نمایشگاه ها </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1085,7 +1113,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for="">قرارداد های فروش به سازمان ها<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for="">قرارداد های فروش به سازمان ها </label>
 
                                                                                                     </td>
                                                                                                     <td><input type="file" name="Result_Final_vc20" id="vc20" accept="image/*,.pdf,.xlsx," /></td>
@@ -1093,7 +1121,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> عکس از نمونه تبلیغات محیطی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> عکس از نمونه تبلیغات محیطی </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1120,7 +1148,7 @@
                                                                                             <tbody>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> کارت گارانتی<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> کارت گارانتی </label>
 
                                                                                                     </td>
                                                                                                     <td>
@@ -1130,7 +1158,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> عکس از واحد خدمات پس از فروش یا سایر مستندات<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> عکس از واحد خدمات پس از فروش یا سایر مستندات </label>
 
 
                                                                                                     </td>
@@ -1139,7 +1167,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش<span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش </label>
 
 
                                                                                                     </td>
@@ -1148,7 +1176,7 @@
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> عکس از تجهیزات  واحد خدمات پس از فروش <span class="RequiredLabel">*</span></label>
+                                                                                                        <label class="control-label" for=""> عکس از تجهیزات  واحد خدمات پس از فروش  </label>
 
 
                                                                                                     </td>
@@ -1187,7 +1215,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مستندات تدوین برنامه ریزی استراتژیک<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">مستندات تدوین برنامه ریزی استراتژیک </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="SwotFile1" accept="image/*,.pdf,.xlsx,"><div id="DivSwotFile1"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1196,7 +1224,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مستندات اجرا و بازخورد برنامه ریزی استراتژیک<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">مستندات اجرا و بازخورد برنامه ریزی استراتژیک </label>
                                                                                                     <input type="file" name="Result_Final_FileName2" id="SwotFile2" accept="image/*,.pdf,.xlsx," /><div id="DivSwotFile2"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1261,7 +1289,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگزاری مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">بارگزاری مدرک تحصیلی </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="DegreeFile" accept="image/*,.pdf,.xlsx," />
                                                                                                     <div id="DivDegreeFile"></div>
                                                                                                 </div>
@@ -1312,7 +1340,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">گزارش و خروجی تیم تحقیق و توسعه<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">گزارش و خروجی تیم تحقیق و توسعه </label>
                                                                                                     <textarea name="Answer1" id="ReportTitle" class="form-control"></textarea>
                                                                                                 </div>
                                                                                             </div>
@@ -1320,7 +1348,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگزاری مدرک مربوطه<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">بارگزاری مدرک مربوطه </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="ReportFile" accept="image/*,.pdf,.xlsx," />
                                                                                                     <div id="DivReportFile"></div>
                                                                                                 </div>
@@ -1412,7 +1440,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for=""> بارگزاری فایل اکسل کامل شده<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for=""> بارگزاری فایل اکسل کامل شده </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx," />
                                                                                                     <div id="DivHumanResourcesFile"></div>
                                                                                                 </div>
@@ -1454,7 +1482,7 @@
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">طول دوره<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">طول دوره (به ساعت)<span class="RequiredLabel">*</span></label>
                                                                                                     <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
@@ -1468,7 +1496,7 @@
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">فایل گواهی دوره<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">فایل گواهی دوره </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx,"><div id="DivCertificationCourses"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1554,13 +1582,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">نام انجمن<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">نام انجمن </label>
                                                                                                     <input type="text" name="Answer1" id="SocietyName" placeholder="نام انجمن" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">تاریخ پایان عضویت<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">تاریخ پایان عضویت </label>
                                                                                                     <input type="text" name="Answer2" id="ExpireDate" placeholder="تاریخ پایان عضویت" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
                                                                                                 </div>
                                                                                             </div>
@@ -1568,13 +1596,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">سمت در انجمن<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">سمت در انجمن </label>
                                                                                                     <input type="text" name="Answer3" id="PostInSociety" class="form-control" placeholder="سمت در انجمن" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">فایل گواهی عضویت<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">فایل گواهی عضویت </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," /><div id="DivCertificationSociety"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1629,13 +1657,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for=""> آیا واحد تجاری در انجمن های خیریه عضویت داشته است؟ در صورت مثبت بودن مدرک بارگزاری شود<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for=""> آیا واحد تجاری در انجمن های خیریه عضویت داشته است؟ در صورت مثبت بودن مدرک بارگزاری شود </label>
                                                                                                     <input type="checkbox" name="IsPublicActivityFileStr" id="IsPublicActivityFileStr" style="text-align:right; width: 30px" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">  آیا واحد تجاری در مناطق محروم سرمایه گذاری نموده است؟<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">  آیا واحد تجاری در مناطق محروم سرمایه گذاری نموده است؟ </label>
                                                                                                     <textarea name="Investment" id="Investment" class="form-control"></textarea>
                                                                                                 </div>
                                                                                             </div>
@@ -1645,7 +1673,7 @@
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">
                                                                                                         آیا واحد تجاری به منظورانجام  مسئولیت پذیری اجتماعی  بصورت کمک غیر مادی از قبیل جذب معلولین انجام داده است؟
-                                                                                                        <span class="RequiredLabel">*</span>
+                                                                                                         
                                                                                                     </label><textarea name="EmploymentDisabled" id="EmploymentDisabled" class="form-control"></textarea>
                                                                                                 </div>
                                                                                             </div>
@@ -1668,13 +1696,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">عنوان<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">عنوان </label>
                                                                                                     <input type="text" name="Answer1" id="PublicActivityTitle" placeholder="عنوان" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال) </label>
                                                                                                     <input type="text" name="Answer2" id="TotalPrice" placeholder="میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
                                                                                                 </div>
                                                                                             </div>
@@ -1682,7 +1710,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مدرک<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">مدرک </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="PublicActivityFile" accept="image/*,.pdf,.xlsx," />
                                                                                                     <div id="DivPublicActivityFile"></div>
                                                                                                 </div>
@@ -1734,7 +1762,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">عنوان<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">عنوان </label>
                                                                                                     <input type="text" name="Answer1" id="InvestmentTitle" placeholder="عنوان" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
@@ -1742,7 +1770,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگزاری سند سرمایه گذاری<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">بارگزاری سند سرمایه گذاری </label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="InvestmentFile" accept="image/*,.pdf,.xlsx," />
                                                                                                     <div id="DivInvestmentFile"></div>
                                                                                                 </div>
@@ -1793,7 +1821,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">عنوان<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">عنوان </label>
                                                                                                     <input type="text" name="Answer1" id="EmploymentDisabledFileTitle" placeholder="عنوان" class="form-control" />
                                                                                                 </div>
                                                                                             </div>

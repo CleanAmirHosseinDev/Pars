@@ -42,7 +42,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public decimal? Tax { get; set; }
         public string EvaluationFile { get; set; }
         public decimal? DisCountMoney { get; set; }
-        public float? DicCountPerecent { get; set; }
+        public decimal? DicCountPerecent { get; set; }
 
         public string ContractDocumentCustomer { get; set; }
         public string ContractDocumentCustomerFull

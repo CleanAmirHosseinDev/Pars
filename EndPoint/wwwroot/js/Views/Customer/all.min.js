@@ -187,12 +187,21 @@
                     minlength: 10,
                     maxlength: 11
                 },
+                "NationalCodeRepresentative": {
+                    minlength: 10,
+                    maxlength: 10
+                },
                 "AgentName": {
                     required: function () {
                         return $("#CustomerPersonalityType").val() != "223";
                     },
                     minlength: 5,
                     maxlength: 50
+                },
+                "EmailRepresentative": {                    
+                    minlength: 5,
+                    maxlength: 50,
+                    email: true
                 },
                 "AgentMobile": {
                     required: function () {
@@ -302,12 +311,21 @@
                     minlength: "شناسه ملی  شرکت باید حداقل 10 حرف باشد",
                     maxlength: "شناسه ملی  شرکت باید حداکثر 11 حرف باشد"
                 },
+                "NationalCodeRepresentative": {
+                    minlength: "کد ملی نماینده شرکت/ مشاور باید حداقل 10 حرف باشد",
+                    maxlength: "کد ملی نماینده شرکت/ مشاور باید حداکثر 10 حرف باشد"
+                },
                 "AgentName": {
                     required: function () {
-                        return "لطفا نام نماینده شرکت را وارد کنید";
+                        return "لطفا نام نماینده شرکت/ مشاور شرکت را وارد کنید";
                     },
-                    minlength: "نام نماینده شرکت باید حداقل 5 حرف باشد",
-                    maxlength: "نام نماینده شرکت باید حداکثر 50 حرف باشد"
+                    minlength: "نام نماینده شرکت/ مشاور شرکت باید حداقل 5 حرف باشد",
+                    maxlength: "نام نماینده شرکت/ مشاور شرکت باید حداکثر 50 حرف باشد"
+                },
+                "EmailRepresentative": {
+                    minlength: "ایمیل نماینده شرکت/ مشاور باید حداقل 5 حرف باشد",
+                    maxlength: "ایمیل نماینده شرکت/ مشاور باید حداکثر 50 حرف باشد",
+                    email: "لطفا ایمیل نماینده شرکت/ مشاور معتبر وارد کنید"
                 },
                 "AgentMobile": {
                     required: function () {
@@ -431,6 +449,8 @@
                 $("#PostalCode").val(res.postalCode);
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
 
+                $("#EmailRepresentative").val(res.emailRepresentative);
+                $("#NationalCodeRepresentative").val(res.nationalCodeRepresentative);
 
                 $("input[name='AuditedFinancialStatements']").val(res.auditedFinancialStatements);
                 $("input[name='LastInsuranceList']").val(res.lastInsuranceList);

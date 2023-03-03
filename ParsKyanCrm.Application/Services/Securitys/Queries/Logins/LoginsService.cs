@@ -278,7 +278,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active,
                     SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now),
                     AuthenticateCode = r,
-                    NationalCode = request.NationalCode
+                    NationalCode = request.NationalCode,
+                    CustomerPersonalityType = request.RadioSelectSha == "0" ? 224 : 223
                 });
 
                 await _context.SaveChangesAsync();

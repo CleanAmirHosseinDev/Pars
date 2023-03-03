@@ -530,6 +530,10 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 
+                entity.Property(e => e.EmailRepresentative).HasMaxLength(50);
+
+                entity.Property(e => e.NationalCodeRepresentative).HasMaxLength(50);
+
                 entity.Property(e => e.HowGetKnowCompanyId).HasColumnName("HowGetKnowCompanyID");
 
                 entity.Property(e => e.Ip).HasMaxLength(50);

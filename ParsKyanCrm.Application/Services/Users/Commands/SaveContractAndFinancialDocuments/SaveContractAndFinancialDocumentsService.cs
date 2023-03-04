@@ -75,7 +75,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             #endregion
             try
             {
-                if (request.DicCountPerecent==0)
+                if (request.DicCountPerecent == 0)
                 {
                     request.DicCountPerecent = null;
                 }
@@ -149,14 +149,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 {
                     request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
 
-                    if (!request.IsCustomer)
+                    if (request.IsCustomer)
                     {
                         request.ContractCode = MaxAllContractCode();
                     }
-                    else
-                    {
-                        request.ContractMainCode = MaxAllContractMainCode();
-                    }
+                    //else
+                    //{
+                    //    request.ContractMainCode = MaxAllContractMainCode();
+                    //}
 
                     request.Tax = Math.Round((request.FinalPriceContract.HasValue ? request.FinalPriceContract.Value * 9 : 0) / 100, 0);
                     q_Entity = _context.ContractAndFinancialDocuments.Add(_mapper.Map<ContractAndFinancialDocuments>(request));
@@ -165,7 +165,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 }
                 else
                 {
-                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, new Dictionary<string, object>()
+                    var dicSqlUpdate = new Dictionary<string, object>()
                     {
                         {
                             nameof(q_Entity.Entity.FinancialDocument),request.FinancialDocument
@@ -184,10 +184,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.PriceContract.Value * 9:0)/100,0)
-                        },
-                        {
-                            nameof(q_Entity.Entity.SaveDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
-                        },
+                        },                        
                         {
                             nameof(q_Entity.Entity.DicCountPerecent),request.DicCountPerecent
                         }
@@ -203,9 +200,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                             nameof(q_Entity.Entity.ContractDocumentCustomer),request.ContractDocumentCustomer
                         },
                         {
-                            request.IsCustomer?"ContractMainCode":"ContractCode",request.IsCustomer?MaxAllContractMainCode():MaxAllContractCode()
-                        },
-                        {
                             nameof(q_Entity.Entity.LastFinancialDocument),request.LastFinancialDocument
                         }
                         ,
@@ -213,7 +207,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                             nameof(q_Entity.Entity.CommitteeEvaluationFile),request.CommitteeEvaluationFile
                         }
 
-                    }, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
+                    };
+                    if (request.IsCustomer && string.IsNullOrEmpty(con.ContractCode))
+                    {
+                        dicSqlUpdate.Add("ContractCode", MaxAllContractCode());
+                        dicSqlUpdate.Add("SaveDate", DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now));
+                    }
+
+                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
+
                     #region Upload Image
 
                     if (request.Result_Final_ContractDocument != null)

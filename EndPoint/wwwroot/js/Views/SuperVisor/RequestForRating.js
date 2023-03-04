@@ -141,7 +141,13 @@
                 if (res.isSuccess) {
 
                     $("#ContractShow").html(res.data.contentContract);
-                    $("#SaveDate").html(res.data.saveDateStr);
+                    if (res.data.contractCode != null && res.data.contractCode != "") {
+                        $("#SaveDate").html(res.data.saveDateStr);
+
+                    } else {
+                        $("#ptr").html("<p> این نسخه قرارداد اصلی نمی باشد.</p>");
+                    }
+                    //$("#SaveDate").html(res.data.saveDateStr);
                     $("#ContractCode").html(res.data.contractCode);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');

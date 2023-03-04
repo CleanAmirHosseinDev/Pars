@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Domain.Entities
         public decimal? Tax { get; set; }        
         public string EvaluationFile { get; set; }
         public decimal? DisCountMoney { get; set; }
-        public decimal? DicCountPerecent { get; set; }
+        public double? DicCountPerecent { get; set; }
 
         public string ContractCode { get; set; }
 

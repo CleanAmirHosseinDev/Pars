@@ -464,7 +464,7 @@
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res.isSuccess) {
-                    if (res.data.contractMainCode == null) {
+                    if (res.data.contractCode == null) {
                         $("#LoadContractCustomer").remove();
                        
 
@@ -652,7 +652,13 @@
                 if (res.isSuccess) {
 
                     $("#ContractShow").html(res.data.contentContract);
-                    $("#SaveDate").html(res.data.saveDateStr);
+                    if (res.data.contractCode != null && res.data.contractCode != "") {
+                        $("#SaveDate").html(res.data.saveDateStr);
+
+                    } else {
+                        $("#ptr").html("<p> این نسخه قرارداد اصلی نمی باشد.</p>");
+                    }
+                   
                     $("#ContractCode").html(res.data.contractCode);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');

@@ -14,6 +14,10 @@ namespace ParsKyanCrm.Domain.Entities
             Users = new HashSet<Users>();
         }
 
+        public string EmailRepresentative { get; set; }
+
+        public string NationalCodeRepresentative { get; set; }
+
         public int CustomerId { get; set; }
         public int? CityId { get; set; }
         public string CompanyName { get; set; }

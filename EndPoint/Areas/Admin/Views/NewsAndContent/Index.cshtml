@@ -16,6 +16,10 @@
     </section>
 }
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+}
+
 <div class="row">
     <section class="col-lg-12 col-md-12">
         <div class="box box-info">
@@ -80,6 +84,16 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">نوع محتوا</label>
+                                    <div class="col-md-8">
+                                        <select id="KindOfContent" name="KindOfContent" class="form-control select2" style="width:100% !important;"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -106,7 +120,7 @@
                                     نوع محتوا
                                 </th>
                                 <th>
-                                     آدرس برگه
+                                    آدرس برگه
                                 </th>
                                 <th>عملیات</th>
                             </tr>
@@ -115,7 +129,7 @@
                         <tbody id="tBodyList">
                         </tbody>
 
-                    </table>                    
+                    </table>
 
                 </div>
 
@@ -124,8 +138,10 @@
     </section>
 </div>
 
-@section Scripts {    
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
         Web.NewsAndContent.FilterGrid();
+        Web.NewsAndContent.SystemSeting_Combo(null);
     </script>
 }

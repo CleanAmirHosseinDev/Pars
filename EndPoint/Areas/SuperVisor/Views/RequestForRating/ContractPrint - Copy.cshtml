@@ -125,35 +125,16 @@
 
         /** For screen preview **/
         @@media screen {
-            body.A3.landscape {
-                width: 420mm
+            body {
+                background: #e0e0e0
             }
 
-            body.A3, body.A4.landscape {
-                width: 297mm
+            .sheet {
+                background: white;
+                box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
+                margin: 5mm auto;
             }
-
-            body.A4, body.A5.landscape {
-                width: 210mm
-            }
-
-            body.A5 {
-                width: 148mm
-            }
-
-            body.letter, body.legal {
-                width: 216mm
-            }
-
-                body.letter.landscape {
-                    width: 280mm
-                }
-
-                body.legal.landscape {
-                    width: 357mm
-                }
         }
-
 
         /** Fix for Chrome issue #273306 **/
         @@media print {
@@ -246,7 +227,7 @@
         body {
             margin: 2em;
             color: #fff;
-            background-color: silver;
+            background-color: #000;
         }
 
         /* override styles when printing */
@@ -266,8 +247,8 @@
 
     </style>
 </head>
-<body >
-    <div class="graph-image graph-7" style="width: 210mm;margin:auto;">
+<body>
+    <div class="graph-image graph-7">
         <section class="sheet padding-20mm">
             <div class="print-part">
                 <div class="row">

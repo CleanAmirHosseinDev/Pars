@@ -58,7 +58,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                 string strContract = qContract.ContractText;
                 var qKindOfCompany = await _context.SystemSeting.FindAsync(qCustomer.KindOfCompanyId);
 
-               
+                string strNamesAuthorizedSignatoriesValue = "";
+
+                string[] NA = qCustomer.NamesAuthorizedSignatories.Split(",");
+                foreach (string N in NA)
+                    strNamesAuthorizedSignatoriesValue += N + "<br/><br/><br/>";
+
+
 
                 if (qRequest.KindOfRequest==66)
                 {
@@ -84,7 +90,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("EmailValue", (qCustomer.Email == null ? "" : qCustomer.Email));
                     strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                   
-                    strContract = strContract.Replace("NamesAuthorizedSignatoriesValue", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));
+                    strContract = strContract.Replace("NamesAuthorizedSignatoriesValue", (strNamesAuthorizedSignatoriesValue));
                     strContract = strContract.Replace("CompanyName3Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                     strContract = strContract.Replace("NationalCode2Value", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
                     strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));

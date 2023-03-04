@@ -80,7 +80,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm: aslkewkdkmscedkwlssdjcm, nkekkfjdkjjkjkdjkdjkjkkj: nkekkfjdkjjkjkdjkdjkjkkj }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm: aslkewkdkmscedkwlssdjcm, nkekkfjdkjjkjkdjkdjkjkkj: nkekkfjdkjjkjkdjkdjkjkkj, RadioSelectSha: $("input[name='RadioSelectSha']:checked").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
                 debugger;

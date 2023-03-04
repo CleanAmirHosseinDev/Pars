@@ -21,6 +21,10 @@ namespace ParsKyanCrm.Application.Dtos.Users
     public class CustomersDto : BaseEntityDto
     {
 
+        public string EmailRepresentative { get; set; }
+
+        public string NationalCodeRepresentative { get; set; }
+
         public bool IsProfileComplete { get; set; }
 
         public int CustomerId { get; set; }

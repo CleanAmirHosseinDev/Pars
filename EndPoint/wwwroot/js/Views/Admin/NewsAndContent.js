@@ -17,7 +17,9 @@
 
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/admin/NewsAndContent/Get_NewsAndContents", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        ComboBoxWithSearch('.select2', 'dir');
+
+        AjaxCallAction("POST", "/api/admin/NewsAndContent/Get_NewsAndContents", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), KindOfContent: !isEmpty($("#KindOfContent").val()) ? $("#KindOfContent").val() : null }), true, function (res) {
 
             if (res.isSuccess) {
 
@@ -33,7 +35,7 @@
                     strM += `<tr><td>${(i + 1)}</td > <td>${res.data[i].contentId}</td > <td>${res.data[i].title}</td ><td>${(res.data[i].kindOfContentNavigation != null ? res.data[i].kindOfContentNavigation.label : '')}</td><td>${res.data[i].directLink == null ? "<span style='color: gray; '> - </span>" : res.data[i].directLink}</td ><td><a title='ویرایش' href='/Admin/NewsAndContent/EditNewsAndContent?id=${res.data[i].contentId}' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='مشاهده' href='javascript:void(0)' onclick="window.open('${rlink}', '_blank')" class='btn btn-primary fontForAllPage'><i class='fa fa-eye'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.NewsAndContent.Delete_NewsAndContent(${res.data[i].contentId});'><i class='fa fa-remove'></i></a></td></tr> `;
 
                 }
-                $("#tBodyList").html(strM);
+                $("#tBodyList").html(strM);                
 
             }
 
@@ -171,7 +173,8 @@
         FilterGrid: filterGrid,
         SaveNewsAndContent: saveNewsAndContent,
         InitNewsAndContent: initNewsAndContent,
-        Delete_NewsAndContent: delete_NewsAndContent
+        Delete_NewsAndContent: delete_NewsAndContent,
+        SystemSeting_Combo: systemSeting_Combo
     };
 
 })(Web, jQuery);

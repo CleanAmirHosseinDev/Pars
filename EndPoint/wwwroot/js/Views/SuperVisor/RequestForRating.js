@@ -93,7 +93,7 @@
                        
                         $("#svisorShowDocument").remove();
                     }
-                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "8" || (getlstor("loginName") === "1" && res.data[0].levelStepIndex>=8)) || res.data[0].destLevelStepIndex < 5 ) {
+                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "8" || getlstor("loginName") === "6"|| (getlstor("loginName") === "1" && res.data[0].levelStepIndex>=8)) || res.data[0].destLevelStepIndex < 5 ) {
                         $("#svisorShowEvaluationFile").remove();
                     }
                     var htmlB = "";
@@ -128,7 +128,8 @@
 
     function printContract(e) {
 
-        disconut(e, false);
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);
     }
 
     function printContracting(id = null) {
@@ -144,12 +145,17 @@
                     $("#ContractCode").html(res.data.contractCode);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
-                        // var text_classname = $(this).attr('name');
+                        var text_classname = $(this).attr('name');
                         var value = $(this).val();
-                        var new_html = ('<storang>' + value + '</storang>');
+                        if (text_classname =="NamesAuthorizedSignatories") {
+                            var new_html = ('<p style="text-align:center">' + value + '</p>');
+                        }
+                        else {
+                            var new_html = ('<storang >' + value + '</storang>');
+                        }
                         $(this).replaceWith(new_html);
                     });
-                    window.print();
+                   
                 }
 
             }, true);
@@ -202,7 +208,7 @@
                             //  $(this).attr('readonly', 'readonly');
                            // var text_classname = $(this).attr('name');
                             var value = $(this).val();
-                            var new_html = ('<storang>' + value + '</storang>')
+                            var new_html = ('<storang id="' + text_classname+'">' + value + '</storang>')
                             $(this).replaceWith(new_html);
                         });
                         $(".hClass").remove();
@@ -545,10 +551,25 @@
                 $("#showEvaluationFile").html(resG);
                 if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8") {
                     $("#frmFormMain2").remove();
+                  
                 }
-                    if (getlstor("loginName") !== "8") {
-                        $("#frmFormMain3").remove();
-                    }
+                if (getlstor("loginName") === "5") {
+                    $("#frmFormMain4").remove();
+                    $("#frmFormMain3").remove();
+                }
+                if (getlstor("loginName") === "1") {
+                    $("#frmFormMain2").remove();
+                    $("#frmFormMain3").remove();
+                }
+                    if (getlstor("loginName") === "8") {
+                        $("#frmFormMain4").remove();
+                        $("#frmFormMain2").remove();
+                }
+                if (getlstor("loginName") === "6") {
+                    $("#frmFormMain3").remove();
+                    $("#frmFormMain4").remove();
+                    $("#frmFormMain2").remove();
+                }
                   getDocument(id);
 
             });
@@ -928,7 +949,7 @@
     }
 
     function calDisPerecent(e) {
-        $('#DisCountMoney').val('');
+       
          if (event.key === 'Enter') {
              var disPerecent = $('#DicCountPerecent').val();
              var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
@@ -939,8 +960,9 @@
                  var m = FeePrice - disprice;
                  var mi = m.toString().slice(-5);
                  m = m - mi;
+                 $('#DisCountMoney').val(moneyCommaSepWithReturn(disprice.toString()));
                   $("#FinalPriceContract").val(moneyCommaSepWithReturn(m.toString()));
-                 $("#lblDicCountPerecent").html(moneyCommaSepWithReturn(disprice));
+                // $("#lblDicCountPerecent").html(moneyCommaSepWithReturn(disprice));
                  var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
       
        
@@ -964,7 +986,7 @@
     }
 
     function calDisRiyal(e) {
-        $('#DicCountPerecent').val('');
+       
         $("#lblDicCountPerecent").html('');
         if (event.key === 'Enter') {
             var disRiyal = removeComaForString($('#DisCountMoney').val());
@@ -974,6 +996,8 @@
                 var m = FeePrice - disRiyal;
                 var mi = m.toString().slice(-5);
                 m = m - mi;
+                var tr = (disRiyal * 100) / FeePrice;
+                $('#DicCountPerecent').val((tr.toFixed(2)).toString());
                 $("#FinalPriceContract").val(moneyCommaSepWithReturn(m.toString()));
                 $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
                 var my = jQuery.parseHTML(getDataCkeditor("ContentContract"));
@@ -1036,12 +1060,7 @@
         $("#FinalPriceContract").val(moneyCommaSepWithReturn($("#FinalPriceContract").val()));
         $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
         $("#DicCountPerecent").val(moneyCommaSepWithReturn($("#DicCountPerecent").val()));
-        if ($("#DisCountMoney").val()==0) {
-            $("#DisCountMoney").val('');
-        }
-        if ($("#DicCountPerecent").val() == 0) {
-            $("#DicCountPerecent").val('');
-        }
+       
     }
 
     web.RequestForRating = {

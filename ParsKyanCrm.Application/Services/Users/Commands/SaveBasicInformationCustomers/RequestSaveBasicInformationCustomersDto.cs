@@ -9,6 +9,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
     public class RequestSaveBasicInformationCustomersDto
     {
 
+        public string EmailRepresentative { get; set; }
+
+        public string NationalCodeRepresentative { get; set; }
+
         public int CustomerId { get; set; }
         public int? CityId { get; set; }
         /// <summary>
@@ -167,7 +171,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.NationalCode).NotEmpty().WithMessage("شناسه ملی شرکت را وارد کنید").Length(10, 11).WithMessage("شناسه ملی شرکت باید حداقل 10 حرف و حداکثر 11 حرف باشد");
 
-                  RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت را وارد کنید").Length(5, 50).WithMessage("نام نماینده شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت/ مشاور شرکت را وارد کنید").Length(5, 50).WithMessage("نام نماینده شرکت/ مشاور شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
 
                   RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده شرکت را به درستی وارد کنید");
 
@@ -183,6 +187,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید").Length(5, 50).WithMessage("ایمیل باید حدقل 5 حرف و حداکثر 50 حرف باشد");
 
+                  RuleFor(p => p.EmailRepresentative).EmailAddress().WithMessage("ایمیل نماینده شرکت/ مشاور معتبر وارد کنید").Length(5, 50).WithMessage("ایمیل نماینده شرکت/ مشاور باید حدقل 5 حرف و حداکثر 50 حرف باشد");
+
                   RuleFor(p => p.Tel).NotEmpty().WithMessage("شماره تلفن ثابت را وارد کنید").Must(Utility.CheckTel).WithMessage("شماره تلفن ثابت را به درستی وارد کنید");
 
                   RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");
@@ -190,6 +196,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                   RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
 
                   RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
+
+                  RuleFor(p => p.NationalCodeRepresentative).Length(10, 10).WithMessage("کد ملی نماینده شرکت/ مشاور باید حداقل 10 حرف و حداکثر 10 حرف باشد");
 
                   When(v => (v.AmountOsLastSales != null && v.AmountOsLastSales != 0) && string.IsNullOrEmpty(v.AuditedFinancialStatements), () =>
                      {

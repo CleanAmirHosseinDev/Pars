@@ -23,6 +23,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public bool nkekkfjdkjjkjkdjkdjkjkkj { get; set; }
 
+        public string RadioSelectSha { get; set; }
+
 
     }
 }

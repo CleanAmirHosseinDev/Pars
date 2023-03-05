@@ -73,6 +73,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     return "شناسه ملی مورد نظر ار قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
                 }
 
+                var qRequest = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == request.CustomerId && p.IsFinished == false);
+                if (qRequest != null)
+                    return "به دلیل وجود یک درخواست باز امکان ویرایش پروفایل از طرف شما وجود ندارد در صورت نیاز به تغییرات لطفا با مدیر سامانه تماس بگیرید";
+
                 return string.Empty;
             }
             catch (Exception ex)

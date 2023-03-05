@@ -54,6 +54,8 @@
 
         }, true);
 
+
+
     }
 
     function systemSeting_Combo(resSingle, showdrp) {
@@ -198,7 +200,7 @@
                     minlength: 5,
                     maxlength: 50
                 },
-                "EmailRepresentative": {                    
+                "EmailRepresentative": {
                     minlength: 5,
                     maxlength: 50,
                     email: true
@@ -398,7 +400,27 @@
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function (form) {
-                Web.Customer.SaveCustomer(this);
+
+                if ($("#divTypeServiceRequestedId:hidden").length === 0) {
+
+                    confirmB("", "مشتری محترم در نظر داشته باشید چون معیار و مبنای شروع ارزیابی بر اساس اطلاعات پایه شما می باشد لذا در صورت اطمینان از صحت ورود اطلاعات تایید کنید پس از تایید امکان ویرایش وجود ندارد", "warning", function () {
+
+                        Web.Customer.SaveCustomer(this);
+
+                    }, function () {
+
+                    }, ["انصراف از ثبت", "بله مطمئنم"]);                    
+
+                }
+                else {
+
+                    Web.Customer.SaveCustomer(this);
+
+                }
+
+                
+                                
+
             }
         });
 
@@ -466,7 +488,7 @@
                 checkForFirstRequest(res);
                 // systemSeting_Combo(res);
 
-                
+
 
             }
             else {

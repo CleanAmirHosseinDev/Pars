@@ -80,7 +80,7 @@
                     else if (res.data[i].parentCode == 27) {
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
-                    else if (res.data[i].parentCode == 221) {
+                    else if (res.data[i].parentCode == 221 && isEmpty(resSingle.customerPersonalityType)) {
                         strCustomerPersonalityType += "<input type='radio' value=" + res.data[i].systemSetingId + " name='CustomerPersonalityTypeStr' id='CustomerPersonalityTypeStr' onchange='Web.Customer.OnChangeCustomerPersonalityType(this);' style='margin-right: 30px;'>" + res.data[i].label;
                     }
                     else if (res.data[i].parentCode == 126) {
@@ -88,10 +88,13 @@
                     }
                 }
 
+
                 $("#divCustomerPersonalityTypeRadio").html(strCustomerPersonalityType);
                 $("#CustomerPersonalityTypeStr[value='" + resSingle.customerPersonalityType + "']").prop("checked", true);
 
                 $("#CustomerPersonalityType").val(resSingle.customerPersonalityType);
+
+                if (!isEmpty(resSingle.customerPersonalityType)) $("#divCustomerPersonalityType").hide();
 
                 $("#TypeGroupCompanies").html(strTypeGroupCompanies);
                 $("#TypeGroupCompanies").val(resSingle.typeGroupCompanies);
@@ -130,7 +133,7 @@
                 return CheckMobile(value);
             },
             function () {
-                return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " خود را به درستی وارد نمایید";
+                return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت/مشاور " : " ") + " خود را به درستی وارد نمایید";
             }
         );
         $.validator.addMethod(
@@ -331,13 +334,13 @@
                 },
                 "AgentMobile": {
                     required: function () {
-                        return "لطفا " + $("#Span_Label_AgentMobile").text() + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : " ") + " را وارد کنید";
+                        return "لطفا " + $("#Span_Label_AgentMobile").text() + ($("#CustomerPersonalityType").val() != "223" ? "شرکت/مشاور " : " ") + " را وارد کنید";
                     },
                     minlength: function () {
-                        return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداقل 11 حرف باشد";
+                        return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت/مشاور " : "") + " باید حداقل 11 حرف باشد";
                     },
                     maxlength: function () {
-                        return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت " : "") + " باید حداکثر 11 حرف باشد";
+                        return $("#Span_Label_AgentMobile").text() + " " + ($("#CustomerPersonalityType").val() != "223" ? "شرکت/مشاور " : "") + " باید حداکثر 11 حرف باشد";
                     }
                 },
                 "AddressCompany": {
@@ -370,11 +373,11 @@
                 },
                 "Email": {
                     required: function () {
-                        return "لطفا ایمیل را وارد کنید";
+                        return "لطفا ایمیل شرکت را وارد کنید";
                     },
-                    minlength: "ایمیل باید حداقل 5 حرف باشد",
-                    maxlength: "ایمیل باید حداکثر 50 حرف باشد",
-                    email: "لطفا ایمیل معتبر وارد کنید"
+                    minlength: "ایمیل شرکت باید حداقل 5 حرف باشد",
+                    maxlength: "ایمیل شرکت باید حداکثر 50 حرف باشد",
+                    email: "لطفا ایمیل شرکت معتبر وارد کنید"
                 },
                 "Tel": {
                     required: function () {
@@ -409,7 +412,7 @@
 
                     }, function () {
 
-                    }, ["انصراف از ثبت", "بله مطمئنم"]);                    
+                    }, ["انصراف از ثبت", "بله مطمئنم"]);
 
                 }
                 else {
@@ -418,8 +421,8 @@
 
                 }
 
-                
-                                
+
+
 
             }
         });

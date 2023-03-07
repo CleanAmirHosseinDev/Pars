@@ -173,7 +173,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.AgentName).NotEmpty().WithMessage("نام نماینده شرکت/ مشاور شرکت را وارد کنید").Length(5, 50).WithMessage("نام نماینده شرکت/ مشاور شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
 
-                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده شرکت را به درستی وارد کنید");
+                  RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره نماینده شرکت/مشاور را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده شرکت/مشاور را به درستی وارد کنید");
 
                   RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
@@ -185,7 +185,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.TypeGroupCompanies).NotEmpty().WithMessage("نوع گروه شرکتها را انتخاب کنید");
 
-                  RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل را وارد کنید").EmailAddress().WithMessage("ایمیل معتبر وارد کنید").Length(5, 50).WithMessage("ایمیل باید حدقل 5 حرف و حداکثر 50 حرف باشد");
+                  RuleFor(p => p.Email).NotEmpty().WithMessage("ایمیل شرکت را وارد کنید").EmailAddress().WithMessage("ایمیل شرکت معتبر وارد کنید").Length(5, 50).WithMessage("ایمیل شرکت باید حدقل 5 حرف و حداکثر 50 حرف باشد");
 
                   RuleFor(p => p.EmailRepresentative).EmailAddress().WithMessage("ایمیل نماینده شرکت/ مشاور معتبر وارد کنید").Length(5, 50).WithMessage("ایمیل نماینده شرکت/ مشاور باید حدقل 5 حرف و حداکثر 50 حرف باشد");
 

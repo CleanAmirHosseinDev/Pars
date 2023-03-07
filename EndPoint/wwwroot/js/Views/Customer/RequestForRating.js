@@ -42,9 +42,15 @@
                         }
                         }
                     if (res.data[i].destLevelStepIndex >= 7) {
+                        if (res.data[i].destLevelStepIndex==7) {
+                            strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
 
-                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> اطلاعات تکمیلی</a>";
+                        } else {
+                            strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
 
+                        }
+
+                     
                     }
 
                       
@@ -531,7 +537,12 @@
                     if (res.data.contractCode != null )
                     {
                         if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile != "")) {
-                            $("#divDownloadContract").hide();
+                            var strhtml = "<div class='bc'><p> قرارداد نمایش متن</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
+
+                            $("#divDownloadContract").html(strhtml);
+                            $("#divDownloadContract").show();
+                            $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a >");
+
                         } else {
                             var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";                         
                             

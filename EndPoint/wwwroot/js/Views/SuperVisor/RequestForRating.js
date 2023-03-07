@@ -85,8 +85,15 @@
                     $("#divMAS").html(resG);
                     $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
                     $("#phch").show();
-                    if (getlstor("loginName") === "9") {
+                    var m = getlstor("loginName");
+                    if (getlstor("loginName") === "9"  ) {
                         $("#svisorShowContract").remove();
+                    }
+
+                    if (getlstor("loginName") === "6" || getlstor("loginName") === "5") {
+                        $("#svisorShowContract").remove();
+                        $("#svisorShowDocument").remove();
+                        
                     }
                   
                     if (res.data[0].destLevelStepIndex <= 2 || getlstor("loginName") === "5") {
@@ -196,7 +203,7 @@
                     $("#ContractDocument").val(res.data.contractDocument);
 
                     $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney==null?"":res.data.disCountMoney.toString()));
-                    $("#DicCountPerecent").val(moneyCommaSepWithReturn(res.data.dicCountPerecent==null?"":res.data.dicCountPerecent.toString()));
+                    $("#DicCountPerecent").val(res.data.dicCountPerecent);
                     
                     if (getlstor("loginName") === "1" || getlstor("loginName") === "4") {
                         if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
@@ -782,7 +789,35 @@
         }
     }
 
+    function saveContractAndFinancialDocumentsLeader(e) {
 
+        var fileInput = $.trim($("#LeaderEvaluationFile").val());
+        if (fileInput.length > 0) {
+       // if (document.getElementById("LeaderEvaluationFile").files.length == 0) {
+           alertB("هشدار", "فایل اکسل را انتخاب نکرده اید!.", "warning");
+        } else {
+
+
+            $(e).attr("disabled", "");
+
+
+            AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain4"), true, function (res) {
+
+                $(e).removeAttr("disabled");
+
+                if (res.isSuccess) {
+
+
+                    alertB("ثبت", " با موفقیت ثبت شد.", "success");
+
+                } else {
+
+                    alertB("خطا", res.message, "error");
+                }
+
+            }, true);
+        }
+    }
     //function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice = null, DicCountPerecent = null, DisCountMoney=null) {
 
     //    AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", JSON.stringify({ RequestID: RequestID, ContentContract: ContentContract, PriceContractStr: FeePrice }), true, function (res) {
@@ -1065,9 +1100,19 @@
         saveContractAndFinancialDocuments(e, ShowMsg);
         $("#FinalPriceContract").val(moneyCommaSepWithReturn($("#FinalPriceContract").val()));
         $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
-        $("#DicCountPerecent").val(moneyCommaSepWithReturn($("#DicCountPerecent").val()));
+        $("#DicCountPerecent").val($("#DicCountPerecent").val());
        
     }
+
+
+
+    $("#frmFrom1 input,textarea").on("focusout", function () {
+
+        $(this).valid();
+
+    });
+
+   
 
     web.RequestForRating = {
         FilterGrid: filterGrid,
@@ -1096,6 +1141,7 @@
         UploadContractCustomer: uploadContractCustomer,
         SaveContractAndFinancialDocumentsArzyab: saveContractAndFinancialDocumentsArzyab,
         SaveContractAndFinancialDocumentsCommittee: saveContractAndFinancialDocumentsCommittee,
+        SaveContractAndFinancialDocumentsLeader: saveContractAndFinancialDocumentsLeader,
         GetDocumentArzyab: getDocumentArzyab,
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         CalDisPerecent: calDisPerecent,

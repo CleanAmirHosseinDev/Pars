@@ -78,7 +78,7 @@
 
                                                             <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
 
-                                                            <form id="frmFrom1">
+                                                            <form id="frmFrom1" method="post">
                                                                 <input type="hidden" id="FormId" name="FormId" value="1" />
                                                                 <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1630,6 +1630,7 @@
                                                                                             <th>نام انجمن </th>
                                                                                             <th>تاریخ پایان عضویت</th>
                                                                                             <th>سمت در انجمن</th>
+                                                                                            <th>فایل گواهی</th>
                                                                                             <th>عملیات</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -1930,9 +1931,9 @@
 
 @section Scripts {
     <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
-
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
     <script>
         Web.FurtherInfo.InitFurtherInfo(@ViewBag.id);
 

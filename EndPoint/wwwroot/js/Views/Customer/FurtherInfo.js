@@ -115,7 +115,7 @@
                
                 break;
             case 5:
-                intiFormShow(13, "1,2,3", ID);
+                intiFormShow(13, "1,2,3,11", ID);
               
                 break;
             case 7:
@@ -234,8 +234,7 @@
 
         $("#RequestIdForms").val(id);
         initReferral(id);        
-        intiTab(1);
-
+        intiTab(1);        
     }
 
     function intiFormShow(Id = null, Columns = null, RequestId = null) {
@@ -1327,6 +1326,81 @@
         }, true);
 
     }
+
+    //function validate() {
+
+    //    $("form[id='frmFrom1']").validate({
+    //        // Specify validation rules
+    //        rules: {
+    //            "Answer1": {
+    //                required: function () {
+    //                    return true;
+    //                },
+    //                minlength: 5,
+    //                maxlength: 50
+    //            },
+
+    //        },
+    //        // Specify validation error messages
+    //        messages: {
+    //            "Answer1": {
+    //                required: function () {
+    //                    return "  لطفا نام و نام خانوادگی را را وارد کنید";
+    //                },
+    //                minlength: " باید حداقل 5 حرف باشد",
+    //                maxlength: " باید حداکثر 50 حرف باشد"
+    //            },
+
+    //        },
+    //        // Make sure the form is submitted to the destination defined
+    //        // in the "action" attribute of the form when valid
+    //        submitHandler: function (form) {
+    //            Web.FurtherInfo.SaveForm("#btnform1", 1, '1,2,7,8');
+    //        }
+    //    });
+
+    //    }
+    $("#frmFrom1 input,textarea").on("focusout", function () {
+
+        $(this).valid();
+
+    });
+
+    $(document).ready(function () {
+
+        $("form[id='frmFrom1']").validate({
+            // Specify validation rules
+            rules: {
+                "Answer1": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+
+            },
+            // Specify validation error messages
+            messages: {
+                "Answer1": {
+                    required: function () {
+                        return "لطفا نام و نام خانوادگی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.FurtherInfo.SaveForm("#btnform1", 1, '1,2,7,8');
+            }
+        });
+
+
+       
+    });
 
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,

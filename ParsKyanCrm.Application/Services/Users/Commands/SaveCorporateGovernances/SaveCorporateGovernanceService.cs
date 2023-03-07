@@ -141,7 +141,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                     fileNameOldPic_DeductionTaxAccount = request.DeductionTaxAccount;
                     request.DeductionTaxAccount = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_DeductionTaxAccount.FileName);
                     path_DeductionTaxAccount = _env.ContentRootPath + VaribleForName.CustomersFolder + request.DeductionTaxAccount;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_DeductionTaxAccount, path_DeductionTaxAccount, "بارگزاری مفاصا حساب مالیاتی");
+                    await ServiceFileUploader.SaveFile(request.Result_Final_DeductionTaxAccount, path_DeductionTaxAccount, "بارگذاری مفاصا حساب مالیاتی");
                 }
 
                 if (request.Result_Final_RepresentativeFile != null)

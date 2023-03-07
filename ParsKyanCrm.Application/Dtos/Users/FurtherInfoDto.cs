@@ -62,8 +62,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
         }
         public IFormFile Result_Final_OfficialNewspaper { get; set; }
        
+        public string StatementTaxList { get; set; }
 
-        
+        public string StatementTaxListFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(StatementTaxList, VaribleForName.CustomersFolder, false);
+            }
+        }
+        public IFormFile Result_Final_StatementTaxList { get; set; }
 
 
 

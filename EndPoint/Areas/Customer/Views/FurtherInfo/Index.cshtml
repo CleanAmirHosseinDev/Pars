@@ -132,19 +132,19 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه بیمه (به ماه)</label>
-                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control"  onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه عضویت در هیئت مدیره (به ماه)</label>
-                                                                                <input type="text" name="Answer10" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer10" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control"  onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه مدیریتی (به ماه)</label>
-                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control"  onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -163,14 +163,14 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تصویر سایر سوابق </label>
+                                                                                <label class="control-label" for="">تصویر سایر سوابق کاری </label>
                                                                                 <input type="file" name="Result_Final_FileName3" id="ManageHistoryPicture" accept="image/*,.pdf,.xlsx," />
                                                                                 <div id="DivManageHistoryPicture"></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تصویر سابقه عضویت </label>
+                                                                                <label class="control-label" for="">تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره </label>
                                                                                 <input type="file" name="Result_Final_FileName4" id="JoinHistoryPicture" accept="image/*,.pdf,.xlsx," />
                                                                                 <div id="DivJoinHistoryPicture"></div>
                                                                             </div>
@@ -237,8 +237,6 @@
                                                                             <tr>
                                                                                 <td style="text-align:right">
                                                                                     <label class="control-label" for=""> صورتهای مالی حسابرسی شده</label>
-
-
                                                                                 </td>
                                                                                 <td>
                                                                                     <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," />
@@ -249,7 +247,18 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td style="text-align:right">
-                                                                                
+                                                                                    <label class="control-label" for=""> اظهارنامه مالیاتی</label>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_StatementTaxList" id="StatementTaxList" accept="image/*,.pdf,.xlsx," />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadStatementTaxList"> </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align:right">
+
                                                                                     <label class="control-label" for=""> آخرین تغییرات روزنامه رسمی </label>
 
 
@@ -579,7 +588,7 @@
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab6" data-toggle="tab" aria-expanded="false">حاکمیت شرکتی</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiTab(7);" href="#FormDetailTab7" data-toggle="tab" aria-expanded="false">زنجیره ارزش</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'11,12',$('#RequestId').val())" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'1,11,12',$('#RequestId').val())" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiTab(9);" href="#FormDetailTab9" data-toggle="tab" aria-expanded="false">تحقیق و توسعه</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
@@ -1212,7 +1221,14 @@
 
                                                                                     <div class="row" id="FormDetail8">
                                                                                         <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
-                                                                                        <div class="col-lg-6">
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان تدوین برنامه ریزی استراتژیک </label>
+                                                                                                    <input type="text" name="Answer1" id="SwotTitle" class="form-control" />                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-4">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">مستندات تدوین برنامه ریزی استراتژیک </label>
@@ -1221,7 +1237,7 @@
                                                                                             </div>
                                                                                         </div>
 
-                                                                                        <div class="col-lg-6">
+                                                                                        <div class="col-lg-4">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">مستندات اجرا و بازخورد برنامه ریزی استراتژیک </label>
@@ -1249,6 +1265,7 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th>ردیف</th>
+                                                                                            <th>عنوان</th>
                                                                                             <th> مستندات تدوین برنامه ریزی استراتژیک</th>
                                                                                             <th>مستندات اجرا و بازخورد برنامه ریزی استراتژیک</th>
 
@@ -1483,7 +1500,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">طول دوره (به ساعت)<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره" class="form-control" />
+                                                                                                    <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره (به ساعت)" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>

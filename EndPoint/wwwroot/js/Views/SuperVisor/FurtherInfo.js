@@ -17,10 +17,6 @@
         var countform = Number($("#FormLoadCode").val()) + 1;
         $("#FormLoadCode").val(countform);
 
-
-
-
-
         intiTab(countform);
 
         current_fs = $(this).parent();

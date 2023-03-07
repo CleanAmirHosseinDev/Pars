@@ -41,7 +41,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
             string fileNameOldPic_LastChangeOfficialNewspaper = string.Empty, path_LastChangeOfficialNewspaper = string.Empty;
             string fileNameOldPic_StatuteDoc = string.Empty, path_StatuteDoc = string.Empty;
             string fileNameOldPic_OfficialNewspaper = string.Empty, path_OfficialNewspaper = string.Empty;
-            
+            string fileNameOldPic_StatementTaxList = string.Empty, path_StatementTaxList = string.Empty;
+
             #endregion
             try
             {
@@ -57,6 +58,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 request.LastChangeOfficialNewspaper = con != null && !string.IsNullOrEmpty(con.LastChangeOfficialNewspaper) ? con.LastChangeOfficialNewspaper : string.Empty;
                 request.StatuteDoc = con != null && !string.IsNullOrEmpty(con.StatuteDoc) ? con.StatuteDoc : string.Empty;
                 request.OfficialNewspaper = con != null && !string.IsNullOrEmpty(con.OfficialNewspaper) ? con.OfficialNewspaper : string.Empty;
+                request.StatementTaxList = con != null && !string.IsNullOrEmpty(con.StatementTaxList) ? con.StatementTaxList : string.Empty;
 
                 #region Upload Image
 
@@ -92,6 +94,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                     await ServiceFileUploader.SaveFile(request.Result_Final_OfficialNewspaper, path_OfficialNewspaper, " روزنامه رسمی");
                 }
 
+                if (request.Result_Final_StatementTaxList != null)
+                {
+                    fileNameOldPic_StatementTaxList = request.StatementTaxList;
+                    request.StatementTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_StatementTaxList.FileName);
+                    path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.StatementTaxList;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_OfficialNewspaper, path_StatementTaxList, " اظهارنامه مالیاتی");
+                }
+
                 #endregion                                
 
                 EntityEntry<FurtherInfo> q_Entity;
@@ -118,6 +128,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                         {
                             nameof(q_Entity.Entity.LastChangeOfficialNewspaper),request.LastChangeOfficialNewspaper
                         }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.StatementTaxList),request.StatementTaxList
+                        }
                     }, string.Format(nameof(q_Entity.Entity.FurtherInfoId) + " = {0} ", request.FurtherInfoId));
                     #region Upload Image
 
@@ -133,11 +147,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                     if (request.Result_Final_StatuteDoc != null)
                         FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_StatuteDoc);
 
+
+                    if (request.Result_Final_StatementTaxList != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_StatementTaxList);
+
                     path_StatuteDoc = string.Empty;
                     path_LastChangeOfficialNewspaper = string.Empty;
                     path_LastAuditingTaxList = string.Empty;
                     path_OfficialNewspaper = string.Empty;
-
+                    path_LastAuditingTaxList = string.Empty;
                     #endregion
                 }
 
@@ -158,6 +176,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 FileOperation.DeleteFile(path_StatuteDoc);
                 FileOperation.DeleteFile(path_LastAuditingTaxList);
                 FileOperation.DeleteFile(path_LastChangeOfficialNewspaper);
+                FileOperation.DeleteFile(path_StatementTaxList);
                 #endregion
                 throw ex;
             }

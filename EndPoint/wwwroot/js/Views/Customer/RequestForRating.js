@@ -541,7 +541,7 @@
 
                             $("#divDownloadContract").html(strhtml);
                             $("#divDownloadContract").show();
-                            $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a >");
+                            $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a><button title='نمایش قرارداد' class='btn btn-warrnig fontForAllPage' type='button' onclick='Web.RequestForRating.SaveContractAndFinancialDocument(this); '>بازگشت به مرحله قبل <i class='fa fa-save' ></i></button >");
 
                         } else {
                             var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";                         
@@ -549,7 +549,7 @@
                             strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                             $("#divDownloadContract").html(strhtml);
                             $("#divDownloadContract").show();
-                            $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a >");
+                            $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><button style='margin-right:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.CancelContract(this)'>عدم تایید </button><input type='hidden' id='Comment' name='Comment' />");
 
                         }
 
@@ -646,6 +646,10 @@
 
     function cancelContract(e) {
         $("#Comment").val(" عدم تایید قرارداد توسط مشتری");
+        $("#btnreq").click();
+    }
+    function cancelContracAfterConfirm(e) {
+        $("#Comment").val(" درخواست اصلاح قرارداد");
         $("#btnreq").click();
     }
 
@@ -759,7 +763,8 @@
         PrintContracting: printContracting,
         OkContract: okContract,
         CancelContract: cancelContract,
-        PrintDiv: printDiv
+        PrintDiv: printDiv,
+        CancelContracAfterConfirm: cancelContracAfterConfirm
 
     };
 

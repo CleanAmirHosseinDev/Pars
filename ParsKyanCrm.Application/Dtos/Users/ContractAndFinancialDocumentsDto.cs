@@ -101,6 +101,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public IFormFile Result_Final_CommitteeEvaluationFile { get; set; }
         public string ContractCode { get; set; }
         public string ContractMainCode { get; set; }
+
+        public int StepCode { get; set; }
         public bool IsCustomer { get; set; }
 
         public string LeaderEvaluationFile { get; set; }

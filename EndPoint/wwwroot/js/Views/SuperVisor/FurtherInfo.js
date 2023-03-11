@@ -43,8 +43,6 @@
         });
     });
 
-
-
     $(".previous").click(function () {
 
         var countform = Number($("#FormLoadCode").val()) - 1;

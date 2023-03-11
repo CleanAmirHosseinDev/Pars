@@ -62,9 +62,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 string[] NA = qCustomer.NamesAuthorizedSignatories.Split(",");
                 foreach (string N in NA)
-                    strNamesAuthorizedSignatoriesValue += N + "<br/><br/><br/>";
-
-
+                    strNamesAuthorizedSignatoriesValue += N + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
 
                 if (qRequest.KindOfRequest==66)
                 {
@@ -91,10 +89,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                   
                     strContract = strContract.Replace("NamesAuthorizedSignatoriesValue", (strNamesAuthorizedSignatoriesValue));
+                    strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (strNamesAuthorizedSignatoriesValue));
                     strContract = strContract.Replace("CompanyName3Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                     strContract = strContract.Replace("NationalCode2Value", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
                     strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
-                    strContract = strContract.Replace("CompanyName5Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
+                   
                     strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));                   
                     strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());  
                     // مبلع فرمول

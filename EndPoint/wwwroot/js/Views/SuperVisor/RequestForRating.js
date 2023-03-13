@@ -338,6 +338,10 @@
                     $("#Email").val(res.email);
                     $("#Tel").val(res.tel);
                     $("#PostalCode").val(res.postalCode);
+
+                    $("#EmailRepresentative").val(res.emailRepresentative);
+                    $("#NationalCodeRepresentative").val(res.nationalCodeRepresentative);
+
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
                     $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");

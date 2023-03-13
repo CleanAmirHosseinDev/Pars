@@ -188,11 +188,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             nameof(q_Entity.Entity.ContentContract),request.ContentContract
                         },
+                         {
+                            nameof(q_Entity.Entity.FinalPriceContract),request.FinalPriceContract
+                        },
                         {
                             nameof(q_Entity.Entity.PriceContract),request.PriceContract
                         },
                         {
-                            nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.PriceContract.Value * 9:0)/100,0)
+                            nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.FinalPriceContract.Value * 9:0)/100,0)
                         },                        
                         {
                             nameof(q_Entity.Entity.DicCountPerecent),request.DicCountPerecent

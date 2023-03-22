@@ -32,12 +32,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUserss
             {
 
                 var lists = (from s in _context.UserRoles
-                             where (s.User.IsActive == request.IsActive || request.IsActive == null)
+                             where (s.User.IsActive == request.IsActive || request.IsActive == null) &&
+                             (s.RoleId == request.RoleId || request.RoleId == null)
                              select s).Include(p => p.User).Include(p => p.Role).AsQueryable();
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.User.UserName.Contains(request.Search) ||
                 p.User.Mobile.Contains(request.Search) ||
-                p.User.Email.Contains(request.Search)                
+                p.User.Email.Contains(request.Search)
                 );
 
                 switch (request.SortOrder)

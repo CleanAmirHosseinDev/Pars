@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
+using ParsKyanCrm.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSettings
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
 
-                    var res_Lists = await lists.ToListAsync();
+                    var res_Lists = (await lists.ToListAsync()).Distinct(new GenericTypeCompare<LevelStepSetting>("LevelStepStatus"));
 
                     return new ResultDto<IEnumerable<LevelStepSettingDto>>
                     {

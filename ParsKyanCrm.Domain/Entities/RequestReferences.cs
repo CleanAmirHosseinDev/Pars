@@ -17,6 +17,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string LevelStepStatus { get; set; }
         public string SmsContent { get; set; }
 
+        public string ReciveUser { get; set; }
+
         public bool? SmsType { get; set; }
 
         public string DestLevelStepIndexButton { get; set; }

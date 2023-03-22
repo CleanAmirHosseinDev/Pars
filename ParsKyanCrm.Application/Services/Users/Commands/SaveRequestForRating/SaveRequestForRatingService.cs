@@ -172,7 +172,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         LevelStepStatus = request.LevelStepStatus,
                         SmsContent = request.SmsContent,
                         SmsType = request.SmsType,
-                        DestLevelStepIndexButton = request.DestLevelStepIndexButton
+                        DestLevelStepIndexButton = request.DestLevelStepIndexButton,
+                        ReciveUser = request.ReciveUser
                     });
                     await _context.SaveChangesAsync();
 

@@ -11,13 +11,13 @@
 
     function fillComboLevelStepSettingList() {
 
-        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0  }), true, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
-                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].destLevelStepIndexButton + "</option>";
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
                 }
 
                 $("#cboSelectLS").html(strKindOfCompany);
@@ -40,9 +40,9 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    var st = "",st2="";
+                    var st = "", st2 = "";
                     if (res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7") {
-                        
+
                         st2 = "<span style='font-size:1.5em'> &#128194;</span> ";
                     }
 
@@ -54,7 +54,7 @@
                     if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
                         strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
                     } else {
-                        strM += "<td>" +st2+ res.data[i].levelStepStatus + "</td><td>";
+                        strM += "<td>" + st2 + res.data[i].levelStepStatus + "</td><td>";
                     }
 
                     strM += "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
@@ -88,24 +88,27 @@
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Referral.html", function (resG) {
 
                     $("#divMAS").html(resG);
+
+                    ComboBoxWithSearch('.select2', 'rtl');
+
                     $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
                     $("#phch").show();
                     var m = getlstor("loginName");
-                    if (getlstor("loginName") === "9"  ) {
+                    if (getlstor("loginName") === "9") {
                         $("#svisorShowContract").remove();
                     }
 
                     if (getlstor("loginName") === "6" || getlstor("loginName") === "5") {
                         $("#svisorShowContract").remove();
                         $("#svisorShowDocument").remove();
-                        
+
                     }
-                  
+
                     if (res.data[0].destLevelStepIndex <= 2 || getlstor("loginName") === "5") {
-                       
+
                         $("#svisorShowDocument").remove();
                     }
-                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "8" || getlstor("loginName") === "6"|| (getlstor("loginName") === "1" && res.data[0].levelStepIndex>=8)) || res.data[0].destLevelStepIndex < 5 ) {
+                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "8" || getlstor("loginName") === "6" || (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)) || res.data[0].destLevelStepIndex < 5) {
                         $("#svisorShowEvaluationFile").remove();
                     }
                     var htmlB = "";
@@ -165,7 +168,7 @@
                         //  $(this).attr('readonly', 'readonly');
                         var text_classname = $(this).attr('name');
                         var value = $(this).val();
-                        if (text_classname =="NamesAuthorizedSignatories") {
+                        if (text_classname == "NamesAuthorizedSignatories") {
                             var new_html = ('<p style="text-align:center">' + value + '</p>');
                         }
                         else {
@@ -173,13 +176,12 @@
                         }
                         $(this).replaceWith(new_html);
                     });
-                   
+
                 }
 
             }, true);
         }
     }
-
 
     function showCustomerInfo() {
 
@@ -191,9 +193,8 @@
         getContractInfo();
     }
 
+    function initContract(id = null) {
 
-    function initContract(id=null) {
-       
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
@@ -202,14 +203,14 @@
 
                     $("#FinancialID").val(res.data.financialId);
                     $("#RequestID").val(res.data.requestID);
-                    $("#PriceContract").val(moneyCommaSepWithReturn(res.data.priceContract==null?"":res.data.priceContract.toString()));
-                    $("#FinalPriceContract").val(moneyCommaSepWithReturn(res.data.finalPriceContract==null?"":res.data.finalPriceContract.toString()));
+                    $("#PriceContract").val(moneyCommaSepWithReturn(res.data.priceContract == null ? "" : res.data.priceContract.toString()));
+                    $("#FinalPriceContract").val(moneyCommaSepWithReturn(res.data.finalPriceContract == null ? "" : res.data.finalPriceContract.toString()));
                     $("#FinancialDocument").val(res.data.financialDocument);
                     $("#ContractDocument").val(res.data.contractDocument);
 
-                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney==null?"":res.data.disCountMoney.toString()));
+                    $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney == null ? "" : res.data.disCountMoney.toString()));
                     $("#DicCountPerecent").val(res.data.dicCountPerecent);
-                    
+
                     if (getlstor("loginName") === "1" || getlstor("loginName") === "4") {
                         if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
                             $("#divDownloadContractDocumentCustomer").html("<a  href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -224,9 +225,9 @@
                         $("#ContractShow").html(res.data.contentContract);
                         $('input[type="text"], textarea').each(function () {
                             //  $(this).attr('readonly', 'readonly');
-                           // var text_classname = $(this).attr('name');
+                            // var text_classname = $(this).attr('name');
                             var value = $(this).val();
-                            var new_html = ('<storang id="' + text_classname+'">' + value + '</storang>')
+                            var new_html = ('<storang id="' + text_classname + '">' + value + '</storang>')
                             $(this).replaceWith(new_html);
                         });
                         $(".hClass").remove();
@@ -239,8 +240,6 @@
             }, true);
         }
     }
-
-
 
     function getCustomerInfo() {
 
@@ -277,16 +276,16 @@
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moa.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val()>2) {
+                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
                         $('#FinalPriceContract').prop('readonly', true);
                         $('#DisCountMoney').prop('readonly', true);
                         $('#DicCountPerecent').prop('readonly', true);
-                       
+
                     }
                     if (getlstor("loginName") === "1") {
                         $("#ContractUp").hide();
                     }
-                        initContract(id);
+                    initContract(id);
                 });
             } else {
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
@@ -394,7 +393,7 @@
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res != null) {
-                   
+
                     if (res.contract == null) {
                         alertB("خطا", "متن قرارداد وجود ندارد", "error");
                     }
@@ -403,17 +402,17 @@
                             $("#RequestID").val(id);
                             $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.contract.contractText + "</textarea>");
                             var m = res.contract.contractText;
-                           // $("#PriceContract").val(removeComaForString($(m).find('input[name="ServiceFeePrice"]').val()));
-                            var p = removeComaForString( $(m).find('input[name="ServiceFeePrice"]').val());
+                            // $("#PriceContract").val(removeComaForString($(m).find('input[name="ServiceFeePrice"]').val()));
+                            var p = removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
                             var mm = p.toString().slice(-5);
                             var u = p - mm;
                             $("#FinalPriceContract").val(moneyCommaSepWithReturn(u.toString()));
-                           
-                           // var my = jQuery.parseHTML(getDataCkeditor("ContentContract"));
+
+                            // var my = jQuery.parseHTML(getDataCkeditor("ContentContract"));
                             $("#PriceContract").val($(m).find('input[name="ServiceFeePrice"]').val());
                             $("#ContractShow").hide();
                             $("#ContractShow").html(m);
-                           
+
                             $('input[type="text"], textarea').each(function () {
                                 if ($(this).attr("name") == "ServiceFeePrice") {
                                     var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + moneyCommaSepWithReturn(u.toString()) + '"/>');
@@ -429,8 +428,8 @@
                             }
                         }
                     }
-                       
-                    
+
+
                 }
 
             }, true);
@@ -470,6 +469,69 @@
 
     function saveRequestForRating(e) {
 
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10') {
+
+            $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
+            $("#SUIRS").html('');
+            tempSaveRFR(e);
+
+        }
+        else {
+
+            if ($("#hidSeSIRR").val() != decrypt($(e).attr("data-LSAR"), keyMaker())) {
+
+                $(".ButtonOpperationLSSlss").attr("disabled", "");
+
+                $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
+
+                AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_UsersByRole/" + decrypt($(e).attr("data-LSAR"), keyMaker()), null, true, function (resGet) {
+
+                    $(".ButtonOpperationLSSlss").removeAttr("disabled");
+
+                    var qD = '';
+                    if (resGet.isSuccess) {
+
+                        for (var i = 0; i < resGet.data.length; i++) {
+
+                            qD += "<option value='" + resGet.data[i].userId + "'>" + (!isEmpty(resGet.data[i].user) ? resGet.data[i].user.realName : '') + "</option>";
+
+                        }
+
+                        $("#SUIRS").html(qD);
+
+                    }
+
+                    temojsdkjsdjsdkjkjsdjksd(e);
+
+
+                });
+
+            }
+            else temojsdkjsdjsdkjkjsdjksd(e);
+
+        }
+        
+    }
+
+    function temojsdkjsdjsdkjkjsdjksd(e) {
+
+        if (isEmpty($('#SUIRS').find(":selected").val())) {
+
+            confirmB("", "برای ارجاع هیچ کاربری انتخاب نکردید آیا می خواهید ادامه دهید؟", "warning", function () {
+
+                tempSaveRFR(e);
+
+            }, function () {
+
+            }, ["خیر", "بلی"]);
+
+        }
+        else tempSaveRFR(e);
+
+    }
+
+    function tempSaveRFR(e) {
+
         $(".ButtonOpperationLSSlss").attr("disabled", "");
 
         var objJ = {};
@@ -477,6 +539,9 @@
         objJ.Comment = getDataCkeditor("ReferralExplanation");
         objJ.LevelStepAccessRole = decrypt($(e).attr("data-LSAR"), keyMaker());
         objJ.LevelStepStatus = decrypt($(e).attr("data-LSS"), keyMaker());
+
+        objJ.ReciveUser = !isEmpty($('#SUIRS').find(":selected").val()) ? $('#SUIRS').val().join(',') : null;
+
         objJ.Request = {};
         objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         objJ.Request.KindOfRequest = 0;
@@ -573,7 +638,7 @@
                 $("#showEvaluationFile").html(resG);
                 if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8") {
                     $("#frmFormMain2").remove();
-                  
+
                 }
                 if (getlstor("loginName") === "5") {
                     $("#frmFormMain4").remove();
@@ -583,16 +648,16 @@
                     $("#frmFormMain2").remove();
                     $("#frmFormMain3").remove();
                 }
-                    if (getlstor("loginName") === "8") {
-                        $("#frmFormMain4").remove();
-                        $("#frmFormMain2").remove();
+                if (getlstor("loginName") === "8") {
+                    $("#frmFormMain4").remove();
+                    $("#frmFormMain2").remove();
                 }
                 if (getlstor("loginName") === "6") {
                     $("#frmFormMain3").remove();
                     $("#frmFormMain4").remove();
                     $("#frmFormMain2").remove();
                 }
-                  getDocument(id);
+                getDocument(id);
 
             });
         }
@@ -611,30 +676,30 @@
                     $("#Tax").val(res.data.tax);
                     if (getlstor("loginName") === "8") {
                         $("#EvaluationFile").val(res.data.evaluationFile);
-                    }                   
+                    }
                     $("#DisCountMoney").val(res.data.disCountMoney);
                     $("#DicCountPerecent").val(res.data.dicCountPerecent);
                     $("#FinalPriceContract").val(res.data.finalPriceContract);
-                                       
+
                     $("#ContractMainCode").val(res.data.contractMainCode);
                     $("#FinancialDocument").val(res.data.financialDocument);
                     $("#ContractDocument").val(res.data.contractDocument);
                     $("#ContractCode").val(res.data.contractCode);
-                    if (getlstor("loginName") !== "4" && getlstor("loginName") !== "1" ) {
-                     $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
+                    if (getlstor("loginName") !== "4" && getlstor("loginName") !== "1") {
+                        $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
                     }
-                   
-                    if (res.data.financialDocument != null && res.data.financialDocument!="" ) {
+
+                    if (res.data.financialDocument != null && res.data.financialDocument != "") {
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
-                    if (res.data.contractDocument != null && res.data.contractDocument !="") {
+                    if (res.data.contractDocument != null && res.data.contractDocument != "") {
                         $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
-                    if (res.data.evaluationFile != null && res.data.evaluationFile !="" ) {
+                    if (res.data.evaluationFile != null && res.data.evaluationFile != "") {
                         $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
@@ -707,7 +772,7 @@
         }
     }
 
-    function saveContractAndFinancialDocuments(e,IsShowMsg=null) {
+    function saveContractAndFinancialDocuments(e, IsShowMsg = null) {
 
         $(e).attr("disabled", "");
 
@@ -719,20 +784,20 @@
 
             if (res.isSuccess) {
                 if (IsShowMsg) {
-                   
+
                     $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
                     $("#FinalPriceContract").val(moneyCommaSepWithReturn($("#FinalPriceContract").val()));
                     $("#PriceContract").val(moneyCommaSepWithReturn($("#PriceContract").val()));
-                    
+
                     alertB("ثبت", " با موفقیت ثبت شد.", "success");
                     initContract(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
                 }
                 else {
 
-                    var id =decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+                    var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
                     goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);
                 }
-            
+
             } else {
 
                 $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
@@ -748,27 +813,27 @@
         if (document.getElementById("EvaluationFile").files.length == 0) {
             alertB("هشدار", "فایل اکسل را انتخاب نکرده اید!.", "warning");
         } else {
-          
-        
-        $(e).attr("disabled", "");
 
-       
+
+            $(e).attr("disabled", "");
+
+
             AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain2"), true, function (res) {
 
-            $(e).removeAttr("disabled");
+                $(e).removeAttr("disabled");
 
-            if (res.isSuccess) {
-                
-                   
+                if (res.isSuccess) {
+
+
                     alertB("ثبت", " با موفقیت ثبت شد.", "success");
 
-            } else {
+                } else {
 
-                alertB("خطا", res.message, "error");
-            }
+                    alertB("خطا", res.message, "error");
+                }
 
-        }, true);
-            }
+            }, true);
+        }
     }
     function saveContractAndFinancialDocumentsCommittee(e) {
 
@@ -802,8 +867,8 @@
 
         var fileInput = $.trim($("#LeaderEvaluationFile").val());
         if (fileInput.length > 0) {
-       // if (document.getElementById("LeaderEvaluationFile").files.length == 0) {
-           alertB("هشدار", "فایل اکسل را انتخاب نکرده اید!.", "warning");
+            // if (document.getElementById("LeaderEvaluationFile").files.length == 0) {
+            alertB("هشدار", "فایل اکسل را انتخاب نکرده اید!.", "warning");
         } else {
 
 
@@ -993,54 +1058,54 @@
         if (document.getElementById("ContractDocumentCustomer").files.length == 0) {
             alertB("هشدار", "فایلی قرارداد را انتخاب نکرده اید!.", "warning");
         } else {
-            disconut(e,  true);
+            disconut(e, true);
         }
 
     }
 
     function calDisPerecent(e) {
-       
-         if (event.key === 'Enter') {
-             var disPerecent = $('#DicCountPerecent').val();
-             var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
-            
-             var FeePrice = removeComaForString($("#PriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
-             if (disPerecent != null && disPerecent != "") {
-                 let disprice = (((FeePrice * disPerecent) / 100).toFixed(0)).toString();
-                 var m = FeePrice - disprice;
-                 var mi = m.toString().slice(-5);
-                 m = m - mi;
-                 $('#DisCountMoney').val(moneyCommaSepWithReturn(disprice.toString()));
-                  $("#FinalPriceContract").val(moneyCommaSepWithReturn(m.toString()));
+
+        if (event.key === 'Enter') {
+            var disPerecent = $('#DicCountPerecent').val();
+            var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
+
+            var FeePrice = removeComaForString($("#PriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
+            if (disPerecent != null && disPerecent != "") {
+                let disprice = (((FeePrice * disPerecent) / 100).toFixed(0)).toString();
+                var m = FeePrice - disprice;
+                var mi = m.toString().slice(-5);
+                m = m - mi;
+                $('#DisCountMoney').val(moneyCommaSepWithReturn(disprice.toString()));
+                $("#FinalPriceContract").val(moneyCommaSepWithReturn(m.toString()));
                 // $("#lblDicCountPerecent").html(moneyCommaSepWithReturn(disprice));
-                 var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
-      
-       
-        $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
-        $("#ContractShow").hide();
-        $("#ContractShow").html(m);
-        $('input[type="text"], textarea').each(function () {
-            if ($(this).attr("name") == "ServiceFeePrice") {
-                var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + $("#FinalPriceContract").val() + '"/>');
-                $(this).replaceWith(new_html);
+                var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
+
+
+                $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
+                $("#ContractShow").hide();
+                $("#ContractShow").html(m);
+                $('input[type="text"], textarea').each(function () {
+                    if ($(this).attr("name") == "ServiceFeePrice") {
+                        var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + $("#FinalPriceContract").val() + '"/>');
+                        $(this).replaceWith(new_html);
+                    }
+                });
+
+                var elements = $("#ContractShow").html();
+                setDataCkeditor('ContentContract', elements);
+            } else {
+
+                $("#lblDicCountPerecent").html(0);
             }
-        });
-
-        var elements = $("#ContractShow").html();
-        setDataCkeditor('ContentContract', elements);  
-             } else {
-
-                 $("#lblDicCountPerecent").html(0);
-             }
-         }
+        }
     }
 
     function calDisRiyal(e) {
-       
+
         $("#lblDicCountPerecent").html('');
         if (event.key === 'Enter') {
             var disRiyal = removeComaForString($('#DisCountMoney').val());
-           
+
             var FeePrice = removeComaForString($("#PriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
             if (disRiyal != null && disRiyal != "") {
                 var m = FeePrice - disRiyal;
@@ -1062,8 +1127,8 @@
 
                 var elements = $("#ContractShow").html();
                 setDataCkeditor('ContentContract', elements);
-                
-            } 
+
+            }
         }
     }
 
@@ -1072,45 +1137,45 @@
         $("#FinalPriceContract").val(removeComaForString($("#FinalPriceContract").val()));
         $('#DisCountMoney').val(removeComaForString($('#DisCountMoney').val()));
         $('#DicCountPerecent').val(removeComaForString($('#DicCountPerecent').val()));
-       // var dicMoney = removeComaForString($('#DisCountMoney').val());
-       // var disPerecent = $('#DicCountPerecent').val();
-       // var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
-       // var Total = null;
-       // var FeePrice = removeComaForString($("#FinalPriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
-       //  if (dicMoney != null && dicMoney != "") {
+        // var dicMoney = removeComaForString($('#DisCountMoney').val());
+        // var disPerecent = $('#DicCountPerecent').val();
+        // var m = jQuery.parseHTML(getDataCkeditor("ContentContract"));
+        // var Total = null;
+        // var FeePrice = removeComaForString($("#FinalPriceContract").val());// $('#DicCountPerecent').val();//removeComaForString($(m).find('input[name="ServiceFeePrice"]').val());
+        //  if (dicMoney != null && dicMoney != "") {
 
-       //      Total = FeePrice - dicMoney;
-       // }
-       // else if (disPerecent != null && disPerecent != "") {
-       //      let disprice = ((FeePrice * disPerecent) / 100).toString();
-       //      let len = disprice.length;
-       //      disprice = disprice.slice(0, len - 5) + "000";
-       //      Total = FeePrice - disprice;
-       //  } else {
+        //      Total = FeePrice - dicMoney;
+        // }
+        // else if (disPerecent != null && disPerecent != "") {
+        //      let disprice = ((FeePrice * disPerecent) / 100).toString();
+        //      let len = disprice.length;
+        //      disprice = disprice.slice(0, len - 5) + "000";
+        //      Total = FeePrice - disprice;
+        //  } else {
 
-       //      Total = FeePrice;
-       // }
-      
-       // $("#FinalPriceContract").val(Total);
-       // Total = moneyCommaSepWithReturn(Total.toString());
-       //// $("#DisCountMoney").val(moneyCommaSepWithReturn(dicMoney.toString()));
+        //      Total = FeePrice;
+        // }
+
+        // $("#FinalPriceContract").val(Total);
+        // Total = moneyCommaSepWithReturn(Total.toString());
+        //// $("#DisCountMoney").val(moneyCommaSepWithReturn(dicMoney.toString()));
         $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
-       // $("#ContractShow").hide();
-       // $("#ContractShow").html(m);
-       // $('input[type="text"], textarea').each(function () {
-       //     if ($(this).attr("name") == "ServiceFeePrice") {
-       //         var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + Total + '"/>');
-       //         $(this).replaceWith(new_html);
-       //     }
-       // });
+        // $("#ContractShow").hide();
+        // $("#ContractShow").html(m);
+        // $('input[type="text"], textarea').each(function () {
+        //     if ($(this).attr("name") == "ServiceFeePrice") {
+        //         var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + Total + '"/>');
+        //         $(this).replaceWith(new_html);
+        //     }
+        // });
 
-       // var elements = $("#ContractShow").html();
-       // setDataCkeditor('ContentContract', elements);  
+        // var elements = $("#ContractShow").html();
+        // setDataCkeditor('ContentContract', elements);  
         saveContractAndFinancialDocuments(e, ShowMsg);
         $("#FinalPriceContract").val(moneyCommaSepWithReturn($("#FinalPriceContract").val()));
         $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
         $("#DicCountPerecent").val($("#DicCountPerecent").val());
-       
+
     }
 
 
@@ -1121,7 +1186,7 @@
 
     });
 
-   
+
 
     web.RequestForRating = {
         FilterGrid: filterGrid,

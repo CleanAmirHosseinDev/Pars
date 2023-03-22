@@ -11,6 +11,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
     public class RequestUserRolesDto : PageingParamerDto
     {
         public int? UserId { get; set; }
+
+        public int? RoleId { get; set; }
+
     }
 
     public class UserRolesDto

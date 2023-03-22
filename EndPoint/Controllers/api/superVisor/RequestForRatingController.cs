@@ -28,7 +28,7 @@ namespace EndPoint.Controllers.api.superVisor
         {
             try
             {
-                request.CustomerId = null;              
+                request.CustomerId = null;
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
@@ -74,7 +74,6 @@ namespace EndPoint.Controllers.api.superVisor
         {
             try
             {
-               int m=  int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
                 return await _userFacad.InitReferralService.Execute(User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value, id);
             }
             catch (Exception ex)
@@ -132,7 +131,7 @@ namespace EndPoint.Controllers.api.superVisor
         {
             try
             {
-               // request.PriceContract = Convert.ToDecimal((request.PriceContractStr).ToString().Replace(",", ""));
+                // request.PriceContract = Convert.ToDecimal((request.PriceContractStr).ToString().Replace(",", ""));
                 return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
             }
             catch (Exception ex)
@@ -146,8 +145,22 @@ namespace EndPoint.Controllers.api.superVisor
         public async Task<ResultDto<IEnumerable<LevelStepSettingDto>>> Get_LevelStepSetings([FromBody] RequestLevelStepSettingDto request)
         {
             try
-            {                                
+            {
                 return await _userFacad.GetLevelStepSettingsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<IEnumerable<UserRolesDto>>> Get_UsersByRole(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetUserssService.Execute(new RequestUserRolesDto() { PageIndex = 0, PageSize = 0, RoleId = id });
             }
             catch (Exception ex)
             {

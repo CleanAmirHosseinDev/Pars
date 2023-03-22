@@ -20,6 +20,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? Requestid { get; set; }
         public string DestLevelStepIndex { get; set; }
 
+        public string ReciveUser { get; set; }
 
         public DateTime? SendTime { get; set; }
         public string SendTimeStr

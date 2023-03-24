@@ -39,6 +39,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
 
             string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
             string fileNameOldPic_FileName2 = string.Empty, path_FileName2 = string.Empty;
+            string fileNameOldPic_FileName3 = string.Empty, path_FileName3 = string.Empty;
+            string fileNameOldPic_FileName4 = string.Empty, path_FileName4 = string.Empty;
 
             #endregion
 
@@ -53,6 +55,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                 var qFind = await _context.DataFormAnswerTables.FindAsync(request.AnswerTableId);
                 request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
                 request.FileName2 = qFind != null && !string.IsNullOrEmpty(qFind.FileName2) ? qFind.FileName2 : string.Empty;
+                request.FileName3 = qFind != null && !string.IsNullOrEmpty(qFind.FileName3) ? qFind.FileName3 : string.Empty;
+                request.FileName4 = qFind != null && !string.IsNullOrEmpty(qFind.FileName4) ? qFind.FileName4 : string.Empty;
 
                 #region Upload Image
 
@@ -70,6 +74,22 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                     request.FileName2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName2.FileName);
                     path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName2;
                     await ServiceFileUploader.SaveFile(request.Result_Final_FileName2, path_FileName2, "فایل دو");
+                }
+
+                if (request.Result_Final_FileName3 != null)
+                {
+                    fileNameOldPic_FileName3 = request.FileName3;
+                    request.FileName3 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName3.FileName);
+                    path_FileName3 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName3;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName3, path_FileName3, "فایل سه");
+                }
+
+                if (request.Result_Final_FileName4 != null)
+                {
+                    fileNameOldPic_FileName4 = request.FileName4;
+                    request.FileName4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName4.FileName);
+                    path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName4;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName4, path_FileName3, "فایل چهار");
                 }
 
                 #endregion
@@ -127,6 +147,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                         },
                         {
                             nameof(q_Entity.Entity.FileName2),request.FileName2
+                        },
+                        {
+                            nameof(q_Entity.Entity.FileName3),request.FileName3
+                        },
+                        {
+                            nameof(q_Entity.Entity.FileName4),request.FileName4
                         }
                     }, string.Format(nameof(q_Entity.Entity.AnswerTableId) + " = {0} ", request.AnswerTableId));
                     #region Upload Image
@@ -138,8 +164,18 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                     if (request.Result_Final_FileName2 != null)
                         FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName2);
 
+                    if (request.Result_Final_FileName3 != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName3);
+
+                    if (request.Result_Final_FileName4 != null)
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName4);
+
+                 
                     path_FileName1 = string.Empty;
                     path_FileName2 = string.Empty;
+                    path_FileName3 = string.Empty;
+                    path_FileName4 = string.Empty;
+
 
                     #endregion
                 }
@@ -159,6 +195,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
 
                 FileOperation.DeleteFile(path_FileName1);
                 FileOperation.DeleteFile(path_FileName2);
+                FileOperation.DeleteFile(path_FileName3);
+                FileOperation.DeleteFile(path_FileName4);
 
                 #endregion
                 throw ex;

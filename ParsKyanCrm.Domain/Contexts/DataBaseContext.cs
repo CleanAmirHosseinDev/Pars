@@ -27,15 +27,14 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<Contract> Contract { get; set; }
         DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         DbSet<CorporateGovernance> CorporateGovernance { get; set; }
-        DbSet<CorporateGovernanceDetail> CorporateGovernanceDetail { get; set; }
+       
         DbSet<Customers> Customers { get; set; }
         DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
-        DbSet<ManagementSystem> ManagementSystem { get; set; }
+      
         DbSet<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         DbSet<NewsAndContent> NewsAndContent { get; set; }
-        DbSet<RankingCalculationResults> RankingCalculationResults { get; set; }
-
+       
         DbSet<DataFromAnswers> DataFromAnswers { get; set; }
         DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         DbSet<RequestForRating> RequestForRating { get; set; }
@@ -88,15 +87,14 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         public virtual DbSet<CorporateGovernance> CorporateGovernance { get; set; }
-        public virtual DbSet<CorporateGovernanceDetail> CorporateGovernanceDetail { get; set; }
+      
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         public virtual DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
-        public virtual DbSet<ManagementSystem> ManagementSystem { get; set; }
+     
         public virtual DbSet<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         public virtual DbSet<NewsAndContent> NewsAndContent { get; set; }
-        public virtual DbSet<RankingCalculationResults> RankingCalculationResults { get; set; }
-        public virtual DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
+         public virtual DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         public virtual DbSet<RequestForRating> RequestForRating { get; set; }
         public virtual DbSet<RequestReferences> RequestReferences { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
@@ -463,21 +461,7 @@ namespace ParsKyanCrm.Domain.Contexts
                                     
             });
 
-            modelBuilder.Entity<CorporateGovernanceDetail>(entity =>
-            {
-                entity.Property(e => e.DegreeOfEducation).HasComment("مدرک تحصیلی از جدول سیستم ستینگ");
-
-                entity.Property(e => e.NameOfAuditCommittee)
-                    .HasMaxLength(250)
-                    .HasComment("نام و نام عضو کمیته حسابرسی");
-
-                entity.Property(e => e.ProductCode).HasMaxLength(50);
-
-                entity.Property(e => e.ProductName).HasMaxLength(250);
-
-                entity.Property(e => e.WorkExperience).HasComment("تجربه کاری به ماه");
-
-            });
+     
 
             modelBuilder.Entity<Customers>(entity =>
             {
@@ -651,65 +635,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasConstraintName("FK_LicensesAndHonors_Users");
             });
 
-            modelBuilder.Entity<ManagementSystem>(entity =>
-            {
-                entity.Property(e => e.Awards)
-                    .HasMaxLength(250)
-                    .HasComment("جوایز");
-
-                entity.Property(e => e.AwardsFile)
-                    .HasMaxLength(250)
-                    .HasComment("فایل ضمیمه جوایز");
-
-                entity.Property(e => e.CertificateAndPermitAndStandard)
-                    .HasMaxLength(250)
-                    .HasComment("نام گواهینامه، مجوز، تاییدیه یا استاندارد");
-
-                entity.Property(e => e.CertificateAndPermitAndStandardFile)
-                    .HasMaxLength(250)
-                    .HasComment("فایل نام گواهینامه، مجوز، تاییدیه یا استاندارد");
-
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
-                entity.Property(e => e.DateOfExporter)
-                    .HasColumnType("datetime")
-                    .HasComment("تاریخ صادر");
-
-                entity.Property(e => e.ExpireDate).HasColumnType("datetime");
-
-                entity.Property(e => e.ExporterReferenceForAwards)
-                    .HasMaxLength(250)
-                    .HasComment("مرجع صادر کننده");
-
-                entity.Property(e => e.ExporterReferenceForCertificate)
-                    .HasMaxLength(250)
-                    .HasComment("مرجع صادرکننده");
-
-
-                entity.Property(e => e.GuidelinesAndRegulations)
-                    .HasMaxLength(250)
-                    .HasComment("دستورالعمل ها و آیین نامه ها");
-
-                entity.Property(e => e.GuidelinesAndRegulationsFile)
-                    .HasMaxLength(250)
-                    .HasComment("فایل پیوست دستورالعمل ها و آیین نامه ها");
-
-                entity.Property(e => e.IsGuideLineOrProcess).HasComment("صفر یعنی دستورالعمل و آیین نامه و یک یعنی روش اجرایی");
-
-                entity.Property(e => e.RequestId).HasColumnName("RequestID");
-
-                entity.Property(e => e.Status).HasComment("صفر0 یعنی هنوز به سمت ارزیاب ارسال نشده و یک یعنی ارسال شده");
-
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.ManagementSystem)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_ManagementSystem_Customers");
-
-                entity.HasOne(d => d.Request)
-                    .WithMany(p => p.ManagementSystem)
-                    .HasForeignKey(d => d.RequestId)
-                    .HasConstraintName("FK_ManagementSystem_RequestForRating");
-            });
+          
 
             modelBuilder.Entity<ManagerOfParsKyan>(entity =>
             {
@@ -790,59 +716,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasConstraintName("FK_NewsAndContent_Users");
             });            
 
-            modelBuilder.Entity<RankingCalculationResults>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.HasComment("جدول نتایج محاسبات رتبه بندی");
-
-                entity.Property(e => e.CalcId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("CalcID");
-
-                entity.Property(e => e.ChangeByUser).HasComment("کاربر تغییر دهنده یا ثبت کننده");
-
-                entity.Property(e => e.ChangeDate)
-                    .HasColumnType("datetime")
-                    .HasComment("تاریخ ثبت یا تغییر");
-
-                entity.Property(e => e.IndexId)
-                    .HasColumnName("IndexID")
-                    .HasComment("شناسه شاخص");
-
-                entity.Property(e => e.RequestId).HasColumnName("RequestID");
-
-                entity.Property(e => e.Score).HasComment("نمره یا امتیاز");
-
-                entity.Property(e => e.SubDomainid).HasComment("شناسه زیر حوزه");
-
-                entity.Property(e => e.Weight).HasComment("وزن");
-
-                entity.HasOne(d => d.Customer)
-                    .WithMany()
-                    .HasForeignKey(d => d.Customerid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RankingCalculationResults_Customers");
-
-                entity.HasOne(d => d.Index)
-                    .WithMany()
-                    .HasForeignKey(d => d.IndexId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RankingCalculationResults_SystemSeting1");
-
-                entity.HasOne(d => d.Request)
-                    .WithMany()
-                    .HasForeignKey(d => d.RequestId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RankingCalculationResults_RequestForReating");
-
-                entity.HasOne(d => d.SubDomain)
-                    .WithMany()
-                    .HasForeignKey(d => d.SubDomainid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RankingCalculationResults_SystemSeting");
-            });
-
+        
             modelBuilder.Entity<RankingOfCompanies>(entity =>
             {
                 entity.HasKey(e => e.RankingId);

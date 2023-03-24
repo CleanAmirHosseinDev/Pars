@@ -9,7 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public RequestForRating()
         {
-            ManagementSystem = new HashSet<ManagementSystem>();
+           
             RequestReferences = new HashSet<RequestReferences>();
         }
 
@@ -25,7 +25,7 @@ namespace ParsKyanCrm.Domain.Entities
 
         public virtual Customers Customer { get; set; }
         public virtual SystemSeting KindOfRequestNavigation { get; set; }
-        public virtual ICollection<ManagementSystem> ManagementSystem { get; set; }
+       
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
     }
 }

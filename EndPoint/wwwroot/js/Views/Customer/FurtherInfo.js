@@ -97,6 +97,7 @@
             case 1:
                 intiFormShow(1, "1,2,7,8", ID);
                 getFurtherInfo(ID);
+                intiFormShow(26, '1,2,3,4,11', ID);
                 
                 break;
             case 2:
@@ -411,6 +412,9 @@
 
                 if (res.isSuccess) {
                     $("#ValueChainId").val(res.data.valueChainId);
+                    $("#ValueChainId1").val(res.data.valueChainId);
+                    $("#ValueChainId2").val(res.data.valueChainId);
+                    $("#ValueChainId3").val(res.data.valueChainId);
                     $("#RequestId").val(res.data.requestId);
                    
 
@@ -928,7 +932,7 @@
                         $('#UniversityID').val(res.data[0].answer4Val);
                         comboBoxWithSearchUpdateText("UniversityID", res.data[0].answer4);
 
-                        $("#IsMemeberOfBoard").prop("checked", res.data[0].answer5);
+                       
                         if (res.data[0].answer6!=null) {
                             if (res.data[0].answer6 == "on") {
                                 $('#frmFrom' + FormID).find('input[name=Answer6]').prop("checked", true);
@@ -938,6 +942,7 @@
                         } else {
                             $('#frmFrom' + FormID).find('input[name=Answer6]').prop("checked", false);
                         }
+                        $('#frmFrom' + FormID).find('input[name=Answer5]').val(res.data[0].answer5);
                         $('#frmFrom' + FormID).find('input[name=Answer6]').val(res.data[0].answer6);
                         $('#frmFrom' + FormID).find('input[name=Answer7]').val(res.data[0].answer7);
                         $('#frmFrom' + FormID).find('input[name=Answer8]').val(res.data[0].answer8);
@@ -945,6 +950,15 @@
                         $('#frmFrom' + FormID).find('input[name=Answer10]').val(res.data[0].answer10);
                         if (res.data[0].fileName1Full != null) {
                             $("#DivAcademicDegreePicture").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        if (res.data[0].fileName2Full != null) {
+                            $("#DivPicture2").html("<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        if (res.data[0].fileName3Full != null) {
+                            $("#DivPicture3").html("<a href='/File/Download?path=" + res.data[i].fileName3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        if (res.data[0].fileName4Full != null) {
+                            $("#DivPicture4").html("<a href='/File/Download?path=" + res.data[i].fileName4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform1").html("ویرایش");
                     }
@@ -1178,6 +1192,7 @@
 
             if (res.isSuccess) {
                // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                intiTab(1);
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
             else {
@@ -1198,6 +1213,7 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
+                getCorporateGovernance(ID);
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
@@ -1210,16 +1226,17 @@
 
     }
 
-    function saveValueChain(e) {
+    function saveValueChain(e,FormName=null) {
 
         $(e).attr("disabled", "");
 
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDem7"), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile(FormName), true, function (res) {
 
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                intiTab(7);
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
             else {

@@ -10,6 +10,9 @@ namespace ParsKyanCrm.Domain.Entities
 
         public string FileName1 { get; set; }
         public string FileName2 { get; set; }
+        public string FileName3 { get; set; }
+
+        public string FileName4 { get; set; }
 
         public int AnswerTableId { get; set; }
         public int? FormId { get; set; }

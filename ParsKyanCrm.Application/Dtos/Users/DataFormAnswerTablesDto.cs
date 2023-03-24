@@ -68,5 +68,26 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
 
+       
+
+        public string FileName3 { get; set; }
+        public IFormFile Result_Final_FileName3 { get; set; }
+        public string FileName3Full
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(FileName3, VaribleForName.CustomerFurtherInfoFolder, false);
+            }
+        }
+        public string FileName4 { get; set; }
+        public IFormFile Result_Final_FileName4 { get; set; }
+        public string FileName4Full
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(FileName4, VaribleForName.CustomerFurtherInfoFolder, false);
+            }
+        }
+
     }
 }

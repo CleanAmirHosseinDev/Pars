@@ -24,6 +24,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? RequestId { get; set; }
         public string vc1 { get; set; }
 
+        
         public string vc2 { get; set; }
         public string vc3 { get; set; }
         public string vc4 { get; set; }

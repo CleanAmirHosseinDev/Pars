@@ -71,6 +71,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string AgentMobile { get; set; }
         public string DestLevelStepAccessRole { get; set; }
         public string Comment { get; set; }
+        public string DestLevelStepIndexButton { get; set; }
 
     }
 }

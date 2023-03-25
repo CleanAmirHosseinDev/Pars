@@ -17,6 +17,11 @@ namespace EndPoint.Areas.Customer.Controllers
             ViewBag.id = id;
             return View();
         }
+        public IActionResult PrintFactor(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
         public IActionResult ContractPrinting(int? id = null)
         {
             ViewBag.id = id;

@@ -24,12 +24,23 @@
                 var strM = '';
               
                 for (var i = 0; i < res.data.length; i++) {
+                    var st = "", st2 = "";
+                    if (res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7") {
 
+                        st2 = "<span style='font-size:1.5em'> &#128194;</span> ";
+                    }
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].kindOfRequestName + "</td><td>"
-                        + res.data[i].dateOfRequestStr + "</td><td>"
-                        + res.data[i].levelStepStatus + "</td><td>"
-                        + "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> </a>";
+                        + res.data[i].dateOfRequestStr + "</td>";
+                    if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
+                        strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
+                    } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
+                        strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
+                    }
+                    else {
+                        strM += "<td>" + st2 + res.data[i].levelStepStatus + "</td><td>";
+                    }
+                    strM += "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> </a>";
                     if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
                         if (res.data[i].destLevelStepIndex==4) {
                             strM += "<a style='margin-right:5px;' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward'></i> تایید قرارداد و بارگذاری قرارداد </a>";
@@ -40,7 +51,12 @@
                             strM += "<a style='margin-right:5px;color:black' title='بارگذاری سند تسویه نهایی ' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> بارگذاری سند تسویه نهایی </a>";
 
                         }
-                        }
+                    }
+                    if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
+                        strM += "<a style='margin-right:5px;color:black' title='اصلاح/ تکمیل اطلاعات'  class='btn btn-edit fontForAllPage' href='/Customer/Customer/EditCustomer/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اصلاح/ تکمیل اطلاعات اولیه</a>";
+                        strM +="<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId+");'>ارسال مجدد </button >";
+                     
+                    }
                     if (res.data[i].destLevelStepIndex >= 7) {
                         if (res.data[i].destLevelStepIndex==7) {
                             strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
@@ -740,6 +756,39 @@
 
     }
 
+    function saveReferralRequestForRatingAgain(e, Requestid=null) {
+
+       
+        var objJ = {};
+        objJ.DestLevelStepIndex ="2";
+        objJ.Comment = "اطلاعات اصلاح شد";// getDataCkeditor("ReferralExplanation");
+        objJ.LevelStepAccessRole = "1";
+        objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+        objJ.Request = {};
+        objJ.Request.Requestid = Requestid;
+        objJ.Request.KindOfRequest = '0';
+        objJ.SmsContent =null;
+        objJ.SmsType =  null;
+        objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
+
+        
+            if (res.isSuccess) {
+
+                alertB("ثبت", "درخواست شما ارسال مجدد ارسال شد", "success");
+                goToUrl("/Customer/RequestForRating/Index");
+            }
+            else {
+
+                alertB("هشدار", res.message, "warning");
+
+            }
+
+        }, true);
+
+    }
+
     web.RequestForRating = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         SaveRequestForRating: saveRequestForRating,
@@ -764,7 +813,8 @@
         OkContract: okContract,
         CancelContract: cancelContract,
         PrintDiv: printDiv,
-        CancelContracAfterConfirm: cancelContracAfterConfirm
+        CancelContracAfterConfirm: cancelContracAfterConfirm,
+        SaveReferralRequestForRatingAgain: saveReferralRequestForRatingAgain
 
     };
 

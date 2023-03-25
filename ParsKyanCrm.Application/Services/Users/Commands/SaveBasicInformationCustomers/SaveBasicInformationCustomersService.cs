@@ -74,7 +74,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 }
 
                 var qRequest = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == request.CustomerId && p.IsFinished == false);
-                if (qRequest != null)
+                var RequestReferences = await _context.RequestReferences.FirstOrDefaultAsync(p=>p.Requestid==qRequest.RequestId && p.DestLevelStepIndexButton== "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری");
+                if (qRequest != null && RequestReferences==null)
                     return "به دلیل وجود یک درخواست باز امکان ویرایش پروفایل از طرف شما وجود ندارد در صورت نیاز به تغییرات لطفا با مدیر سامانه تماس بگیرید";
 
                 return string.Empty;

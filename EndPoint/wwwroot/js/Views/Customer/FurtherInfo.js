@@ -1204,7 +1204,7 @@
 
     }
 
-    function saveCorporateGovernance(e) {
+    function saveCorporateGovernance(e,id=null) {
 
         $(e).attr("disabled", "");
 
@@ -1213,7 +1213,7 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
-                getCorporateGovernance(ID);
+                getCorporateGovernance(id);
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }

@@ -120,7 +120,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه بیمه (به ماه)</label>
-                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -135,13 +135,13 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">درصد سهام</label>
-                                                                                <input type="text" name="Answer7" id="OwnershipPercentage" placeholder="درصد سهام" class="form-control" maxlength="3" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer7" id="OwnershipPercentage" placeholder="درصد سهام" class="form-control" maxlength="3"  />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تعداد سهام</label>
-                                                                                <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control"/>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -153,7 +153,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه عضویت در هیئت مدیره (به ماه)</label>
-                                                                                <input type="text" name="Answer5" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer5" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -166,7 +166,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه مدیریتی (به ماه)</label>
-                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -514,12 +514,12 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">تاریخ انقضا</label>
-                                                                                                    <input type="text" name="Answer4" id="ExpireDate" placeholder="تاریخ انقضا" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
+                                                                                                    <input type="text" name="Answer4" id="ExpireDate" placeholder="تاریخ انقضا" class="form-control DatePicker" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگذاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد<</label>
+                                                                                                    <label class="control-label" for="">بارگذاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد</label>
                                                                                                     <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل گواهینامه، مجوز، تاییدیه یا استاندارد');" />
                                                                                                     <div id="DivCertificateAndPermitAndStandardFile"></div>
                                                                                                 </div>
@@ -590,7 +590,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">تاریخ صدور</label>
-                                                                                                    <input type="text" name="Answer4" id="DateOfExporter" placeholder="تاریخ صدور" class="form-control DatePicker" onkeypress="return InputNoType(event);"/>
+                                                                                                    <input type="text" name="Answer4" id="DateOfExporter" placeholder="تاریخ صدور" class="form-control DatePicker" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
@@ -835,7 +835,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
 
-                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveCorporateGovernance(this)"> ثبت </button>
+                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveCorporateGovernance(this,@ViewBag.id)"> ثبت </button>
 
                                                                                                     </div>
                                                                                                 </div>
@@ -876,7 +876,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">  تجربه کاری (به ماه) </label>
-                                                                                                    <input type="text" name="Answer3" id="WorkExperience" placeholder="  تجربه کاری (به ماه)" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" maxlength="3" />
+                                                                                                    <input type="text" name="Answer3" id="WorkExperience" placeholder="  تجربه کاری (به ماه)" class="form-control" maxlength="3" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1380,7 +1380,7 @@
                                                                                             <div class="col-lg-6">
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'11,12');">
+                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'1,11,12');">
                                                                                                             افزودن
                                                                                                         </button>
                                                                                                         <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html(''); $('#DivSwotFile1').html('');$('#AnswerTableId').val(0); ">
@@ -1737,7 +1737,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">تاریخ پایان عضویت </label>
-                                                                                                    <input type="text" name="Answer2" id="ExpireDate" placeholder="تاریخ پایان عضویت" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
+                                                                                                    <input type="text" name="Answer2" id="ExpireDate" placeholder="تاریخ پایان عضویت" class="form-control DatePicker" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1848,7 +1848,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال) </label>
-                                                                                                    <input type="text" name="Answer2" id="TotalPrice" placeholder="میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                                                                                    <input type="text" name="Answer2" id="TotalPrice" placeholder="میزان کمک عام المنفعه به فروش در  یکسال گذشته (مبلغ به میلیون ریال)" class="form-control"  onkeyup="TextBoxOnlyPrice(this);" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -2040,7 +2040,7 @@
                                                             <div class="col-7 text-center" id="EndfurtherInfo">
                                                                 <h5>تایید اطلاعات جهت شروع ارزیابی</h5>
                                                                 <p>
-                                                                    اگر از تکمیل اطلاعات این فرم مطمئن هستید روی دکمه ریز کلیک نمایید؛ در صورت دسترسی به فرم ها برای شما محدود می شود.
+                                                                    اگر از تکمیل اطلاعات این فرم مطمئن هستید روی دکمه ریز کلیک نمایید؛ در صورت این دسترسی به فرم ها برای شما محدود می شود.
                                                                 </p>
                                                             </div>
                                                         </div>

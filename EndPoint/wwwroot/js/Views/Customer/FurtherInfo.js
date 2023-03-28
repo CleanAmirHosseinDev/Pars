@@ -1398,6 +1398,18 @@
                     minlength: 5,
                     maxlength: 50
                 },
+                "Answer2": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength:2,
+                    maxlength: 50
+                },
+                "Answer3": {
+                    required: function () {
+                        return $("#MemberEductionID").val() != "223";
+                    },
+                },
 
             },
             // Specify validation error messages
@@ -1409,6 +1421,18 @@
                     minlength: " باید حداقل 5 حرف باشد",
                     maxlength: " باید حداکثر 50 حرف باشد"
                 },
+                "Answer2": {
+                    required: function () {
+                        return "لطفا پست سازمانی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 3 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+                "Answer3": {
+                    required: function () {
+                        return "لطفا آخرین مدرک تحصیلی را انتخاب کنید";
+                    },
+                },
 
             },
             // Make sure the form is submitted to the destination defined
@@ -1418,7 +1442,82 @@
             }
         });
 
+        $("form[id='frmFrom26']").validate({
+            // Specify validation rules
+            rules: {
+                "Answer1": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+                "Answer2": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 2,
+                    maxlength: 50
+                },
+              
+            },
+            // Specify validation error messages
+            messages: {
+                "Answer1": {
+                    required: function () {
+                        return "لطفا نام و نام خانوادگی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+                "Answer2": {
+                    required: function () {
+                        return "لطفا نام دوره را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+               
 
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.FurtherInfo.SaveForm(this, 26, '1,2,3,4,11');
+            }
+        });
+
+        $("form[id='frmFrom3']").validate({
+            // Specify validation rules
+            rules: {
+                "Answer1": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+              
+
+            },
+            // Specify validation error messages
+            messages: {
+                "Answer1": {
+                    required: function () {
+                        return "لطفا عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+              
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.FurtherInfo.SaveForm(this, 3, '1,3,11');
+            }
+        });
        
     });
 

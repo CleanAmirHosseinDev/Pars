@@ -78,7 +78,7 @@
 
                                                             <input type="hidden" id="FormLoadCode" name="FormLoadCode" value="1" />
 
-                                                            <form id="frmFrom1">
+                                                            <form id="frmFrom1" method="post">
                                                                 <input type="hidden" id="FormId" name="FormId" value="1" />
                                                                 <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -98,22 +98,40 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">مدرک تحصیلی <span class="RequiredLabel">*</span></label>
+                                                                                <label class="control-label" for="">آخرین مدرک تحصیلی </label>
                                                                                 <select name="Answer3" id="MemberEductionID" class="form-control select2"></select>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">محل تحصیل/ دانشگاه<span class="RequiredLabel">*</span></label>
+                                                                                <label class="control-label" for="">محل تحصیل/ دانشگاه</label>
                                                                                 <select name="Answer4" id="UniversityID" class="form-control select2"></select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر  آخرین مدرک تحصیلی</label>
+                                                                                <input type="file" name="Result_Final_FileName1" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر  آخرین مدرک تحصیلی');" />
+                                                                                <div id="DivAcademicDegreePicture"></div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">سابقه بیمه (به ماه)</label>
+                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">عضو هیئت مدیره<span class="RequiredLabel">*</span></label>
-                                                                                <input type="checkbox" name="Answer6" id="IsMemeberOfBoard" style="text-align:right; width: 30px" />
+                                                                                <label class="control-label" for="">تصویر سابقه بیمه</label>
+                                                                                <input type="file" name="Result_Final_FileName2" id="Picture2" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر سابقه بیمه');" />
+                                                                                <div id="DivPicture2"></div>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">درصد سهام</label>
@@ -126,55 +144,39 @@
                                                                                 <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-lg-6">
-
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">سابقه بیمه (به ماه)</label>
-                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                                <label class="control-label" for="">عضو هیئت مدیره<span class="RequiredLabel">*</span></label>
+                                                                                <input type="checkbox" name="Answer6" id="IsMemeberOfBoard" style="text-align:right; width: 30px" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه عضویت در هیئت مدیره (به ماه)</label>
-                                                                                <input type="text" name="Answer10" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">سابقه مدیریتی (به ماه)</label>
-                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" maxlength="2" onkeypress="return TextBoxOnlyNumber(event);" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تصویر مدرک تحصیلی</label>
-                                                                                <input type="file" name="Result_Final_FileName1" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx," />
-                                                                                <div id="DivAcademicDegreePicture"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تصویر سابقه بیمه</label>
-                                                                                <input type="file" name="Result_Final_FileName2" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx," />
-                                                                                <div id="DivAcademicDegreePicture"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">تصویر سابقه مدیریتی </label>
-                                                                                <input type="file" name="Result_Final_FileName3" id="ManageHistoryPicture" accept="image/*,.pdf,.xlsx," />
-                                                                                <div id="DivManageHistoryPicture"></div>
+                                                                                <input type="text" name="Answer5" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره </label>
-                                                                                <input type="file" name="Result_Final_FileName4" id="JoinHistoryPicture" accept="image/*,.pdf,.xlsx," />
-                                                                                <div id="DivJoinHistoryPicture"></div>
+                                                                                <input type="file" name="Result_Final_FileName4" id="Picture4" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره');" />
+                                                                                <div id="DivPicture4"></div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">سابقه مدیریتی (به ماه)</label>
+                                                                                <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">تصویر سایر سوابق کاری </label>
+                                                                                <input type="file" name="Result_Final_FileName3" id="Picture3" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر سایر سوابق کاری');" />
+                                                                                <div id="DivPicture3"></div>
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="row changeData">
@@ -211,8 +213,85 @@
                                                                     </table>
                                                                 </div>
                                                             </div>
+
+
                                                         </div>
 
+                                                        <h2 class="fs-title">دوره های آموزشی هیئت مدیره و مدیران ارشد</h2>
+                                                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
+
+                                                            <form id="frmFrom26" class="changeData">
+                                                                <input type="hidden" id="FormID" name="FormID" value="26" />
+                                                                <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
+
+                                                                <div class="row" id="FormDetail26">
+                                                                    <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">نام و نام خانوادگی<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer1" id="Name" placeholder="نام و نام خانوادگی" class="form-control" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">عنوان دوره<span class="RequiredLabel">*</span></label>
+                                                                                <input type="text" name="Answer2" id="TitelCourses" placeholder="عنوان دوره" class="form-control" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">طول دوره (به ساعت)</label>
+                                                                                <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره (به ساعت)" class="form-control" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">محل برگزاری</label>
+                                                                                <input type="text" name="Answer4" id="PlaceOfTraining" placeholder="محل برگزاری" class="form-control" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">فایل گواهی دوره </label>
+                                                                                <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر فایل گواهی دوره');"><div id="DivCertificationCourses"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row changeData">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <button class="btn btn-success fontForAllPage" id="btnform26" type="button" onclick="Web.FurtherInfo.SaveForm(this,26,'1,2,3,4,11');">
+                                                                                    افزودن
+                                                                                </button>
+                                                                                <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform26').html('افزودن');$('#AnswerTableId').val(0);  ">
+                                                                                    انصراف
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ردیف</th>
+                                                                        <th>نام و نام خانوادگی </th>
+                                                                        <th>عنوان دوره</th>
+                                                                        <th>طول دوره </th>
+                                                                        <th>محل برگزاری</th>
+                                                                        <th>فایل گواهی</th>
+                                                                        <th>عملیات</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="FormDetailAnswer26">
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                         <h2 class="fs-title">بارگذاری اسناد شرکت</h2>
 
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px;  margin-bottom: 20px">
@@ -237,14 +316,23 @@
                                                                             <tr>
                                                                                 <td style="text-align:right">
                                                                                     <label class="control-label" for=""> صورتهای مالی حسابرسی شده</label>
-
-
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," />
+                                                                                    <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'صورتهای مالی حسابرسی شده');" />
                                                                                 </td>
                                                                                 <td>
                                                                                     <div id="divDownloadLastAuditingTaxList"> </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align:right">
+                                                                                    <label class="control-label" for=""> اظهارنامه مالیاتی</label>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="file" name="Result_Final_StatementTaxList" id="StatementTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اظهارنامه مالیاتی');" />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="divDownloadStatementTaxList"> </div>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -255,7 +343,7 @@
 
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" accept="image/*,.pdf,.xlsx," />
+                                                                                    <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آخرین تغییرات روزنامه رسمی');" />
 
                                                                                 </td>
                                                                                 <td>
@@ -270,7 +358,7 @@
 
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," />
+                                                                                    <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اساسنامه');" />
 
                                                                                 </td>
                                                                                 <td>
@@ -283,7 +371,7 @@
                                                                                     <label class="control-label" for="">  روزنامه رسمی </label>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," />
+                                                                                    <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'روزنامه رسمی');" />
                                                                                 </td>
                                                                                 <td>
                                                                                     <div id="divDownloadOfficialNewspaper">
@@ -344,13 +432,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for=""> عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for=""> عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی</label>
                                                                                                     <input type="text" name="Answer1" id="GuidelinesAndRegulations" placeholder=" عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">روش اجرایی است یا دستور العمل?<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">روش اجرایی است یا دستور العمل?</label>
                                                                                                     <select name="Answer3" id="IsGuideLineOrProcess" class="form-control select2"></select>
                                                                                                 </div>
                                                                                             </div>
@@ -358,8 +446,8 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگذاری فایل دستور العمل یا آیین نامه یا روش اجرایی<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="GuidelinesAndRegulationsFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <label class="control-label" for="">بارگذاری فایل دستور العمل یا آیین نامه یا روش اجرایی</label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="GuidelinesAndRegulationsFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' فایل دستور العمل یا آیین نامه یا روش اجرایی');" />
                                                                                                     <div id="DivGuidelinesAndRegulationsFile">
                                                                                                     </div>
                                                                                                 </div>
@@ -411,13 +499,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">نام گواهینامه، مجوز، تاییدیه یا استاندارد<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">نام گواهینامه، مجوز، تاییدیه یا استاندارد</label>
                                                                                                     <input type="text" name="Answer1" id="CertificateAndPermitAndStandard" placeholder="نام گواهینامه، مجوز، تاییدیه یا استاندارد" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مرجع صادر کننده<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">مرجع صادر کننده</label>
                                                                                                     <input type="text" name="Answer3" id="ExporterReferenceForCertificate" placeholder="مرجع صادر کننده" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
@@ -425,14 +513,14 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">تاریخ انقضا<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">تاریخ انقضا</label>
                                                                                                     <input type="text" name="Answer4" id="ExpireDate" placeholder="تاریخ انقضا" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگذاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <label class="control-label" for="">بارگذاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد<</label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل گواهینامه، مجوز، تاییدیه یا استاندارد');" />
                                                                                                     <div id="DivCertificateAndPermitAndStandardFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -478,7 +566,7 @@
                                                                             <h2 class="fs-title">جوایز معتبر</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
-                                                                                <form id="frmFrom5">
+                                                                                <form id="frmFrom5" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="5" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -487,13 +575,13 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">عنوان جایزه<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">عنوان جایزه</label>
                                                                                                     <input type="text" name="Answer1" id="Awards" placeholder="عنوان جایزه" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مرجع صادر کننده<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">مرجع صادر کننده</label>
                                                                                                     <input type="text" name="Answer3" id="ExporterReferenceForAwards" placeholder="مرجع صادر کننده" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
@@ -501,14 +589,14 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">تاریخ صدور<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">تاریخ صدور</label>
                                                                                                     <input type="text" name="Answer4" id="DateOfExporter" placeholder="تاریخ صدور" class="form-control DatePicker" onkeypress="return InputNoType(event);" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگذاری سند جایزه<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="AwardsFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <label class="control-label" for="">بارگذاری سند جایزه</label>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="AwardsFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'بارگذاری سند جایزه');" />
                                                                                                     <div id="DivAwardsFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -579,7 +667,7 @@
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab6" data-toggle="tab" aria-expanded="false">حاکمیت شرکتی</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiTab(7);" href="#FormDetailTab7" data-toggle="tab" aria-expanded="false">زنجیره ارزش</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'11,12',$('#RequestId').val())" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(8,'1,11,12',$('#RequestId').val())" href="#FormDetailTab8" data-toggle="tab" aria-expanded="false">برنامه ریزی بلندمدت</a></li>
                                                                         <li class=""><a onclick="Web.FurtherInfo.IntiTab(9);" href="#FormDetailTab9" data-toggle="tab" aria-expanded="false">تحقیق و توسعه</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
@@ -637,7 +725,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_OrganazationChart" id="OrganazationChart" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_OrganazationChart" id="OrganazationChart" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' سند جایزهچارت سازمانی');" />
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <div id="DivOrganazationChart"></div>
@@ -650,7 +738,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_OrganizationalDuties" id="OrganizationalDuties" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_OrganizationalDuties" id="OrganizationalDuties" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل شرح وظایف شغلی پرسنل');" />
 
                                                                                                     </td>
                                                                                                     <td><div id="DivOrganizationalDuties"></div></td>
@@ -660,7 +748,7 @@
                                                                                                         <label class="control-label" for="">بارگذاری دستورالعمل مدیریت ریسک </label>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_RiskManagementGuidelines" id="RiskManagementGuidelines" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_RiskManagementGuidelines" id="RiskManagementGuidelines" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'دستورالعمل مدیریت ریسک');" />
 
                                                                                                     </td>
                                                                                                     <td>
@@ -673,7 +761,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_TransactionRegulations" id="TransactionRegulations" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_TransactionRegulations" id="TransactionRegulations" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آیین نامه معاملات');" />
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <div id="DivTransactionRegulations"></div>
@@ -685,17 +773,17 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_DeductionTaxAccount" id="DeductionTaxAccount" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_DeductionTaxAccount" id="DeductionTaxAccount" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مفاصا حساب مالیاتی');" /></td>
                                                                                                     <td><div id="DivDeductionTaxAccount"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
-                                                                                                        <label class="control-label" for=""> بارگذاری تصویرقراداد نرم افزار امور مشتریان </label>
+                                                                                                        <label class="control-label" for=""> بارگذاری تصویر قراداد نرم افزار امور مشتریان </label>
 
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_CrmSoftwareContract" id="CrmSoftwareContract" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_CrmSoftwareContract" id="CrmSoftwareContract" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر قراداد نرم افزار امور مشتریان');" />
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <div id="DivCrmSoftwareContract"></div>
@@ -707,7 +795,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td>  <input type="file" name="Result_Final_RepresentativeFile" id="RepresentativeFile" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td>  <input type="file" name="Result_Final_RepresentativeFile" id="RepresentativeFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مستندات نمایندگی');" /></td>
                                                                                                     <td><div id="DivRepresentativeFile"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -716,7 +804,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_LetterOfCommendation" id="LetterOfCommendation" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_LetterOfCommendation" id="LetterOfCommendation" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تقدیر نامه');" /></td>
                                                                                                     <td> <div id="DivLetterOfCommendation"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -725,7 +813,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_InovationFile" id="InovationFile" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_InovationFile" id="InovationFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مدرک اختراع ');" /></td>
                                                                                                     <td><div id="DivInovationFile"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -734,7 +822,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_Proceedings" id="Proceedings" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_Proceedings" id="Proceedings" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' نمونه صورتجلسه حسابرسی ');" /></td>
                                                                                                     <td> <div id="DivProceedings"></div></td>
                                                                                                 </tr>
 
@@ -761,10 +849,10 @@
 
                                                                             <!-- ثبت اعضای کمیته حسابرسی  -->
 
-                                                                            <h2 class="fs-title">ثبت اعضای کمیته حسابرسی</h2>
+                                                                            <h2 class="fs-title"> اعضای کمیته حسابرسی</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom16">
+                                                                                <form id="frmFrom16" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="16" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -779,7 +867,7 @@
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مدرک تحصیلی </label>
+                                                                                                    <label class="control-label" for="">آخرین مدرک تحصیلی </label>
                                                                                                     <select name="Answer2" id="DegreeOfEducation" class="form-control select2"></select>
                                                                                                 </div>
                                                                                             </div>
@@ -813,7 +901,7 @@
                                                                                         <tr>
                                                                                             <th>ردیف</th>
                                                                                             <th>نام اعضای کمیته حسابرسی</th>
-                                                                                            <th>مدرک تحصیلی</th>
+                                                                                            <th>آخرین مدرک تحصیلی</th>
                                                                                             <th>
                                                                                                 تجربه کاری (به ماه)
                                                                                             </th>
@@ -825,10 +913,10 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
-                                                                            <h2 class="fs-title">ثبت محصولات شرکت</h2>
+                                                                            <h2 class="fs-title"> محصولات شرکت</h2>
                                                                             <p>نام محصولاتی که توسط شرکت تولید یا به فروش می رسد.</p>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom17">
+                                                                                <form id="frmFrom17" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="17" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -909,7 +997,7 @@
                                                                                                         <label class="control-label" for="">تصویر انبار / سند مالکیت انبار (در صورت برون سپاری قرارداد مربوطه ارسال گردد) </label>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc1" id="vc1" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc1" id="vc1" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' تصویر انبار / سند مالکیت انبار ');" />
 
                                                                                                     </td>
                                                                                                     <td><div id="DivVc1"></div></td>
@@ -918,7 +1006,7 @@
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for="">عکس/سند تجهیزات انبارش و بارگیری (در صورت برون سپاری قرارداد مربوطه ارسال گردد)  </label>
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc2" id="vc2" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc2" id="vc2" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' تصویر عکس/سند تجهیزات انبارش و بارگیری ');" /></td>
                                                                                                     <td> <div id="DivVc2"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -928,12 +1016,12 @@
 
                                                                                                         </label>
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc3" id="vc3" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc3" id="vc3" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' عکس/سند مالکیت تجهیزات حمل و نقل ');" /></td>
                                                                                                     <td><div id="DivVc3"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right"><label class="control-label" for="">  عکس / قراداد نرم افزار انبارداری </label></td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc4" id="vc4" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc4" id="vc4" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' عکس / قراداد نرم افزار انبارداری ');" /></td>
                                                                                                     <td><div id="DivVc4"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -942,7 +1030,23 @@
 
 
                                                                                     </div>
+                                                                                    <div class="row changeData">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveValueChain(this,'FormDem7')"> ثبت </button>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
+                                                                            </form>
+                                                                            <form id="FormDem88">
+                                                                                <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                <input type="hidden" id="ValueChainId1" name="ValueChainId" value="0">
+
                                                                                 <h2 class="fs-title">زیر ساخت</h2>
                                                                                 <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                     <h3 style="color: darkmagenta; font-weight: bold"> </h3>
@@ -962,7 +1066,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_Vc5" id="Vc5">
+                                                                                                        <input type="file" name="Result_Final_Vc5" id="Vc5" onchange="checkUpload(this,'اجاره نامه یا سند مالکیت ');">
                                                                                                     </td>
                                                                                                     <td>  <div id="DivVc5"></div></td>
                                                                                                 </tr>
@@ -972,7 +1076,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc6" id="vc6" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc6" id="vc6" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اجاره نامه یا سند مالکیت ');" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc6"></div></td>
                                                                                                 </tr>
@@ -982,7 +1086,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc7" id="vc7" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc7" id="vc7" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فیش حقوقی');" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc7"></div></td>
                                                                                                 </tr>
@@ -992,7 +1096,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc8" id="vc8" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc8" id="vc8" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس یا قرارداد نرم افزار های یکپارچه مدیریتی');" /></td>
                                                                                                     <td><div id="DivVc8"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1001,7 +1105,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc9" id="vc9" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc9" id="vc9" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس از آزمایشگاه');" /></td>
                                                                                                     <td><div id="DivVc9"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1009,7 +1113,7 @@
                                                                                                         <label class="control-label" for=""> تصویر مجوز دانش بنیان </label>
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc10" id="vc10" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc10" id="vc10" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر مجوز دانش بنیان');" /></td>
                                                                                                     <td><div id="DivVc10"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1017,7 +1121,7 @@
                                                                                                         <label class="control-label" for="">سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل </label>
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc11" id="vc11" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc11" id="vc11" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند مالکیت یا قراداد');" /></td>
                                                                                                     <td><div id="DivVc11"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1025,7 +1129,7 @@
                                                                                                         <label class="control-label" for="">درصورت وجود یک مدل جهت ردیابی محصول با بارکد یا کد رجیستری تصویر مربوطه بارگذاری شود </label>
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc12" id="vc12" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc12" id="vc12" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند مالکیت یا قراداد');" /></td>
                                                                                                     <td><div id="DivVc12"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -1033,7 +1137,23 @@
 
 
                                                                                     </div>
+                                                                                    <div class="row changeData">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveValueChain(this,'FormDem88')"> ثبت </button>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
+                                                                            </form>
+                                                                            <form id="FormDem99">
+                                                                                <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                <input type="hidden" id="ValueChainId2" name="ValueChainId" value="0">
+
                                                                                 <h2 class="fs-title">بازاریابی و فروش</h2>
                                                                                 <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                     <div class="row">
@@ -1077,7 +1197,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc16" id="vc16" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc16" id="vc16" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس/اجاره نامه / سند مالکیت فروشگاه');" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc16"></div></td>
                                                                                                 </tr>
@@ -1087,7 +1207,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc17" id="vc17" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc17" id="vc17" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر یا آدرس سایت فروش آنلاین');" />
                                                                                                     </td>
                                                                                                     <td><div id="DivVc17"></div></td>
                                                                                                 </tr>
@@ -1097,7 +1217,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc18" id="vc18" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc18" id="vc18" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'گزارش های بازاریابی حضوری');" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc18"></div></td>
                                                                                                 </tr>
@@ -1107,7 +1227,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc19" id="vc19" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc19" id="vc19" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس یا مجوز حضور در نمایشگاه ها');" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc19"></div></td>
                                                                                                 </tr>
@@ -1116,7 +1236,7 @@
                                                                                                         <label class="control-label" for="">قرارداد های فروش به سازمان ها </label>
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc20" id="vc20" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc20" id="vc20" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'قرارداد های فروش به سازمان ها');" /></td>
                                                                                                     <td><div id="DivVc20"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1125,14 +1245,30 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc21" id="vc21" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc21" id="vc21" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'نمونه تبلیغات محیطی');" />
                                                                                                     </td>
                                                                                                     <td><div id="DivVc21"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
+                                                                                    <div class="row changeData">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveValueChain(this,'FormDem99')"> ثبت </button>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
+                                                                            </form>
+                                                                            <form id="FormDem66">
+                                                                                <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                                <input type="hidden" id="ValueChainId3" name="ValueChainId" value="0">
+
                                                                                 <h2 class="fs-title">خدمات پس از فروش</h2>
                                                                                 <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
@@ -1152,7 +1288,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc22" id="vc22" accept="image/*,.pdf,.xlsx," />
+                                                                                                        <input type="file" name="Result_Final_vc22" id="vc22" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل کارت گارانتی');" />
                                                                                                     </td>
                                                                                                     <td><div id="DivVc22"></div></td>
                                                                                                 </tr>
@@ -1162,7 +1298,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc23" id="vc23" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc23" id="vc23" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس از واحد خدمات پس از فروش یا سایر مستندات');" /></td>
                                                                                                     <td><div id="DivVc23"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1171,7 +1307,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc24" id="vc24" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc24" id="vc24" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش');" /></td>
                                                                                                     <td><div id="DivVc24"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1180,52 +1316,62 @@
 
 
                                                                                                     </td>
-                                                                                                    <td>  <input type="file" name="Result_Final_vc25" id="vc25" accept="image/*,.pdf,.xlsx," /></td>
+                                                                                                    <td>  <input type="file" name="Result_Final_vc25" id="vc25" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس از تجهیزات  واحد خدمات پس از فروش');" /></td>
                                                                                                     <td><div id="DivVc25"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
 
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="row changeData">
-                                                                                    <div class="col-lg-6">
-                                                                                        <div class="form-group">
-                                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                    <div class="row changeData">
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
 
-                                                                                                <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveValueChain(this)"> ثبت </button>
+                                                                                                    <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveValueChain(this,'FormDem66')"> ثبت </button>
 
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
+
+
                                                                         <!-- /.tab-pane -->
 
                                                                         <div class="tab-pane" id="FormDetailTab8">
                                                                             <h2 class="fs-title">برنامه ریزی بلند مدت</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom8">
+                                                                                <form id="frmFrom8" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="8" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
                                                                                     <div class="row" id="FormDetail8">
                                                                                         <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
-                                                                                        <div class="col-lg-6">
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                                                                    <label class="control-label" for="">عنوان تدوین برنامه ریزی استراتژیک </label>
+                                                                                                    <input type="text" name="Answer1" id="SwotTitle" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-4">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">مستندات تدوین برنامه ریزی استراتژیک </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="SwotFile1" accept="image/*,.pdf,.xlsx,"><div id="DivSwotFile1"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="SwotFile1" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مستندات تدوین برنامه ریزی استراتژیک');"><div id="DivSwotFile1"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
 
-                                                                                        <div class="col-lg-6">
+                                                                                        <div class="col-lg-4">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">مستندات اجرا و بازخورد برنامه ریزی استراتژیک </label>
-                                                                                                    <input type="file" name="Result_Final_FileName2" id="SwotFile2" accept="image/*,.pdf,.xlsx," /><div id="DivSwotFile2"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName2" id="SwotFile2" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مستندات اجرا و بازخورد برنامه ریزی استراتژیک');" /><div id="DivSwotFile2"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1249,6 +1395,7 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th>ردیف</th>
+                                                                                            <th>عنوان</th>
                                                                                             <th> مستندات تدوین برنامه ریزی استراتژیک</th>
                                                                                             <th>مستندات اجرا و بازخورد برنامه ریزی استراتژیک</th>
 
@@ -1266,7 +1413,7 @@
 
                                                                             <h2 class="fs-title">مشخصات تیم تحقیق و توسعه و گزارشات </h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom9">
+                                                                                <form id="frmFrom9" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="9" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1281,7 +1428,7 @@
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مدرک تحصیلی<span class="RequiredLabel">*</span></label>
+                                                                                                    <label class="control-label" for="">آخرین مدرک تحصیلی<span class="RequiredLabel">*</span></label>
                                                                                                     <select name="Answer2" id="DegreeOfEducation2" class="form-control select2"></select>
                                                                                                 </div>
                                                                                             </div>
@@ -1290,7 +1437,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری مدرک تحصیلی </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="DegreeFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="DegreeFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' مدرک تحصیلی');" />
                                                                                                     <div id="DivDegreeFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1316,7 +1463,7 @@
                                                                                         <tr>
                                                                                             <th>ردیف</th>
                                                                                             <th>نام و نام خانوادگی </th>
-                                                                                            <th>مدرک تحصیلی</th>
+                                                                                            <th>آخرین مدرک تحصیلی</th>
                                                                                             <th>
                                                                                                 بارگذاری مدرک تحصیلی
                                                                                             </th>
@@ -1331,7 +1478,7 @@
                                                                             <h2 class="fs-title">گزارشات تیم تحقیق و توسعه </h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom10">
+                                                                                <form id="frmFrom10" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="10" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1349,7 +1496,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری مدرک مربوطه </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="ReportFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="ReportFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مدرک');" />
                                                                                                     <div id="DivReportFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1414,7 +1561,7 @@
                                                                 <div class="nav-tabs-custom">
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab11" data-toggle="tab" aria-expanded="false">اطلاعات منابع انسانی</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(12,'1,2,3,4',$('#RequestId').val())" href="#FormDetailTab12" data-toggle="tab" aria-expanded="false">گواهی دوره های آموزشی پرسنل</a></li>
+                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(12,'1,2,3,4,11',$('#RequestId').val())" href="#FormDetailTab12" data-toggle="tab" aria-expanded="false">گواهی دوره های آموزشی پرسنل</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormDetailTab11">
@@ -1441,7 +1588,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for=""> بارگذاری فایل اکسل کامل شده </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx," onchange="checkUpload(this,'فایل اکسل');" />
                                                                                                     <div id="DivHumanResourcesFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1461,7 +1608,7 @@
 
                                                                             <h2 class="fs-title">دوره های آموزشی </h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom12">
+                                                                                <form id="frmFrom12" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="12" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1483,7 +1630,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">طول دوره (به ساعت)<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره" class="form-control" />
+                                                                                                    <input type="text" name="Answer3" id="TimeOfCource" placeholder="طول دوره (به ساعت)" class="form-control" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1497,7 +1644,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">فایل گواهی دوره </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx,"><div id="DivCertificationCourses"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'گواهی دوره');"><div id="DivCertificationCourses"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1506,7 +1653,7 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4');">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4,11');">
                                                                                                         افزودن
                                                                                                     </button>
                                                                                                     <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن');$('#AnswerTableId').val(0);  ">
@@ -1525,6 +1672,7 @@
                                                                                             <th>عنوان دوره</th>
                                                                                             <th>طول دوره </th>
                                                                                             <th>محل برگزاری</th>
+                                                                                            <th>فایل گواهی</th>
                                                                                             <th>عملیات</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -1573,7 +1721,7 @@
 
                                                                             <h2 class="fs-title">عضویت در تشکلها / انجمن ها</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom13">
+                                                                                <form id="frmFrom13" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="13" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1603,7 +1751,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">فایل گواهی عضویت </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," /><div id="DivCertificationSociety"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' گواهی عضویت');" /><div id="DivCertificationSociety"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1630,6 +1778,7 @@
                                                                                             <th>نام انجمن </th>
                                                                                             <th>تاریخ پایان عضویت</th>
                                                                                             <th>سمت در انجمن</th>
+                                                                                            <th>فایل گواهی</th>
                                                                                             <th>عملیات</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -1638,10 +1787,6 @@
 
                                                                                 </table>
                                                                             </div>
-
-
-
-
                                                                         </div>
 
                                                                         <!-- /.tab-pane -->
@@ -1687,7 +1832,7 @@
                                                                             <h2 class="fs-title">بارگذاری مدارک های انجمن های خیریه</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom15">
+                                                                                <form id="frmFrom15" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="15" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1711,7 +1856,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">مدرک </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="PublicActivityFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="PublicActivityFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مدرک');" />
                                                                                                     <div id="DivPublicActivityFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1753,7 +1898,7 @@
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
-                                                                                <form id="frmFrom22">
+                                                                                <form id="frmFrom22" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="22" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1771,7 +1916,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری سند سرمایه گذاری </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="InvestmentFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="InvestmentFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند سرمایه گذاری');" />
                                                                                                     <div id="DivInvestmentFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1812,7 +1957,7 @@
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
-                                                                                <form id="frmFrom24">
+                                                                                <form id="frmFrom24" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="24" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
 
@@ -1830,7 +1975,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری سند مسئولیت پذیری<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="EmploymentDisabledFile" accept="image/*,.pdf,.xlsx," />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="EmploymentDisabledFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند مسئولیت پذیری');" />
                                                                                                     <div id="DivEmploymentDisabledFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1930,9 +2075,9 @@
 
 @section Scripts {
     <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
-
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
     <script>
         Web.FurtherInfo.InitFurtherInfo(@ViewBag.id);
 

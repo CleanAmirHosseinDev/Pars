@@ -17,6 +17,10 @@
         var countform = Number($("#FormLoadCode").val()) + 1;
         $("#FormLoadCode").val(countform);
 
+
+
+
+
         intiTab(countform);
 
         current_fs = $(this).parent();
@@ -42,6 +46,8 @@
             duration: 600
         });
     });
+
+
 
     $(".previous").click(function () {
 
@@ -91,6 +97,7 @@
             case 1:
                 intiFormShow(1, "1,2,7,8", ID);
                 getFurtherInfo(ID);
+                intiFormShow(26, '1,2,3,4,11', ID);
 
                 break;
             case 2:
@@ -109,7 +116,7 @@
 
                 break;
             case 5:
-                intiFormShow(13, "1,2,3", ID);
+                intiFormShow(13, "1,2,3,11", ID);
 
                 break;
             case 7:
@@ -213,9 +220,9 @@
         }
     }
 
-    //function getsuperVisor() {
+    //function getCustomer() {
 
-    //    AjaxCallAction("GET", "/api/superVisor/superVisors/Get_superVisors/", null, true, function (res) {
+    //    AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
     //        if (res != null) {               
     //            $("#CanSeeFurtherInfo").val(res.tel);
     //        }
@@ -227,9 +234,8 @@
 
 
         $("#RequestIdForms").val(id);
-        //initReferral(id);
+        initReferral(id);
         intiTab(1);
-
     }
 
     function intiFormShow(Id = null, Columns = null, RequestId = null) {
@@ -243,7 +249,7 @@
 
     function intiForm(FormID = null, RequestId = null) {
 
-        //AjaxCallAction("POST", "/api/superVisor/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
+        //AjaxCallAction("POST", "/api/customer/FurtherInfo/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0 }), true, function (res) {
 
         //    if (res.isSuccess) {
 
@@ -406,6 +412,9 @@
 
                 if (res.isSuccess) {
                     $("#ValueChainId").val(res.data.valueChainId);
+                    $("#ValueChainId1").val(res.data.valueChainId);
+                    $("#ValueChainId2").val(res.data.valueChainId);
+                    $("#ValueChainId3").val(res.data.valueChainId);
                     $("#RequestId").val(res.data.requestId);
 
 
@@ -509,6 +518,9 @@
                 if (res.isSuccess) {
                     if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
                         $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    }
+                    if (res.data.statementTaxList != null && res.data.statementTaxList != "") {
+                        $("#divDownloadStatementTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statementTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.lastChangeOfficialNewspaper != null && res.data.lastChangeOfficialNewspaper != "") {
                         $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.LastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -920,7 +932,7 @@
                         $('#UniversityID').val(res.data[0].answer4Val);
                         comboBoxWithSearchUpdateText("UniversityID", res.data[0].answer4);
 
-                        $("#IsMemeberOfBoard").prop("checked", res.data[0].answer5);
+
                         if (res.data[0].answer6 != null) {
                             if (res.data[0].answer6 == "on") {
                                 $('#frmFrom' + FormID).find('input[name=Answer6]').prop("checked", true);
@@ -930,6 +942,7 @@
                         } else {
                             $('#frmFrom' + FormID).find('input[name=Answer6]').prop("checked", false);
                         }
+                        $('#frmFrom' + FormID).find('input[name=Answer5]').val(res.data[0].answer5);
                         $('#frmFrom' + FormID).find('input[name=Answer6]').val(res.data[0].answer6);
                         $('#frmFrom' + FormID).find('input[name=Answer7]').val(res.data[0].answer7);
                         $('#frmFrom' + FormID).find('input[name=Answer8]').val(res.data[0].answer8);
@@ -937,6 +950,15 @@
                         $('#frmFrom' + FormID).find('input[name=Answer10]').val(res.data[0].answer10);
                         if (res.data[0].fileName1Full != null) {
                             $("#DivAcademicDegreePicture").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        if (res.data[0].fileName2Full != null) {
+                            $("#DivPicture2").html("<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        if (res.data[0].fileName3Full != null) {
+                            $("#DivPicture3").html("<a href='/File/Download?path=" + res.data[i].fileName3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        }
+                        if (res.data[0].fileName4Full != null) {
+                            $("#DivPicture4").html("<a href='/File/Download?path=" + res.data[i].fileName4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform1").html("ویرایش");
                     }
@@ -1170,6 +1192,7 @@
 
             if (res.isSuccess) {
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                intiTab(1);
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
             else {
@@ -1190,6 +1213,7 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
+                getCorporateGovernance(ID);
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
@@ -1202,16 +1226,17 @@
 
     }
 
-    function saveValueChain(e) {
+    function saveValueChain(e, FormName = null) {
 
         $(e).attr("disabled", "");
 
-        AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile("FormDem7"), true, function (res) {
+        AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/FurtherInfo/Save_ValueChain", fill_AjaxCallActionPostSaveFormWithUploadFile(FormName), true, function (res) {
 
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
+                intiTab(7);
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }
             else {
@@ -1285,7 +1310,7 @@
                 $("#sdfcddf").val(1);
 
             } else {
-               
+                $(".changeData").remove();
                 $("#EndfurtherInfo").html("اطلاعات شما برای پارس کیان جهت بررسی و ارزیابی ارسال شده است و قابل ویرایش نمی باشد.");
 
             }
@@ -1321,6 +1346,180 @@
         }, true);
 
     }
+
+    //function validate() {
+
+    //    $("form[id='frmFrom1']").validate({
+    //        // Specify validation rules
+    //        rules: {
+    //            "Answer1": {
+    //                required: function () {
+    //                    return true;
+    //                },
+    //                minlength: 5,
+    //                maxlength: 50
+    //            },
+
+    //        },
+    //        // Specify validation error messages
+    //        messages: {
+    //            "Answer1": {
+    //                required: function () {
+    //                    return "  لطفا نام و نام خانوادگی را را وارد کنید";
+    //                },
+    //                minlength: " باید حداقل 5 حرف باشد",
+    //                maxlength: " باید حداکثر 50 حرف باشد"
+    //            },
+
+    //        },
+    //        // Make sure the form is submitted to the destination defined
+    //        // in the "action" attribute of the form when valid
+    //        submitHandler: function (form) {
+    //            Web.FurtherInfo.SaveForm("#btnform1", 1, '1,2,7,8');
+    //        }
+    //    });
+
+    //    }
+    $("#frmFrom1 input,textarea").on("focusout", function () {
+
+        $(this).valid();
+
+    });
+
+    $(document).ready(function () {
+
+        $("form[id='frmFrom1']").validate({
+            // Specify validation rules
+            rules: {
+                "Answer1": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+                "Answer2": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 2,
+                    maxlength: 50
+                },
+                "Answer3": {
+                    required: function () {
+                        return $("#MemberEductionID").val() != "223";
+                    },
+                },
+
+            },
+            // Specify validation error messages
+            messages: {
+                "Answer1": {
+                    required: function () {
+                        return "لطفا نام و نام خانوادگی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+                "Answer2": {
+                    required: function () {
+                        return "لطفا پست سازمانی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 3 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+                "Answer3": {
+                    required: function () {
+                        return "لطفا آخرین مدرک تحصیلی را انتخاب کنید";
+                    },
+                },
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.FurtherInfo.SaveForm("#btnform1", 1, '1,2,7,8');
+            }
+        });
+
+        $("form[id='frmFrom26']").validate({
+            // Specify validation rules
+            rules: {
+                "Answer1": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+                "Answer2": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 2,
+                    maxlength: 50
+                },
+
+            },
+            // Specify validation error messages
+            messages: {
+                "Answer1": {
+                    required: function () {
+                        return "لطفا نام و نام خانوادگی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+                "Answer2": {
+                    required: function () {
+                        return "لطفا نام دوره را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.FurtherInfo.SaveForm(this, 26, '1,2,3,4,11');
+            }
+        });
+
+        $("form[id='frmFrom3']").validate({
+            // Specify validation rules
+            rules: {
+                "Answer1": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 5,
+                    maxlength: 50
+                },
+
+
+            },
+            // Specify validation error messages
+            messages: {
+                "Answer1": {
+                    required: function () {
+                        return "لطفا عنوان دستورالعمل ها و آیین نامه ها یا روش اجرایی را وارد کنید";
+                    },
+                    minlength: " باید حداقل 5 حرف باشد",
+                    maxlength: " باید حداکثر 50 حرف باشد"
+                },
+
+
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                Web.FurtherInfo.SaveForm(this, 3, '1,3,11');
+            }
+        });
+
+    });
 
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,

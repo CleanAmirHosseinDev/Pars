@@ -516,6 +516,9 @@
             AjaxCallAction("GET", "/api/customer/FurtherInfo/Get_FurtherInfo/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res.isSuccess) {
+
+                    $("#FurtherInfoId").val(res.data.furtherInfoId);
+
                     if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
                         $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }

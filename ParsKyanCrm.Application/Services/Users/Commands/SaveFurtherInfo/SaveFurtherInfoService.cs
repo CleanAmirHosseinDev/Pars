@@ -99,7 +99,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                     fileNameOldPic_StatementTaxList = request.StatementTaxList;
                     request.StatementTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_StatementTaxList.FileName);
                     path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.StatementTaxList;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_OfficialNewspaper, path_StatementTaxList, " اظهارنامه مالیاتی");
+                    await ServiceFileUploader.SaveFile(request.Result_Final_StatementTaxList, path_StatementTaxList, " اظهارنامه مالیاتی");
                 }
 
                 #endregion                                

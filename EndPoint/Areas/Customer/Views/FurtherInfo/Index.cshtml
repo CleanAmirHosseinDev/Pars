@@ -304,6 +304,8 @@
                                                                 <div class="row" id="FormDetail2">
                                                                     <form id="FormDe2">
                                                                         <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                        <input type="hidden" id="FurtherInfoId" name="FurtherInfoId" value="0">
+
                                                                         <table class="table">
                                                                             <thead>
                                                                                 <tr>
@@ -318,7 +320,7 @@
                                                                                         <label class="control-label" for=""> صورتهای مالی حسابرسی شده</label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'صورتهای مالی حسابرسی شده');"/>
+                                                                                        <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'صورتهای مالی حسابرسی شده');" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadLastAuditingTaxList"> </div>
@@ -329,7 +331,7 @@
                                                                                         <label class="control-label" for=""> اظهارنامه مالیاتی</label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_StatementTaxList" id="StatementTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اظهارنامه مالیاتی');"/>
+                                                                                        <input type="file" name="Result_Final_StatementTaxList" id="StatementTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اظهارنامه مالیاتی');" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadStatementTaxList"> </div>
@@ -358,7 +360,7 @@
 
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اساسنامه');"  />
+                                                                                        <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اساسنامه');" />
 
                                                                                     </td>
                                                                                     <td>
@@ -371,7 +373,7 @@
                                                                                         <label class="control-label" for="">  روزنامه رسمی </label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'روزنامه رسمی');"  />
+                                                                                        <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'روزنامه رسمی');" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadOfficialNewspaper">

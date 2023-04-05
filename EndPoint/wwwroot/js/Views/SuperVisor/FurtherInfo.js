@@ -514,6 +514,7 @@
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/FurtherInfo/Get_FurtherInfo/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+                $("#FurtherInfoId").val(res.data.furtherInfoId);
 
                 if (res.isSuccess) {
                     if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
@@ -1204,7 +1205,7 @@
 
     }
 
-    function saveCorporateGovernance(e) {
+    function saveCorporateGovernance(e, id = null) {
 
         $(e).attr("disabled", "");
 
@@ -1213,7 +1214,7 @@
             $(e).removeAttr("disabled");
 
             if (res.isSuccess) {
-                getCorporateGovernance(ID);
+                getCorporateGovernance(id);
                 // intiFormSingelAnswer(FormId, $("#RequestIdForms").val());
                 alertB("ثبت", "اطلاعات ثبت شد", "success");
             }

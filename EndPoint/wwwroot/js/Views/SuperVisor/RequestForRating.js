@@ -697,6 +697,7 @@
                     $("#ContentContract").val(res.data.contentContract);
                     $("#PriceContract").val(res.data.priceContract);
                     $("#Tax").val(res.data.tax);
+
                     if (getlstor("loginName") === "8") {
                         $("#EvaluationFile").val(res.data.evaluationFile);
                     }

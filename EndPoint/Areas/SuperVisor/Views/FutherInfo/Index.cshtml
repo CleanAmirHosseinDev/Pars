@@ -304,6 +304,8 @@
                                                             <div class="row" id="FormDetail2">
                                                                 <form id="FormDe2">
                                                                     <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
+                                                                    <input type="hidden" id="FurtherInfoId" name="FurtherInfoId" value="0">
+                                                                    
                                                                     <table class="table">
                                                                         <thead>
                                                                             <tr>
@@ -835,7 +837,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
 
-                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveCorporateGovernance(this)"> ثبت </button>
+                                                                                                        <button title="ثبت" class="btn btn-success fontForAllPage" type="button" onclick="Web.FurtherInfo.SaveCorporateGovernance(this,@ViewBag.id)"> ثبت </button>
 
                                                                                                     </div>
                                                                                                 </div>

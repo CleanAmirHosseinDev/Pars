@@ -117,7 +117,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                         {
                             nameof(q_Entity.Entity.FileName1),request.FileName1
                         },
-                    }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and CustomerId={1} ", request.DataFormQuestionId,request.RequestId));
+                    }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and RequestId={1} ", request.DataFormQuestionId,request.RequestId));
                 }
                 #region Upload Image
 

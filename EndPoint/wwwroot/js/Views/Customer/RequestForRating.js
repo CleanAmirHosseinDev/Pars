@@ -682,10 +682,10 @@
                 if (res.isSuccess) {
 
                     $("#SaveDate").html(res.data.saveDateStr);
-                    $("#PriceFee").html(moneyCommaSepWithReturn(res.data.priceContract.toString()));
-                    $("#PriceFee2").html(moneyCommaSepWithReturn(res.data.priceContract.toString()));
+                    $("#PriceFee").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#PriceFee2").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
                     $("#TaxPrice").html(moneyCommaSepWithReturn(res.data.tax.toString()));
-                    $("#TotalPrice").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#TotalPrice").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
                     initCustomer();
 
                 }

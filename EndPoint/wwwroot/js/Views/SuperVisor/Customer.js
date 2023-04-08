@@ -39,6 +39,7 @@
                     $("#LabelTypeGroupCompanies").html("نوع فعالیت");
                     $("#LabelEconomicCode").html("شماره کارت بازرگانی");
                     $("#LabelCompanyName").html("نام و نام خانوادگی");
+                    $("#Span_Label_AgentMobile").html("شماره موبایل");
                 }
                 else {
 
@@ -47,6 +48,7 @@
                     $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
                     $("#LabelEconomicCode").html("شماره ثبت");
                     $("#LabelCompanyName").html("نام شرکت");
+                    $("#Span_Label_AgentMobile").html("شماره نماینده");
                 }
 
 

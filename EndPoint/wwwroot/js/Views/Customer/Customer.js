@@ -39,7 +39,8 @@
                 if ($("#TypeServiceRequestedId").val() == null) {
                     $(".fullNameInLayout").html(getlstor("fullName"));
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
-                    alertB("ثبت", "پروفایل شما ویرایش شد.", "success");
+                    /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
+                    goToUrl("/Customer/RequestForRating/Index");
                 } else {
                     goToUrl("/Customer/RequestForRating/Index");
                 }
@@ -95,6 +96,9 @@
                 $("#CustomerPersonalityType").val(resSingle.customerPersonalityType);
 
                 if (!isEmpty(resSingle.customerPersonalityType)) $("#divCustomerPersonalityType").hide();
+
+                temp_OnChangeCustomerPersonalityType(resSingle.customerPersonalityType);
+
 
                 $("#TypeGroupCompanies").html(strTypeGroupCompanies);
                 $("#TypeGroupCompanies").val(resSingle.typeGroupCompanies);
@@ -504,9 +508,15 @@
 
     function onChangeCustomerPersonalityType(e) {
 
+        temp_OnChangeCustomerPersonalityType($(e).val());
+
+    }
+
+    function temp_OnChangeCustomerPersonalityType(val) {
+
         $("label[class='error']").text('');
 
-        if ($(e).val() == "223") {
+        if (val == "223") {
 
             $(".form-group").hide();
             $(".form-group.FormIsShow").show();
@@ -526,7 +536,7 @@
             $("#Span_Label_AgentMobile").html("شماره نماینده");
         }
 
-        $("#CustomerPersonalityType").val($(e).val());
+        $("#CustomerPersonalityType").val(val);
 
     }
 

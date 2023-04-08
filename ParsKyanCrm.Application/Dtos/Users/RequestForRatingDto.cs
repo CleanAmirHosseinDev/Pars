@@ -22,6 +22,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? DestLevelStepIndex { get; set; }
 
+        public int? UserID { get; set; }
+
     }
     public class RequestForRatingDto
     {

@@ -322,6 +322,7 @@
                         $(".NotShowRequiredLabel").hide();
                         $("#LabelEconomicCode").html("شماره کارت بازرگانی");
                         $("#LabelTypeGroupCompanies").html("نوع فعالیت");
+                        $("#Span_Label_AgentMobile").html("شماره موبایل");
                     }
                     else {
 
@@ -329,6 +330,7 @@
                         $("#LabelEconomicCode").html("شماره ثبت");
                         $(".NotShowRequiredLabel").show();
                         $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
+                        $("#Span_Label_AgentMobile").html("شماره نماینده");
                     }
 
                     $("#AddressCompany").val(res.addressCompany);

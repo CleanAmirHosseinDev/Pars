@@ -97,7 +97,7 @@
             case 1:
                 intiFormShow(1, "1,2,7,8", ID);
                 getFurtherInfo(ID);
-                intiFormShow(26, '1,2,3,4,11', ID);
+                intiFormShow(26, '1,2,3,4,11,12', ID);
                 
                 break;
             case 2:

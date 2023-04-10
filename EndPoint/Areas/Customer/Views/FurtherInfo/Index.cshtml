@@ -141,7 +141,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تعداد سهام</label>
-                                                                                <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control"/>
+                                                                                <input type="text" name="Answer8" id="OwnershipCount" placeholder="تعداد سهام" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="Web.Customer.OnkeuUpInAmountOsLastSales(this);"/>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -165,7 +165,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <label class="control-label" for="">سابقه مدیریتی (به ماه)</label>
+                                                                                <label class="control-label" for="">سابقه سایر سوابق کاری (به ماه)</label>
                                                                                 <input type="text" name="Answer10" id="ManagersExperience" placeholder="سابقه مدیریتی " class="form-control" />
                                                                             </div>
                                                                         </div>
@@ -256,7 +256,13 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">فایل گواهی دوره </label>
-                                                                                <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر فایل گواهی دوره');" ><div id="DivCertificationCourses"  ></div>
+                                                                                <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر فایل گواهی دوره');"><div id="DivCertificationCourses"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                                                <label class="control-label" for="">فایل ضمیمه آموزشی </label>
+                                                                                <input type="file" name="Result_Final_FileName2" id="CertificationCoursesAttach" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر فایل ضمیمه آموزشی');"><div id="DivCertificationCoursesAttach"></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -265,7 +271,7 @@
                                                                     <div class="col-lg-6">
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
-                                                                                <button class="btn btn-success fontForAllPage" id="btnform26" type="button" onclick="Web.FurtherInfo.SaveForm(this,26,'1,2,3,4,11');">
+                                                                                <button class="btn btn-success fontForAllPage" id="btnform26" type="button" onclick="Web.FurtherInfo.SaveForm(this,26,'1,2,3,4,11,12');">
                                                                                     افزودن
                                                                                 </button>
                                                                                 <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform26').html('افزودن');$('#AnswerTableId').val(0);  ">
@@ -285,6 +291,7 @@
                                                                         <th>طول دوره </th>
                                                                         <th>محل برگزاری</th>
                                                                         <th>فایل گواهی</th>
+                                                                        <th>فایل ضمیمه آموزشی</th>
                                                                         <th>عملیات</th>
                                                                     </tr>
                                                                 </thead>
@@ -370,10 +377,10 @@
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td style="text-align:right">
-                                                                                        <label class="control-label" for="">  روزنامه رسمی </label>
+                                                                                        <label class="control-label" for="">  آگهی تاسیس </label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'روزنامه رسمی');" />
+                                                                                        <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آگهی تاسیس');" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadOfficialNewspaper">

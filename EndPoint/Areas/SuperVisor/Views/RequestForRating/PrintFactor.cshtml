@@ -1,0 +1,408 @@
+﻿@{
+    ViewData["Title"] = "چاپ پیش فاکتور";
+    Layout = null;
+}
+
+
+<html>
+<head>
+    <!-- jQuery 3 -->
+    <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/iu.min.js" asp-append-version="true"></script>
+    <style>
+        @@font-face {
+            font-family: Nazanin;
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot');
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/Nazanin.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/Nazanin.ttf') format('truetype');
+            font-weight: normal;
+        }
+
+        @@font-face {
+            font-family: Nazanin;
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot');
+            src: url('/css/GlobalAreas/dist/fonts/Nazanin.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/Nazanin.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/Nazanin.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        @@font-face {
+            font-family: NazaninBold;
+            src: url('/css/GlobalAreas/dist/fonts/BNazaninBold.eot');
+            src: url('/css/GlobalAreas/dist/fonts/BNazaninBold.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/BNazaninBold.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/BNazaninBold.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        @@font-face {
+            font-family: IranNastaliq;
+            src: url('/css/GlobalAreas/dist/fonts/IranNastaliq.eot');
+            src: url('/css/GlobalAreas/dist/fonts/IranNastaliq.eot?#iefix') format('embedded-opentype'), url('/css/GlobalAreas/dist/fonts/IranNastaliq.woff') format('woff'), url('/css/GlobalAreas/dist/fonts/IranNastaliq.ttf') format('truetype');
+            font-weight: normal;
+            font-size: small
+        }
+
+
+
+        @@page {
+            margin: 0
+        }
+
+
+
+        .sheet {
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+            page-break-after: always;
+        }
+
+        /** Paper sizes **/
+        body.A3 .sheet {
+            width: 297mm;
+            height: 419mm
+        }
+
+        body.A3.landscape .sheet {
+            width: 420mm;
+            height: 296mm
+        }
+
+        body.A4 .sheet {
+            width: 210mm;
+            height: 296mm
+        }
+
+        body.A4.landscape .sheet {
+            width: 297mm;
+            height: 209mm
+        }
+
+        body.A5 .sheet {
+            width: 148mm;
+            height: 209mm
+        }
+
+        body.A5.landscape .sheet {
+            width: 210mm;
+            height: 147mm
+        }
+
+        body.letter .sheet {
+            width: 216mm;
+            height: 279mm
+        }
+
+        body.letter.landscape .sheet {
+            width: 280mm;
+            height: 215mm
+        }
+
+        body.legal .sheet {
+            width: 216mm;
+            height: 356mm
+        }
+
+        body.legal.landscape .sheet {
+            width: 357mm;
+            height: 215mm
+        }
+
+        /** Padding area **/
+        .sheet.padding-10mm {
+            padding: 10mm
+        }
+
+        .sheet.padding-15mm {
+            padding: 15mm
+        }
+
+        .sheet.padding-20mm {
+            padding: 20mm
+        }
+
+        .sheet.padding-25mm {
+            padding: 25mm
+        }
+
+        /** For screen preview **/
+        @@media screen {
+            body.A3.landscape {
+                width: 420mm
+            }
+
+            body.A3, body.A4.landscape {
+                width: 297mm
+            }
+
+            body.A4, body.A5.landscape {
+                width: 210mm
+            }
+
+            body.A5 {
+                width: 148mm
+            }
+
+            body.letter, body.legal {
+                width: 216mm
+            }
+
+                body.letter.landscape {
+                    width: 280mm
+                }
+
+                body.legal.landscape {
+                    width: 357mm
+                }
+        }
+
+
+        /** Fix for Chrome issue #273306 **/
+        @@media print {
+            body.A3.landscape {
+                width: 420mm
+            }
+
+            body.A3, body.A4.landscape {
+                width: 297mm
+            }
+
+            body.A4, body.A5.landscape {
+                width: 210mm
+            }
+
+            body.A5 {
+                width: 148mm
+            }
+
+            body.letter, body.legal {
+                width: 216mm
+            }
+
+                body.letter.landscape {
+                    width: 280mm
+                }
+
+                body.legal.landscape {
+                    width: 357mm
+                }
+        }
+
+
+
+        table, tr, th, td {
+            border: 1px solid black;
+            text-align: center;
+            font-family: Nazanin;
+        }
+        td{
+            padding:5px;
+        }
+        table.righta td{
+            text-align:right;
+        }
+
+        .Detail {
+        }
+
+        .graph-7 {
+          background-color:white;
+            color: black;
+            border: 1px solid silver;
+        }
+
+        .graph-image img {
+        }
+
+        .ContentLetter p:first-child {
+            text-indent: 30px;
+            text-align: justify;
+        }
+
+
+        p {
+            direction: rtl;
+            text-align: justify;
+            font-family: Nazanin;
+            font-size: 10pt;
+            line-height: 18px
+        }
+
+        ol {
+            list-style-type: none;
+            line-height: 23px
+        }
+
+        li {
+            direction: rtl;
+            font-family: Nazanin;
+            font-size: 10pt;
+            text-align: right;
+        }
+
+        .titr {
+            font-family: NazaninBold;
+            font-size: 11.5pt
+        }
+
+        .sBold {
+            font-family: NazaninBold;
+        }
+
+        .sBoldI {
+            font-family: NazaninBold;
+            font-style: italic;
+        }
+
+        body {
+            margin: 2em;
+            color: #fff;
+            background-color: silver;
+        }
+
+        /* override styles when printing */
+        @@media print {
+            #ptr{
+                display:none;
+            }
+            body {
+                margin: 0;
+                color: #000;
+                background-color: #fff;
+            }
+        }
+
+
+        * {
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="ptr" style="background-color: white; color: white; max-width: 210mm; margin: auto; padding: 5px; margin-bottom: 10px; box-sizing: border-box; border: 2px solid orangered;border-radius:5px">
+        <a class="btn btn-default" style="font-family:IranNastaliq" value='بازگشت' href="~/supervisor/RequestForRating/Referral/@ViewBag.id">بازگشت</a>
+    </div>
+    <div class="graph-image graph-7" style=" width: 297mm;margin:auto;" id="divPrint">
+        <section class="sheet padding-10mm">
+            <div class="print-part">
+                <table style="width:100%;border-collapse:collapse; direction:rtl;">
+                    <tr>
+                        <td rowspan="2"><span style="font-family:NazaninBold;font-size:1.25em">پيش فاکتور فروش کالا و خدمات</span></td>
+                        <td rowspan="2">
+                            <p>
+                                شماره سریال
+                                <br />
+                                <br/>
+                                تاریخ
+                            </p>
+                        </td>
+                        <td><span style="font-family:NazaninBold;color:red !important;font-size:1.25em">پیش فاکتور</span></td>
+                    </tr>
+                    <tr>
+                        <td><span id="SaveDate"></span> </td>
+                    </tr>
+
+                </table>
+                <br />
+                <table style="width:100%;border-collapse:collapse; direction:rtl" class="righta">
+                    <tr>
+                    <tr>
+                        <td colspan="3" style="text-align:center"><span style="font-family:NazaninBold;font-size:1.25em">مشخصات فروشنده</span></td>
+                       
+                    </tr>
+                    <tr>
+                        <td>شرکت رتبه بندي اعتباري پارس کیان (سهامی خاص)</td>
+                        <td> شماره اقتصادی: 411614173377</td>                       
+                        <td>شماره ثبت: 520798</td>                       
+                    </tr>
+                    <tr>
+                        <td> نشان کامل:   &nbsp&nbsp استان: تهران &nbsp&nbsp   شهرستان: تهران</td>
+                        <td>کد پستی 10 رقمی: 15969934715 </td>                       
+                        <td >شهر: تهران</td>
+                    </tr>
+                    <tr>
+                        <td> نشانی: خیابان مطهری- خیابان میرزای شیرازی شمالی- خیابان منصور- پلاک 2 - طبقه 3</td>
+                        <td colspan="2"> شماره تلفن/ نمابر: 88727819-88714209</td>
+                    </tr>
+                   
+                </table>
+                <br />
+                <table style="width: 100%; border-collapse: collapse; direction: rtl" class="righta">
+                    <tr>
+                        <td colspan="3" style="text-align:center"><span style="font-family:NazaninBold;font-size:1.25em">مشخصات خريدار</span></td>
+                    </tr>
+                    <tr>
+                        <td>نام خريدار: <span id="CustomerName"></span></td>
+                        <td>شماره کد اقتصادی <span id="EconomicCode"></span></td>                       
+                        <td>شماره ثبت / شماره م <span id="NationalCode"></span></td>                        
+                    </tr>
+                    <tr>
+                        <td>نشانی کامل: استان:</td>                        
+                        <td>کد پستی 10 رقمی:<span id="PostalCode"></span> </td>                       
+                        <td>شهر: </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">نشانی: <span id="AddressCompany"></span></td>
+                        <td>شماره تلفن / نمابر:<span id="Tel"></span> </td>
+                        
+                    </tr>
+                </table>
+                <br/>
+                    <table style="width: 100%; border-collapse: collapse; direction: rtl">
+                        <tr>
+                            <td colspan="9"><span style="font-family:NazaninBold;font-size:1.25em">مشخصات کالا یا خدمات مورد معامله</span> </td>
+                        </tr>
+                        <tr>
+                            <td>رديف</td>
+                            <td>کد</td>
+                            <td>شرح خدمات</td>
+                            <td>تعداد/ مقدار</td>
+                            <td>واحد</td>
+                            <td>مبلغ واحد (ریال)</td>
+                            <td>مبلغ کل (ریال)</td>
+                            <td> جمع ماليات وعوارض (ریال)</td>
+                            <td>
+                                جمع مبلغ کل بعلاوه جمع ماليات و عوارض
+                                (ریال)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td>بسته ارزیابی <span id="CustomerName2"></span></td>
+                            <td>1</td>
+                            <td></td>
+                            <td><span id="PriceFee"></span></td>
+                            <td><span id="PriceFee2"></span></td>
+                            <td><span id="TaxPrice"></span></td>
+                            <td><span id="TotalPrice"></span></td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table style="width: 100%; border-collapse: collapse; direction: rtl">
+                        <tr>
+                            <td colspan="2">توضيحات: خواهشمند است مبلغ پيش فاکتور <span style="font-family:NazaninBold">فقط از حساب متعلق به خريدار</span> به شماره شبا IR030560083581002685706001 ، بانک سامان کد 835 شعبه پارک ساعی- وليعصر، واريز گردد</td>
+                        </tr>
+                        <tr style="height:60px">
+                            <td width="50%">مهر و امضاء فروشنده</td>
+                            <td width="50%">مهر و امضاء خريدار</td>
+                        </tr>
+                    </table>
+
+
+            </div>
+        </section>
+    </div>
+
+    <script src="~/lib/Noty/jquery.noty.js" asp-append-version="true"></script>
+
+    <script src="~/lib/Loader/Loader.js" asp-append-version="true"></script>
+
+    <script src="~/js/Views/SuperVisor/all.min.js" asp-append-version="true"></script>
+
+    <script>
+        Web.Layout.InitLayout();
+        Web.RequestForRating.PrintPerFactor(@ViewBag.id);
+
+    </script>
+</body>
+</html>
+

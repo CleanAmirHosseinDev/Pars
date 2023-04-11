@@ -841,8 +841,8 @@
 
             if (res.isSuccess) {
 
-                alertB("ثبت", "درخواست شما ارسال مجدد ارسال شد", "success");
-                goToUrl("/Customer/RequestForRating/Index");
+                alertB("ثبت", "درخواست شما به مسئوا قرارداد ارسال شد منتظر تماس ما باشید", "success");
+              //  goToUrl("/Customer/RequestForRating/Index");
             }
             else {
 

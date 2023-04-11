@@ -1239,6 +1239,13 @@ function ComboBoxWithSearch(selector = '.select2', dir = 'rtl') {
     }
 
 }
+function ComboBoxWithSearchAndModal(selector = '.select2', idModal = '#modalMain') {
+
+    $(selector).select2({
+        dropdownParent: $(idModal)
+    });
+
+}
 function ResetComboBoxWithSearch(id) {
 
     try {
@@ -1994,7 +2001,11 @@ function CloseModal() {
     }
 
 }
+function ShowModal() {
 
+    $('#modalMain').modal('show');
+
+}
 function getTableId(e) {
 
     try {

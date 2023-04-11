@@ -1,3 +1,2 @@
 ﻿
-alter table RequestReferences
-add ReciveUser nvarchar(max) null;
+

@@ -154,7 +154,23 @@
 
             </section>
             <!-- /.content -->
-            @*@Html.Partial("P_Modal")*@
+            <div class="modal fade bd-example-modal-lg" role="dialog" id="modalMain">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="hMainTitleModal">Modal Header</h4>
+                        </div>
+                        <div class="modal-body" id="divMainBodyModal">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                            <button type="button" class="btn btn-info" id="btnSaveModal">ذخیره</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer text-left">

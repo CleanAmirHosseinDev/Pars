@@ -514,9 +514,10 @@
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/FurtherInfo/Get_FurtherInfo/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
-                $("#FurtherInfoId").val(res.data.furtherInfoId);
-
+               
                 if (res.isSuccess) {
+                    $("#FurtherInfoId").val(res.data.furtherInfoId);
+
                     if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
                         $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
@@ -899,9 +900,7 @@
                     }
 
                     strFormAnswer += "<button title='ویرایش' class='btn btn-warring fontForAllPage' type='button' onclick='Web.FurtherInfo.GetFormAnswer(" + FormID + "," + res.data[i].answerTableId + ")' ><i class='fa fa-edit'></i></button>";
-                    if ($("#sdfcddf").val() == "1") {
-                        strFormAnswer += "<button style='margin-right:5px' type='button' title='حذف' class='btn btn-warrnig fontForAllPage changeData' onclick='Web.FurtherInfo.Delete_DataFormAnswerTables(" + FormID + ',"' + ColumNum + '",' + res.data[i].answerTableId + ");'><i class='fa fa-remove'></i></button>";
-                    }
+                   
                     strFormAnswer += "</td></tr>";
                 }
                 $("#FormDetailAnswer" + FormID).html(strFormAnswer);

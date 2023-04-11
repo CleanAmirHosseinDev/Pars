@@ -18,6 +18,7 @@
     <input type="hidden" id="Tax" name="Tax" value="0" />
     <input type="hidden" id="LastFinancialDocument" name="LastFinancialDocument" value="0" />
     <input type="hidden" id="LeaderEvaluationFile" name="LeaderEvaluationFile" value="0" />
+    <input type="hidden" id="ConfirmCommitteeEvaluation" name="ConfirmCommitteeEvaluation" value="0" />
     <h4> آپلود فایل اکسل ارزیابی مربوط به ارزیاب</h4>
     <div class="form-horizontal">
         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
@@ -68,14 +69,22 @@
     <div class="form-horizontal">
         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="file" id="CommitteeEvaluationFile" name="Result_Final_CommitteeEvaluationFile" accept=".xlsx" />
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            تایید نتایج ارزیابی
+                            <input type="checkbox" id="ConfirmCommitteeEvaluation" name="ConfirmCommitteeEvaluation" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="col-md-6 right">
                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.SaveContractAndFinancialDocumentsCommittee(this);">
                             ثبت   <i class="fa fa-save"></i>
@@ -108,6 +117,7 @@
     <input type="hidden" id="EvaluationFile" name="EvaluationFile" value="0" />
     <input type="hidden" id="LastFinancialDocument" name="LastFinancialDocument" value="0" />
     <input type="hidden" id="LeaderEvaluationFile" name="LeaderEvaluationFile" value="0" />
+    <input type="hidden" id="ConfirmCommitteeEvaluation" name="ConfirmCommitteeEvaluation" value="0" />
 
     <h4> آپلود فایل اکسل ارزیابی مربوط به مسئول امور ارزیابی</h4>
     <div class="form-horizontal">
@@ -116,6 +126,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-12">
+                            
                             <input type="file" id="LeaderEvaluationFile" name="Result_Final_LeaderEvaluationFile" accept=".xlsx" />
                         </div>
                     </div>
@@ -137,32 +148,33 @@
 
 <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 result" >
             <div class="form-group">
                 <div class="col-md-12">
                     <strong>نتایج ارزیابی شده توسط ارزیاب</strong>
-                    <div id="divDownload_EvaluationFile"></div>
+                    <div id="divDownload_EvaluationFile" style="margin-top:20px"></div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-4 result">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <strong> نتایج ارزیابی شده با تغییرات مسول امور ارزیابی </strong>
+                    <div id="divDownload_LeaderEvaluationFile" style="margin-top:20px"></div>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <div class="col-md-12">
                     <strong> نتایج ارزیابی شده با تغییرات کمیته ارزیابی </strong>
-                    <div id="divDownload_CommitteeEvaluationFile"></div>
+                    <div id="divDownload_CommitteeEvaluationFile" style="margin-top:20px"></div>
                 </div>
             </div>
 
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <div class="col-md-12">
-                    <strong> نتایج ارزیابی شده با تغییرات مسول امور ارزیابی </strong>
-                    <div id="divDownload_LeaderEvaluationFile"></div>
-                </div>
-            </div>
 
-        </div>
     </div>
    
 

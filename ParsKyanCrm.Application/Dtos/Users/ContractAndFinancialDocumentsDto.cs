@@ -114,6 +114,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_LeaderEvaluationFile { get; set; }
+        public string ConfirmCommitteeEvaluation { get; set; }
 
     }
 }

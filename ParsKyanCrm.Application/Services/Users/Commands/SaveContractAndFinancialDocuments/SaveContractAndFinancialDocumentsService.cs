@@ -196,7 +196,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.FinalPriceContract.Value * 9:0)/100,0)
-                        },                        
+                        },
                         {
                             nameof(q_Entity.Entity.DicCountPerecent),request.DicCountPerecent
                         }
@@ -220,6 +220,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.LeaderEvaluationFile),request.LeaderEvaluationFile
+                        }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.ConfirmCommitteeEvaluation),request.ConfirmCommitteeEvaluation=="on"?true:false
                         },
 
 

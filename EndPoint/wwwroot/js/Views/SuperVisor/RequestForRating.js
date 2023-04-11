@@ -17,8 +17,7 @@
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
-                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
-                }
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";               }
 
                 $("#cboSelectLS").html(strKindOfCompany);
 
@@ -64,6 +63,9 @@
                         + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-default fontForAllPage'><i class='fa fa-eye'></i> </a>");
 
                     if ((n == res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole == "5") || (n == "5" && res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7")) {
+                        strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
+                    }
+                    if ((n == 8 || n == 1) && res.data[i].destLevelStepIndex > "7") {
                         strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
                     }
                     strM += "</td></tr>";
@@ -699,9 +701,17 @@
                     $("#ContentContract").val(res.data.contentContract);
                     $("#PriceContract").val(res.data.priceContract);
                     $("#Tax").val(res.data.tax);
-
+                    if (res.data.committeeEvaluationFile != null || res.data.confirmCommitteeEvaluation) {
+                        $("#frmFormMain2").remove();
+                        $("#frmFormMain4").remove();
+                    } else {
+                        $("#ConfirmCommitteeEvaluation").val(res.data.confirmCommitteeEvaluation);
+                    }
                     if (getlstor("loginName") === "8") {
                         $("#EvaluationFile").val(res.data.evaluationFile);
+                    }
+                    if (getlstor("loginName") === "6") {
+                        $("div.result").remove();
                     }
                     $("#DisCountMoney").val(res.data.disCountMoney);
                     $("#DicCountPerecent").val(res.data.dicCountPerecent);

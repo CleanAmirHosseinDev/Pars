@@ -464,11 +464,4 @@
 		<ProjectReference Include="..\ParsKyanCrm.Infrastructure\ParsKyanCrm.Infrastructure.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Content Update="Areas\SuperVisor\Views\FutherInfo\Index1.cshtml">
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
-	</ItemGroup>
-
 </Project>

@@ -1205,6 +1205,48 @@
 
     });
 
+    function printPerFactoring(e) {
+
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        goToUrl("/superVisor/RequestForRating/PrintFactor/" + id);
+    }
+
+    function printPerFactor(id = null) {
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+
+                    $("#SaveDate").html(res.data.saveDateStr);
+                    $("#PriceFee").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#PriceFee2").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#TaxPrice").html(moneyCommaSepWithReturn(res.data.tax.toString()));
+                    $("#TotalPrice").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
+                    initCustomerFactor(id);
+
+                }
+
+            }, true);
+        }
+    }
+
+    function initCustomerFactor(id=null) {
+
+        AjaxCallAction("GET", "/api/superVisor/Customers/Get_Customers/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+            if (res != null) {
+                $("#CustomerName2").html(res.companyName);
+                $("#CustomerName").html(res.companyName);
+                $("#EconomicCode").html(res.economicCode);
+                $("#NationalCode").html(res.nationalCode);
+                $("#PostalCode").html(res.postalCode);
+                $("#AddressCompany").html(res.addressCompany);
+                $("#Tel").html(res.tel);
+            }
+        }, true);
+
+    }
 
 
     web.RequestForRating = {
@@ -1240,7 +1282,9 @@
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         CalDisPerecent: calDisPerecent,
         CalDisRiyal: calDisRiyal,
-
+        PrintPerFactor: printPerFactor,
+        PrintPerFactoring: printPerFactoring,
+        InitCustomerFactor: initCustomerFactor
     };
 
 })(Web, jQuery);

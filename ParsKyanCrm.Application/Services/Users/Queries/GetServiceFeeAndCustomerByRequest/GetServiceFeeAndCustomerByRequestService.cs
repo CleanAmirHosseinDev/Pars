@@ -60,9 +60,12 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 string strNamesAuthorizedSignatoriesValue = "";
 
-                string[] NA = qCustomer.NamesAuthorizedSignatories.Split(",");
-                foreach (string N in NA)
-                    strNamesAuthorizedSignatoriesValue += N + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                if (!string.IsNullOrEmpty(qCustomer.NamesAuthorizedSignatories))
+                {
+                    string[] NA = qCustomer.NamesAuthorizedSignatories.Split(",");
+                    foreach (string N in NA)
+                        strNamesAuthorizedSignatoriesValue += N + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
+                }
 
                 if (qRequest.KindOfRequest==66)
                 {

@@ -74,21 +74,24 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 }
 
                 var qRequest = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == request.CustomerId && p.IsFinished == false);
-                if (qRequest!=null)
+                if (qRequest != null)
                 {
                     var RequestReferences = await _context.RequestReferences.FirstOrDefaultAsync(p => p.Requestid == qRequest.RequestId);
-                    if (qRequest != null)
-                        if (RequestReferences != null)
+                    if (RequestReferences != null)
+                    {
+                        if (RequestReferences.DestLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری")
                         {
-                            if (RequestReferences.DestLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری")
-                            {
-                                return "به دلیل وجود یک درخواست باز امکان ویرایش پروفایل از طرف شما وجود ندارد در صورت نیاز به تغییرات لطفا با مدیر سامانه تماس بگیرید";
+                            return "به دلیل وجود یک درخواست باز امکان ویرایش پروفایل از طرف شما وجود ندارد در صورت نیاز به تغییرات لطفا با مدیر سامانه تماس بگیرید";
 
-                            }
                         }
+                    }
+
+                    var qCAFD = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == qRequest.RequestId);
+                    if (qCAFD != null) return "امکان ویرایش پروفایل وجود ندارد چون قرارداد ثبت شده است";
+
                 }
-              
-                   
+
+
                 return string.Empty;
             }
             catch (Exception ex)

@@ -36,7 +36,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
         {
             try
             {
-                List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "isnull((max(cast(ContractCode as bigint)) + 1),'1000') as ContractCode"));
+                List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "cast(isnull((max(cast(ContractCode as bigint)) + 1),'1000') as nvarchar(max)) as ContractCode"));
                 if (q != null) return q.FirstOrDefault().ContractCode.ToString();
                 return "1000";
             }

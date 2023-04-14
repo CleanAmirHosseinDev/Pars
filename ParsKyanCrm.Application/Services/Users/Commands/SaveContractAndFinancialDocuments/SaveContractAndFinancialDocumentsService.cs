@@ -38,7 +38,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             {
                 List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "cast(isnull((max(cast((isnull(ContractCode,'999')) as bigint))+1),1) as nvarchar(max)) as ContractCode"));
                 if (q != null) return q.FirstOrDefault().ContractCode.ToString();
-                return "1000";
+                return "117";
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             {
                 List<ContractAndFinancialDocumentsDto> q = Ado_NetOperation.ConvertDataTableToList<ContractAndFinancialDocumentsDto>(Ado_NetOperation.GetAll_Table(typeof(ContractAndFinancialDocuments).Name, "cast(isnull((max(cast((isnull(ContractMainCode,'999')) as bigint))+1),1) as nvarchar(max)) as ContractMainCode"));
                 if (q != null) return q.FirstOrDefault().ContractMainCode.ToString();
-                return "1000";
+                return "117";
             }
             catch (Exception ex)
             {
@@ -196,7 +196,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.FinalPriceContract.Value * 9:0)/100,0)
-                        },                        
+                        },
                         {
                             nameof(q_Entity.Entity.DicCountPerecent),request.DicCountPerecent
                         }
@@ -220,6 +220,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.LeaderEvaluationFile),request.LeaderEvaluationFile
+                        }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.ConfirmCommitteeEvaluation),request.ConfirmCommitteeEvaluation=="on"?true:false
                         },
 
 

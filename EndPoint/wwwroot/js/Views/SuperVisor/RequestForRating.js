@@ -485,6 +485,7 @@
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
+            objE = e;
             tempSaveRFR(e);
 
         }

@@ -22,7 +22,7 @@
             if (res.isSuccess) {
 
                 var strM = '';
-              
+
                 for (var i = 0; i < res.data.length; i++) {
                     var st = "", st2 = "";
                     if (res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7") {
@@ -42,7 +42,7 @@
                     }
                     strM += "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> </a>";
                     if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
-                        if (res.data[i].destLevelStepIndex==4) {
+                        if (res.data[i].destLevelStepIndex == 4) {
                             strM += "<a style='margin-right:5px;' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward'></i> تایید قرارداد و بارگذاری قرارداد </a>";
 
                         }
@@ -54,8 +54,8 @@
                     }
                     if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
                         strM += "<a style='margin-right:5px;color:black' title='اصلاح/ تکمیل اطلاعات'  class='btn btn-edit fontForAllPage' href='/Customer/Customer/EditCustomer/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اصلاح/ تکمیل اطلاعات اولیه</a>";
-                        strM +="<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId+");'>ارسال مجدد </button >";
-                     
+                        strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + ");'>ارسال مجدد </button >";
+
                     }
                     if (res.data[i].destLevelStepIndex == 7) {
                         strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
@@ -65,7 +65,7 @@
 
                     }
 
-                      
+
                     //if (res.data[i].destLevelStepIndex == 4) {
                     //        strM += "<a style='margin-right:5px' title='مشاهده و ارجاع' href='/Customer/RequestForRating/ContractPrinting?id=" + res.data[i].requestId + "' class='btn btn-print fontForAllPage'> <i class='fa fa-print'></i></a>"
 
@@ -77,7 +77,7 @@
                     //        strM += "<a style='margin-right:5px' title='تسویه حساب' href='#' class='btn btn-info fontForAllPage'> <i class='fa fa-file-text-o'></i> تسویه حساب</a>"
 
                     //    }
-                    strM +="</td></tr>";
+                    strM += "</td></tr>";
                 }
 
                 $("#tBodyList").html(strM);
@@ -90,18 +90,18 @@
     function checkIsfinish(id = null) {
         var isFinish = false;
         AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1, RequestId: id }), true, function (res) {
-           
+
             if (res.isSuccess) {
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].isFinished) {
                         isFinish = true;
                     }
                 }
-            }         
-           
+            }
+
         }, false);
         return isFinish;
-      
+
     }
 
     function registingFirstRequest(successCallback = null) {
@@ -113,7 +113,7 @@
 
                     if (res.data.length == 0) {
                         goToUrl("/Customer/Customer/EditCustomer");
-                       
+
                     }
                 }
 
@@ -178,7 +178,7 @@
 
             if (res.isSuccess) {
 
-              //  alertB("پیام", res.message, "success");
+                //  alertB("پیام", res.message, "success");
 
                 goToUrl("/Customer/RequestForRating/Index");
 
@@ -194,7 +194,7 @@
     }
 
     function saveContractAndFinancialDocument(e) {
-        if ($("#EvaluationFile").val() != null && $("#EvaluationFile").val()!="") {
+        if ($("#EvaluationFile").val() != null && $("#EvaluationFile").val() != "") {
             if (document.getElementById("LastFinancialDocument").files.length == 0) {
                 alertB("هشدار", "فایل  سند تسویه را انتخاب نکرده اید!.", "warning");
             } else {
@@ -221,7 +221,7 @@
 
             }
         }
-       else if (document.getElementById("ContractDocument").files.length == 0 || document.getElementById("FinancialDocument").files.length == 0) {
+        else if (document.getElementById("ContractDocument").files.length == 0 || document.getElementById("FinancialDocument").files.length == 0) {
             alertB("هشدار", "فایل قرارداد یا سند پرداخت را انتخاب نکرده اید!.", "warning");
         }
         else {
@@ -248,7 +248,7 @@
 
         }
 
-        }
+    }
 
     function systemSeting_ComboRequestForRating() {
 
@@ -289,12 +289,12 @@
             }
 
         }, true);
-       
-          
+
+
     }
 
     function createTimeLine(id = null, isFinish) {
-       
+
         AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestReferencessService", JSON.stringify({ RequestId: id }), true, function (res) {
 
             if (res != null) {
@@ -309,8 +309,8 @@
                         strTimeLine += "<div class='timeline-entry-inner'>";
 
                         strTimeLine += "<time class='timeline-time' datetime=''>";
-                        strTimeLine += "<span class='date'>" + res.data[i].sendTimeStr+"</span>";
-                        strTimeLine += "<span class='LTRDirection'>" + res.data[i].sendTimeTimeStr+"</span>";
+                        strTimeLine += "<span class='date'>" + res.data[i].sendTimeStr + "</span>";
+                        strTimeLine += "<span class='LTRDirection'>" + res.data[i].sendTimeTimeStr + "</span>";
                         strTimeLine += "</time>";
 
                         strTimeLine += "<div class='timeline-icon " + bgColor + "'>";
@@ -339,8 +339,8 @@
                         }
                         else {
                             if (res.data[i].sendUser == null) {
-                              //  strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
-                              //  strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
+                                //  strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
+                                //  strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
                             } else {
                                 strTimeLine += "<span>" + res.data[i].userRoleDes + ": </span>";
                                 strTimeLine += "<span class='sender'>" + res.data[i].realName + "</span>";
@@ -404,9 +404,9 @@
                     strTimeLine += "</div>";
                     strTimeLine += "</article>";
                 }
-               
+
                 $("#TimeLine").html(strTimeLine);
-                
+
             }
 
         }, true);
@@ -421,20 +421,20 @@
 
                 getU("/css/GlobalAreas/Views/Customer/RequestForRating/P_Referral.html", function (resG) {
 
-                    $("#divMAS").html(resG);                   
+                    $("#divMAS").html(resG);
                     $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
                     $("#phch").show();
 
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
 
-                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) +"'>" + res.data[i].destLevelStepIndexButton + "</button>";
-                  
+                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+
                     }
 
                     $("#bLLSS").html(htmlB);
                     showContract();
-                   // Ckeditor("ReferralExplanation");
+                    // Ckeditor("ReferralExplanation");
                 });
             }
             else {
@@ -476,7 +476,7 @@
 
     function getDocument() {
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-        
+
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
@@ -501,16 +501,16 @@
                         $("#ContractMainCode").val(res.data.contractMainCode);
                         $("#CommitteeEvaluationFile").val(res.data.committeeEvaluationFile);
                         $("#Tax").val(res.data.tax);
-                        if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile!="")) {
+                        if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile != "")) {
                             $("#FirstDoc").remove();
                             $("#ContractDocument").val(res.data.contractDocument);
                             $("#FinancialDocument").val(res.data.financialDocument);
-                             
+
                         }
                         else {
                             $("#UpLastFinancialDocument").remove();
                         }
-                        
+
                         if (res.data.financialDocument != null && res.data.financialDocument != "") {
                             $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
@@ -522,7 +522,7 @@
                             $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                         }
                     }
-                    
+
                 }
 
             }, true);
@@ -542,26 +542,25 @@
     function initContract(id = null) {
 
         if (!isEmpty(id) && id != 0) {
-           
+
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res.isSuccess) {
-                    if (res.data.contractCode != null )
-                    {
+                    if (res.data.contractCode != null) {
                         if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile != "")) {
                             var strhtml = "<div class='bc'><p> قرارداد نمایش متن</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
 
                             $("#divDownloadContract").html(strhtml);
                             $("#divDownloadContract").show();
-                            $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a><a style='margin-right:5px' href='/customer/RequestForRating/PrintFactor/" + id +"' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a >");
+                            $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a><a style='margin-right:5px' href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a >");
 
                         } else {
                             var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس همه صفحات آن <span style='color:red; font-size:1.5em;'>امضاء شود</span> و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
-                            
+
                             strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                             $("#divDownloadContract").html(strhtml);
                             $("#divDownloadContract").show();
-                            $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a href='/customer/RequestForRating/PrintFactor/" + id +"' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><button style='margin-right:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this,"+id+")'>عدم تایید </button><input type='text' id='Comment' name='Comment' />");
+                            $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><button style='margin-right:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")'>عدم تایید </button><input type='text' id='Comment' name='Comment' />");
 
                         }
 
@@ -577,13 +576,13 @@
                         $("#FinalPriceContract").val(res.data.finalPriceContract);
                         $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
 
-                        var strhtml = "<div class='bc'><a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i> پیش نمایش نمونه قرارداد  </a ><a style='margin-right:5px' href='/customer/RequestForRating/PrintFactor/" + id +"' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><br/><br/>";
-                            strhtml+= "<p>آیا قرارداد را تایید می کنید؟ در صورت عدم تایید قرارداد، در خواست شما به کارشناس ارسال خواهد شد </p><input type = 'hidden' id ='RequestId' name ='RequestId' value='" + id + "' />";
-                        strhtml += " <button type='button' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this," + id + ")'>تایید  قرارداد</button><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control'></textarea><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id +")'>عدم تایید قرارداد </button><br /></div>";
-                        $("#divOkContract").html(strhtml);                        
+                        var strhtml = "<div class='bc'><a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i> پیش نمایش نمونه قرارداد  </a ><a style='margin-right:5px' href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><br/><br/>";
+                        strhtml += "<p>آیا قرارداد را تایید می کنید؟ در صورت عدم تایید قرارداد، در خواست شما به کارشناس ارسال خواهد شد </p><input type = 'hidden' id ='RequestId' name ='RequestId' value='" + id + "' />";
+                        strhtml += " <button type='button' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this," + id + ")'>تایید  قرارداد</button><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control'></textarea><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")' type='button'>عدم تایید قرارداد </button><br /></div>";
+                        $("#divOkContract").html(strhtml);
                     }
-                    $("#ContractShow").html(res.data.contentContract);                   
-                   
+                    $("#ContractShow").html(res.data.contentContract);
+
                     //$('input[type="text"], textarea').each(function () {
                     //    //  $(this).attr('readonly', 'readonly');
                     //   // var text_classname = $(this).attr('name');
@@ -629,21 +628,21 @@
     //    }
     //}
 
-    function okContract(e,id=null) {
+    function okContract(e, id = null) {
 
 
         $(e).removeAttr("disabled");
         AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmOkContract"), true, function (res) {
 
-            if (res.isSuccess) {               
-               
+            if (res.isSuccess) {
+
                 $("#divOkContract").remove();
                 var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div><br/><br/>";
 
                 strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                 $("#divDownloadContract").html(strhtml);
                 $("#divDownloadContract").show();
-                $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a style='margin-right:5px;' href='/customer/RequestForRating/PrintFactor/" + id +"' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a >");
+                $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a style='margin-right:5px;' href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a >");
 
             } else {
                 alertB("خطا", res.message, "error");
@@ -653,7 +652,7 @@
 
 
 
-       
+
     }
 
     function cancelContract(e) {
@@ -722,21 +721,21 @@
                     } else {
                         $("#ptr").html("<p> این نسخه قرارداد اصلی نمی باشد.</p>");
                     }
-                   
+
                     $("#ContractCode").html(res.data.contractCode);
                     $('input[type="text"], textarea').each(function () {
                         //  $(this).attr('readonly', 'readonly');
-                       // var text_classname = $(this).attr('name');
+                        // var text_classname = $(this).attr('name');
                         var value = $(this).val();
                         var new_html = ('<storang>' + value + '</storang>');
                         $(this).replaceWith(new_html);
                     });
-                    if (res.data.contentContract != null && res.data.contentContract !="") {
+                    if (res.data.contentContract != null && res.data.contentContract != "") {
                         $("#ptr").show();
                     } else {
                         $("#ptr").hide();
                     }
-                   
+
                 }
 
             }, true);
@@ -744,7 +743,7 @@
     }
     function printDiv() {
         $("#ptr").hide();
-        window.print();       
+        window.print();
     }
 
     function showContract() {
@@ -752,9 +751,9 @@
         getContractInfo(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
     }
 
-    
 
-    function saveReferralRequestForRating(e, Comment=null) {
+
+    function saveReferralRequestForRating(e, Comment = null) {
 
         $(".ButtonOpperationLSSlss").attr("disabled", "");
 
@@ -788,24 +787,24 @@
 
     }
 
-    function saveReferralRequestForRatingAgain(e, Requestid=null) {
+    function saveReferralRequestForRatingAgain(e, Requestid = null) {
 
-       
+
         var objJ = {};
-        objJ.DestLevelStepIndex ="2";
+        objJ.DestLevelStepIndex = "2";
         objJ.Comment = "اطلاعات اصلاح شد";// getDataCkeditor("ReferralExplanation");
         objJ.LevelStepAccessRole = "1";
         objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
         objJ.Request = {};
         objJ.Request.Requestid = Requestid;
         objJ.Request.KindOfRequest = '0';
-        objJ.SmsContent =null;
-        objJ.SmsType =  null;
+        objJ.SmsContent = null;
+        objJ.SmsType = null;
         objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
 
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 
-        
+
             if (res.isSuccess) {
 
                 alertB("ثبت", "درخواست شما ارسال مجدد ارسال شد", "success");
@@ -825,24 +824,28 @@
 
 
         var objJ = {};
-        objJ.DestLevelStepIndex = "2";
+        objJ.DestLevelStepIndex = "3";
         objJ.Comment = $("#Comment2").val();
-        objJ.LevelStepAccessRole = "1";
-        objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+        objJ.LevelStepAccessRole = "4";
+        objJ.LevelStepStatus = "در انتظار تنظیم و اصلاح قرارداد توسط کارشناس امور قراردادها";
         objJ.Request = {};
         objJ.Request.Requestid = Requestid;
         objJ.Request.KindOfRequest = '0';
         objJ.SmsContent = null;
         objJ.SmsType = null;
-        objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+        objJ.DestLevelStepIndexButton = "در انتظار تنظیم و اصلاح قرارداد توسط کارشناس امور قراردادها";
 
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 
 
             if (res.isSuccess) {
 
-                alertB("ثبت", "درخواست شما به مسئوا قرارداد ارسال شد منتظر تماس ما باشید", "success");
-              //  goToUrl("/Customer/RequestForRating/Index");
+                alertB("ثبت", "درخواست شما به مسئول قرارداد ارسال شد منتظر تماس ما باشید", "success", "بله متوجه شدم", function () {
+
+                    goToUrl("/Customer/RequestForRating/Index");
+
+                });
+
             }
             else {
 

@@ -91,7 +91,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("EmailValue", (qCustomer.Email == null ? "" : qCustomer.Email));
                     strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
 
-                    strContract = strContract.Replace("AgentNameValue", (qCustomer.AgentName == null ? "" : qCustomer.CompanyName));
+                    strContract = strContract.Replace("AgentNameValue", (qCustomer.AgentName == null ? "" : qCustomer.AgentName));
                     strContract = strContract.Replace("AgentMobileValue", (qCustomer.AgentMobile == null ? "" : qCustomer.AgentMobile));
                     strContract = strContract.Replace("EmailRepresentativeValue", (qCustomer.EmailRepresentative == null ? "" : qCustomer.EmailRepresentative));
 

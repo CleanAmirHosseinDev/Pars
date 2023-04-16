@@ -22,13 +22,17 @@
                 </div>
                 <table class="table" id="FirstDoc">
                     <tr>
-                        <th> آپلود مدرک</th>
+                        <th>
+                            آپلود مدرک
+                            <br /> <span>پسوندهای مجاز: All Images, Pdfو , حداکثر 5 مگابایت</span>
+
+                        </th>
                         <th> مدرک آپلود شده</th>
                     </tr>
                     <tr>
                         
                         <td>
-                            آپلود سند پرداخت<span class="RequiredLabel">*</span> <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" accept="image/*,.pdf,.xlsx," />
+                            آپلود سند پرداخت<span class="RequiredLabel">*</span> <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" onchange="checkUploadWithFileSiza(this,'سند پرداخت',5);"  accept="image/*,.pdf" />
                         </td>
                         <td><div id="divDownloadFinancialDocument"></div>
                            </td>
@@ -37,7 +41,7 @@
                        
                         <td>
                             آپلود قرارداد امضاء شده <span class="RequiredLabel">*</span>
-                            <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf,.xlsx," />
+                            <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf" onchange="checkUploadWithFileSiza(this,'قرارداد',5);" />
                         </td>
                         <td>  <div id="divDownload_ContractDocument"></div></td>
                     </tr>
@@ -55,10 +59,10 @@
                                 <span class="RequiredLabel">*</span>
                             </label>
                             <div class="col-md-8">
-                                
-                                    
-                                    <input type="file" name="Result_Final_LastFinancialDocument" id="LastFinancialDocument" accept="image/*,.pdf,.xlsx," />
-                                
+
+
+                                <input type="file" name="Result_Final_LastFinancialDocument" id="LastFinancialDocument" accept="image/*,.pdf" onchange="checkUploadWithFileSiza(this,' سند تسویه',5);" />
+                               
                                 <div id="divDownloadLastFinancialDocument"></div>
                                 <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
                             </div>

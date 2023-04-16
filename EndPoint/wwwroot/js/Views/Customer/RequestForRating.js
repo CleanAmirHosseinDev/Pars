@@ -560,7 +560,7 @@
                             strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                             $("#divDownloadContract").html(strhtml);
                             $("#divDownloadContract").show();
-                            $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><button style='margin-right:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")'>عدم تایید </button><input type='text' id='Comment' name='Comment' />");
+                            $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><br/><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control' /><button style='margin-right:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")'>عدم تایید </button>");
 
                         }
 
@@ -578,7 +578,7 @@
 
                         var strhtml = "<div class='bc'><a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i> پیش نمایش نمونه قرارداد  </a ><a style='margin-right:5px' href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a ><br/><br/>";
                         strhtml += "<p>آیا قرارداد را تایید می کنید؟ در صورت عدم تایید قرارداد، در خواست شما به کارشناس ارسال خواهد شد </p><input type = 'hidden' id ='RequestId' name ='RequestId' value='" + id + "' />";
-                        strhtml += " <button type='button' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this," + id + ")'>تایید  قرارداد</button><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control'></textarea><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")' type='button'>عدم تایید قرارداد </button><br /></div>";
+                        strhtml += " <button type='button' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this," + id + ")'>تایید  قرارداد</button><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control' /><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")' type='button'>عدم تایید قرارداد </button><br /></div>";
                         $("#divOkContract").html(strhtml);
                     }
                     $("#ContractShow").html(res.data.contentContract);
@@ -637,9 +637,9 @@
             if (res.isSuccess) {
 
                 $("#divOkContract").remove();
-                var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس همه صفحات آن را امضاء کنید و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div><br/><br/>";
-
-                strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
+                var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس همه صفحات آن <span style='color:red; font-size:1.5em;'>امضاء شود</span> و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
+               
+                strhtml += "<br/><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control' /><button style='margin-right:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")'>عدم تایید </button><br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                 $("#divDownloadContract").html(strhtml);
                 $("#divDownloadContract").show();
                 $("#divDownloadContractDocumentCustomer").html("<a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a ><a style='margin-right:5px;' href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a >");

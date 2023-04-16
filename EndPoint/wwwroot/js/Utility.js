@@ -1674,6 +1674,47 @@ function checkUpload(input, inputName) {
 
 }
 
+function checkUploadWithFileSiza(input, inputName,fileSiza) {
+
+    if (input.files && input.files[0]) {
+
+        var isOk = false;
+
+        switch (GetExtension(input.files[0].name).toLowerCase()) {
+
+            case 'pdf':
+            case 'xlsx':
+            case 'xls':
+
+                isOk = true;
+
+                break;
+            default:
+
+                if (isImage(GetExtension(input.files[0].name).toLowerCase()))
+                    isOk = true;
+                else isOk = false;
+
+                break;
+        }
+
+        if (!isOk) {
+            input.value = '';
+            alertB('', inputName + " " + 'فرمت های مجاز برای Pdf,Excel,All Images', 'error');
+            return;
+        }
+
+        if (input.files[0].size > (1000000 * fileSiza)) {
+            input.value = '';
+            alertB('', inputName + " " + " باید کمتر از " + fileSiza+" مگابایت  باشد", 'error');
+            return;
+        }
+
+
+    }
+
+}
+
 function Ckeditor(id) {
     try {
 

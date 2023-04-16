@@ -112,7 +112,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر  آخرین مدرک تحصیلی</label>
-                                                                                <input type="file" name="Result_Final_FileName1" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx,"  onchange="checkUpload(this,'تصویر  آخرین مدرک تحصیلی');"/>
+                                                                                <input type="file" name="Result_Final_FileName1" id="AcademicDegreePicture" accept="image/*,.pdf,.xlsx,"  onchange="checkUploadWithFileSiza(this,'تصویر  آخرین مدرک تحصیلی');"/>
                                                                                 <div id="DivAcademicDegreePicture"></div>
                                                                             </div>
                                                                         </div>
@@ -126,7 +126,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر سابقه بیمه</label>
-                                                                                <input type="file" name="Result_Final_FileName2" id="Picture2" accept="image/*,.pdf,.xlsx,"   onchange="checkUpload(this,'تصویر سابقه بیمه');"/>
+                                                                                <input type="file" name="Result_Final_FileName2" id="Picture2" accept="image/*,.pdf,.xlsx,"   onchange="checkUploadWithFileSiza(this,'تصویر سابقه بیمه');"/>
                                                                                 <div id="DivPicture2"></div>
                                                                             </div>
                                                                         </div>
@@ -159,7 +159,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره </label>
-                                                                                <input type="file" name="Result_Final_FileName4" id="Picture4" accept="image/*,.pdf,.xlsx,"  onchange="checkUpload(this,'تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره');"/>
+                                                                                <input type="file" name="Result_Final_FileName4" id="Picture4" accept="image/*,.pdf,.xlsx,"  onchange="checkUploadWithFileSiza(this,'تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره',5);"/>
                                                                                 <div id="DivPicture4"></div>
                                                                             </div>
                                                                         </div>
@@ -172,7 +172,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر سایر سوابق کاری </label>
-                                                                                <input type="file" name="Result_Final_FileName3" id="Picture3" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر سایر سوابق کاری');" />
+                                                                                <input type="file" name="Result_Final_FileName3" id="Picture3" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تصویر سایر سوابق کاری',5);" />
                                                                                 <div id="DivPicture3"></div>
                                                                             </div>
                                                                         </div>
@@ -256,13 +256,13 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">فایل گواهی دوره </label>
-                                                                                <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر فایل گواهی دوره');"><div id="DivCertificationCourses"></div>
+                                                                                <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تصویر فایل گواهی دوره',5);"><div id="DivCertificationCourses"></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">فایل ضمیمه آموزشی </label>
-                                                                                <input type="file" name="Result_Final_FileName2" id="CertificationCoursesAttach" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر فایل ضمیمه آموزشی');"><div id="DivCertificationCoursesAttach"></div>
+                                                                                <input type="file" name="Result_Final_FileName2" id="CertificationCoursesAttach" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تصویر فایل ضمیمه آموزشی',5);"><div id="DivCertificationCoursesAttach"></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -327,7 +327,7 @@
                                                                                         <label class="control-label" for=""> صورتهای مالی حسابرسی شده</label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'صورتهای مالی حسابرسی شده');" />
+                                                                                        <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'صورتهای مالی حسابرسی شده',5);" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadLastAuditingTaxList"> </div>
@@ -338,7 +338,7 @@
                                                                                         <label class="control-label" for=""> اظهارنامه مالیاتی</label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_StatementTaxList" id="StatementTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اظهارنامه مالیاتی');" />
+                                                                                        <input type="file" name="Result_Final_StatementTaxList" id="StatementTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'اظهارنامه مالیاتی',5);" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadStatementTaxList"> </div>
@@ -352,7 +352,7 @@
 
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آخرین تغییرات روزنامه رسمی');" />
+                                                                                        <input type="file" name="Result_Final_LastChangeOfficialNewspaper" id="LastChangeOfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین تغییرات روزنامه رسمی',5);" />
 
                                                                                     </td>
                                                                                     <td>
@@ -367,7 +367,7 @@
 
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اساسنامه');" />
+                                                                                        <input type="file" name="Result_Final_StatuteDoc" id="StatuteDoc" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'اساسنامه',5);" />
 
                                                                                     </td>
                                                                                     <td>
@@ -380,7 +380,7 @@
                                                                                         <label class="control-label" for="">  آگهی تاسیس </label>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آگهی تاسیس');" />
+                                                                                        <input type="file" name="Result_Final_OfficialNewspaper" id="OfficialNewspaper" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آگهی تاسیس',5);" />
                                                                                     </td>
                                                                                     <td>
                                                                                         <div id="divDownloadOfficialNewspaper">
@@ -456,7 +456,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری فایل دستور العمل یا آیین نامه یا روش اجرایی</label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="GuidelinesAndRegulationsFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' فایل دستور العمل یا آیین نامه یا روش اجرایی');"  />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="GuidelinesAndRegulationsFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' فایل دستور العمل یا آیین نامه یا روش اجرایی',5);"  />
                                                                                                     <div id="DivGuidelinesAndRegulationsFile">
                                                                                                     </div>
                                                                                                 </div>
@@ -529,7 +529,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد</label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل گواهینامه، مجوز، تاییدیه یا استاندارد');" />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'فایل گواهینامه، مجوز، تاییدیه یا استاندارد',5);" />
                                                                                                     <div id="DivCertificateAndPermitAndStandardFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -605,7 +605,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری سند جایزه</label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="AwardsFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'بارگذاری سند جایزه');"/>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="AwardsFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'بارگذاری سند جایزه',5);"/>
                                                                                                     <div id="DivAwardsFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -734,7 +734,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_OrganazationChart" id="OrganazationChart" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' سند جایزهچارت سازمانی');"/>
+                                                                                                        <input type="file" name="Result_Final_OrganazationChart" id="OrganazationChart" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' سند جایزهچارت سازمانی',5);"/>
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <div id="DivOrganazationChart"></div>
@@ -747,7 +747,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_OrganizationalDuties" id="OrganizationalDuties" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل شرح وظایف شغلی پرسنل');"/>
+                                                                                                        <input type="file" name="Result_Final_OrganizationalDuties" id="OrganizationalDuties" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'فایل شرح وظایف شغلی پرسنل',5);"/>
 
                                                                                                     </td>
                                                                                                     <td><div id="DivOrganizationalDuties"></div></td>
@@ -757,7 +757,7 @@
                                                                                                         <label class="control-label" for="">بارگذاری دستورالعمل مدیریت ریسک </label>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_RiskManagementGuidelines" id="RiskManagementGuidelines" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'دستورالعمل مدیریت ریسک');" />
+                                                                                                        <input type="file" name="Result_Final_RiskManagementGuidelines" id="RiskManagementGuidelines" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'دستورالعمل مدیریت ریسک',5);" />
 
                                                                                                     </td>
                                                                                                     <td>
@@ -770,7 +770,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_TransactionRegulations" id="TransactionRegulations" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'آیین نامه معاملات');" />
+                                                                                                        <input type="file" name="Result_Final_TransactionRegulations" id="TransactionRegulations" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آیین نامه معاملات',5);" />
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <div id="DivTransactionRegulations"></div>
@@ -782,7 +782,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_DeductionTaxAccount" id="DeductionTaxAccount" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مفاصا حساب مالیاتی');"/></td>
+                                                                                                    <td><input type="file" name="Result_Final_DeductionTaxAccount" id="DeductionTaxAccount" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'مفاصا حساب مالیاتی',5);"/></td>
                                                                                                     <td><div id="DivDeductionTaxAccount"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -792,7 +792,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_CrmSoftwareContract" id="CrmSoftwareContract" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر قراداد نرم افزار امور مشتریان');" />
+                                                                                                        <input type="file" name="Result_Final_CrmSoftwareContract" id="CrmSoftwareContract" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تصویر قراداد نرم افزار امور مشتریان',5);" />
                                                                                                     </td>
                                                                                                     <td>
                                                                                                         <div id="DivCrmSoftwareContract"></div>
@@ -804,7 +804,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td>  <input type="file" name="Result_Final_RepresentativeFile" id="RepresentativeFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مستندات نمایندگی');"  /></td>
+                                                                                                    <td>  <input type="file" name="Result_Final_RepresentativeFile" id="RepresentativeFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'مستندات نمایندگی',5);"  /></td>
                                                                                                     <td><div id="DivRepresentativeFile"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -813,7 +813,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_LetterOfCommendation" id="LetterOfCommendation" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تقدیر نامه');"  /></td>
+                                                                                                    <td><input type="file" name="Result_Final_LetterOfCommendation" id="LetterOfCommendation" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تقدیر نامه',5);"  /></td>
                                                                                                     <td> <div id="DivLetterOfCommendation"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -822,7 +822,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_InovationFile" id="InovationFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مدرک اختراع ');" /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_InovationFile" id="InovationFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'مدرک اختراع ',5);" /></td>
                                                                                                     <td><div id="DivInovationFile"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -831,7 +831,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_Proceedings" id="Proceedings" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' نمونه صورتجلسه حسابرسی ');"/></td>
+                                                                                                    <td><input type="file" name="Result_Final_Proceedings" id="Proceedings" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' نمونه صورتجلسه حسابرسی ',5);"/></td>
                                                                                                     <td> <div id="DivProceedings"></div></td>
                                                                                                 </tr>
 
@@ -1006,7 +1006,7 @@
                                                                                                         <label class="control-label" for="">تصویر انبار / سند مالکیت انبار (در صورت برون سپاری قرارداد مربوطه ارسال گردد) </label>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc1" id="vc1" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' تصویر انبار / سند مالکیت انبار ');"/>
+                                                                                                        <input type="file" name="Result_Final_vc1" id="vc1" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' تصویر انبار / سند مالکیت انبار ',5);"/>
 
                                                                                                     </td>
                                                                                                     <td><div id="DivVc1"></div></td>
@@ -1015,7 +1015,7 @@
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for="">عکس/سند تجهیزات انبارش و بارگیری (در صورت برون سپاری قرارداد مربوطه ارسال گردد)  </label>
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc2" id="vc2" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' تصویر عکس/سند تجهیزات انبارش و بارگیری ');" /></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc2" id="vc2" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' تصویر عکس/سند تجهیزات انبارش و بارگیری ',5);" /></td>
                                                                                                     <td> <div id="DivVc2"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1025,12 +1025,12 @@
 
                                                                                                         </label>
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc3" id="vc3" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' عکس/سند مالکیت تجهیزات حمل و نقل ');" /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc3" id="vc3" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' عکس/سند مالکیت تجهیزات حمل و نقل ',5);" /></td>
                                                                                                     <td><div id="DivVc3"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right"><label class="control-label" for="">  عکس / قراداد نرم افزار انبارداری </label></td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc4" id="vc4" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' عکس / قراداد نرم افزار انبارداری ');" /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc4" id="vc4" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' عکس / قراداد نرم افزار انبارداری ',5);" /></td>
                                                                                                     <td><div id="DivVc4"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -1075,7 +1075,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_Vc5" id="Vc5" onchange="checkUpload(this,'اجاره نامه یا سند مالکیت ');">
+                                                                                                        <input type="file" name="Result_Final_Vc5" id="Vc5" onchange="checkUploadWithFileSiza(this,'اجاره نامه یا سند مالکیت ',5);">
                                                                                                     </td>
                                                                                                     <td>  <div id="DivVc5"></div></td>
                                                                                                 </tr>
@@ -1085,7 +1085,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc6" id="vc6" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'اجاره نامه یا سند مالکیت ');" />
+                                                                                                        <input type="file" name="Result_Final_vc6" id="vc6" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'اجاره نامه یا سند مالکیت ',5);" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc6"></div></td>
                                                                                                 </tr>
@@ -1095,7 +1095,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc7" id="vc7" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فیش حقوقی');" />
+                                                                                                        <input type="file" name="Result_Final_vc7" id="vc7" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'فیش حقوقی',5);" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc7"></div></td>
                                                                                                 </tr>
@@ -1105,7 +1105,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc8" id="vc8" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس یا قرارداد نرم افزار های یکپارچه مدیریتی');"/></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc8" id="vc8" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'عکس یا قرارداد نرم افزار های یکپارچه مدیریتی',5);"/></td>
                                                                                                     <td><div id="DivVc8"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1114,7 +1114,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc9" id="vc9" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس از آزمایشگاه');"/></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc9" id="vc9" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'عکس از آزمایشگاه',5);"/></td>
                                                                                                     <td><div id="DivVc9"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1122,7 +1122,7 @@
                                                                                                         <label class="control-label" for=""> تصویر مجوز دانش بنیان </label>
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc10" id="vc10" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر مجوز دانش بنیان');" /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc10" id="vc10" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تصویر مجوز دانش بنیان',5);" /></td>
                                                                                                     <td><div id="DivVc10"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1130,7 +1130,7 @@
                                                                                                         <label class="control-label" for="">سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل </label>
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc11" id="vc11" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند مالکیت یا قراداد');"/></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc11" id="vc11" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'سند مالکیت یا قراداد',5);"/></td>
                                                                                                     <td><div id="DivVc11"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1138,7 +1138,7 @@
                                                                                                         <label class="control-label" for="">درصورت وجود یک مدل جهت ردیابی محصول با بارکد یا کد رجیستری تصویر مربوطه بارگذاری شود </label>
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc12" id="vc12" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند مالکیت یا قراداد');"/></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc12" id="vc12" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'سند مالکیت یا قراداد',5);"/></td>
                                                                                                     <td><div id="DivVc12"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -1206,7 +1206,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc16" id="vc16" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس/اجاره نامه / سند مالکیت فروشگاه');"/>
+                                                                                                        <input type="file" name="Result_Final_vc16" id="vc16" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'عکس/اجاره نامه / سند مالکیت فروشگاه',5);"/>
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc16"></div></td>
                                                                                                 </tr>
@@ -1216,7 +1216,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc17" id="vc17" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'تصویر یا آدرس سایت فروش آنلاین');"/>
+                                                                                                        <input type="file" name="Result_Final_vc17" id="vc17" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'تصویر یا آدرس سایت فروش آنلاین',5);"/>
                                                                                                     </td>
                                                                                                     <td><div id="DivVc17"></div></td>
                                                                                                 </tr>
@@ -1226,7 +1226,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc18" id="vc18" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'گزارش های بازاریابی حضوری');"  />
+                                                                                                        <input type="file" name="Result_Final_vc18" id="vc18" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'گزارش های بازاریابی حضوری',5);"  />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc18"></div></td>
                                                                                                 </tr>
@@ -1236,7 +1236,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc19" id="vc19" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس یا مجوز حضور در نمایشگاه ها');" />
+                                                                                                        <input type="file" name="Result_Final_vc19" id="vc19" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'عکس یا مجوز حضور در نمایشگاه ها',5);" />
                                                                                                     </td>
                                                                                                     <td> <div id="DivVc19"></div></td>
                                                                                                 </tr>
@@ -1245,7 +1245,7 @@
                                                                                                         <label class="control-label" for="">قرارداد های فروش به سازمان ها </label>
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc20" id="vc20" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'قرارداد های فروش به سازمان ها');" /></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc20" id="vc20" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'قرارداد های فروش به سازمان ها',5);" /></td>
                                                                                                     <td><div id="DivVc20"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1254,7 +1254,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc21" id="vc21" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'نمونه تبلیغات محیطی');"/>
+                                                                                                        <input type="file" name="Result_Final_vc21" id="vc21" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'نمونه تبلیغات محیطی',5);"/>
                                                                                                     </td>
                                                                                                     <td><div id="DivVc21"></div></td>
                                                                                                 </tr>
@@ -1297,7 +1297,7 @@
 
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                        <input type="file" name="Result_Final_vc22" id="vc22" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'فایل کارت گارانتی');"/>
+                                                                                                        <input type="file" name="Result_Final_vc22" id="vc22" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'فایل کارت گارانتی',5);"/>
                                                                                                     </td>
                                                                                                     <td><div id="DivVc22"></div></td>
                                                                                                 </tr>
@@ -1307,7 +1307,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td> <input type="file" name="Result_Final_vc23" id="vc23" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس از واحد خدمات پس از فروش یا سایر مستندات');" /></td>
+                                                                                                    <td> <input type="file" name="Result_Final_vc23" id="vc23" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'عکس از واحد خدمات پس از فروش یا سایر مستندات',5);" /></td>
                                                                                                     <td><div id="DivVc23"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1316,7 +1316,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td><input type="file" name="Result_Final_vc24" id="vc24" accept="image/*,.pdf,.xlsx,"  onchange="checkUpload(this,'گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش');"/></td>
+                                                                                                    <td><input type="file" name="Result_Final_vc24" id="vc24" accept="image/*,.pdf,.xlsx,"  onchange="checkUploadWithFileSiza(this,'گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش',5);"/></td>
                                                                                                     <td><div id="DivVc24"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -1325,7 +1325,7 @@
 
 
                                                                                                     </td>
-                                                                                                    <td>  <input type="file" name="Result_Final_vc25" id="vc25" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'عکس از تجهیزات  واحد خدمات پس از فروش');"/></td>
+                                                                                                    <td>  <input type="file" name="Result_Final_vc25" id="vc25" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'عکس از تجهیزات  واحد خدمات پس از فروش',5);"/></td>
                                                                                                     <td><div id="DivVc25"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -1371,7 +1371,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
                                                                                                         <label class="control-label" for="">مستندات تدوین برنامه ریزی استراتژیک </label>
-                                                                                                        <input type="file" name="Result_Final_FileName1" id="SwotFile1" accept="image/*,.pdf,.xlsx,"  onchange="checkUpload(this,'مستندات تدوین برنامه ریزی استراتژیک');" ><div id="DivSwotFile1"></div>
+                                                                                                        <input type="file" name="Result_Final_FileName1" id="SwotFile1" accept="image/*,.pdf,.xlsx,"  onchange="checkUploadWithFileSiza(this,'مستندات تدوین برنامه ریزی استراتژیک',5);" ><div id="DivSwotFile1"></div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1380,7 +1380,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
                                                                                                         <label class="control-label" for="">مستندات اجرا و بازخورد برنامه ریزی استراتژیک </label>
-                                                                                                        <input type="file" name="Result_Final_FileName2" id="SwotFile2" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مستندات اجرا و بازخورد برنامه ریزی استراتژیک');" /><div id="DivSwotFile2"></div>
+                                                                                                        <input type="file" name="Result_Final_FileName2" id="SwotFile2" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'مستندات اجرا و بازخورد برنامه ریزی استراتژیک',5);" /><div id="DivSwotFile2"></div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1446,7 +1446,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
                                                                                                         <label class="control-label" for="">بارگذاری مدرک تحصیلی </label>
-                                                                                                        <input type="file" name="Result_Final_FileName1" id="DegreeFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' مدرک تحصیلی');" />
+                                                                                                        <input type="file" name="Result_Final_FileName1" id="DegreeFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' مدرک تحصیلی',5);" />
                                                                                                         <div id="DivDegreeFile"></div>
                                                                                                     </div>
                                                                                                 </div>
@@ -1505,7 +1505,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="col-md-12" style="margin-bottom:10px">
                                                                                                         <label class="control-label" for="">بارگذاری مدرک مربوطه </label>
-                                                                                                        <input type="file" name="Result_Final_FileName1" id="ReportFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مدرک');"/>
+                                                                                                        <input type="file" name="Result_Final_FileName1" id="ReportFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'مدرک',5);"/>
                                                                                                         <div id="DivReportFile"></div>
                                                                                                     </div>
                                                                                                 </div>
@@ -1597,7 +1597,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for=""> بارگذاری فایل اکسل کامل شده </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx,"  onchange="checkUpload(this,'فایل اکسل');" />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="HumanResourcesFile" accept=".xlsx,"  onchange="checkUploadWithFileSiza(this,'فایل اکسل',5);" />
                                                                                                     <div id="DivHumanResourcesFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1653,7 +1653,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">فایل گواهی دوره </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'گواهی دوره');" ><div id="DivCertificationCourses"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'گواهی دوره',5);" ><div id="DivCertificationCourses"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1760,7 +1760,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">فایل گواهی عضویت </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,' گواهی عضویت');" /><div id="DivCertificationSociety"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' گواهی عضویت',5);" /><div id="DivCertificationSociety"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1865,7 +1865,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">مدرک </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="PublicActivityFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'مدرک');" />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="PublicActivityFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'مدرک',5);" />
                                                                                                     <div id="DivPublicActivityFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1925,7 +1925,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری سند سرمایه گذاری </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="InvestmentFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند سرمایه گذاری');" />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="InvestmentFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'سند سرمایه گذاری',5);" />
                                                                                                     <div id="DivInvestmentFile"></div>
                                                                                                 </div>
                                                                                             </div>
@@ -1984,7 +1984,7 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">بارگذاری سند مسئولیت پذیری<span class="RequiredLabel">*</span></label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="EmploymentDisabledFile" accept="image/*,.pdf,.xlsx," onchange="checkUpload(this,'سند مسئولیت پذیری');" />
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="EmploymentDisabledFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'سند مسئولیت پذیری',5);" />
                                                                                                     <div id="DivEmploymentDisabledFile"></div>
                                                                                                 </div>
                                                                                             </div>

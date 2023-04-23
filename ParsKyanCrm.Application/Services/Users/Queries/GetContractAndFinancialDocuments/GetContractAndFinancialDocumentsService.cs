@@ -35,7 +35,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
 
                 if (request.RequestID != null && request.RequestID != 0)
                 {
-                    var q_Find = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == request.RequestID);
+                    var q_Find = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == request.RequestID && p.IsActive==15);
 
                     res = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Find);
 

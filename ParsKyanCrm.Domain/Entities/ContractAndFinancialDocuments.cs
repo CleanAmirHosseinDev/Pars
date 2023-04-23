@@ -29,6 +29,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string LastFinancialDocument { get; set; }
         public string LeaderEvaluationFile { get; set; }
         public bool ConfirmCommitteeEvaluation { get; set; }
+        public byte IsActive { get; set; }
+
 
     }
 }

@@ -525,7 +525,7 @@
                         $("#divDownloadStatementTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statementTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.lastChangeOfficialNewspaper != null && res.data.lastChangeOfficialNewspaper != "") {
-                        $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.LastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.statuteDoc != null && res.data.statuteDoc != "") {
                         $("#divDownloadStatuteDoc").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statuteDocFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -948,16 +948,16 @@
                         $('#frmFrom' + FormID).find('input[name=Answer8]').val(res.data[0].answer8);
                         $('#frmFrom' + FormID).find('input[name=Answer9]').val(res.data[0].answer9);
                         $('#frmFrom' + FormID).find('input[name=Answer10]').val(res.data[0].answer10);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1Full != "") {
                             $("#DivAcademicDegreePicture").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
-                        if (res.data[0].fileName2Full != null) {
+                        if (res.data[0].fileName2Full != null && res.data[0].fileName2 != "") {
                             $("#DivPicture2").html("<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
-                        if (res.data[0].fileName3Full != null) {
+                        if (res.data[0].fileName3Full != null && res.data[0].fileName3 != "") {
                             $("#DivPicture3").html("<a href='/File/Download?path=" + res.data[i].fileName3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
-                        if (res.data[0].fileName4Full != null) {
+                        if (res.data[0].fileName4Full != null && res.data[0].fileName4 != "") {
                             $("#DivPicture4").html("<a href='/File/Download?path=" + res.data[i].fileName4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform1").html("ویرایش");
@@ -969,7 +969,7 @@
                         $('#IsGuideLineOrProcess').val(res.data[0].answer3Val);
                         comboBoxWithSearchUpdateText("IsGuideLineOrProcess", res.data[0].answer3);
 
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivGuidelinesAndRegulationsFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform3").html("ویرایش");
@@ -979,7 +979,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivCertificateAndPermitAndStandardFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform4").html("ویرایش");
@@ -989,17 +989,17 @@
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1Full != "") {
                             $("#DivAwardsFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform5").html("ویرایش");
                     }
 
                     else if (FormID == 8) {
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivSwotFile1").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
-                        if (res.data[0].fileName2Full != null) {
+                        if (res.data[0].fileName2Full != null && res.data[0].fileName1 != "") {
                             $("#DivSwotFile2").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform8").html("ویرایش");
@@ -1009,7 +1009,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#DegreeOfEducation2').val(res.data[0].answer2Val);
                         comboBoxWithSearchUpdateText("DegreeOfEducation2", res.data[0].answer2);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivDegreeFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform9").html("ویرایش");
@@ -1018,7 +1018,7 @@
                         //1,2,11
                         $('#ReportTitle').val(res.data[0].answer1);
 
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivReportFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform10").html("ویرایش");
@@ -1029,7 +1029,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1 != null) {
                             $("#DivCertificationCourses").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform12").html("ویرایش");
@@ -1038,7 +1038,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
                         $('#PostInSociety').val(res.data[0].answer3Val);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivCertificationSociety").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
 
@@ -1071,14 +1071,14 @@
 
                     } else if (FormID == 22) {
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivInvestmentFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform22").html("ویرایش");
                     }
                     else if (FormID == 24) {
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
-                        if (res.data[0].fileName1Full != null) {
+                        if (res.data[0].fileName1Full != null && res.data[0].fileName1 != "") {
                             $("#DivEmploymentDisabledFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform24").html("ویرایش");

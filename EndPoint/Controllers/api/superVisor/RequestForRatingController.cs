@@ -111,6 +111,20 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public ResultDto Delete_ContractAndFinancialDocuments(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteContractAndFinancialDocumentsService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
 
         [Route("[action]/{id}/")]
         [HttpGet]

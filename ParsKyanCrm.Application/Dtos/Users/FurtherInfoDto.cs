@@ -23,7 +23,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int FurtherInfoId { get; set; }
         public int? RequestId { get; set; }
 
-     
+        #region LastAuditingTaxList
         public string LastAuditingTaxList { get; set; }
         public string LastAuditingTaxListFull
         {
@@ -33,7 +33,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_LastAuditingTaxList { get; set; }
+        #endregion
 
+        #region LastChangeOfficialNewspaper
         public string LastChangeOfficialNewspaper { get; set; }
         public string LastChangeOfficialNewspaperFull
         {
@@ -42,7 +44,11 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 return ServiceFileUploader.GetFullPath(LastChangeOfficialNewspaper, VaribleForName.CustomersFolder, false);
             }
         }
+
         public IFormFile Result_Final_LastChangeOfficialNewspaper { get; set; }
+        #endregion
+
+        #region StatuteDoc
         public string StatuteDoc { get; set; }
         public string StatuteDocFull
         {
@@ -52,6 +58,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_StatuteDoc { get; set; }
+        #endregion
+
+        #region OfficialNewspaper
         public string OfficialNewspaper { get; set; }
         public string OfficialNewspaperFull
         {
@@ -61,7 +70,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_OfficialNewspaper { get; set; }
-       
+        #endregion
+
+        #region StatementTaxList
         public string StatementTaxList { get; set; }
 
         public string StatementTaxListFull
@@ -72,6 +83,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_StatementTaxList { get; set; }
+        #endregion
+
+
 
 
 

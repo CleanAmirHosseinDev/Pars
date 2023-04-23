@@ -157,7 +157,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                 if (request.FinancialId == 0)
                 {
                     request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
-
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
                     if (request.IsCustomer)
                     {
                         request.ContractCode = MaxAllContractCode();

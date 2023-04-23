@@ -61,6 +61,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetValueChain;
 using ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities;
 using ParsKyanCrm.Application.Services.Users.Queries.GetPublicActivities;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSettings;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteContractAndFinancialDocumentsService;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -135,6 +136,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IDeleteServiceFeeService DeleteServiceFeeService { get; }
 
         IDeleteContractService DeleteContractService { get; }
+
+        IDeleteContractAndFinancialDocumentsService DeleteContractAndFinancialDocumentsService { get; }
 
         IDeleteUsersService DeleteUsersService { get; }
 
@@ -551,7 +554,14 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _deleteContractService = _deleteContractService ?? new DeleteContractService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
-
+        private IDeleteContractAndFinancialDocumentsService _deleteContractAndFinancialDocumentsService;
+        public IDeleteContractAndFinancialDocumentsService DeleteContractAndFinancialDocumentsService
+        {
+            get
+            {
+                return _deleteContractAndFinancialDocumentsService = _deleteContractAndFinancialDocumentsService ?? new DeleteContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
         private IDeleteUsersService _deleteUsersService;
         public IDeleteUsersService DeleteUsersService
         {

@@ -50,6 +50,9 @@
                         + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                         + res.data[i].agentMobile + "</td><td>"
                         + res.data[i].dateOfRequestStr + "</td>";
+
+                    strM += "<td>" + res.data[i].reciveUserName + "</td>"
+
                     if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
                         strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
                     } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
@@ -57,7 +60,7 @@
                     }
                     else {
                         strM += "<td>" + st2 + res.data[i].levelStepStatus + "</td><td>";
-                    }
+                    }                    
 
                     strM += "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
                         + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-default fontForAllPage'><i class='fa fa-eye'></i> </a>");

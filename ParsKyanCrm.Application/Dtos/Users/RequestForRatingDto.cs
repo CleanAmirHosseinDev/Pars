@@ -29,6 +29,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
 
 
+        public string ReciveUserName { get; set; }
+
         public string CompanyName { get; set; }
         public string DestLevelStepIndex { get; set; }
         public int RequestId { get; set; }

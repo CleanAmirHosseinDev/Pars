@@ -56,20 +56,20 @@ select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,c
 {(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
 {(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" : string.Empty)}
 order by cte.ChangeDate desc
-"
-                 );
+{(!string.IsNullOrEmpty(request.LoginName)?" where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) = "+request.LoginName:string.Empty)}");
 
-                var dataTemp = new List<RequestForRatingDto>();
+                //var dataTemp = new List<RequestForRatingDto>();
 
-                if (request.UserID.HasValue)
-                {
-                    if (data.Where(p => p.LevelStepAccessRole == request.LoginName).Any(p => !string.IsNullOrEmpty(p.ReciveUser))) dataTemp = data.Where(p => p.ReciveUser == request.UserID.Value.ToString()).ToList();
+                //if (request.UserID.HasValue)
+                //{
+                //    if (data.Where(p => p.LevelStepAccessRole == request.LoginName).Any(p => !string.IsNullOrEmpty(p.ReciveUser))) dataTemp = data.Where(p => p.ReciveUser == request.UserID.Value.ToString()).ToList();
 
-                    if(!string.IsNullOrEmpty(request.LoginName) && dataTemp.Count() == 0) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
-                }
-                else if(!string.IsNullOrEmpty(request.LoginName)) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
+                //    if(!string.IsNullOrEmpty(request.LoginName) && dataTemp.Count() == 0) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
+                //}
+                //else 
+                //if(!string.IsNullOrEmpty(request.LoginName)) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
 
-                if (dataTemp.Count() > 0) data = dataTemp;                                
+                //if (dataTemp.Count() > 0) data = dataTemp;                                
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
                 {

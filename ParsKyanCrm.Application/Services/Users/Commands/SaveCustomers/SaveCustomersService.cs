@@ -129,6 +129,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
                     {
+                        "AgentMobile",request.AgentMobile
+                    },
+                    {
                         "EmailRepresentative",request.EmailRepresentative
                     },
                     {

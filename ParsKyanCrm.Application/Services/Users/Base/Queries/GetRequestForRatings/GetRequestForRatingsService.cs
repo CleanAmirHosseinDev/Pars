@@ -32,16 +32,17 @@ namespace ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatin
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
 
-select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,(select distinct LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) as DestLevelStepIndex,cte.CompanyName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',4) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',5) as DestLevelStepIndexButton from (
+select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,(select distinct LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) as DestLevelStepIndex,cte.CompanyName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',4) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',6) as ReciveUser from (
 
-	select top {request.PageSize} rfr.CustomerID,
+	select rfr.CustomerID,
                 rfr.DateOfConfirmed,
+                rfr.ChangeDate,
                 rfr.DateOfRequest,
                 rfr.IsFinished,
                 rfr.KindOfRequest,
                 rfr.RequestID,
                 rfr.RequestNo,
-                (select top 1 RequestReferences.LevelStepStatus+'-'+RequestReferences.LevelStepAccessRole+'-'+RequestReferences.DestLevelStepIndex+'-'+isnull(RequestReferences.Comment,N'')+'-'+isnull(RequestReferences.DestLevelStepIndexButton,N'') from RequestReferences where RequestReferences.Requestid = rfr.RequestID order by RequestReferences.ReferenceID desc) as RequestReferences,
+                (select top 1 RequestReferences.LevelStepStatus+'-'+RequestReferences.LevelStepAccessRole+'-'+RequestReferences.DestLevelStepIndex+'-'+isnull(RequestReferences.Comment,N'')+'-'+isnull(RequestReferences.DestLevelStepIndexButton,N'')+'-'+isnull(RequestReferences.ReciveUser,'') from RequestReferences where RequestReferences.Requestid = rfr.RequestID order by RequestReferences.ReferenceID desc) as RequestReferences,
                  ss.Label as KindOfRequestName,
                  cus.AgentName,
                  cus.AgentMobile,
@@ -50,13 +51,25 @@ select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConf
                  left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest
                  left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
                  {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
-                 {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                 
-                 order by rfr.ChangeDate desc  
+                 {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                                    
 ) as cte
 {(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
 {(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" : string.Empty)}
+order by cte.ChangeDate desc
 "
                  );
+
+                var dataTemp = new List<RequestForRatingDto>();
+
+                if (request.UserID.HasValue)
+                {
+                    if (data.Where(p => p.LevelStepAccessRole == request.LoginName).Any(p => !string.IsNullOrEmpty(p.ReciveUser))) dataTemp = data.Where(p => p.ReciveUser == request.UserID.Value.ToString()).ToList();
+
+                    if(!string.IsNullOrEmpty(request.LoginName) && dataTemp.Count() == 0) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
+                }
+                else if(!string.IsNullOrEmpty(request.LoginName)) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
+
+                if (dataTemp.Count() > 0) data = dataTemp;                                
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
                 {
@@ -65,8 +78,6 @@ select cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConf
                     Message = string.Empty,
                     Rows = data.LongCount(),
                 };
-
-
 
             }
             catch (Exception ex)

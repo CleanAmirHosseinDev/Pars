@@ -75,5 +75,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string Comment { get; set; }
         public string DestLevelStepIndexButton { get; set; }
 
+        public string ReciveUser { get; set; }
+
     }
 }

@@ -1,2 +1,22 @@
 ﻿
 
+
+
+GO
+/****** Object:  UserDefinedFunction [dbo].[fn_GetAllNameUsers]    Script Date: 4/23/2023 3:22:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create FUNCTION [dbo].[fn_GetAllNameUsers](@str nvarchar(max))  
+RETURNS nvarchar(max)  
+BEGIN  
+
+RETURN(SELECT isnull(STRING_AGG(CONVERT(NVARCHAR(max), ISNULL(RealName,UserName)), ' - '),'') AS csv FROM Users where Users.UserID in(SELECT value
+FROM STRING_SPLIT(@str, ',')))  
+END
+GO
+
+

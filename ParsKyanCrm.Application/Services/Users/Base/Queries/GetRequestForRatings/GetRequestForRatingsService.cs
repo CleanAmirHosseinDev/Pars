@@ -55,9 +55,11 @@ select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,c
 ) as cte
 {(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
 {(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" : string.Empty)}
+{(!string.IsNullOrEmpty(request.LoginName) ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ")+"  dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) = " + request.LoginName : string.Empty)}
 order by cte.ChangeDate desc
-{(!string.IsNullOrEmpty(request.LoginName)?" where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) = "+request.LoginName:string.Empty)}");
+");
 
+                #region این کدها برای ReciveUser می باشد
                 //var dataTemp = new List<RequestForRatingDto>();
 
                 //if (request.UserID.HasValue)
@@ -69,7 +71,8 @@ order by cte.ChangeDate desc
                 //else 
                 //if(!string.IsNullOrEmpty(request.LoginName)) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
 
-                //if (dataTemp.Count() > 0) data = dataTemp;                                
+                //if (dataTemp.Count() > 0) data = dataTemp;     
+                #endregion
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
                 {

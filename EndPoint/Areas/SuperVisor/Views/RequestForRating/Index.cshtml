@@ -13,134 +13,133 @@
         </ol>
     </section>
 }
-<style>
-    td{
-        vertical-align:central;
-       
-    }
-</style>
+    <style>
+        td {
+            vertical-align: central;
+        }
+    </style>
 
-<div class="row">
-    <section class="col-lg-12 col-md-12">
-        <div class="box box-info">
-            <div class="box-header">
-                @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
-                    <div class="portlet-title">
-                        <div class="caption font-green-haze">
-                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+    <div class="row">
+        <section class="col-lg-12 col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    @*<i class="fa fa-cloud"></i>*@
+                    <h3 class="box-title">
+                        <div class="portlet-title">
+                            <div class="caption font-green-haze">
+                                @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                            </div>
+                            <div class="tools">
+                                <a href="" class="collapse" data-original-title="" title="">
+                                </a>
+                            </div>
                         </div>
-                        <div class="tools">
-                            <a href="" class="collapse" data-original-title="" title="">
-                            </a>
+                    </h3>
+                    <!-- tools box -->
+                    <div class="pull-left box-tools">
+                        <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <div class="box-body" style="">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">کادر جستجو</div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom: 5px;">
+                                <div class="col-md-6">
+                                    <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.RequestForRating.TextSearchOnKeyDown(event);" />
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
+                                        <option value="5">
+                                            5
+                                        </option>
+                                        <option value="10" selected="selected">
+                                            10
+                                        </option>
+                                        <option value="20">
+                                            20
+                                        </option>
+                                        <option value="50">
+                                            50
+                                        </option>
+                                        <option value="100">
+                                            100
+                                        </option>
+                                        <option value="150">
+                                            150
+                                        </option>
+                                        <option value="200">
+                                            200
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" style="display:flex;">
+                                    <label>فیلتر &nbsp;</label>
+                                    <select class="form-control BorderRadius_30 select2" id="cboSelectLS" name="cboSelectLS">
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </h3>
-                <!-- tools box -->
-                <div class="pull-left box-tools">
-                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                <!-- /. tools -->
-            </div>
-            <div class="box-body" style="">
 
-                <div class="panel panel-primary">
-                    <div class="panel-heading">کادر جستجو</div>
-                    <div class="panel-body">
-                        <div class="row" style="margin-bottom: 5px;">
-                            <div class="col-md-6">
-                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.RequestForRating.TextSearchOnKeyDown(event);" />
-                            </div>
-                            <div class="col-md-2">
-                                <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
-                                    <option value="5">
-                                        5
-                                    </option>
-                                    <option value="10" selected="selected">
-                                        10
-                                    </option>
-                                    <option value="20">
-                                        20
-                                    </option>
-                                    <option value="50">
-                                        50
-                                    </option>
-                                    <option value="100">
-                                        100
-                                    </option>
-                                    <option value="150">
-                                        150
-                                    </option>
-                                    <option value="200">
-                                        200
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6" style="display:flex;">
-                                <label>فیلتر &nbsp;</label>
-                                <select class="form-control BorderRadius_30 select2" id="cboSelectLS" name="cboSelectLS">
-                                </select>
-                            </div>
-                        </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        شماره درخواست
+                                    </th>
+                                    <th>
+                                        نام مشتری / شرکت
+                                    </th>
+                                    <th>
+                                        موبایل مشتری
+                                    </th>
+                                    <th>
+                                        تاریخ درخواست
+                                    </th>
+                                    <th>
+                                        اقدام کننده
+                                    </th>
+                                    <th>
+                                        وضعیت
+                                    </th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tBodyList">
+                            </tbody>
+
+                        </table>
+
                     </div>
-                </div>
-
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    شماره درخواست
-                                </th>
-                                <th>
-                                    نام مشتری / شرکت
-                                </th>
-                                <th>
-                                    موبایل مشتری
-                                </th>
-                                <th>
-                                    ارجاعات
-                                </th>
-                                <th>
-                                    تاریخ درخواست
-                                </th>
-                                <th>
-                                    وضعیت
-                                </th>
-                                <th>عملیات</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="tBodyList">
-                        </tbody>
-
-                    </table>
 
                 </div>
-
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
-@section Styles{
-    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">    
+    @section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
 
-@section Scripts {
+    @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
         Web.RequestForRating.FilterGrid();

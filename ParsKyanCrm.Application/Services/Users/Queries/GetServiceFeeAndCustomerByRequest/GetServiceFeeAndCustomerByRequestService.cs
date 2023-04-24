@@ -102,7 +102,9 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
                    
                     strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));                   
-                    strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());  
+                    strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());
+                    strContract = strContract.Replace("TelValue", qCustomer.Tel);
+
                     // مبلع فرمول
                     strContract = strContract.Replace("ServiceFeePriceValue",qServiceFee!=null? CalcContractPrice(qCustomer, qServiceFee):"0");
                     qContract.ContractText = strContract;                    

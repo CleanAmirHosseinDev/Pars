@@ -32,7 +32,7 @@ namespace ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatin
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
 
-select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,(select distinct LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) as DestLevelStepIndex,cte.CompanyName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',4) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',6)) as ReciveUserName from (
+select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,(select distinct LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',4) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName from (
 
 	select rfr.CustomerID,
                 rfr.DateOfConfirmed,
@@ -42,7 +42,7 @@ select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,c
                 rfr.KindOfRequest,
                 rfr.RequestID,
                 rfr.RequestNo,
-                (select top 1 RequestReferences.LevelStepStatus+'-'+RequestReferences.LevelStepAccessRole+'-'+RequestReferences.DestLevelStepIndex+'-'+isnull(RequestReferences.Comment,N'')+'-'+isnull(RequestReferences.DestLevelStepIndexButton,N'')+'-'+isnull(RequestReferences.ReciveUser,'') from RequestReferences where RequestReferences.Requestid = rfr.RequestID order by RequestReferences.ReferenceID desc) as RequestReferences,
+                (select top 1 RequestReferences.LevelStepStatus+'|'+RequestReferences.LevelStepAccessRole+'|'+RequestReferences.DestLevelStepIndex+'|'+isnull(RequestReferences.Comment,N'')+'|'+isnull(RequestReferences.DestLevelStepIndexButton,N'')+'|'+isnull(RequestReferences.ReciveUser,'') from RequestReferences where RequestReferences.Requestid = rfr.RequestID order by RequestReferences.ReferenceID desc) as RequestReferences,
                  ss.Label as KindOfRequestName,
                  cus.AgentName,
                  cus.AgentMobile,
@@ -53,9 +53,9 @@ select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,c
                  {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
                  {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                                    
 ) as cte
-{(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
+{(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
 {(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" : string.Empty)}
-{(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  dbo.fn_String_Split_with_Index(cte.RequestReferences,'-',2) = " + request.LoginName : string.Empty)}
+{(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) = " + request.LoginName : string.Empty)}
 order by cte.ChangeDate desc
 ");
 

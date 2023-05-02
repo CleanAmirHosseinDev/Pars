@@ -39,6 +39,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 var qContract = await _context.Contract.FirstOrDefaultAsync(m => m.KinfOfRequest == qRequest.KindOfRequest && m.IsActive == 15);
 
+                List<ContractPages> contractPage = await _context.ContractPages.Where(m=>m.ContractId==qContract.ContractId).ToListAsync();
+
                 int cOP = qCustomer.CountOfPersonal.HasValue ? qCustomer.CountOfPersonal.Value : 0;
 
                 var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
@@ -55,7 +57,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                 }
 
                 // جا گذاری مقادیر در متن قرارداد
-                string strContract = qContract.ContractText;
+               
                 var qKindOfCompany = await _context.SystemSeting.FindAsync(qCustomer.KindOfCompanyId);
 
                 string strNamesAuthorizedSignatoriesValue = "";
@@ -67,63 +69,77 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                         strNamesAuthorizedSignatoriesValue += N + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"; 
                 }
 
+                string strContract = "<div class='row text-right'>";
                 if (qRequest.KindOfRequest==66)
                 {
-
-                    strContract = strContract.Replace("CompanyNameValue", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
-                    if (qKindOfCompany!=null)
+                    int i = 0;
+                    foreach (var item in contractPage)
                     {
-                        strContract = strContract.Replace("KindOfCompanyValue", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
-                        strContract = strContract.Replace("KindOfCompany2Value", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
+                        strContract +=(i==0? "<div Class='PageContractFirst'>" : "<div Class='PageContract'>");
+                        i++;
+                        #region contractPageText
+                         strContract += item.ContractText;
 
+                        strContract = strContract.Replace("CompanyNameValue", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
+                        if (qKindOfCompany != null)
+                        {
+                            strContract = strContract.Replace("KindOfCompanyValue", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
+                            strContract = strContract.Replace("KindOfCompany2Value", (qKindOfCompany.Label == null ? "" : qKindOfCompany.Label));
+
+                        }
+                        else
+                        {
+                            strContract = strContract.Replace("KindOfCompanyValue", "");
+                            strContract = strContract.Replace("KindOfCompany2Value", "");
+
+                        }
+                        strContract = strContract.Replace("EconomicCodeValue", (qCustomer.EconomicCode == null ? "" : qCustomer.EconomicCode));
+                        strContract = strContract.Replace("NationalCodeValue", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
+                        strContract = strContract.Replace("AddressCompanyValue", (qCustomer.AddressCompany == null ? "" : qCustomer.AddressCompany));
+                        strContract = strContract.Replace("PostalCodeValue", (qCustomer.PostalCode == null ? "" : qCustomer.PostalCode));
+                        strContract = strContract.Replace("AgentNameValue", (qCustomer.CeoName == null ? qCustomer.CompanyName : qCustomer.CeoName));
+                        strContract = strContract.Replace("EmailValue", (qCustomer.Email == null ? "" : qCustomer.Email));
+                        strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
+
+                        strContract = strContract.Replace("AgentName2Value", (qCustomer.AgentName == null ? "" : qCustomer.AgentName));
+                        strContract = strContract.Replace("AgentMobileValue", (qCustomer.AgentMobile == null ? "" : qCustomer.AgentMobile));
+                        strContract = strContract.Replace("EmailRepresentativeValue", (qCustomer.EmailRepresentative == null ? qCustomer.Email : qCustomer.EmailRepresentative));
+
+                        strContract = strContract.Replace("NamesAuthorizedSignatoriesValue", (strNamesAuthorizedSignatoriesValue));
+                        strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (strNamesAuthorizedSignatoriesValue));
+                        strContract = strContract.Replace("CompanyName3Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
+                        strContract = strContract.Replace("NationalCode2Value", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
+                        strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
+
+                        strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));
+                        strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());
+                        strContract = strContract.Replace("TelValue", qCustomer.Tel);
+
+                        // مبلع فرمول
+                        strContract = strContract.Replace("ServiceFeePriceValue", qServiceFee != null ? CalcContractPrice(qCustomer, qServiceFee) : "0");
+                        qContract.ContractText = strContract;
+
+                        item.ContractText = strContract;
+                        #endregion
+                        strContract += "</div>";
                     }
-                    else
-                    {
-                        strContract = strContract.Replace("KindOfCompanyValue", "");
-                        strContract = strContract.Replace("KindOfCompany2Value", "");
 
-                    }
-                    strContract = strContract.Replace("EconomicCodeValue", (qCustomer.EconomicCode == null ? "" : qCustomer.EconomicCode));
-                    strContract= strContract.Replace("NationalCodeValue", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
-                    strContract = strContract.Replace("AddressCompanyValue", (qCustomer.AddressCompany == null ? "" : qCustomer.AddressCompany));
-                    strContract = strContract.Replace("PostalCodeValue", (qCustomer.PostalCode == null ? "" : qCustomer.PostalCode));
-                    strContract = strContract.Replace("AgentNameValue", (qCustomer.CeoName == null ? qCustomer.CompanyName : qCustomer.CeoName));
-                    strContract = strContract.Replace("EmailValue", (qCustomer.Email == null ? "" : qCustomer.Email));
-                    strContract = strContract.Replace("CompanyName2Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
-
-                    strContract = strContract.Replace("AgentName2Value", (qCustomer.AgentName == null ? "" : qCustomer.AgentName));
-                    strContract = strContract.Replace("AgentMobileValue", (qCustomer.AgentMobile == null ? "" : qCustomer.AgentMobile));
-                    strContract = strContract.Replace("EmailRepresentativeValue", (qCustomer.EmailRepresentative == null ? "" : qCustomer.EmailRepresentative));
-
-                    strContract = strContract.Replace("NamesAuthorizedSignatoriesValue", (strNamesAuthorizedSignatoriesValue));
-                    strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (strNamesAuthorizedSignatoriesValue));
-                    strContract = strContract.Replace("CompanyName3Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
-                    strContract = strContract.Replace("NationalCode2Value", (qCustomer.NationalCode == null ? "" : qCustomer.NationalCode));
-                    strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
-                   
-                    strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));                   
-                    strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());
-                    strContract = strContract.Replace("TelValue", qCustomer.Tel);
-
-                    // مبلع فرمول
-                    strContract = strContract.Replace("ServiceFeePriceValue",qServiceFee!=null? CalcContractPrice(qCustomer, qServiceFee):"0");
-                    qContract.ContractText = strContract;                    
                 }
-               
+                strContract += "</div>";
+                qContract.ContractText = strContract;
                     if (qServiceFee == null)
                     {
-                        return new ResultGetServiceFeeAndCustomerByRequestDto()
-                        {
+                    return new ResultGetServiceFeeAndCustomerByRequestDto()
+                    {
+                          
                             Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract()),
                             Customers = _mapper.Map<CustomersDto>(qCustomer),
                             ServiceFee = null,
-                           
-                };
-              }
-                
-
+                    };
+                   }
                 return new ResultGetServiceFeeAndCustomerByRequestDto()
                 {
+                    
                     Customers = _mapper.Map<CustomersDto>(qCustomer),
                     ServiceFee = _mapper.Map<ServiceFeeDto>(qServiceFee != null ? qServiceFee : new ServiceFee()),
                     Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract())

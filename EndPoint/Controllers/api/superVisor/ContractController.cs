@@ -40,7 +40,18 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
-
-
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<ResultDto<IEnumerable<ContractPagesDto>>> Get_ContractPagess(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetContractPagessService.Execute(new RequestContractPagesDto() {  ContractId=id.Value });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

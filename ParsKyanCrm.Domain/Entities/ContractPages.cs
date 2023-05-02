@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
 namespace ParsKyanCrm.Domain.Entities
 {
-    public partial class Contract
+    public partial class ContractPages
     {
+        [Key]
+        public int ContractPageId { get; set; }
         public int ContractId { get; set; }
         public string ContractText { get; set; }
-        public int? KinfOfRequest { get; set; }        
-
-        public byte IsActive { get; set; }
-
-        public virtual SystemSeting KinfOfRequestNavigation { get; set; }
+        public int PageNumber { get; set; }
     }
 }
+

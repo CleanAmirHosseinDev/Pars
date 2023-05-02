@@ -35,12 +35,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteContract
 
             try
             {
-                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, new Dictionary<string, object>()
-                    {
-                      {
-                        "IsActive",(byte)Common.Enums.TablesGeneralIsActive.InActive
-                      }
-                    }, string.Format("RequestID" + " = '{0}' and ConfirmCommitteeEvaluation=0", id));
+                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, string.Format("RequestID" + " = '{0}' and ConfirmCommitteeEvaluation=0", id));                  
 
                 return new ResultDto()
                 {

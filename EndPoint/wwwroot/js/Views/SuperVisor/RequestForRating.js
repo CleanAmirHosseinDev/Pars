@@ -1195,11 +1195,10 @@
                 AjaxCallAction("GET", "/api/superVisor/RequestForRating/Delete_ContractAndFinancialDocuments/" + id, null, true, function (result) {
 
                     debuggerWeb();
-
+                    
                     if (result.isSuccess) {
-                        
-                        alertB("", result.message, "success");
-                        initContractNew(id);
+                        getContractInfo();
+                        alertB("", "کاربر گرامی در نظر داشته باشید قرارداد حذف گردید و قرارداد جدید به صورت اتوماتیک با شرایط جدید برای شما نشان داده می شود . در نظر داشته باشید تار زمانیکه مشتری پروفایل خود را کامل نکرده شما دکمه ثبت را نزنید و در صورت اطمینان از تغییرات مشتری دکمه ثبت قرارداد را بزنید. ", "success");
                     }
                     else {
 

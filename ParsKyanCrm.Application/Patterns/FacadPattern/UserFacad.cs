@@ -172,6 +172,11 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetLevelStepSettingsService GetLevelStepSettingsService { get; }
 
+        IGetContractPagessService GetContractPagessService { get; }
+
+        IGetContractPagesService GetContractPagesService { get; }
+
+
     }
 
     public class UserFacad : IUserFacad
@@ -662,6 +667,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private IGetContractPagessService _getContractPagessService;
+        public IGetContractPagessService GetContractPagessService
+        {
+            get
+            {
+                return _getContractPagessService = _getContractPagessService ?? new GetContractPagessService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+
+        private IGetContractPagesService _getContractPagesService;
+        public IGetContractPagesService GetContractPagesService
+        {
+            get
+            {
+                return _getContractPagesService = _getContractPagesService ?? new GetContractPagesService(_context, _mapper, _basicInfoFacad);
+            }
+        }
 
         private ISavePublicActivitiesService _savePublicActivitiesService;
         public ISavePublicActivitiesService SavePublicActivitiesService

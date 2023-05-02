@@ -26,6 +26,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string NationalCodeRepresentative { get; set; }
 
         public bool IsProfileComplete { get; set; }
+        public string EconomicCodeReal { get; set; }
 
         public int CustomerId { get; set; }
         public int? CityId { get; set; }

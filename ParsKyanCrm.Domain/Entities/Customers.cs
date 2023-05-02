@@ -53,6 +53,9 @@ namespace ParsKyanCrm.Domain.Entities
         public int? CustomerPersonalityType { get; set; }
         public int? TypeGroupCompanies { get; set; }
 
+        public string EconomicCodeReal { get; set; }
+
+
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
         public virtual SystemSeting KindOfCompany { get; set; }
@@ -61,5 +64,6 @@ namespace ParsKyanCrm.Domain.Entities
       
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }
         public virtual ICollection<Users> Users { get; set; }
+
     }
 }

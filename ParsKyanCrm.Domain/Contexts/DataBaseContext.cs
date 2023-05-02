@@ -52,6 +52,7 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
         DbSet<ValueChain> ValueChain { get; set; }
         DbSet<PublicActivities> PublicActivities { get; set; }
+        DbSet<ContractPages> ContractPages { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +107,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<FurtherInfo> FurtherInfo { get; set; }
         public virtual DbSet<ValueChain> ValueChain { get; set; }
         public virtual DbSet<PublicActivities> PublicActivities { get; set; }
+        public virtual DbSet<ContractPages> ContractPages { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -384,6 +386,11 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.Contract)
                     .HasForeignKey(d => d.KinfOfRequest)
                     .HasConstraintName("FK_Contract_SystemSeting");
+            });
+            modelBuilder.Entity<ContractPages>(entity =>
+            {
+                entity.Property(e => e.ContractPageId).HasColumnName("ContractPageID");
+                
             });
 
             modelBuilder.Entity<ContractAndFinancialDocuments>(entity =>

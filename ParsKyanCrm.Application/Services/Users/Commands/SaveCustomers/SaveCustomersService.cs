@@ -100,7 +100,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
 
                 #endregion                                
 
-                var cus = await _context.Customers.FindAsync(request.CustomerId);
+                 var cus = await _context.Customers.FindAsync(request.CustomerId);
                 request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
                 request.AuditedFinancialStatements = cus != null && !string.IsNullOrEmpty(cus.AuditedFinancialStatements) ? cus.AuditedFinancialStatements : string.Empty;
 
@@ -139,6 +139,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                     },
                     {
                         nameof(request.LastInsuranceList),request.LastInsuranceList
+                    }
+                    ,
+                    {
+                        nameof(request.EconomicCodeReal),request.EconomicCodeReal
                     },
                     {
                         nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements

@@ -164,6 +164,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 }
 
                 #endregion
+                request.CountOfPersonal = (request.CountOfPersonal == 0 ? 1 : request.CountOfPersonal.Value);
 
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
 
@@ -237,6 +238,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     },
                     {
                         "TypeGroupCompanies",request.TypeGroupCompanies
+                    }
+                    ,
+                    {
+                       nameof(request.EconomicCodeReal),request.EconomicCodeReal
                     },
                     {
                         "SaveDate",dt

@@ -463,6 +463,7 @@
                 $("#CompanyName").val(res.companyName);
                 $("#CeoName").val(res.ceoName);
                 $("#EconomicCode").val(res.economicCode);
+                $("#EconomicCodeReal").val(res.economicCodeReal);
                 $("#NationalCode").val(res.nationalCode);
                 $("#CeoNationalCode").val(res.ceoNationalCode);
                 $("#CeoMobile").val(res.ceoMobile);

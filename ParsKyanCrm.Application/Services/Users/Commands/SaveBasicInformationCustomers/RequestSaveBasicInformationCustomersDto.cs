@@ -51,6 +51,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         /// کد اقتصادی( به شماره ثبت تغییر کرد
         /// </summary>
         public string EconomicCode { get; set; }
+
+        public string EconomicCodeReal { get; set; }
         /// <summary>
         /// تلفن شرکت
         /// </summary>

@@ -46,8 +46,6 @@
             <div class="box-body" style="">
                 <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post">
 
-
-
                     <div class="form-horizontal">
                         <div class="row" id="divTypeServiceRequestedId">
                             <div class="col-md-12">
@@ -119,6 +117,15 @@
                                             <input type="text" maxlength="50" name="EconomicCode" id="EconomicCode" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            <span id="LabelEconomicCodeReal">کد اقتصادی</span>
+                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" maxlength="50" name="EconomicCodeReal" id="EconomicCodeReal" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             شناسه ملی  شرکت
@@ -129,18 +136,18 @@
                                         </div>
                                     </div>
                                     @*<div class="form-group">
-                                        <label class="control-label col-md-4" for="">
-                                        شهر
-                                        <span class="RequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-4">
-                                        <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
-                                        </div>
+        <label class="control-label col-md-4" for="">
+        شهر
+        <span class="RequiredLabel">*</span>
+        </label>
+        <div class="col-md-4">
+        <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+        </div>
 
-                                        <div class="col-md-4">
-                                        <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
-                                        </div>
-                                        </div>*@
+        <div class="col-md-4">
+        <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
+        </div>
+        </div>*@
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
                                             نام نماینده شرکت/ مشاور شرکت

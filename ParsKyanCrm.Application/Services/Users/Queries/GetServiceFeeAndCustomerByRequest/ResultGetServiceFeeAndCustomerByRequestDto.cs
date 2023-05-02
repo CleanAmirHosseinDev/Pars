@@ -1,4 +1,6 @@
 ﻿using ParsKyanCrm.Application.Dtos.Users;
+using ParsKyanCrm.Domain.Entities;
+using System.Collections.Generic;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustomerByRequest
 {
@@ -9,8 +11,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
         public ServiceFeeDto ServiceFee { get; set; }
 
         public ContractDto Contract { get; set; }
-        
-        
+        public List<ContractPages> ContractPage { get; set; }
+
 
     }
 }

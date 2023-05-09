@@ -27,5 +27,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string DestLevelStepIndexButton { get; set; }
         public string SmsContent { get; set; }
         public bool? SmsType { get; set; }
+        public string ColorButton { get; set; }
     }
 }

@@ -71,6 +71,9 @@
                     if ((n == 8 || n == 1) && res.data[i].destLevelStepIndex > "7") {
                         strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
                     }
+                    if ((n == 8 || n == 1 || n==4 || n==6 || n==9) && res.data[i].destLevelStepIndex >= "4") {
+                        strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+                    }
                     strM += "</td></tr>";
                     //if (res.data[i].levelStepIndex >= 7) {
 
@@ -123,7 +126,7 @@
                     for (var i = 0; i < res.data.length; i++) {
                         $("#sdklsslks3498sjdkxhjsd_823sb").val(res.data[0].levelStepIndex);
 
-                        htmlB += "<button type='button'  style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton+"' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
 
@@ -221,6 +224,8 @@
                     $("#btnDelContract").removeAttr("disabled");
                     $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney == null ? "" : res.data.disCountMoney.toString()));
                     $("#DicCountPerecent").val(res.data.dicCountPerecent);
+                    $("#ContractCode").val(res.data.contractCode);
+                    $("#SaveDate").val(res.data.contractCode != null ? res.data.saveDateStr : "");
 
                     if (getlstor("loginName") === "1" || getlstor("loginName") === "4") {
                         if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {

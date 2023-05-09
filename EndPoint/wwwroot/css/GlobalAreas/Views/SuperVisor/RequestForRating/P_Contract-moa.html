@@ -27,7 +27,18 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
-                                           مبلغ قرارداد (ریال)
+                                            شماره قرارداد:
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="ContractCode" id="ContractCode" class="form-control" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="">
+                                            مبلغ قرارداد (ریال)
                                         </label>
                                         <div class="col-md-6">
                                             <input type="text" name="PriceContract" id="PriceContract" class="form-control" readonly="readonly" />
@@ -38,7 +49,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
-                                          مبلغ نهایی (ریال)
+                                            مبلغ نهایی (ریال)
                                         </label>
                                         <div class="col-md-6">
                                             <input type="text" style="margin-top: 5px;" name="FinalPriceContract" id="FinalPriceContract" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
@@ -47,6 +58,16 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-6" for="">
+                                            تاریخ تایید :
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="SaveDate" id="SaveDate" class="form-control" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
@@ -65,7 +86,7 @@
                                         <div class="col-md-6">
                                             <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="Web.RequestForRating.CalDisPerecent(this);" />
                                             <label class="control-label col-md-6" id="lblDicCountPerecent">
-                                                
+
                                             </label>
                                         </div>
                                     </div>

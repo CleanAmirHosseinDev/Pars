@@ -18,6 +18,12 @@ namespace EndPoint.Areas.SuperVisor.Controllers
             ViewBag.id = id;
             return View();
         }
+
+        public IActionResult RequestDocument(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
         public IActionResult RequestReferences(int? id = null)
         {
             ViewBag.id = id;

@@ -25,6 +25,7 @@
     function saveCustomer(e) {
 
         $("#btnOpperationRun").attr("disabled", "");
+
         RemoveAllCharForPrice("AmountOsLastSales");
         AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
@@ -147,6 +148,16 @@
             },
             function () {
                 return "شماره تلفن ثابت خود را به درستی وارد نمایید";
+            }
+        );
+
+        $.validator.addMethod(
+            "AmountOsLastSalesValidation",
+            function (value, element) {
+                return value.indexOf("/") !== -1 ? false: true;
+            },
+            function () {
+                return "مبلغ وارد شده نامعتبر می باشد لطفا مبلغ را دستی وارد کنید";
             }
         );
 
@@ -273,7 +284,8 @@
                     required: function () {
                         return $("#CustomerPersonalityType").val() != "223";
                     },
-                    maxlength: 18
+                    maxlength: 18,
+                    AmountOsLastSalesValidation: $("#AmountOsLastSales").val(),
                 },
             },
             // Specify validation error messages
@@ -401,7 +413,7 @@
                     required: function () {
                         return "لطفا درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید";
                     },
-                    maxlength: "درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده باید حداکثر 18 حرف باشد"
+                    maxlength: "درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده باید حداکثر 18 رقم باشد"                    
                 },
             },
             // Make sure the form is submitted to the destination defined

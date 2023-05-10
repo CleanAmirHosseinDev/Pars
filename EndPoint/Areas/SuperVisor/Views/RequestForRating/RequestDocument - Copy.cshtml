@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewData["Title"] = "اسناد درخواست";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+}
+
+@section PageHeader{
+    <section class="content-header" id="phch">
+        <h1>
+            اسناد
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/SuperVisor/RequestForRating/Index"><i></i> درخواست ها</a></li>
+            <li class="active"><a href="/SuperVisor/RequestForRating/RequestDocument/@(ViewBag.id == null || ViewBag.id == 0 ?"":ViewBag.id)"><i></i> مشاهده اسناد درخواست</a></li>
+        </ol>
+    </section>
+}
+
+<div class="row">
+    <div class="box box-info">
+        <div class="box-header">
+            <!--<i class="fa fa-cloud"></i>-->
+            <h3 class="box-title">
+                <div class="portlet-title">
+                    <div class="caption font-green-haze">
+                        <!--<span class="caption-subject bold uppercase">آب و هوا</span>-->
+                    </div>
+                    <div class="tools">
+
+                        <a href="" class="collapse" data-original-title="" title="">
+                        </a>
+                    </div>
+                </div>
+            </h3>
+            <!-- tools box -->
+            <div class="pull-left box-tools">
+                <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /. tools -->
+        </div>
+        <div class="box-body" style="">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="" id="frmFormMain" method="post">
+                        <input type="hidden" name="RequestID" id="RequestID" value="@ViewBag.id"/>
+                        <h4> اسناد مربوط به قرارداد</h4>
+                        <div class="form-horizontal">
+                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+                                <table class="table">
+                                    <tr>
+                                        <th>سند</th>
+                                        <th>نمایش/ دانلود</th>
+                                    </tr>
+                                    <tr>
+                                        <td> قرارداد</td>
+                                        <td>
+                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
+                                                نمایش قرارداد   <i class="fa fa-print"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>پیش فاکتور</td>
+                                        <td>
+                                            <button title="پیش فاکتور" class='btn btn-default fontForAllPage' type="button" onclick='Web.RequestForRating.PrintPerFactoring(this)'> <i class='fa fa-print'></i> پیش  فاکتور  </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>سند پرداختی</td>
+                                        <td> <div id="divDownloadFinancialDocument"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>قرارداد امضاء شده</td>
+                                        <td> <div id="divDownload_ContractDocument"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>سند تسویه نهایی</td>
+                                        <td>
+                                            <div id="divDownload_LastFinancialDocument"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    
+    <script>
+        Web.RequestForRating.GetDocument(@ViewBag.id);
+    </script>
+}
+

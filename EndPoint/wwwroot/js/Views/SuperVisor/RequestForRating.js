@@ -154,10 +154,7 @@
 
     function printContract(e) {
 
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-        if (id == null || id=="") {
-            id = $("#RequestID").val();
-        }
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());        
         goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);
     }
 
@@ -171,7 +168,9 @@
 
                     $("#ContractShow").html(res.data.contentContract);
                     if (res.data.contractCode != null && res.data.contractCode != "") {
-                        $("#SaveDate").html(res.data.saveDateStr);
+                        $('.PageContractFirst').find('input[name=SaveDate]').val(res.data.saveDateStr);
+                        $('.PageContractFirst').find('input[name=ContractCode]').val(res.data.contractCode);
+
 
                     } else {
                         $("#ptr").html("<p> این نسخه قرارداد اصلی نمی باشد.</p>");
@@ -318,6 +317,41 @@
         }
     }
 
+    function showEditContract() {
+        if (getlstor("loginName") == "1" || getlstor("loginName") == "4") {
+
+            var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+
+            if (!isEmpty(id) && id != 0) {
+
+                if ((getlstor("loginName") === "1") || (getlstor("loginName") === "4")) {
+                    getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moaEdit.html", function (resG) {
+
+                        $("#contractInfo").html(resG);
+                        if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                            $('#FinalPriceContract').prop('readonly', true);
+                            $('#DisCountMoney').prop('readonly', true);
+                            $('#DicCountPerecent').prop('readonly', true);
+
+                        }
+                        if (getlstor("loginName") === "1") {
+                            $("#ContractUp").hide();
+                        }
+                        initContract(id);
+                    });
+                } else {
+                    getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
+
+                        $("#contractInfo").html(resG);
+                        // initContract(id);
+
+                    });
+                }
+
+            }
+        }
+    }
+
     function initCustomer(id = null) {
 
         if (!isEmpty(id) && id != 0) {
@@ -408,7 +442,7 @@
     }
 
     function initContractNew(id = null) {
-
+        
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
@@ -438,6 +472,53 @@
                             $('input[type="text"], textarea').each(function () {
                                 if ($(this).attr("name") == "ServiceFeePrice") {
                                     var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + moneyCommaSepWithReturn(u.toString()) + '"/>');
+                                    $(this).replaceWith(new_html);
+                                }
+                            });
+                            Ckeditor("ContentContract");
+                            var elements = $("#ContractShow").html();
+                            setDataCkeditor('ContentContract', elements);
+
+                            if (res.serviceFee == null) {
+                                alertB("خطا", "نرخی برای شرایط مشتری پیدا نشد", "error");
+                            }
+                        }
+                    }
+
+
+                }
+
+            }, true);
+
+        }
+
+
+    }
+    function initContractNewText() {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+
+        if (!isEmpty(id) && id != 0) {
+
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res != null) {
+                    $("#btnDelContract").attr("disabled", "");
+
+                    if (res.contract == null) {
+                        alertB("خطا", "متن قرارداد وجود ندارد", "error");
+                    }
+                    else {
+                        if (getlstor("loginName") === "1" || (getlstor("loginName") === "4")) {
+                            $("#RequestID").val(id);
+                            $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.contract.contractText + "</textarea>");
+                            var m = res.contract.contractText;
+                            $("#PriceContract").val($(m).find('input[name="ServiceFeePrice"]').val());
+                            $("#ContractShow").hide();
+                            $("#ContractShow").html(m);
+
+                            $('input[type="text"], textarea').each(function () {
+                                if ($(this).attr("name") == "ServiceFeePrice") {
+                                    var new_html = ('<input type="text" name="ServiceFeePrice"' + 'value="' + moneyCommaSepWithReturn($("#FinalPriceContract").val()) + '"/>');
                                     $(this).replaceWith(new_html);
                                 }
                             });
@@ -632,6 +713,27 @@
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         //var stepIndex = decrypt($(e).attr("data-DLSI"), keyMaker());
 
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+                if (res.isSuccess) {
+                    for (var i = 0; i < res.data.length; i++) {
+
+                        if (res.data[i].destLevelStepIndex >= 3) {
+                            getShowDoument(id);
+                        }
+                    }
+                }
+
+            }, true);
+        }
+
+
+
+    }
+    function showEditDocument(id=null) {
+
+        $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
 
@@ -1222,6 +1324,38 @@
         }
     }
 
+    function deleteContractText() {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        
+        if (!isEmpty(id) && id != 0) {
+
+            if ((getlstor("loginName") === "1") || (getlstor("loginName") === "4")) {
+                getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moaEdit.html", function (resG) {
+
+                    $("#contractInfo").html(resG);
+                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                        $('#FinalPriceContract').prop('readonly', true);
+                        $('#DisCountMoney').prop('readonly', true);
+                        $('#DicCountPerecent').prop('readonly', true);
+
+                    }
+                    if (getlstor("loginName") === "1") {
+                        $("#ContractUp").hide();
+                    }
+                    initContractNew(id);
+                });
+            } else {
+                getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract.html", function (resG) {
+
+                    $("#contractInfo").html(resG);
+                    // initContract(id);
+
+                });
+            }
+
+        }
+    }
+
     $("#frmFrom1 input,textarea").on("focusout", function () {
 
         $(this).valid();
@@ -1325,7 +1459,11 @@
         PrintPerFactoring: printPerFactoring,
         InitCustomerFactor: initCustomerFactor,
         GetCustomerInfoFactor: getCustomerInfoFactor,
-        DeleteContract: deleteContract
+        DeleteContract: deleteContract,
+        ShowEditDocument: showEditDocument,
+        ShowEditContract: showEditContract,
+        DeleteContractText: deleteContractText,
+        InitContractNewText: initContractNewText
     };
 
 })(Web, jQuery);

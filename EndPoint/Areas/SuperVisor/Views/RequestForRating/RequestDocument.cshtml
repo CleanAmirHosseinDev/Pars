@@ -44,56 +44,33 @@
             </div>
             <!-- /. tools -->
         </div>
-        <div class="box-body" style="">
+        <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="" id="frmFormMain" method="post">
-                        <input type="hidden" name="RequestID" id="RequestID" value="@ViewBag.id"/>
-                        <h4> اسناد مربوط به قرارداد</h4>
-                        <div class="form-horizontal">
-                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
-                                <table class="table">
-                                    <tr>
-                                        <th>سند</th>
-                                        <th>نمایش/ دانلود</th>
-                                    </tr>
-                                    <tr>
-                                        <td> قرارداد</td>
-                                        <td>
-                                            <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
-                                                نمایش قرارداد   <i class="fa fa-print"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>پیش فاکتور</td>
-                                        <td>
-                                            <button title="پیش فاکتور" class='btn btn-default fontForAllPage' type="button" onclick='Web.RequestForRating.PrintPerFactoring(this)'> <i class='fa fa-print'></i> پیش  فاکتور  </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>سند پرداختی</td>
-                                        <td> <div id="divDownloadFinancialDocument"></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>قرارداد امضاء شده</td>
-                                        <td> <div id="divDownload_ContractDocument"></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>سند تسویه نهایی</td>
-                                        <td>
-                                            <div id="divDownload_LastFinancialDocument"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active" id="svisorShowDocument"><a href="#activity" onclick="Web.RequestForRating.ShowEditDocument()"  data-toggle="tab" aria-expanded="false">  قرارداد و اسناد مشتری</a></li>
+                            <li class="" id="svisorShowContract"><a onclick="Web.RequestForRating.ShowEditContract()" href="#timeline_1" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="" />
+                           
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane active" id="activity">
+                                <div id="showDocument"></div>
                             </div>
-                        </div>
+                            <!-- /.tab-pane -->
 
-                    </form>
+                            <div class="tab-pane" id="timeline_1">
+                                <div id="contractInfo"></div>
+                            </div>                          
+                           
+                        </div>
+                        <!-- /.tab-content -->
+                    </div>
                 </div>
             </div>
-
+            
         </div>
     </div>
 </div>
@@ -103,7 +80,7 @@
     <script src="~/lib/ckeditor/ckeditor.js"></script>
     
     <script>
-        Web.RequestForRating.GetDocument(@ViewBag.id);
+        Web.RequestForRating.ShowEditDocument(@ViewBag.id);
     </script>
 }
 

@@ -155,7 +155,7 @@
     function printContract(e) {
 
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-        if (id == null) {
+        if (id == null || id=="") {
             id = $("#RequestID").val();
         }
         goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);

@@ -5,10 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="wwwroot\FileUpload\Customers\FurtherInfo\54a0d273168448b89fb8201a162663dc.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Content Include="wwwroot\css\GlobalAreas\bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
 	  <Content Include="wwwroot\css\GlobalAreas\bower_components\bootstrap\dist\css\bootstrap.min.css" />
 	  <Content Include="wwwroot\css\GlobalAreas\bower_components\font-awesome\css\font-awesome.css" />
@@ -45,6 +41,7 @@
 		<Folder Include="Areas\Customer\Models\" />
 		<Folder Include="Areas\SuperVisor\Data\" />
 		<Folder Include="Areas\SuperVisor\Models\" />
+		<Folder Include="wwwroot\FileUpload\Customers\FurtherInfo\" />
 		<Folder Include="wwwroot\lib\jquery-multi-select\" />
 	</ItemGroup>
 
@@ -93,15 +90,6 @@
 		<None Include="wwwroot\FileUpload\Activity\9f1bafcd24a24889987cd7cd506f8660.png" />
 		<None Include="wwwroot\FileUpload\Activity\no-photo.png" />
 		<None Include="wwwroot\FileUpload\BoardOfDirectors\no-photo.png" />
-		<None Include="wwwroot\FileUpload\Customers\38b203f40518409f81f540b2ab38f11c.jpg" />
-		<None Include="wwwroot\FileUpload\Customers\46cc5a34ffb44a04b200ff4edcb9a2e5.pdf" />
-		<None Include="wwwroot\FileUpload\Customers\782c108699dd4fbbad7c7e6856b224c5.bmp" />
-		<None Include="wwwroot\FileUpload\Customers\7b25a04429984417877dfc028cf22dcf.png" />
-		<None Include="wwwroot\FileUpload\Customers\7e4057f9bc3643eb94fa8c648b7e08dd.png" />
-		<None Include="wwwroot\FileUpload\Customers\9c5ce8a5e80d4b8888d7964bac2ed851.pdf" />
-		<None Include="wwwroot\FileUpload\Customers\b20c981e72f446898ecdec791af9a336.pdf" />
-		<None Include="wwwroot\FileUpload\Customers\e099f28e829e450c80639038f4a8d99d.jpg" />
-		<None Include="wwwroot\FileUpload\Customers\FurtherInfo\54a0d273168448b89fb8201a162663dc.png" />
 		<None Include="wwwroot\FileUpload\Customers\no-photo.png" />
 		<None Include="wwwroot\FileUpload\LicensesAndHonors\54a0d273168448b89fb8201a162663dc.png" />
 		<None Include="wwwroot\FileUpload\LicensesAndHonors\5fbbd59a1c3d454885487abbadbdf597.png" />

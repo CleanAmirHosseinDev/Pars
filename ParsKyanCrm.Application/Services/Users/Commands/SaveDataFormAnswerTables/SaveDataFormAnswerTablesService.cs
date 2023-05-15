@@ -89,7 +89,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                     fileNameOldPic_FileName4 = request.FileName4;
                     request.FileName4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName4.FileName);
                     path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName4;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName4, path_FileName3, "فایل چهار");
+                    await ServiceFileUploader.SaveFile(request.Result_Final_FileName4, path_FileName4, "فایل چهار");
                 }
 
                 #endregion

@@ -81,5 +81,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string ReciveUser { get; set; }
 
+        public string ContractDocument { get; set; }
+
     }
 }

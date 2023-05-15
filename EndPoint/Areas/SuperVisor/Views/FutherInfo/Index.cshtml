@@ -47,7 +47,8 @@
                 </div>
                 <!-- /. tools -->
             </div>
-            <div class="box-body" style="">
+            <div class="box-body">
+                <div id="CutomerName" style="text-align:center;background-color:#f6f4f4;padding:7px"></div>
                 <div class="row">
                     <!-- MultiStep Form -->
                     <div class="container-fluid" id="grad1">
@@ -112,14 +113,14 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر  آخرین مدرک تحصیلی</label>
-                                                                                 <div id="DivAcademicDegreePicture"></div>
+                                                                                <div id="DivAcademicDegreePicture"></div>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه بیمه (به ماه)</label>
-                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control"  />
+                                                                                <input type="text" name="Answer9" id="InsuranceHistory" placeholder="سابقه بیمه " class="form-control" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -133,7 +134,7 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">درصد سهام</label>
-                                                                                <input type="text" name="Answer7" id="OwnershipPercentage" placeholder="درصد سهام" class="form-control" maxlength="3"  />
+                                                                                <input type="text" name="Answer7" id="OwnershipPercentage" placeholder="درصد سهام" class="form-control" maxlength="3" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -151,13 +152,13 @@
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">سابقه عضویت در هیئت مدیره (به ماه)</label>
-                                                                                <input type="text" name="Answer5" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control"  />
+                                                                                <input type="text" name="Answer5" id="JoinHistory" placeholder="سابقه عضویت در هیئت مدیره " class="form-control" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-12" style="margin-bottom:10px">
                                                                                 <label class="control-label" for="">تصویر روزنامه رسمی سابقه عضویت در هیئت مدیره </label>
-                                                                                 <div id="DivPicture4"></div>
+                                                                                <div id="DivPicture4"></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -175,7 +176,7 @@
 
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </form>
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -203,7 +204,7 @@
                                                         <h2 class="fs-title">دوره های آموزشی هیئت مدیره و مدیران ارشد</h2>
                                                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
-                                                            
+
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -234,11 +235,11 @@
                                                                 <form id="FormDe2">
                                                                     <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id">
                                                                     <input type="hidden" id="FurtherInfoId" name="FurtherInfoId" value="0">
-                                                                    
+
                                                                     <table class="table">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>عنوان</th>                                                                               
+                                                                                <th>عنوان</th>
                                                                                 <th>مشاهده فایل</th>
                                                                             </tr>
                                                                         </thead>
@@ -247,7 +248,7 @@
                                                                                 <td style="text-align:right">
                                                                                     <label class="control-label" for=""> صورتهای مالی حسابرسی شده</label>
                                                                                 </td>
-                                                                               
+
                                                                                 <td>
                                                                                     <div id="divDownloadLastAuditingTaxList"> </div>
                                                                                 </td>
@@ -256,7 +257,7 @@
                                                                                 <td style="text-align:right">
                                                                                     <label class="control-label" for=""> اظهارنامه مالیاتی</label>
                                                                                 </td>
-                                                                               
+
                                                                                 <td>
                                                                                     <div id="divDownloadStatementTaxList"> </div>
                                                                                 </td>
@@ -268,7 +269,7 @@
 
 
                                                                                 </td>
-                                                                                
+
                                                                                 <td>
                                                                                     <div id="divDownloadLastChangeOfficialNewspaper">
                                                                                     </div>
@@ -280,7 +281,7 @@
 
 
                                                                                 </td>
-                                                                               
+
                                                                                 <td>
                                                                                     <div id="divDownloadStatuteDoc">
                                                                                     </div>
@@ -290,7 +291,7 @@
                                                                                 <td style="text-align:right">
                                                                                     <label class="control-label" for="">  آگهی تاسیس </label>
                                                                                 </td>
-                                                                                
+
                                                                                 <td>
                                                                                     <div id="divDownloadOfficialNewspaper">
                                                                                     </div>
@@ -299,7 +300,7 @@
                                                                         </tbody>
 
                                                                     </table>
-                                                                    
+
 
                                                                 </form>
 
@@ -332,7 +333,7 @@
                                                                         <div class="tab-pane active" id="FormDetailTab3">
                                                                             <h2 class="fs-title">نظامنامه کیفیت</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -354,7 +355,7 @@
                                                                         <div class="tab-pane" id="FormDetailTab4">
                                                                             <h2 class="fs-title">استاندارد</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -476,7 +477,7 @@
                                                                                             <thead>
                                                                                                 <tr>
                                                                                                     <th>عنوان</th>
-                                                                                                  
+
                                                                                                     <th>مشاهده فایل</th>
                                                                                                 </tr>
                                                                                             </thead>
@@ -487,7 +488,7 @@
 
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td>
                                                                                                         <div id="DivOrganazationChart"></div>
                                                                                                     </td>
@@ -498,14 +499,14 @@
 
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td><div id="DivOrganizationalDuties"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for="">بارگذاری دستورالعمل مدیریت ریسک </label>
                                                                                                     </td>
-                                                                                                    
+
                                                                                                     <td>
                                                                                                         <div id="DivRiskManagementGuidelines"></div>
                                                                                                     </td>
@@ -515,7 +516,7 @@
                                                                                                         <label class="control-label" for=""> بارگذاری آیین نامه معاملات </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td>
                                                                                                         <div id="DivTransactionRegulations"></div>
                                                                                                     </td>
@@ -534,7 +535,7 @@
 
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td>
                                                                                                         <div id="DivCrmSoftwareContract"></div>
                                                                                                     </td>
@@ -561,7 +562,7 @@
 
 
                                                                                                     </td>
-                                                                                                     <td><div id="DivInovationFile"></div></td>
+                                                                                                    <td><div id="DivInovationFile"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
@@ -576,7 +577,7 @@
 
                                                                                         </table>
 
-                                                                                        
+
                                                                                     </form>
 
                                                                                 </div>
@@ -588,7 +589,7 @@
                                                                             <h2 class="fs-title"> اعضای کمیته حسابرسی</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -609,7 +610,7 @@
                                                                             <h2 class="fs-title"> محصولات شرکت</h2>
                                                                             <p>نام محصولاتی که توسط شرکت تولید یا به فروش می رسد.</p>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -643,7 +644,7 @@
                                                                                             <thead>
                                                                                                 <tr>
                                                                                                     <th>عنوان</th>
-                                                                                                   
+
                                                                                                     <th>مشاهده فایل</th>
                                                                                                 </tr>
                                                                                             </thead>
@@ -652,14 +653,14 @@
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for="">تصویر انبار / سند مالکیت انبار (در صورت برون سپاری قرارداد مربوطه ارسال گردد) </label>
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td><div id="DivVc1"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for="">عکس/سند تجهیزات انبارش و بارگیری (در صورت برون سپاری قرارداد مربوطه ارسال گردد)  </label>
                                                                                                     </td>
-                                                                                                     <td> <div id="DivVc2"></div></td>
+                                                                                                    <td> <div id="DivVc2"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
@@ -668,7 +669,7 @@
 
                                                                                                         </label>
                                                                                                     </td>
-                                                                                                     <td><div id="DivVc3"></div></td>
+                                                                                                    <td><div id="DivVc3"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right"><label class="control-label" for="">  عکس / قراداد نرم افزار انبارداری </label></td>
@@ -680,7 +681,7 @@
 
 
                                                                                     </div>
-                                                                                    
+
                                                                                 </div>
                                                                             </form>
                                                                             <form id="FormDem88">
@@ -695,7 +696,7 @@
                                                                                             <thead>
                                                                                                 <tr>
                                                                                                     <th>عنوان</th>
-                                                                                                    
+
                                                                                                     <th>مشاهده فایل</th>
                                                                                                 </tr>
                                                                                             </thead>
@@ -705,7 +706,7 @@
                                                                                                         <label class="control-label" for=""> دفتر مرکزی(اجاره نامه یا سند مالکیت) </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td>  <div id="DivVc5"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -713,7 +714,7 @@
                                                                                                         <label class="control-label" for=""> دفتر خارج از کشور (اجاره نامه یا سند مالکیت) </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td> <div id="DivVc6"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -721,7 +722,7 @@
                                                                                                         <label class="control-label" for="">یک نمونه فیش حقوقی پرسنل نشان دهنده واریز پاداش </label>
 
                                                                                                     </td>
-                                                                                                  
+
                                                                                                     <td> <div id="DivVc7"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -752,7 +753,7 @@
                                                                                                         <label class="control-label" for="">سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل </label>
 
                                                                                                     </td>
-                                                                                                     <td><div id="DivVc11"></div></td>
+                                                                                                    <td><div id="DivVc11"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
@@ -766,7 +767,7 @@
 
 
                                                                                     </div>
-                                                                                    
+
                                                                                 </div>
                                                                             </form>
                                                                             <form id="FormDem99">
@@ -786,14 +787,14 @@
                                                                                             <tbody>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right"> <label class="control-label" for="">آیا شرکت نمایندگی  دارد؟ </label></td>
-                                                                                                     <td> <div id="DivVc13"></div></td>
+                                                                                                    <td> <div id="DivVc13"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td style="text-align:right">
                                                                                                         <label class="control-label" for=""> آیا شرکت نمایندگان خودد را ارزیابی کرده است؟ </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td> <div id="DivVc14"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -801,7 +802,7 @@
                                                                                                         <label class="control-label" for=""> تصویر یا آدرس سایت و فعالیت در شبکه های اجتماعی </label>
 
                                                                                                     </td>
-                                                                                                  
+
                                                                                                     <td><div id="DivVc15"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -809,7 +810,7 @@
                                                                                                         <label class="control-label" for="">عکس/اجاره نامه / سند مالکیت فروشگاه </label>
 
                                                                                                     </td>
-                                                                                                 
+
                                                                                                     <td> <div id="DivVc16"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -817,7 +818,7 @@
                                                                                                         <label class="control-label" for=""> تصویر یا آدرس سایت فروش آنلاین </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td><div id="DivVc17"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -825,7 +826,7 @@
                                                                                                         <label class="control-label" for=""> گزارش های بازاریابی حضوری </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td> <div id="DivVc18"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -833,7 +834,7 @@
                                                                                                         <label class="control-label" for=""> عکس یا مجوز حضور در نمایشگاه ها </label>
 
                                                                                                     </td>
-                                                                                                  
+
                                                                                                     <td> <div id="DivVc19"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -848,13 +849,13 @@
                                                                                                         <label class="control-label" for=""> عکس از نمونه تبلیغات محیطی </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td><div id="DivVc21"></div></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
-                                                                                    
+
                                                                                 </div>
                                                                             </form>
                                                                             <form id="FormDem66">
@@ -879,7 +880,7 @@
                                                                                                         <label class="control-label" for=""> کارت گارانتی </label>
 
                                                                                                     </td>
-                                                                                                   
+
                                                                                                     <td><div id="DivVc22"></div></td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -910,7 +911,7 @@
                                                                                         </table>
 
                                                                                     </div>
-                                                                                    
+
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -921,7 +922,7 @@
                                                                         <div class="tab-pane" id="FormDetailTab8">
                                                                             <h2 class="fs-title">برنامه ریزی بلند مدت</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -944,7 +945,7 @@
 
                                                                             <h2 class="fs-title">مشخصات تیم تحقیق و توسعه و گزارشات </h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -965,7 +966,7 @@
                                                                             <h2 class="fs-title">گزارشات تیم تحقیق و توسعه </h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -1018,7 +1019,7 @@
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
                                                                                 @*<p>لطفا فایل نمونه اکسل را از لینک ذیل کلیک کنید و پس از تکمیل بارگذاری کنید:</p>*@
 
-                                                                                
+
                                                                                 <form id="frmFrom11">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="11" />
                                                                                     <input type="hidden" id="DataFormQuestionID" name="DataFormQuestionID" value="79" />
@@ -1035,7 +1036,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                   
+
                                                                                 </form>
                                                                             </div>
 
@@ -1047,7 +1048,7 @@
 
                                                                             <h2 class="fs-title">دوره های آموزشی </h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -1087,7 +1088,7 @@
 
                                                 <fieldset>
                                                     <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                 
+
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -1104,7 +1105,7 @@
 
                                                                             <h2 class="fs-title">عضویت در تشکلها / انجمن ها</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -1158,13 +1159,13 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                   
+
                                                                                 </form>
                                                                             </div>
                                                                             <h2 class="fs-title">بارگذاری مدارک های انجمن های خیریه</h2>
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -1185,7 +1186,7 @@
 
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
 
-                                                                                
+
                                                                                 <table class="table">
                                                                                     <thead>
                                                                                         <tr>
@@ -1231,12 +1232,12 @@
                                                     </div>
 
                                                     <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                   
+
                                                 </fieldset>
 
                                                 <!-- اتمام مراحل -->
 
-                                                
+
 
                                             </div>
                                         </div>

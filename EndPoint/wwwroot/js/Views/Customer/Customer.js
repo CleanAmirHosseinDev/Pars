@@ -213,7 +213,7 @@
                 },
                 "AgentName": {
                     required: function () {
-                        return $("#CustomerPersonalityType").val() != "223";
+                        return true;
                     },
                     minlength: 5,
                     maxlength: 50
@@ -259,7 +259,7 @@
                 },
                 "Email": {
                     required: function () {
-                        return $("#CustomerPersonalityType").val() != "223";
+                        return true;
                     },
                     minlength: 5,
                     maxlength: 50,
@@ -275,7 +275,7 @@
                 },
                 "PostalCode": {
                     required: function () {
-                        return $("#CustomerPersonalityType").val() != "223";
+                        return true;
                     },
                     minlength: 10,
                     maxlength: 10
@@ -379,7 +379,7 @@
                 },
                 "KindOfCompanyId": {
                     required: function () {
-                        return "لطفا نوع شرکت را انتخاب کنید";
+                        return "لطفا نوع  فعالیت شرکت را انتخاب کنید";
                     },
                 },
                 "TypeGroupCompanies": {
@@ -537,13 +537,14 @@
             $("#LabelTypeGroupCompanies").html("نوع فعالیت");
             $("#LabelEconomicCode").html("شماره کارت بازرگانی");
             $("#LabelCompanyName").html("نام و نام خانوادگی");
-            $("#Span_Label_AgentMobile").html("شماره موبایل");
+            $("#Span_Label_AgentMobile").html("شماره موبایل / شماره موبایل نماینده ");
+            $("#LabelAgentName").html("نام نماینده ");
         }
         else {
 
             $(".form-group").show();
             $(".NotShowRequiredLabel").show();
-            $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
+            $("#LabelTypeGroupCompanies").html("نوع فعالیت شرکتها");
             $("#LabelEconomicCode").html("شماره ثبت");
             $("#LabelCompanyName").html("نام شرکت");
             $("#Span_Label_AgentMobile").html("شماره نماینده");

@@ -231,10 +231,9 @@
 
     function initFurtherInfo(id = null) {
         PersianDatePicker(".DatePicker");
-
-
         $("#RequestIdForms").val(id);
         initReferral(id);
+        initCustomer(id);
         intiTab(1);
     }
 
@@ -1521,6 +1520,16 @@
 
     });
 
+    function initCustomer(id, dir = 'rtl') {
+
+        AjaxCallAction("GET", "/api/superVisor/Customers/Get_Customers/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+                if (res != null) {
+                    $("#CutomerName").html("<h4> فرم اطلاعات تکمیلی " + res.companyName + "</h4>");
+                }
+        }, true);
+
+    }
+
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         InitFurtherInfo: initFurtherInfo,
@@ -1547,7 +1556,8 @@
         GetCorporateGovernance: getCorporateGovernance,
         GetValueChain: getValueChain,
         SavePublicActivities: savePublicActivities,
-        GetPublicActivities: getPublicActivities
+        GetPublicActivities: getPublicActivities,
+        InitCustomer: initCustomer
     };
 
 })(Web, jQuery);

@@ -230,7 +230,8 @@
 
         $("#RequestIdForms").val(id);
         initReferral(id);        
-        intiTab(1);        
+        intiTab(1);
+        initCustomer();
     }
 
     function intiFormShow(Id = null, Columns = null, RequestId = null) {
@@ -1519,6 +1520,21 @@
        
     });
 
+    function initCustomer(dir = 'rtl') {
+
+        ComboBoxWithSearch('.select2', dir);
+
+        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+
+
+            if (res != null) {
+                $("#CutomerName").html("<h4> فرم اطلاعات تکمیلی " + res.companyName+"</h4>");
+            }
+
+        }, true);
+
+    }
+
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         InitFurtherInfo: initFurtherInfo,
@@ -1545,7 +1561,8 @@
         GetCorporateGovernance: getCorporateGovernance,
         GetValueChain: getValueChain,
         SavePublicActivities: savePublicActivities,
-        GetPublicActivities: getPublicActivities
+        GetPublicActivities: getPublicActivities,
+        InitCustomer: initCustomer
     };
 
 })(Web, jQuery);

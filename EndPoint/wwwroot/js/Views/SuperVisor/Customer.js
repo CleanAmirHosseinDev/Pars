@@ -39,13 +39,13 @@
                     $("#LabelTypeGroupCompanies").html("نوع فعالیت");
                     $("#LabelEconomicCode").html("شماره کارت بازرگانی");
                     $("#LabelCompanyName").html("نام و نام خانوادگی");
-                    $("#Span_Label_AgentMobile").html("شماره موبایل");
+                    $("#Span_Label_AgentMobile").html("شماره موبایل/ شماره موبایل نماینده");
                 }
                 else {
 
                     $(".form-group").show();
                     $(".NotShowRequiredLabel").show();
-                    $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
+                    $("#LabelTypeGroupCompanies").html("نوع فعالیت شرکتها");
                     $("#LabelEconomicCode").html("شماره ثبت");
                     $("#LabelCompanyName").html("نام شرکت");
                     $("#Span_Label_AgentMobile").html("شماره نماینده");
@@ -56,6 +56,7 @@
                 $("#CompanyName").html(res.companyName);
                 $("#CeoName").html(res.ceoName);
                 $("#EconomicCode").html(res.economicCode);
+                $("#EconomicCodeReal").html(res.economicCodeReal);
                 $("#NationalCode").html(res.nationalCode);
                 $("#CeoNationalCode").html(res.ceoNationalCode);
                 $("#CeoMobile").html(res.ceoMobile);

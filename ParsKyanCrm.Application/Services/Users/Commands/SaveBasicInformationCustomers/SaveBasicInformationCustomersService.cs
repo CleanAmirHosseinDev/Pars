@@ -70,7 +70,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 if (!Check_Remote(new RequestSaveBasicInformationCustomersDto() { CustomerId = request.CustomerId, NationalCode = request.NationalCode }))
                 {
-                    return "شناسه ملی مورد نظر ار قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
+                    return "شناسه ملی مورد نظر از قبل موجود می باشد لطفا شناسه ملی دیگری وارد نمایید";
                 }
 
                 var qRequest = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == request.CustomerId && p.IsFinished == false);

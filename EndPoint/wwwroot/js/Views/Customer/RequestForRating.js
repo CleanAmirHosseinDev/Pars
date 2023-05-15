@@ -31,7 +31,9 @@
                     }
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].kindOfRequestName + "</td><td>"
-                        + res.data[i].dateOfRequestStr + "</td>";
+                        + res.data[i].dateOfRequestStr + "</td><td style='font-size:x-small'>";
+                     strM += res.data[i].comment + "</td>";
+                    
                     if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
                         strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
                     } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
@@ -64,7 +66,7 @@
                         strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
 
                     }
-                    if ( res.data[i].destLevelStepIndex >= "4") {
+                    if (res.data[i].contractDocument!=null) {
                         strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                     }
 

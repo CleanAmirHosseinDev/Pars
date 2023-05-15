@@ -102,7 +102,7 @@
             case 3:
                 getCorporateGovernance(ID);
                 intiFormShow(16, "1,2,3", ID);
-                intiFormShow(17, "1,2", ID);
+                intiFormShow(17, "1,2,3", ID);
                
                 break;
             case 4:
@@ -1066,6 +1066,7 @@
                         //6,'1,2
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
+                        $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $("#btnform17").html("ویرایش");
 
                     } else if (FormID == 22) {

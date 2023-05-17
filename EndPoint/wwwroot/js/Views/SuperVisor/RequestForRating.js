@@ -330,9 +330,7 @@
                         $("#contractInfo").html(resG);
                         if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
                             $('#FinalPriceContract').prop('readonly', true);
-                            $('#DisCountMoney').prop('readonly', true);
-                            $('#DicCountPerecent').prop('readonly', true);
-
+                         
                         }
                         if (getlstor("loginName") === "1") {
                             $("#ContractUp").hide();

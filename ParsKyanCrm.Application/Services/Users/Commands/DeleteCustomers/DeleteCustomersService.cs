@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
@@ -36,8 +37,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers
             {
 
                 var cus = await _context.Customers.FindAsync(id);
+                var q_req = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == id);
 
-                if (cus.IsProfileComplete)
+                if (q_req!=null)
                 {
 
                     return new ResultDto()
@@ -47,20 +49,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers
                     };
 
                 }
+              
+                var q_user = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == id);
+               
+                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.UserRoles).Name, string.Format("UserID" + " = '{0}'", q_user.UserId));
 
-                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
-                    {                    
-                    {
-                        "IsActive",(byte)Common.Enums.TablesGeneralIsActive.InActive
-                    }
-                    }, string.Format("CustomerID" + " = '{0}' ", id));
+                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.Users).Name, string.Format("CustomerID" + " = '{0}'", id));
 
-                Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users).Name, new Dictionary<string, object>()
-                    {
-                    {
-                        "IsActive",(byte)Common.Enums.TablesGeneralIsActive.InActive
-                    }
-                    }, string.Format("CustomerID" + " = '{0}' ", id));
+                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.Customers).Name, string.Format("CustomerID" + " = '{0}'", id));
+
 
                 return new ResultDto()
                 {

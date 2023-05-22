@@ -61,7 +61,8 @@
       "wwwroot/js/Views/Admin/ManagerOfParsKyan.js",
       "wwwroot/js/Views/Admin/NewsAndContent.js",
       "wwwroot/js/Views/Admin/RankingOfCompanies.js",
-      "wwwroot/js/Views/Admin/Customer.js"
+      "wwwroot/js/Views/Admin/Customer.js",
+      "wwwroot/js/Views/Admin/RequestForRating.js"
     ],
     "minify": {
       "enabled": false,

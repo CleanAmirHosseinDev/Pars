@@ -124,8 +124,17 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + (isEmpty(res.data[i].companyName) ? '' : res.data[i].companyName) + "</td><td>" + (isEmpty(res.data[i].agentName) ? '' : res.data[i].agentName) + "</td><td>" + (isEmpty(res.data[i].agentMobile) ? '' : res.data[i].agentMobile) + "</td><td>" + res.data[i].saveDateStr + "</td><td>" + (res.data[i].isProfileComplete ? 'ثبت درخواست' : 'عدم ثبت درخواست') + "</td><td><a title='ویرایش' href='/Admin/Customers/EditCustomers?id=" + res.data[i].customerId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Customer.Delete_Customers(" + res.data[i].customerId + ");'><i class='fa fa-remove'></i></a></td></tr>";
-
+                    strM += "<tr><td>" + (i + 1) + "</td>";
+                    strM += "<td>" + (isEmpty(res.data[i].companyName) ? '' : res.data[i].companyName) + "</td>";
+                    strM += "<td>" + (isEmpty(res.data[i].agentName) ? '' : res.data[i].agentName) + "</td>";
+                    strM += "<td>" + (isEmpty(res.data[i].agentMobile) ? '' : res.data[i].agentMobile) + "</td>";
+                    strM += "<td>" + res.data[i].saveDateStr + "</td>";
+                    strM += "<td>" + (res.data[i].isProfileComplete ? 'ثبت درخواست' : 'عدم ثبت درخواست') + "</td>";
+                    strM += "<td>";
+                          strM +="<a title='ویرایش'  href='/Admin/Customers/EditCustomers?id=" + res.data[i].customerId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>";
+                          strM +="<a title='حذف' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.Customer.Delete_Customers(" + res.data[i].customerId + ");'><i class='fa fa-remove'></i></a>";
+                    strM += "<a title='نمایش لیست درخواست های مشتری' style='margin-left:5px'  class='btn btn-info fontForAllPage' href='/Admin/RequestForRating/Index/" + res.data[i].customerId + "'><i class='fa fa-line-chart'></i></a>";
+                    strM +="</td></tr>";
                 }
                 $("#tBodyList").html(strM);
 

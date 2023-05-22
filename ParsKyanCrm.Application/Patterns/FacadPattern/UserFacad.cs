@@ -131,6 +131,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IDeleteCustomersService DeleteCustomersService { get; }
 
+        IDeleteRequestForRatingService DeleteRequestForRatingService { get; }
+
         IDeleteCompaniesService DeleteCompaniesService { get; }
 
         IDeleteServiceFeeService DeleteServiceFeeService { get; }
@@ -532,6 +534,17 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _deleteCustomersService = _deleteCustomersService ?? new DeleteCustomersService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
+
+
+        private IDeleteRequestForRatingService _deleteRequestForRatingService;
+        public IDeleteRequestForRatingService DeleteRequestForRatingService
+        {
+            get
+            {
+                return _deleteRequestForRatingService = _deleteRequestForRatingService ?? new DeleteRequestForRatingService(_context, _mapper, _basicInfoFacad, _env);
+            }
+        }
+
 
         private IDeleteCompaniesService _deleteCompaniesService;
         public IDeleteCompaniesService DeleteCompaniesService

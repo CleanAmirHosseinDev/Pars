@@ -41,9 +41,19 @@
                     $(".fullNameInLayout").html(getlstor("fullName"));
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
-                    goToUrl("/Customer/RequestForRating/Index");
+                    alertB("ثبت", "پروفایل شما ویرایش ش", "success", "بله متوجه شدم", function () {
+
+                        goToUrl("/Customer/RequestForRating/Index");
+
+                    });
+                   
                 } else {
-                    goToUrl("/Customer/RequestForRating/Index");
+                    alertB("ثبت", "پروفایل شما ویرایش ش", "success", "بله متوجه شدم", function () {
+
+                        goToUrl("/Customer/RequestForRating/Index");
+
+                    });
+                   
                 }
 
             }

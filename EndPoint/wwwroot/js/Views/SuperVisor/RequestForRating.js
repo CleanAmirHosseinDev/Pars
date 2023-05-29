@@ -126,7 +126,7 @@
                     for (var i = 0; i < res.data.length; i++) {
                         $("#sdklsslks3498sjdkxhjsd_823sb").val(res.data[0].levelStepIndex);
 
-                        htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton+"' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton + "' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "' data-LSSII='" + res.data[i].levelStepSettingIndexId+ "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
 
@@ -183,6 +183,8 @@
                         var value = $(this).val();
                         if (text_classname == "NamesAuthorizedSignatories") {
                             var new_html = ('<p style="text-align:center">' + value + '</p>');
+                        } else if (text_classname == "NamesAuthorizedSignatories") {
+
                         }
                         else {
                             var new_html = ('<storang >' + value + '</storang>');
@@ -225,7 +227,7 @@
                     $("#DicCountPerecent").val(res.data.dicCountPerecent);
                     $("#ContractCode").val(res.data.contractCode);
                     $("#SaveDate").val(res.data.contractCode != null ? res.data.saveDateStr : "");
-
+                    $("#CanSeePreFactorStr").prop("checked", res.data.canSeePreFactor);
                     if (getlstor("loginName") === "1" || getlstor("loginName") === "4") {
                         if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
                             $("#divDownloadContractDocumentCustomer").html("<a  href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -653,6 +655,7 @@
                     objJ.SmsContent = decrypt($(objE).attr("data-SC"), keyMaker());
                     objJ.SmsType = !isEmpty($(objE).attr("data-ST")) ? $(objE).attr("data-ST") === 'true' : null;
                     objJ.DestLevelStepIndexButton = decrypt($(objE).attr("data-DLSIB"), keyMaker());
+                    objJ.levelStepSettingIndexId = $(objE).attr("data-LSSII");
 
                     AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 

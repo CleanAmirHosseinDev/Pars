@@ -18,9 +18,10 @@ namespace ParsKyanCrm.Domain.Entities
         public string SmsContent { get; set; }
         public string ReciveUser { get; set; }
         public bool? SmsType { get; set; }
-
+        public int? LevelStepSettingIndexID { get; set; }
         public string DestLevelStepIndexButton { get; set; }
         public virtual RequestForRating Request { get; set; }
         public virtual Users SendUserNavigation { get; set; }
+
     }
 }

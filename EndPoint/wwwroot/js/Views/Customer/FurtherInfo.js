@@ -888,11 +888,11 @@
                                 strFormAnswer += res.data[i].answer6 + "</td><td>";
                                 break;
                             case "11":
-                                strFormAnswer += "<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" + "</td><td>";
+                                strFormAnswer += (res.data[i].fileName1 != null ? "<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>":"") + "</td><td>";
                                 break;
                             case "12":
-                                strFormAnswer += "<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" + "</td><td>";
-                                break;
+                                strFormAnswer += (res.data[i].fileName2 != null ? "<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" : "") + "</td><td>";
+                              break;
                         }
                     }
 

@@ -30,6 +30,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string LeaderEvaluationFile { get; set; }
         public bool ConfirmCommitteeEvaluation { get; set; }
         public byte IsActive { get; set; }
+        public bool CanSeePreFactor { get; set; }
 
 
     }

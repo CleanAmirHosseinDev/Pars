@@ -72,6 +72,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             string fileNameOldPic_CommitteeEvaluationFile = string.Empty, path_CommitteeEvaluationFile = string.Empty;
             string fileNameOldPic_LastFinancialDocument = string.Empty, path_LastFinancialDocument = string.Empty;
             string fileNameOldPic_LeaderEvaluationFile = string.Empty, path_LeaderEvaluationFile = string.Empty;
+
             #endregion
             try
             {
@@ -84,6 +85,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
 
 
                 #endregion
+
+                request.CanSeePreFactor=(request.CanSeePreFactorStr!=null?(request.CanSeePreFactorStr=="on"?true:false):false);
 
                 var con = await _context.ContractAndFinancialDocuments.FindAsync(request.FinancialId);
                 request.ContractDocument = con != null && !string.IsNullOrEmpty(con.ContractDocument) ? con.ContractDocument : string.Empty;
@@ -224,8 +227,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         ,
                         {
                             nameof(q_Entity.Entity.ConfirmCommitteeEvaluation),request.ConfirmCommitteeEvaluation=="on"?true:false
+                        }
+                         ,
+                        {
+                            nameof(q_Entity.Entity.CanSeePreFactor),request.CanSeePreFactorStr=="on"?true:false
                         },
-
 
                     };
                     if (request.IsCustomer && string.IsNullOrEmpty(con.ContractCode))

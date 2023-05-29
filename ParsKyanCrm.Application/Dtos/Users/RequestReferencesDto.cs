@@ -76,6 +76,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string DestLevelStepIndexButton { get; set; }
         public string CompanyName { get; set; }
 
+        public int LevelStepSettingIndexID { get; set; }
+
     }
 
     public class ValidatorRequestReferencesDto : AbstractValidator<RequestReferencesDto>

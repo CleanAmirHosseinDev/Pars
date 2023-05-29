@@ -116,6 +116,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public IFormFile Result_Final_LeaderEvaluationFile { get; set; }
         public string ConfirmCommitteeEvaluation { get; set; }
         public byte IsActive { get; set; }
+        public bool CanSeePreFactor { get; set; }
+        public string CanSeePreFactorStr { get; set; }
 
     }
 }

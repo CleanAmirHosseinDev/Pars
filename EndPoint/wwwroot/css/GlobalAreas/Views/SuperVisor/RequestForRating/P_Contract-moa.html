@@ -15,44 +15,19 @@
         <div class="form-group">
            
             <div id="ContractBox">
-                <form id="frmContract">
+              
+                <form id="frmRemaining">
                     <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
-                        <input type="hidden" id="FinancialID" name="FinancialID" value="0" />
-                        <input type="hidden" id="RequestID" name="RequestID" value="0" />
-                        <input type="hidden" id="FinancialDocument" name="FinancialDocument" value="" />
-                        <input type="hidden" id="ContractDocument" name="ContractDocument" value="" />
-
+                        
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
-                                            شماره قرارداد:
+                                            مبلغ مفاصا مالیات:
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" name="ContractCode" id="ContractCode" class="form-control" readonly="readonly" />
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-6" for="">
-                                            مبلغ قرارداد (ریال)
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="PriceContract" id="PriceContract" class="form-control" readonly="readonly" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-6" for="">
-                                            مبلغ نهایی (ریال)
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input type="text" style="margin-top: 5px;" name="FinalPriceContract" id="FinalPriceContract" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                            <input type="text" name="RemainingVat" id="RemainingVat" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -61,36 +36,14 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
-                                            تاریخ تایید :
+                                            مبلغ مفاصا بیمه:
                                         </label>
                                         <div class="col-md-6">
-                                            <input type="text" name="SaveDate" id="SaveDate" class="form-control" readonly="readonly" />
+                                            <input type="text" style="margin-top: 5px;" name="RemainingInsurance" id="RemainingInsurance" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-6" for="">
-                                            تخفیف ریالی
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" onkeypress="Web.RequestForRating.CalDisRiyal(this);" onkeyup="TextBoxOnlyPrice(this);" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-6" for="">
-                                            تخفیف درصدی
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="Web.RequestForRating.CalDisPerecent(this);" />
-                                            <label class="control-label col-md-6" id="lblDicCountPerecent">
 
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
@@ -99,65 +52,133 @@
                                         <button title="ثبت" class="btn btn-info fontForAllPage" style="width:60px" type="button" onclick="Web.RequestForRating.Disconut(this,true);">
                                             ثبت   <i class="fa fa-save"></i>
                                         </button>
-                                        <button title="حذف قرارداد" class="btn btn-danger fontForAllPage" id="btnDelContract" style="width:60px" type="button" onclick="Web.RequestForRating.DeleteContract(this);">
-                                            حذف <i class="fa fa-close"></i>
-                                        </button>
+                                       
                                     </div>
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button style="margin-top: 5px; width: 120px" title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
-                                            نمایش   <i class="fa fa-print"></i>
-                                        </button><br/>
-                                        <button style="margin-top: 5px; width: 120px" title="پیش فاکتور" class='btn btn-default fontForAllPage' type="button" onclick='Web.RequestForRating.PrintPerFactoring(this)'> <i class='fa fa-print'></i> پیش  فاکتور  </button>
-                                    </div>
-                                </div>
+                                
                             </div>
 
                         </div>
-                        <!--<div class="row" id="ContractUp">
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="">
-                                            آپلود قرارداد مشتری
-                                        </label>
-                                        <div class="col-md-9">
-                                            <input type="file" name="Result_Final_ContractDocumentCustomer" id="ContractDocumentCustomer" accept=".pdf" />
-                                            <div id="divDownloadContractDocumentCustomer"></div>
-                                            
+                    </div>
+                </form>
+                   
+                <form id="frmContract">
+                        <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+                            <input type="hidden" id="FinancialID" name="FinancialID" value="0" />
+                            <input type="hidden" id="RequestID" name="RequestID" value="0" />
+                            <input type="hidden" id="FinancialDocument" name="FinancialDocument" value="" />
+                            <input type="hidden" id="ContractDocument" name="ContractDocument" value="" />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6" for="">
+                                                شماره قرارداد:
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="ContractCode" id="ContractCode" class="form-control" readonly="readonly" />
+                                            </div>
                                         </div>
                                     </div>
 
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6" for="">
+                                                مبلغ قرارداد (ریال)
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="PriceContract" id="PriceContract" class="form-control" readonly="readonly" />
+                                            </div>
+                                        </div>
 
-                            </div>
-                           
-                            <div class="col-md-4">
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <button title="ثبت" class="btn btn-info fontForAllPage" style="width:120px;margin-top: 5px;" type="button" onclick="Web.RequestForRating.UploadContractCustomer(this);">
-                                            آپلود   <i class="fa fa-file"></i>
-                                        </button>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6" for="">
+                                                مبلغ نهایی (ریال)
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" style="margin-top: 5px;" name="FinalPriceContract" id="FinalPriceContract" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6" for="">
+                                                تاریخ تایید :
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="SaveDate" id="SaveDate" class="form-control" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6" for="">
+                                                تخفیف ریالی
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="DisCountMoney" id="DisCountMoney" class="form-control" onkeypress="Web.RequestForRating.CalDisRiyal(this);" onkeyup="TextBoxOnlyPrice(this);" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6" for="">
+                                                تخفیف درصدی
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" style="margin-top: 5px;" name="DicCountPerecent" id="DicCountPerecent" class="form-control" onkeypress="Web.RequestForRating.CalDisPerecent(this);" />
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <button title="ثبت" class="btn btn-info fontForAllPage" style="width:60px" type="button" onclick="Web.RequestForRating.Disconut(this,true);">
+                                                ثبت   <i class="fa fa-save"></i>
+                                            </button>
+                                            <button title="حذف قرارداد" class="btn btn-danger fontForAllPage" id="btnDelContract" style="width:60px" type="button" onclick="Web.RequestForRating.DeleteContract(this);">
+                                                حذف <i class="fa fa-close"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button style="margin-top: 5px; width: 120px" title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
+                                                نمایش   <i class="fa fa-print"></i>
+                                            </button><br />
+                                            <button style="margin-top: 5px; width: 120px" title="پیش فاکتور" class='btn btn-default fontForAllPage' type="button" onclick='Web.RequestForRating.PrintPerFactoring(this)'> <i class='fa fa-print'></i> پیش  فاکتور  </button><br/>
+                                            <label>نمایش پیش فاکتور</label>
+                                            <input type="checkbox"   name="CanSeePreFactorStr" id="CanSeePreFactorStr" />
+
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
-
-                        </div>-->
-
-                    </div>
-                        <div id="ContentCKeditor" >
+                            
 
                         </div>
-                </form>
-                   
+                        <div id="ContentCKeditor">
+
+                        </div>
+                    </form>
+
                     <div id="ContractShow"></div>
                 </div>
-               
+
             </div>
     </div>
 </div>

@@ -233,7 +233,7 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initReferral(id);
-        initCustomer(id);
+        getCustomerInfo(id);
         intiTab(1);
     }
 
@@ -1531,6 +1531,31 @@
 
     }
 
+    function getCustomerInfo(id=null) {
+
+       
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+                if (res.isSuccess) {
+
+                    getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Customer.html", function (resG) {
+
+                        $("#customerInfo").html(resG);
+                        for (var i = 0; i < res.data.length; i++) {
+
+                            initCustomer(res.data[i].customerId);
+                        }
+
+                    });
+
+                }
+
+            }, true);
+        }
+    }
+
+
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         InitFurtherInfo: initFurtherInfo,
@@ -1558,7 +1583,8 @@
         GetValueChain: getValueChain,
         SavePublicActivities: savePublicActivities,
         GetPublicActivities: getPublicActivities,
-        InitCustomer: initCustomer
+        InitCustomer: initCustomer,
+        GetCustomerInfo: getCustomerInfo
     };
 
 })(Web, jQuery);

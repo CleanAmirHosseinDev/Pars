@@ -117,14 +117,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                         decimal tax = 0;
                         decimal Price = (qServiceFee != null ? Convert.ToDecimal(CalcContractPrice(qCustomer, qServiceFee)) : 0);
-                        tax = Math.Round((Price!=0 ? Price * 9 : 0) / 100, 0);
+                        decimal FinalPrice=(Price-Convert.ToDecimal(Price.ToString().Substring(Price.ToString().Length - 5)));
+                        tax = Math.Round((Price!=0 ? FinalPrice * 9 : 0) / 100, 0);
 
                         // مبلع فرمول
                         strContract = strContract.Replace("ServiceFeePriceValue", qServiceFee != null ? CalcContractPrice(qCustomer, qServiceFee) : "0");
                         qContract.ContractText = strContract;
 
                         strContract = strContract.Replace("TaxValue", double.Parse((tax.ToString()).ToString()).ToString("N0"));
-                        strContract = strContract.Replace("TotalPriceValue", double.Parse(((Price + tax).ToString()).ToString()).ToString("N0"));
+                        strContract = strContract.Replace("TotalPriceValue", double.Parse(((FinalPrice + tax).ToString()).ToString()).ToString("N0"));
 
                         item.ContractText = strContract;
                         #endregion

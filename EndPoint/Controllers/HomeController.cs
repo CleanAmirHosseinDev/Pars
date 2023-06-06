@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common;
+using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
@@ -15,6 +17,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
 
 namespace EndPoint.Controllers
 {
@@ -22,14 +25,16 @@ namespace EndPoint.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IBasicInfoFacad _basicInfoFacad;
+        private IUserFacad _userFacad;
 
         private readonly IWebHostEnvironment _env;
 
-        public HomeController(ILogger<HomeController> logger, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        public HomeController(ILogger<HomeController> logger, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IUserFacad userFacad)
         {
             _logger = logger;
             _env = env;
             _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         public async Task<IActionResult> Index()
@@ -78,7 +83,7 @@ namespace EndPoint.Controllers
                 request2.PageSize = 10000;
                 request2.PageIndex = 1;
                 var ranks = await _basicInfoFacad.GetRankingOfCompaniessService.Execute(request2);
-                
+
                 ViewData["ranks"] = ranks.Data.OrderByDescending(a => a.PublishDate);
             }
             catch (Exception ex)
@@ -109,8 +114,30 @@ namespace EndPoint.Controllers
 
         }
 
+        [Route("Register")]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [CaptchaCheck]
+        [HttpPost]
+        public async Task<JsonResult> Register_Save([FromForm] Customers_RegisterLandingDto form)
+        {
+            var error = "";
+            if (ModelState.IsValid)
+            {
+                return Json(await _userFacad.SaveCustomers_RegisterLandingService.Execute(form));
+            }
+            else
+            {
+                foreach (var item in ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList()) error += item.First().ErrorMessage + " ";
+
+                return Json(new ResultDto() { IsSuccess = false, Message = error });
+            }
+
+        }
 
 
-       
     }
 }

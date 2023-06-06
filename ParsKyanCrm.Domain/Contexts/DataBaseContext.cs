@@ -29,6 +29,9 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<CorporateGovernance> CorporateGovernance { get; set; }
        
         DbSet<Customers> Customers { get; set; }
+
+        DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
+
         DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
       
@@ -90,6 +93,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<CorporateGovernance> CorporateGovernance { get; set; }
       
         public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
         public virtual DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         public virtual DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
      
@@ -593,7 +597,66 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.CustomersTypeServiceRequested)
                     .HasForeignKey(d => d.TypeServiceRequestedId)
                     .HasConstraintName("FK_Customers_SystemSeting1");
-            });            
+            });
+
+            modelBuilder.Entity<Customers_RegisterLanding>(entity =>
+            {
+                entity.HasKey(e => e.CustomerId)
+                    .HasName("PK__Customer__A4AE64B8A99FBB50");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.AddressCompany).HasComment("آدرس شرکت");
+
+                entity.Property(e => e.AgentMobile)
+                    .HasMaxLength(11)
+                    .HasComment("موبایل نماینده");
+
+                entity.Property(e => e.AgentName)
+                    .HasMaxLength(50)
+                    .HasComment("نام رابط و نماینده شرکت");
+
+                entity.Property(e => e.AmountOsLastSales)
+                    .HasColumnType("money")
+                    .HasComment("مبلغ کل فروش اظهار شده");                
+
+                entity.Property(e => e.CeoMobile)
+                    .HasMaxLength(11)
+                    .HasComment("موبایل مدیر عامل");
+
+                entity.Property(e => e.CeoName)
+                    .HasMaxLength(50)
+                    .HasComment("نام و نام خانوادگی مدیر عامل");                                
+
+                entity.Property(e => e.CompanyName)
+                    .HasMaxLength(50)
+                    .HasComment("نام شرکت");
+
+                entity.Property(e => e.CountOfPersonal).HasComment("تعداد پرسنل شرکت");
+
+                entity.Property(e => e.Email).HasMaxLength(50);
+
+                entity.Property(e => e.EmailRepresentative).HasMaxLength(50);
+
+                entity.Property(e => e.Ip).HasMaxLength(50);
+
+                entity.Property(e => e.KindOfCompanyId)
+                    .HasColumnName("KindOfCompanyID")
+                    .HasComment("نوع شرکت");
+                
+                entity.Property(e => e.TypeGroupCompanies).HasColumnName("TypeGroupCompanies");                
+
+                entity.Property(e => e.SaveDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Tel)
+                    .HasMaxLength(11)
+                    .HasComment("تلفن شرکت");
+
+                entity.Property(e => e.TypeServiceRequestedId).HasColumnName("TypeServiceRequestedID");
+
+                entity.Property(e => e.Description).HasComment("توضیحات");
+
+            });
 
             modelBuilder.Entity<LevelStepSetting>(entity =>
             {

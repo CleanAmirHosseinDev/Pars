@@ -62,6 +62,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities;
 using ParsKyanCrm.Application.Services.Users.Queries.GetPublicActivities;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSettings;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteContractAndFinancialDocumentsService;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers_RegisterLanding;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -154,7 +155,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetServiceFeeAndCustomerByRequestService GetServiceFeeAndCustomerByRequestService { get; }
 
         IGetContractAndFinancialDocumentsService GetContractAndFinancialDocumentsService { get; }
-      
+
 
         ISaveContractAndFinancialDocumentsService SaveContractAndFinancialDocumentsService { get; }
         ISaveFurtherInfoService SaveFurtherInfoService { get; }
@@ -178,6 +179,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetContractPagesService GetContractPagesService { get; }
 
+        ISaveCustomers_RegisterLandingService SaveCustomers_RegisterLandingService { get; }
+
 
     }
 
@@ -186,7 +189,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         private readonly IBasicInfoFacad _basicInfoFacad;
-        private readonly IWebHostEnvironment _env;        
+        private readonly IWebHostEnvironment _env;
         private readonly IBaseUserFacad _baseUserFacad;
 
         private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
@@ -196,7 +199,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             _context = context;
             _mapper = mapper;
             _basicInfoFacad = basicInfoFacad;
-            _env = env;            
+            _env = env;
             _baseUserFacad = baseUserFacad;
             _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
@@ -298,7 +301,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad,_env);
+                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 
@@ -310,7 +313,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _getCustomersService = _getCustomersService ?? new GetCustomersService(_context, _mapper, _basicInfoFacad);
             }
         }
-        
+
         public IGetRequestForRatingsService GetRequestForRatingsService
         {
             get
@@ -324,7 +327,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveBoardOfDirectorsService = _saveBoardOfDirectorsService ?? new SaveBoardOfDirectorsService(_context, _mapper, _basicInfoFacad,_env);
+                return _saveBoardOfDirectorsService = _saveBoardOfDirectorsService ?? new SaveBoardOfDirectorsService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 
@@ -522,7 +525,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _basicInfoFacad,_env);
+                return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 
@@ -630,7 +633,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad,_env);
+                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 
@@ -667,7 +670,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getValueChainService=_getValueChainService??new GetValueChainService(_context, _mapper, _basicInfoFacad);
+                return _getValueChainService = _getValueChainService ?? new GetValueChainService(_context, _mapper, _basicInfoFacad);
             }
         }
 
@@ -704,7 +707,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _savePublicActivitiesService= _savePublicActivitiesService ?? new SavePublicActivitiesService(_context, _mapper, _basicInfoFacad);
+                return _savePublicActivitiesService = _savePublicActivitiesService ?? new SavePublicActivitiesService(_context, _mapper, _basicInfoFacad);
+            }
+        }
+
+        private ISaveCustomers_RegisterLandingService _saveCustomers_RegisterLandingService;
+        public ISaveCustomers_RegisterLandingService SaveCustomers_RegisterLandingService
+        {
+            get
+            {
+                return _saveCustomers_RegisterLandingService = _saveCustomers_RegisterLandingService ?? new SaveCustomers_RegisterLandingService(_context, _mapper, _basicInfoFacad, _env);
             }
         }
 

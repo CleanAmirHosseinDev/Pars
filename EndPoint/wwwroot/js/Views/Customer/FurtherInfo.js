@@ -516,19 +516,19 @@
                     $("#FurtherInfoId").val(res.data.furtherInfoId);
 
                     if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
-                        $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadLastAuditingTaxList").html(GetFullFilePath(res.data.lastAuditingTaxListFull));
                     }
                     if (res.data.statementTaxList != null && res.data.statementTaxList != "") {
-                        $("#divDownloadStatementTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statementTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadStatementTaxList").html(GetFullFilePath(res.data.statementTaxListFull));
                     }
                     if (res.data.lastChangeOfficialNewspaper != null && res.data.lastChangeOfficialNewspaper != "") {
-                        $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadLastChangeOfficialNewspaper").html(GetFullFilePath(res.data.lastChangeOfficialNewspaperFull));
                     }
                     if (res.data.statuteDoc != null && res.data.statuteDoc != "") {
-                        $("#divDownloadStatuteDoc").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statuteDocFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadStatuteDoc").html(GetFullFilePath(res.data.statuteDocFull));
                     }
                     if (res.data.officialNewspaper != null && res.data.officialNewspaper != "") {
-                        $("#divDownloadOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.officialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadOfficialNewspaper").html(GetFullFilePath(res.data.officialNewspaperFull));
                     }
                 }
 

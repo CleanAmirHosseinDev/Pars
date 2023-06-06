@@ -290,6 +290,13 @@
                     minlength: 10,
                     maxlength: 10
                 },
+                "EconomicCodeReal": {
+                    required: function () {
+                        return true;
+                    },
+                    minlength: 10,
+                    maxlength: 11
+                },
                 "AmountOsLastSales": {
                     required: function () {
                         return $("#CustomerPersonalityType").val() != "223";
@@ -418,6 +425,13 @@
                     },
                     minlength: "کد پستی باید حداقل 10 حرف باشد",
                     maxlength: "کد پستی باید حداکثر 10 حرف باشد"
+                },
+                "EconomicCodeReal": {
+                    required: function () {
+                        return "لطفا کد اقتصادی را وارد کنید";
+                    },
+                    minlength: "کد اقتصادی باید حداقل 10 حرف باشد",
+                    maxlength: "کد اقتصادی باید حداکثر 11 حرف باشد"
                 },
                 "AmountOsLastSales": {
                     required: function () {

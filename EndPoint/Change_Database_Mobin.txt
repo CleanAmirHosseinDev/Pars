@@ -1,22 +1,30 @@
 ﻿
 
+CREATE TABLE [dbo].[Customers_RegisterLanding](
+	[CustomerID] [int] primary key IDENTITY(1,1) NOT NULL,	
+	[CompanyName] [nvarchar](50) NULL,	
+	[KindOfCompanyID] [int] NULL,
+	[TypeServiceRequestedID] [int] NULL,	
+	[AddressCompany] [nvarchar](max) NULL,			
+	[Tel] [nvarchar](11) NULL,
+	[Email] [nvarchar](50) NULL,
+	[AgentName] [nvarchar](50) NULL,
+	[AgentMobile] [nvarchar](11) NULL,
+	[CeoName] [nvarchar](50) NULL,
+	[CeoMobile] [nvarchar](11) NULL,	
+	[CountOfPersonal] [int] NULL,
+	[AmountOsLastSales] [money] NULL,
+	[SaveDate] [datetime] NOT NULL,
+	[IsActive] [tinyint] NOT NULL,
+	[Ip] [nvarchar](50) NULL,										
+	[TypeGroupCompanies] [int] NULL,
+	[EmailRepresentative] [nvarchar](50) NULL,	
+	[Description] nvarchar(max) null
+)
 
 
-GO
-/****** Object:  UserDefinedFunction [dbo].[fn_GetAllNameUsers]    Script Date: 4/23/2023 3:22:14 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+-------------------------------------------------------------------------------------------------------------------------------
 
 
-create FUNCTION [dbo].[fn_GetAllNameUsers](@str nvarchar(max))  
-RETURNS nvarchar(max)  
-BEGIN  
 
-RETURN(SELECT isnull(STRING_AGG(CONVERT(NVARCHAR(max), ISNULL(RealName,UserName)), ' - '),'') AS csv FROM Users where Users.UserID in(SELECT value
-FROM STRING_SPLIT(@str, ',')))  
-END
-GO
-
-
+-------------------------------------------------------------------------------------------------------------------------------

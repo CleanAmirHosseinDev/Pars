@@ -11,26 +11,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
 
-namespace EndPoint.Controllers {
-    public class ContactUsController :Controller {
+namespace EndPoint.Controllers
+{
+    public class ContactUsController : Controller
+    {
         private readonly ILogger<ContactUsController> _logger;
 
-        public ContactUsController(ILogger<ContactUsController> logger) {
+        public ContactUsController(ILogger<ContactUsController> logger)
+        {
             _logger = logger;
         }
 
-        public IActionResult Index( ) {
+        public IActionResult Index()
+        {
             return View();
         }
         [CaptchaCheck]
         [HttpPost]
-        public JsonResult ContactUsForm([FromForm]ContactUsFormDto form) {
+        public JsonResult ContactUsForm([FromForm] ContactUsFormDto form)
+        {
             var error = "";
             Boolean isOk = false;
-            if(ModelState.IsValid) {
-                try {
-                    if(form.email == null || form.email.Length == 0) form.email = "nomail@z.z";
-                    if(form.subject == null || form.subject.Length == 0) form.subject = "بدون موضوع";
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (form.email == null || form.email.Length == 0) form.email = "nomail@z.z";
+                    if (form.subject == null || form.subject.Length == 0) form.subject = "بدون موضوع";
                     string prependstr =
                     "<br>موضوع: " + form.subject
                     + "<br>نام: " + form.name
@@ -42,21 +49,27 @@ namespace EndPoint.Controllers {
 
                     EmailSend.SendMail(form.email, form.name, form.subject, form.message, "info@parscrc.ir");
                     isOk = true;
-                } catch(Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     error = "خطا در اجرای درخواست";
                 }
-            } else {
+            }
+            else
+            {
                 var errors = ModelState.Select(x => x.Value.Errors)
                            .Where(y => y.Count > 0)
                            .ToList();
-                foreach(var item in errors) {
+                foreach (var item in errors)
+                {
                     error += item.First().ErrorMessage + " ";
                 }
 
             }
-            return Json(new {
+            return Json(new
+            {
                 IsSuccess = isOk,
-                Message = isOk?"پیام شما با موفقیت ارسال شد.": error
+                Message = isOk ? "پیام شما با موفقیت ارسال شد." : error
             });
 
         }

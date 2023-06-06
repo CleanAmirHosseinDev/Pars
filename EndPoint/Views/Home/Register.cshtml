@@ -1,0 +1,290 @@
+﻿@{
+    ViewData["Title"] = "ثبت نام";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/landing/ContactUs.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <style>
+        label {
+            float: right;
+        }
+    </style>
+}
+
+
+<div id="bg-img"></div>
+<section class="contact-page-section">
+    <div class="container">
+        <div class="inner-container">
+            <div class="row clearfix">
+
+                <!--Form Column-->
+                <div class="form-column col-md-12 col-sm-12 col-xs-12">
+                    <div class="inner-column">
+
+                        <!--Contact Form-->
+
+                        <form onsubmit="return false" id="rFCl">
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            <span id="LabelCompanyName">نام شرکت</span>
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CompanyName" id="CompanyName" class="form-control" maxlength="50" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            موبایل مدیر عامل
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input maxlength="11" type="text" name="CeoMobile" id="CeoMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label class="control-label col-md-4" for="">
+                                            نام مدیر عامل
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="CeoName" id="CeoName" class="form-control" maxlength="50" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            <span id="LabelAgentName">نام نماینده شرکت/ مشاور شرکت</span>
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="AgentName" id="AgentName" class="form-control" maxlength="50" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            ایمیل نماینده شرکت/ مشاور
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="EmailRepresentative" id="EmailRepresentative" class="form-control" maxlength="50" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            <span id="Span_Label_AgentMobile">شماره نماینده</span> <span class="NotShowRequiredLabel">شرکت/مشاور</span>
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" maxlength="11" name="AgentMobile" id="AgentMobile" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            آدرس
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <textarea rows="3" name="AddressCompany" id="AddressCompany" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            تعداد کارکنان <span class="NotShowRequiredLabel">شرکت</span>
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" maxlength="9" name="CountOfPersonal" id="CountOfPersonal" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="Web.Customer.OnKeyPressInCountOfPersonal(this);" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">نوع خدمت مورد تقاضا</label>
+                                        <div class="col-md-8">
+                                            <select name="TypeServiceRequestedId" id="TypeServiceRequestedId" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            نوع شرکت
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select onchange="onChangeSelectValidation(this);" name="KindOfCompanyId" id="KindOfCompanyId" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            <span id="LabelTypeGroupCompanies">زمینه فعالیت شرکت</span>
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select onchange="onChangeSelectValidation(this);" name="TypeGroupCompanies" id="TypeGroupCompanies" class="form-control select2" style="width:100% !important;"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            ایمیل شرکت
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Email" id="Email" class="form-control" maxlength="50" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            شماره تلفن ثابت
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" maxlength="11" name="Tel" id="Tel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده(ریال)
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div>
+                                                <input type="text" name="AmountOsLastSales" id="AmountOsLastSales" maxlength="18" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="TextBoxOnlyPrice(this);" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            توضیحات
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <textarea rows="5" name="Description" id="Description" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
+                            </div>
+                            <div class="row">
+                                <button title="ثبت" class="btn btn-info fontForAllPage" type="submit" onclick="saveR()">
+                                    ثبت اطلاعات  <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+
+
+                        </form>
+
+                        <!--End Contact Form-->
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/SweetAlert/sweetalert.min.js" asp-append-version="true"></script>
+    <script src="~/js/iu.min.js" asp-append-version="true"></script>
+    <script>
+
+        function systemSeting_Combo() {
+
+
+            AjaxCallAction("POST", "/api/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "126,63,27", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+                if (res.isSuccess) {
+                    var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+                    var strTypeServiceRequestedId = '<option value="">انتخاب کنید</option>';
+                    var strTypeGroupCompanies = '<option value="">انتخاب کنید</option>';
+
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].parentCode == 63) {
+                            strTypeServiceRequestedId += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
+                        else if (res.data[i].parentCode == 27) {
+                            strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
+                        else if (res.data[i].parentCode == 126) {
+                            strTypeGroupCompanies += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
+                    }
+
+
+                    $("#TypeGroupCompanies").html(strTypeGroupCompanies);
+
+                    $("#KindOfCompanyId").html(strKindOfCompany);
+
+                    $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
+
+                }
+            }, true);
+        }
+
+        function jgetFormData(selector) {
+            var unindexed_array = $(selector).serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+            return indexed_array;
+        }
+
+        function saveR() {
+
+
+            $.ajax({
+                type: "post",
+                url: "/Home/Register_Save",
+                data: jgetFormData("#rFCl"),
+                beforeSend: function () {
+                },
+                success: function (res) {
+                    alertB("", res.message, res.isSuccess ? "success" : "warning", "بله متوجه شدم", res.isSuccess ? function () {
+
+                        location.reload(true);
+
+                    } : null);
+
+                },
+                complete: function () {
+                },
+                error: function (error) {
+                    alert('خطا در اجرای درخواست');
+                }
+            });
+
+        }
+
+        systemSeting_Combo();
+
+        ComboBoxWithSearch('.select2', "rtl");
+
+    </script>
+}

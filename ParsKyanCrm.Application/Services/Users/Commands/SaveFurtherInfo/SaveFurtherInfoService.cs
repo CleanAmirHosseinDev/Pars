@@ -131,8 +131,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                         ,
                         {
                             nameof(q_Entity.Entity.StatementTaxList),request.StatementTaxList
+                        },
+                        {
+                            "OfficialNewspaper",request.OfficialNewspaper
                         }
-                    }, string.Format(nameof(q_Entity.Entity.FurtherInfoId) + " = {0} ", request.FurtherInfoId));
+                    }, string.Format(nameof(q_Entity.Entity.FurtherInfoId) + " = {0} ", request.FurtherInfoId)) ;
                     #region Upload Image
 
                     if (request.Result_Final_OfficialNewspaper != null)

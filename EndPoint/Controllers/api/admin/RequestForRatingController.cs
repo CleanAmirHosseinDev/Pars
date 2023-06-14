@@ -41,6 +41,20 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<RequestReferencesDto>>> Get_RequestReferencessService([FromBody] RequestRequestReferencesDto request)
+        {
+            try
+            {
+                return await _userFacad.GetRequestReferencessService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         [Route("[action]/{id}/")]
         [HttpGet]

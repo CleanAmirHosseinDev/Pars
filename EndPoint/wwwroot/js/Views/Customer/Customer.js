@@ -41,7 +41,7 @@
                     $(".fullNameInLayout").html(getlstor("fullName"));
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
-                    alertB("ثبت", "پروفایل شما ویرایش ش", "success", "بله متوجه شدم", function () {
+                    alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
 
                         goToUrl("/Customer/RequestForRating/Index");
 
@@ -292,10 +292,10 @@
                 },
                 "EconomicCodeReal": {
                     required: function () {
-                        return true;
+                        return $("#CustomerPersonalityType").val() != "223";
                     },
                     minlength: 10,
-                    maxlength: 11
+                    maxlength: 12
                 },
                 "AmountOsLastSales": {
                     required: function () {
@@ -431,7 +431,7 @@
                         return "لطفا کد اقتصادی را وارد کنید";
                     },
                     minlength: "کد اقتصادی باید حداقل 10 حرف باشد",
-                    maxlength: "کد اقتصادی باید حداکثر 11 حرف باشد"
+                    maxlength: "کد اقتصادی باید حداکثر 12 حرف باشد"
                 },
                 "AmountOsLastSales": {
                     required: function () {

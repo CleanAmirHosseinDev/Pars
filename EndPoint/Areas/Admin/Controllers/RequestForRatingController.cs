@@ -13,6 +13,11 @@ namespace EndPoint.Areas.Admin.Controllers
             ViewBag.Id = Id;
             return View();
         }
-       
+        public IActionResult RequestReferences(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
     }
 }

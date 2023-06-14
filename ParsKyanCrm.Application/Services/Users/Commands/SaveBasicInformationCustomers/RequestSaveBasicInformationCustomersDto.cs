@@ -149,7 +149,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             When(b => b.CustomerPersonalityType == 223, () =>
               {
 
-                  RuleFor(p => p.EconomicCodeReal).NotEmpty().WithMessage("کد اقتصادی را وارد کنید").Length(10, 11).WithMessage("کد اقتصادی باید حداقل 10 حرف و حداکثر 11 حرف باشد");
+                  RuleFor(p => p.EconomicCodeReal).NotEmpty().WithMessage("کد اقتصادی را وارد کنید").Length(10, 12).WithMessage("کد اقتصادی باید حداقل 10 حرف و حداکثر 11 حرف باشد");
 
                   RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام و نام خانوادگی را وارد کنید").Length(5, 50).WithMessage("نام و نام خانوادگی باید حداقل 5 حرف و حداکثر 50 حرف باشد");
                   RuleFor(p => p.EconomicCode).Length(3, 50).WithMessage("شماره کارت بازرگانی باید حداقل 3 حرف و حداکثر 50 حرف باشد");
@@ -163,7 +163,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             When(b => b.CustomerPersonalityType == null || b.CustomerPersonalityType != 223, () =>
               {
 
-                  RuleFor(p => p.EconomicCodeReal).NotEmpty().WithMessage("کد اقتصادی را وارد کنید").Length(10, 11).WithMessage("کد اقتصادی باید حداقل 10 حرف و حداکثر 11 حرف باشد");
+                  RuleFor(p => p.EconomicCodeReal).NotEmpty().WithMessage("کد اقتصادی را وارد کنید").Length(10, 12).WithMessage("کد اقتصادی باید حداقل 10 حرف و حداکثر 12 حرف باشد");
 
                   RuleFor(p => p.CompanyName).NotEmpty().WithMessage("نام شرکت را وارد کنید").Length(5, 50).WithMessage("نام شرکت باید حداقل 5 حرف و حداکثر 50 حرف باشد");
 

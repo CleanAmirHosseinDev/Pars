@@ -18,7 +18,10 @@
 
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/admin/Users/Get_Userss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        ComboBoxWithSearch('.select2', 'dir');
+        get_Roles_Combo();
+
+        AjaxCallAction("POST", "/api/admin/Users/Get_Userss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), RoleId: isEmpty($("#RoleId").val()) ? null : $("#RoleId").val(), }), true, function (res) {
 
             if (res.isSuccess) {
 

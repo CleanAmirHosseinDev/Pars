@@ -97,6 +97,7 @@
                 $("#CountOfPersonal").val(res.countOfPersonal);
                 $("#Email").val(res.email);
                 $("#Tel").val(res.tel);
+                $("#EconomicCodeReal").val(res.economicCodeReal);
                 $("#PostalCode").val(res.postalCode);
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
 

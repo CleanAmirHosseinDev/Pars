@@ -90,6 +90,7 @@
         }, true);
 
     }
+
     function initReferral(id = null) {
 
         AjaxCallAction("GET", "/api/superVisor/RequestForRating/InitReferral/" + id, null, true, function (res) {

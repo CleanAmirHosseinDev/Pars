@@ -78,6 +78,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int LevelStepSettingIndexID { get; set; }
 
+        public int TotalCount { get; set; }
+
     }
 
     public class ValidatorRequestReferencesDto : AbstractValidator<RequestReferencesDto>

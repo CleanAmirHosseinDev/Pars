@@ -32,14 +32,14 @@
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].kindOfRequestName + "</td><td>"
                         + res.data[i].dateOfRequestStr + "</td>";
-                    if (res.data[i].sendUser!=null) {
+                    if (res.data[i].sendUser!=null  ) {
                         strM +="<td style='font-size:x-small'>"+ res.data[i].comment + "</td>";
                     } else {
                         strM += "<td></td>";
                     }
                     
-                    if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
-                        strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
+                    if (res.data[i].levelStepSettingIndexID == "29") {
+                        strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
                     } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
                         strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
                     }
@@ -70,7 +70,7 @@
                         strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
 
                     }
-                    if (res.data[i].contractDocument!=null) {
+                    if (res.data[i].contractDocument != null && res.data[i].contractDocument!="") {
                         strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                     }
 
@@ -512,12 +512,12 @@
                         if (res.data.financialDocument != null && res.data.financialDocument != "") {
                             $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
-                            $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                            $("#divDownloadFinancialDocument").html("<p style='color:silver'></p>");
                         }
                         if (res.data.contractDocument != null && res.data.contractDocument != "") {
                             $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
-                            $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                            $("#divDownload_ContractDocument").html("<p style='color:silver'></p>");
                         }
                     }
 
@@ -836,7 +836,7 @@
         objJ.SmsContent = null;
         objJ.SmsType = null;
         objJ.DestLevelStepIndexButton = "در انتظار تنظیم و اصلاح قرارداد توسط کارشناس امور قراردادها";
-
+        objJ.LevelStepSettingIndexID="29"
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 
 

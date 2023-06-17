@@ -32,7 +32,7 @@
             $("#btnOpperationRun").removeAttr("disabled");
 
             if (res.isSuccess) {
-
+                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
                 setlstor("fullName", $("#CompanyName").val());
@@ -42,9 +42,7 @@
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
-
                         goToUrl("/Customer/RequestForRating/Index");
-
                     });
                    
                 } else {

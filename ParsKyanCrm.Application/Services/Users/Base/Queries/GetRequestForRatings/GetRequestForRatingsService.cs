@@ -29,6 +29,8 @@ namespace ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatin
         {
             try
             {
+                var lists = (from s in _context.RequestForRating
+                             select s);
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
 
@@ -79,12 +81,13 @@ order by cte.ChangeDate desc
                 //if (dataTemp.Count() > 0) data = dataTemp;     
                 #endregion
 
+
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
                 {
                     Data = data,
                     IsSuccess = true,
                     Message = string.Empty,
-                    Rows = data.LongCount(),
+                    Rows = lists.LongCount(),
                 };
 
             }

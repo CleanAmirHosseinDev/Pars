@@ -407,10 +407,53 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute2(Name = "fa fa-support")]
         [DisplayFiledAttribute3(Name = "تیکت ها")]
         [OrderAttribute(Order = 4)]
-        Tickets = 116,       
+        Tickets = 116,
 
         #endregion
 
-      
+        #region گزارشات
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "گزارشات")]
+        [DisplayFiledAttribute1(Name = "/Admin/Report/Index")]
+        [DisplayFiledAttribute2(Name = "fa fa-bar-chart")]
+        [DisplayFiledAttribute3(Name = "تعداد عملکرد همکاران")]
+        [OrderAttribute(Order = 5)]
+        ReportPersone = 117,
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "گزارشات")]
+        [DisplayFiledAttribute1(Name = "/Admin/Report/Index")]
+        [DisplayFiledAttribute2(Name = "fa fa-bar-chart")]
+        [DisplayFiledAttribute3(Name = "گزارش درخواست ها")]
+        [OrderAttribute(Order = 5)]
+        RequestReport = 118,
+
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "گزارشات")]
+        [DisplayFiledAttribute1(Name = "/Admin/Report/Index")]
+        [DisplayFiledAttribute2(Name = "fa fa-bar-chart")]
+        [DisplayFiledAttribute3(Name = " گزارش فروش ")]
+        [OrderAttribute(Order = 5)]
+        SaleReport = 119,
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "گزارشات")]
+        [DisplayFiledAttribute1(Name = "/Admin/Report/Index")]
+        [DisplayFiledAttribute2(Name = "fa fa-bar-chart")]
+        [DisplayFiledAttribute3(Name = "گزارش مشتریان")]
+        [OrderAttribute(Order = 5)]
+        AssessorReport = 120,
+
+
+
+
+        #endregion
+
     }
 }

@@ -36,6 +36,7 @@
 
             if (res.isSuccess) {
                 var n = getlstor("loginName");
+                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
@@ -53,8 +54,8 @@
 
                     strM += "<td>" + res.data[i].reciveUserName + "</td>"
 
-                    if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
-                        strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
+                    if (res.data[i].levelStepSettingIndexID == "29") {
+                        strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
                     } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
                         strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
                     }

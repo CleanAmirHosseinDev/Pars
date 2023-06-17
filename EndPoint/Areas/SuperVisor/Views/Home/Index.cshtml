@@ -12,7 +12,7 @@
                 <h3 class="box-title">
                     <div class="portlet-title">
                         <div class="caption font-green-haze">
-                            <span class="caption-subject bold uppercase">مانیتورینگ مدیریت</span>
+                            <span class="caption-subject bold uppercase">گزارش های آماری</span>
                         </div>
                         <div class="tools">
                             <a href="" class="collapse" data-original-title="" title="">
@@ -38,7 +38,18 @@
                                 <div class="small-box bg-aqua" style=" background-color: #FF5733 !important;">
                                     <div class="inner">
                                         <h3 id="StoreBoss1" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد  مشتریان</p>
+                                        <p>تعداد مشتریان</p>
+                                    </div>
+
+                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1008})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua" style=" background-color: #9016e0 !important;">
+                                    <div class="inner">
+                                        <h3 id="StoreBoss1" style="font-size: 24px;">0 عدد</h3>
+                                        <p>تعداد  درخواست های جدید من</p>
                                     </div>
 
                                     <a href="@Url.Action("IndexByCatStores","Stores",new { id=1008})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
@@ -47,10 +58,10 @@
                             <!-- ./col -->
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style=" background-color: #2CDD7F !important;">
+                                <div class="small-box bg-aqua" style="background-color: #3eb40f !important; ">
                                     <div class="inner">
                                         <h3 id="StoreBoss2" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد  درخواست ها</p>
+                                        <p>تعداد  درخواست های  اقدام شده</p>
                                     </div>
 
                                     <a href="@Url.Action("IndexByCatStores","Stores",new { id=1015})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
@@ -59,74 +70,13 @@
                             <!-- ./col -->
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style=" background-color: #2CB2DD !important;">
+                                <div class="small-box bg-aqua" style=" background-color: #3a84af !important;">
                                     <div class="inner">
                                         <h3 id="StoreBoss3" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد درخواست های ماه جاری</p>
+                                        <p>تعداد درخواست های معوقه</p>
                                     </div>
 
                                     <a href="@Url.Action("IndexByCatStores","Stores",new { id=1020})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
-                                </div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box bg-aqua" style=" background-color: #3a84af !important;">
-                                    <div class="inner">
-                                        <h3 id="StoreBossConfirm" style="font-size: 24px;">0 عدد</h3>
-                                        <p>آزمایشی - پارس کیان</p>
-                                    </div>
-
-                                    <a href="@Url.Action("IndexApproved","Stores")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
-                                </div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box bg-green" style="background-color: #faa85e !important ">
-                                    <div class="inner">
-                                        <h3 id="Borrowers" style="font-size: 24px;">0 عدد</h3>
-                                        <p>آزمایشی - پارس کیان</p>
-                                    </div>
-
-                                    <a href="@Url.Action("Index","Borrowers")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
-                                </div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box bg-green">
-                                    <div class="inner">
-                                        <h3 id="TotalAmountOfOrder" style="font-size: 20px;">0 تومان</h3>
-                                        <p>آزمایشی - پارس کیان</p>
-                                    </div>
-
-                                    <a href="@Url.Action("IndexIsapprovedFinanceAdmin","OrderHeader")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
-                                </div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box bg-red" style=" background-color: #2b9bff !important;">
-                                    <div class="inner">
-                                        <h3 id="LoanPerPay" style="font-size: 20px;">0 تومان</h3>
-
-                                        <p><p>آزمایشی - پارس کیان</p></p>
-                                    </div>
-
-                                    <a href="@Url.Action("IndexLoanPerPayAdmin","OrderHeader")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
-                                </div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box bg-aqua" style="background-color: #fadd00 !important;">
-                                    <div class="inner">
-                                        <h3 id="AmountInstallment" style="font-size: 20px;">0 تومان</h3>
-                                        <p><p>آزمایشی - پارس کیان</p> </p>
-                                    </div>
-
-                                    <a href="@Url.Action("Index","LoanInstallment")" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
 

@@ -46,10 +46,10 @@
                 <div class="box-body" style="">
 
                     <div class="panel panel-primary">
-                        <div class="panel-heading">کادر جستجو</div>
+                        <div class="panel-heading"> <span id="TotalRowRep" name="TotalRowRep"> کادر جستجو </span></div>
                         <div class="panel-body">
                             <div class="row" style="margin-bottom: 5px;">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.RequestForRating.TextSearchOnKeyDown(event);" />
                                 </div>
                                 <div class="col-md-2">
@@ -57,13 +57,13 @@
                                         <option value="5">
                                             5
                                         </option>
-                                        <option value="10" selected="selected">
+                                        <option value="10">
                                             10
                                         </option>
                                         <option value="20">
                                             20
                                         </option>
-                                        <option value="50">
+                                        <option value="50" selected="selected">
                                             50
                                         </option>
                                         <option value="100">
@@ -80,11 +80,13 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                                <div class="col-md-3">
+                                    درخواست های جدید من : <input type="checkbox" id="IsMyRequests" />
                                 </div>
+                                <div class="col-md-3">
+                                    درخواست های اقدام شده من : <input type="checkbox" id="IsMyRequestsDid" />
+                                </div>
+                               
                             </div>
                             <div class="row">
                                 <div class="col-md-6" style="display:flex;">
@@ -93,7 +95,9 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    درخواست های من : <input type="checkbox" id="IsMyRequests" />
+                                    <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -66,7 +66,7 @@
                // var resA = new Array();
 
                 var strM = '<option value="">انتخاب کنید</option>';
-
+                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 for (var i = 0; i < res.data.length; i++) {
 
                     //  var q = resA.filter(p => p.ParentCode == res.data[i].labeCode);

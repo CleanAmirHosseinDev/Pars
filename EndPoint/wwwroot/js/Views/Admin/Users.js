@@ -26,9 +26,10 @@
             if (res.isSuccess) {
 
                 var strM = '';
+                $("#TotalRowRep").text("جستجو در "+res.rows+" مورد");
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].user.userName == "admin" || res.data[i].role.roleDesc == "مشتری") {
-                        strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].user.realName + "</td><td>" + res.data[i].user.userName + "</td><td>" + res.data[i].role.roleDesc + "</td><td>" + (res.data[i].user.status == true ? "فعال" : "غیر فعال") + "</td><td>" + res.data[i].user.mobile + "</td><td><a title='ویرایش' href='/Admin/Users/EditUser?id=" + res.data[i].userId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Users.Delete_Users(" + res.data[i].userId + ");'><i class='fa fa-remove'></i></a>" + "</td></tr>";
+                        strM += "<tr><td>" + (i + 1) + "</td><td>" + (res.data[i].user.realName != null ? res.data[i].user.realName:"") + "</td><td>" + res.data[i].user.userName + "</td><td>" + res.data[i].role.roleDesc + "</td><td>" + (res.data[i].user.status == true ? "فعال" : "غیر فعال") + "</td><td>" + res.data[i].user.mobile + "</td><td><a title='ویرایش' href='/Admin/Users/EditUser?id=" + res.data[i].userId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Users.Delete_Users(" + res.data[i].userId + ");'><i class='fa fa-remove'></i></a>" + "</td></tr>";
 
                     } else {
                         //<a title='حذف' class='btn btn-danger fontForAllPage' onclick='Web.Users.Delete_Users(" + res.data[i].userId + ");'><i class='fa fa-remove'></i></a>
@@ -103,7 +104,8 @@
 
             if (res.isSuccess) {
 
-                var strM = '';
+               
+                var strM = '<option value="">انتخاب کنید</option>';
                 for (var i = 0; i < res.data.length; i++) {
                     strM += " <option value=" + res.data[i].roleId + ">" + res.data[i].roleDesc + "</option>";
                 }

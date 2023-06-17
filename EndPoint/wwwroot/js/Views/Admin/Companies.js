@@ -20,7 +20,7 @@
         AjaxCallAction("POST", "/api/admin/Companies/Get_Companiess", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
 
             if (res.isSuccess) {
-
+                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 

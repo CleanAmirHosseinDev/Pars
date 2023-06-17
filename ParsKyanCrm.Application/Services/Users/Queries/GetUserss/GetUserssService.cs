@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUserss
                 {
 
                     var res_Lists = await lists.ToListAsync();
-
+                    
                     return new ResultDto<IEnumerable<UserRolesDto>>
                     {
                         Data = _mapper.Map<IEnumerable<UserRolesDto>>(res_Lists),

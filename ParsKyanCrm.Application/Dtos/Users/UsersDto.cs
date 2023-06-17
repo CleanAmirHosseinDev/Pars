@@ -24,7 +24,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public bool Status { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public string Ip { get; set; }        
+        public string Ip { get; set; }   
+        
+        public string TotalUsers { get; set; }
 
     }
 }

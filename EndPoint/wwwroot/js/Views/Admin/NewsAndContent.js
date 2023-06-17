@@ -24,6 +24,7 @@
             if (res.isSuccess) {
 
                 var strM = '';
+                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 for (var i = 0; i < res.data.length; i++) {
 
                     let rlink = "";

@@ -32,7 +32,7 @@
             $("#btnOpperationRun").removeAttr("disabled");
 
             if (res.isSuccess) {
-                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+              
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
                 setlstor("fullName", $("#CompanyName").val());

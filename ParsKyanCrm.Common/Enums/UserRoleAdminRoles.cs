@@ -411,7 +411,5 @@ namespace ParsKyanCrm.Common.Enums
 
         #endregion
 
-        
-
     }
 }

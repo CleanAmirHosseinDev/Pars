@@ -18,7 +18,8 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return false;
+                return true
+                    ;
             }
         }
 

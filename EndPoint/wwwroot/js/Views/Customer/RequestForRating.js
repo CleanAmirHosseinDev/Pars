@@ -125,6 +125,30 @@
 
     }
 
+    function dashboardInformation() {
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1 }), true, function (res) {
+
+            if (res.isSuccess) {
+
+                if (res.data.length == 0) {
+                    goToUrl("/Customer/Customer/EditCustomer");
+
+                } else
+                {
+                    var IsFinishCount = 0;
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].isFinished == true) {
+                            IsFinishCount++;
+                        }
+                    }
+                    $("#RequestCount").text("(" + res.data.length + ")");
+                    $("#RequestIsFinishedCount").text(IsFinishCount);
+                }
+            }
+        }, true);
+
+    }
+
     function get_Detail(id = null) {
         try {
 
@@ -888,8 +912,8 @@
         SaveReferralRequestForRatingAgain: saveReferralRequestForRatingAgain,
         PrintPerFactor: printPerFactor,
         InitCustomer: initCustomer,
-        SaveReferralRequestForRatingCancel: saveReferralRequestForRatingCancel
-
+        SaveReferralRequestForRatingCancel: saveReferralRequestForRatingCancel,
+        DashboardInformation: dashboardInformation
     };
 
 })(Web, jQuery);

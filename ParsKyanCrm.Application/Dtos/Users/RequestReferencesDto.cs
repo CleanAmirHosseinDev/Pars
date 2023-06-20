@@ -80,6 +80,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int TotalCount { get; set; }
 
+        public string ReciverName { get; set; }
+
+        public string RoleDesReciver { get; set; }
     }
 
     public class ValidatorRequestReferencesDto : AbstractValidator<RequestReferencesDto>

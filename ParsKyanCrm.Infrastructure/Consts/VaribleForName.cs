@@ -199,9 +199,26 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return null;
+                return "ارجاع به مسئول ارزیابی برای بررسی مشخصات اولیه";
             }
         }
+
+        public static string LevelStepSettingIndexID1
+        {
+            get
+            {
+                return "1";
+            }
+        }
+
+        public static string ReciveUser1
+        {
+            get
+            {
+                return "414";
+            }
+        }
+
 
         #endregion
 

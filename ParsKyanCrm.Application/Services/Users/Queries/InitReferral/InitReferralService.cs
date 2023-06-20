@@ -79,7 +79,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.InitReferral
                     {
                         var qqxcmcx = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + item.DestLevelStepIndex);
                         item.LevelStepAccessRole = qqxcmcx.FirstOrDefault().LevelStepAccessRole;
-                        item.LevelStepStatus = qqxcmcx.FirstOrDefault().LevelStepStatus; 
+                        item.LevelStepStatus = qqxcmcx.FirstOrDefault().LevelStepStatus;
+                        item.SendUser = q.Data.FirstOrDefault().SendUser;
                     }
 
                 }

@@ -83,5 +83,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string ContractDocument { get; set; }
 
+        public string SendUser { get; set; }
+
+        public string LevelStepSettingIndexID { get; set; }
+
     }
 }

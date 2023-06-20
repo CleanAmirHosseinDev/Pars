@@ -136,6 +136,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         Comment = null,
                         SendUser = request.SendUser,
                         SendTime = dt,
+                         LevelStepSettingIndexID=1
                     });
                     await _context.SaveChangesAsync();
 
@@ -151,6 +152,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         SmsContent = VaribleForName.SmsContent1,
                         SmsType = VaribleForName.SmsType1,
                         DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
+                        LevelStepSettingIndexID=2,
+                        ReciveUser=VaribleForName.ReciveUser1
                     });
                     await _context.SaveChangesAsync();
 
@@ -174,7 +177,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         SmsType = request.SmsType,
                         DestLevelStepIndexButton = request.DestLevelStepIndexButton,
                         ReciveUser = request.ReciveUser,
-                         LevelStepSettingIndexID=request.LevelStepSettingIndexID
+                        LevelStepSettingIndexID=request.LevelStepSettingIndexID
                     });
                     await _context.SaveChangesAsync();
 
@@ -187,8 +190,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                             }
                         }, " RequestID = " + request.Request.RequestId);
                     }
-
-
 
                     switch (request.SmsType)
                     {

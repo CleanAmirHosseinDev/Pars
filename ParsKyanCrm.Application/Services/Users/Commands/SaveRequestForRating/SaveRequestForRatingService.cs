@@ -119,10 +119,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                     var rr = _context.RequestReferences.Add(new RequestReferences()
                     {
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
-                        LevelStepStatus = VaribleForName.LevelStepStatus,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton,
+                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
+                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
+                        LevelStepStatus = VaribleForName.LevelStepStatus1,
+                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -133,29 +133,34 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                             IsFinished = false,
                             ChangeDate = dt
                         },
+                        SmsContent = VaribleForName.SmsContent1,
+                        SmsType = VaribleForName.SmsType1,
+                         
                         Comment = null,
                         SendUser = request.SendUser,
                         SendTime = dt,
-                         LevelStepSettingIndexID=1
+                         LevelStepSettingIndexID=1,
+                         ReciveUser = VaribleForName.ReciveUser1,
+                       
                     });
                     await _context.SaveChangesAsync();
 
-                    _context.RequestReferences.Add(new RequestReferences()
-                    {
-                        Requestid = rr.Entity.Requestid,
-                        Comment = null,
-                        SendUser = request.SendUser,
-                        SendTime = dt,
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
-                        LevelStepStatus = VaribleForName.LevelStepStatus1,
-                        SmsContent = VaribleForName.SmsContent1,
-                        SmsType = VaribleForName.SmsType1,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
-                        LevelStepSettingIndexID=2,
-                        ReciveUser=VaribleForName.ReciveUser1
-                    });
-                    await _context.SaveChangesAsync();
+                    //_context.RequestReferences.Add(new RequestReferences()
+                    //{
+                    //    Requestid = rr.Entity.Requestid,
+                    //    Comment = null,
+                    //    SendUser = request.SendUser,
+                    //    SendTime = dt,
+                    //    DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
+                    //    LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
+                    //    LevelStepStatus = VaribleForName.LevelStepStatus1,
+                    //    SmsContent = VaribleForName.SmsContent1,
+                    //    SmsType = VaribleForName.SmsType1,
+                    //    DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
+                    //    LevelStepSettingIndexID=2,
+                    //    ReciveUser=VaribleForName.ReciveUser1
+                    //});
+                    //await _context.SaveChangesAsync();
 
                       WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
                       WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);

@@ -101,10 +101,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public IFormFile Result_Final_CommitteeEvaluationFile { get; set; }
         public string ContractCode { get; set; }
         public string ContractMainCode { get; set; }
-
         public int StepCode { get; set; }
         public bool IsCustomer { get; set; }
-
         public string LeaderEvaluationFile { get; set; }
         public string LeaderEvaluationFileFull
         {
@@ -118,6 +116,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public byte IsActive { get; set; }
         public bool CanSeePreFactor { get; set; }
         public string CanSeePreFactorStr { get; set; }
+        public int EditStatuse { get; set; }
 
     }
 }

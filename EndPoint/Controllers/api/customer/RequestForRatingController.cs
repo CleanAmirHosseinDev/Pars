@@ -119,7 +119,7 @@ namespace EndPoint.Controllers.api.customer
         {
             try
             {
-                request.IsCustomer = true;
+                
                 return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
             }
             catch (Exception ex)

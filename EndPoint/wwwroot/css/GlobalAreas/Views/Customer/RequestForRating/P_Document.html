@@ -2,17 +2,8 @@
 <form action="" id="frmFormMain" method="post">
     <input type="hidden" id="FinancialID" name="FinancialID" value="0" />
     <input type="hidden" id="RequestID" name="RequestID" value="0" />
-    <input type="hidden" id="ContentContract" name="ContentContract" value="0" />
-    <input type="hidden" id="PriceContract" name="PriceContract" value="0" />
-    <input type="hidden" id="EvaluationFile" name="EvaluationFile" value="0" />
-    <input type="hidden" id="DisCountMoney" name="DisCountMoney" value="0" />
-    <input type="hidden" id="DicCountPerecent" name="DicCountPerecent" value="0" />
-    <input type="hidden" id="ContractCode" name="ContractCode" value="0" />
-    <input type="hidden" id="FinalPriceContract" name="FinalPriceContract" value="0" />
-    <input type="hidden" id="ContractDocumentCustomer" name="ContractDocumentCustomer" value="0" />
-    <input type="hidden" id="ContractMainCode" name="ContractMainCode" value="0" />
-    <input type="hidden" id="CommitteeEvaluationFile" name="CommitteeEvaluationFile" value="0" />
-    <input type="hidden" id="Tax" name="Tax" value="0" />
+    <input type="hidden" id="EditStatuse" name="EditStatuse" value="0" />
+    <input type="hidden" id="EvaluationFile" name="EvaluationFile" />
     <div class="form-horizontal">
         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px;">
             <div id="LoadContractCustomer">
@@ -30,31 +21,30 @@
                         <th> مدرک آپلود شده</th>
                     </tr>
                     <tr>
-                        
+
                         <td>
-                            آپلود سند پرداخت<span class="RequiredLabel">*</span> <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" onchange="checkUploadWithFileSiza(this,'سند پرداخت',10);"  accept="image/*,.pdf" />
+                            آپلود سند پرداخت<span class="RequiredLabel">*</span> <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" onchange="checkUploadWithFileSiza(this,'سند پرداخت',10);" accept="image/*,.pdf" />
                         </td>
-                        <td><div id="divDownloadFinancialDocument"></div>
-                           </td>
+                        <td>
+                            <div id="divDownloadFinancialDocument"></div>
+                        </td>
                     </tr>
                     <tr>
-                       
+
                         <td>
                             آپلود قرارداد امضاء شده <span class="RequiredLabel">*</span>
                             <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf" onchange="checkUploadWithFileSiza(this,'قرارداد',10);" />
                         </td>
                         <td>  <div id="divDownload_ContractDocument"></div></td>
                     </tr>
-                   
+
                 </table>
-        
+
                 <div class="row" id="UpLastFinancialDocument">
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-4" for="">
-                                <input type="hidden" name="ContractDocument" id="ContractDocument" />
-                                <input type="hidden" name="FinancialDocument" id="FinancialDocument" />
                                 آپلود سند تسویه
                                 <span class="RequiredLabel">*</span>
                             </label>
@@ -62,7 +52,7 @@
 
 
                                 <input type="file" name="Result_Final_LastFinancialDocument" id="LastFinancialDocument" accept="image/*,.pdf" onchange="checkUploadWithFileSiza(this,' سند تسویه',10);" />
-                               
+
                                 <div id="divDownloadLastFinancialDocument"></div>
                                 <!--<span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx</span>-->
                             </div>
@@ -75,7 +65,7 @@
                         <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.SaveContractAndFinancialDocument(this);">
                             ثبت و ارسال به پارس کیان   <i class="fa fa-save"></i>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>

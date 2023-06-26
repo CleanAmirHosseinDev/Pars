@@ -76,15 +76,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 var qRequest = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == request.CustomerId && p.IsFinished == false);
                 if (qRequest != null)
                 {
-                    var RequestReferences = await _context.RequestReferences.FirstOrDefaultAsync(p => p.Requestid == qRequest.RequestId);
-                    if (RequestReferences != null)
-                    {
-                        if (RequestReferences.DestLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری")
-                        {
-                            return "به دلیل وجود یک درخواست باز امکان ویرایش پروفایل از طرف شما وجود ندارد در صورت نیاز به تغییرات لطفا با مدیر سامانه تماس بگیرید";
+                    //var RequestReferences = await _context.RequestReferences.FirstOrDefaultAsync(p => p.Requestid == qRequest.RequestId);
+                    //if (RequestReferences != null)
+                    //{
+                    //    if (RequestReferences.DestLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری")
+                    //    {
+                    //        return "به دلیل وجود یک درخواست باز امکان ویرایش پروفایل از طرف شما وجود ندارد در صورت نیاز به تغییرات لطفا با مدیر سامانه تماس بگیرید";
 
-                        }
-                    }
+                    //    }
+                    //}
 
                     var qCAFD = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == qRequest.RequestId);
                     if (qCAFD != null) return "امکان ویرایش پروفایل وجود ندارد چون قرارداد ثبت شده است";
@@ -183,10 +183,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     var rr = _context.RequestReferences.Add(new RequestReferences()
                     {
                          
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole,
-                        LevelStepStatus = VaribleForName.LevelStepStatus,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton,
+                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
+                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
+                        LevelStepStatus = VaribleForName.LevelStepStatus1,
+                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -197,26 +197,30 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             IsFinished = false,
                             ChangeDate = dt
                         },
+                        SmsContent = VaribleForName.SmsContent1,
+                        SmsType = VaribleForName.SmsType1,
                         Comment = null,
                         SendUser = null,
                         SendTime = dt,
+                        LevelStepSettingIndexID = 1,
+                        ReciveUser = VaribleForName.ReciveUser1,
                     });
                     await _context.SaveChangesAsync();
 
-                    _context.RequestReferences.Add(new RequestReferences()
-                    {
-                        Requestid = rr.Entity.Requestid,
-                        Comment = null,
-                        SendUser = null,
-                        SendTime = dt,
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
-                        LevelStepStatus = VaribleForName.LevelStepStatus1,
-                        SmsContent = VaribleForName.SmsContent1,
-                        SmsType = VaribleForName.SmsType1,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
-                    });
-                    await _context.SaveChangesAsync();
+                    //_context.RequestReferences.Add(new RequestReferences()
+                    //{
+                    //    Requestid = rr.Entity.Requestid,
+                    //    Comment = null,
+                    //    SendUser = null,
+                    //    SendTime = dt,
+                    //    DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
+                    //    LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
+                    //    LevelStepStatus = VaribleForName.LevelStepStatus1,
+                    //    SmsContent = VaribleForName.SmsContent1,
+                    //    SmsType = VaribleForName.SmsType1,
+                    //    DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
+                    //});
+                    //await _context.SaveChangesAsync();
 
                     var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
                     WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);

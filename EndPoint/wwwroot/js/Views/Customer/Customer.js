@@ -46,7 +46,7 @@
                     });
                    
                 } else {
-                    alertB("ثبت", "پروفایل شما ویرایش ش", "success", "بله متوجه شدم", function () {
+                    alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
 
                         goToUrl("/Customer/RequestForRating/Index");
 

@@ -177,7 +177,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+                return "ثبت درخواست و در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
             }
         }
         public static string SmsContent1

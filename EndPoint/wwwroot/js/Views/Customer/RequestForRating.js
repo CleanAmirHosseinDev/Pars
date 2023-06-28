@@ -219,13 +219,15 @@
 
     function saveContractAndFinancialDocument(e) {
         if ($("#EvaluationFile").val() != null && $("#EvaluationFile").val() != "") {
+
             if (document.getElementById("LastFinancialDocument").files.length == 0) {
                 alertB("هشدار", "فایل  سند تسویه را انتخاب نکرده اید!.", "warning");
-            } else {
+            }
+            else {
                 $(e).attr("disabled", "");
-
+                $("#EditStatuse").val("12");
                 AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
-
+                   
                     $(e).removeAttr("disabled");
 
                     if (res.isSuccess) {
@@ -250,7 +252,7 @@
         }
         else {
             $(e).attr("disabled", "");
-
+            $("#EditStatuse").val("5");
             AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
 
                 $(e).removeAttr("disabled");
@@ -347,7 +349,7 @@
                             strTimeLine += (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " : [" + res.data[i].kindOfRequestName + "]</span >";
 
                             strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
-                            strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + ")</span></div>";
+                            strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + " )</span></div>";
                            
                         }
                         else {
@@ -514,22 +516,11 @@
                         $("#ContractCusmerMsg").remove();
                         $("#FinancialID").val(res.data.financialId);
                         $("#RequestID").val(res.data.requestID);
-                        $("#ContentContract").val(res.data.contentContract);
-                        $("#PriceContract").val(res.data.priceContract);
-                        $("#EvaluationFile").val(res.data.evaluationFile);
-                        $("#DisCountMoney").val(res.data.disCountMoney);
-                        $("#DicCountPerecent").val(res.data.dicCountPerecent);
-                        $("#ContractCode").val(res.data.contractCode);
-                        $("#FinalPriceContract").val(res.data.finalPriceContract);
-                        $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
-                        $("#ContractMainCode").val(res.data.contractMainCode);
-                        $("#CommitteeEvaluationFile").val(res.data.committeeEvaluationFile);
-                        $("#Tax").val(res.data.tax);
-                        if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile != "")) {
-                            $("#FirstDoc").remove();
-                            $("#ContractDocument").val(res.data.contractDocument);
-                            $("#FinancialDocument").val(res.data.financialDocument);
 
+                             if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || (res.data.evaluationFile != null && res.data.evaluationFile != "")) {
+                                 $("#FirstDoc").remove();
+                                 $("#upcontract").remove();
+                                 $("#EvaluationFile").val(res.data.evaluationFile);
                         }
                         else {
                             $("#UpLastFinancialDocument").remove();
@@ -580,6 +571,7 @@
                             $("#divDownloadContractDocumentCustomer").html("<a style='margin-left:5px' href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i>   نمایش قرارداد  </a>" + PreFact);
 
                         } else {
+
                             var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس همه صفحات آن <span style='color:red; font-size:1.5em;'>امضاء شود</span> و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
 
                             strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
@@ -590,16 +582,9 @@
                         }
 
                     } else {
-                        $("#FinancialID").val(res.data.financialId);
-                        $("#RequestID").val(res.data.requestID);
-                        $("#ContentContract").val(res.data.contentContract);
-                        $("#PriceContract").val(res.data.priceContract);
 
-                        $("#DisCountMoney").val(res.data.disCountMoney);
-                        $("#DicCountPerecent").val(res.data.dicCountPerecent);
-                        $("#ContractCode").val(res.data.contractCode);
-                        $("#FinalPriceContract").val(res.data.finalPriceContract);
-                        $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
+                        $("#FinancialID").val(res.data.financialId);                       
+
                         var PreFact = (res.data.canSeePreFactor == true ? "<a style='margin-right:5px' href='/customer/RequestForRating/PrintFactor/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintPerFactor(this)' > <i class='fa fa-print'></i> پیش  فاکتور  </a >" : "");
 
                         var strhtml = "<div class='bc'><a href='/customer/RequestForRating/ContractPrint/" + id + "' class='btn btn-default fontForAllPage' onclick = 'Web.RequestForRating.PrintContract(this)' > <i class='fa fa-print'></i> پیش نمایش نمونه قرارداد  </a >" + PreFact+"<br/><br/>";
@@ -607,16 +592,7 @@
                         strhtml += " <button type='button' style='margin-left:5px' class='btn btn-success fontForAllPage' onclick='Web.RequestForRating.OkContract(this," + id + ")'>تایید  قرارداد</button><br/><br/><span>علت عدم تایید</span><input type='text' id='Comment2' name='Comment2' class='form-control' /><button style='margin-left:5px' class='btn btn-edit fontForAllPage' onclick='Web.RequestForRating.SaveReferralRequestForRatingCancel(this," + id + ")' type='button'>عدم تایید قرارداد </button><br /></div>";
                         $("#divOkContract").html(strhtml);
                     }
-                    $("#ContractShow").html(res.data.contentContract);
-
-                    //$('input[type="text"], textarea').each(function () {
-                    //    //  $(this).attr('readonly', 'readonly');
-                    //   // var text_classname = $(this).attr('name');
-                    //    var value = $(this).val();
-                    //    var new_html = ('<storang>' + value + '</storang>');
-                    //    $(this).replaceWith(new_html);
-                    //});
-                    //$(".hClass").remove();
+                   
                 }
 
             }, true);
@@ -658,6 +634,7 @@
 
 
         $(e).removeAttr("disabled");
+        $("#EditStatuse").val("4");
         AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmOkContract"), true, function (res) {
 
             if (res.isSuccess) {

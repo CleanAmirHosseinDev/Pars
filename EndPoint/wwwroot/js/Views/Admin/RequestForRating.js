@@ -26,13 +26,15 @@
 
                     strM += "<td>" + res.data[i].reciveUserName + "</td>"
 
-                    if (res.data[i].comment.trim() == "عدم تایید قرارداد توسط مشتری") {
-                        strM += "<td>" + "<span style='color:red'>&#10060;" + res.data[i].comment + "</span>" + "</td><td>";
+                    if (res.data[i].levelStepSettingIndexID == "29") {
+                        strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
                     } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
                         strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
                     }
                     else {
-                        strM += "<td>" + st2 + res.data[i].levelStepStatus + "</td><td>";
+                        strM += "<td>" + st2
+                            + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
+                            + res.data[i].levelStepStatus + "</td><td>";
                     }
                     if (res.data[i].destLevelStepIndex =="2") {
                         strM +="<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId  + ","+id+");'><i class='fa fa-remove'></i></a>";

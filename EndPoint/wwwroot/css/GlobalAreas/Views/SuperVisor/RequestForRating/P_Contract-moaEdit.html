@@ -19,8 +19,7 @@
                     <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
                         <input type="hidden" id="FinancialID" name="FinancialID" value="0" />
                         <input type="hidden" id="RequestID" name="RequestID" value="0" />
-                        <input type="hidden" id="FinancialDocument" name="FinancialDocument" value="" />
-                        <input type="hidden" id="ContractDocument" name="ContractDocument" value="" />
+                        <input type="hidden" id="EditStatuse" name="EditStatuse" value="7" />
 
                         <div class="row">
                             <div class="col-md-4">
@@ -34,7 +33,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="control-label col-md-6" for="">
@@ -99,7 +98,7 @@
                                             حذف متن قرارداد <i class="fa fa-close"></i>
                                         </button>
                                         <br />
-                                        <button title="جایگزینی متن" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.Disconut(this,true);" >
+                                        <button title="جایگزینی متن" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.Disconut(this,true);">
                                             جایگزینی متن
                                         </button>
                                     </div>
@@ -109,50 +108,63 @@
                                     <div class="col-md-12">
                                         <button style="margin-top: 5px; width: 120px" title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.PrintContract(this)">
                                             نمایش   <i class="fa fa-print"></i>
-                                        </button><br/>
+                                        </button><br />
                                         <button style="margin-top: 5px; width: 120px" title="پیش فاکتور" class='btn btn-default fontForAllPage' type="button" onclick='Web.RequestForRating.PrintPerFactoring(this)'> <i class='fa fa-print'></i> پیش  فاکتور  </button>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <!--<div class="row" id="ContractUp">
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="">
-                                            آپلود قرارداد مشتری
-                                        </label>
-                                        <div class="col-md-9">
-                                            <input type="file" name="Result_Final_ContractDocumentCustomer" id="ContractDocumentCustomer" accept=".pdf" />
-                                            <div id="divDownloadContractDocumentCustomer"></div>
-                                            
-                                        </div>
-                                    </div>
 
-                                </div>
-
-                            </div>
-                           
-                            <div class="col-md-4">
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <button title="ثبت" class="btn btn-info fontForAllPage" style="width:120px;margin-top: 5px;" type="button" onclick="Web.RequestForRating.UploadContractCustomer(this);">
-                                            آپلود   <i class="fa fa-file"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>-->
 
                     </div>
-                        <div id="ContentCKeditor" >
+                    <div id="ContentCKeditor">
 
+                    </div>
+                    <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px;">
+                        <div>
+
+                            <table class="table" id="FirstDoc">
+                                <tr>
+                                    <th>
+                                        آپلود مدرک
+                                        <br /> <span>پسوندهای مجاز: All Images, Pdfو , حداکثر 5 مگابایت</span>
+
+                                    </th>
+                                    <th> مدرک آپلود شده</th>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        آپلود سند پرداخت<span class="RequiredLabel">*</span> <input type="file" name="Result_Final_FinancialDocument" id="FinancialDocument" onchange="checkUploadWithFileSiza(this,'سند پرداخت',10);" accept="image/*,.pdf" />
+                                    </td>
+                                    <td>
+                                        <div id="divDownloadFinancialDocument"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        آپلود قرارداد امضاء شده <span class="RequiredLabel">*</span>
+                                        <input type="file" name="Result_Final_ContractDocument" id="ContractDocument" accept="image/*,.pdf" onchange="checkUploadWithFileSiza(this,'قرارداد',10);" />
+                                    </td>
+                                    <td>  <div id="divDownload_ContractDocument"></div></td>
+                                </tr>
+
+                            </table>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button title="ثبت" class="btn btn-info fontForAllPage" type="button" onclick="Web.RequestForRating.UpdateContract(this);">
+                                        ثبت فایل ها   <i class="fa fa-save"></i>
+                                    </button>
+
+                                </div>
+                            </div>
                         </div>
+
+                    </div>
                 </form>
                    
                     <div id="ContractShow"></div>

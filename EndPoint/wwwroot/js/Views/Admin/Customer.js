@@ -1,4 +1,31 @@
 ﻿
+var divPageingList_pageG = 1;
+function successCallBack_divPageingList (res) {
+
+    if (res.isSuccess) {
+
+        var strM = '';
+        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+        for (var i = 0; i < res.data.length; i++) {
+
+            strM += "<tr><td>" + (i + 1) + "</td>";
+            strM += "<td>" + (isEmpty(res.data[i].companyName) ? '' : res.data[i].companyName) + "</td>";
+            strM += "<td>" + (isEmpty(res.data[i].agentName) ? '' : res.data[i].agentName) + "</td>";
+            strM += "<td>" + (isEmpty(res.data[i].agentMobile) ? '' : res.data[i].agentMobile) + "</td>";
+            strM += "<td>" + res.data[i].saveDateStr + "</td>";
+            strM += "<td>" + (res.data[i].isProfileComplete ? 'ثبت درخواست' : 'عدم ثبت درخواست') + "</td>";
+            strM += "<td>";
+            strM += "<a title='ویرایش'  href='/Admin/Customers/EditCustomers?id=" + res.data[i].customerId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>";
+            strM += "<a title='حذف' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.Customer.Delete_Customers(" + res.data[i].customerId + ");'><i class='fa fa-remove'></i></a>";
+            strM += "<a title='نمایش لیست درخواست های مشتری' style='margin-left:5px'  class='btn btn-info fontForAllPage' href='/Admin/RequestForRating/Index/" + res.data[i].customerId + "'><i class='fa fa-line-chart'></i></a>";
+            strM += "</td></tr>";
+        }
+        $("#tBodyList").html(strM);
+
+    }
+
+}
+
 (function (web, $) {
 
     //Document Ready              
@@ -39,14 +66,14 @@
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
-                var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';                
+                var strHowGetKnowCompany = '<option value="">انتخاب کنید</option>';
                 var strTypeGroupCompanies = '<option value="">انتخاب کنید</option>';
                 var strCustomerPersonalityType = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].parentCode == 56) {
                         strHowGetKnowCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    }  else if (res.data[i].parentCode == 27) {
+                    } else if (res.data[i].parentCode == 27) {
                         strKindOfCompany += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                     }
                     else if (res.data[i].parentCode == 126) {
@@ -66,10 +93,10 @@
                 $("#TypeGroupCompanies").val(resSingle.typeGroupCompanies);
 
                 $("#KindOfCompanyId").html(strKindOfCompany);
-                $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);                
+                $("#HowGetKnowCompanyId").html(strHowGetKnowCompany);
 
                 $("#HowGetKnowCompanyId").val(resSingle.howGetKnowCompanyId);
-                $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);                
+                $("#KindOfCompanyId").val(resSingle.kindOfCompanyId);
 
             }
         }, true);
@@ -115,34 +142,10 @@
         }, true);
 
     }
-
+        
     function filterGrid() {
 
-        AjaxCallAction("POST", "/api/admin/Customers/Get_Customerss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
-
-            if (res.isSuccess) {
-
-                var strM = '';
-                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
-                for (var i = 0; i < res.data.length; i++) {
-
-                    strM += "<tr><td>" + (i + 1) + "</td>";
-                    strM += "<td>" + (isEmpty(res.data[i].companyName) ? '' : res.data[i].companyName) + "</td>";
-                    strM += "<td>" + (isEmpty(res.data[i].agentName) ? '' : res.data[i].agentName) + "</td>";
-                    strM += "<td>" + (isEmpty(res.data[i].agentMobile) ? '' : res.data[i].agentMobile) + "</td>";
-                    strM += "<td>" + res.data[i].saveDateStr + "</td>";
-                    strM += "<td>" + (res.data[i].isProfileComplete ? 'ثبت درخواست' : 'عدم ثبت درخواست') + "</td>";
-                    strM += "<td>";
-                          strM +="<a title='ویرایش'  href='/Admin/Customers/EditCustomers?id=" + res.data[i].customerId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a>";
-                          strM +="<a title='حذف' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.Customer.Delete_Customers(" + res.data[i].customerId + ");'><i class='fa fa-remove'></i></a>";
-                    strM += "<a title='نمایش لیست درخواست های مشتری' style='margin-left:5px'  class='btn btn-info fontForAllPage' href='/Admin/RequestForRating/Index/" + res.data[i].customerId + "'><i class='fa fa-line-chart'></i></a>";
-                    strM +="</td></tr>";
-                }
-                $("#tBodyList").html(strM);
-
-            }
-
-        }, true);
+        pageingGrid("divPageingList", "/api/admin/Customers/Get_Customerss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }));
 
     }
 
@@ -204,7 +207,7 @@
 
     }
 
-    web.Customer = {
+    web.Customer = {                
         FilterGrid: filterGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,
         SaveCustomer: saveCustomer,

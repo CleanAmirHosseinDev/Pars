@@ -15,7 +15,7 @@ namespace ParsKyanCrm.Common
 
         public string Search { get; set; }
 
-        public long Count { get; set; }
+        //public long Count { get; set; }
 
         public string SortOrder { get; set; }
 
@@ -25,31 +25,31 @@ namespace ParsKyanCrm.Common
 
     public class Pagination<T> : List<T>
     {
-        public int PageIndex { get; private set; }
-        public int TotalPages { get; private set; }
+        //public int PageIndex { get; private set; }
+        //public int TotalPages { get; private set; }
 
         public long Rows { get; private set; }
 
         public Pagination(List<T> items, PageingParamerDto pageingParamer)
         {
-            PageIndex = pageingParamer.PageIndex;
-            TotalPages = (int)Math.Ceiling(pageingParamer.Count / (double)pageingParamer.PageSize);
+            //PageIndex = pageingParamer.PageIndex;
+            //TotalPages = (int)Math.Ceiling(pageingParamer.Count / (double)pageingParamer.PageSize);
 
-            Rows = pageingParamer.Count;
+            //Rows = pageingParamer.Count;
 
             this.AddRange(items);
         }
 
-        public bool HasPreviousPage => PageIndex > 1;
+        //public bool HasPreviousPage => PageIndex > 1;
 
-        public bool HasNextPage => PageIndex < TotalPages;
+        //public bool HasNextPage => PageIndex < TotalPages;
 
         public static async Task<Pagination<T>> CreateAsync(IQueryable<T> source, PageingParamerDto pageingParamer)
         {
-            pageingParamer.Count = await source.LongCountAsync();
+            //pageingParamer.Count = await source.LongCountAsync();
             var items = await source.Skip((pageingParamer.PageIndex - 1) * pageingParamer.PageSize).Take(pageingParamer.PageSize).ToListAsync();
             return new Pagination<T>(items, pageingParamer);
         }
-        
+
     }
 }

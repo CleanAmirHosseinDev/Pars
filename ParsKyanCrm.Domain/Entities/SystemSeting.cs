@@ -26,6 +26,8 @@ namespace ParsKyanCrm.Domain.Entities
             ServiceFee = new HashSet<ServiceFee>();
         }
 
+        public string ConfigKindOfRequestInitilizeOne { get; set; }
+
         public int SystemSetingId { get; set; }
         public string Label { get; set; }
         public int? ParentCode { get; set; }

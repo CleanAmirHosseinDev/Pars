@@ -985,6 +985,9 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.TitleBaseAmount).HasMaxLength(100);
 
                 entity.Property(e => e.Value).HasMaxLength(100);
+
+                entity.Property(e => e.ConfigKindOfRequestInitilizeOne).HasComment("DestLevelStepIndex-LevelStepAccessRole-LevelStepStatus-DestLevelStepIndexButton-SmsContent-SmsType-ReciveUser");
+
             });
 
             modelBuilder.Entity<UserRoles>(entity =>

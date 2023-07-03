@@ -180,13 +180,25 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         };
                     }
 
+                    var qSystemSetting = await _context.SystemSeting.FindAsync(request.TypeServiceRequestedId.Value);
+                    if (string.IsNullOrEmpty(qSystemSetting.ConfigKindOfRequestInitilizeOne))
+                    {
+                        return new ResultDto()
+                        {
+                            IsSuccess = false,
+                            Message = "تنظیمات نوع خدمت مورد تقاضا تنظیم نشده است لطفا با پشتیبانی تماس حاصل فرمایید"
+                        };
+                    }
+
+                    string[] strArrConfigKindOfRequest = qSystemSetting.ConfigKindOfRequestInitilizeOne.Split("-");
+
                     var rr = _context.RequestReferences.Add(new RequestReferences()
                     {
-                         
-                        DestLevelStepIndex = VaribleForName.DestLevelStepIndex1,
-                        LevelStepAccessRole = VaribleForName.LevelStepAccessRole1,
-                        LevelStepStatus = VaribleForName.LevelStepStatus1,
-                        DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
+
+                        DestLevelStepIndex = strArrConfigKindOfRequest[0],
+                        LevelStepAccessRole = strArrConfigKindOfRequest[1],
+                        LevelStepStatus = strArrConfigKindOfRequest[2],
+                        DestLevelStepIndexButton = strArrConfigKindOfRequest[3],
                         Request = new Domain.Entities.RequestForRating()
                         {
 
@@ -197,13 +209,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                             IsFinished = false,
                             ChangeDate = dt
                         },
-                        SmsContent = VaribleForName.SmsContent1,
-                        SmsType = VaribleForName.SmsType1,
+                        SmsContent = strArrConfigKindOfRequest[4],
+                        SmsType = bool.Parse(strArrConfigKindOfRequest[5]),
                         Comment = null,
                         SendUser = null,
                         SendTime = dt,
                         LevelStepSettingIndexID = 1,
-                        ReciveUser = VaribleForName.ReciveUser1,
+                        ReciveUser = strArrConfigKindOfRequest[6],
                     });
                     await _context.SaveChangesAsync();
 

@@ -6,7 +6,7 @@
       "wwwroot/js/Utility.js"
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false
@@ -22,7 +22,7 @@
       "wwwroot/js/Views/Customer/FurtherInfo.js"
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false
@@ -38,7 +38,7 @@
       "wwwroot/js/Views/SuperVisor/FurtherInfo.js"
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false
@@ -65,7 +65,7 @@
       "wwwroot/js/Views/Admin/RequestForRating.js"
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false
@@ -77,7 +77,7 @@
       "wwwroot/js/Views/AccountController.js"
     ],
     "minify": {
-      "enabled": true,
+      "enabled": false,
       "renameLocals": true
     },
     "sourceMap": false

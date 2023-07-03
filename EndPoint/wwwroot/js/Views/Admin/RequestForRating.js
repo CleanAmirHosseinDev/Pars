@@ -140,8 +140,6 @@
                     strTimeLine += "<div class='timeline-entry-inner'>";
 
                     strTimeLine += "<time class='timeline-time' datetime=''>";
-                    strTimeLine += "<span class='date'>" + res.data[i].sendTimeStr + "</span>";
-                    strTimeLine += "<span class='LTRDirection'>" + res.data[i].sendTimeTimeStr + "</span>";
                     strTimeLine += "</time>";
 
                     strTimeLine += "<div class='timeline-icon " + bgColor + "'>";
@@ -150,60 +148,56 @@
 
                     strTimeLine += "<div class='timeline-label'>";
                     if (i == 0) {
-                        strTimeLine += "<h2>";
-                        strTimeLine += "<span>ایجاد درخواست توسط : </span>";
-                        strTimeLine += "<span class='sender'>" + (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " (" + res.data[i].roleDesc + ") " + "</span >";
-                        strTimeLine += "</h2>";
+                        strTimeLine += "<span class='smallFontSize' style='font-weight:bold'>";
+                        strTimeLine += (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " : [" + res.data[i].kindOfRequestName + "]</span >";
 
-                        //  strTimeLine += "<p><strong>گیرنده ها :</strong></p>";
-                        strTimeLine += "<ul>";
-                        strTimeLine += "<li>";
-                        // strTimeLine += "<span class='reciver' > علی احمدی </span >";
-                        // strTimeLine += "<span class='PostText'>";                        
-                        // strTimeLine += "<text > [رئیس شورا] </text>";                           
-                        // strTimeLine += "</span>";
-                        strTimeLine += "<span class='smallFontSize'> [" + res.data[i].levelStepStatus + "]</span>";
-                        // strTimeLine += "<span class='redColor'>[ خوانده نشده ]</span>";
-                        strTimeLine += "</li>";
-                        strTimeLine += "</ul>";
+                        strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
+                        strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + " )</span></div>";
+
                     }
                     else {
                         if (res.data[i].sendUser == null) {
-                            // strTimeLine += "<span>" + res.data[i].roleDesc + ": </span>";
-                            // strTimeLine += "<span class='sender'>" + res.data[i].agentName + "</span>";
-                        } else {
-                            strTimeLine += "<span>" + res.data[i].userRoleDes + ": </span>";
-                            strTimeLine += "<span class='sender'>" + res.data[i].realName + "</span>";
+                            strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
+                                + (res.data[i].levelStepSettingIndexID == "29" ? " &#x274C; " : "")
+                                + (res.data[i].levelStepSettingIndexID == "7" ? " &#x2705; " : "")
+                                + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
+                                + "<span class='sender'>ارجاع از: مشتری" + (res.data[i].agentName == null ? " (" + res.data[i].companyName + ")" : " (" + res.data[i].agentName + ")") + "</span><br/>";
+                            strTimeLine += " <span>به: " + res.data[i].roleDesReciver + " </span>";
+                            strTimeLine += "<span class='sender'>" + " (" + res.data[i].reciverName + ")" + "</span>";
+                        }
+                        else if (res.data[i].reciverName == null) {
+                            strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
+                                + (res.data[i].levelStepSettingIndexID == "4" ? " &#x1F4DD;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "11" ? " &#x1F4C2;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "26" ? " &#x2705;" : "")
+                                + " <span> ارجاع از:  " + res.data[i].userRoleDes + " (" + res.data[i].realName + ")"
+                                + " </span><br/>";
+                            strTimeLine += " <span>به: " + "مشتری" + " </span>";
+                            strTimeLine += "<span class='sender'>" + (res.data[i].agentName == null ? " (" + res.data[i].companyName + ")" : " (" + res.data[i].agentName + ")") + "</span>";
+                        }
+                        else {
+                            strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
+                                + (res.data[i].levelStepSettingIndexID == "17" ? " &#x2705;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "28" ? " &#x274C;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "23" ? " &#x1F4CA;" : "")
+                                + (res.data[i].roleDesReciver != null ? " <span> ارجاع از:  " + res.data[i].userRoleDes + " (" + res.data[i].realName + ")"
+                                    + " </span><br/>" : "");
+                            strTimeLine += " <span>به: " + res.data[i].roleDesReciver + " </span>";
+                            strTimeLine += "<span class='sender'>" + " (" + res.data[i].reciverName + ")" + "</span>";
                         }
                         strTimeLine += "<br/>";
-                        //  strTimeLine += "<span> گیرنده ها : </span>";
-                        strTimeLine += "<ul>";
-                        strTimeLine += "<li>";
-                        // strTimeLine += "<span class='reciver'>مینا</span>";
-                        // strTimeLine += "<span class='PostText'>";
-                        // strTimeLine += "<text> [رئیس شورا] </text>";
-                        // strTimeLine += " </span>";
                         strTimeLine += "<span class='smallFontSize'>";
-                        if (i > 1) {
-                            strTimeLine += "[" + res.data[i].destLevelStepIndexButton + "]";
-                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
-                        } else {
-                            strTimeLine += "[" + res.data[i].levelStepStatus + "]";
-                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
-                        }
-
+                        strTimeLine += "[" + res.data[i].destLevelStepIndexButton + "]";
+                        // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
                         strTimeLine += "</span>";
-                        strTimeLine += "</li>";
-                        strTimeLine += "</ul>";
+                        strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
+                        strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + ")</span></div>";
+
 
                     }
                     strTimeLine += "<span></span>";
-                    if (i == 0) {
-                        strTimeLine += "<div class='customDiv'>";
-                        strTimeLine += "<span class='Transcript'>" + res.data[i].kindOfRequestName + "</span>";
-                        strTimeLine += "</div>";
-                    } else {
-                        if (res.data[i].comment != null) {
+                    if (i != 0) {
+                        if (res.data[i].comment != null && res.data[i].comment != "") {
 
                             strTimeLine += "<div class='customDiv'>توضیحات<hr/>";
                             strTimeLine += "<span class='Transcript'>" + res.data[i].comment + "</span>";
@@ -222,11 +216,11 @@
                 if (isFinish) {
                     strTimeLine += "<article class='timeline-entry " + (left ? " left-aligned" : "") + "'>";
                     strTimeLine += "<div class='timeline-entry-inner'>";
-                    strTimeLine += "<time class='timeline-time' datetime='2014-01-10T03:45'><span>اختتام درخواست</span></time>";
+                    strTimeLine += "<time class='timeline-time' datetime='2014-01-10T03:45'></time>";
                     strTimeLine += "<div class='timeline-icon bg-secondary'><i class='entypo-feather'></i></div>";
                     strTimeLine += "<div class='timeline-label'>";
                     strTimeLine += "<h2>";
-                    strTimeLine += "<span>اختتام درخواست </span>";
+                    strTimeLine += "<span>تایید نهایی و اختتام درخواست </span>";
                     // strTimeLine += "<span class='sender''>مهندس</span>";
                     strTimeLine += "</h2>";
                     strTimeLine += "</div>";
@@ -249,6 +243,8 @@
 
     }
 
+
+   
     function initDashboard() {
 
         AjaxCallAction("GET", "/api/admin/Customers/GetDashboard_Info/", null, true, function (res) {

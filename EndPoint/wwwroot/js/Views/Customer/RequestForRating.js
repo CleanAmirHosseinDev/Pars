@@ -73,7 +73,7 @@
 
                     }
                     if (res.data[i].contractDocument != null && res.data[i].contractDocument!="") {
-                        strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+                        strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                     }
 
                   
@@ -863,6 +863,7 @@
 
     }
 
+ 
 
     web.RequestForRating = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
@@ -893,7 +894,8 @@
         PrintPerFactor: printPerFactor,
         InitCustomer: initCustomer,
         SaveReferralRequestForRatingCancel: saveReferralRequestForRatingCancel,
-        DashboardInformation: dashboardInformation
+        DashboardInformation: dashboardInformation,
+        
     };
 
 })(Web, jQuery);

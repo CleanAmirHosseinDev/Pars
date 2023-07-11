@@ -807,8 +807,8 @@
         objJ.SmsContent = null;
         objJ.SmsType = null;
         objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
-        objJ.ReciveUser = $("#sdklsslks3498sjdkxhjsd_823sdel").val();
-        objJ.LevelStepSettingIndexID = "29"
+        objJ.ReciveUser = "414";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
+        objJ.LevelStepSettingIndexID = "1"
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 
             if (res.isSuccess) {

@@ -670,7 +670,7 @@
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (!res.isSuccess) {
+                if (!res.isSuccess && $(objE).attr("data-LSSII")!="2") {
                     alertB("خطا", " کاربر گرامی شما قرارداد را تایید نکرده اید", "error");
                 } else {
                     $(".ButtonOpperationLSSlss").attr("disabled", "");

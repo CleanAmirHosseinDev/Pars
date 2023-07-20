@@ -1159,6 +1159,15 @@
                         else if (FormID == 13) {
                             clearFormDetail13();
                         }
+                        else if (FormID == 15) {
+                            clearFormDetail15();
+                        }
+                        else if (FormID == 22) {
+                            clearFormDetail22();
+                        }
+                        else if (FormID == 24) {
+                            clearFormDetail24();
+                        }
                     }
                     else {
 
@@ -1230,6 +1239,14 @@
                 }
                 else if (FormId == 13) {
                     clearFormDetail13();
+                }
+                else if (FormId == 15) {
+                    clearFormDetail15();
+                }
+                else if (FormId == 22) {
+                    clearFormDetail22();
+                } else if (FormID == 24) {
+                    clearFormDetail24();
                 }
                 document.getElementById("frmFrom" + FormId).reset();
             }
@@ -1692,7 +1709,25 @@
         $('#frmFrom13').find('input[name=AnswerTableId]').val(0);
         $('#frmFrom13').get(0).reset();
     }
-   
+    function clearFormDetail15() {
+        $('#btnform15').html('افزودن');
+        $('#DivPublicActivityFile').html('');
+        $('#frmFrom15').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom15').get(0).reset();
+    }
+    function clearFormDetail22() {
+        $('#btnform22').html('افزودن');
+        $('#DivInvestmentFile').html('');
+        $('#frmFrom22').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom22').get(0).reset();
+    }
+    function clearFormDetail24() {
+        $('#btnform24').html('افزودن');
+        $('#DivEmploymentDisabledFile').html('');
+        $('#frmFrom24').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom24').get(0).reset();
+    }
+    
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         InitFurtherInfo: initFurtherInfo,
@@ -1732,7 +1767,10 @@
         ClearFormDetail9: clearFormDetail9,
         ClearFormDetail10: clearFormDetail10,
         ClearFormDetail12: clearFormDetail12,
-        ClearFormDetail13: clearFormDetail13
+        ClearFormDetail13: clearFormDetail13,
+        ClearFormDetail15: clearFormDetail15,
+        ClearFormDetail22: clearFormDetail22,
+        ClearFormDetail24: clearFormDetail24
     };
 
 })(Web, jQuery);

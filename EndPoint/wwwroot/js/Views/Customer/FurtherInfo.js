@@ -380,10 +380,10 @@
                         $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.representativeFile != null && res.data.representativeFile != "") {
-                        $("#DivRepresentativeFile").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.RepresentativeFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivRepresentativeFile").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.representativeFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.letterOfCommendation != null && res.data.letterOfCommendation != "") {
-                        $("#DivLetterOfCommendation").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.LetterOfCommendationFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivLetterOfCommendation").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.letterOfCommendationFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.proceedings != null && res.data.proceedings != "") {
                         $("#DivProceedings").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.proceedingsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");

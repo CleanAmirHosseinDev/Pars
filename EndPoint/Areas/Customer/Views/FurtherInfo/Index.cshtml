@@ -622,7 +622,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform5" onclick="Web.FurtherInfo.SaveForm(this,5,'1,3,11,4');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform5').html('افزودن'); $('#DivAwardsFile').html('');$('#AnswerTableId').val(0);   ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail5()">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -901,7 +901,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform16" onclick="Web.FurtherInfo.SaveForm(this,16,'1,2,3');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform16').html('افزودن');$('#AnswerTableId').val(0);   ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail16()">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -964,10 +964,10 @@
                                                                                         <div class="col-lg-6">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform17" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2');">
+                                                                                                    <button class="btn btn-success fontForAllPage" id="btnform17" type="button" onclick="Web.FurtherInfo.SaveForm(this,17,'1,2,3');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform17').html('افزودن');$('#AnswerTableId').val(0);   ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail17()">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -1404,7 +1404,7 @@
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform8" onclick="Web.FurtherInfo.SaveForm(this,8,'1,11,12');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform8').html('افزودن'); $('#DivSwotFile2').html(''); $('#DivSwotFile1').html('');$('#AnswerTableId').val(0); ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail8()">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -1471,7 +1471,7 @@
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" type="button" id="btnform9" onclick="Web.FurtherInfo.SaveForm(this,9,'1,2,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform9').html('افزودن'); $('#DivDegreeFile').html('');$('#AnswerTableId').val(0);  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail9() ">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -1530,7 +1530,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" type="button" id="btnform10" onclick="Web.FurtherInfo.SaveForm(this,10,'1,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform10').html('افزودن'); $('#DivReportFile').html('');$('#AnswerTableId').val(0);  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail10()">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -1665,7 +1665,8 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">فایل گواهی دوره </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'گواهی دوره',5);"><div id="DivCertificationCourses"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationCourses" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'گواهی دوره',5);">
+                                                                                                    <div id="DivCertificationCourses2"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1677,7 +1678,7 @@
                                                                                                     <button class="btn btn-success fontForAllPage" id="btnform12" type="button" onclick="Web.FurtherInfo.SaveForm(this,12,'1,2,3,4,11');">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform12').html('افزودن');$('#AnswerTableId').val(0);  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail12();">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>
@@ -1775,7 +1776,8 @@
                                                                                             <div class="form-group">
                                                                                                 <div class="col-md-12" style="margin-bottom:10px">
                                                                                                     <label class="control-label" for="">فایل گواهی عضویت </label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' گواهی عضویت',5);" /><div id="DivCertificationSociety"></div>
+                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificationSociety" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,' گواهی عضویت',5);" />
+                                                                                                    <div id="DivCertificationSociety"></div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1787,7 +1789,7 @@
                                                                                                     <button title="ثبت" class="btn btn-success fontForAllPage" id="btnform13" type="button" onclick="Web.FurtherInfo.SaveForm(this,13,'1,2,3,11')">
                                                                                                         افزودن
                                                                                                     </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="$('#btnform13').html('افزودن');$('#AnswerTableId').val(0);  ">
+                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail13();">
                                                                                                         پاک کن
                                                                                                     </button>
                                                                                                 </div>

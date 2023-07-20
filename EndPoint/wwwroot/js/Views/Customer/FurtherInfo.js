@@ -1029,7 +1029,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
                         if (res.data[0].fileName1 != null) {
-                            $("#DivCertificationCourses").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivCertificationCourses2").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform12").html("ویرایش");
                     }
@@ -1135,8 +1135,30 @@
                         else if (FormID == 4) {
                             clearFormDetail4();
                         }
-                        $("#btnform" + FormID).html('افزودن');
-
+                        else if (FormID == 5) {
+                            clearFormDetail5();
+                        }
+                        else if (FormID == 16) {
+                            clearFormDetail16();
+                        }
+                        else if (FormID == 17) {
+                            clearFormDetail17();
+                        }
+                        else if (FormID == 8) {
+                            clearFormDetail8();
+                        }
+                        else if (FormID == 9) {
+                            clearFormDetail9();
+                        }
+                        else if (FormID == 10) {
+                            clearFormDetail10();
+                        }
+                        else if (FormID == 12) {
+                            clearFormDetail12();
+                        }
+                        else if (FormID == 13) {
+                            clearFormDetail13();
+                        }
                     }
                     else {
 
@@ -1184,6 +1206,30 @@
                 }
                 else if (FormId == 4) {
                     clearFormDetail4();
+                }
+                else if (FormId == 5) {
+                    clearFormDetail5();
+                }
+                else if (FormId == 16) {
+                    clearFormDetail16();
+                }
+                else if (FormId == 17) {
+                    clearFormDetail17();
+                }
+                else if (FormId == 8) {
+                    clearFormDetail8();
+                }
+                else if (FormId == 9) {
+                    clearFormDetail9();
+                }
+                else if (FormId == 10) {
+                    clearFormDetail10();
+                }
+                else if (FormId == 12) {
+                    clearFormDetail12();
+                }
+                else if (FormId == 13) {
+                    clearFormDetail13();
                 }
                 document.getElementById("frmFrom" + FormId).reset();
             }
@@ -1599,7 +1645,54 @@
         $('#frmFrom4').find('input[name=AnswerTableId]').val(0);
         $('#frmFrom4').get(0).reset();
     }
-
+    function clearFormDetail5() {
+         $('#DivAwardsFile').html(''); 
+        $('#btnform5').html('افزودن');       
+        $('#frmFrom5').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom5').get(0).reset();
+    }
+    function clearFormDetail16() {      
+        $('#btnform16').html('افزودن');
+        $('#frmFrom16').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom16').get(0).reset();
+    }
+    function clearFormDetail17() {
+        $('#btnform17').html('افزودن');
+        $('#frmFrom17').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom17').get(0).reset();
+    }
+    function clearFormDetail8() {
+        $('#btnform8').html('افزودن');
+        $('#DivSwotFile2').html('');
+        $('#DivSwotFile1').html('');
+        $('#frmFrom8').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom8').get(0).reset();
+    }
+    function clearFormDetail9() {
+        $('#btnform9').html('افزودن');
+        $('#DivDegreeFile').html(''); 
+        $('#frmFrom9').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom9').get(0).reset();
+    }
+    function clearFormDetail10() {
+        $('#btnform10').html('افزودن');
+        $('#DivReportFile').html('');
+        $('#frmFrom10').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom10').get(0).reset();
+    }
+    function clearFormDetail12() {
+        $('#btnform12').html('افزودن');
+        $('#DivCertificationCourses2').html('');
+        $('#frmFrom12').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom12').get(0).reset();
+    }
+    function clearFormDetail13() {
+        $('#btnform13').html('افزودن');
+        $('#DivCertificationSociety').html('');
+        $('#frmFrom13').find('input[name=AnswerTableId]').val(0);
+        $('#frmFrom13').get(0).reset();
+    }
+   
     web.FurtherInfo = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         InitFurtherInfo: initFurtherInfo,
@@ -1631,7 +1724,15 @@
         ClearFormDetail1: clearFormDetail1,
         ClearFormDetail26: clearFormDetail26,
         ClearFormDetail3: clearFormDetail3,
-        ClearFormDetail4: clearFormDetail4
+        ClearFormDetail4: clearFormDetail4,
+        ClearFormDetail5: clearFormDetail5,
+        ClearFormDetail16: clearFormDetail16,
+        ClearFormDetail17: clearFormDetail17,
+        ClearFormDetail8: clearFormDetail8,
+        ClearFormDetail9: clearFormDetail9,
+        ClearFormDetail10: clearFormDetail10,
+        ClearFormDetail12: clearFormDetail12,
+        ClearFormDetail13: clearFormDetail13
     };
 
 })(Web, jQuery);

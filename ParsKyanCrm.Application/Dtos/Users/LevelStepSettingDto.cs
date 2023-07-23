@@ -13,6 +13,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? LevelStepSettingIndexId { get; set; }
 
+        public int? KindOfRequest { get; set; }
+
     }
 
     public class LevelStepSettingDto

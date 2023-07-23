@@ -37,8 +37,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSettings
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.AccessRoleName.Contains(request.Search)
                 || p.LevelStepStatus.Contains(request.Search) ||
-                p.DestLevelStepIndexButton.Contains(request.Search)               
+                p.DestLevelStepIndexButton.Contains(request.Search)
                 );
+
+                if (request.KindOfRequest.HasValue) lists = lists.Where(p => p.KindOfRequest == request.KindOfRequest.Value);
+
 
                 switch (request.SortOrder)
                 {

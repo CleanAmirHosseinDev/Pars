@@ -3,6 +3,27 @@
 
     //Document Ready  
 
+    function onchangeKindOfRequest(e) {
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+        }, true);
+
+    }
+
     function textSearchOnKeyDown(event) {
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
@@ -17,7 +38,8 @@
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
 
                 for (var i = 0; i < res.data.length; i++) {
-                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";               }
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
 
                 $("#cboSelectLS").html(strKindOfCompany);
 
@@ -74,8 +96,8 @@
                     } else if (res.data[i].levelStepSettingIndexID == "2") {
                         strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
                     }
-                      else if (res.data[i].levelStepSettingIndexID == "28") {
-                      strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
+                    else if (res.data[i].levelStepSettingIndexID == "28") {
+                        strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
                     }
                     else if (res.data[i].levelStepSettingIndexID == "17") {
                         strM += "<td>" + "<span style='color:blue'> &#x2705; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
@@ -87,7 +109,7 @@
                         strM += "<td>" + st2
                             + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
                             + res.data[i].destLevelStepIndexButton + "</td><td>";
-                    }                    
+                    }
 
                     strM += "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
                         + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-default fontForAllPage'><i class='fa fa-eye'></i> </a>");
@@ -154,7 +176,7 @@
                     for (var i = 0; i < res.data.length; i++) {
                         $("#sdklsslks3498sjdkxhjsd_823sb").val(res.data[0].levelStepIndex);
 
-                        htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton + "' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "' data-LSSII='" + res.data[i].levelStepSettingIndexId+ "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton + "' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "' data-LSSII='" + res.data[i].levelStepSettingIndexId + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
 
@@ -182,7 +204,7 @@
 
     function printContract(e) {
 
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());        
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         goToUrl("/superVisor/RequestForRating/ContractPrint/" + id);
     }
 
@@ -248,8 +270,8 @@
                     $("#RequestID").val(res.data.requestID);
                     $("#PriceContract").val(moneyCommaSepWithReturn(res.data.priceContract == null ? "" : res.data.priceContract.toString()));
                     $("#FinalPriceContract").val(moneyCommaSepWithReturn(res.data.finalPriceContract == null ? "" : res.data.finalPriceContract.toString()));
-                   // $("#FinancialDocument").val(res.data.financialDocument);
-                   // $("#ContractDocument").val(res.data.contractDocument);
+                    // $("#FinancialDocument").val(res.data.financialDocument);
+                    // $("#ContractDocument").val(res.data.contractDocument);
                     $("#btnDelContract").removeAttr("disabled");
                     $("#DisCountMoney").val(moneyCommaSepWithReturn(res.data.disCountMoney == null ? "" : res.data.disCountMoney.toString()));
                     $("#DicCountPerecent").val(res.data.dicCountPerecent);
@@ -360,7 +382,7 @@
                         $("#contractInfo").html(resG);
                         if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
                             $('#FinalPriceContract').prop('readonly', true);
-                         
+
                         }
                         if (getlstor("loginName") === "1") {
                             $("#ContractUp").hide();
@@ -471,14 +493,14 @@
     }
 
     function initContractNew(id = null) {
-        
+
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ServiceFeeAndCustomerByRequest/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res != null) {
                     $("#btnDelContract").attr("disabled", "");
-                   
+
                     if (res.contract == null) {
                         alertB("خطا", "متن قرارداد وجود ندارد", "error");
                     }
@@ -608,7 +630,7 @@
 
             if (res.isSuccess) {
                 $("#btnreq").click();
-                 alertB("ثبت", "مدارک با موفقیت ثبت شد.", "success");               
+                alertB("ثبت", "مدارک با موفقیت ثبت شد.", "success");
 
             } else {
 
@@ -642,7 +664,7 @@
 
             $(".ButtonOpperationLSSlss").attr("disabled", "");
 
-            $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));            
+            $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_UsersByRole/" + decrypt($(e).attr("data-LSAR"), keyMaker()), null, true, function (resGet) {
 
@@ -662,7 +684,7 @@
                     qContent += "</select></div></div></div></div>";
 
                     objE = e;
-                    InitModal_Withot_Par('برای ارجاع یه کاربر انتخاب کنید', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;','ارجاع');
+                    InitModal_Withot_Par('برای ارجاع یه کاربر انتخاب کنید', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'ارجاع');
 
                     ComboBoxWithSearchAndModal();
 
@@ -673,7 +695,7 @@
 
         }
         else ShowModal();
-        
+
 
     }
 
@@ -693,7 +715,7 @@
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (!res.isSuccess && $(objE).attr("data-LSSII")!="2") {
+                if (!res.isSuccess && $(objE).attr("data-LSSII") != "2") {
                     alertB("خطا", " کاربر گرامی شما قرارداد را تایید نکرده اید", "error");
                 } else {
                     $(".ButtonOpperationLSSlss").attr("disabled", "");
@@ -790,7 +812,7 @@
 
 
     }
-    function showEditDocument(id=null) {
+    function showEditDocument(id = null) {
 
         $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
         if (!isEmpty(id) && id != 0) {
@@ -864,7 +886,7 @@
                 if (res.isSuccess) {
                     $("#FinancialID").val(res.data.financialId);
                     $("#RequestID").val(res.data.requestID);
-                    if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile!="") || res.data.confirmCommitteeEvaluation === "True") {
+                    if ((res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") || res.data.confirmCommitteeEvaluation === "True") {
                         $("#frmFormMain2").remove();
                         $("#frmFormMain4").remove();
                     } else {
@@ -876,7 +898,7 @@
                     if (getlstor("loginName") === "6") {
                         $("div.result").remove();
                     }
-                   
+
 
                     if (res.data.financialDocument != null && res.data.financialDocument != "") {
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
@@ -970,7 +992,7 @@
         AjaxCallActionPostSaveFormWithUploadFile("/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", fill_AjaxCallActionPostSaveFormWithUploadFile("frmContract"), true, function (res) {
 
             $(e).removeAttr("disabled");
-            
+
             if (res.isSuccess) {
                 if (IsShowMsg) {
                     $("#btnDelContract").removeAttr("disabled");
@@ -1014,7 +1036,7 @@
                 if (res.isSuccess) {
                     showEvaluationFile();
                     alertB("ثبت", " با موفقیت ثبت شد.", "success");
-                   
+
 
                 } else {
 
@@ -1038,7 +1060,7 @@
                 if (res.isSuccess) {
                     showEvaluationFile();
                     alertB("ثبت", " با موفقیت ثبت شد.", "success");
-                    
+
 
                 } else {
 
@@ -1064,7 +1086,7 @@
                 if (res.isSuccess) {
                     showEvaluationFile();
                     alertB("ثبت", " با موفقیت ثبت شد.", "success");
-                   
+
 
                 } else {
 
@@ -1093,7 +1115,7 @@
 
     //}
 
-   
+
     function createTimeLine(id = null, isFinish) {
 
         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestReferencessService", JSON.stringify({ RequestId: id }), true, function (res) {
@@ -1103,84 +1125,84 @@
                 var left = false;
 
                 for (var i = 0; i < res.data.length; i++) {
-                    
-                        var bgColor = i == 0 ? "bg-secondary" : "bg-info";
 
-                        strTimeLine += "<article class='timeline-entry " + (left ? " left-aligned" : "") + "'>";
-                        strTimeLine += "<div class='timeline-entry-inner'>";
+                    var bgColor = i == 0 ? "bg-secondary" : "bg-info";
 
-                        strTimeLine += "<time class='timeline-time' datetime=''>";
-                        strTimeLine += "</time>";
+                    strTimeLine += "<article class='timeline-entry " + (left ? " left-aligned" : "") + "'>";
+                    strTimeLine += "<div class='timeline-entry-inner'>";
 
-                        strTimeLine += "<div class='timeline-icon " + bgColor + "'>";
-                        strTimeLine += "<i class='entypo-feather'></i>";
-                        strTimeLine += "</div>";
+                    strTimeLine += "<time class='timeline-time' datetime=''>";
+                    strTimeLine += "</time>";
 
-                        strTimeLine += "<div class='timeline-label'>";
-                        if (i == 0) {
-                            strTimeLine += "<span class='smallFontSize' style='font-weight:bold'>";
-                            strTimeLine += (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " : [" + res.data[i].kindOfRequestName + "]</span >";
+                    strTimeLine += "<div class='timeline-icon " + bgColor + "'>";
+                    strTimeLine += "<i class='entypo-feather'></i>";
+                    strTimeLine += "</div>";
 
-                            strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
-                            strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + " )</span></div>";
+                    strTimeLine += "<div class='timeline-label'>";
+                    if (i == 0) {
+                        strTimeLine += "<span class='smallFontSize' style='font-weight:bold'>";
+                        strTimeLine += (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " : [" + res.data[i].kindOfRequestName + "]</span >";
 
+                        strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
+                        strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + " )</span></div>";
+
+                    }
+                    else {
+                        if (res.data[i].sendUser == null) {
+                            strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
+                                + (res.data[i].levelStepSettingIndexID == "29" ? " &#x274C; " : "")
+                                + (res.data[i].levelStepSettingIndexID == "7" ? " &#x2705; " : "")
+                                + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
+                                + "<span class='sender'>ارجاع از: مشتری" + (res.data[i].agentName == null ? " (" + res.data[i].companyName + ")" : " (" + res.data[i].agentName + ")") + "</span><br/>";
+                            strTimeLine += " <span>به: " + res.data[i].roleDesReciver + " </span>";
+                            strTimeLine += "<span class='sender'>" + " (" + res.data[i].reciverName + ")" + "</span>";
+                        }
+                        else if (res.data[i].reciverName == null) {
+                            strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
+                                + (res.data[i].levelStepSettingIndexID == "4" ? " &#x1F4DD;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "11" ? " &#x1F4C2;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "26" ? " &#x2705;" : "")
+                                + " <span> ارجاع از:  " + res.data[i].userRoleDes + " (" + res.data[i].realName + ")"
+                                + " </span><br/>";
+                            strTimeLine += " <span>به: " + "مشتری" + " </span>";
+                            strTimeLine += "<span class='sender'>" + (res.data[i].agentName == null ? " (" + res.data[i].companyName + ")" : " (" + res.data[i].agentName + ")") + "</span>";
                         }
                         else {
-                            if (res.data[i].sendUser == null) {
-                                strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
-                                    + (res.data[i].levelStepSettingIndexID == "29" ? " &#x274C; " : "")
-                                    + (res.data[i].levelStepSettingIndexID == "7" ? " &#x2705; " : "")
-                                    + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
-                                    + "<span class='sender'>ارجاع از: مشتری" + (res.data[i].agentName == null ? " (" + res.data[i].companyName + ")" : " (" + res.data[i].agentName + ")") + "</span><br/>";
-                                strTimeLine += " <span>به: " + res.data[i].roleDesReciver + " </span>";
-                                strTimeLine += "<span class='sender'>" + " (" + res.data[i].reciverName + ")" + "</span>";
-                            }
-                            else if (res.data[i].reciverName == null) {
-                                strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
-                                    + (res.data[i].levelStepSettingIndexID == "4" ? " &#x1F4DD;" : "")
-                                    + (res.data[i].levelStepSettingIndexID == "11" ? " &#x1F4C2;" : "")
-                                    + (res.data[i].levelStepSettingIndexID == "26" ? " &#x2705;" : "")
-                                    + " <span> ارجاع از:  " + res.data[i].userRoleDes + " (" + res.data[i].realName + ")"
-                                    + " </span><br/>";
-                                strTimeLine += " <span>به: " + "مشتری" + " </span>";
-                                strTimeLine += "<span class='sender'>" + (res.data[i].agentName == null ? " (" + res.data[i].companyName + ")" : " (" + res.data[i].agentName + ")") + "</span>";
-                            }
-                            else {
-                                strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
-                                    + (res.data[i].levelStepSettingIndexID == "17" ? " &#x2705;" : "")
-                                    + (res.data[i].levelStepSettingIndexID == "28" ? " &#x274C;" : "")
-                                    + (res.data[i].levelStepSettingIndexID == "23" ? " &#x1F4CA;" : "")
-                                    + (res.data[i].roleDesReciver != null ? " <span> ارجاع از:  " + res.data[i].userRoleDes + " (" + res.data[i].realName + ")"
-                                        + " </span><br/>" : "");
-                                strTimeLine += " <span>به: " + res.data[i].roleDesReciver + " </span>";
-                                strTimeLine += "<span class='sender'>" + " (" + res.data[i].reciverName + ")" + "</span>";
-                            }
-                            strTimeLine += "<br/>";                           
-                            strTimeLine += "<span class='smallFontSize'>";
-                            strTimeLine += "[" + res.data[i].destLevelStepIndexButton + "]";
-                            // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
-                            strTimeLine += "</span>";
-                            strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
-                            strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + ")</span></div>";
-
-
+                            strTimeLine += "<span class='boxCounter'>" + i.toString() + "</span>"
+                                + (res.data[i].levelStepSettingIndexID == "17" ? " &#x2705;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "28" ? " &#x274C;" : "")
+                                + (res.data[i].levelStepSettingIndexID == "23" ? " &#x1F4CA;" : "")
+                                + (res.data[i].roleDesReciver != null ? " <span> ارجاع از:  " + res.data[i].userRoleDes + " (" + res.data[i].realName + ")"
+                                    + " </span><br/>" : "");
+                            strTimeLine += " <span>به: " + res.data[i].roleDesReciver + " </span>";
+                            strTimeLine += "<span class='sender'>" + " (" + res.data[i].reciverName + ")" + "</span>";
                         }
-                        strTimeLine += "<span></span>";
-                        if (i != 0) {
-                            if (res.data[i].comment != null && res.data[i].comment != "") {
+                        strTimeLine += "<br/>";
+                        strTimeLine += "<span class='smallFontSize'>";
+                        strTimeLine += "[" + res.data[i].destLevelStepIndexButton + "]";
+                        // strTimeLine += "[ جهت اقدام] <span >[ خوانده شده ] </span><span class='greenColor'>1401/09/21  3:34</span>";
+                        strTimeLine += "</span>";
+                        strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
+                        strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + ")</span></div>";
 
-                                strTimeLine += "<div class='customDiv'>توضیحات<hr/>";
-                                strTimeLine += "<span class='Transcript'>" + res.data[i].comment + "</span>";
-                                strTimeLine += "</div>";
-                            }
+
+                    }
+                    strTimeLine += "<span></span>";
+                    if (i != 0) {
+                        if (res.data[i].comment != null && res.data[i].comment != "") {
+
+                            strTimeLine += "<div class='customDiv'>توضیحات<hr/>";
+                            strTimeLine += "<span class='Transcript'>" + res.data[i].comment + "</span>";
+                            strTimeLine += "</div>";
                         }
-                        strTimeLine += "</div>";
-                        //res.data[i].kindOfRequestName
+                    }
+                    strTimeLine += "</div>";
+                    //res.data[i].kindOfRequestName
 
-                        strTimeLine += "</div>";
-                        strTimeLine += "</article>";
-                        left = !left;
-                    
+                    strTimeLine += "</div>";
+                    strTimeLine += "</article>";
+                    left = !left;
+
 
                 }
                 if (isFinish) {
@@ -1311,9 +1333,9 @@
         $("#FinalPriceContract").val(removeComaForString($("#FinalPriceContract").val()));
         $('#DisCountMoney').val(removeComaForString($('#DisCountMoney').val()));
         $('#DicCountPerecent').val(removeComaForString($('#DicCountPerecent').val()));
-      
+
         $("#RequestID").val(decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker()));
-      
+
         saveContractAndFinancialDocuments(e, ShowMsg);
         $("#FinalPriceContract").val(moneyCommaSepWithReturn($("#FinalPriceContract").val()));
         $("#DisCountMoney").val(moneyCommaSepWithReturn($("#DisCountMoney").val()));
@@ -1333,7 +1355,7 @@
                 AjaxCallAction("GET", "/api/superVisor/RequestForRating/Delete_ContractAndFinancialDocuments/" + id, null, true, function (result) {
 
                     debuggerWeb();
-                    
+
                     if (result.isSuccess) {
                         getContractInfo();
                         alertB("", "کاربر گرامی در نظر داشته باشید قرارداد حذف گردید و قرارداد جدید به صورت اتوماتیک با شرایط جدید برای شما نشان داده می شود . در نظر داشته باشید تار زمانیکه مشتری پروفایل خود را کامل نکرده شما دکمه ثبت را نزنید و در صورت اطمینان از تغییرات مشتری دکمه ثبت قرارداد را بزنید. ", "success");
@@ -1357,7 +1379,7 @@
 
     function deleteContractText() {
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-        
+
         if (!isEmpty(id) && id != 0) {
 
             if ((getlstor("loginName") === "1") || (getlstor("loginName") === "4")) {
@@ -1435,7 +1457,7 @@
     }
 
 
-    function initCustomerFactor(id=null) {
+    function initCustomerFactor(id = null) {
 
         AjaxCallAction("GET", "/api/superVisor/Customers/Get_Customers/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
@@ -1495,7 +1517,8 @@
         ShowEditContract: showEditContract,
         DeleteContractText: deleteContractText,
         InitContractNewText: initContractNewText,
-        UpdateContract: updateContract
+        UpdateContract: updateContract,
+        OnchangeKindOfRequest: onchangeKindOfRequest
     };
 
 })(Web, jQuery);

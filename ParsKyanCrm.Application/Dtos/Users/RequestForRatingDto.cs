@@ -24,6 +24,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? UserID { get; set; }
 
+        public int? KindOfRequest { get; set; }
+
         public bool IsMyRequests { get; set; }
 
     }

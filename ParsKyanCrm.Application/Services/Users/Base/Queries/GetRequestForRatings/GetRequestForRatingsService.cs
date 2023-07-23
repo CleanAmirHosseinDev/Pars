@@ -60,10 +60,10 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                                    
 ) as cte
 {(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
-{(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" + "or cte.AgentMobile like N'%" + request.Search + "%'" : string.Empty )}
+{(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" + "or cte.AgentMobile like N'%" + request.Search + "%'" : string.Empty)}
 {(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) = " + request.LoginName : string.Empty)}
 {(request.IsMyRequests ? "and ((dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)=" + request.UserID + " or dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)=N''))" : "")}
-
+{(request.KindOfRequest.HasValue ? (request.DestLevelStepIndex.HasValue  || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  cte.KindOfRequest = " + request.KindOfRequest.Value : string.Empty)}
 order by cte.ChangeDate desc
 ");
 

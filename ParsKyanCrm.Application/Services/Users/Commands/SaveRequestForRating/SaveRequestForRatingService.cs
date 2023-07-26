@@ -213,7 +213,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     switch (request.SmsType)
                     {
                         case true:
-
+                            if (request.LevelStepSettingIndexID==25)
+                            {
+                                request.SmsContent += "شماره درخواست: " + request.Request.RequestNo + "\n به تاریخ: " + request.Request.DateOfRequestStr;
+                            }
                             WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
                             WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 

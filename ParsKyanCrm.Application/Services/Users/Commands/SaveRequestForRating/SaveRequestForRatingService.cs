@@ -213,10 +213,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     switch (request.SmsType)
                     {
                         case true:
-                            if (request.LevelStepSettingIndexID==25)
-                            {
-                                request.SmsContent += "شماره درخواست: " + request.Request.RequestNo + "\n به تاریخ: " + request.Request.DateOfRequestStr;
-                            }
+                            
                             WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
                             WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 
@@ -224,6 +221,16 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         case false:
 
                             var requestForRating = await _context.RequestForRating.Include(p => p.Customer).FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
+                            if (request.LevelStepSettingIndexID == 25)
+                            {
+                                string msg =       requestForRating.Customer.AgentName+":" 
+                                                   + "نتایج رتبه بندی شما در کدال ثبت گردید و تایید نهایی گردید. "
+                                                   + "\n" + "شماره درخواست:" + requestForRating.RequestNo
+                                                   +" :به تاریخ " + DateTimeOperation.ToPersianDate(requestForRating.DateOfRequest.Value)
+                                                   + "\n" +
+                                                  "شرکت رتبه بندی پارس کیان";
+                                request.SmsContent = msg;
+                            }
                             WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
 
                             break;

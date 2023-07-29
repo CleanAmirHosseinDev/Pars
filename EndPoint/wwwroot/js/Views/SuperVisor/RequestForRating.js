@@ -702,7 +702,7 @@
     function tempSaveRFR(e) {
 
 
-        if (isEmpty($('#SUIRS').find(":selected").val())) {
+        if (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10') {
 
             alertB("هشدار", "حداقل یک کاربر را انتخاب کنید", "warning");
 

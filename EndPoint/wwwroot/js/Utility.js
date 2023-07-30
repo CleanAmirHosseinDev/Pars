@@ -57,7 +57,7 @@ function pageingGridCall(tid, url, data, isNext = null) {
 
                 }
 
-            }            
+            }
 
         }, true);
 
@@ -352,6 +352,7 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
             complete: function () {
                 if (isWait)
                     hideWait();
+
             },
             error: function (error) {
 
@@ -463,11 +464,22 @@ function AjaxCallActionPostSaveFormWithUploadFile(url, data, async, successCallB
                     alert(e);
                 }
             },
-            complete: function () {
+            complete: function (res) {
                 if (isWait)
                     hideWait();
+
             },
-            error: function () { }
+            error: function (error) {
+
+                if (error.status == 401) {
+
+                    if (url.indexOf("admin") == -1 && url.indexOf("superVisor") == -1) goToUrl("/Account/Login");
+                    else goToUrl("/Account/LoginUser");
+
+
+                }
+
+            }
         });
 
     } catch (e) {

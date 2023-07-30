@@ -37,7 +37,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Base.Queries.Authentication
                     {
                         new Claim(ClaimTypes.Role,LoginName)
                     }),
-                    Expires = DateTime.UtcNow.AddHours(12),
+                    //Expires = DateTime.UtcNow.AddHours(12),
+                    Expires = DateTime.UtcNow.AddMinutes(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 

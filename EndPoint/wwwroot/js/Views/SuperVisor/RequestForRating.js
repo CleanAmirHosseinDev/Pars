@@ -1465,6 +1465,7 @@
                 $("#CustomerName2").html(res.companyName);
                 $("#CustomerName").html(res.companyName);
                 $("#EconomicCode").html(res.economicCode);
+                $("#EconomicCodeReal").html(res.economicCodeReal);
                 $("#NationalCode").html(res.nationalCode);
                 $("#PostalCode").html(res.postalCode);
                 $("#AddressCompany").html(res.addressCompany);

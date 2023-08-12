@@ -66,12 +66,12 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.InitReferral
                     return new ResultDto<IEnumerable<LevelStepSettingDto>>
                     {
                         IsSuccess = false,
-                        Message = "فرایند اتمام یافت",                        
+                        Message = "فرایند اتمام یافت",
                     };
 
                 }
 
-                var qLSI = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + q.Data.FirstOrDefault().DestLevelStepIndex);
+                var qLSI = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + q.Data.FirstOrDefault().DestLevelStepIndex + " and KindOfRequest =  " + q.Data.FirstOrDefault().KindOfRequest);
                 foreach (var item in qLSI)
                 {
 

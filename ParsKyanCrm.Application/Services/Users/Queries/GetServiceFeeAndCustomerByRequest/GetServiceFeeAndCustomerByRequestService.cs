@@ -39,14 +39,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 var qContract = await _context.Contract.FirstOrDefaultAsync(m => m.KinfOfRequest == qRequest.KindOfRequest && m.IsActive == 15);
 
-                List<ContractPages> contractPage = await _context.ContractPages.Where(m=>m.ContractId==qContract.ContractId).ToListAsync();
-
-                int cOP = qCustomer.CountOfPersonal.HasValue ? qCustomer.CountOfPersonal.Value : 0;
-
-                var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
- 
-
-                if ( qContract==null)
+                if (qContract == null)
                 {
                     return new ResultGetServiceFeeAndCustomerByRequestDto()
                     {
@@ -55,6 +48,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                         ServiceFee = null
                     };
                 }
+
+                List<ContractPages> contractPage = await _context.ContractPages.Where(m=>m.ContractId==qContract.ContractId).ToListAsync();
+
+                int cOP = qCustomer.CountOfPersonal.HasValue ? qCustomer.CountOfPersonal.Value : 0;
+
+                var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
+ 
 
                 // جا گذاری مقادیر در متن قرارداد
                

@@ -211,8 +211,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             nameof(q_Entity.Entity.ContractCode),MaxAllContractCode()
                         },
-                        
-                    };
+                            {
+                                nameof(q_Entity.Entity.SaveDate),DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now)
+
+                             },
+                        };
                         Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
 
                     }

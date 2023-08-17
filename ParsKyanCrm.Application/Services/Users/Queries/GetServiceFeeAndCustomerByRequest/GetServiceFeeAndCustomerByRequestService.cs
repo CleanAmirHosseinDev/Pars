@@ -70,7 +70,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                 }
 
                 string strContract = "<div class='row text-right'>";
-                if (qRequest.KindOfRequest==66)
+                if (qRequest.KindOfRequest==66 || qRequest.KindOfRequest==254)
                 {
                     int i = 0;
                     foreach (var item in contractPage)

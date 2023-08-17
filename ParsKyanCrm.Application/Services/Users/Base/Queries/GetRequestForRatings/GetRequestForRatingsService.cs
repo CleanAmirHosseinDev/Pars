@@ -51,6 +51,7 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  cus.AgentName,
                  cus.AgentMobile,
                  cus.CompanyName,
+                 cus.NationalCode,
                  doc.ContractDocument
                  from {typeof(RequestForRating).Name} as rfr
                  left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest

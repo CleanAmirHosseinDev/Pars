@@ -86,7 +86,10 @@
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].requestNo + "</td><td>"
                         + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
+                        +  res.data[i].nationalCode  + "</td><td>"
+
                         + res.data[i].agentMobile + "</td><td>"
+
                         + res.data[i].dateOfRequestStr + "</td>";
 
                     strM += "<td>" + res.data[i].reciveUserName + "</td>"

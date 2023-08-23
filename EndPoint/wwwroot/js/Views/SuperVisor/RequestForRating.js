@@ -86,7 +86,7 @@
                     strM += "<tr><td>" + (i + 1) + "</td><td>"
                         + res.data[i].requestNo + "</td><td>"
                         + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
-                        + res.data[i].nationalCode  + "</td><td>"
+                        + res.data[i].nationalCode + "</td><td>"
 
                         + res.data[i].agentMobile + "</td><td>"
 
@@ -647,7 +647,7 @@
 
     function saveRequestForRating(e) {
 
-        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' || decrypt($(objE).attr("data-DLSI"), keyMaker()) == '15') {
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' || decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
@@ -705,12 +705,14 @@
     function tempSaveRFR(e) {
 
 
-        if (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10') {
+
+        if (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
 
             alertB("هشدار", "حداقل یک کاربر را انتخاب کنید", "warning");
 
             return;
         }
+
 
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
 

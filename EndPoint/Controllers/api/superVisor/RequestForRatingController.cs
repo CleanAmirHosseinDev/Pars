@@ -4,6 +4,7 @@ using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustomerByRequest;
 using ParsKyanCrm.Common.Dto;
+using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace EndPoint.Controllers.api.superVisor
                 throw;
             }
         }
+
 
         [HttpPost]
         [Route("[action]")]

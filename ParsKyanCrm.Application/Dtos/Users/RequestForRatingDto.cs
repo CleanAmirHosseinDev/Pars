@@ -28,11 +28,32 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public bool IsMyRequests { get; set; }
 
+        public string FromDateStr { get; set; }
+        public DateTime? FromDate
+        {
+            get
+            {
+
+                return (FromDateStr != "" && FromDateStr!=null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(FromDateStr))) : null);
+            }
+        }
+        public string ToDateStr { get; set; }
+        public DateTime? ToDate { 
+            get {
+            
+                return (ToDateStr!="" && ToDateStr != null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(ToDateStr))):null);
+            } 
+        }
+        
+        public int? TypeGroupCompanies { get; set; }
+        public int? ReciveUser { get; set; }
+
     }
+
     public class RequestForRatingDto
     {
 
-
+        public string EvaluationExpert { get; set; }
         public string ReciveUserName { get; set; }
 
         public string CompanyName { get; set; }

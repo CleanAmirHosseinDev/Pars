@@ -22,7 +22,7 @@
       "wwwroot/js/Views/Customer/FurtherInfo.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false

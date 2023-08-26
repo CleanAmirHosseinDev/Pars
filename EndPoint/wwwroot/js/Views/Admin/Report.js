@@ -15,12 +15,12 @@
 
         AjaxCallAction("GET", "/api/Admin/RequestForRating/Get_UsersByRole/0" , null, true, function (resGet) {
 
-            var qD = '<option value="0">انتخاب کنید</option>';
+            var qD = '<option value="0" data-FieldSelectReciveUser="">انتخاب کنید</option>';
             if (resGet.isSuccess) {
 
                 for (var i = 0; i < resGet.data.length; i++) {
 
-                    qD += "<option value='" + resGet.data[i].userId + "'>" + (!isEmpty(resGet.data[i].user) ? resGet.data[i].user.realName : '') + "</option>";
+                    qD += "<option value='" + resGet.data[i].userId + "' data-FieldSelectReciveUser='ReciveUserStatus' >" + (!isEmpty(resGet.data[i].user) ? resGet.data[i].user.realName : '') + "</option>";
 
                 }
 
@@ -30,10 +30,10 @@
             AjaxCallAction("POST", "/api/Admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "126", PageIndex: 0, PageSize: 0 }), true, function (res) {
 
                 if (res.isSuccess) {
-                    var strCompanyGroup = '<option value="0">انتخاب کنید</option>';
+                    var strCompanyGroup = '<option value="0" data-FieldSelectStatusTypeGroupCompanies="">انتخاب کنید</option>';
 
                     for (var i = 0; i < res.data.length; i++) {
-                        strCompanyGroup += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strCompanyGroup += " <option value=" + res.data[i].systemSetingId + " data-FieldSelectStatusTypeGroupCompanies='CompanyGroupStatus'>" + res.data[i].label + "</option>";
                     }
 
                     $("#cboTypeGroupCompanies").html(strCompanyGroup);
@@ -165,12 +165,27 @@
         }
 
     }
+
+    function excelUserReport() {
+
+        try {
+            window.open('/Admin/Report/getexcell?FromDateStr=' + $("#FromDateStr").val() + '&ToDateStr=' + $("#ToDateStr").val() + '&TypeGroupCompanies=' + $("#cboTypeGroupCompanies option:selected").val() + '&ReciveUser=' + $("#cboReciveUser option:selected").val(), '_blank');
+
+        } catch (e) {
+
+        }
+
+
+
+    }
+
     web.Report = {
         FillComboFitterList: fillComboFitterList,
         FilterReportGrid: filterReportGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,
         PrintReport: printReport,
-        PrintContracting: printContracting,       
+        PrintContracting: printContracting,
+        ExcelUserReport: excelUserReport
     };
 
 })(Web, jQuery);

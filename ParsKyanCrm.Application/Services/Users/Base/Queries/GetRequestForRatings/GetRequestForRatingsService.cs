@@ -31,6 +31,8 @@ namespace ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatin
             {
                 var lists = (from s in _context.RequestForRating
                              select s);
+
+                request.PageSize = (request.IsExcelReport == true ? lists.ToList().Count() : request.PageSize);
                 string cons = "";
                 if (request.FromDate.HasValue && request.ToDate.HasValue)
                 {

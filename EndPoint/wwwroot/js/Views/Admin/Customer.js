@@ -10,6 +10,7 @@ function successCallBack_divPageingList (res) {
 
             strM += "<tr><td>" + (i + 1) + "</td>";
             strM += "<td>" + (isEmpty(res.data[i].companyName) ? '' : res.data[i].companyName) + "</td>";
+            strM += "<td>" + (isEmpty(res.data[i].nationalCode) ? '' : res.data[i].nationalCode) + "</td>";
             strM += "<td>" + (isEmpty(res.data[i].agentName) ? '' : res.data[i].agentName) + "</td>";
             strM += "<td>" + (isEmpty(res.data[i].agentMobile) ? '' : res.data[i].agentMobile) + "</td>";
             strM += "<td>" + res.data[i].saveDateStr + "</td>";

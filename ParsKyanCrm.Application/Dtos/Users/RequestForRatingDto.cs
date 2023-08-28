@@ -89,5 +89,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public string LevelStepSettingIndexID { get; set; }
 
+        public string NationalCode { get; set; }
+
     }
 }

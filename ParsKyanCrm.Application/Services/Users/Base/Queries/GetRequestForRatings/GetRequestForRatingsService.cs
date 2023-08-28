@@ -34,7 +34,7 @@ namespace ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatin
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
 
-select {"top " + request.PageSize} cte.RequestNo,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
+select {"top " + request.PageSize} cte.RequestNo,cte.NationalCode,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
 dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID from (
 
 	select rfr.CustomerID,
@@ -51,6 +51,7 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  cus.AgentName,
                  cus.AgentMobile,
                  cus.CompanyName,
+                 cus.NationalCode,
                  doc.ContractDocument
                  from {typeof(RequestForRating).Name} as rfr
                  left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest

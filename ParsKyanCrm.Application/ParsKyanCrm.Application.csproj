@@ -15,6 +15,10 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.*" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.8.*" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.*" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.8.*" />
 	<FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

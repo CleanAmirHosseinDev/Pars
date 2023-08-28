@@ -9,6 +9,7 @@
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="iTextSharp.LGPLv2.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ParsKyanCrm.Infrastructure.Consts;
+using SMSMagfaService;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,6 +42,8 @@ namespace ParsKyanCrm.Application.Services.WebService
                     if (string.IsNullOrEmpty(MobileNumber)) return "موبایل را وارد کنید";
                     if (string.IsNullOrEmpty(Message)) return "متن پیام را وارد کنید";
 
+                    #region رهیاب
+
                     Parameters param = new Parameters();
                     param.message = Message;
                     string Data = JsonConvert.SerializeObject(param);
@@ -56,9 +59,12 @@ namespace ParsKyanCrm.Application.Services.WebService
                         return "ارسال با خطا مواجعه شد دوباره سعی کنید"+result;
                     }
 
+                    #endregion
+
+                    
                 }
 
-              //  return result;
+                //  return result;
             }
             catch (Exception ex)
             {
@@ -115,6 +121,7 @@ namespace ParsKyanCrm.Application.Services.WebService
             }
         }
 
+     
     }
 
 }

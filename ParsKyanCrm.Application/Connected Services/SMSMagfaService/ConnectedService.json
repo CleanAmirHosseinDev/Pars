@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://sms.magfa.com/api/soap/sms/v2/server?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, SMSMagfaService"
+    ],
+    "targetFramework": "net5.0",
+    "typeReuseMode": "All"
+  }
+}

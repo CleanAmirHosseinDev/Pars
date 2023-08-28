@@ -53,6 +53,17 @@ namespace ParsKyanCrm.Infrastructure.Consts
             }
         }
 
+        public static string SMSType
+        {
+            get
+            {
+                // 1 mafa
+                // 0 rahyab
+
+                return "1";
+            }
+        }
+
         public static string ActivityFolder
         {
             get

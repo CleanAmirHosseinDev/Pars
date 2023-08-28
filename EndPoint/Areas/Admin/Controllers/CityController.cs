@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using ParsKyanCrm.Application.Services.WebService;
+using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +22,7 @@ namespace EndPoint.Areas.Admin.Controllers
             ViewBag.id = id;           
             return View();
         }
+
+      
     }
 }

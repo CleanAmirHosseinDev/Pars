@@ -25,7 +25,7 @@ namespace EndPoint.Areas.Admin.Controllers
         {
             return View();
         }
-
+      
 
         public async Task<ActionResult> GetExcell()
         {

@@ -5,6 +5,8 @@ using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode;
 using ParsKyanCrm.Application.Services.Securitys.Queries.Logins;
 using ParsKyanCrm.Common.Dto;
+using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,5 +83,7 @@ namespace EndPoint.Controllers.api
                 Message = error
             };
         }
+
+    
     }
 }

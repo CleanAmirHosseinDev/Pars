@@ -221,14 +221,14 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     if (needSms)
                     {
                         string st = VaribleForName.SMSType;
-                        if (st=="0")
-                        {
+                        //if (st=="0")
+                        //{
                             WebService.SMSService.Execute(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
-                        }
-                        else
-                        {
-                            string m =await MagfaSendSMS(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
-                        }
+                        //}
+                        //else
+                        //{
+                        //    string m =await MagfaSendSMS(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
+                        //}
                     }
 
                 }
@@ -250,49 +250,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             }
         }
 
-        public async Task<string> MagfaSendSMS(string message,string mobile)
-        {
-            // Credentials
-            string username = "kian_81473";
-            string password = "VXO6KRQFind7PZUA";
-
-            // for vam30
-            //string username = "parsmehr_71403";
-            //string password = "ZTwhXDdMLDLDmpHo";
-            string domain = "";
-
-            var baseAddress = "https://sms.magfa.com/api/http/sms/v2";
-
-            // Options
-            var options = new RestClientOptions(baseAddress)
-            {
-                // Auth
-                Authenticator = new HttpBasicAuthenticator(username + "/" + domain, password),
-                ThrowOnAnyError = true
-            };
-
-            // Client
-            var client = new RestClient(options);
-
-            // Request
-            var request = new RestRequest("send", Method.Post);
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("accept", "application/json");
-
-            // JSON
-            request.AddBody(new
-            {
-                senders = new[] { "300081473" },
-                messages = new[] { message },
-                recipients = new[] { mobile }
-            }
-            );
-
-            // Call
-            var response = await client.PostAsync(request);
-            return response.Content;
-            // return View();
-        }
+       
+       
 
         private async Task<UserRolesDto> CheckUserRole(int UserID)
         {

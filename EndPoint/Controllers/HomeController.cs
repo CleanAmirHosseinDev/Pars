@@ -12,6 +12,8 @@ using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;
 using ParsKyanCrm.Infrastructure.Consts;
+using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -136,6 +138,50 @@ namespace EndPoint.Controllers
                 return Json(new ResultDto() { IsSuccess = false, Message = error });
             }
 
+        }
+
+        public async Task<string> MagfaSendSMS(string message, string mobile)
+        {
+            // Credentials
+            string username = "kian_81473";
+            string password = "VXO6KRQFind7PZUA";
+
+            // for vam30
+            //string username = "parsmehr_71403";
+            //string password = "ZTwhXDdMLDLDmpHo";
+            string domain = "";
+
+            var baseAddress = "https://sms.magfa.com/api/http/sms/v2";
+
+            // Options
+            var options = new RestClientOptions(baseAddress)
+            {
+                // Auth
+                Authenticator = new HttpBasicAuthenticator(username + "/" + domain, password),
+                ThrowOnAnyError = true
+            };
+
+            // Client
+            var client = new RestClient(options);
+
+            // Request
+            var request = new RestRequest("send", Method.Post);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("accept", "application/json");
+
+            // JSON
+            request.AddBody(new
+            {
+                senders = new[] { "300081473" },
+                messages = new[] { message },
+                recipients = new[] { mobile }
+            }
+            );
+
+            // Call
+            var response = await client.PostAsync(request);
+            return response.Content;
+            // return View();
         }
 
 

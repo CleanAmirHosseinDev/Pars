@@ -30,17 +30,23 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUserss
         {
             try
             {
-
+                bool AllParskyanUser = (request.RoleId == 0 ? true : false);
+                request.RoleId =(request.RoleId== 0 ?  null : request.RoleId);
                 var lists = (from s in _context.UserRoles
                              where (s.User.IsActive == request.IsActive || request.IsActive == null) &&
                              (s.RoleId == request.RoleId || request.RoleId == null)
                              select s).Include(p => p.User).Include(p => p.Role).AsQueryable();
 
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.User.UserName.Contains(request.Search) ||
+                if (!string.IsNullOrEmpty(request.Search)) 
+                    lists = lists.Where(p => p.User.UserName.Contains(request.Search) ||
                 p.User.Mobile.Contains(request.Search) ||
                 p.User.Email.Contains(request.Search)
                 );
 
+                if (AllParskyanUser)
+                {
+                    lists = lists.Where(p => p.RoleId != 10);
+                }
                 switch (request.SortOrder)
                 {
                     case "UserId_D":

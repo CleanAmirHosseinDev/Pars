@@ -411,5 +411,17 @@ namespace ParsKyanCrm.Common.Enums
 
         #endregion
 
+        #region گزارش
+
+        [Display(Name = "مشاهده")]
+        [Category("Support")]
+        [DisplayFiledAttribute(Name = "گزارش ها")]
+        [DisplayFiledAttribute1(Name = "/Admin/Report/UserReport")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "گزارش عملکرد کلی")]
+        [OrderAttribute(Order = 4)]
+        UserReport = 616,
+
+        #endregion
     }
 }

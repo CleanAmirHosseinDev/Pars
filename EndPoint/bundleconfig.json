@@ -22,7 +22,7 @@
       "wwwroot/js/Views/Customer/FurtherInfo.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -36,6 +36,7 @@
       "wwwroot/js/Views/SuperVisor/Customer.js",
       "wwwroot/js/Views/SuperVisor/Users.js",
       "wwwroot/js/Views/SuperVisor/FurtherInfo.js"
+     
     ],
     "minify": {
       "enabled": false,
@@ -62,7 +63,8 @@
       "wwwroot/js/Views/Admin/NewsAndContent.js",
       "wwwroot/js/Views/Admin/RankingOfCompanies.js",
       "wwwroot/js/Views/Admin/Customer.js",
-      "wwwroot/js/Views/Admin/RequestForRating.js"
+      "wwwroot/js/Views/Admin/RequestForRating.js",
+      "wwwroot/js/Views/Admin/Report.js"
     ],
     "minify": {
       "enabled": false,

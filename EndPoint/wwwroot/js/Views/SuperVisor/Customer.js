@@ -46,6 +46,8 @@
                     $("#LabelEconomicCode").html("شماره کارت بازرگانی");
                     $("#LabelCompanyName").html("نام و نام خانوادگی");
                     $("#Span_Label_AgentMobile").html("شماره موبایل/ شماره موبایل نماینده");
+                    $("#divMainScanCustomerNationalCard").show();
+                    $("#divMainScanManagerNationalCard").hide();
                 }
                 else {
 
@@ -55,6 +57,8 @@
                     $("#LabelEconomicCode").html("شماره ثبت");
                     $("#LabelCompanyName").html("نام شرکت");
                     $("#Span_Label_AgentMobile").html("شماره نماینده");
+                    $("#divMainScanCustomerNationalCard").show();
+                    $("#divMainScanManagerNationalCard").show();
                 }
 
 
@@ -85,6 +89,15 @@
 
                 $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                if (res.scanCustomerNationalCard != null && res.scanCustomerNationalCard != "") {
+                    $("#divDownload_ScanCustomerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanCustomerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+                if (res.scanManagerNationalCard != null && res.scanManagerNationalCard != "") {
+                    $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
 
                 $("#TypeGroupCompanies").text(res.typeGroupCompaniesName);
 

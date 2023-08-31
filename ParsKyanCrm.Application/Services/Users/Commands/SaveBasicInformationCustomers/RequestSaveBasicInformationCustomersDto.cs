@@ -138,6 +138,26 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
         public int? CustomerPersonalityType { get; set; }
         public int? TypeGroupCompanies { get; set; }
 
+        public string ScanCustomerNationalCard { get; set; }
+        public IFormFile Result_Final_ScanCustomerNationalCard { get; set; }
+        public string ScanCustomerNationalCardFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ScanCustomerNationalCard, VaribleForName.CustomersFolder, false);
+            }
+        }
+
+        public string ScanManagerNationalCard { get; set; }
+        public IFormFile Result_Final_ScanManagerNationalCard { get; set; }
+        public string ScanManagerNationalCardFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ScanManagerNationalCard, VaribleForName.CustomersFolder, false);
+            }
+        }
+
     }
 
     public class ValidatorRequestSaveBasicInformationCustomersDto : AbstractValidator<RequestSaveBasicInformationCustomersDto>
@@ -155,6 +175,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                   RuleFor(p => p.AgentMobile).NotEmpty().WithMessage("شماره موبایل را وارد کنید").Must(Utility.CheckMobile).WithMessage("شماره نماینده را به درستی وارد کنید");
 
                   RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
+
+                  RuleFor(p => p.Result_Final_ScanCustomerNationalCard).NotNull().WithMessage("اسکن کارت ملی نماینده را بارگذاری کنید");
 
               });
 

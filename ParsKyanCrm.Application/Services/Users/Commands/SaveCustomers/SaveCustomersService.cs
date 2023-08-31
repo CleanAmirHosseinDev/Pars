@@ -81,6 +81,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
             string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
             string fileNameOldPic_AuditedFinancialStatements = string.Empty, path_AuditedFinancialStatements = string.Empty;
 
+            string fileNameOldPic_ScanCustomerNationalCard = string.Empty, path_ScanCustomerNationalCard = string.Empty;
+            string fileNameOldPic_ScanManagerNationalCard = string.Empty, path_ScanManagerNationalCard = string.Empty;
             #endregion
 
             try
@@ -98,11 +100,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                     };
                 }
 
-                #endregion                                
+                #endregion
 
-                 var cus = await _context.Customers.FindAsync(request.CustomerId);
+                var cus = await _context.Customers.FindAsync(request.CustomerId);
                 request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
                 request.AuditedFinancialStatements = cus != null && !string.IsNullOrEmpty(cus.AuditedFinancialStatements) ? cus.AuditedFinancialStatements : string.Empty;
+
+                request.ScanCustomerNationalCard = cus != null && !string.IsNullOrEmpty(cus.ScanCustomerNationalCard) ? cus.ScanCustomerNationalCard : string.Empty;
+                request.ScanManagerNationalCard = cus != null && !string.IsNullOrEmpty(cus.ScanManagerNationalCard) ? cus.ScanManagerNationalCard : string.Empty;
 
                 #region Upload Image
 
@@ -122,6 +127,20 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                     await ServiceFileUploader.SaveFile(request.Result_Final_AuditedFinancialStatements, path_AuditedFinancialStatements, "لیست آخرین تغییرات روزنامه رسمی");
                 }
 
+                if (request.Result_Final_ScanCustomerNationalCard != null)
+                {
+                    fileNameOldPic_ScanCustomerNationalCard = request.ScanCustomerNationalCard;
+                    request.ScanCustomerNationalCard = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ScanCustomerNationalCard.FileName);
+                    path_ScanCustomerNationalCard = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ScanCustomerNationalCard;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_ScanCustomerNationalCard, path_ScanCustomerNationalCard, "اسکن کارت ملی نماینده");
+                }
+                if (request.Result_Final_ScanManagerNationalCard != null)
+                {
+                    fileNameOldPic_ScanManagerNationalCard = request.ScanManagerNationalCard;
+                    request.ScanManagerNationalCard = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ScanManagerNationalCard.FileName);
+                    path_ScanManagerNationalCard = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ScanManagerNationalCard;
+                    await ServiceFileUploader.SaveFile(request.Result_Final_ScanManagerNationalCard, path_ScanManagerNationalCard, "اسکن کارت ملی نماینده");
+                }
                 #endregion                                
 
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
@@ -197,7 +216,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                         },
                     {
                             nameof(request.HowGetKnowCompanyId),request.HowGetKnowCompanyId
-                        }
+                        },
+                    {
+                        "ScanCustomerNationalCard",request.ScanCustomerNationalCard
+                    },
+                    {
+                        "ScanManagerNationalCard",request.ScanManagerNationalCard
+                    }
                     }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
 
                 #region Upload Image
@@ -208,8 +233,19 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                 if (request.Result_Final_AuditedFinancialStatements != null)
                     FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_AuditedFinancialStatements);
 
+                if (request.Result_Final_ScanCustomerNationalCard != null)
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ScanCustomerNationalCard);
+
+
+                if (request.Result_Final_ScanManagerNationalCard != null)
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ScanManagerNationalCard);
+
                 path_LastInsuranceList = string.Empty;
                 path_AuditedFinancialStatements = string.Empty;
+
+                path_ScanCustomerNationalCard = string.Empty;
+
+                path_ScanManagerNationalCard = string.Empty;
 
                 #endregion
 
@@ -227,6 +263,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                 FileOperation.DeleteFile(path_LastInsuranceList);
                 FileOperation.DeleteFile(path_AuditedFinancialStatements);
 
+                FileOperation.DeleteFile(path_ScanCustomerNationalCard);
+                FileOperation.DeleteFile(path_ScanManagerNationalCard);
                 #endregion
 
                 return new ResultDto()

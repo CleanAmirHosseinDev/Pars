@@ -314,8 +314,34 @@
                                             <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
                                         </div>
                                     </div>
+                                    
+                                    <div class="form-group FormIsShow">
+                                        <label class="control-label col-md-4" for="">
+                                            اسکن کارت ملی نماینده
+                                            <span id="spanScanCustomerNationalCardReq" class="RequiredLabel">*</span>
+                                            <input type="hidden" name="ScanCustomerNationalCard" value="" />
+                                        </label>
+                                        <div class="col-md-8">
 
+                                            <input type="file" name="Result_Final_ScanCustomerNationalCard" id="ScanCustomerNationalCard" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'اسکن کارت ملی نماینده',5);" />
+                                            <div id="divDownload_ScanCustomerNationalCard"></div>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4" for="">
+                                            اسکن کارت ملی مدیر عامل
+                                            <span id="spanScanManagerNationalCardReq" class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            <input type="hidden" name="ScanManagerNationalCard" value="" />
+                                        </label>
+                                        <div class="col-md-8">
+
+                                            <input type="file" name="Result_Final_ScanManagerNationalCard" id="ScanManagerNationalCard" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'اسکن کارت ملی مدیر عامل',5);" />
+                                            <div id="divDownload_ScanManagerNationalCard"></div>
+                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>

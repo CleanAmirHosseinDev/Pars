@@ -1,1 +1,7 @@
 ﻿
+
+alter table Customers
+add ScanCustomerNationalCard nvarchar(250) null;
+
+alter table Customers
+add ScanManagerNationalCard nvarchar(250) null;

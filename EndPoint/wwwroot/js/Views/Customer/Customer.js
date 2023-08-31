@@ -519,6 +519,17 @@
                 $("input[name='AuditedFinancialStatements']").val(res.auditedFinancialStatements);
                 $("input[name='LastInsuranceList']").val(res.lastInsuranceList);
 
+                $("input[name='ScanCustomerNationalCard']").val(res.scanCustomerNationalCard);
+                $("input[name='ScanManagerNationalCard']").val(res.scanManagerNationalCard);
+                if (res.scanCustomerNationalCard != null && res.scanCustomerNationalCard != "") {
+                    $("#divDownload_ScanCustomerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanCustomerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+                if (res.scanManagerNationalCard != null && res.scanManagerNationalCard != "") {
+                    $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+
                 if (res.lastInsuranceList != null && res.lastInsuranceList != "") {
                     $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
@@ -561,6 +572,9 @@
             $("#LabelCompanyName").html("نام و نام خانوادگی");
             $("#Span_Label_AgentMobile").html("شماره موبایل / شماره موبایل نماینده ");
             $("#LabelAgentName").html("نام نماینده ");
+
+            $("#spanScanCustomerNationalCardReq").show();
+            $("#spanScanManagerNationalCardReq").hide();
         }
         else {
 
@@ -570,6 +584,9 @@
             $("#LabelEconomicCode").html("شماره ثبت");
             $("#LabelCompanyName").html("نام شرکت");
             $("#Span_Label_AgentMobile").html("شماره نماینده");
+
+            $("#spanScanCustomerNationalCardReq").hide();
+            $("#spanScanManagerNationalCardReq").hide();
         }
 
         $("#CustomerPersonalityType").val(val);

@@ -496,6 +496,10 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasMaxLength(250)
                     .HasComment("آخرین صورتحسابهای مالی حسابرسی شده");
 
+                entity.Property(e => e.ScanCustomerNationalCard).HasMaxLength(250);
+
+                entity.Property(e => e.ScanManagerNationalCard).HasMaxLength(250);
+
                 entity.Property(e => e.AuthenticateCode).HasMaxLength(50);
 
                 entity.Property(e => e.CeoMobile)

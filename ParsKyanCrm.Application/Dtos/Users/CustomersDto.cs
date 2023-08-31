@@ -173,6 +173,26 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? TypeGroupCompanies { get; set; }
         public string TypeGroupCompaniesName { get; set; }
 
+        public string ScanCustomerNationalCard { get; set; }
+        public IFormFile Result_Final_ScanCustomerNationalCard { get; set; }
+        public string ScanCustomerNationalCardFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ScanCustomerNationalCard, VaribleForName.CustomersFolder, false);
+            }
+        }
+
+        public string ScanManagerNationalCard { get; set; }
+        public IFormFile Result_Final_ScanManagerNationalCard { get; set; }
+        public string ScanManagerNationalCardFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(ScanManagerNationalCard, VaribleForName.CustomersFolder, false);
+            }
+        }
+
     }    
 
 }

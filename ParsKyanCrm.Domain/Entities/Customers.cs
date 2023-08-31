@@ -9,7 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public Customers()
         {
-          
+
             RequestForRating = new HashSet<RequestForRating>();
             Users = new HashSet<Users>();
         }
@@ -49,19 +49,22 @@ namespace ParsKyanCrm.Domain.Entities
         public string LastChangeOfficialNewspaper { get; set; }
         public string Statute { get; set; }
         public string AuditedFinancialStatements { get; set; }
-       
+
         public int? CustomerPersonalityType { get; set; }
         public int? TypeGroupCompanies { get; set; }
 
         public string EconomicCodeReal { get; set; }
 
 
+        public string ScanCustomerNationalCard { get; set; }
+        public string ScanManagerNationalCard { get; set; }
+
         public virtual City City { get; set; }
         public virtual SystemSeting HowGetKnowCompany { get; set; }
         public virtual SystemSeting KindOfCompany { get; set; }
         public virtual SystemSeting TypeServiceRequested { get; set; }
 
-      
+
         public virtual ICollection<RequestForRating> RequestForRating { get; set; }
         public virtual ICollection<Users> Users { get; set; }
 

@@ -421,6 +421,9 @@
                         $("#LabelEconomicCode").html("شماره کارت بازرگانی");
                         $("#LabelTypeGroupCompanies").html("نوع فعالیت");
                         $("#Span_Label_AgentMobile").html("شماره موبایل");
+
+                        $(".divMainScanCustomerNationalCard").show();
+                        $(".divMainScanManagerNationalCard").hide();
                     }
                     else {
 
@@ -429,6 +432,9 @@
                         $(".NotShowRequiredLabel").show();
                         $("#LabelTypeGroupCompanies").html("نوع گروه شرکتها");
                         $("#Span_Label_AgentMobile").html("شماره نماینده");
+
+                        $(".divMainScanCustomerNationalCard").show();
+                        $(".divMainScanManagerNationalCard").show();
                     }
 
                     $("#AddressCompany").val(res.addressCompany);
@@ -453,6 +459,16 @@
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
                     $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                    if (res.scanCustomerNationalCard != null && res.scanCustomerNationalCard != "") {
+                        $("#divDownload_ScanCustomerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanCustomerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                    }
+                    if (res.scanManagerNationalCard != null && res.scanManagerNationalCard != "") {
+                        $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                    }
+
                     $("#TypeGroupCompanies").val(res.typeGroupCompaniesName);
                     systemSeting_Combo(res);
 

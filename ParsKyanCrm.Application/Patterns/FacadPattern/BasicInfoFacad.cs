@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteLicensesAndHonor
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteManagerOfParsKyan;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteNewsAndContent;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.DeleteRankingOfCompanies;
+using ParsKyanCrm.Application.Services.BasicInfo.Commands.InsertLoginLog;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveAboutUs;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveActivity;
 using ParsKyanCrm.Application.Services.BasicInfo.Commands.SaveCity;
@@ -107,6 +108,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IDeleteManagerOfParsKyanService DeleteManagerOfParsKyanService { get; }
 
+        IInsertLoginLogService InsertLoginLogService { get; }
     }
 
     public class BasicInfoFacad : IBasicInfoFacad
@@ -407,6 +409,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _deleteManagerOfParsKyanService = _deleteManagerOfParsKyanService ?? new DeleteManagerOfParsKyanService(_context, _mapper, _env);
+            }
+        }
+
+        private IInsertLoginLogService _insertLoginLogService;
+        public IInsertLoginLogService InsertLoginLogService
+        {
+            get
+            {
+                return _insertLoginLogService = _insertLoginLogService ?? new InsertLoginLogService();
             }
         }
 

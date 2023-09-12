@@ -10,13 +10,21 @@
 
     function signOutForExitToLogin() {
 
-        dellstor("token");
-        dellstor("menu");
-        dellstor("fullName");
-        dellstor("userID");
-        dellstor("loginName");
-        dellstor("roleDesc");
-        goToUrl("/Account/LoginUser");
+        AjaxCallAction("POST", "/api/Securitys/SignOutForExitToLogin", JSON.stringify({ Userid: getlstor("userID"), AreaName: getlstor("roleDesc") }), true, function (res) {
+            debugger;
+            if (res.isSuccess) {
+
+                dellstor("token");
+                dellstor("menu");
+                dellstor("fullName");
+                dellstor("userID");
+                dellstor("loginName");
+                dellstor("roleDesc");
+                goToUrl("/Account/LoginUser");
+                
+            }
+
+        }, false);        
 
     }
 
@@ -54,7 +62,7 @@
 
             }
 
-            strMenu += "<li><a href='' onclick='Web.Layout.SignOutForExitToLogin();'><i class='fa fa-sign-out'></i> <span>خروج</span></a></li>";
+            strMenu += "<li><a href='#' onclick='Web.Layout.SignOutForExitToLogin();'><i class='fa fa-sign-out'></i> <span>خروج</span></a></li>";
             $("#ulMenuMain").html(strMenu);
 
         }

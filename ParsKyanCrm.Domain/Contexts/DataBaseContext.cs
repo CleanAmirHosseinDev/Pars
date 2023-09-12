@@ -17,6 +17,8 @@ namespace ParsKyanCrm.Domain.Contexts
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
 
+        DbSet<LoginLog> LoginLogs { get; set; }
+
         DbSet<AboutUs> AboutUs { get; set; }
         DbSet<Activity> Activity { get; set; }
         DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
@@ -27,17 +29,17 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<Contract> Contract { get; set; }
         DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         DbSet<CorporateGovernance> CorporateGovernance { get; set; }
-       
+
         DbSet<Customers> Customers { get; set; }
 
         DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
 
         DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
-      
+
         DbSet<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         DbSet<NewsAndContent> NewsAndContent { get; set; }
-       
+
         DbSet<DataFromAnswers> DataFromAnswers { get; set; }
         DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         DbSet<RequestForRating> RequestForRating { get; set; }
@@ -75,6 +77,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+        public virtual DbSet<LoginLog> LoginLogs { get; set; }
+
         public virtual DbSet<DataFormQuestions> DataFormQuestions { get; set; }
         public virtual DbSet<DataForms> DataForms { get; set; }
         public virtual DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
@@ -91,15 +96,15 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         public virtual DbSet<CorporateGovernance> CorporateGovernance { get; set; }
-      
+
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
         public virtual DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         public virtual DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
-     
+
         public virtual DbSet<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         public virtual DbSet<NewsAndContent> NewsAndContent { get; set; }
-         public virtual DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
+        public virtual DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         public virtual DbSet<RequestForRating> RequestForRating { get; set; }
         public virtual DbSet<RequestReferences> RequestReferences { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
@@ -117,6 +122,23 @@ namespace ParsKyanCrm.Domain.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<LoginLog>(e =>
+            {
+                e.HasKey(e => e.LoginLogID)
+                    .HasName("PK__LoginLog__D42E7ACC0CD26930");
+
+                e.Property(e => e.Ip).HasMaxLength(50);
+
+                e.Property(e => e.AreaName).HasMaxLength(50);
+
+                e.Property(e => e.LoginDate).HasColumnType("datetime");
+
+                e.Property(e => e.SignOutDate).HasColumnType("datetime");
+
+
+            });
+
             modelBuilder.Entity<DataFromAnswers>(entity =>
             {
                 entity.HasKey(e => e.AnswerId)
@@ -160,10 +182,10 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasKey(e => e.AnswerTableId)
                     .HasName("PK_DataFromAnswer");
 
-                entity.Property(e => e.AnswerTableId)                    
+                entity.Property(e => e.AnswerTableId)
                     .HasColumnName("AnswerTableId");
 
-  
+
 
                 entity.Property(e => e.RequestId).HasColumnName("RequestId");
 
@@ -391,7 +413,7 @@ namespace ParsKyanCrm.Domain.Contexts
             modelBuilder.Entity<ContractPages>(entity =>
             {
                 entity.Property(e => e.ContractPageId).HasColumnName("ContractPageID");
-                
+
             });
 
             modelBuilder.Entity<ContractAndFinancialDocuments>(entity =>
@@ -407,7 +429,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.ContractDocument)
                     .HasMaxLength(200)
-                    .HasComment("آدرس قراداد امضا شده و بارگذاری شده");                
+                    .HasComment("آدرس قراداد امضا شده و بارگذاری شده");
 
                 entity.Property(e => e.FinancialDocument)
                     .HasMaxLength(200)
@@ -466,10 +488,10 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasMaxLength(250)
                     .HasComment("آیین نامه معاملات");
 
-                                    
+
             });
 
-     
+
 
             modelBuilder.Entity<Customers>(entity =>
             {
@@ -619,7 +641,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.AmountOsLastSales)
                     .HasColumnType("money")
-                    .HasComment("مبلغ کل فروش اظهار شده");                
+                    .HasComment("مبلغ کل فروش اظهار شده");
 
                 entity.Property(e => e.CeoMobile)
                     .HasMaxLength(11)
@@ -627,7 +649,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.CeoName)
                     .HasMaxLength(50)
-                    .HasComment("نام و نام خانوادگی مدیر عامل");                                
+                    .HasComment("نام و نام خانوادگی مدیر عامل");
 
                 entity.Property(e => e.CompanyName)
                     .HasMaxLength(50)
@@ -644,8 +666,8 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.KindOfCompanyId)
                     .HasColumnName("KindOfCompanyID")
                     .HasComment("نوع شرکت");
-                
-                entity.Property(e => e.TypeGroupCompanies).HasColumnName("TypeGroupCompanies");                
+
+                entity.Property(e => e.TypeGroupCompanies).HasColumnName("TypeGroupCompanies");
 
                 entity.Property(e => e.SaveDate).HasColumnType("datetime");
 
@@ -706,7 +728,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasConstraintName("FK_LicensesAndHonors_Users");
             });
 
-          
+
 
             modelBuilder.Entity<ManagerOfParsKyan>(entity =>
             {
@@ -785,9 +807,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.NewsAndContent)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_NewsAndContent_Users");
-            });            
+            });
 
-        
+
             modelBuilder.Entity<RankingOfCompanies>(entity =>
             {
                 entity.HasKey(e => e.RankingId);
@@ -861,7 +883,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasComment("تاریخ درخواست");
 
                 entity.Property(e => e.ChangeDate)
-                    .HasColumnType("datetime");                    
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.KindOfRequest).HasComment("نوع درخواست ");
 
@@ -916,7 +938,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.SmsType).HasComment("0= Customer , 1= ParsKeyan");
 
-            });            
+            });
 
             modelBuilder.Entity<Roles>(entity =>
             {
@@ -1041,7 +1063,7 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_Users_Customers");
             });
-                 
+
         }
 
 

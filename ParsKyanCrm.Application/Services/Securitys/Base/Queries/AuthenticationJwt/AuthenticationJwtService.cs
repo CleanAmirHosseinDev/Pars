@@ -83,6 +83,13 @@ namespace ParsKyanCrm.Application.Services.Securitys.Base.Queries.Authentication
                 if (obj_fillUserRoleCustomerRoles != null) res_ResultLoginDto.Menus = obj_fillUserRoleCustomerRoles;
 
                 res_ResultLoginDto.RoleDesc = qCheckUserRole.Role.RoleDesc;
+
+                _basicInfoFacad.InsertLoginLogService.Execute(new Dtos.BasicInfo.LoginLogDto()
+                {
+                    AreaName = res_ResultLoginDto.RoleDesc,
+                    Userid = !string.IsNullOrEmpty(res_ResultLoginDto.CustomerID) ? int.Parse(res_ResultLoginDto.CustomerID) : res_ResultLoginDto.UserID                    
+                });
+
             }
             catch (Exception ex)
             {

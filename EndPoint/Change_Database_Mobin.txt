@@ -5,3 +5,16 @@ add ScanCustomerNationalCard nvarchar(250) null;
 
 alter table Customers
 add ScanManagerNationalCard nvarchar(250) null;
+-----------------------------------------------------------------------------------------------------
+
+-------- -> سه شنبه - ۲۱ شهریور ۱۴۰۲
+
+CREATE TABLE [dbo].[LoginLog](
+	[LoginLogID] [int] primary key IDENTITY(1,1) NOT NULL,
+	[Userid] [int] NOT NULL,
+	[LoginDate] [datetime] NULL,
+	[Ip] [nvarchar](50) NULL,
+	[SignOutDate] [datetime] NULL,
+	[AreaName] [nvarchar](50) NULL
+)
+-----------------------------------------------------------------------------------------------------

@@ -10,14 +10,23 @@
 
     function signOutForExitToLogin() {
 
-        dellstor("token");        
-        dellstor("fullName");
-        dellstor("userID");
-        dellstor("loginName");
-        dellstor("menu");
-        dellstor("roleDesc");
 
-        goToUrl("/Account/LoginUser");
+        AjaxCallAction("POST", "/api/Securitys/SignOutForExitToLogin", JSON.stringify({ Userid: getlstor("userID"), AreaName: getlstor("roleDesc") }), true, function (res) {
+            debugger;
+            if (res.isSuccess) {
+
+                dellstor("token");
+                dellstor("fullName");
+                dellstor("userID");
+                dellstor("loginName");
+                dellstor("menu");
+                dellstor("roleDesc");
+
+                goToUrl("/Account/LoginUser");
+
+            }
+
+        }, false);        
 
     }
 

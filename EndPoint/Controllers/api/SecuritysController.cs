@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ParsKyanCrm.Application.Dtos.BasicInfo;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode;
 using ParsKyanCrm.Application.Services.Securitys.Queries.Logins;
@@ -21,8 +22,11 @@ namespace EndPoint.Controllers.api
     {
         private readonly ILogger<SecuritysController> _logger;
         private readonly ISecurityFacad _securityFacad;
-        public SecuritysController(ILogger<SecuritysController> logger, ISecurityFacad securityFacad)
+        private readonly IBasicInfoFacad _basicInfoFacad;
+
+        public SecuritysController(ILogger<SecuritysController> logger, ISecurityFacad securityFacad, IBasicInfoFacad basicInfoFacad)
         {
+            _basicInfoFacad = basicInfoFacad;
             _logger = logger;
             _securityFacad = securityFacad;
         }
@@ -33,19 +37,26 @@ namespace EndPoint.Controllers.api
         public async Task<ResultDto<ResultLoginDto>> Login(RequestLoginDto request)
         {
             var error = "";
-            if(ModelState.IsValid) {
-                try {
+            if (ModelState.IsValid)
+            {
+                try
+                {
                     return await _securityFacad.LoginsService.Execute(request);
-                } catch(Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     error = "خطا در اجرای درخواست";
                 }
-            } else {
+            }
+            else
+            {
                 error = string.Join("; ", ModelState.Values
                                         .SelectMany(x => x.Errors)
                                         .Select(x => x.ErrorMessage));
 
             }
-            return new ResultDto<ResultLoginDto> {
+            return new ResultDto<ResultLoginDto>
+            {
                 Data = null,
                 IsSuccess = false,
                 Message = error
@@ -57,33 +68,55 @@ namespace EndPoint.Controllers.api
         [HttpPost]
         [Route("[action]")]
         [CaptchaCheck]
-        public async Task<ResultDto<ResultLoginDto>> AutenticatedCode( RequestAutenticatedCodeDto request)
+        public async Task<ResultDto<ResultLoginDto>> AutenticatedCode(RequestAutenticatedCodeDto request)
         {
 
             ModelState.Remove("CaptchaCodes");
             var error = "";
-            if(ModelState.IsValid) {
-                try {
+            if (ModelState.IsValid)
+            {
+                try
+                {
                     return await _securityFacad.AutenticatedCodeService.Execute(request);
-                } catch(Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     error = "خطا در اجرای درخواست";
                 }
-            } else {
+            }
+            else
+            {
                 var errors = ModelState.Select(x => x.Value.Errors)
                            .Where(y => y.Count > 0)
                            .ToList();
-                foreach(var item in errors) {
+                foreach (var item in errors)
+                {
                     error += item + " ";
                 }
 
             }
-            return new ResultDto<ResultLoginDto> {
+            return new ResultDto<ResultLoginDto>
+            {
                 Data = null,
                 IsSuccess = false,
                 Message = error
             };
         }
 
-    
+        [HttpPost]
+        [Route("[action]")]
+        public ResultDto SignOutForExitToLogin(LoginLogDto request)
+        {
+            try
+            {
+                _basicInfoFacad.InsertLoginLogService.Execute(request, false);
+                return new ResultDto { IsSuccess = true };
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

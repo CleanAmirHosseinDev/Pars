@@ -933,6 +933,11 @@
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
+                    if (res.data.financialDocument2 != null && res.data.financialDocument2 != "") {
+                        $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownloadFinancialDocument2").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
                     if (res.data.contractDocument != null && res.data.contractDocument != "") {
                         $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
@@ -982,6 +987,8 @@
                     $("#ContractDocumentCustomer").val(res.data.contractDocumentCustomer);
                     $("#ContractMainCode").val(res.data.contractMainCode);
                     $("#FinancialDocument").val(res.data.financialDocument);
+                    $("#FinancialDocument2").val(res.data.financialDocument2);
+
                     $("#ContractDocument").val(res.data.contractDocument);
                     $("#ContractCode").val(res.data.contractCode);
 
@@ -989,6 +996,11 @@
                         $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                    if (res.data.financialDocument2 != null && res.data.financialDocument2 != "") {
+                        $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownloadFinancialDocument2").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.contractDocument != null && res.data.contractDocument != "") {
                         $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");

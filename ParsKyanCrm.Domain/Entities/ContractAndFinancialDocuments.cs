@@ -9,6 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public int FinancialId { get; set; }
         public string FinancialDocument { get; set; }
+        public string FinancialDocument2 { get; set; }
         public string ContractDocument { get; set; }
         public int? RequestID { get; set; }        
         public DateTime? SaveDate { get; set; }

@@ -93,6 +93,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
             //
 
             string fileNameOldPic_FinancialDocument = string.Empty, path_FinancialDocument = string.Empty;
+            string fileNameOldPic_FinancialDocument2 = string.Empty, path_FinancialDocument2 = string.Empty;
             string fileNameOldPic_ContractDocument = string.Empty, path_ContractDocument = string.Empty;
             string fileNameOldPic_EvaluationFile = string.Empty, path_EvaluationFile = string.Empty;
             string fileNameOldPic_CommitteeEvaluationFile = string.Empty, path_CommitteeEvaluationFile = string.Empty;
@@ -225,13 +226,21 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     {
                           request.ContractDocument = con != null && !string.IsNullOrEmpty(con.ContractDocument) ? con.ContractDocument : string.Empty;
                           request.FinancialDocument = con != null && !string.IsNullOrEmpty(con.FinancialDocument) ? con.FinancialDocument : string.Empty;
+                          request.FinancialDocument2 = con != null && !string.IsNullOrEmpty(con.FinancialDocument2) ? con.FinancialDocument : string.Empty;
 
-                        if (request.Result_Final_ContractDocument != null)
+                        if (request.Result_Final_FinancialDocument != null)
                         {
                             fileNameOldPic_FinancialDocument = request.FinancialDocument;
                             request.FinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FinancialDocument.FileName);
                             path_FinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.FinancialDocument;
                             await ServiceFileUploader.SaveFile(request.Result_Final_FinancialDocument, path_FinancialDocument, "سند تسویه");
+                        }
+                        if (request.Result_Final_FinancialDocument2 != null)
+                        {
+                            fileNameOldPic_FinancialDocument2 = request.FinancialDocument2;
+                            request.FinancialDocument2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FinancialDocument2.FileName);
+                            path_FinancialDocument2 = _env.ContentRootPath + VaribleForName.CustomersFolder + request.FinancialDocument2;
+                            await ServiceFileUploader.SaveFile(request.Result_Final_FinancialDocument2, path_FinancialDocument2, "سند تسویه2");
                         }
 
                         if (request.Result_Final_ContractDocument != null)
@@ -250,6 +259,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         },
                         {
                             nameof(q_Entity.Entity.FinancialDocument),request.FinancialDocument
+                        }
+                        ,
+                        {
+                            nameof(q_Entity.Entity.FinancialDocument2),request.FinancialDocument2
                         },
 
                     };

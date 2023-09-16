@@ -61,7 +61,13 @@ namespace ParsKyanCrm.Application.Services.WebService
 
                     #endregion
 
-                    
+                    #region مگفا
+                    string[] num = { "300081473" };
+                    string[] msg = { Message };                    
+                    string[] mob = { MobileNumber };
+                    //SMSMagfa(msg, num, mob);
+                    #endregion
+
                 }
 
                 //  return result;
@@ -121,7 +127,8 @@ namespace ParsKyanCrm.Application.Services.WebService
             }
         }
 
-     
+       
+
     }
 
 }

@@ -15,31 +15,35 @@
             debugger;
             if (res.isSuccess) {
 
-                //dellstor("token");
-                localStorage.removeItem("token");
+                dellstor("token");
 
                 dellstor("fullName");
                 dellstor("userID");
                 dellstor("loginName");
-                dellstor("menu");
+
+                //dellstor("menu");
+                localStorage.removeItem("menu");
+
                 dellstor("roleDesc");
 
                 goToUrl("/Account/LoginUser");
 
             }
 
-        }, false);        
+        }, false);
 
     }
 
     function initLayout() {
 
-        /*if (isEmpty(getlstor("token"))) goToUrl("/Account/LoginUser");*/
-        if (isEmpty(localStorage.getItem("token"))) goToUrl("/Account/LoginUser");
+        if (isEmpty(getlstor("token"))) goToUrl("/Account/LoginUser");
         else {
 
+            if (getlstor("roleDesc") == "ارزیاب") $("a[href='/SuperVisor/Customers/Index']").hide();
+            
             $(".fullNameInLayout").html(getlstor("fullName"));
-            $(".roleDescNameElementLayout").html(getlstor("roleDesc"));
+            $(".roleDescNameElementLayout").html(getlstor("roleDesc"));            
+
         }
 
     }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Controllers.api.admin
 {
-    [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.LoginLog })]
+    //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.LoginLog })]
     public class LoginLogController : BaseController
     {
         private readonly ILogger<LoginLogController> _logger;

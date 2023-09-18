@@ -322,8 +322,7 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
             data: data,
             async: async,
             dataType: "json",
-            /*headers: { "Authorization": 'Bearer ' + getlstor("token") },*/
-            headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
+            headers: { "Authorization": 'Bearer ' + getlstor("token") },
             beforeSend: function () {
                 if (isWait)
                     showWait();
@@ -388,7 +387,7 @@ function AjaxCallActionWithotHeading(type, url, data, async, successCallBack, is
             url: url,
             data: data,
             async: async,
-            dataType: "json",            
+            dataType: "json",
             beforeSend: function () {
                 if (isWait)
                     showWait();
@@ -515,8 +514,7 @@ function AjaxCallActionPostSaveFormWithUploadFile(url, data, async, successCallB
             data: data,
             async: async,
             dataType: "json",
-            /*headers: { "Authorization": 'Bearer ' + getlstor("token") },*/
-            headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
+            headers: { "Authorization": 'Bearer ' + getlstor("token") },
             cache: false,
             contentType: false,
             processData: false,

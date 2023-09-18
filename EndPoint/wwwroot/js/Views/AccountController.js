@@ -20,9 +20,11 @@
                 if (res.isSuccess) {
 
 
-                    //setlstor("token", res.data.token);
-                    localStorage.setItem("token", res.data.token);
-                    setlstor("menu", JSON.stringify(res.data.menus));
+                    setlstor("token", res.data.token);
+                    
+                    //setlstor("menu", JSON.stringify(res.data.menus));
+                    localStorage.setItem("menu", JSON.stringify(res.data.menus));
+
                     setlstor("fullName", res.data.fullName);
                     setlstor("userID", res.data.userID);
                     setlstor("loginName", res.data.loginName);
@@ -178,8 +180,7 @@
 
                     debugger;
 
-                    /*setlstor("token", res.data.token);*/
-                    localStorage.setItem("token", res.data.token);
+                    setlstor("token", res.data.token);                    
                     setlstor("fullName", res.data.fullName);
                     setlstor("customerID", res.data.customerID);
                     setlstor("userID", res.data.userID);

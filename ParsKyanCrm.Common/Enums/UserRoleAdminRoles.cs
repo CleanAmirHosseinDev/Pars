@@ -226,14 +226,14 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 2)]
         Contract_Delete = 433,
 
-        [Display(Name = "مشاهده")]
-        [Category("BaseInfo")]
-        [DisplayFiledAttribute(Name = "اطلاعات پایه")]
-        [DisplayFiledAttribute1(Name = "/Admin/LoginLog/Index")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "خطا های ورود")]
-        [OrderAttribute(Order = 2)]
-        LoginLog = 917,
+        //[Display(Name = "مشاهده")]
+        //[Category("BaseInfo")]
+        //[DisplayFiledAttribute(Name = "اطلاعات پایه")]
+        //[DisplayFiledAttribute1(Name = "/Admin/LoginLog/Index")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "خطا های ورود به ادمین")]
+        //[OrderAttribute(Order = 2)]
+        //LoginLog = 917,
 
         #endregion
 

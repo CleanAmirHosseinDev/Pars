@@ -23,7 +23,6 @@ using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCity;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetCitys;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonors;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLicensesAndHonorss;
-using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLoginLogs;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKyan;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetManagerOfParsKyans;
 using ParsKyanCrm.Application.Services.BasicInfo.Queries.GetNewsAndContent;
@@ -110,9 +109,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IDeleteManagerOfParsKyanService DeleteManagerOfParsKyanService { get; }
 
         IInsertLoginLogService InsertLoginLogService { get; }
-
-        IGetLoginLogsService GetLoginLogsService { get; }
-
     }
 
     public class BasicInfoFacad : IBasicInfoFacad
@@ -422,15 +418,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _insertLoginLogService = _insertLoginLogService ?? new InsertLoginLogService();
-            }
-        }
-
-        private IGetLoginLogsService _getLoginLogsService;
-        public IGetLoginLogsService GetLoginLogsService
-        {
-            get
-            {
-                return _getLoginLogsService = _getLoginLogsService ?? new GetLoginLogsService(_context, _mapper);
             }
         }
 

@@ -13,15 +13,14 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallActionWithotHeading("POST", "/api/Securitys/Login", JSON.stringify({ Username: $("#User").val(), Password: $("#Password").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Username: $("#User").val(), Password: $("#Password").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 
                 if (res.isSuccess) {
 
 
-                    //setlstor("token", res.data.token);
-                    localStorage.setItem("token", res.data.token);
+                    setlstor("token", res.data.token);
                     setlstor("menu", JSON.stringify(res.data.menus));
                     setlstor("fullName", res.data.fullName);
                     setlstor("userID", res.data.userID);
@@ -81,7 +80,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallActionWithotHeading("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm: aslkewkdkmscedkwlssdjcm, nkekkfjdkjjkjkdjkdjkjkkj: nkekkfjdkjjkjkdjkdjkjkkj, RadioSelectSha: $("input[name='RadioSelectSha']:checked").val() }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/Login", JSON.stringify({ Mobile: $("#User").val(), CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), NationalCode: $("#NationalCode").val(), aslkewkdkmscedkwlssdjcm: aslkewkdkmscedkwlssdjcm, nkekkfjdkjjkjkdjkdjkjkkj: nkekkfjdkjjkjkdjkdjkjkkj, RadioSelectSha: $("input[name='RadioSelectSha']:checked").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
                 debugger;
@@ -170,7 +169,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallActionWithotHeading("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
+            AjaxCallAction("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 
@@ -178,8 +177,7 @@
 
                     debugger;
 
-                    /*setlstor("token", res.data.token);*/
-                    localStorage.setItem("token", res.data.token);
+                    setlstor("token", res.data.token);
                     setlstor("fullName", res.data.fullName);
                     setlstor("customerID", res.data.customerID);
                     setlstor("userID", res.data.userID);

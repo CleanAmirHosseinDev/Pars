@@ -64,8 +64,7 @@
       "wwwroot/js/Views/Admin/RankingOfCompanies.js",
       "wwwroot/js/Views/Admin/Customer.js",
       "wwwroot/js/Views/Admin/RequestForRating.js",
-      "wwwroot/js/Views/Admin/Report.js",
-      "wwwroot/js/Views/Admin/LoginLog.js"
+      "wwwroot/js/Views/Admin/Report.js"
     ],
     "minify": {
       "enabled": false,

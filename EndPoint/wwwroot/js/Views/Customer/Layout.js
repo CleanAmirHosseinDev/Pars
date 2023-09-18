@@ -10,11 +10,13 @@
 
     function signOutForExitToLogin() {
 
-        AjaxCallAction("POST", "/api/Securitys/SignOutForExitToLogin", JSON.stringify({ Userid: getlstor("customerID"), AreaName: "مشتری" }), true, function (res) {
+        AjaxCallActionWithotHeading("POST", "/api/Securitys/SignOutForExitToLogin", JSON.stringify({ Userid: getlstor("customerID"), AreaName: "مشتری" }), true, function (res) {
             debugger;
             if (res.isSuccess) {
 
-                dellstor("token");
+                //dellstor("token");
+                localStorage.removeItem("token");
+
                 dellstor("fullName");
                 dellstor("customerID");
                 dellstor("userID");
@@ -25,16 +27,17 @@
 
             }
 
-        }, false);        
+        }, false);
 
     }
 
     function initLayout() {
 
-        if (isEmpty(getlstor("token"))) goToUrl("/Account/Login");
+        /*if (isEmpty(getlstor("token"))) goToUrl("/Account/Login");*/
+        if (isEmpty(localStorage.getItem("token"))) goToUrl("/Account/Login");
         else {
 
-            $(".fullNameInLayout").html(getlstor("fullName"));            
+            $(".fullNameInLayout").html(getlstor("fullName"));
 
         }
 

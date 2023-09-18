@@ -322,7 +322,73 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
             data: data,
             async: async,
             dataType: "json",
-            headers: { "Authorization": 'Bearer ' + getlstor("token") },
+            /*headers: { "Authorization": 'Bearer ' + getlstor("token") },*/
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
+            beforeSend: function () {
+                if (isWait)
+                    showWait();
+            },
+            success: function (res) {
+                try {
+                    if (res.statusCode === Web.Resources.Code301) {
+                        alertB("عدم دسترسی", !isEmpty(res.Message) ? res.Message : Web.Resources.MessageAccessDenied, 'error');
+                        return;
+                    }
+                    if (res.statusCode === Web.Resources.Code401) {
+                        goToUrl(res.redirectResult);
+                        return;
+                    }
+                    if (res.statusCode == "404") {
+
+                        if (!isEmpty(res.message)) alertB("", res.message, "error");
+                        else goToUrl("/Error/Code404");
+
+                        return;
+                    }
+                    successCallBack(res);
+                } catch (e) {
+                    alert(e);
+                }
+            },
+            complete: function () {
+                if (isWait)
+                    hideWait();
+
+            },
+            error: function (error) {
+
+                if (error.status == 401) {
+
+                    if (url.indexOf("admin") == -1 && url.indexOf("superVisor") == -1) goToUrl("/Account/Login");
+                    else goToUrl("/Account/LoginUser");
+
+
+                }
+
+            }
+        });
+
+    } catch (e) {
+
+    }
+
+}
+function AjaxCallActionWithotHeading(type, url, data, async, successCallBack, isWait = true) {
+
+    try {
+
+        $.ajax({
+            processData: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            traditional: true,
+            contentType: 'application/json',
+            type: type,
+            url: url,
+            data: data,
+            async: async,
+            dataType: "json",            
             beforeSend: function () {
                 if (isWait)
                     showWait();
@@ -449,7 +515,8 @@ function AjaxCallActionPostSaveFormWithUploadFile(url, data, async, successCallB
             data: data,
             async: async,
             dataType: "json",
-            headers: { "Authorization": 'Bearer ' + getlstor("token") },
+            /*headers: { "Authorization": 'Bearer ' + getlstor("token") },*/
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
             cache: false,
             contentType: false,
             processData: false,

@@ -22,6 +22,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int FinancialId { get; set; }
         public string FinancialDocument { get; set; }
+        public string FinancialDocument2 { get; set; }
         public string ContractDocument { get; set; }
         public int? RequestID { get; set; }
 
@@ -60,8 +61,15 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 return ServiceFileUploader.GetFullPath(FinancialDocument, VaribleForName.CustomersFolder, false);
             }
         }
+        public string FinancialDocument2Full
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(FinancialDocument2, VaribleForName.CustomersFolder, false);
+            }
+        }
         public IFormFile Result_Final_FinancialDocument { get; set; }
-
+        public IFormFile Result_Final_FinancialDocument2 { get; set; }
         public string ContractDocumentFull
         {
             get

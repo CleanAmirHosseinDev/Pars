@@ -500,9 +500,11 @@
         }
     }
 
-    function getDocument() {
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-
+    function getDocument(id = null) {
+        if (id==null) {
+            var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        }
+        
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
@@ -531,10 +533,20 @@
                         } else {
                             $("#divDownloadFinancialDocument").html("<p style='color:silver'></p>");
                         }
+                        if (res.data.financialDocument2 != null && res.data.financialDocument2 != "") {
+                            $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        } else {
+                            $("#divDownloadFinancialDocument2").html("<p style='color:silver'></p>");
+                        }
                         if (res.data.contractDocument != null && res.data.contractDocument != "") {
                             $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
                             $("#divDownload_ContractDocument").html("<p style='color:silver'></p>");
+                        }
+                        if (res.data.lastFinancialDocument != null && res.data.lastFinancialDocument != "") {
+                            $("#divDownload_LastFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        } else {
+                            $("#divDownload_LastFinancialDocument").html("<p style='color:silver'></p>");
                         }
                     }
 

@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.BasicInfo.Queries.GetLoginLogs
                 left join Users as us on us.UserID = ll.Userid
                 left join Customers as cus on cus.CustomerID = ll.Userid
 {(!string.IsNullOrEmpty(request.Search) ? " where (isnull(cus.AgentName,us.RealName)) like N'%" + request.Search + "%' " : string.Empty)}
-{((!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr)) ? (!string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " ll.LoginDate between " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}
+{((!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr)) ? (!string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " cast(ll.LoginDate as date) between " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}
 order by ll.LoginLogID desc
 ");
 

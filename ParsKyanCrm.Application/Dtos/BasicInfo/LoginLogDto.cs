@@ -19,6 +19,13 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public int Userid { get; set; }
 
         public DateTime? LoginDate { get; set; }
+        public string LoginTimeStr
+        {
+            get
+            {
+                return LoginDate.HasValue ? LoginDate.Value.ToShortTimeString() : string.Empty;
+            }
+        }
         public string LoginDateStr
         {
             get
@@ -30,6 +37,13 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
         public string Ip { get; set; }
 
         public DateTime? SignOutDate { get; set; }
+        public string SignOutTimeStr
+        {
+            get
+            {
+                return SignOutDate.HasValue ? SignOutDate.Value.ToShortTimeString() : string.Empty;
+            }
+        }
         public string SignOutDateStr
         {
             get
@@ -43,7 +57,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
 
     public class RequestLoginLogDto : PageingParamerDto
     {
-        
+
         public string FromDateStr { get; set; }
         public string FromDateStr1
         {
@@ -60,7 +74,7 @@ namespace ParsKyanCrm.Application.Dtos.BasicInfo
             }
 
         }
-        
+
         public string ToDateStr { get; set; }
         public string ToDateStr1
         {

@@ -24,7 +24,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
 
-                    strM += "<tr><td>" + res.data[i].fullName + "</td><td>" + res.data[i].loginDateStr + "</td><td>" + res.data[i].signOutDateStr + "</td><td>" + res.data[i].ip + "</td><td>" + res.data[i].areaName+"</td></tr>";
+                    strM += "<tr><td>" + res.data[i].fullName + "</td><td>" + res.data[i].loginDateStr + " - " + res.data[i].loginTimeStr + "</td><td>" + res.data[i].signOutDateStr + " - " + res.data[i].signOutTimeStr + "</td><td>" + res.data[i].ip + "</td><td>" + res.data[i].areaName+"</td></tr>";
 
                 }
                 $("#tBodyList").html(strM);

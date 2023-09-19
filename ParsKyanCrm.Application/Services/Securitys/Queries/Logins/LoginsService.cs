@@ -220,15 +220,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                     //Use Field needSms In Condition Under
                     if (needSms)
                     {
-                        string st = VaribleForName.SMSType;
-                        //if (st=="0")
-                        //{
-                            WebService.SMSService.Execute(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
-                        //}
-                        //else
-                        //{
-                        //    string m =await MagfaSendSMS(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
-                        //}
+                       
+                        
+                        await WebService.SMSService.Execute(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
+                        
                     }
 
                 }

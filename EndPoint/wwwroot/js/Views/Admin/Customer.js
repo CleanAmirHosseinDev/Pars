@@ -150,11 +150,8 @@ function successCallBack_divPageingList (res) {
                     $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                 }
-
                 systemSeting_Combo(res);
-
             }
-
 
         }, true);
 

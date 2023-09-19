@@ -176,8 +176,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     //});
                     //await _context.SaveChangesAsync();
 
-                      WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                      WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
+                      await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                      await WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
                 else
@@ -214,15 +214,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     {
                         case true:
                             
-                            WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
-                            WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
+                          await  WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
+                          await  WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 
                             break;
                         case false:
 
                             var requestForRating = await _context.RequestForRating.Include(p => p.Customer).FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
                             request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + requestForRating.RequestNo+"\n"+ "شرکت رتبه بندی اعتباری پارس کیان";                          
-                            WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
+                         await WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
 
                             break;
 

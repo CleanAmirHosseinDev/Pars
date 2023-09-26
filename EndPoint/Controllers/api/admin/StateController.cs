@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -17,11 +17,11 @@ namespace EndPoint.Controllers.api.admin
     public class StateController : BaseController
     {
         private readonly ILogger<StateController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public StateController(ILogger<StateController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public StateController(ILogger<StateController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -30,7 +30,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetStatesService.Execute(request);
+                return await _userFacad.GetStatesService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetStateService.Execute(id);
+                return await _userFacad.GetStateService.Execute(id);
             }
             catch (Exception)
             {
@@ -60,7 +60,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.SaveStateService.Execute(request);
+                return await _userFacad.SaveStateService.Execute(request);
             }
             catch (Exception ex)
             {

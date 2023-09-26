@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using System;
@@ -14,11 +14,11 @@ namespace EndPoint.Controllers.api
     {
 
         private readonly ILogger<ActivityController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public ActivityController(ILogger<ActivityController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public ActivityController(ILogger<ActivityController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -27,7 +27,7 @@ namespace EndPoint.Controllers.api
         {
             try
             {
-                return await _basicInfoFacad.GetActivitysService.Execute(request);
+                return await _userFacad.GetActivitysService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace EndPoint.Controllers.api
         {
             try
             {
-                return await _basicInfoFacad.GetActivityService.Execute(new RequestActivityDto() { ActivityId = id });
+                return await _userFacad.GetActivityService.Execute(new RequestActivityDto() { ActivityId = id });
             }
             catch (Exception)
             {

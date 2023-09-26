@@ -20,12 +20,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public SaveUsersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        public SaveUsersService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
         }
 
         private bool Check_Remote(UserRolesDto request)
@@ -109,7 +107,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                 EntityEntry<UserRoles> q_Entity;
                 if (request.UserId == 0)
                 {
-                    request.User.Ip = Utility.GetUserHostAddress();
+                    request.User.Ip = await Ipconfig.GetUserHostAddress();
                     request.User.Password = EncryptDecrypt.Encrypt(request.User.Password);
                     q_Entity = _context.UserRoles.Add(new UserRoles()
                     {
@@ -123,7 +121,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                             Password = request.User.Password,
                             Status = request.User.Status,
                             UserName = request.User.UserName,
-                            RealName=request.User.RealName
+                            RealName = request.User.RealName
                         }
                     });
                     await _context.SaveChangesAsync();
@@ -137,7 +135,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                             nameof(q_Entity.Entity.User.UserName),request.User.UserName
                         },
                         {
-                            nameof(q_Entity.Entity.User.Ip),Utility.GetUserHostAddress()
+                            nameof(q_Entity.Entity.User.Ip),await Ipconfig.GetUserHostAddress()
                         },
                         {
                             nameof(q_Entity.Entity.User.Status),request.User.Status
@@ -156,7 +154,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveUsers
                     {
                         {
                             nameof(q_Entity.Entity.RoleId),request.RoleId
-                        }                        
+                        }
                     }, string.Format(nameof(q_Entity.Entity.UserId) + " = {0} ", request.UserId));
                 }
 

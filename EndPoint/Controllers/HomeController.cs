@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common;
@@ -19,24 +19,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
+using static ParsKyanCrm.Infrastructure.CaptchaService;
 
 namespace EndPoint.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IBasicInfoFacad _basicInfoFacad;
         private IUserFacad _userFacad;
 
         private readonly IWebHostEnvironment _env;
 
-        public HomeController(ILogger<HomeController> logger, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IUserFacad userFacad)
+        public HomeController(ILogger<HomeController> logger, IUserFacad userFacad, IWebHostEnvironment env)
         {
             _logger = logger;
             _env = env;
-            _basicInfoFacad = basicInfoFacad;
-            _userFacad = userFacad;
+            _userFacad = userFacad;            
         }
 
         public async Task<IActionResult> Index()
@@ -48,7 +46,7 @@ namespace EndPoint.Controllers
                 request.PageSize = 4;
                 request.KindOfContent = 61;
                 request.PageIndex = 1;
-                var news = await _basicInfoFacad.GetNewsAndContentsService.Execute(request);
+                var news = await _userFacad.GetNewsAndContentsService.Execute(request);
 
                 ViewData["news"] = news.Data;
 
@@ -56,7 +54,7 @@ namespace EndPoint.Controllers
                 request2.IsActive = (byte)TablesGeneralIsActive.Active;
                 request2.PageSize = 10;
                 request2.PageIndex = 1;
-                var ranks = await _basicInfoFacad.GetRankingOfCompaniessService.Execute(request2);
+                var ranks = await _userFacad.GetRankingOfCompaniessService.Execute(request2);
 
                 ViewData["ranks"] = ranks.Data;
             }
@@ -84,7 +82,7 @@ namespace EndPoint.Controllers
                 request2.IsActive = (byte)TablesGeneralIsActive.Active;
                 request2.PageSize = 10000;
                 request2.PageIndex = 1;
-                var ranks = await _basicInfoFacad.GetRankingOfCompaniessService.Execute(request2);
+                var ranks = await _userFacad.GetRankingOfCompaniessService.Execute(request2);
 
                 ViewData["ranks"] = ranks.Data.OrderByDescending(a => a.PublishDate);
             }

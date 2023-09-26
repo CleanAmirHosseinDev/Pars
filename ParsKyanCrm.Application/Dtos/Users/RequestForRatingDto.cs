@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;

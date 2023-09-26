@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -17,11 +17,11 @@ namespace EndPoint.Controllers.api.admin
     public class ActivityController : BaseController
     {
         private readonly ILogger<ActivityController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public ActivityController(ILogger<ActivityController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public ActivityController(ILogger<ActivityController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -31,7 +31,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _basicInfoFacad.GetActivitysService.Execute(request);
+                return await _userFacad.GetActivitysService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetActivityService.Execute(new RequestActivityDto() { ActivityId = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetActivityService.Execute(new RequestActivityDto() { ActivityId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -61,7 +61,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.SaveActivityService.Execute(request);
+                return await _userFacad.SaveActivityService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return _basicInfoFacad.DeleteActivityService.Execute(id);
+                return _userFacad.DeleteActivityService.Execute(id);
             }
             catch (Exception)
             {

@@ -21,15 +21,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
     public class SaveDataFormAnswerTablesService : ISaveDataFormAnswerTablesService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IMapper _mapper;        
         private readonly IWebHostEnvironment _env;
 
-        public SaveDataFormAnswerTablesService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        public SaveDataFormAnswerTablesService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
             _env = env;
         }
 

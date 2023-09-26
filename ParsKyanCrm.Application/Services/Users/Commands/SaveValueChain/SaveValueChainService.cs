@@ -22,14 +22,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveValueChainService
     public class SaveValueChainService : ISaveValueChainService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IMapper _mapper;        
         private readonly IWebHostEnvironment _env;
-        public SaveValueChainService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        public SaveValueChainService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
             _env = env;
         }
 

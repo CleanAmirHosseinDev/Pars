@@ -51,7 +51,7 @@
                 </div>
 
                 @if(ViewData["ranks"] != null) {
-                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.RankingOfCompaniesDto>)ViewData["ranks"]) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.RankingOfCompaniesDto>)ViewData["ranks"]) {
                         <div class="jtrow">
                             <div class="jtcell" data-title="نام شرکت">
                                 @item.Comany.CompanyName

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -17,11 +17,11 @@ namespace EndPoint.Controllers.api.admin
     public class ManagerOfParsKyanController : BaseController
     {
         private readonly ILogger<ManagerOfParsKyanController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public ManagerOfParsKyanController(ILogger<ManagerOfParsKyanController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public ManagerOfParsKyanController(ILogger<ManagerOfParsKyanController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -31,7 +31,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _basicInfoFacad.GetManagerOfParsKyansService.Execute(request);
+                return await _userFacad.GetManagerOfParsKyansService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetManagerOfParsKyanService.Execute(new RequestManagerOfParsKyanDto() { ManagersId = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetManagerOfParsKyanService.Execute(new RequestManagerOfParsKyanDto() { ManagersId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -62,7 +62,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.Userid = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
-                return await _basicInfoFacad.SaveManagerOfParsKyanService.Execute(request);
+                return await _userFacad.SaveManagerOfParsKyanService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return _basicInfoFacad.DeleteManagerOfParsKyanService.Execute(id);
+                return _userFacad.DeleteManagerOfParsKyanService.Execute(id);
             }
             catch (Exception)
             {

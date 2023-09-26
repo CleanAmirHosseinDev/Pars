@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -16,11 +16,11 @@ namespace EndPoint.Controllers.api
     public class SystemSetingController : BaseController
     {
         private readonly ILogger<ManagerOfParsKyanController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public SystemSetingController(ILogger<ManagerOfParsKyanController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public SystemSetingController(ILogger<ManagerOfParsKyanController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -30,7 +30,7 @@ namespace EndPoint.Controllers.api
             try
             {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _basicInfoFacad.GetSystemSetingsService.Execute(request);
+                return await _userFacad.GetSystemSetingsService.Execute(request);
             }
             catch (Exception ex)
             {

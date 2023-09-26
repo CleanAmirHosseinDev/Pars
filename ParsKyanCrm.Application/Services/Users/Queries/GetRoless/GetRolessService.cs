@@ -17,13 +17,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRoless
     public class GetRolessService : IGetRolessService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public GetRolessService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IMapper _mapper;        
+        public GetRolessService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }
 
         public async Task<ResultDto<IEnumerable<RolesDto>>> Execute(RequestRolesDto request)

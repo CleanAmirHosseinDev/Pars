@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -16,11 +16,11 @@ namespace EndPoint.Controllers.api.admin
     public class SystemSetingController : BaseController
     {
         private readonly ILogger<SystemSetingController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public SystemSetingController(ILogger<SystemSetingController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public SystemSetingController(ILogger<SystemSetingController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -30,7 +30,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _basicInfoFacad.GetSystemSetingsService.Execute(request);
+                return await _userFacad.GetSystemSetingsService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetSystemSetingService.Execute(new RequestSystemSetingDto() { SystemSetingId = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetSystemSetingService.Execute(new RequestSystemSetingDto() { SystemSetingId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -60,7 +60,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.SaveSystemSetingService.Execute(request);
+                return await _userFacad.SaveSystemSetingService.Execute(request);
             }
             catch (Exception ex)
             {

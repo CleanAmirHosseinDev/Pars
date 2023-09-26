@@ -16,13 +16,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectors
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public GetBoardOfDirectorsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IMapper _mapper;        
+        public GetBoardOfDirectorsService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }
 
         public async Task<BoardOfDirectorsDto> Execute(RequestBoardOfDirectorsDto request)
@@ -30,18 +28,18 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetBoardOfDirectors
             try
             {
                 BoardOfDirectorsDto res = new BoardOfDirectorsDto();
-                res.University = new Dtos.BasicInfo.SystemSetingDto();
-                res.MemberPost = new Dtos.BasicInfo.SystemSetingDto();
-                res.MemberEduction = new Dtos.BasicInfo.SystemSetingDto();
+                res.University = new Dtos.Users.SystemSetingDto();
+                res.MemberPost = new Dtos.Users.SystemSetingDto();
+                res.MemberEduction = new Dtos.Users.SystemSetingDto();
 
                 if (request.BoardOfDirectorsId != null && request.BoardOfDirectorsId != 0)
                 {
                     var q_Find = await _context.BoardOfDirectors.Include(p => p.University).Include(p => p.MemberPost).Include(p => p.MemberEduction).FirstOrDefaultAsync(p => p.BoardOfDirectorsId == request.BoardOfDirectorsId.Value && (p.IsActive == request.IsActive || request.IsActive == null) && (p.CustomerId == request.CustomerId || request.CustomerId == null));
 
                     res = _mapper.Map<BoardOfDirectorsDto>(q_Find);
-                    res.University = q_Find.University != null ? _mapper.Map<Dtos.BasicInfo.SystemSetingDto>(q_Find.University) : new Dtos.BasicInfo.SystemSetingDto();
-                    res.MemberPost = q_Find.MemberPost != null ? _mapper.Map<Dtos.BasicInfo.SystemSetingDto>(q_Find.MemberPost) : new Dtos.BasicInfo.SystemSetingDto();
-                    res.MemberEduction = q_Find.MemberEduction != null ? _mapper.Map<Dtos.BasicInfo.SystemSetingDto>(q_Find.MemberEduction) : new Dtos.BasicInfo.SystemSetingDto();
+                    res.University = q_Find.University != null ? _mapper.Map<Dtos.Users.SystemSetingDto>(q_Find.University) : new Dtos.Users.SystemSetingDto();
+                    res.MemberPost = q_Find.MemberPost != null ? _mapper.Map<Dtos.Users.SystemSetingDto>(q_Find.MemberPost) : new Dtos.Users.SystemSetingDto();
+                    res.MemberEduction = q_Find.MemberEduction != null ? _mapper.Map<Dtos.Users.SystemSetingDto>(q_Find.MemberEduction) : new Dtos.Users.SystemSetingDto();
 
                 }
 

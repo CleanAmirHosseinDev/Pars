@@ -15,13 +15,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetUsers
     public class GetUsersService : IGetUsersService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public GetUsersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IMapper _mapper;        
+        public GetUsersService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }
 
         public async Task<UserRolesDto> Execute(RequestUserRolesDto request)

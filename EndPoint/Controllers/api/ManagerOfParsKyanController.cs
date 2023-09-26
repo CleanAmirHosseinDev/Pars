@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using System;
@@ -14,11 +14,11 @@ namespace EndPoint.Controllers.api
     {
 
         private readonly ILogger<ManagerOfParsKyanController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public ManagerOfParsKyanController(ILogger<ManagerOfParsKyanController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public ManagerOfParsKyanController(ILogger<ManagerOfParsKyanController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -27,7 +27,7 @@ namespace EndPoint.Controllers.api
         {
             try
             {
-                return await _basicInfoFacad.GetManagerOfParsKyansService.Execute(request);
+                return await _userFacad.GetManagerOfParsKyansService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -41,7 +41,7 @@ namespace EndPoint.Controllers.api
         {
             try
             {
-                return await _basicInfoFacad.GetManagerOfParsKyanService.Execute(new RequestManagerOfParsKyanDto() { ManagersId = id });
+                return await _userFacad.GetManagerOfParsKyanService.Execute(new RequestManagerOfParsKyanDto() { ManagersId = id });
             }
             catch (Exception)
             {

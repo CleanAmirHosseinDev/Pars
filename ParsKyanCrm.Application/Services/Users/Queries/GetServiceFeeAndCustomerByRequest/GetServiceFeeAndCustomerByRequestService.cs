@@ -20,12 +20,10 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public GetServiceFeeAndCustomerByRequestService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        public GetServiceFeeAndCustomerByRequestService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }
 
         public async Task<ResultGetServiceFeeAndCustomerByRequestDto> Execute(int ri)

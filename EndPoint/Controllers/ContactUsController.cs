@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
-using ParsKyanCrm.Application.Services.Email;
+using ParsKyanCrm.Application.Dtos.Users;
+using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
+using static ParsKyanCrm.Infrastructure.CaptchaService;
 
 namespace EndPoint.Controllers
 {

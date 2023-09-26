@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Domain.Contexts;
@@ -17,13 +17,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContract
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public GetContractPagesService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IMapper _mapper;        
+        public GetContractPagesService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }
 
         public async Task<ContractPagesDto> Execute(RequestContractPagesDto request)

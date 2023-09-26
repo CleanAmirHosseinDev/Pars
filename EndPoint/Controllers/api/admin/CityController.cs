@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -16,11 +16,11 @@ namespace EndPoint.Controllers.api.admin
     public class CityController : BaseController
     {
         private readonly ILogger<CityController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public CityController(ILogger<CityController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public CityController(ILogger<CityController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -29,7 +29,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetCitysService.Execute(request);
+                return await _userFacad.GetCitysService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetCityService.Execute(id);
+                return await _userFacad.GetCityService.Execute(id);
             }
             catch (Exception)
             {
@@ -59,7 +59,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.SaveCityService.Execute(request);
+                return await _userFacad.SaveCityService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return (await _basicInfoFacad.GetStatesService.Execute(request));
+                return (await _userFacad.GetStatesService.Execute(request));
             }
             catch (Exception ex)
             {

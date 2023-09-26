@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -17,11 +17,11 @@ namespace EndPoint.Controllers.api.admin
     public class RankingOfCompaniesController : BaseController
     {
         private readonly ILogger<RankingOfCompaniesController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public RankingOfCompaniesController(ILogger<RankingOfCompaniesController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public RankingOfCompaniesController(ILogger<RankingOfCompaniesController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -31,7 +31,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _basicInfoFacad.GetRankingOfCompaniessService.Execute(request);
+                return await _userFacad.GetRankingOfCompaniessService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetRankingOfCompaniesService.Execute(new RequestRankingOfCompaniesDto() { RankingId = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetRankingOfCompaniesService.Execute(new RequestRankingOfCompaniesDto() { RankingId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -62,7 +62,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.UserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
-                return await _basicInfoFacad.SaveRankingOfCompaniesService.Execute(request);
+                return await _userFacad.SaveRankingOfCompaniesService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return  _basicInfoFacad.DeleteRankingOfCompaniesService.Execute(id);
+                return  _userFacad.DeleteRankingOfCompaniesService.Execute(id);
             }
             catch (Exception)
             {

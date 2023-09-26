@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace EndPoint
 {
@@ -68,16 +69,12 @@ namespace EndPoint
             });
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
-
-            services.AddScoped<IBaseUserFacad, BaseUserFacad>();
+            
             services.AddScoped<IUserFacad, UserFacad>();
 
-            services.AddScoped<IBaseSecurityFacad, BaseSecurityFacad>();
-            services.AddScoped<ISecurityFacad, SecurityFacad>();
+            services.AddScoped<ISecurityFacad, SecurityFacad>();              
 
-            services.AddScoped<IBasicInfoFacad, BasicInfoFacad>();            
-
-            services.AddScoped<IValidator<RequestReferencesDto>, ValidatorRequestReferencesDto>();
+            services.AddScoped<IValidator<RequestReferencesDto>, ValidatorRequestReferencesDto>();            
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(VaribleForName.MainConnectionString));
 

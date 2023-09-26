@@ -21,14 +21,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
     public class SaveContractAndFinancialDocumentsService : ISaveContractAndFinancialDocumentsService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IMapper _mapper;        
         private readonly IWebHostEnvironment _env;
-        public SaveContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        public SaveContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
             _env = env;
         }
 

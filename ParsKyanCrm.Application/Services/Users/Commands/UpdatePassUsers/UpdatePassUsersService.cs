@@ -19,13 +19,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.UpdatePassUsers
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public UpdatePassUsersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IMapper _mapper;        
+        public UpdatePassUsersService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }
 
         private async Task<string> Validation_Execute(RequestUpdatePassUsersDto request)

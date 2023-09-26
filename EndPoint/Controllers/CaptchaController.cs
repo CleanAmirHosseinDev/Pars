@@ -12,7 +12,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
-using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
+using static ParsKyanCrm.Infrastructure.CaptchaService;
 
 namespace EndPoint {
 

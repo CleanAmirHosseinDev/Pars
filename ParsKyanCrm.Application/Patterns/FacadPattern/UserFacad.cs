@@ -31,7 +31,6 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCompaniess;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
-using ParsKyanCrm.Application.Services.Users.Base.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
@@ -63,6 +62,40 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetPublicActivities;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLevelStepSettings;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteContractAndFinancialDocumentsService;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers_RegisterLanding;
+using ParsKyanCrm.Application.Services.Users.Queries.GetStates;
+using ParsKyanCrm.Application.Services.Users.Queries.FillUserRoleAdminRoles;
+using ParsKyanCrm.Application.Services.Users.Queries.GetState;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveState;
+using ParsKyanCrm.Application.Services.Users.Queries.GetCitys;
+using ParsKyanCrm.Application.Services.Users.Queries.GetCity;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveCity;
+using ParsKyanCrm.Application.Services.Users.Queries.GetSystemSetings;
+using ParsKyanCrm.Application.Services.Users.Queries.GetSystemSeting;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveSystemSeting;
+using ParsKyanCrm.Application.Services.Users.Queries.GetActivitys;
+using ParsKyanCrm.Application.Services.Users.Queries.GetActivity;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveActivity;
+using ParsKyanCrm.Application.Services.Users.Queries.GetAboutUs;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveAboutUs;
+using ParsKyanCrm.Application.Services.Users.Queries.GetLicensesAndHonors;
+using ParsKyanCrm.Application.Services.Users.Queries.GetLicensesAndHonorss;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveLicensesAndHonors;
+using ParsKyanCrm.Application.Services.Users.Queries.GetManagerOfParsKyan;
+using ParsKyanCrm.Application.Services.Users.Queries.GetManagerOfParsKyans;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveManagerOfParsKyan;
+using ParsKyanCrm.Application.Services.Users.Queries.GetRankingOfCompaniess;
+using ParsKyanCrm.Application.Services.Users.Queries.GetRankingOfCompanies;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveRankingOfCompanies;
+using ParsKyanCrm.Application.Services.Users.Queries.GetNewsAndContents;
+using ParsKyanCrm.Application.Services.Users.Queries.GetNewsAndContent;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveNewsAndContent;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteNewsAndContent;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteRankingOfCompanies;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteActivity;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteLicensesAndHonors;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteManagerOfParsKyan;
+using ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog;
+using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -181,6 +214,73 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         ISaveCustomers_RegisterLandingService SaveCustomers_RegisterLandingService { get; }
 
+        IFillUserRoleAdminRolesService FillUserRoleAdminRolesService { get; }
+        IGetStatesService GetStatesService { get; }
+
+        IGetStateService GetStateService { get; }
+
+        ISaveStateService SaveStateService { get; }
+
+        IGetCitysService GetCitysService { get; }
+
+        IGetCityService GetCityService { get; }
+
+        ISaveCityService SaveCityService { get; }
+
+        IGetSystemSetingsService GetSystemSetingsService { get; }
+
+        IGetSystemSetingService GetSystemSetingService { get; }
+
+        ISaveSystemSetingService SaveSystemSetingService { get; }
+
+        IGetActivitysService GetActivitysService { get; }
+
+        IGetActivityService GetActivityService { get; }
+
+        ISaveActivityService SaveActivityService { get; }
+
+        IGetAboutUsService GetAboutUsService { get; }
+
+        ISaveAboutUsService SaveAboutUsService { get; }
+
+        IGetLicensesAndHonorsService GetLicensesAndHonorsService { get; }
+
+        IGetLicensesAndHonorssService GetLicensesAndHonorssService { get; }
+
+        ISaveLicensesAndHonorsService SaveLicensesAndHonorsService { get; }
+
+        IGetManagerOfParsKyanService GetManagerOfParsKyanService { get; }
+
+        IGetManagerOfParsKyansService GetManagerOfParsKyansService { get; }
+
+        ISaveManagerOfParsKyanService SaveManagerOfParsKyanService { get; }
+
+        IGetRankingOfCompaniessService GetRankingOfCompaniessService { get; }
+
+        IGetRankingOfCompaniesService GetRankingOfCompaniesService { get; }
+
+        ISaveRankingOfCompaniesService SaveRankingOfCompaniesService { get; }
+
+        IGetNewsAndContentsService GetNewsAndContentsService { get; }
+
+        IGetNewsAndContentService GetNewsAndContentService { get; }
+
+        ISaveNewsAndContentService SaveNewsAndContentService { get; }
+
+        IDeleteNewsAndContentService DeleteNewsAndContentService { get; }
+
+        IDeleteRankingOfCompaniesService DeleteRankingOfCompaniesService { get; }
+
+        IDeleteActivityService DeleteActivityService { get; }
+
+        IDeleteLicensesAndHonorsService DeleteLicensesAndHonorsService { get; }
+
+        IDeleteManagerOfParsKyanService DeleteManagerOfParsKyanService { get; }
+
+        IInsertLoginLogService InsertLoginLogService { get; }
+
+        IGetLoginLogsService GetLoginLogsService { get; }
+
 
     }
 
@@ -188,19 +288,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        private readonly IWebHostEnvironment _env;
-        private readonly IBaseUserFacad _baseUserFacad;
+        private readonly IWebHostEnvironment _env;        
 
         private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
 
-        public UserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env, IBaseUserFacad baseUserFacad, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
+        public UserFacad(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
         {
             _context = context;
             _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
-            _env = env;
-            _baseUserFacad = baseUserFacad;
+            _env = env;            
             _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
 
@@ -209,7 +305,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getUserssService = _getUserssService ?? new GetUserssService(_context, _mapper, _basicInfoFacad);
+                return _getUserssService = _getUserssService ?? new GetUserssService(_context, _mapper);
             }
         }
 
@@ -218,7 +314,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getContractAndFinancialDocumentsService = _getContractAndFinancialDocumentsService ?? new GetContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad);
+                return _getContractAndFinancialDocumentsService = _getContractAndFinancialDocumentsService ?? new GetContractAndFinancialDocumentsService(_context, _mapper);
             }
         }
 
@@ -228,7 +324,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getFurtherInfoService = _getFurtherInfoService ?? new GetFurtherInfoService(_context, _mapper, _basicInfoFacad);
+                return _getFurtherInfoService = _getFurtherInfoService ?? new GetFurtherInfoService(_context, _mapper);
             }
         }
 
@@ -237,7 +333,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getPublicActivitiesService = _getPublicActivitiesService ?? new GetPublicActivitiesService(_context, _mapper, _basicInfoFacad);
+                return _getPublicActivitiesService = _getPublicActivitiesService ?? new GetPublicActivitiesService(_context, _mapper);
             }
 
         }
@@ -247,7 +343,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getCorporateGovernancesService = _getCorporateGovernancesService ?? new GetCorporateGovernancesService(_context, _mapper, _basicInfoFacad);
+                return _getCorporateGovernancesService = _getCorporateGovernancesService ?? new GetCorporateGovernancesService(_context, _mapper);
             }
         }
 
@@ -256,7 +352,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getUsersService = _getUsersService ?? new GetUsersService(_context, _mapper, _basicInfoFacad);
+                return _getUsersService = _getUsersService ?? new GetUsersService(_context, _mapper);
             }
         }
 
@@ -265,7 +361,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveUsersService = _saveUsersService ?? new SaveUsersService(_context, _mapper, _basicInfoFacad);
+                return _saveUsersService = _saveUsersService ?? new SaveUsersService(_context, _mapper);
             }
         }
 
@@ -274,7 +370,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getRolessService = _getRolessService ?? new GetRolessService(_context, _mapper, _basicInfoFacad);
+                return _getRolessService = _getRolessService ?? new GetRolessService(_context, _mapper);
             }
         }
 
@@ -283,7 +379,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getAccessLevelsService = _getAccessLevelsService ?? new GetAccessLevelsService(_context, _mapper, _basicInfoFacad);
+                return _getAccessLevelsService = _getAccessLevelsService ?? new GetAccessLevelsService(_context, _mapper);
             }
         }
 
@@ -301,7 +397,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveBasicInformationCustomersService = _saveBasicInformationCustomersService ?? new SaveBasicInformationCustomersService(_context, _mapper, _env);
             }
         }
 
@@ -310,15 +406,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getCustomersService = _getCustomersService ?? new GetCustomersService(_context, _mapper, _basicInfoFacad);
+                return _getCustomersService = _getCustomersService ?? new GetCustomersService(_context, _mapper);
             }
         }
 
+        private IGetRequestForRatingsService _getRequestForRatingsService;
         public IGetRequestForRatingsService GetRequestForRatingsService
         {
             get
             {
-                return _baseUserFacad.GetRequestForRatingsService;
+                return _getRequestForRatingsService = _getRequestForRatingsService ?? new GetRequestForRatingsService(_context, _mapper);
             }
         }
 
@@ -327,7 +424,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveBoardOfDirectorsService = _saveBoardOfDirectorsService ?? new SaveBoardOfDirectorsService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveBoardOfDirectorsService = _saveBoardOfDirectorsService ?? new SaveBoardOfDirectorsService(_context, _mapper, _env);
             }
         }
 
@@ -336,7 +433,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getBoardOfDirectorssService = _getBoardOfDirectorssService ?? new GetBoardOfDirectorssService(_context, _mapper, _basicInfoFacad);
+                return _getBoardOfDirectorssService = _getBoardOfDirectorssService ?? new GetBoardOfDirectorssService(_context, _mapper);
             }
         }
 
@@ -345,7 +442,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getBoardOfDirectorsService = _getBoardOfDirectorsService ?? new GetBoardOfDirectorsService(_context, _mapper, _basicInfoFacad);
+                return _getBoardOfDirectorsService = _getBoardOfDirectorsService ?? new GetBoardOfDirectorsService(_context, _mapper);
             }
         }
 
@@ -354,7 +451,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveRequestForRatingService = _saveRequestForRatingService ?? new SaveRequestForRatingService(_context, _mapper, _basicInfoFacad, _validatorRequestReferencesDto);
+                return _saveRequestForRatingService = _saveRequestForRatingService ?? new SaveRequestForRatingService(_context, _mapper, _validatorRequestReferencesDto);
             }
         }
 
@@ -363,7 +460,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getLevelStepSettingService = _getLevelStepSettingService ?? new GetLevelStepSettingService(_context, _mapper, _basicInfoFacad);
+                return _getLevelStepSettingService = _getLevelStepSettingService ?? new GetLevelStepSettingService(_context, _mapper);
             }
         }
 
@@ -372,7 +469,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getServiceFeeService = _getServiceFeeService ?? new GetServiceFeeService(_context, _mapper, _basicInfoFacad);
+                return _getServiceFeeService = _getServiceFeeService ?? new GetServiceFeeService(_context, _mapper);
             }
         }
 
@@ -381,7 +478,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getServiceFeesService = _getServiceFeesService ?? new GetServiceFeesService(_context, _mapper, _basicInfoFacad);
+                return _getServiceFeesService = _getServiceFeesService ?? new GetServiceFeesService(_context, _mapper);
             }
         }
 
@@ -390,7 +487,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveServiceFeeService = _saveServiceFeeService ?? new SaveServiceFeeService(_context, _mapper, _basicInfoFacad);
+                return _saveServiceFeeService = _saveServiceFeeService ?? new SaveServiceFeeService(_context, _mapper);
             }
         }
 
@@ -399,7 +496,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getContractService = _getContractService ?? new GetContractService(_context, _mapper, _basicInfoFacad);
+                return _getContractService = _getContractService ?? new GetContractService(_context, _mapper);
             }
         }
 
@@ -409,7 +506,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getContractsService = _getContractsService ?? new GetContractsService(_context, _mapper, _basicInfoFacad);
+                return _getContractsService = _getContractsService ?? new GetContractsService(_context, _mapper);
             }
         }
 
@@ -418,7 +515,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveContractService = _saveContractService ?? new SaveContractService(_context, _mapper, _basicInfoFacad);
+                return _saveContractService = _saveContractService ?? new SaveContractService(_context, _mapper);
             }
         }
 
@@ -427,7 +524,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getCompaniesService = _getCompaniesService ?? new GetCompaniesService(_context, _mapper, _basicInfoFacad);
+                return _getCompaniesService = _getCompaniesService ?? new GetCompaniesService(_context, _mapper);
             }
         }
 
@@ -436,7 +533,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getCompaniessService = _getCompaniessService ?? new GetCompaniessService(_context, _mapper, _basicInfoFacad);
+                return _getCompaniessService = _getCompaniessService ?? new GetCompaniessService(_context, _mapper);
             }
         }
 
@@ -445,7 +542,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveCompaniesService = _saveCompaniesService ?? new SaveCompaniesService(_context, _mapper, _basicInfoFacad);
+                return _saveCompaniesService = _saveCompaniesService ?? new SaveCompaniesService(_context, _mapper);
             }
         }
 
@@ -454,7 +551,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _initReferralService = _initReferralService ?? new InitReferralService(_context, _mapper, _basicInfoFacad, _baseUserFacad);
+                return _initReferralService = _initReferralService ?? new InitReferralService(_context, _mapper);
             }
         }
 
@@ -463,7 +560,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getRequestReferencessService = _getRequestReferencessService ?? new GetRequestReferencessService(_context, _mapper, _basicInfoFacad);
+                return _getRequestReferencessService = _getRequestReferencessService ?? new GetRequestReferencessService(_context, _mapper);
             }
         }
 
@@ -472,7 +569,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getDataFormQuestionssService = _getDataFormQuestionssService ?? new GetDataFormQuestionssService(_context, _mapper, _basicInfoFacad);
+                return _getDataFormQuestionssService = _getDataFormQuestionssService ?? new GetDataFormQuestionssService(_context, _mapper);
             }
         }
 
@@ -481,7 +578,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getDataFormAnswerTablesService = _getDataFormAnswerTablesService ?? new GetDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad);
+                return _getDataFormAnswerTablesService = _getDataFormAnswerTablesService ?? new GetDataFormAnswerTablesService(_context, _mapper);
             }
         }
         private IGetDataFormAnswerTablessService _getDataFormAnswerTablessService;
@@ -489,7 +586,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getDataFormAnswerTablessService = _getDataFormAnswerTablessService ?? new GetDataFormAnswerTablessService(_context, _mapper, _basicInfoFacad);
+                return _getDataFormAnswerTablessService = _getDataFormAnswerTablessService ?? new GetDataFormAnswerTablessService(_context, _mapper);
             }
         }
 
@@ -498,7 +595,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper, _basicInfoFacad);
+                return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper);
             }
         }
 
@@ -507,7 +604,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getServiceFeeAndCustomerByRequestService = _getServiceFeeAndCustomerByRequestService ?? new GetServiceFeeAndCustomerByRequestService(_context, _mapper, _basicInfoFacad);
+                return _getServiceFeeAndCustomerByRequestService = _getServiceFeeAndCustomerByRequestService ?? new GetServiceFeeAndCustomerByRequestService(_context, _mapper);
             }
         }
 
@@ -516,7 +613,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getCustomerssService = _getCustomerssService ?? new GetCustomerssService(_context, _mapper, _basicInfoFacad);
+                return _getCustomerssService = _getCustomerssService ?? new GetCustomerssService(_context, _mapper);
             }
         }
 
@@ -525,7 +622,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _env);
             }
         }
 
@@ -534,7 +631,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteCustomersService = _deleteCustomersService ?? new DeleteCustomersService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteCustomersService = _deleteCustomersService ?? new DeleteCustomersService(_context, _mapper, _env);
             }
         }
 
@@ -544,7 +641,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteRequestForRatingService = _deleteRequestForRatingService ?? new DeleteRequestForRatingService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteRequestForRatingService = _deleteRequestForRatingService ?? new DeleteRequestForRatingService(_context, _mapper, _env);
             }
         }
 
@@ -554,7 +651,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteCompaniesService = _deleteCompaniesService ?? new DeleteCompaniesService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteCompaniesService = _deleteCompaniesService ?? new DeleteCompaniesService(_context, _mapper, _env);
             }
         }
 
@@ -563,7 +660,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteServiceFeeService = _deleteServiceFeeService ?? new DeleteServiceFeeService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteServiceFeeService = _deleteServiceFeeService ?? new DeleteServiceFeeService(_context, _mapper, _env);
             }
         }
 
@@ -572,7 +669,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteContractService = _deleteContractService ?? new DeleteContractService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteContractService = _deleteContractService ?? new DeleteContractService(_context, _mapper, _env);
             }
         }
         private IDeleteContractAndFinancialDocumentsService _deleteContractAndFinancialDocumentsService;
@@ -580,7 +677,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteContractAndFinancialDocumentsService = _deleteContractAndFinancialDocumentsService ?? new DeleteContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteContractAndFinancialDocumentsService = _deleteContractAndFinancialDocumentsService ?? new DeleteContractAndFinancialDocumentsService(_context, _mapper, _env);
             }
         }
         private IDeleteUsersService _deleteUsersService;
@@ -588,7 +685,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteUsersService = _deleteUsersService ?? new DeleteUsersService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteUsersService = _deleteUsersService ?? new DeleteUsersService(_context, _mapper, _env);
             }
         }
 
@@ -597,7 +694,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _updatePassUsersService = _updatePassUsersService ?? new UpdatePassUsersService(_context, _mapper, _basicInfoFacad);
+                return _updatePassUsersService = _updatePassUsersService ?? new UpdatePassUsersService(_context, _mapper);
             }
         }
 
@@ -606,7 +703,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveDataFormAnswerTablesService = _saveDataFormAnswerTablesService ?? new SaveDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveDataFormAnswerTablesService = _saveDataFormAnswerTablesService ?? new SaveDataFormAnswerTablesService(_context, _mapper, _env);
             }
         }
 
@@ -615,7 +712,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveDataFromAnswersService = _saveDataFromAnswersService ?? new SaveDataFromAnswersService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveDataFromAnswersService = _saveDataFromAnswersService ?? new SaveDataFromAnswersService(_context, _mapper, _env);
             }
         }
 
@@ -624,7 +721,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _deleteDataFormAnswerTablesService = _deleteDataFormAnswerTablesService ?? new DeleteDataFormAnswerTablesService(_context, _mapper, _basicInfoFacad, _env);
+                return _deleteDataFormAnswerTablesService = _deleteDataFormAnswerTablesService ?? new DeleteDataFormAnswerTablesService(_context, _mapper, _env);
             }
         }
 
@@ -633,7 +730,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveContractAndFinancialDocumentsService = _saveContractAndFinancialDocumentsService ?? new SaveContractAndFinancialDocumentsService(_context, _mapper, _env);
             }
         }
 
@@ -642,7 +739,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveFurtherInfoService = _saveFurtherInfoService ?? new SaveFurtherInfoService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveFurtherInfoService = _saveFurtherInfoService ?? new SaveFurtherInfoService(_context, _mapper, _env);
             }
         }
 
@@ -652,7 +749,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveCorporateGovernanceService = _saveCorporateGovernanceService ?? new SaveCorporateGovernanceService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveCorporateGovernanceService = _saveCorporateGovernanceService ?? new SaveCorporateGovernanceService(_context, _mapper, _env);
             }
         }
 
@@ -661,7 +758,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveValueChainService = _saveValueChainService ?? new SaveValueChainService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveValueChainService = _saveValueChainService ?? new SaveValueChainService(_context, _mapper, _env);
             }
         }
 
@@ -670,7 +767,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getValueChainService = _getValueChainService ?? new GetValueChainService(_context, _mapper, _basicInfoFacad);
+                return _getValueChainService = _getValueChainService ?? new GetValueChainService(_context, _mapper);
             }
         }
 
@@ -679,7 +776,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getLevelStepSettingsService = _getLevelStepSettingsService ?? new GetLevelStepSettingsService(_context, _mapper, _basicInfoFacad);
+                return _getLevelStepSettingsService = _getLevelStepSettingsService ?? new GetLevelStepSettingsService(_context, _mapper);
             }
         }
 
@@ -688,7 +785,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getContractPagessService = _getContractPagessService ?? new GetContractPagessService(_context, _mapper, _basicInfoFacad);
+                return _getContractPagessService = _getContractPagessService ?? new GetContractPagessService(_context, _mapper);
             }
         }
 
@@ -698,7 +795,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _getContractPagesService = _getContractPagesService ?? new GetContractPagesService(_context, _mapper, _basicInfoFacad);
+                return _getContractPagesService = _getContractPagesService ?? new GetContractPagesService(_context, _mapper);
             }
         }
 
@@ -707,7 +804,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _savePublicActivitiesService = _savePublicActivitiesService ?? new SavePublicActivitiesService(_context, _mapper, _basicInfoFacad);
+                return _savePublicActivitiesService = _savePublicActivitiesService ?? new SavePublicActivitiesService(_context, _mapper, _env);
             }
         }
 
@@ -716,40 +813,318 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveCustomers_RegisterLandingService = _saveCustomers_RegisterLandingService ?? new SaveCustomers_RegisterLandingService(_context, _mapper, _basicInfoFacad, _env);
+                return _saveCustomers_RegisterLandingService = _saveCustomers_RegisterLandingService ?? new SaveCustomers_RegisterLandingService(_context, _mapper, _env);
             }
         }
 
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public interface IBaseUserFacad
-    {
-        IGetRequestForRatingsService GetRequestForRatingsService { get; }
-    }
-
-    public class BaseUserFacad : IBaseUserFacad
-    {
-        private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        private readonly IWebHostEnvironment _env;
-
-        public BaseUserFacad(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
-        {
-            _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
-            _env = env;
-        }
-        private IGetRequestForRatingsService _getRequestForRatingsService;
-        public IGetRequestForRatingsService GetRequestForRatingsService
+        private IFillUserRoleAdminRolesService _fillUserRoleAdminRolesService;
+        public IFillUserRoleAdminRolesService FillUserRoleAdminRolesService
         {
             get
             {
-                return _getRequestForRatingsService = _getRequestForRatingsService ?? new GetRequestForRatingsService(_context, _mapper, _basicInfoFacad);
+                return _fillUserRoleAdminRolesService = _fillUserRoleAdminRolesService ?? new FillUserRoleAdminRolesService();
             }
         }
+
+        private IGetStatesService _getStatesService;
+        public IGetStatesService GetStatesService
+        {
+            get
+            {
+                return _getStatesService = _getStatesService ?? new GetStatesService(_context, _mapper);
+            }
+        }
+
+        private IGetStateService _getStateService;
+        public IGetStateService GetStateService
+        {
+            get
+            {
+                return _getStateService = _getStateService ?? new GetStateService(_context, _mapper);
+            }
+        }
+
+        private ISaveStateService _saveStateService;
+        public ISaveStateService SaveStateService
+        {
+            get
+            {
+                return _saveStateService = _saveStateService ?? new SaveStateService(_context, _mapper);
+            }
+        }
+
+        private IGetCitysService _getCitysService;
+        public IGetCitysService GetCitysService
+        {
+            get
+            {
+                return _getCitysService = _getCitysService ?? new GetCitysService(_context, _mapper);
+            }
+        }
+
+        private IGetCityService _getCityService;
+        public IGetCityService GetCityService
+        {
+            get
+            {
+                return _getCityService = _getCityService ?? new GetCityService(_context, _mapper);
+            }
+        }
+
+        private ISaveCityService _saveCityService;
+        public ISaveCityService SaveCityService
+        {
+            get
+            {
+                return _saveCityService = _saveCityService ?? new SaveCityService(_context, _mapper);
+            }
+        }
+
+        private IGetSystemSetingsService _getSystemSetingsService;
+        public IGetSystemSetingsService GetSystemSetingsService
+        {
+            get
+            {
+                return _getSystemSetingsService = _getSystemSetingsService ?? new GetSystemSetingsService(_context, _mapper);
+            }
+        }
+
+        private IGetSystemSetingService _getSystemSetingService;
+        public IGetSystemSetingService GetSystemSetingService
+        {
+            get
+            {
+                return _getSystemSetingService = _getSystemSetingService ?? new GetSystemSetingService(_context, _mapper);
+            }
+        }
+
+        private ISaveSystemSetingService _saveSystemSetingService;
+        public ISaveSystemSetingService SaveSystemSetingService
+        {
+            get
+            {
+                return _saveSystemSetingService = _saveSystemSetingService ?? new SaveSystemSetingService(_context, _mapper);
+            }
+        }
+
+        private IGetActivitysService _getActivitysService;
+        public IGetActivitysService GetActivitysService
+        {
+            get
+            {
+                return _getActivitysService = _getActivitysService ?? new GetActivitysService(_context, _mapper);
+            }
+        }
+
+        private IGetActivityService _getActivityService;
+        public IGetActivityService GetActivityService
+        {
+            get
+            {
+                return _getActivityService = _getActivityService ?? new GetActivityService(_context, _mapper);
+            }
+        }
+
+        private ISaveActivityService _saveActivityService;
+        public ISaveActivityService SaveActivityService
+        {
+            get
+            {
+                return _saveActivityService = _saveActivityService ?? new SaveActivityService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetAboutUsService _getAboutUsService;
+        public IGetAboutUsService GetAboutUsService
+        {
+            get
+            {
+                return _getAboutUsService = _getAboutUsService ?? new GetAboutUsService(_context, _mapper);
+            }
+        }
+
+        private ISaveAboutUsService _saveAboutUsService;
+        public ISaveAboutUsService SaveAboutUsService
+        {
+            get
+            {
+                return _saveAboutUsService = _saveAboutUsService ?? new SaveAboutUsService(_context, _mapper);
+            }
+        }
+
+        private IGetLicensesAndHonorsService _getLicensesAndHonorsService;
+        public IGetLicensesAndHonorsService GetLicensesAndHonorsService
+        {
+            get
+            {
+                return _getLicensesAndHonorsService = _getLicensesAndHonorsService ?? new GetLicensesAndHonorsService(_context, _mapper);
+            }
+        }
+
+        private IGetLicensesAndHonorssService _getLicensesAndHonorssService;
+        public IGetLicensesAndHonorssService GetLicensesAndHonorssService
+        {
+            get
+            {
+                return _getLicensesAndHonorssService = _getLicensesAndHonorssService ?? new GetLicensesAndHonorssService(_context, _mapper);
+            }
+        }
+
+        private ISaveLicensesAndHonorsService _saveLicensesAndHonorsService;
+        public ISaveLicensesAndHonorsService SaveLicensesAndHonorsService
+        {
+            get
+            {
+                return _saveLicensesAndHonorsService = _saveLicensesAndHonorsService ?? new SaveLicensesAndHonorsService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetManagerOfParsKyanService _getManagerOfParsKyanService;
+        public IGetManagerOfParsKyanService GetManagerOfParsKyanService
+        {
+            get
+            {
+                return _getManagerOfParsKyanService = _getManagerOfParsKyanService ?? new GetManagerOfParsKyanService(_context, _mapper);
+            }
+        }
+
+        private IGetManagerOfParsKyansService _getManagerOfParsKyansService;
+        public IGetManagerOfParsKyansService GetManagerOfParsKyansService
+        {
+            get
+            {
+                return _getManagerOfParsKyansService = _getManagerOfParsKyansService ?? new GetManagerOfParsKyansService(_context, _mapper);
+            }
+        }
+
+        private ISaveManagerOfParsKyanService _saveManagerOfParsKyanService;
+        public ISaveManagerOfParsKyanService SaveManagerOfParsKyanService
+        {
+            get
+            {
+                return _saveManagerOfParsKyanService = _saveManagerOfParsKyanService ?? new SaveManagerOfParsKyanService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetRankingOfCompaniessService _getRankingOfCompaniessService;
+        public IGetRankingOfCompaniessService GetRankingOfCompaniessService
+        {
+            get
+            {
+                return _getRankingOfCompaniessService = _getRankingOfCompaniessService ?? new GetRankingOfCompaniessService(_context, _mapper);
+            }
+        }
+
+        private IGetRankingOfCompaniesService _getRankingOfCompaniesService;
+        public IGetRankingOfCompaniesService GetRankingOfCompaniesService
+        {
+            get
+            {
+                return _getRankingOfCompaniesService = _getRankingOfCompaniesService ?? new GetRankingOfCompaniesService(_context, _mapper);
+            }
+        }
+
+        private ISaveRankingOfCompaniesService _saveRankingOfCompaniesService;
+        public ISaveRankingOfCompaniesService SaveRankingOfCompaniesService
+        {
+            get
+            {
+                return _saveRankingOfCompaniesService = _saveRankingOfCompaniesService ?? new SaveRankingOfCompaniesService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetNewsAndContentsService _getNewsAndContentsService;
+        public IGetNewsAndContentsService GetNewsAndContentsService
+        {
+            get
+            {
+                return _getNewsAndContentsService = _getNewsAndContentsService ?? new GetNewsAndContentsService(_context, _mapper);
+            }
+        }
+
+        private IGetNewsAndContentService _getNewsAndContentService;
+        public IGetNewsAndContentService GetNewsAndContentService
+        {
+            get
+            {
+                return _getNewsAndContentService = _getNewsAndContentService ?? new GetNewsAndContentService(_context, _mapper);
+            }
+        }
+
+        private ISaveNewsAndContentService _saveNewsAndContentService;
+        public ISaveNewsAndContentService SaveNewsAndContentService
+        {
+            get
+            {
+                return _saveNewsAndContentService = _saveNewsAndContentService ?? new SaveNewsAndContentService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteNewsAndContentService _deleteNewsAndContentService;
+        public IDeleteNewsAndContentService DeleteNewsAndContentService
+        {
+            get
+            {
+                return _deleteNewsAndContentService = _deleteNewsAndContentService ?? new DeleteNewsAndContentService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteRankingOfCompaniesService _deleteRankingOfCompaniesService;
+        public IDeleteRankingOfCompaniesService DeleteRankingOfCompaniesService
+        {
+            get
+            {
+                return _deleteRankingOfCompaniesService = _deleteRankingOfCompaniesService ?? new DeleteRankingOfCompaniesService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteActivityService _deleteActivityService;
+        public IDeleteActivityService DeleteActivityService
+        {
+            get
+            {
+                return _deleteActivityService = _deleteActivityService ?? new DeleteActivityService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteLicensesAndHonorsService _deleteLicensesAndHonorsService;
+        public IDeleteLicensesAndHonorsService DeleteLicensesAndHonorsService
+        {
+            get
+            {
+                return _deleteLicensesAndHonorsService = _deleteLicensesAndHonorsService ?? new DeleteLicensesAndHonorsService(_context, _mapper, _env);
+            }
+        }
+
+        private IDeleteManagerOfParsKyanService _deleteManagerOfParsKyanService;
+        public IDeleteManagerOfParsKyanService DeleteManagerOfParsKyanService
+        {
+            get
+            {
+                return _deleteManagerOfParsKyanService = _deleteManagerOfParsKyanService ?? new DeleteManagerOfParsKyanService(_context, _mapper, _env);
+            }
+        }
+
+        private IInsertLoginLogService _insertLoginLogService;
+        public IInsertLoginLogService InsertLoginLogService
+        {
+            get
+            {
+                return _insertLoginLogService = _insertLoginLogService ?? new InsertLoginLogService();
+            }
+        }
+
+        private IGetLoginLogsService _getLoginLogsService;
+        public IGetLoginLogsService GetLoginLogsService
+        {
+            get
+            {
+                return _getLoginLogsService = _getLoginLogsService ?? new GetLoginLogsService(_context, _mapper);
+            }
+        }
+
     }
+
+    
 
 }

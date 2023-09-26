@@ -18,13 +18,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
     public class GetContractAndFinancialDocumentsService : IGetContractAndFinancialDocumentsService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public GetContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        private readonly IMapper _mapper;        
+        public GetContractAndFinancialDocumentsService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
         }        
 
         public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Execute(RequestContractAndFinancialDocumentsDto request)

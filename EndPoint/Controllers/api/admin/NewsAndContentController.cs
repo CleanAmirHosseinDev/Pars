@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -17,11 +17,11 @@ namespace EndPoint.Controllers.api.admin
     public class NewsAndContentController : BaseController
     {
         private readonly ILogger<NewsAndContentController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public NewsAndContentController(ILogger<NewsAndContentController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public NewsAndContentController(ILogger<NewsAndContentController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -31,7 +31,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _basicInfoFacad.GetNewsAndContentsService.Execute(request);
+                return await _userFacad.GetNewsAndContentsService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetNewsAndContentService.Execute(new RequestNewsAndContentDto() { ContentId = id, IsActive = (byte)TablesGeneralIsActive.Active });
+                return await _userFacad.GetNewsAndContentService.Execute(new RequestNewsAndContentDto() { ContentId = id, IsActive = (byte)TablesGeneralIsActive.Active });
             }
             catch (Exception)
             {
@@ -62,7 +62,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.UserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);                
-                return await _basicInfoFacad.SaveNewsAndContentService.Execute(request);
+                return await _userFacad.SaveNewsAndContentService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return _basicInfoFacad.DeleteNewsAndContentService.Execute(id);
+                return _userFacad.DeleteNewsAndContentService.Execute(id);
             }
             catch (Exception)
             {

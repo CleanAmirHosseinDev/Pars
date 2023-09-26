@@ -24,15 +24,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
     public class SaveBasicInformationCustomersService : ISaveBasicInformationCustomersService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IMapper _mapper;        
         private readonly IWebHostEnvironment _env;
 
-        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IWebHostEnvironment env)
+        public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
             _env = env;
         }
 

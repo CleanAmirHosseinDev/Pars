@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -16,11 +16,11 @@ namespace EndPoint.Controllers.api.admin
     public class LoginLogController : BaseController
     {
         private readonly ILogger<LoginLogController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public LoginLogController(ILogger<LoginLogController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public LoginLogController(ILogger<LoginLogController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }
 
         [Route("[action]")]
@@ -29,7 +29,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetLoginLogsService.Execute(request);
+                return await _userFacad.GetLoginLogsService.Execute(request);
             }
             catch (Exception ex)
             {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode;
 using ParsKyanCrm.Application.Services.Securitys.Queries.Logins;
@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static ParsKyanCrm.Application.Services.WebService.CaptchaService;
+using static ParsKyanCrm.Infrastructure.CaptchaService;
 
 namespace EndPoint.Controllers.api
 {
@@ -22,11 +22,11 @@ namespace EndPoint.Controllers.api
     {
         private readonly ILogger<SecuritysController> _logger;
         private readonly ISecurityFacad _securityFacad;
-        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IUserFacad _userFacad;
 
-        public SecuritysController(ILogger<SecuritysController> logger, ISecurityFacad securityFacad, IBasicInfoFacad basicInfoFacad)
+        public SecuritysController(ILogger<SecuritysController> logger, ISecurityFacad securityFacad, IUserFacad userFacad)
         {
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
             _logger = logger;
             _securityFacad = securityFacad;
         }
@@ -109,7 +109,7 @@ namespace EndPoint.Controllers.api
         {
             try
             {
-                _basicInfoFacad.InsertLoginLogService.Execute(request, false);
+                _userFacad.InsertLoginLogService.Execute(request, false);
                 return new ResultDto { IsSuccess = true };
             }
             catch (Exception ex)

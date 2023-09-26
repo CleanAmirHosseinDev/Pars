@@ -19,12 +19,10 @@ namespace EndPoint.Controllers.api.admin
     public class UsersController : BaseController
     {
         private readonly ILogger<UsersController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IUserFacad _userFacad;
-        public UsersController(ILogger<UsersController> logger, IBasicInfoFacad basicInfoFacad, IUserFacad userFacad)
+        public UsersController(ILogger<UsersController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
             _userFacad = userFacad;
         }
 

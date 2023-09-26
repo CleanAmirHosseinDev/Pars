@@ -22,19 +22,19 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
         private readonly IWebHostEnvironment _env;
-        public SavePublicActivitiesService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad)
+        public SavePublicActivitiesService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
-            
+            _env = env;
+
+
         }
 
         public async Task<ResultDto<PublicActivitiesDto>> Execute(PublicActivitiesDto request)
         {
-            
+
             try
             {
 
@@ -44,7 +44,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
 
                 #endregion
 
-                if (request.IsPublicActivityFileStr!=null)
+                if (request.IsPublicActivityFileStr != null)
                 {
                     if (request.IsPublicActivityFileStr == "on")
                     {
@@ -59,7 +59,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
                 EntityEntry<PublicActivities> q_Entity;
                 if (request.PublicActivitiesID == 0)
                 {
-                   // request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+                    // request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     q_Entity = _context.PublicActivities.Add(_mapper.Map<PublicActivities>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<PublicActivitiesDto>(q_Entity.Entity);
@@ -85,7 +85,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
                             nameof(q_Entity.Entity.IsPublicActivityFile),request.IsPublicActivityFile
                         }
                     }, string.Format(nameof(q_Entity.Entity.PublicActivitiesID) + " = {0} ", request.PublicActivitiesID));
-                    
+
                 }
 
                 return new ResultDto<PublicActivitiesDto>()
@@ -99,7 +99,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
             }
             catch (Exception ex)
             {
-                
+
                 throw ex;
             }
         }

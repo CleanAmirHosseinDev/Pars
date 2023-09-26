@@ -23,15 +23,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;
-        private readonly IBasicInfoFacad _basicInfoFacad;
+        private readonly IMapper _mapper;        
         private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
 
-        public SaveRequestForRatingService(IDataBaseContext context, IMapper mapper, IBasicInfoFacad basicInfoFacad, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
+        public SaveRequestForRatingService(IDataBaseContext context, IMapper mapper, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
         {
             _context = context;
-            _mapper = mapper;
-            _basicInfoFacad = basicInfoFacad;
+            _mapper = mapper;            
             _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
 

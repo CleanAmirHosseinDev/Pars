@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ParsKyanCrm.Application.Dtos.BasicInfo;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -17,11 +17,11 @@ namespace EndPoint.Controllers.api.admin
     public class AboutUsController : BaseController
     {
         private readonly ILogger<AboutUsController> _logger;
-        private readonly IBasicInfoFacad _basicInfoFacad;
-        public AboutUsController(ILogger<AboutUsController> logger, IBasicInfoFacad basicInfoFacad)
+        private readonly IUserFacad _userFacad;
+        public AboutUsController(ILogger<AboutUsController> logger, IUserFacad userFacad)
         {
             _logger = logger;
-            _basicInfoFacad = basicInfoFacad;
+            _userFacad = userFacad;
         }        
 
         [Route("[action]")]
@@ -30,7 +30,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                return await _basicInfoFacad.GetAboutUsService.Execute();
+                return await _userFacad.GetAboutUsService.Execute();
             }
             catch (Exception)
             {
@@ -45,7 +45,7 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 request.Userid = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
-                return await _basicInfoFacad.SaveAboutUsService.Execute(request);
+                return await _userFacad.SaveAboutUsService.Execute(request);
             }
             catch (Exception ex)
             {

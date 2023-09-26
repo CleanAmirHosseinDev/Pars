@@ -197,7 +197,7 @@
                 <div class="slider_pages">
 
                     @if(ViewData["ranks"] != null) {
-                        @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.RankingOfCompaniesDto>)ViewData["ranks"]) {
+                        @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.RankingOfCompaniesDto>)ViewData["ranks"]) {
 
                             <div class="top_rateing_card slider_page">
                                 <div style="z-index:5;">
@@ -256,7 +256,7 @@
             </div>
             <div class="left_div">
                 @if(ViewData["news"] != null) {
-                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.BasicInfo.NewsAndContentDto>)ViewData["news"]) {
+                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["news"]) {
 
                         <figure class="snip1249">
                             <div class="image">

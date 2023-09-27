@@ -1,11 +1,12 @@
 ﻿
 
 using ParsKyanCrm.Application.Dtos.Users;
+using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog
 {
     public interface IInsertLoginLogService
     {
-        void Execute(LoginLogDto request, bool isLogin = true);
+        Task Execute(LoginLogDto request, bool isLogin = true);
     }
 }

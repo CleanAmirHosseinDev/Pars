@@ -53,7 +53,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
             }
         }
 
-        private void InsertLoginLogService(LoginLogDto request, bool isLogin = true)
+        private async Task InsertLoginLogService(LoginLogDto request, bool isLogin = true)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     DataRow _ravi = dt.NewRow();
 
                     _ravi["Userid"] = request.Userid;
-                    _ravi["Ip"] = Ipconfig.GetUserHostAddress();
+                    _ravi["Ip"] = await Ipconfig.GetUserHostAddress();
 
                     if (isLogin)
                     {
@@ -93,7 +93,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
             }
         }
 
-        private void AuthenticationJwtService(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users user)
+        private async Task AuthenticationJwtService(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users user)
         {
             try
             {
@@ -150,11 +150,11 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
 
                 res_ResultLoginDto.RoleDesc = qCheckUserRole.Role.RoleDesc;
 
-                //InsertLoginLogService(new Dtos.Users.LoginLogDto()
-                //{
-                //    AreaName = res_ResultLoginDto.RoleDesc,
-                //    Userid = !string.IsNullOrEmpty(res_ResultLoginDto.CustomerID) ? int.Parse(res_ResultLoginDto.CustomerID) : res_ResultLoginDto.UserID
-                //});
+                await InsertLoginLogService(new Dtos.Users.LoginLogDto()
+                {
+                    AreaName = res_ResultLoginDto.RoleDesc,
+                    Userid = !string.IsNullOrEmpty(res_ResultLoginDto.CustomerID) ? int.Parse(res_ResultLoginDto.CustomerID) : res_ResultLoginDto.UserID
+                });
 
             }
             catch (Exception ex)
@@ -189,7 +189,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     if (VaribleForName.IsDebug == true)
                     {
 
-                        if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        if (request.Code == "1234") await AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
                         else
                         {
                             return new ResultDto<ResultLoginDto>
@@ -204,7 +204,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     else
                     {
 
-                        if (qCus != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        if (qCus != null) await AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
                         else
                         {
 
@@ -250,7 +250,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     if (VaribleForName.IsDebug == true)
                     {
 
-                        if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, qUser);
+                        if (request.Code == "1234") await AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, qUser);
                         else
                         {
                             return new ResultDto<ResultLoginDto>
@@ -265,7 +265,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     else
                     {
 
-                        if (qUser != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, qUser);
+                        if (qUser != null) await AuthenticationJwtService (LoginName, res_ResultLoginDto, QUserRoles, qUser);
                         else
                         {
 

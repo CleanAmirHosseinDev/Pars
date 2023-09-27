@@ -14,7 +14,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog
 
     public class InsertLoginLogService : IInsertLoginLogService
     {
-        public void Execute(LoginLogDto request, bool isLogin = true)
+        public async Task Execute(LoginLogDto request, bool isLogin = true)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog
                     DataRow _ravi = dt.NewRow();
 
                     _ravi["Userid"] = request.Userid;
-                    _ravi["Ip"] = Ipconfig.GetUserHostAddress();
+                    _ravi["Ip"] = await Ipconfig.GetUserHostAddress();
 
                     if (isLogin)
                     {

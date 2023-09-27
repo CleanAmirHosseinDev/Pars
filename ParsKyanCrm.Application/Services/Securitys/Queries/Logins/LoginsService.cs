@@ -56,7 +56,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
             }
         }
 
-        private async void InsertLoginLogService(LoginLogDto request, bool isLogin = true)
+        private async Task InsertLoginLogService(LoginLogDto request, bool isLogin = true)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         }
 
 
-        private void AuthenticationJwtService(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users user)
+        private async Task AuthenticationJwtService(string LoginName, ResultLoginDto res_ResultLoginDto, UserRolesDto qCheckUserRole, Domain.Entities.Users user)
         {
             try
             {
@@ -156,7 +156,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                 res_ResultLoginDto.RoleDesc = qCheckUserRole.Role.RoleDesc;
 
-                InsertLoginLogService(new Dtos.Users.LoginLogDto()
+                await InsertLoginLogService(new Dtos.Users.LoginLogDto()
                 {
                     AreaName = res_ResultLoginDto.RoleDesc,
                     Userid = !string.IsNullOrEmpty(res_ResultLoginDto.CustomerID) ? int.Parse(res_ResultLoginDto.CustomerID) : res_ResultLoginDto.UserID

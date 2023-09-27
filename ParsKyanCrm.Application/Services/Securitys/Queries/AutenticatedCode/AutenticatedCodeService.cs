@@ -124,9 +124,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 {
                     case "Admin":
 
-                        obj_fillUserRoleCustomerRoles =
-                            user.UserName != "admin" ?
-                             FillUserRoleAdminRolesService(qCheckUserRole.Roles).Where(p => p.Selected).ToList() :
+                        obj_fillUserRoleCustomerRoles = user.UserName != "admin" ?FillUserRoleAdminRolesService(qCheckUserRole.Roles).Where(p => p.Selected).ToList() :
                              FillUserRoleAdminRolesService();
 
                         tokenDescriptor.Subject.AddClaim(new Claim("Menus", JsonConvert.SerializeObject(obj_fillUserRoleCustomerRoles)));
@@ -245,13 +243,14 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                    
                     res_ResultLoginDto.FullName =qUser!=null? qUser.RealName:"";
                     res_ResultLoginDto.UserID = UserId;
+
                     var QUserRoles = _mapper.Map<UserRolesDto>(await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == qUser.UserId));
                     
                     string LoginName = QUserRoles.RoleId==2?"Admin": "Supervisor";
                     if (VaribleForName.IsDebug == true)
                     {
 
-                        if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, qUser);
                         else
                         {
                             return new ResultDto<ResultLoginDto>
@@ -266,7 +265,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     else
                     {
 
-                        if (qUser != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        if (qUser != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, qUser);
                         else
                         {
 

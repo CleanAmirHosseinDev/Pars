@@ -150,11 +150,11 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
 
                 res_ResultLoginDto.RoleDesc = qCheckUserRole.Role.RoleDesc;
 
-                InsertLoginLogService(new Dtos.Users.LoginLogDto()
-                {
-                    AreaName = res_ResultLoginDto.RoleDesc,
-                    Userid = !string.IsNullOrEmpty(res_ResultLoginDto.CustomerID) ? int.Parse(res_ResultLoginDto.CustomerID) : res_ResultLoginDto.UserID
-                });
+                //InsertLoginLogService(new Dtos.Users.LoginLogDto()
+                //{
+                //    AreaName = res_ResultLoginDto.RoleDesc,
+                //    Userid = !string.IsNullOrEmpty(res_ResultLoginDto.CustomerID) ? int.Parse(res_ResultLoginDto.CustomerID) : res_ResultLoginDto.UserID
+                //});
 
             }
             catch (Exception ex)

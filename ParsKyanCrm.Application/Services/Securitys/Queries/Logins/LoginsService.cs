@@ -240,7 +240,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             }
                         }, nameof(user.UserId) + " = " + "'" + user.UserId + "'");
 
-                            await WebService.SMSService.Execute(request.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
+                            await WebService.SMSService.Execute(user.Mobile, string.Format("کاربر گرامی کد احراز شما :{0} می باشد . با تشکر سامانه پارس کیان", r));
                             LoginName = qCheckUserRole.Role.RoleTitle!="Admin" ? "SuperVisor":"Admin";
 
                             #endregion

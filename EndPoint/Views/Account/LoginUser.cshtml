@@ -52,13 +52,74 @@
             </div>
             <button onclick="Web.AccountController.LoginA(this);" type="button" class="submit-btn">ورود</button>
         </div>
+        <div class="login slide-up">
+            <div class="center">
+                <input type="hidden" id="Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh" />
+                <input type="hidden" id="Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf" />              
+                <h2 class="form-title" id="login"><span></span>ثبت کد احراز</h2>
+
+                <br />
+                <div id="step2">
+                    <p>کد احراز ارسال شده را وارد کنید.</p>
+                    <div class="form-holder">
+                        <input type="text" class="input" placeholder="کد احراز" id="Code" />
+                    </div>
+                    <button class="submit-btn" onclick="Web.AccountController.AutenticatedCodeAS(this);">ورود به ناحیه کاربری</button>
+                    <button class="submit-btn" style="background-color: #091432;" onclick="$('#Code').val(''); showTab1(); Web.AccountController.PrevLoginC();">بازگشت به مرحله‌ی قبل</button>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <style>.form-structor::after { background-image: none !important; }</style>
+
+    <style>
+        .form-structor::after {
+            background-image: none !important;
+        }
+    </style>
+    <script>
+
+        const loginBtn = document.getElementById('login');
+        const signupBtn = document.getElementById('signup');
+
+        function showTab2() {
+            let e = document.getElementById('login');
+            let parent = e.parentNode.parentNode;
+            Array.from(e.parentNode.parentNode.classList).find((element) => {
+                if (element !== "slide-up") {
+                    //parent.classList.add('slide-up')
+                } else {
+                    signupBtn.parentNode.classList.add('slide-up')
+                    parent.classList.remove('slide-up')
+                }
+            });
+        }
+        function showTab1() {
+            let e = document.getElementById('signup');
+            let parent = e.parentNode;
+            Array.from(e.parentNode.classList).find((element) => {
+                if (element !== "slide-up") {
+                    //parent.classList.add('slide-up')
+                } else {
+                    loginBtn.parentNode.parentNode.classList.add('slide-up')
+                    parent.classList.remove('slide-up')
+                }
+            });
+        }
+        loginBtn.addEventListener('click', (e) => {
+            //    showTab2();
+        });
+
+        signupBtn.addEventListener('click', (e) => {
+            //   showTab1();
+        });
+
+    </script>
     <script src="~/js/iu.min.js" asp-append-version="true"></script>
     <script src="~/lib/Loader/Loader.js" asp-append-version="true"></script>
     <script src="~/js/Views/ac.min.js" asp-append-version="true"></script>
     <script>
-        window.onkeyup = function(event) {
+        window.onkeyup = function (event) {
             let key = event.key.toUpperCase();
             if (key == "ENTER") {
                 Web.AccountController.LoginA(this);

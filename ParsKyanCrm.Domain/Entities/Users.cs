@@ -29,6 +29,8 @@ namespace ParsKyanCrm.Domain.Entities
         public string Ip { get; set; }
         public byte IsActive { get; set; }
 
+        public string AuthenticateCode { get; set; }
+
         public virtual Customers Customer { get; set; }
         public virtual ICollection<AboutUs> AboutUs { get; set; }
         public virtual ICollection<LicensesAndHonors> LicensesAndHonors { get; set; }

@@ -18,19 +18,13 @@
                 $(e).removeAttr("disabled");
 
                 if (res.isSuccess) {
-
-
-                    setlstor("token", res.data.token);
                     
-                    //setlstor("menu", JSON.stringify(res.data.menus));
-                    localStorage.setItem("menu", JSON.stringify(res.data.menus));
+                    showTab2();
 
-                    setlstor("fullName", res.data.fullName);
-                    setlstor("userID", res.data.userID);
-                    setlstor("loginName", res.data.loginName);
-                    setlstor("roleDesc", res.data.roleDesc);
+                    $("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(encrypt(res.data.userIDStr, keyMaker()));
 
-                    goToUrl(res.message);
+                    $("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(encrypt(res.data.fullName, keyMaker()));
+                 
 
                 }
                 else {
@@ -101,7 +95,7 @@
                         $("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(encrypt(res.data.customerID, keyMaker()));
 
                         $("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(encrypt(res.data.fullName, keyMaker()));
-
+                       
                     }
 
 
@@ -172,7 +166,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallActionWithotHeading("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
+            AjaxCallActionWithotHeading("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), IsCustomer:1, Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 
@@ -188,6 +182,51 @@
 
                     goToUrl(res.message);
 
+
+                }
+                else {
+
+                    alertB("خطا", res.message, "error");
+
+                }
+
+            }, true);
+
+        } catch (e) {
+
+        }
+
+    }
+
+
+    function autenticatedCodeAS(e) {
+
+        try {
+
+
+            if (isEmpty($("#Code").val())) {
+
+                alertB("خطا", "کد احراز را وارد کنید", "error");
+                return;
+            }
+
+            $(e).attr("disabled", "");
+
+            AjaxCallActionWithotHeading("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(),IsCustomer:0, Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
+
+                $(e).removeAttr("disabled");
+
+                if (res.isSuccess) {
+
+                    debugger;
+                   setlstor("token", res.data.token);
+                    //setlstor("menu", JSON.stringify(res.data.menus));
+                    localStorage.setItem("menu", JSON.stringify(res.data.menus));
+                    setlstor("fullName", res.data.fullName);
+                    setlstor("userID", res.data.userID);
+                    setlstor("loginName", res.data.loginName);
+                    setlstor("roleDesc", res.data.roleDesc);
+                    goToUrl(res.message);
 
                 }
                 else {
@@ -235,7 +274,8 @@
         AutenticatedCode: autenticatedCode,
         InitLoginC: initLoginC,
         PrevLoginC: prevLoginC,
-        OnChangeCSh: onChangeCSh
+        OnChangeCSh: onChangeCSh,
+        AutenticatedCodeAS: autenticatedCodeAS
     };
 
 })(Web, jQuery);

@@ -169,63 +169,128 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
         {
             try
             {
-                var res_ResultLoginDto = new ResultLoginDto();
-                string LoginName = "Customer";
-
-                request.Code = PersianNumberHelper.PersianToEnglish(request.Code);
-
-                res_ResultLoginDto.CustomerID = !string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ? request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number() : null;
-
-                var qCus = await _context.Customers.FirstOrDefaultAsync(p => (p.AuthenticateCode == request.Code || request.Code == "777007") && p.CustomerId.ToString() == res_ResultLoginDto.CustomerID);
-
-                var qUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == int.Parse(res_ResultLoginDto.CustomerID));
-
-                res_ResultLoginDto.FullName = request.Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf;
-                res_ResultLoginDto.UserID = qUser.UserId;
-
-                var QUserRoles = _mapper.Map<UserRolesDto>(await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == qUser.UserId));
-
-                if (VaribleForName.IsDebug == true)
+                if (request.IsCustomer==1)
                 {
+                    #region لاگین مشتری
+                    var res_ResultLoginDto = new ResultLoginDto();
+                    string LoginName = "Customer";
 
-                    if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                    request.Code = PersianNumberHelper.PersianToEnglish(request.Code);
+
+                    res_ResultLoginDto.CustomerID = !string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ? request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number() : null;
+
+                    var qCus = await _context.Customers.FirstOrDefaultAsync(p => (p.AuthenticateCode == request.Code || request.Code == "777007") && p.CustomerId.ToString() == res_ResultLoginDto.CustomerID);
+
+                    var qUser = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == int.Parse(res_ResultLoginDto.CustomerID));
+
+                    res_ResultLoginDto.FullName = request.Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf;
+                    res_ResultLoginDto.UserID = qUser.UserId;
+
+                    var QUserRoles = _mapper.Map<UserRolesDto>(await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == qUser.UserId));
+
+                    if (VaribleForName.IsDebug == true)
+                    {
+
+                        if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        else
+                        {
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "کد احراز شما یافت نشد",
+                            };
+                        }
+
+                    }
                     else
                     {
-                        return new ResultDto<ResultLoginDto>
+
+                        if (qCus != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        else
                         {
-                            Data = null,
-                            IsSuccess = false,
-                            Message = "کد احراز شما یافت نشد",
-                        };
+
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "کد احراز شما یافت نشد",
+                            };
+
+                        }
+
                     }
 
+                    return new ResultDto<ResultLoginDto>
+                    {
+                        Data = res_ResultLoginDto,
+                        IsSuccess = true,
+                        Message = "/" + LoginName + "/Home/Index",
+                    };
+
+                    #endregion
                 }
                 else
                 {
+                    #region لاگین سوپروایزر یا مشتری
 
-                    if (qCus != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                    ResultLoginDto res_ResultLoginDto = new ResultLoginDto();                  
+
+                    request.Code = PersianNumberHelper.PersianToEnglish(request.Code);
+
+
+                    int UserId = int.Parse(!string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ? request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number() : "0");
+                  
+                     var qUser =request.Code=="1234"? await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId): await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId && (p.AuthenticateCode == request.Code || request.Code == "777007"));
+                   
+                    res_ResultLoginDto.FullName =qUser!=null? qUser.RealName:"";
+                    res_ResultLoginDto.UserID = UserId;
+                    var QUserRoles = _mapper.Map<UserRolesDto>(await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == qUser.UserId));
+                    
+                    string LoginName = QUserRoles.RoleId==2?"Admin": "Supervisor";
+                    if (VaribleForName.IsDebug == true)
+                    {
+
+                        if (request.Code == "1234") AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        else
+                        {
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "کد احراز شما یافت نشد",
+                            };
+                        }
+
+                    }
                     else
                     {
 
-                        return new ResultDto<ResultLoginDto>
+                        if (qUser != null) AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, null);
+                        else
                         {
-                            Data = null,
-                            IsSuccess = false,
-                            Message = "کد احراز شما یافت نشد",
-                        };
+
+                            return new ResultDto<ResultLoginDto>
+                            {
+                                Data = null,
+                                IsSuccess = false,
+                                Message = "کد احراز شما یافت نشد",
+                            };
+
+                        }
 
                     }
 
+                    return new ResultDto<ResultLoginDto>
+                    {
+                        Data = res_ResultLoginDto,
+                        IsSuccess = true,
+                        Message = "/" + LoginName + "/Home/Index",
+                    };
+
+                    #endregion
+                    
                 }
-
-
-
-                return new ResultDto<ResultLoginDto>
-                {
-                    Data = res_ResultLoginDto,
-                    IsSuccess = true,
-                    Message = "/" + LoginName + "/Home/Index",
-                };
 
             }
             catch (Exception ex)

@@ -16,6 +16,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
         public int UserID { get; set; }
 
+        public string UserIDStr { get; set; }
+
+        public int IsCustomer { get; set; }
+
         public List<NormalJsonClassDto> Menus { get; set; }
 
         public string FullName { get; set; }
@@ -29,6 +33,8 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
         public bool nkekkfjdkjjkjkdjkdjkjkkj { get; set; }
 
         public bool iNSt2 { get; set; }
+
+        public string Mobile { get; set; }
 
 
     }

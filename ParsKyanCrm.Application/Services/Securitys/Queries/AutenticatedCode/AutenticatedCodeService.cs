@@ -162,6 +162,19 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                 throw ex;
             }
         }
+        private async Task<UserRolesDto> CheckUserRole(int UserID)
+        {
+            try
+            {
+                var qRole = await _context.UserRoles.FirstOrDefaultAsync(p => p.UserId == UserID);
+                var qUserRole = await _context.Roles.FirstOrDefaultAsync(p => p.RoleId == qRole.RoleId);
+                return _mapper.Map<UserRolesDto>(qRole);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async Task<ResultDto<ResultLoginDto>> Execute(RequestAutenticatedCodeDto request)
         {
@@ -240,17 +253,26 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     int UserId = int.Parse(!string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ? request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number() : "0");
                   
                      var qUser =request.Code=="1234"? await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId): await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId && (p.AuthenticateCode == request.Code || request.Code == "777007"));
-                   
-                    res_ResultLoginDto.FullName =qUser!=null? qUser.RealName:"";
-                    res_ResultLoginDto.UserID = UserId;
+
+                    UserRolesDto qCheckUserRole = null;
+                    qCheckUserRole = await CheckUserRole(qUser.UserId);
+                    if (qCheckUserRole != null)
+                    {
+
+                      //  LoginName = qCheckUserRole.Role.RoleTitle;
+
+                        res_ResultLoginDto.FullName = !string.IsNullOrEmpty(qUser.RealName) ? qUser.RealName : string.Empty;
+                        res_ResultLoginDto.UserID = qUser.UserId;
+                        res_ResultLoginDto.CustomerID = null;
+                    }
 
                     var QUserRoles = _mapper.Map<UserRolesDto>(await _context.UserRoles.Include(p => p.Role).FirstOrDefaultAsync(p => p.UserId == qUser.UserId));
-                    
-                    string LoginName = QUserRoles.RoleId==2?"Admin": "Supervisor";
+                    res_ResultLoginDto.LoginName= QUserRoles.RoleId.ToString();
+                    string LoginName = QUserRoles.Role.RoleTitle;
                     if (VaribleForName.IsDebug == true)
                     {
 
-                        if (request.Code == "1234") await AuthenticationJwtService(LoginName, res_ResultLoginDto, QUserRoles, qUser);
+                        if (request.Code == "1234") await AuthenticationJwtService(LoginName, res_ResultLoginDto, qCheckUserRole, qUser);
                         else
                         {
                             return new ResultDto<ResultLoginDto>
@@ -265,7 +287,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     else
                     {
 
-                        if (qUser != null) await AuthenticationJwtService (LoginName, res_ResultLoginDto, QUserRoles, qUser);
+                        if (qUser != null) await AuthenticationJwtService (LoginName, res_ResultLoginDto, qCheckUserRole, qUser);
                         else
                         {
 
@@ -282,9 +304,12 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
 
                     return new ResultDto<ResultLoginDto>
                     {
+                        
                         Data = res_ResultLoginDto,
                         IsSuccess = true,
-                        Message = "/" + LoginName + "/Home/Index",
+                        Message = "/" + (LoginName != "Customer" && LoginName != "Admin" ? "SuperVisor" : LoginName) + "/Home/Index"
+
+                        
                     };
 
                     #endregion

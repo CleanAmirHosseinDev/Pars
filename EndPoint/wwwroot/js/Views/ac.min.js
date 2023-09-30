@@ -219,8 +219,7 @@
                 if (res.isSuccess) {
 
                     debugger;
-                   setlstor("token", res.data.token);
-                    //setlstor("menu", JSON.stringify(res.data.menus));
+                   setlstor("token", res.data.token);                    
                     localStorage.setItem("menu", JSON.stringify(res.data.menus));
                     setlstor("fullName", res.data.fullName);
                     setlstor("userID", res.data.userID);

@@ -22,7 +22,7 @@
                 dellstor("loginName");
 
                 //dellstor("menu");
-                localStorage.removeItem("menu");
+                //localStorage.removeItem("menu");
 
                 dellstor("roleDesc");
 

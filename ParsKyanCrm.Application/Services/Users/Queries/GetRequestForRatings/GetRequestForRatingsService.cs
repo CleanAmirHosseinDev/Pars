@@ -11,60 +11,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Application.Services.Users.Queries.GetRankingOfCompanies
+namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
 {
     public class GetRequestForRatingsService : IGetRequestForRatingsService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;        
+        private readonly IMapper _mapper;
         public GetRequestForRatingsService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
         }
 
         public async Task<ResultDto<IEnumerable<RequestForRatingDto>>> Execute(RequestRequestForRatingDto request)
         {
             try
             {
-                var lists = (from s in _context.RequestForRating
-                             select s);
+                //var lists = (from s in _context.RequestForRating
+                //             select s);
 
-                request.PageSize = (request.IsExcelReport == true ? lists.ToList().Count() : request.PageSize);
                 string cons = "";
                 if (request.FromDate.HasValue && request.ToDate.HasValue)
                 {
-                    cons = " cte.DateOfRequest between N'" + request.FromDate.Value + "' and N'" + request.ToDate.Value + "'";
+                    cons = " cteMain.DateOfRequest between N'" + request.FromDate.Value + "' and N'" + request.ToDate.Value + "'";
                 }
                 if (request.TypeGroupCompanies.HasValue)
                 {
-                    if (cons=="")
+                    if (cons == "")
                     {
-                        cons += "cte.TypeGroupCompanies=" + request.TypeGroupCompanies.Value;
+                        cons += "cteMain.TypeGroupCompanies=" + request.TypeGroupCompanies.Value;
                     }
                     else
                     {
-                        cons += " and cte.TypeGroupCompanies=" + request.TypeGroupCompanies.Value;
+                        cons += " and cteMain.TypeGroupCompanies=" + request.TypeGroupCompanies.Value;
                     }
-                  
+
                 }
-                if (request.ReciveUser!=null)
+                if (request.ReciveUser != null)
                 {
                     if (cons == "")
                     {
-                        cons += "cte.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
+                        cons += "cteMain.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
                     }
                     else
                     {
-                        cons += " and cte.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
+                        cons += " and cteMain.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
                     }
                 }
-                 
+
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
+select * from (
 
-
-select {"top " + request.PageSize} cte.RequestNo,cte.EvaluationExpert,cte.NationalCode,cte.TypeGroupCompanies,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
+        select {"top " + request.PageSize} cte.RequestNo,cte.EvaluationExpert,cte.NationalCode,cte.TypeGroupCompanies,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
 dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID from (
 
 	select rfr.CustomerID,
@@ -83,7 +82,7 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  cus.CompanyName,
                  cus.NationalCode,
                  cus.TypeGroupCompanies,
-                 doc.ContractDocument
+                 doc.ContractDocument                 
                  from {typeof(RequestForRating).Name} as rfr
                  left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest
                  left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
@@ -91,38 +90,28 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
                  {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                                    
 ) as cte
-{(request.DestLevelStepIndex.HasValue ? " where dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) = " + request.DestLevelStepIndex.Value : string.Empty)}
-{(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cte.CompanyName like N'%" + request.Search + "%'" + "or cte.AgentMobile like N'%" + request.Search + "%'" : string.Empty)}
-{(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) = " + request.LoginName : string.Empty)}
-{(request.IsMyRequests ? "and ((dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)=" + request.UserID + " or dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)=N''))" : "")}
-{(request.KindOfRequest.HasValue ? (request.DestLevelStepIndex.HasValue  || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  cte.KindOfRequest = " + request.KindOfRequest.Value : string.Empty)}
-{(cons!="" ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + cons:string.Empty)}
 
 order by cte.ChangeDate desc
+
+) as cteMain
+{(request.DestLevelStepIndex.HasValue ? " where cteMain.DestLevelStepIndex = " + request.DestLevelStepIndex.Value : string.Empty)}
+{(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cteMain.CompanyName like N'%" + request.Search + "%'" + "or cteMain.AgentMobile like N'%" + request.Search + "%'" : string.Empty)}
+{(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  cteMain.LevelStepAccessRole = " + request.LoginName : string.Empty)}
+{(request.IsMyRequests ? "and ((cteMain.ReciveUser =" + request.UserID + " or cteMain.ReciveUser =N''))" : "")}
+{(request.KindOfRequest.HasValue ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  cteMain.KindOfRequest = " + request.KindOfRequest.Value : string.Empty)}
+{(!string.IsNullOrEmpty(request.UserID) ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue ? " and " : " where ") + "  cteMain.ReciveUser like N'%" + request.UserID + "%' " : string.Empty)}
+{(cons != "" ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue || !string.IsNullOrEmpty(request.UserID) ? " and " : " where ") + cons : string.Empty)}
+
 ");
 
-                #region این کدها برای ReciveUser می باشد
-                //var dataTemp = new List<RequestForRatingDto>();
-
-                //if (request.UserID.HasValue)
-                //{
-                //    if (data.Where(p => p.LevelStepAccessRole == request.LoginName).Any(p => !string.IsNullOrEmpty(p.ReciveUser))) dataTemp = data.Where(p => p.ReciveUser == request.UserID.Value.ToString()).ToList();
-
-                //    if(!string.IsNullOrEmpty(request.LoginName) && dataTemp.Count() == 0) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
-                //}
-                //else 
-                //if(!string.IsNullOrEmpty(request.LoginName)) data = data.Where(p => p.LevelStepAccessRole == request.LoginName);
-
-                //if (dataTemp.Count() > 0) data = dataTemp;     
-                #endregion
-
+                request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
                 {
                     Data = data,
                     IsSuccess = true,
                     Message = string.Empty,
-                    Rows = lists.LongCount(),
+                    Rows = data.LongCount(),
                 };
 
             }

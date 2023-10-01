@@ -105,11 +105,11 @@ namespace EndPoint.Controllers.api
 
         [HttpPost]
         [Route("[action]")]
-        public ResultDto SignOutForExitToLogin(LoginLogDto request)
+        public async Task<ResultDto> SignOutForExitToLogin(LoginLogDto request)
         {
             try
             {
-                _userFacad.InsertLoginLogService.Execute(request, false);
+                await _userFacad.InsertLoginLogService.Execute(request, false);
                 return new ResultDto { IsSuccess = true };
             }
             catch (Exception ex)

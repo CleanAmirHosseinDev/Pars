@@ -96,6 +96,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.DeleteLicensesAndHonors;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteManagerOfParsKyan;
 using ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
+using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {

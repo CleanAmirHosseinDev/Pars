@@ -22,7 +22,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? DestLevelStepIndex { get; set; }
 
-        public int? UserID { get; set; }
+        public string UserID { get; set; }
 
         public int? KindOfRequest { get; set; }
 
@@ -51,7 +51,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
     }
 
     public class RequestForRatingDto
-    {
+    {        
 
         public string EvaluationExpert { get; set; }
         public string ReciveUserName { get; set; }

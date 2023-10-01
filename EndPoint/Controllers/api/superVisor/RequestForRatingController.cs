@@ -31,7 +31,7 @@ namespace EndPoint.Controllers.api.superVisor
             {
                 request.CustomerId = null;
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
-                request.UserID = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+                request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
             catch (Exception ex)

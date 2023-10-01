@@ -35,7 +35,7 @@ namespace EndPoint.Controllers.api.admin
             {
                 
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
-                request.UserID = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+                request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace EndPoint.Controllers.api.admin
                 request.ReciveUser = (request.ReciveUser.HasValue ? (request.ReciveUser.Value == 0 ? null : request.ReciveUser) : null);
                 request.TypeGroupCompanies = (request.TypeGroupCompanies.HasValue ? (request.TypeGroupCompanies.Value == 0 ? null : request.TypeGroupCompanies) : null);
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
-                request.UserID = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+                request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
             catch (Exception ex)

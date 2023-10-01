@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Application.Services.Users.Queries.GetRankingOfCompanies
+namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
 {
     public interface IGetRequestForRatingsService
     {

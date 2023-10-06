@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "گزارش کلی عملکرد";
+    ViewData["Title"] = "کل مشتریان که قرارداد را تایید کردند";
 }
 
 @section PageHeader{
 <section class="content-header">
     <h1>
-        گزارش کلی عملکرد
+        کل مشتریان که قرارداد را تایید کردند
     </h1>
     <ol class="breadcrumb">
         <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/Report/UserReport"><i></i> گزارش کلی عملکرد</a></li>
+        <li><a href="/Admin/Report/TotalNumberCustomersApprovedContract"><i></i> کل مشتریان که قرارداد را تایید کردند</a></li>
     </ol>
 </section>
 }
@@ -44,30 +44,10 @@
                     <div class="panel-heading"> <span id="TotalRowRep" name="TotalRowRep"> کادر جستجو </span></div>
                     <div class="panel-body">
                         <div class="row" style="margin-bottom: 5px;">
-                            <div class="col-md-2">
-                                <label class="control-label" for="">از تاریخ:</label>
-                                <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
+                            <div class="col-md-6">
+                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="if (event.keyCode == 13) $(`button[title='جستجو']`).click();" />
                             </div>
-                            <div class="col-md-2">
-                                <label class="control-label" for="">تا تاریخ:</label>
-                                <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
-                            </div>
-                            <div class="col-md-3">
-                                <div>
-                                    <label class="">انتخاب کاربر/ارزیاب </label>
-                                    <select class="form-control BorderRadius_30 select2" id="cboReciveUser" name="cboReciveUser">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div>
-                                    <label>انتخاب حوزه فعالیت </label>
-                                    <select class="form-control BorderRadius_30 select2" id="cboTypeGroupCompanies" name="cboTypeGroupCompanies">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="control-label" for="">تعداد :</label>
+                            <div class="col-md-6">
                                 <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
                                     <option value="5">
                                         5
@@ -90,23 +70,28 @@
                                     <option value="200">
                                         200
                                     </option>
-                                    <option value="500">
-                                        500
-                                    </option>
                                 </select>
                             </div>
                         </div>
+                        <div class="row" style="margin-bottom: 5px;">
+                            <div class="col-md-6">
+                                <label class="control-label" for="">از تاریخ:</label>
+                                <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="">تا تاریخ:</label>
+                                <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
+                            </div>
+
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid();" title="جستجو">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid_TotalNumberCustomersApprovedContract();" title="جستجو">
                                     <i class="fa fa-search"></i>
                                 </button>
-                                <button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelUserReport();" title="خروجی Excell">
+                                @*<button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelTotalNumberCustomersApprovedContract();" title="خروجی Excell">
                                     <i class="fa fa-file-excel-o"></i>
-                                </button>
-                                @*<button class="btn btn-default fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid();" title="چاپ">
-                                    <i class="fa fa-print"></i>
-                                    </button>*@
+                                </button>*@
                             </div>
                         </div>
                     </div>
@@ -124,7 +109,7 @@
                                     شماره درخواست
                                 </th>
                                 <th>
-                                    تاریخ ثبت درخواست درخواست
+                                    تاریخ ثبت درخواست
                                 </th>
                                 <th>
                                     نام شرکت
@@ -136,10 +121,6 @@
                                 <th>
                                     موبایل رابط
                                 </th>
-                                <th>ارزیاب</th>
-                                <th>
-                                    آخرین وضعیت درخواست
-                                </th>
                             </tr>
                         </thead>
 
@@ -147,6 +128,10 @@
                         </tbody>
 
                     </table>
+
+                </div>
+                
+                <div id="divPageingList">
 
                 </div>
 
@@ -169,7 +154,6 @@
 <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
 <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
 <script>
-    Web.Report.FilterReportGrid();
-    Web.Report.FillComboFitterList();
+    Web.Report.Init_TotalNumberCustomersApprovedContract();
 </script>
 }

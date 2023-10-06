@@ -64,7 +64,7 @@ namespace EndPoint
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false                    
                 };
             });
 
@@ -72,7 +72,9 @@ namespace EndPoint
             
             services.AddScoped<IUserFacad, UserFacad>();
 
-            services.AddScoped<ISecurityFacad, SecurityFacad>();              
+            services.AddScoped<ISecurityFacad, SecurityFacad>();
+
+            services.AddScoped<IReportFacad, ReportFacad>();
 
             services.AddScoped<IValidator<RequestReferencesDto>, ValidatorRequestReferencesDto>();            
 
@@ -84,13 +86,20 @@ namespace EndPoint
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
+            {                
                 app.UseDeveloperExceptionPage();
+
+                app.UseCors(p => p.WithOrigins("https://localhost:44325").AllowAnyMethod().AllowAnyHeader());
+
             }
             else
             {
-                app.UseCors(p => p.WithOrigins("https://test.rayshomar.ir").AllowAnyMethod().AllowAnyHeader());
+
+                if (VaribleForName.IsDebug == false) app.UseCors(p => p.WithOrigins("https://parscrc.ir").AllowAnyMethod().AllowAnyHeader());
+                else app.UseCors(p => p.WithOrigins("https://dev.parscrc.ir").AllowAnyMethod().AllowAnyHeader());
+
                 app.UseExceptionHandler("/Home/Error");
+
             }
 
             app.UseStaticFiles();

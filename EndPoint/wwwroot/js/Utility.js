@@ -44,9 +44,6 @@ function pageingGridCall(tid, url, data, isNext = null) {
 
                 }
 
-                eval(("successCallBack_" + tid).toString().replace(" ", ""))(result);
-
-
             }
             else {
 
@@ -58,6 +55,8 @@ function pageingGridCall(tid, url, data, isNext = null) {
                 }
 
             }
+
+            eval(("successCallBack_" + tid).toString().replace(" ", ""))(result);
 
         }, true);
 
@@ -305,15 +304,21 @@ function onChangeSelectValidation(e) {
 
 }
 
+function removeCookieInMemoryFree() {
+
+    delete_cookie("ai_session");
+    delete_cookie("ai_user");
+
+}
 
 function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) {
 
     try {
 
+        removeCookieInMemoryFree();
+
         $.ajax({
-            processData: false,
             cache: false,
-            contentType: false,
             processData: false,
             traditional: true,
             contentType: 'application/json',
@@ -322,13 +327,14 @@ function AjaxCallAction(type, url, data, async, successCallBack, isWait = true) 
             data: data,
             async: async,
             dataType: "json",
-            headers: { "Authorization": 'Bearer ' + getlstor("token") },
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
             beforeSend: function () {
                 if (isWait)
                     showWait();
             },
             success: function (res) {
                 try {
+
                     if (res.statusCode === Web.Resources.Code301) {
                         alertB("عدم دسترسی", !isEmpty(res.Message) ? res.Message : Web.Resources.MessageAccessDenied, 'error');
                         return;
@@ -376,10 +382,10 @@ function AjaxCallActionWithotHeading(type, url, data, async, successCallBack, is
 
     try {
 
+        removeCookieInMemoryFree();
+
         $.ajax({
-            processData: false,
             cache: false,
-            contentType: false,
             processData: false,
             traditional: true,
             contentType: 'application/json',
@@ -440,6 +446,8 @@ function AjaxCallActionWithotHeading(type, url, data, async, successCallBack, is
 function AjaxForm(idForm, type, url, data, async, successCallBack, isWait = true) {
 
     try {
+
+        removeCookieInMemoryFree();
 
         $("#" + idForm).ajaxForm({
             type: type,
@@ -508,13 +516,15 @@ function AjaxCallActionPostSaveFormWithUploadFile(url, data, async, successCallB
 
     try {
 
+        removeCookieInMemoryFree();
+
         $.ajax({
             type: "POST",
             url: url,
             data: data,
             async: async,
             dataType: "json",
-            headers: { "Authorization": 'Bearer ' + getlstor("token") },
+            headers: { "Authorization": 'Bearer ' + localStorage.getItem("token") },
             cache: false,
             contentType: false,
             processData: false,
@@ -2572,7 +2582,9 @@ getCookie = function (cname) {
     return "";
 };
 
-
+function delete_cookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
 
 setCookie = function (cname, cvalue, exdays) {
     var d = new Date();

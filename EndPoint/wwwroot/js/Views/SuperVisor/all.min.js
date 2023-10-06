@@ -15,7 +15,7 @@
             debugger;
             if (res.isSuccess) {
 
-                dellstor("token");
+                localStorage.removeItem("token");
 
                 dellstor("fullName");
                 dellstor("userID");
@@ -36,7 +36,7 @@
 
     function initLayout() {
 
-        if (isEmpty(getlstor("token"))) goToUrl("/Account/LoginUser");
+        if (isEmpty(localStorage.getItem("token"))) goToUrl("/Account/LoginUser");
         else {
 
             if (getlstor("roleDesc") == "ارزیاب") $("a[href='/SuperVisor/Customers/Index']").hide();

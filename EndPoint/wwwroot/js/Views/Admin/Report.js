@@ -1,9 +1,32 @@
 ﻿
+var divPageingList_pageG = 1;
+function successCallBack_divPageingList(res) {
+
+    if (res.isSuccess) {
+
+        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+        var strM = '';
+        for (var i = 0; i < res.data.length; i++) {
+
+            strM += "<tr><td>" + (i + 1) + "</td><td>"
+                + res.data[i].requestNo + "</td><td>"
+                + res.data[i].dateOfRequestStr + "</td><td>"
+                + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
+                + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
+                + res.data[i].nationalCode + "</td><td>"
+                + res.data[i].agentMobile + "</td></tr>";
+        }
+
+        $("#tBodyList").html(strM);
+    }
+
+}
+
 (function (web, $) {
 
     //Document Ready  
 
-   
+
     function textSearchOnKeyDown(event) {
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
@@ -13,7 +36,7 @@
     function fillComboFitterList() {
 
 
-        AjaxCallAction("GET", "/api/Admin/RequestForRating/Get_UsersByRole/0" , null, true, function (resGet) {
+        AjaxCallAction("GET", "/api/Admin/RequestForRating/Get_UsersByRole/0", null, true, function (resGet) {
 
             var qD = '<option value="0" data-FieldSelectReciveUser="">انتخاب کنید</option>';
             if (resGet.isSuccess) {
@@ -71,7 +94,7 @@
                         + res.data[i].nationalCode + "</td><td>"
                         + res.data[i].agentMobile + "</td><td>";
 
-                    strM += (!isEmpty(res.data[i].evaluationExpert) ? res.data[i].evaluationExpert : '') +"</td>"
+                    strM += (!isEmpty(res.data[i].evaluationExpert) ? res.data[i].evaluationExpert : '') + "</td>"
 
                     if (res.data[i].levelStepSettingIndexID == "29") {
                         strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
@@ -179,13 +202,50 @@
 
     }
 
+    function indexBoxAdmin() {
+
+        AjaxCallAction("POST", "/Admin/Report/IndexBoxAdmin", {}, true, function (res) {
+
+            $("#TotalNumberCustomersApprovedContract").html(res.totalNumberCustomersApprovedContract);
+
+            $("#TotalNumberCustomersWithoutRegistration").html(res.totalNumberCustomersWithoutRegistration);
+
+            $("#TotalNumberApplicationsAssessmentMinistryPrivacy").html(res.totalNumberApplicationsAssessmentMinistryPrivacy);
+
+        }, true);
+
+    }
+
+    function excelTotalNumberCustomersApprovedContract() {
+
+        window.open('/Admin/Report/GetTotalNumberCustomersApprovedContract1?FromDateStr=' + $("#FromDateStr").val() + '&ToDateStr=' + $("#ToDateStr").val(), '_blank');
+
+    }
+
+    function filterReportGrid_TotalNumberCustomersApprovedContract() {        
+
+        pageingGrid("divPageingList", "/Admin/Report/GetTotalNumberCustomersApprovedContract", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(),FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
+
+    }
+
+    function init_TotalNumberCustomersApprovedContract() {
+
+        PersianDatePicker(".DatePicker");
+
+        filterReportGrid_TotalNumberCustomersApprovedContract();
+    }
+
     web.Report = {
         FillComboFitterList: fillComboFitterList,
         FilterReportGrid: filterReportGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,
         PrintReport: printReport,
         PrintContracting: printContracting,
-        ExcelUserReport: excelUserReport
+        ExcelUserReport: excelUserReport,
+        IndexBoxAdmin: indexBoxAdmin,
+        ExcelTotalNumberCustomersApprovedContract: excelTotalNumberCustomersApprovedContract,
+        FilterReportGrid_TotalNumberCustomersApprovedContract: filterReportGrid_TotalNumberCustomersApprovedContract,
+        Init_TotalNumberCustomersApprovedContract: init_TotalNumberCustomersApprovedContract
     };
 
 })(Web, jQuery);

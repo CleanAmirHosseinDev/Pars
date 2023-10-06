@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "داشبورد";
 }
 
@@ -28,7 +27,7 @@
                 </div>
                 <!-- /. tools -->
             </div>
-            <div class="box-body"> 
+            <div class="box-body">
                 <div class="portlet light bordered">
                     <div class="portlet-body">
                         <!-- Small boxes (Stat box) -->
@@ -49,10 +48,10 @@
                                 <!-- small box -->
                                 <div class="small-box bg-aqua" style=" background-color: #9016e0 !important;">
                                     <div class="inner">
-                                        <h3 id="CustomerCountWidthRequest" style="font-size: 24px;">...</h3>
+                                        <h3 id="TotalNumberCustomersApprovedContract" style="font-size: 24px;">...</h3>
                                         <p>تعداد کل مشتریان که قرارداد را تایید کردند</p>
                                     </div>
-                                    <a href="#" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                    <a href="/Admin/Report/TotalNumberCustomersApprovedContract" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
                             <!-- ./col -->
@@ -60,11 +59,11 @@
                                 <!-- small box -->
                                 <div class="small-box bg-aqua" style=" background-color: #3eb40f !important;">
                                     <div class="inner">
-                                        <h3 id="CustomerCountWidthoutRequest" style="font-size: 24px;">...</h3>
+                                        <h3 id="TotalNumberCustomersWithoutRegistration" style="font-size: 24px;">...</h3>
                                         <p>تعداد کل مشتریان بدون ثبت درخواست</p>
                                     </div>
 
-                                    <a href="#" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                    <a href="/Admin/Report/TotalNumberCustomersWithoutRegistration" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
                             <!-- ./col -->
@@ -72,11 +71,11 @@
                                 <!-- small box -->
                                 <div class="small-box bg-aqua" style=" background-color: #3a84af !important;">
                                     <div class="inner">
-                                        <h3 id="RequestSamtCount" style="font-size: 24px;">...</h3>
+                                        <h3 id="TotalNumberApplicationsAssessmentMinistryPrivacy" style="font-size: 24px;">...</h3>
                                         <p>تعداد کل درخواست ارزیابی وزارت صمت</p>
                                     </div>
 
-                                    <a href="#" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                    <a href="/Admin/Report/TotalNumberApplicationsAssessmentMinistryPrivacy" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
                             <!-- ./col -->
@@ -136,8 +135,10 @@
         </div>
     </section>
 </div>
-@section Scripts {    
-    <script>
-       // Web.RequestForRating.InitDashboard();
-    </script>
+@section Scripts {
+<script>
+    // Web.RequestForRating.InitDashboard();
+        Web.Report.IndexBoxAdmin();
+
+</script>
 }

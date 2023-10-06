@@ -173,8 +173,8 @@
                 if (res.isSuccess) {
 
                     debugger;
-
-                    setlstor("token", res.data.token);                    
+                    
+                    localStorage.setItem("token", res.data.token);
                     setlstor("fullName", res.data.fullName);
                     setlstor("customerID", res.data.customerID);
                     setlstor("userID", res.data.userID);
@@ -218,8 +218,8 @@
 
                 if (res.isSuccess) {
 
-                    debugger;
-                   setlstor("token", res.data.token);                    
+                    debugger;                    
+                    localStorage.setItem("token", res.data.token);
                     localStorage.setItem("menu", JSON.stringify(res.data.menus));
                     setlstor("fullName", res.data.fullName);
                     setlstor("userID", res.data.userID);

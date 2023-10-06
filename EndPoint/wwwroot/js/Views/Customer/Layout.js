@@ -14,7 +14,7 @@
             debugger;
             if (res.isSuccess) {
 
-                dellstor("token");                
+                localStorage.removeItem("token");
 
                 dellstor("fullName");
                 dellstor("customerID");
@@ -32,7 +32,7 @@
 
     function initLayout() {
 
-        if (isEmpty(getlstor("token"))) goToUrl("/Account/Login");        
+        if (isEmpty(localStorage.getItem("token"))) goToUrl("/Account/Login");
         else {
 
             $(".fullNameInLayout").html(getlstor("fullName"));

@@ -1,6 +1,6 @@
 ﻿
-var divPageingList_pageG = 1;
-function successCallBack_divPageingList(res) {
+var divPageingList_TotalNumberCustomersApprovedContract_pageG = 1;
+function successCallBack_divPageingList_TotalNumberCustomersApprovedContract(res) {
 
     if (res.isSuccess) {
 
@@ -224,7 +224,7 @@ function successCallBack_divPageingList(res) {
 
     function filterReportGrid_TotalNumberCustomersApprovedContract() {        
 
-        pageingGrid("divPageingList", "/Admin/Report/GetTotalNumberCustomersApprovedContract", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(),FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
+        pageingGrid("divPageingList_TotalNumberCustomersApprovedContract", "/Admin/Report/GetTotalNumberCustomersApprovedContract", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(),FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
 
     }
 

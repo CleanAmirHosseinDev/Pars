@@ -61,9 +61,9 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
 
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
-select * from (
+select {"top " + request.PageSize} * from (
 
-        select {"top " + request.PageSize} cte.RequestNo,cte.EvaluationExpert,cte.NationalCode,cte.TypeGroupCompanies,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
+        select cte.ChangeDate,cte.RequestNo,cte.EvaluationExpert,cte.NationalCode,cte.TypeGroupCompanies,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
 dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID from (
 
 	select rfr.CustomerID,
@@ -91,8 +91,6 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                                    
 ) as cte
 
-order by cte.ChangeDate desc
-
 ) as cteMain
 {(request.DestLevelStepIndex.HasValue ? " where cteMain.DestLevelStepIndex = " + request.DestLevelStepIndex.Value : string.Empty)}
 {(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + " cteMain.CompanyName like N'%" + request.Search + "%'" + "or cteMain.AgentMobile like N'%" + request.Search + "%'" : string.Empty)}
@@ -101,6 +99,8 @@ order by cte.ChangeDate desc
 {(request.KindOfRequest.HasValue ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + "  cteMain.KindOfRequest = " + request.KindOfRequest.Value : string.Empty)}
 {(!string.IsNullOrEmpty(request.UserID) ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue ? " and " : " where ") + "  cteMain.ReciveUser like N'%" + request.UserID + "%' " : string.Empty)}
 {(cons != "" ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue || !string.IsNullOrEmpty(request.UserID) ? " and " : " where ") + cons : string.Empty)}
+
+order by cteMain.ChangeDate desc
 
 ");
 

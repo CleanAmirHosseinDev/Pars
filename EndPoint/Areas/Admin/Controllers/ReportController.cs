@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
+using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -86,9 +88,8 @@ namespace EndPoint.Areas.Admin.Controllers
             }
 
         }
-
-        [HttpPost]
-        public async Task<IActionResult> GetTotalNumberCustomersApprovedContract1(RequestTotalNumberCustomersApprovedContractDto request)
+        
+        public async Task<ActionResult> GetTotalNumberCustomersApprovedContract1(RequestTotalNumberCustomersApprovedContractDto request)
         {
             try
             {
@@ -106,10 +107,75 @@ namespace EndPoint.Areas.Admin.Controllers
         #region تعداد کل مشتریان بدون ثبت درخواست
 
 
+
+        public IActionResult TotalNumberCustomersWithoutRegistration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetTotalNumberCustomersWithoutRegistration([FromBody] RequestTotalNumberCustomersWithoutRegistrationDto request)
+        {
+            try
+            {
+                return Json(await _reportFacad.TotalNumberCustomersWithoutRegistrationService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        
+        public async Task<ActionResult> GetTotalNumberCustomersWithoutRegistration1(RequestTotalNumberCustomersWithoutRegistrationDto request)
+        {
+            try
+            {
+                return File(await _reportFacad.TotalNumberCustomersWithoutRegistrationService.Execute1(request), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+
         #endregion
 
         #region تعداد کل درخواست ارزیابی وزارت صمت
 
+        public IActionResult TotalNumberApplicationsAssessmentMinistryPrivacy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetTotalNumberApplicationsAssessmentMinistryPrivacy([FromBody] RequestTotalNumberApplicationsAssessmentMinistryPrivacyDto request)
+        {
+            try
+            {
+                return Json(await _reportFacad.TotalNumberApplicationsAssessmentMinistryPrivacyService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<ActionResult> GetTotalNumberApplicationsAssessmentMinistryPrivacy1(RequestTotalNumberApplicationsAssessmentMinistryPrivacyDto request)
+        {
+            try
+            {
+                return File(await _reportFacad.TotalNumberApplicationsAssessmentMinistryPrivacyService.Execute1(request), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
 
         #endregion
 

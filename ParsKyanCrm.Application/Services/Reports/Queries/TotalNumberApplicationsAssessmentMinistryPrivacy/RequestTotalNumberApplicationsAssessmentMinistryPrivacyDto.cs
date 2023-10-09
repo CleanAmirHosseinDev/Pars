@@ -2,11 +2,10 @@
 using ParsKyanCrm.Infrastructure;
 using System;
 
-namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract
+namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy
 {
-    public class RequestTotalNumberCustomersApprovedContractDto : PageingParamerDto
+    public class RequestTotalNumberApplicationsAssessmentMinistryPrivacyDto : PageingParamerDto
     {
-
         public string FromDateStr { get; set; }
         public string FromDateStr1
         {
@@ -41,6 +40,5 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersA
         }
 
         public bool IsExcel { get; set; }
-
     }
 }

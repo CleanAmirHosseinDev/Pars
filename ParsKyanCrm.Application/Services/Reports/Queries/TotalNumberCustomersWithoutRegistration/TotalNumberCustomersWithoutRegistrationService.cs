@@ -9,33 +9,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract
+namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration
 {
 
-    public class TotalNumberCustomersApprovedContractService : ITotalNumberCustomersApprovedContractService
+    public class TotalNumberCustomersWithoutRegistrationService : ITotalNumberCustomersWithoutRegistrationService
     {
 
-        public async Task<ResultDto<IEnumerable<ResultTotalNumberCustomersApprovedContractDto>>> Execute(RequestTotalNumberCustomersApprovedContractDto request)
+        public async Task<ResultDto<IEnumerable<ResultTotalNumberCustomersWithoutRegistrationDto>>> Execute(RequestTotalNumberCustomersWithoutRegistrationDto request)
         {
             try
             {
 
                 string strQuery = @$"
 
-                select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from Customers as cus
-inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
-where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (select ContractAndFinancialDocuments.RequestID from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15)
-{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rfr.DateOfRequest as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
-{(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
+               select cus.CustomerID,FORMAT(cast(cus.SaveDate as date), 'yyyy/MM/dd', 'fa') as SaveDateStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from Customers as cus
+                                                                                               where cus.IsActive = 15 and cus.IsProfileComplete = 0
+{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(cus.SaveDate as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
+{(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or cus.CustomerID like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
         ORDER BY cus.CustomerID desc
 
 ";
+
                 if (!request.IsExcel) strQuery += @$" OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
-FETCH NEXT { request.PageSize} ROWS ONLY";
+FETCH NEXT {request.PageSize} ROWS ONLY ";                       
 
-                var data = await DapperOperation.Run<ResultTotalNumberCustomersApprovedContractDto>(strQuery);
+                var data = await DapperOperation.Run<ResultTotalNumberCustomersWithoutRegistrationDto>(strQuery);
 
-                return new ResultDto<IEnumerable<ResultTotalNumberCustomersApprovedContractDto>>()
+                return new ResultDto<IEnumerable<ResultTotalNumberCustomersWithoutRegistrationDto>>()
                 {
                     Data = data,
                     Rows = data.Count(),
@@ -49,7 +49,7 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
             }
         }
 
-        public async Task<byte[]> Execute1(RequestTotalNumberCustomersApprovedContractDto request)
+        public async Task<byte[]> Execute1(RequestTotalNumberCustomersWithoutRegistrationDto request)
         {
             try
             {
@@ -59,20 +59,20 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 DataTable dt = new DataTable("Grid");
                 dt.Columns.AddRange(new DataColumn[7] {
                 new DataColumn("ردیف"),
-                new DataColumn("شماره درخواست"),
-                new DataColumn("تاریخ ثبت درخواست "),
+                new DataColumn("کد مشتری"),
+                new DataColumn("تاریخ ثبت "),
                 new DataColumn("نام شرکت"),
                 new DataColumn("نام رابط	 "),
                 new DataColumn("شناسه/کد ملی"),
-                new DataColumn("موبایل رابط	")
+                new DataColumn("موبایل رابط")
             });
                 int rowcount = 1;
                 foreach (var item in q.Data)
                 {
                     dt.Rows.Add(
                           rowcount,
-                          item.RequestNo,
-                          item.DateOfRequestStr,
+                          item.CustomerID,
+                          item.SaveDateStr,
                           item.CompanyName,
                           item.AgentName,
                           item.NationalCode,
@@ -97,5 +97,6 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 throw ex;
             }
         }
+
     }
 }

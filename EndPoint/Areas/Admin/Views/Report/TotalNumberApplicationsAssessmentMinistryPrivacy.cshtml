@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "کل مشتریان که قرارداد را تایید کردند";
+    ViewData["Title"] = "تعداد کل درخواست ارزیابی وزارت صمت";
 }
 
 @section PageHeader{
 <section class="content-header">
     <h1>
-        کل مشتریان که قرارداد را تایید کردند
+        تعداد کل درخواست ارزیابی وزارت صمت
     </h1>
     <ol class="breadcrumb">
         <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/Report/TotalNumberCustomersApprovedContract"><i></i> کل مشتریان که قرارداد را تایید کردند</a></li>
+        <li><a href="/Admin/Report/TotalNumberApplicationsAssessmentMinistryPrivacy"><i></i> تعداد کل درخواست ارزیابی وزارت صمت</a></li>
     </ol>
 </section>
 }
@@ -86,10 +86,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid_TotalNumberCustomersApprovedContract();" title="جستجو">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid_TotalNumberApplicationsAssessmentMinistryPrivacy();" title="جستجو">
                                     <i class="fa fa-search"></i>
                                 </button>
-                                <button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelTotalNumberCustomersApprovedContract();" title="خروجی Excell">
+                                <button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelTotalNumberApplicationsAssessmentMinistryPrivacy();" title="خروجی Excell">
                                     <i class="fa fa-file-excel-o"></i>
                                 </button>
                             </div>
@@ -131,7 +131,7 @@
 
                 </div>
                 
-                <div id="divPageingList_TotalNumberCustomersApprovedContract">
+                <div id="divPageingList_TotalNumberApplicationsAssessmentMinistryPrivacy">
 
                 </div>
 
@@ -154,6 +154,6 @@
 <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
 <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
 <script>
-    Web.Report.Init_TotalNumberCustomersApprovedContract();
+    Web.Report.Init_TotalNumberApplicationsAssessmentMinistryPrivacy();
 </script>
 }

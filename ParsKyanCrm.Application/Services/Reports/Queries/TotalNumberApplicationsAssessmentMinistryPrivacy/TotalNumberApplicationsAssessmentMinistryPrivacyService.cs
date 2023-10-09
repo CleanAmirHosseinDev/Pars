@@ -9,22 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract
+namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy
 {
 
-    public class TotalNumberCustomersApprovedContractService : ITotalNumberCustomersApprovedContractService
+    public class TotalNumberApplicationsAssessmentMinistryPrivacyService : ITotalNumberApplicationsAssessmentMinistryPrivacyService
     {
-
-        public async Task<ResultDto<IEnumerable<ResultTotalNumberCustomersApprovedContractDto>>> Execute(RequestTotalNumberCustomersApprovedContractDto request)
+        public async Task<ResultDto<IEnumerable<ResultTotalNumberApplicationsAssessmentMinistryPrivacyDto>>> Execute(RequestTotalNumberApplicationsAssessmentMinistryPrivacyDto request)
         {
             try
             {
 
                 string strQuery = @$"
-
-                select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from Customers as cus
+select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from Customers as cus
 inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
-where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (select ContractAndFinancialDocuments.RequestID from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15)
+where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.KindOfRequest = 66
+               
 {(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rfr.DateOfRequest as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
 {(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
         ORDER BY cus.CustomerID desc
@@ -33,9 +32,9 @@ where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (sele
                 if (!request.IsExcel) strQuery += @$" OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
 FETCH NEXT { request.PageSize} ROWS ONLY";
 
-                var data = await DapperOperation.Run<ResultTotalNumberCustomersApprovedContractDto>(strQuery);
+                var data = await DapperOperation.Run<ResultTotalNumberApplicationsAssessmentMinistryPrivacyDto>(strQuery);
 
-                return new ResultDto<IEnumerable<ResultTotalNumberCustomersApprovedContractDto>>()
+                return new ResultDto<IEnumerable<ResultTotalNumberApplicationsAssessmentMinistryPrivacyDto>>()
                 {
                     Data = data,
                     Rows = data.Count(),
@@ -49,7 +48,7 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
             }
         }
 
-        public async Task<byte[]> Execute1(RequestTotalNumberCustomersApprovedContractDto request)
+        public async Task<byte[]> Execute1(RequestTotalNumberApplicationsAssessmentMinistryPrivacyDto request)
         {
             try
             {
@@ -62,7 +61,7 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 new DataColumn("شماره درخواست"),
                 new DataColumn("تاریخ ثبت درخواست "),
                 new DataColumn("نام شرکت"),
-                new DataColumn("نام رابط	 "),
+                new DataColumn("نام رابط"),
                 new DataColumn("شناسه/کد ملی"),
                 new DataColumn("موبایل رابط	")
             });

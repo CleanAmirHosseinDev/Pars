@@ -2,9 +2,9 @@
 using ParsKyanCrm.Infrastructure;
 using System;
 
-namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract
+namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration
 {
-    public class RequestTotalNumberCustomersApprovedContractDto : PageingParamerDto
+    public class RequestTotalNumberCustomersWithoutRegistrationDto : PageingParamerDto
     {
 
         public string FromDateStr { get; set; }

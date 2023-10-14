@@ -51,7 +51,11 @@ namespace ParsKyanCrm.Application.Dtos.Users
     }
 
     public class RequestForRatingDto
-    {        
+    {
+
+        public string Assessment { get; set; }
+
+        public string ReasonAssessment1 { get; set; }
 
         public string EvaluationExpert { get; set; }
         public string ReciveUserName { get; set; }

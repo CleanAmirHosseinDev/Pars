@@ -23,13 +23,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;        
+        private readonly IMapper _mapper;
         private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
 
         public SaveRequestForRatingService(IDataBaseContext context, IMapper mapper, IValidator<RequestReferencesDto> validatorRequestReferencesDto)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
             _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
 
@@ -147,13 +147,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         },
                         SmsContent = strArrConfigKindOfRequest[4],
                         SmsType = bool.Parse(strArrConfigKindOfRequest[5]),
-                         
+
                         Comment = null,
                         SendUser = request.SendUser,
                         SendTime = dt,
-                         LevelStepSettingIndexID=1,
-                         ReciveUser = strArrConfigKindOfRequest[6],
-                       
+                        LevelStepSettingIndexID = 1,
+                        ReciveUser = strArrConfigKindOfRequest[6],
+
                     });
                     await _context.SaveChangesAsync();
 
@@ -174,13 +174,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     //});
                     //await _context.SaveChangesAsync();
 
-                      await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                      await WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
+                    await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                    await WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
                 else
                 {
-
+                    //In Bollow
                     _context.RequestReferences.Add(new RequestReferences()
                     {
                         DestLevelStepIndex = request.DestLevelStepIndex,
@@ -194,33 +194,41 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         SmsType = request.SmsType,
                         DestLevelStepIndexButton = request.DestLevelStepIndexButton,
                         ReciveUser = request.ReciveUser,
-                        LevelStepSettingIndexID=request.LevelStepSettingIndexID
+                        LevelStepSettingIndexID = request.LevelStepSettingIndexID
                     });
                     await _context.SaveChangesAsync();
 
                     if (request.DestLevelStepIndex == "15")
                     {
+
                         Ado_NetOperation.SqlUpdate(typeof(RequestForRating).Name, new Dictionary<string, object>()
                         {
                             {
                                 "IsFinished",true
                             }
                         }, " RequestID = " + request.Request.RequestId);
+
+
+
                     }
 
-                    switch (request.SmsType)
+                    switch (request.SmsType) // تمومه
                     {
                         case true:
-                            
-                          await  WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
-                          await  WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
+
+                            await WebService.SMSService.Execute(aboutEntity.Mobile1, request.SmsContent);
+                            await WebService.SMSService.Execute(aboutEntity.Mobile2, request.SmsContent);
 
                             break;
                         case false:
 
                             var requestForRating = await _context.RequestForRating.Include(p => p.Customer).FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
-                            request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + requestForRating.RequestNo+"\n"+ "شرکت رتبه بندی اعتباری پارس کیان";                          
-                         await WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
+
+                            if (request.SmsContent.Contains("{0}"))
+                                request.SmsContent = string.Format(request.SmsContent, request.Request.RequestId.ToString().Encrypt_Advanced_For_Number());
+                            else request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + requestForRating.RequestNo + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
+
+                            await WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
 
                             break;
 
@@ -241,7 +249,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                 return new ResultDto()
                 {
                     IsSuccess = true,
-                    Message = "اطلاعات شما با موفقیت ثبت شد" ,
+                    Message = "اطلاعات شما با موفقیت ثبت شد",
                 };
             }
             catch (Exception ex)

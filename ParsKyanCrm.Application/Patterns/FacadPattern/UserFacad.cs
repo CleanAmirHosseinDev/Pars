@@ -97,6 +97,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.DeleteManagerOfParsKyan;
 using ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -282,6 +283,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetLoginLogsService GetLoginLogsService { get; }
 
+        ISaveAssessmentService SaveAssessmentService { get; }
 
     }
 
@@ -1121,6 +1123,16 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getLoginLogsService = _getLoginLogsService ?? new GetLoginLogsService(_context, _mapper);
+            }
+        }
+
+
+        private ISaveAssessmentService _saveAssessmentService;
+        public ISaveAssessmentService SaveAssessmentService
+        {
+            get
+            {
+                return _saveAssessmentService = _saveAssessmentService ?? new SaveAssessmentService();
             }
         }
 

@@ -19,4 +19,25 @@ CREATE TABLE [dbo].[LoginLog](
 )
 -----------------------------------------------------------------------------------------------------
 
+-------- -> جمعه - ۲۱ مهر ۱۴۰۲
+
+alter table RequestForRating
+add Assessment nvarchar(50) null,
+ReasonAssessment1 nvarchar(max) null
+
+-----------------------------------------------------------------------------------------------------
+
+-------- -> شنبه - ۲۲ مهر ۱۴۰۲
+
+alter table RequestReferences
+alter column SmsContent nvarchar(max) null;
+
+alter table LevelStepSetting
+alter column SmsContent nvarchar(max) null;
+
+
+update LevelStepSetting set SmsContent = N'ضمن عرض تبریک، نتایج رتبه بندی شما در سیستم کدال ثبت و تایید نهایی شد لطفا از لینک زیر '+' '+'\n'+' /Home/Assessment?survey8Y77dBBS1={0}' where LevelStepSettingIndexID = 25
+
+
+
 -----------------------------------------------------------------------------------------------------

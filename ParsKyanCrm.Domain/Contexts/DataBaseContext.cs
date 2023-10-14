@@ -707,8 +707,6 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.LevelStepStatus).HasMaxLength(100);
 
-                entity.Property(e => e.SmsContent).HasMaxLength(150);
-
                 entity.Property(e => e.SmsType).HasComment("0= Customer , 1= ParsKeyan");
             });
 
@@ -865,6 +863,11 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<RequestForRating>(entity =>
             {
+
+
+                entity.Property(e => e.Assessment).HasMaxLength(50);
+
+
                 entity.HasKey(e => e.RequestId)
                     .HasName("PK_RequestForReating");
 
@@ -898,6 +901,9 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.RequestForRating)
                     .HasForeignKey(d => d.KindOfRequest)
                     .HasConstraintName("FK_RequestForRating_SystemSeting");
+
+
+
             });
 
             modelBuilder.Entity<RequestReferences>(entity =>
@@ -905,9 +911,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.DestLevelStepIndexButton).HasMaxLength(100);
 
-                entity.HasKey(e => e.ReferenceId);
-
-                entity.Property(e => e.SmsContent).HasMaxLength(150);
+                entity.HasKey(e => e.ReferenceId);                
 
                 entity.HasComment("جدول ارجاعات درخواست مشتری");
 

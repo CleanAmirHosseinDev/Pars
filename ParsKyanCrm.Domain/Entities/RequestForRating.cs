@@ -9,7 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public RequestForRating()
         {
-           
+
             RequestReferences = new HashSet<RequestReferences>();
         }
 
@@ -23,9 +23,13 @@ namespace ParsKyanCrm.Domain.Entities
 
         public DateTime? ChangeDate { get; set; }
 
+        public string Assessment { get; set; }
+
+        public string ReasonAssessment1 { get; set; }
+
         public virtual Customers Customer { get; set; }
         public virtual SystemSeting KindOfRequestNavigation { get; set; }
-       
+
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
     }
 }

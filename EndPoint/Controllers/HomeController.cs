@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
@@ -34,7 +35,7 @@ namespace EndPoint.Controllers
         {
             _logger = logger;
             _env = env;
-            _userFacad = userFacad;            
+            _userFacad = userFacad;
         }
 
         public async Task<IActionResult> Index()
@@ -182,6 +183,26 @@ namespace EndPoint.Controllers
             // return View();
         }
 
+
+        public IActionResult Assessment(string survey8Y77dBBS1)
+        {
+            ViewBag.sdklsdslkdcmskdlsdljcee4389eijdks = survey8Y77dBBS1;
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult AssessmentP([FromBody] RequestSaveAssessmentDto request)
+        {
+            try
+            {
+                return Json(_userFacad.SaveAssessmentService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
     }
 }

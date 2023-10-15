@@ -36,7 +36,7 @@ alter table LevelStepSetting
 alter column SmsContent nvarchar(max) null;
 
 
-update LevelStepSetting set SmsContent = N'ضمن عرض تبریک، نتایج رتبه بندی شما در سیستم کدال ثبت و تایید نهایی شد لطفا از لینک زیر '+' '+'\n'+' /Home/Assessment?survey8Y77dBBS1={0}' where LevelStepSettingIndexID = 25
+update LevelStepSetting set SmsContent = N'ضمن عرض تبریک، نتایج رتبه بندی شما در سیستم کدال ثبت و تایید نهایی شد لطفا از لینک زیر '+' '+'\n'+'https://parscrc.ir/Home/Assessment?survey8Y77dBBS1={0}' where LevelStepSettingIndexID = 25
 
 
 

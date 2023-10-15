@@ -14,11 +14,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment
         public ResultDto Execute(RequestSaveAssessmentDto request)
         {
             try
-            {
+            {                
 
-                request.RequestID = request.RequestID.Decrypt_Advanced_For_Number();
-
-                Ado_NetOperation.SqlUpdate("", new Dictionary<string, object>()
+                Ado_NetOperation.SqlUpdate("RequestForRating", new Dictionary<string, object>()
                     {
                         {
                             "Assessment",request.Assessment

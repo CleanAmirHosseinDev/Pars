@@ -35,7 +35,8 @@ namespace EndPoint.Controllers.api.admin
             {
                 
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
-                request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
+                request.CustomerId = null;
+                //request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }
             catch (Exception ex)

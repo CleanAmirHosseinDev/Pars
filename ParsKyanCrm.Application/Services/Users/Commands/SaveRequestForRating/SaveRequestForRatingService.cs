@@ -225,7 +225,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                             var requestForRating = await _context.RequestForRating.Include(p => p.Customer).FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
 
                             if (request.SmsContent.Contains("{0}"))
-                                request.SmsContent = string.Format(request.SmsContent, request.Request.RequestId.ToString().Encrypt_Advanced_For_Number());
+                                request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + string.Format(request.SmsContent, request.Request.RequestId).Replace("\\n", System.Environment.NewLine)
+                                    + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
                             else request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + requestForRating.RequestNo + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
 
                             await WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);

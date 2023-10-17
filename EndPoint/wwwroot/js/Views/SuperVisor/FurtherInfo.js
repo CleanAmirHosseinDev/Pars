@@ -17,10 +17,6 @@
         var countform = Number($("#FormLoadCode").val()) + 1;
         $("#FormLoadCode").val(countform);
 
-
-
-
-
         intiTab(countform);
 
         current_fs = $(this).parent();
@@ -637,7 +633,7 @@
                     for (var i = 0; i < res.data.length; i++) {
                         switch (res.data[i].dataFormQuestionId) {
                             case 79:
-                                if (res.data[i].fileName != "" && res.data[i].fileName != null) {
+                                if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
                                     $("#DivHumanResourcesFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {

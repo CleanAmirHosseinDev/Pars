@@ -191,11 +191,22 @@ namespace EndPoint.Controllers
         }
 
         [HttpPost]
-        public JsonResult AssessmentP([FromBody] RequestSaveAssessmentDto request)
+        [CaptchaCheck]
+        public async Task<JsonResult> AssessmentP([FromBody] RequestSaveAssessmentDto request)
         {
             try
             {
-                return Json(_userFacad.SaveAssessmentService.Execute(request));
+                var error = "";
+                if (ModelState.IsValid)
+                {
+                    return Json(await _userFacad.SaveAssessmentService.Execute(request));
+                }
+                else
+                {
+                    foreach (var item in ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList()) error += item.First().ErrorMessage + " ";
+
+                    return Json(new ResultDto() { IsSuccess = false, Message = error });
+                }
             }
             catch (Exception ex)
             {

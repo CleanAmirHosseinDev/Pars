@@ -1132,7 +1132,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _saveAssessmentService = _saveAssessmentService ?? new SaveAssessmentService();
+                return _saveAssessmentService = _saveAssessmentService ?? new SaveAssessmentService(_context);
             }
         }
 

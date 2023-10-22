@@ -1,11 +1,33 @@
 ﻿
 (function (web, $) {
 
+    function generateAssessment(qe) {
+
+        switch (qe) {
+
+            case "0":
+                /*return "<i class='far fa-laugh-beam' style='color:#006400;' title='خیلی خوشحال'></i>";*/
+                return "خیلی خوشحال";
+            case "1":
+                /*return "<i class='far fa-grin-beam' style='color:#006400;' title='خوشحال'></i>";*/
+                return "خوشحال";
+            case "2":
+                /*return "<i class='far fa-meh' style='color:#006400;' title='معمولی'></i>";*/
+                return "معمولی";
+            case "3":
+                /*return "<i class='far fa-flushed' style='color:#006400;' title='غمگین'></i>";*/
+                return "غمگین";
+            case "4":
+                /*return "<i class='far fa-angry' style='color:#006400;' title='افسرده'></i>";*/
+                return "افسرده";
+        }
+
+    }
 
     function filterGrid(id = null) {
 
-        
-        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ CustomerId: id, PageIndex: 1, PageSize: $("#cboSelectCount").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), IsMyRequests: $('#IsMyRequests').is(":checked") }), true, function (res) {
+
+        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val() }), true, function (res) {
 
             if (res.isSuccess) {
                 var n = getlstor("loginName");
@@ -26,6 +48,69 @@
 
                     strM += "<td>" + res.data[i].reciveUserName + "</td>"
 
+                    strM += "<td>";
+
+                    if (!isEmpty(res.data[i].assessment)) {
+
+                        var qe = res.data[i].assessment.split(",");
+
+                        if (qe.length == 1) {
+
+                            strM += generateAssessment(qe[0]);
+
+                        }
+                        else if (qe.length == 2) {
+
+                            strM += generateAssessment(qe[0]);
+
+                            strM += "\n" + "<hr/>";
+
+                            switch (qe[1]) {
+
+                                case "0":
+
+                                    strM += "<span>امتیاز</span>";
+
+                                    break;
+                                case "1":
+
+                                    strM += "<span>مدت زمان فرایند</span>";
+
+                                    break;
+                                case "2":
+
+                                    strM += "<span>کارشناس ارزیابی</span>";
+
+                                    break;
+                                case "3":
+
+                                    strM += "<span>فرایند صدور قرارداد</span>";
+
+                                    break;
+                                case "4":
+
+                                    strM += "<span>فرایند صدور فاکتور</span>";
+
+                                    break;
+
+                            }
+
+                        }
+
+                    }
+
+                    strM += "</td>";
+
+                    strM += "<td>";
+
+                    if (!isEmpty(res.data[i].reasonAssessment1)) {
+
+                        strM += res.data[i].reasonAssessment1;
+
+                    }
+
+                    strM += "</td>"
+
                     if (res.data[i].levelStepSettingIndexID == "29") {
                         strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
                     } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
@@ -36,27 +121,13 @@
                             + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
                             + res.data[i].levelStepStatus + "</td><td>";
                     }
-                    if (res.data[i].destLevelStepIndex =="2") {
-                        strM +="<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId  + ","+id+");'><i class='fa fa-remove'></i></a>";
+                    if (res.data[i].destLevelStepIndex == "2") {
+                        strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + "," + id + ");'><i class='fa fa-remove'></i></a>";
                     }
-                    
+
                     strM += "<a style='margin-right:5px; color:black' href='/admin/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
-                    //    + (getlstor("loginName") === res.data[i].destLevelStepAccessRole ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-default fontForAllPage'><i class='fa fa-eye'></i> </a>");
-
-                    //if ((n == res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole == "5") || (n == "5" && res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7")) {
-                    //    strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
-                    //}
-                    //if ((n == 8 || n == 1) && res.data[i].destLevelStepIndex > "7") {
-                    //    strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
-                    //}
-                    //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
-                    //    strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
-                    //}
                     strM += "</td></tr>";
-                    //if (res.data[i].levelStepIndex >= 7) {
 
-
-                    // }
                 }
 
                 $("#tBodyList").html(strM);
@@ -68,8 +139,8 @@
         }, true);
 
     }
-    
-    function cancelRequest(id,customerId=null) {
+
+    function cancelRequest(id, customerId = null) {
 
         try {
 
@@ -244,7 +315,7 @@
     }
 
 
-   
+
     function initDashboard() {
 
         AjaxCallAction("GET", "/api/admin/Customers/GetDashboard_Info/", null, true, function (res) {
@@ -257,8 +328,8 @@
                 $("#RequestSamtCount").val("" + " تا");
                 $("#ContractCancled").val("" + " تا");
                 $("#RequestIsFinished").val("" + " تا");
-                $("#WaitForComfiramCommite").val("" + " تا");                
-                
+                $("#WaitForComfiramCommite").val("" + " تا");
+
             }
 
 
@@ -266,13 +337,13 @@
     }
 
     web.RequestForRating = {
-       
+
         FilterGrid: filterGrid,
         CancelRequest: cancelRequest,
         InitRequestReferences: initRequestReferences,
         CreateTimeLine: createTimeLine,
         InitDashboard: initDashboard
-       
+
     };
 
 })(Web, jQuery);

@@ -1434,7 +1434,13 @@ function ComboBoxWithSearch(selector = '.select2', dir = 'rtl') {
 function ComboBoxWithSearchAndModal(selector = '.select2', idModal = '#modalMain') {
 
     $(selector).select2({
-        dropdownParent: $(idModal)
+        dropdownParent: $(idModal),
+        dir: 'rtl',
+        language: {
+            noResults: function (term) {
+                return "نتیجه ای پیدا نشد";
+            }
+        }
     });
 
 }

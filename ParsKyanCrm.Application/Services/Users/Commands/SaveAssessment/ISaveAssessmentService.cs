@@ -5,6 +5,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment
 {
     public interface ISaveAssessmentService
     {
-        ResultDto Execute(RequestSaveAssessmentDto request);
+        Task<ResultDto> Execute(RequestSaveAssessmentDto request);
     }
 }

@@ -696,7 +696,7 @@
 
                 $(".ButtonOpperationLSSlss").removeAttr("disabled");
 
-                var qD = '';
+                var qD = "<option value=''>انتخاب کاربر</option>";
                 if (resGet.isSuccess) {
 
                     for (var i = 0; i < resGet.data.length; i++) {
@@ -705,12 +705,12 @@
 
                     }
 
-                    var qContent = "<div class='row'><div class='col-md-12'><div class='form-group'><label class='control-label col-md-3'>انتخاب کاربران</label><div class='col-md-9'><select class='form-control select2' multiple='multiple' style='width: 100% !important;' name='SUIRS' id='SUIRS'>";
+                    var qContent = "<div class='row'><div class='col-md-12'><div class='form-group'><label class='control-label col-md-3'>انتخاب کاربر</label><div class='col-md-9'><select class='form-control select2' style='width: 100% !important;' name='SUIRS' id='SUIRS'>";
                     qContent += qD;
                     qContent += "</select></div></div></div></div>";
 
                     objE = e;
-                    InitModal_Withot_Par('برای ارجاع یه کاربر انتخاب کنید', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'ارجاع');
+                    InitModal_Withot_Par('برای ارجاع کاربر را انتخاب کنید', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'ارجاع');
 
                     ComboBoxWithSearchAndModal();
 
@@ -731,7 +731,7 @@
 
         if (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
 
-            alertB("هشدار", "حداقل یک کاربر را انتخاب کنید", "warning");
+            alertB("هشدار", "کاربر را انتخاب کنید", "warning");
 
             return;
         }
@@ -754,7 +754,7 @@
                     objJ.LevelStepAccessRole = decrypt($(objE).attr("data-LSAR"), keyMaker());
                     objJ.LevelStepStatus = decrypt($(objE).attr("data-LSS"), keyMaker());
 
-                    objJ.ReciveUser = !isEmpty($('#SUIRS').find(":selected").val()) ? $('#SUIRS').val().join(',') : null;
+                    objJ.ReciveUser = !isEmpty($('#SUIRS').find(":selected").val()) ? $('#SUIRS').val() : null;
 
                     objJ.Request = {};
                     objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());

@@ -5,6 +5,7 @@
 @section Styles{
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
 <style>
     i[name=SelectedAssessment]:before {
         cursor: pointer;
@@ -13,90 +14,106 @@
 }
 <br />
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
 
             <div id="Assessment1">
-                <h3>لطفا در نظرسنجی از خدمات ما  مشارکت کنید : </h3>
-                <br />
+                <div class="left_sec_item">
+                    <div class="title">
+                        <h4>لطفا در نظرسنجی از خدمات ما  مشارکت کنید</h4>
+                    </div>
+                    <div class="item">
+                        <div class="row text-center">
 
-                <div class="row text-center">
+                            <div class="col-md-3" title="خیلی خوشحال">
+                                <i class="far fa-laugh-beam" style="color:#006400;font-size: 90px;" name="SelectedAssessment" value="0" onclick="onClickChecked(this);"></i>
+                            </div>
+                            <div class="col-md-3" title="خوشحال">
+                                <i class="far fa-grin-beam" style="color:#32CD32;font-size: 90px;" name="SelectedAssessment" value="1" onclick="onClickChecked(this);"></i>
+                            </div>
+                            <div class="col-md-2" title="معمولی">
+                                <i class="far fa-meh" style="color:#F0E68C;font-size: 90px;" name="SelectedAssessment" value="2" onclick="onClickChecked(this);"></i>
+                            </div>
+                            <div class="col-md-2" title="غمگین">
+                                <i class="far fa-flushed" style="color:#FFA500;font-size: 90px;" name="SelectedAssessment" value="3" onclick="onClickChecked(this);"></i>
+                            </div>
+                            <div class="col-md-2" title="افسرده">
+                                <i class="far fa-angry" style="color:#FF4500;font-size: 90px;" name="SelectedAssessment" value="4" onclick="onClickChecked(this);"></i>
+                                <input type="hidden" id="sdklsdslkdcmskdlsdljcee4389eijdks" value="@ViewBag.sdklsdslkdcmskdlsdljcee4389eijdks" />
+                            </div>
 
-                    <div class="col-md-3" title="خیلی خوشحال">
-                        <i class="far fa-laugh-beam" style="color:#006400;font-size: 90px;" name="SelectedAssessment" value="0" onclick="onClickChecked(this);"></i>
+                        </div>
+                        <div class="row" style="margin-top: 50px;">
+                            <div class="col-md-12">
+                                <button class="btn btn-success btn-lg" style="margin-right: 100px;" type="button" onclick="saveAss(this);" title="ثبت نظرسنجی">
+                                    ثبت نظرسنجی
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-3" title="خوشحال">
-                        <i class="far fa-grin-beam" style="color:#32CD32;font-size: 90px;" name="SelectedAssessment" value="1" onclick="onClickChecked(this);"></i>
-                    </div>
-                    <div class="col-md-2" title="معمولی">
-                        <i class="far fa-meh" style="color:#F0E68C;font-size: 90px;" name="SelectedAssessment" value="2" onclick="onClickChecked(this);"></i>
-                    </div>
-                    <div class="col-md-2" title="غمگین">
-                        <i class="far fa-flushed" style="color:#FFA500;font-size: 90px;" name="SelectedAssessment" value="3" onclick="onClickChecked(this);"></i>
-                    </div>
-                    <div class="col-md-2" title="افسرده">
-                        <i class="far fa-angry" style="color:#FF4500;font-size: 90px;" name="SelectedAssessment" value="4" onclick="onClickChecked(this);"></i>
-                        <input type="hidden" id="sdklsdslkdcmskdlsdljcee4389eijdks" value="@ViewBag.sdklsdslkdcmskdlsdljcee4389eijdks" />
-                    </div>
-
                 </div>
+
+
             </div>
             <div id="Assessment2">
-                <h3>دلیل اینکه رضایت شما را نتوانستیم بطور کامل جلب نماییم کدام گزینه است؟</h3>
-
-                <div class="row">
-                    <div class="col-md-3" title="امتیاز">
-                        امتیاز
-                        <input type="radio" name="SelectedAssessment1" value="0">
+                <div class="left_sec_item">
+                    <div class="title">
+                        <h4>دلیل اینکه رضایت شما را نتوانستیم بطور کامل جلب نماییم کدام گزینه است؟</h4>
                     </div>
-                    <div class="col-md-3" title="مدت زمان فرایند">
+                    <div class="item">
+                        <div class="row" id="divRadio2">
+                            <div class="col-md-3" title="امتیاز">
+                                امتیاز
+                                <input type="radio" name="SelectedAssessment1" value="0">
+                            </div>
+                            <div class="col-md-3" title="مدت زمان فرایند">
 
-                        مدت زمان فرایند
-                        <input type="radio" name="SelectedAssessment1" value="1">
+                                مدت زمان فرایند
+                                <input type="radio" name="SelectedAssessment1" value="1">
 
-                    </div>
-                    <div class="col-md-2" title="کارشناس ارزیابی">
+                            </div>
+                            <div class="col-md-2" title="کارشناس ارزیابی">
 
-                        کارشناس ارزیابی
-                        <input type="radio" name="SelectedAssessment1" value="2">
+                                کارشناس ارزیابی
+                                <input type="radio" name="SelectedAssessment1" value="2">
 
-                    </div>
-                    <div class="col-md-2" title="فرایند صدور قرارداد">
-                        فرایند صدور قرارداد
-                        <input type="radio" name="SelectedAssessment1" value="3">
-                    </div>
-                    <div class="col-md-2" title="فرایند صدور فاکتور">
-                        فرایند صدور فاکتور
-                        <input type="radio" name="SelectedAssessment1" value="4">
+                            </div>
+                            <div class="col-md-2" title="فرایند صدور قرارداد">
+                                فرایند صدور قرارداد
+                                <input type="radio" name="SelectedAssessment1" value="3">
+                            </div>
+                            <div class="col-md-2" title="فرایند صدور فاکتور">
+                                فرایند صدور فاکتور
+                                <input type="radio" name="SelectedAssessment1" value="4">
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-6">
+                                <label>پیشنهاد و یا انتقاد  : </label>
+                                <textarea id="ReasonAssessment1" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 50px;">
+                            <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
+                        </div>
+
+                        <div class="row" style="margin-top: 50px;">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-danger" onclick="backToForm1()">بازگشت به صفحه قبل</button>
+                                <button class="btn btn-success" type="button" onclick="saveAss(this);" title="ثبت نظرسنجی">
+                                    ثبت نظرسنجی
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="row" style="margin-top: 20px;">
-                    <div class="col-md-6">
-                        <label>پیشنهاد و یا انتقاد  : </label>
-                        <textarea id="ReasonAssessment1" class="form-control" rows="5"></textarea>
-                    </div>
-                </div>
-
-                <br />
-
-                <button type="button" class="btn btn-danger" onclick="backToForm1()">بازگشت به صفحه قبل</button>
-
-            </div>
-
-            <div class="row" style="float:left;margin-top: 50px;">
-                <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
-            </div>
-            <br />
-            <br />            
-            <div class="row" style="margin-top: 50px;">
-                <div class="col-md-12">
-                    <button class="btn btn-success btn-lg" style="margin-right: 100px;float:left;" type="button" onclick="saveAss(this);" title="ثبت نظرسنجی">
-                        ثبت نظرسنجی
-                        <i class="fa fa-save"></i>
-                    </button>
-                </div>
             </div>
 
         </div>
@@ -104,7 +121,7 @@
 </div>
 
 @section Scripts {
-
+<script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
 <script src="~/lib/SweetAlert/sweetalert.min.js" asp-append-version="true"></script>
 <script src="~/js/iu.min.js" asp-append-version="true"></script>
 <script>
@@ -141,10 +158,14 @@
 
         }
 
-        if($('i[name=SelectedAssessment][checked=checked]').attr("value") != '0' && $("#Assessment2").is(":hidden")){
+        if($('i[name=SelectedAssessment][checked=checked]').attr("value") == '0')$("#divRadio2").hide();
+        else $("#divRadio2").show();
+
+        if($("#Assessment2").is(":hidden")){
 
             $("#Assessment1").hide();
             $("#Assessment2").show();
+
             return;
 
         }

@@ -8,9 +8,8 @@ namespace EndPoint.Areas.Admin.Controllers
 {
     public class RequestForRatingController : BaseController
     {
-        public IActionResult Index(int Id)
-        {
-            ViewBag.Id = Id;
+        public IActionResult Index()
+        {            
             return View();
         }
         public IActionResult RequestReferences(int? id = null)

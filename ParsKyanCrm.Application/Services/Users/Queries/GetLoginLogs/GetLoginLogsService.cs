@@ -29,9 +29,9 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
 
                 var q = await DapperOperation.Run<LoginLogDto>(@$"
 
-                select top {request.PageSize} ll.*,iif(cus.CustomerID is not null,isnull(cus.AgentName,N'ثبت نشده')+' - '+isnull(cus.CompanyName,N'ثبت نشده'),isnull(us.RealName,us.UserName)) as FullName from LoginLog as ll 
+                select top {request.PageSize} ll.*,iif(us.CustomerID is not null,isnull(cus.AgentName,N'ثبت نشده')+' - '+isnull(cus.CompanyName,N'ثبت نشده'),isnull(us.RealName,us.UserName)) as FullName from LoginLog as ll 
                 left join Users as us on us.UserID = ll.Userid
-                left join Customers as cus on cus.CustomerID = ll.Userid
+                left join Customers as cus on cus.CustomerID = us.CustomerID
 {(!string.IsNullOrEmpty(request.Search) ? " where (isnull(cus.AgentName,us.RealName)) like N'%" + request.Search + "%' " : string.Empty)}
 {((!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr)) ? (!string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " cast(ll.LoginDate as date) between " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}
 order by ll.LoginLogID desc

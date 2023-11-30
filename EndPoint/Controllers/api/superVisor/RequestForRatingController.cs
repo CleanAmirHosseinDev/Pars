@@ -40,6 +40,23 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<RequestForRatingDto>>> Get_RequestForRatingsA([FromBody] RequestRequestForRatingDto request)
+        {
+            try
+            {
+
+                request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
+                request.CustomerId = null;
+                //request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
+                return await _userFacad.GetRequestForRatingsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         [Route("[action]")]

@@ -74,9 +74,129 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
 
 }
 
+var divPageingList_RequestForRatingsASuperVisor_pageG = 1;
+function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
+
+
+    if (res.isSuccess) {
+        var n = getlstor("loginName");
+        var strM = '';
+        for (var i = 0; i < res.data.length; i++) {
+
+            var st = "", st2 = "";
+            if (res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7") {
+
+                st2 = "<span style='font-size:1.5em'> &#128194;</span> ";
+            }
+
+            strM += "<tr><td>" + (i + 1) + "</td><td>"
+                + res.data[i].requestNo + "</td><td>"
+                + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
+                + res.data[i].agentMobile + "</td><td>"
+                + res.data[i].dateOfRequestStr + "</td>";
+
+            strM += "<td>" + res.data[i].reciveUserName + "</td>"
+
+            strM += "<td>";
+
+            if (!isEmpty(res.data[i].assessment)) {
+
+                var qe = res.data[i].assessment.split(",");
+
+                if (qe.length == 1) {
+
+                    strM += generateAssessment(qe[0]);
+
+                }
+                else if (qe.length == 2) {
+
+                    strM += generateAssessment(qe[0]);
+
+                    strM += "\n" + "<hr/>";
+
+                    switch (qe[1]) {
+
+                        case "0":
+
+                            strM += "<span>امتیاز</span>";
+
+                            break;
+                        case "1":
+
+                            strM += "<span>مدت زمان فرایند</span>";
+
+                            break;
+                        case "2":
+
+                            strM += "<span>کارشناس ارزیابی</span>";
+
+                            break;
+                        case "3":
+
+                            strM += "<span>فرایند صدور قرارداد</span>";
+
+                            break;
+                        case "4":
+
+                            strM += "<span>فرایند صدور فاکتور</span>";
+
+                            break;
+
+                    }
+
+                }
+
+            }
+
+            strM += "</td>";
+
+            strM += "<td>";
+
+            if (!isEmpty(res.data[i].reasonAssessment1)) {
+
+                strM += res.data[i].reasonAssessment1;
+
+            }
+
+            strM += "</td>"
+
+            if (res.data[i].levelStepSettingIndexID == "29") {
+                strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
+            } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
+                strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
+            }
+            else {
+                strM += "<td>" + st2
+                    + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
+                    + res.data[i].levelStepStatus + "</td><td>";
+            }
+            if (res.data[i].destLevelStepIndex == "2") {
+                strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + ");'><i class='fa fa-remove'></i></a>";
+            }
+
+            strM += "<a style='margin-right:5px; color:black' href='/admin/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
+            strM += "</td></tr>";
+
+        }
+
+        $("#tBodyList").html(strM);
+
+
+
+    }
+
+
+}
+
 (function (web, $) {
 
     //Document Ready  
+
+    function filterGridA() {
+
+        pageingGrid("divPageingList_RequestForRatingsASuperVisor", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val() }));
+
+    }
 
     function onchangeKindOfRequest(e) {
 
@@ -1565,7 +1685,8 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
         DeleteContractText: deleteContractText,
         InitContractNewText: initContractNewText,
         UpdateContract: updateContract,
-        OnchangeKindOfRequest: onchangeKindOfRequest
+        OnchangeKindOfRequest: onchangeKindOfRequest,
+        FilterGridA: filterGridA
     };
 
 })(Web, jQuery);

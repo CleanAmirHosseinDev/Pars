@@ -101,7 +101,7 @@ namespace ParsKyanCrm.Infrastructure
 
                 if (!string.IsNullOrEmpty(strErr)) throw new Exception(strErr);
 
-                if (formFile.Length > 5000000) throw new Exception("" + strMessage + " باید کمتر از 5 مگ باشد");
+                if (formFile.Length > 10000000) throw new Exception("" + strMessage + " باید کمتر از 10 مگ باشد");
 
                 using (Stream fileStream = new FileStream(imgpath, FileMode.Create))
                 {

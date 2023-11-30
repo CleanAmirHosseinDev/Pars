@@ -55,9 +55,9 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             if ((n == 8 || n == 1 || n == 5 || n == 4) && Number(res.data[i].levelStepSettingIndexID) >= 13) {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
-            if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
+            //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
                 strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
-            }
+          //  }
             strM += "</td></tr>";
             //if (res.data[i].levelStepIndex >= 7) {
 

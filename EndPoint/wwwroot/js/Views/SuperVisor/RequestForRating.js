@@ -170,11 +170,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
                     + res.data[i].levelStepStatus + "</td><td>";
             }
-            if (res.data[i].destLevelStepIndex == "2") {
-                strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + ");'><i class='fa fa-remove'></i></a>";
-            }
+            //if (res.data[i].destLevelStepIndex == "2") {
+            //    strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + ");'><i class='fa fa-remove'></i></a>";
+            //}
 
-            strM += "<a style='margin-right:5px; color:black' href='/admin/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
+            strM += "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferencesA?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
             strM += "</td></tr>";
 
         }
@@ -1641,6 +1641,24 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     }
 
+    function initRequestReferencesA(id = null) {
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1, RequestId: id }), true, function (res) {
+
+            if (res.isSuccess) {
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[i].isFinished) {
+                        createTimeLine(id, true);
+                    } else {
+                        createTimeLine(id, false);
+                    }
+                }
+            }
+
+        }, true);
+
+    }
+
 
     web.RequestForRating = {
         TempSaveRFR: tempSaveRFR,
@@ -1649,6 +1667,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         InitReferral: initReferral,
         SaveRequestForRating: saveRequestForRating,
         InitRequestReferences: initRequestReferences,
+        InitRequestReferencesA: initRequestReferencesA,
         ShowCustomerInfo: showCustomerInfo,
         GetCustomerInfo: getCustomerInfo,
         GetContractInfo: getContractInfo,

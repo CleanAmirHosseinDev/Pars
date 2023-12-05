@@ -474,12 +474,12 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moa.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
-                        $('#FinalPriceContract').prop('readonly', true);
-                        $('#DisCountMoney').prop('readonly', true);
-                        $('#DicCountPerecent').prop('readonly', true);
+                    //if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                    //    $('#FinalPriceContract').prop('readonly', true);
+                    //    $('#DisCountMoney').prop('readonly', true);
+                    //    $('#DicCountPerecent').prop('readonly', true);
 
-                    }
+                    //}
                     if (getlstor("loginName") === "1") {
                         $("#ContractUp").hide();
                     }
@@ -507,11 +507,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 if ((getlstor("loginName") === "1") || (getlstor("loginName") === "4")) {
                     getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moaEdit.html", function (resG) {
 
-                        $("#contractInfo").html(resG);
-                        if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
-                            $('#FinalPriceContract').prop('readonly', true);
+                        //$("#contractInfo").html(resG);
+                        //if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                        //    $('#FinalPriceContract').prop('readonly', true);
 
-                        }
+                        //}
                         if (getlstor("loginName") === "1") {
                             $("#ContractUp").hide();
                         }
@@ -1552,12 +1552,12 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moaEdit.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
-                        $('#FinalPriceContract').prop('readonly', true);
-                        $('#DisCountMoney').prop('readonly', true);
-                        $('#DicCountPerecent').prop('readonly', true);
+                    //if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                    //    $('#FinalPriceContract').prop('readonly', true);
+                    //    $('#DisCountMoney').prop('readonly', true);
+                    //    $('#DicCountPerecent').prop('readonly', true);
 
-                    }
+                    //}
                     if (getlstor("loginName") === "1") {
                         $("#ContractUp").hide();
                     }

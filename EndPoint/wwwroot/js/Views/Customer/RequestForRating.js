@@ -809,17 +809,17 @@
 
 
         var objJ = {};
-        objJ.DestLevelStepIndex = "2";
+        objJ.DestLevelStepIndex = "3";
         objJ.Comment = "اطلاعات اصلاح شد";// getDataCkeditor("ReferralExplanation");
-        objJ.LevelStepAccessRole = "1";
-        objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
+        objJ.LevelStepAccessRole = "4";
+        objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
         objJ.Request = {};
         objJ.Request.Requestid = Requestid;
         objJ.Request.KindOfRequest = '0';
         objJ.SmsContent = null;
         objJ.SmsType = null;
-        objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط مسئول امور ارزیابی";
-        objJ.ReciveUser = "414";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
+        objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
+        objJ.ReciveUser = "146";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
         objJ.LevelStepSettingIndexID = "1"
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 

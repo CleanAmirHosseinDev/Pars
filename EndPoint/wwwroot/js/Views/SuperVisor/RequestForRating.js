@@ -969,12 +969,12 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
         $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
         if (!isEmpty(id) && id != 0) {
-            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
 
                 if (res.isSuccess) {
                     for (var i = 0; i < res.data.length; i++) {
 
-                        if (res.data[i].destLevelStepIndex >= 3) {
+                        if (res.data[i].destLevelStepIndex >= 2) {
                             getShowDoument(id);
                         }
                     }

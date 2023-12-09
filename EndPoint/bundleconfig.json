@@ -6,7 +6,7 @@
       "wwwroot/js/Utility.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -22,7 +22,7 @@
       "wwwroot/js/Views/Customer/FurtherInfo.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -39,7 +39,7 @@
 
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -68,7 +68,7 @@
       "wwwroot/js/Views/Admin/LoginLog.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
@@ -80,7 +80,7 @@
       "wwwroot/js/Views/AccountController.js"
     ],
     "minify": {
-      "enabled": false,
+      "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false

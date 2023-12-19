@@ -309,7 +309,6 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
                         $("#sdklsslks3498sjdkxhjsd_823sb").val(res.data[0].levelStepIndex);
-
                         htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton + "' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "' data-LSSII='" + res.data[i].levelStepSettingIndexId + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
@@ -807,12 +806,14 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             $("#SUIRS").html('');
             objE = e;
 
-            if ($(objE).attr("data-LSSII")=="11"  ) {
+            if ($(objE).attr("data-LSSII") == "11") {
 
-                alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
+                //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
 
                     tempSaveRFR(e);
-                });
+              //  });
+            } else {
+                tempSaveRFR(e);
             }
 
         }

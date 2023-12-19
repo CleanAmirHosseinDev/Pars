@@ -35,12 +35,13 @@
       "wwwroot/js/Views/SuperVisor/RequestForRating.js",
       "wwwroot/js/Views/SuperVisor/Customer.js",
       "wwwroot/js/Views/SuperVisor/Users.js",
-      "wwwroot/js/Views/SuperVisor/FurtherInfo.js"
+      "wwwroot/js/Views/SuperVisor/FurtherInfo.js",
+      "wwwroot/js/Views/SuperVisor/Report.js"
 
     ],
     "minify": {
-      "enabled": true,
-      "renameLocals": true
+      "enabled": false,
+      "renameLocals": false
     },
     "sourceMap": false
   },

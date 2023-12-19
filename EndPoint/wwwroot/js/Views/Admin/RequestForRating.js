@@ -141,7 +141,9 @@ function generateAssessment(qe) {
 
     function filterGrid() {
 
-        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val() }));        
+        ComboBoxWithSearch('.select2', 'rtl');
+
+        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
 
     }
 
@@ -319,12 +321,69 @@ function generateAssessment(qe) {
 
     }
 
-    web.RequestForRating = {
+    function fillComboLevelStepSettingList() {
 
+        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+            AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+                if (res.isSuccess) {
+                    var strKindOfRequest = '<option value="">انتخاب کنید</option>';
+
+                    for (var i = 0; i < res.data.length; i++) {
+                        strKindOfRequest += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+
+                    $("#cboKindOfRequest").html(strKindOfRequest);
+
+                }
+            }, true);
+
+        }, true);
+
+    }
+
+    function onchangeKindOfRequest(e) {
+
+        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+        }, true);
+
+    }
+
+    web.RequestForRating = {
+        FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         FilterGrid: filterGrid,
         CancelRequest: cancelRequest,
         InitRequestReferences: initRequestReferences,
-        CreateTimeLine: createTimeLine
+        CreateTimeLine: createTimeLine,
+        OnchangeKindOfRequest: onchangeKindOfRequest
 
     };
 

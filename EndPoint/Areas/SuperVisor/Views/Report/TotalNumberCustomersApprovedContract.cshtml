@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "درخواست ها";
+    ViewData["Title"] = "کل مشتریان که قرارداد را تایید کردند";
 }
 
 @section PageHeader{
 <section class="content-header">
     <h1>
-        درخواست ها
+        کل مشتریان که قرارداد را تایید کردند
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/RequestForRating/Index"><i></i> درخواست ها</a></li>
+        <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+        <li><a href="/SuperVisor/Report/TotalNumberCustomersApprovedContract"><i></i> کل مشتریان که قرارداد را تایید کردند</a></li>
     </ol>
 </section>
 }
@@ -41,24 +41,24 @@
             <div class="box-body" style="">
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading">کادر جستجو</div>
+                    <div class="panel-heading"> <span id="TotalRowRep" name="TotalRowRep"> کادر جستجو </span></div>
                     <div class="panel-body">
                         <div class="row" style="margin-bottom: 5px;">
                             <div class="col-md-6">
-                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.RequestForRating.TextSearchOnKeyDown(event);" />
+                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="if (event.keyCode == 13) $(`button[title='جستجو']`).click();" />
                             </div>
                             <div class="col-md-6">
                                 <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
                                     <option value="5">
                                         5
                                     </option>
-                                    <option value="10" selected="selected">
+                                    <option value="10">
                                         10
                                     </option>
                                     <option value="20">
                                         20
                                     </option>
-                                    <option value="50">
+                                    <option value="50" selected="selected">
                                         50
                                     </option>
                                     <option value="100">
@@ -73,31 +73,27 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-bottom: 5px;">
                             <div class="col-md-6">
-                                <div>
-                                    <label class="">نوع درخواست</label>
-                                    <select class="form-control BorderRadius_30 select2" id="cboKindOfRequest" name="cboKindOfRequest" onchange="Web.RequestForRating.OnchangeKindOfRequest(this);">
-                                    </select>
-                                </div>
+                                <label class="control-label" for="">از تاریخ:</label>
+                                <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
                             </div>
                             <div class="col-md-6">
-                                <div>
-                                    <label>مرحله درخواست</label>
-                                    <select class="form-control BorderRadius_30 select2" id="cboSelectLS" name="cboSelectLS">
-                                    </select>
-                                </div>
+                                <label class="control-label" for="">تا تاریخ:</label>
+                                <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid_TotalNumberCustomersApprovedContract();" title="جستجو">
                                     <i class="fa fa-search"></i>
+                                </button>
+                                <button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelTotalNumberCustomersApprovedContract();" title="خروجی Excell">
+                                    <i class="fa fa-file-excel-o"></i>
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -113,27 +109,18 @@
                                     شماره درخواست
                                 </th>
                                 <th>
-                                    نام مشتری / شرکت
+                                    تاریخ ثبت درخواست
                                 </th>
                                 <th>
-                                    موبایل مشتری
+                                    نام شرکت
+                                </th>
+                                <th>نام رابط</th>
+                                <th>
+                                    شناسه/کد ملی
                                 </th>
                                 <th>
-                                    تاریخ درخواست
+                                    موبایل رابط
                                 </th>
-                                <th>
-                                    اقدام کننده
-                                </th>
-                                <th>
-                                    نظرسنجی
-                                </th>
-                                <th>
-                                    پیشنهاد و یا انتقاد
-                                </th>
-                                <th>
-                                    وضعیت
-                                </th>
-                                <th style="min-width:250px;">عملیات</th>
                             </tr>
                         </thead>
 
@@ -143,8 +130,8 @@
                     </table>
 
                 </div>
-
-                <div id="divPageingList_RequestForRatingsAdmin">
+                
+                <div id="divPageingList_TotalNumberCustomersApprovedContractSupervisor">
 
                 </div>
 
@@ -154,6 +141,7 @@
 </div>
 
 @section Styles{
+<link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 <style>
     td {
@@ -163,9 +151,9 @@
 }
 
 @section Scripts {
+<script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
 <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
 <script>
-    Web.RequestForRating.FilterGrid();
-    Web.RequestForRating.FillComboLevelStepSettingList();
+    Web.Report.Init_TotalNumberCustomersApprovedContract();
 </script>
 }

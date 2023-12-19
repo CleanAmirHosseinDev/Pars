@@ -12,6 +12,9 @@
         //تعداد کل درخواست ارزیابی وزارت صمت
         public string TotalNumberApplicationsAssessmentMinistryPrivacy { get; set; } = "0";
 
+        //تعداد پرونده های کدال شده
+        public string NumberCodedFiles { get; set; } = "0";
+
 
     }
 }

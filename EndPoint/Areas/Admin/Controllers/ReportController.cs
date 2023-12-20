@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
-using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
@@ -180,41 +179,6 @@ namespace EndPoint.Areas.Admin.Controllers
 
         #endregion
 
-        #region تعداد پرونده های کدال شده
-
-        public IActionResult NumberCodedFiles()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> GetNumberCodedFiles([FromBody] RequestNumberCodedFilesDto request)
-        {
-            try
-            {
-                return Json(await _reportFacad.NumberCodedFilesService.Execute(request));
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-        }
-
-        public async Task<ActionResult> GetNumberCodedFiles1(RequestNumberCodedFilesDto request)
-        {
-            try
-            {
-                return File(await _reportFacad.NumberCodedFilesService.Execute1(request), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-        }
-
-        #endregion
 
     }
 }

@@ -1,6 +1,5 @@
 ﻿using ParsKyanCrm.Application.Services.Reports.Queries.GeneralPerformanceReport;
 using ParsKyanCrm.Application.Services.Reports.Queries.IndexBoxAdmin;
-using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
@@ -24,9 +23,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ITotalNumberCustomersWithoutRegistrationService TotalNumberCustomersWithoutRegistrationService { get; }
 
         ITotalNumberApplicationsAssessmentMinistryPrivacyService TotalNumberApplicationsAssessmentMinistryPrivacyService { get; }
-
-        INumberCodedFilesService NumberCodedFilesService { get; }
-
     }
 
     public class ReportFacad : IReportFacad
@@ -81,15 +77,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _totalNumberApplicationsAssessmentMinistryPrivacyService = _totalNumberApplicationsAssessmentMinistryPrivacyService ?? new TotalNumberApplicationsAssessmentMinistryPrivacyService();
-            }
-        }
-
-        private INumberCodedFilesService _numberCodedFilesService;
-        public INumberCodedFilesService NumberCodedFilesService
-        {
-            get
-            {
-                return _numberCodedFilesService = _numberCodedFilesService ?? new NumberCodedFilesService();
             }
         }
 

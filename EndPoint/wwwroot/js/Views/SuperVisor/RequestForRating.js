@@ -194,9 +194,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function filterGridA() {
 
-        ComboBoxWithSearch('.select2', 'rtl');
-
-        pageingGrid("divPageingList_RequestForRatingsASuperVisor", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
+        pageingGrid("divPageingList_RequestForRatingsASuperVisor", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val() }));
 
     }
 
@@ -299,13 +297,18 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
                         $("#svisorShowDocument").remove();
                     }
-                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "8" || getlstor("loginName") === "6" || (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)) || res.data[0].destLevelStepIndex < 5) {
+                    if (!(
+                             getlstor("loginName") === "5" ||
+                             getlstor("loginName") === "8" ||
+                             getlstor("loginName") === "6" ||
+                             (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)
+                         )
+                        || res.data[0].levelStepIndex < 5) {
                         $("#svisorShowEvaluationFile").remove();
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {
                         $("#sdklsslks3498sjdkxhjsd_823sb").val(res.data[0].levelStepIndex);
-
                         htmlB += "<button type='button'  style='margin:5px;border:none;background-color:" + res.data[i].colorButton + "' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveRequestForRating(this);' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "' data-LSSII='" + res.data[i].levelStepSettingIndexId + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
@@ -476,12 +479,12 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moa.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
-                        $('#FinalPriceContract').prop('readonly', true);
-                        $('#DisCountMoney').prop('readonly', true);
-                        $('#DicCountPerecent').prop('readonly', true);
+                    //if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                    //    $('#FinalPriceContract').prop('readonly', true);
+                    //    $('#DisCountMoney').prop('readonly', true);
+                    //    $('#DicCountPerecent').prop('readonly', true);
 
-                    }
+                    //}
                     if (getlstor("loginName") === "1") {
                         $("#ContractUp").hide();
                     }
@@ -509,11 +512,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 if ((getlstor("loginName") === "1") || (getlstor("loginName") === "4")) {
                     getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moaEdit.html", function (resG) {
 
-                        $("#contractInfo").html(resG);
-                        if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
-                            $('#FinalPriceContract').prop('readonly', true);
+                        //$("#contractInfo").html(resG);
+                        //if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                        //    $('#FinalPriceContract').prop('readonly', true);
 
-                        }
+                        //}
                         if (getlstor("loginName") === "1") {
                             $("#ContractUp").hide();
                         }
@@ -802,7 +805,17 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
+
             tempSaveRFR(e);
+
+          //  if ($(objE).attr("data-LSSII") == "11") {
+
+                //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
+
+              //  });
+            //} else {
+            //    tempSaveRFR(e);
+            //}
 
         }
         else temojsdkjsdjsdkjkjsdjksd(e);
@@ -880,9 +893,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     objJ.Comment = getDataCkeditor("ReferralExplanation");
                     objJ.LevelStepAccessRole = decrypt($(objE).attr("data-LSAR"), keyMaker());
                     objJ.LevelStepStatus = decrypt($(objE).attr("data-LSS"), keyMaker());
-
                     objJ.ReciveUser = !isEmpty($('#SUIRS').find(":selected").val()) ? $('#SUIRS').val() : null;
-
                     objJ.Request = {};
                     objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
                     objJ.Request.KindOfRequest = 0;
@@ -971,12 +982,12 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
         $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
         if (!isEmpty(id) && id != 0) {
-            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
 
                 if (res.isSuccess) {
                     for (var i = 0; i < res.data.length; i++) {
 
-                        if (res.data[i].destLevelStepIndex >= 3) {
+                        if (res.data[i].destLevelStepIndex >= 2) {
                             getShowDoument(id);
                         }
                     }
@@ -1006,7 +1017,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_EvaluationFile.html", function (resG) {
 
                 $("#showEvaluationFile").html(resG);
-                if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8") {
+                if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8" ) {
                     $("#frmFormMain2").remove();
 
                 }
@@ -1554,12 +1565,12 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Contract-moaEdit.html", function (resG) {
 
                     $("#contractInfo").html(resG);
-                    if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
-                        $('#FinalPriceContract').prop('readonly', true);
-                        $('#DisCountMoney').prop('readonly', true);
-                        $('#DicCountPerecent').prop('readonly', true);
+                    //if (getlstor("loginName") === "4" || $("#sdklsslks3498sjdkxhjsd_823sb").val() > 2) {
+                    //    $('#FinalPriceContract').prop('readonly', true);
+                    //    $('#DisCountMoney').prop('readonly', true);
+                    //    $('#DicCountPerecent').prop('readonly', true);
 
-                    }
+                    //}
                     if (getlstor("loginName") === "1") {
                         $("#ContractUp").hide();
                     }

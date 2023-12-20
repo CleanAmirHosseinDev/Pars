@@ -95,7 +95,7 @@ function successCallBack_divPageingList_RequestForRatingsAdmin(res) {
                     + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
                     + res.data[i].levelStepStatus + "</td><td>";
             }
-            if (res.data[i].destLevelStepIndex == "2") {
+            if (res.data[i].destLevelStepIndex == "3") {
                 strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + ");'><i class='fa fa-remove'></i></a>";
             }
 
@@ -141,9 +141,7 @@ function generateAssessment(qe) {
 
     function filterGrid() {
 
-        ComboBoxWithSearch('.select2', 'rtl');
-
-        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
+        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val() }));        
 
     }
 
@@ -321,69 +319,12 @@ function generateAssessment(qe) {
 
     }
 
-    function fillComboLevelStepSettingList() {
-
-        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
-
-            if (res.isSuccess) {
-                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
-
-                for (var i = 0; i < res.data.length; i++) {
-                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
-                }
-
-                $("#cboSelectLS").html(strKindOfCompany);
-
-
-
-            }
-
-            AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
-
-                if (res.isSuccess) {
-                    var strKindOfRequest = '<option value="">انتخاب کنید</option>';
-
-                    for (var i = 0; i < res.data.length; i++) {
-                        strKindOfRequest += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
-                    }
-
-                    $("#cboKindOfRequest").html(strKindOfRequest);
-
-                }
-            }, true);
-
-        }, true);
-
-    }
-
-    function onchangeKindOfRequest(e) {
-
-        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null }), true, function (res) {
-
-            if (res.isSuccess) {
-                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
-
-                for (var i = 0; i < res.data.length; i++) {
-                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
-                }
-
-                $("#cboSelectLS").html(strKindOfCompany);
-
-
-
-            }
-
-        }, true);
-
-    }
-
     web.RequestForRating = {
-        FillComboLevelStepSettingList: fillComboLevelStepSettingList,
+
         FilterGrid: filterGrid,
         CancelRequest: cancelRequest,
         InitRequestReferences: initRequestReferences,
-        CreateTimeLine: createTimeLine,
-        OnchangeKindOfRequest: onchangeKindOfRequest
+        CreateTimeLine: createTimeLine
 
     };
 

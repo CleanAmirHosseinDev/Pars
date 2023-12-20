@@ -72,32 +72,6 @@ function successCallBack_divPageingList_TotalNumberApplicationsAssessmentMinistr
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-var divPageingList_NumberCodedFiles_pageG = 1;
-function successCallBack_divPageingList_NumberCodedFiles(res) {
-
-    if (res.isSuccess) {
-
-        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
-        var strM = '';
-        for (var i = 0; i < res.data.length; i++) {
-
-            strM += "<tr><td>" + (i + 1) + "</td><td>"
-                + res.data[i].requestNo + "</td><td>"
-                + res.data[i].dateOfRequestStr + "</td><td>"
-                + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
-                + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
-                + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
-        }
-
-        $("#tBodyList").html(strM);
-    }
-
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 (function (web, $) {
 
@@ -289,8 +263,6 @@ function successCallBack_divPageingList_NumberCodedFiles(res) {
 
             $("#TotalNumberApplicationsAssessmentMinistryPrivacy").html(res.totalNumberApplicationsAssessmentMinistryPrivacy);
 
-            $("#NumberCodedFiles").html(res.numberCodedFiles);
-
         }, true);
 
     }
@@ -354,26 +326,6 @@ function successCallBack_divPageingList_NumberCodedFiles(res) {
 
     }
 
-    function init_NumberCodedFiles() {
-
-        PersianDatePicker(".DatePicker");
-
-        filterReportGrid_NumberCodedFiles();
-
-    }
-
-    function filterReportGrid_NumberCodedFiles() {
-
-        pageingGrid("divPageingList_NumberCodedFiles", "/Admin/Report/GetNumberCodedFiles", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
-
-    }
-
-    function excelNumberCodedFiles() {
-
-        window.open('/Admin/Report/GetNumberCodedFiles1?FromDateStr=' + $("#FromDateStr").val() + '&ToDateStr=' + $("#ToDateStr").val() + "&Search=" + $("#txtSearch").val(), '_blank');
-
-    }
-
     web.Report = {
         FillComboFitterList: fillComboFitterList,
         FilterReportGrid: filterReportGrid,
@@ -390,10 +342,7 @@ function successCallBack_divPageingList_NumberCodedFiles(res) {
         ExcelTotalNumberCustomersWithoutRegistration: excelTotalNumberCustomersWithoutRegistration,
         Init_TotalNumberApplicationsAssessmentMinistryPrivacy: init_TotalNumberApplicationsAssessmentMinistryPrivacy,
         FilterReportGrid_TotalNumberApplicationsAssessmentMinistryPrivacy: filterReportGrid_TotalNumberApplicationsAssessmentMinistryPrivacy,
-        ExcelTotalNumberApplicationsAssessmentMinistryPrivacy: excelTotalNumberApplicationsAssessmentMinistryPrivacy,
-        Init_NumberCodedFiles: init_NumberCodedFiles,
-        FilterReportGrid_NumberCodedFiles: filterReportGrid_NumberCodedFiles,
-        ExcelNumberCodedFiles: excelNumberCodedFiles
+        ExcelTotalNumberApplicationsAssessmentMinistryPrivacy: excelTotalNumberApplicationsAssessmentMinistryPrivacy
     };
 
 })(Web, jQuery);

@@ -39,10 +39,16 @@ declare @totalNumberApplicationsAssessmentMinistryPrivacy as int = (select cast(
 inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
 where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.KindOfRequest = 66)
 
+declare @numberCodedFiles as int = (
+        select cast(count(*) as nvarchar(50)) as NumberCodedFiles from RequestForRating as rfr
+        inner join Customers as cus on rfr.CustomerID = cus.CustomerID
+        where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.IsFinished = 1
+)
 
 select @totalNumberCustomersApprovedContract as TotalNumberCustomersApprovedContract,
 @totalNumberCustomersWithoutRegistration as TotalNumberCustomersWithoutRegistration,
-@totalNumberApplicationsAssessmentMinistryPrivacy as TotalNumberApplicationsAssessmentMinistryPrivacy
+@totalNumberApplicationsAssessmentMinistryPrivacy as TotalNumberApplicationsAssessmentMinistryPrivacy,
+@numberCodedFiles as NumberCodedFiles
 
 ")).ToList().FirstOrDefault();
 

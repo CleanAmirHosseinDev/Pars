@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "تعداد پرونده های کدال شده";
+}
+
+@section PageHeader{
+<section class="content-header">
+    <h1>
+        تعداد پرونده های کدال شده
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+        <li><a href="/Admin/Report/NumberCodedFiles"><i></i> تعداد پرونده های کدال شده</a></li>
+    </ol>
+</section>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                @*<i class="fa fa-cloud"></i>*@
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <!-- tools box -->
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <!-- /. tools -->
+            </div>
+            <div class="box-body" style="">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <span id="TotalRowRep" name="TotalRowRep"> کادر جستجو </span></div>
+                    <div class="panel-body">
+                        <div class="row" style="margin-bottom: 5px;">
+                            <div class="col-md-6">
+                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="if (event.keyCode == 13) $(`button[title='جستجو']`).click();" />
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
+                                    <option value="5">
+                                        5
+                                    </option>
+                                    <option value="10">
+                                        10
+                                    </option>
+                                    <option value="20">
+                                        20
+                                    </option>
+                                    <option value="50" selected="selected">
+                                        50
+                                    </option>
+                                    <option value="100">
+                                        100
+                                    </option>
+                                    <option value="150">
+                                        150
+                                    </option>
+                                    <option value="200">
+                                        200
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 5px;">
+                            <div class="col-md-6">
+                                <label class="control-label" for="">از تاریخ:</label>
+                                <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="">تا تاریخ:</label>
+                                <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterReportGrid_NumberCodedFiles();" title="جستجو">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelNumberCodedFiles();" title="خروجی Excell">
+                                    <i class="fa fa-file-excel-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    شماره درخواست
+                                </th>
+                                <th>
+                                    تاریخ ثبت درخواست
+                                </th>
+                                <th>
+                                    نام شرکت
+                                </th>
+                                <th>نام رابط</th>
+                                <th>
+                                    شناسه/کد ملی
+                                </th>
+                                <th>
+                                    موبایل رابط
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tBodyList">
+                        </tbody>
+
+                    </table>
+
+                </div>
+                
+                <div id="divPageingList_NumberCodedFiles">
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles{
+<link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+<style>
+    td {
+        vertical-align: central;
+    }
+</style>
+}
+
+@section Scripts {
+<script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
+<script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+<script>
+    Web.Report.Init_NumberCodedFiles();
+</script>
+}

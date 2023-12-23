@@ -31,5 +31,8 @@ namespace ParsKyanCrm.Domain.Entities
         public virtual SystemSeting KindOfRequestNavigation { get; set; }
 
         public virtual ICollection<RequestReferences> RequestReferences { get; set; }
+        public string CodalNumber { get; set; }
+
+        public DateTime? CodalDate { get; set; }
     }
 }

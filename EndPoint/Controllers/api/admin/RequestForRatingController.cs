@@ -106,6 +106,21 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<LevelStepSettingDto>>> Get_LevelStepSetings([FromBody] RequestLevelStepSettingDto request)
+        {
+            try
+            {
+                return await _userFacad.GetLevelStepSettingsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
 

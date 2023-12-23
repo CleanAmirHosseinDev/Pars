@@ -83,6 +83,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string ReciverName { get; set; }
 
         public string RoleDesReciver { get; set; }
+        public string CodalNumber { get; set; }
+
+        public string CodalDate { get; set; }
     }
 
     public class ValidatorRequestReferencesDto : AbstractValidator<RequestReferencesDto>

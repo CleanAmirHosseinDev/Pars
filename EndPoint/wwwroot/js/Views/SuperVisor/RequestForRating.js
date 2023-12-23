@@ -194,7 +194,9 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function filterGridA() {
 
-        pageingGrid("divPageingList_RequestForRatingsASuperVisor", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val() }));
+        ComboBoxWithSearch('.select2', 'rtl');
+
+        pageingGrid("divPageingList_RequestForRatingsASuperVisor", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({ PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
 
     }
 
@@ -800,24 +802,37 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function saveRequestForRating(e) {
 
-        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' || decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') {
+        var v1 = decrypt($(e).attr("data-LSAR"), keyMaker());
+        var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
+        var v3 = $(e).attr("data-lssii");
+
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' )
+        {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
 
-            tempSaveRFR(e);
+                 tempSaveRFR(e);
+             
+            //if ($(objE).attr("data-LSSII") == "11") {
 
-          //  if ($(objE).attr("data-LSSII") == "11") {
+            //    //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
 
-                //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
-
-              //  });
+            //        tempSaveRFR(e);
+            //  //  });
             //} else {
-            //    tempSaveRFR(e);
-            //}
+               
+          //  }
 
-        }
+                    tempSaveRFR(e);
+              //  });
+            } else {
+                tempSaveRFR(e);
+            }
+
+            temgetCodalInfo(e)
+        } 
         else temojsdkjsdjsdkjkjsdjksd(e);
 
     }
@@ -842,13 +857,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     for (var i = 0; i < resGet.data.length; i++) {
 
                         qD += "<option value='" + resGet.data[i].userId + "'>" + (!isEmpty(resGet.data[i].user) ? resGet.data[i].user.realName : '') + "</option>";
-
                     }
 
                     var qContent = "<div class='row'><div class='col-md-12'><div class='form-group'><label class='control-label col-md-3'>انتخاب کاربر</label><div class='col-md-9'><select class='form-control select2' style='width: 100% !important;' name='SUIRS' id='SUIRS'>";
                     qContent += qD;
                     qContent += "</select></div></div></div></div>";
-
                     objE = e;
                     InitModal_Withot_Par('برای ارجاع کاربر را انتخاب کنید', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'ارجاع');
 
@@ -865,14 +878,38 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     }
 
+    function temgetCodalInfo(e) {
+
+            
+            $(".ButtonOpperationLSSlss").attr("disabled", "");
+
+            $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
+           
+        var qContent = "<div><h3>لطفا مشخصات کدال را وارد نمایید.</h3><label for='CodalNumber'>کد رهگیری:</label><br>";
+        qContent += "<input type='text' id='CodalNumber' name='CodalNumber' class='form-control' ><br>";
+            qContent += "<label for='CodalDate'>تاریخ کدال:</label><br>";
+            qContent += "<input type='text' id='CodalDate' name='CodalDate' class='form-control DatePicker'></div>";
+           
+            // $(e).attr("data-LSSII") = "26";
+            objE = e;
+            InitModal_Withot_Par('مشخصات کدال را وارد نمایید.', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'اختتام');
+       
+            ShowModal();
+            PersianDatePicker(".DatePicker");
+
+    }
+
     function tempSaveRFR(e) {
 
 
+        if ($(objE).attr("data-LSSII")==26) {
 
-        if (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
+        }
+        else if
+            (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15')
+        {
 
             alertB("هشدار", "کاربر را انتخاب کنید", "warning");
-
             return;
         }
 
@@ -894,6 +931,8 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     objJ.LevelStepAccessRole = decrypt($(objE).attr("data-LSAR"), keyMaker());
                     objJ.LevelStepStatus = decrypt($(objE).attr("data-LSS"), keyMaker());
                     objJ.ReciveUser = !isEmpty($('#SUIRS').find(":selected").val()) ? $('#SUIRS').val() : null;
+                    objJ.CodalDate = !isEmpty($('#CodalDate').val()) ? $('#CodalDate').val() : null;
+                    objJ.CodalNumber = !isEmpty($('#CodalNumber').val()) ? $('#CodalNumber').val() : null;
                     objJ.Request = {};
                     objJ.Request.Requestid = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
                     objJ.Request.KindOfRequest = 0;

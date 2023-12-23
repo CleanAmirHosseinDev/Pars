@@ -205,6 +205,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         {
                             {
                                 "IsFinished",true
+                            },
+                            {
+                                 "CodalDate",DateTimeOperation.PersianToGregorian0Time( request.CodalDate )                              
+                            },
+                            {
+                                "CodalNumber",request.CodalNumber
                             }
                         }, " RequestID = " + request.Request.RequestId);
 

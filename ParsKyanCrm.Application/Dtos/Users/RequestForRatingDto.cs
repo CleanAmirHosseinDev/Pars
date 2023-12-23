@@ -115,6 +115,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string LevelStepSettingIndexID { get; set; }
 
         public string NationalCode { get; set; }
+        public string CodalNumber { get; set; }
+
+        public DateTime? CodalDate { get; set; }
 
     }
 }

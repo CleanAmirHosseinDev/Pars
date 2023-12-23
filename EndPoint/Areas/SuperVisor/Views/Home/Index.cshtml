@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "داشبورد";
 }
 
@@ -35,50 +34,50 @@
                         <div class="row">
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style=" background-color: #FF5733 !important;">
-                                    <div class="inner">
-                                        <h3 id="StoreBoss1" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد مشتریان</p>
-                                    </div>
-
-                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1008})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
                                 <div class="small-box bg-aqua" style=" background-color: #9016e0 !important;">
                                     <div class="inner">
-                                        <h3 id="StoreBoss1" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد  درخواست های جدید من</p>
+                                        <h3 id="TotalNumberCustomersApprovedContract" style="font-size: 24px;">...</h3>
+                                        <p>تعداد کل مشتریان که قرارداد را تایید کردند</p>
                                     </div>
-
-                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1008})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                    <a href="/SuperVisor/Report/TotalNumberCustomersApprovedContract" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
-                            <!-- ./col -->
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style="background-color: #3eb40f !important; ">
+                                <div class="small-box bg-aqua" style=" background-color: #3eb40f !important;">
                                     <div class="inner">
-                                        <h3 id="StoreBoss2" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد  درخواست های  اقدام شده</p>
+                                        <h3 id="TotalNumberCustomersWithoutRegistration" style="font-size: 24px;">...</h3>
+                                        <p>تعداد کل مشتریان بدون ثبت درخواست</p>
                                     </div>
 
-                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1015})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                    <a href="/SuperVisor/Report/TotalNumberCustomersWithoutRegistration" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
-                            <!-- ./col -->
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-aqua" style=" background-color: #3a84af !important;">
                                     <div class="inner">
-                                        <h3 id="StoreBoss3" style="font-size: 24px;">0 عدد</h3>
-                                        <p>تعداد درخواست های معوقه</p>
+                                        <h3 id="TotalNumberApplicationsAssessmentMinistryPrivacy" style="font-size: 24px;">...</h3>
+                                        <p>تعداد کل درخواست ارزیابی وزارت صمت</p>
                                     </div>
 
-                                    <a href="@Url.Action("IndexByCatStores","Stores",new { id=1020})" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                    <a href="/SuperVisor/Report/TotalNumberApplicationsAssessmentMinistryPrivacy" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
                                 </div>
                             </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-red" style=" background-color: #2b9bff !important;">
+                                    <div class="inner">
+                                        <h3 id="NumberCodedFiles" style="font-size: 20px;">...</h3>
+
+                                        <p>تعداد پرونده های کدال شده</p>
+                                    </div>
+
+                                    <a href="/SuperVisor/Report/NumberCodedFiles" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-aqua" style=" background-color: #3a84af !important;">
@@ -97,3 +96,11 @@
         </div>
     </section>
 </div>
+
+@section Scripts {
+<script>
+
+    Web.Report.IndexBoxSupervisor();
+
+</script>
+}

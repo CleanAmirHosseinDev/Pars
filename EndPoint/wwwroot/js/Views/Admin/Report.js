@@ -138,7 +138,7 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
                 + (!isEmpty(res.data[i].roleName) ? res.data[i].roleName : '') + "</td><td>"
                 + res.data[i].numberCompletedRequests + "</td><td>"
                 + res.data[i].numberOpenAndCurrentRequests + "</td><td>"
-                + res.data[i].averageResponseTimeRequestsStageSendingAdditionalInformationCustomer + "</td><td><a href='/Admin/Report/PerformanceReportEvaluationStaffInDetail_ReportOne?id=" + res.data[i].reciveUser + "' target='_blank' title='گزارش 1'><i class='fa fa-eye'></i></a></td></tr>";
+                + res.data[i].averageResponseTimeRequestsStageSendingAdditionalInformationCustomer + "</td><td><a class='btn btn-info' href='/Admin/Report/PerformanceReportEvaluationStaffInDetail_ReportOne?id=" + res.data[i].reciveUser + "' target='_blank' title='گزارش 1'><i class='fa fa-eye'></i></a></td></tr>";
         }
 
         $("#tBodyList").html(strM);

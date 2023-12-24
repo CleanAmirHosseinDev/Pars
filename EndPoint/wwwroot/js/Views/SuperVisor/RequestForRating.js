@@ -56,8 +56,8 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
             //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
-                strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
-          //  }
+            strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+            //  }
             strM += "</td></tr>";
             //if (res.data[i].levelStepIndex >= 7) {
 
@@ -266,7 +266,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
         ComboBoxWithSearch('.select2', 'rtl');
 
-        pageingGrid("divPageingList_RequestForRatingsSupervisor", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), IsMyRequests: $('#IsMyRequests').is(":checked"), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));      
+        pageingGrid("divPageingList_RequestForRatingsSupervisor", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), IsMyRequests: $('#IsMyRequests').is(":checked"), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
 
     }
 
@@ -300,11 +300,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                         $("#svisorShowDocument").remove();
                     }
                     if (!(
-                             getlstor("loginName") === "5" ||
-                             getlstor("loginName") === "8" ||
-                             getlstor("loginName") === "6" ||
-                             (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)
-                         )
+                        getlstor("loginName") === "5" ||
+                        getlstor("loginName") === "8" ||
+                        getlstor("loginName") === "6" ||
+                        (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)
+                    )
                         || res.data[0].levelStepIndex < 5) {
                         $("#svisorShowEvaluationFile").remove();
                     }
@@ -570,7 +570,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     }
                     $("#CutomerName").html("<h4> فرم اطلاعات" + res.companyName == null ? res.agentName : res.companyName + "</h4>");
 
-                   
+
                     $("#AddressCompany").val(res.addressCompany);
                     $("#CompanyName").val(res.companyName);
                     $("#CeoName").val(res.ceoName);
@@ -806,15 +806,14 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
         var v3 = $(e).attr("data-lssii");
 
-        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' )
-        {
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10') {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
 
-                 tempSaveRFR(e);
-             
+            tempSaveRFR(e);
+
             //if ($(objE).attr("data-LSSII") == "11") {
 
             //    //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
@@ -822,18 +821,18 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             //        tempSaveRFR(e);
             //  //  });
             //} else {
-               
-          //  }
 
-                    tempSaveRFR(e);
-              //  });
-            } else {
-                tempSaveRFR(e);
-            }
+            //  }
 
-            temgetCodalInfo(e)
-        } 
-        else temojsdkjsdjsdkjkjsdjksd(e);
+            tempSaveRFR(e);
+            //  });
+        } else {
+            tempSaveRFR(e);
+        }
+
+        temgetCodalInfo(e)
+
+        temojsdkjsdjsdkjkjsdjksd(e);
 
     }
 
@@ -880,34 +879,33 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function temgetCodalInfo(e) {
 
-            
-            $(".ButtonOpperationLSSlss").attr("disabled", "");
 
-            $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
-           
+        $(".ButtonOpperationLSSlss").attr("disabled", "");
+
+        $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
+
         var qContent = "<div><h3>لطفا مشخصات کدال را وارد نمایید.</h3><label for='CodalNumber'>کد رهگیری:</label><br>";
         qContent += "<input type='text' id='CodalNumber' name='CodalNumber' class='form-control' ><br>";
-            qContent += "<label for='CodalDate'>تاریخ کدال:</label><br>";
-            qContent += "<input type='text' id='CodalDate' name='CodalDate' class='form-control DatePicker'></div>";
-           
-            // $(e).attr("data-LSSII") = "26";
-            objE = e;
-            InitModal_Withot_Par('مشخصات کدال را وارد نمایید.', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'اختتام');
-       
-            ShowModal();
-            PersianDatePicker(".DatePicker");
+        qContent += "<label for='CodalDate'>تاریخ کدال:</label><br>";
+        qContent += "<input type='text' id='CodalDate' name='CodalDate' class='form-control DatePicker'></div>";
+
+        // $(e).attr("data-LSSII") = "26";
+        objE = e;
+        InitModal_Withot_Par('مشخصات کدال را وارد نمایید.', qContent, "Web.RequestForRating.TempSaveRFR();", false, 'width:40%;', 'اختتام');
+
+        ShowModal();
+        PersianDatePicker(".DatePicker");
 
     }
 
     function tempSaveRFR(e) {
 
 
-        if ($(objE).attr("data-LSSII")==26) {
+        if ($(objE).attr("data-LSSII") == 26) {
 
         }
         else if
-            (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15')
-        {
+            (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
 
             alertB("هشدار", "کاربر را انتخاب کنید", "warning");
             return;
@@ -1056,7 +1054,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_EvaluationFile.html", function (resG) {
 
                 $("#showEvaluationFile").html(resG);
-                if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8" ) {
+                if (res.data[0].levelStepAccessRole == "9" || getlstor("loginName") === "1" || getlstor("loginName") === "8") {
                     $("#frmFormMain2").remove();
 
                 }

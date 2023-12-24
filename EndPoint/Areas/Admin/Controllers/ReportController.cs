@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
+using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne;
+using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne2;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
@@ -215,6 +217,58 @@ namespace EndPoint.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region گزارش عملکرد کارکنان ارزیابی با جزئیات )گزارش یک(
+
+        public IActionResult PerformanceReportEvaluationStaffInDetail_ReportOne(int id = 0)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetPerformanceReportEvaluationStaffInDetail_ReportOne([FromBody] RequestPerformanceReportEvaluationStaffInDetail_ReportOneDto request)
+        {
+            try
+            {
+                return Json(await _reportFacad.PerformanceReportEvaluationStaffInDetail_ReportOneService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        #endregion
+
+        #region گزارش عملکرد کارکنان ارزیابی با جزئیات )گزارش دو(
+
+        public IActionResult PerformanceReportEvaluationStaffInDetail_ReportOne2()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetPerformanceReportEvaluationStaffInDetail_ReportOne2([FromBody] RequestPerformanceReportEvaluationStaffInDetail_ReportOne2Dto request)
+        {
+            try
+            {
+                return Json(await _reportFacad.PerformanceReportEvaluationStaffInDetail_ReportOne2Service.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        #endregion
+
+        public IActionResult Index()
+        {
+            return View();
+        }
 
     }
 }

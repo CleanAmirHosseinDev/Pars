@@ -99,6 +99,52 @@ function successCallBack_divPageingList_NumberCodedFiles_Supervisor(res) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Supervisor_pageG = 1;
+function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Supervisor(res) {
+
+    if (res.isSuccess) {
+
+        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+        var strM = '';
+        for (var i = 0; i < res.data.length; i++) {
+
+            strM += "<tr><td>" + res.data[i].row + "</td><td>"
+                + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
+                + res.data[i].dateOfRequestStr + "</td><td>"
+                + res.data[i].lastDateReferrals + "</td><td>"
+                + res.data[i].lastSituation + "</td><td>"
+                + res.data[i].waitingTimeInThisSituation + "</td></tr>";
+        }
+
+        $("#tBodyList").html(strM);
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne2_Supervisor_pageG = 1;
+function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne2_Supervisor(res) {
+
+    if (res.isSuccess) {
+
+        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+        var strM = '';
+        for (var i = 0; i < res.data.length; i++) {
+
+            strM += "<tr><td>" + res.data[i].row + "</td><td>"
+                + (!isEmpty(res.data[i].userName) ? res.data[i].userName : '') + "</td><td>"
+                + (!isEmpty(res.data[i].roleName) ? res.data[i].roleName : '') + "</td><td>"
+                + res.data[i].numberCompletedRequests + "</td><td>"
+                + res.data[i].numberOpenAndCurrentRequests + "</td><td>"
+                + res.data[i].averageResponseTimeRequestsStageSendingAdditionalInformationCustomer + "</td><td><a href='/Supervisor/Report/PerformanceReportEvaluationStaffInDetail_ReportOne?id=" + res.data[i].reciveUser + "' target='_blank' title='گزارش 1'><i class='fa fa-eye'></i></a></td></tr>";
+        }
+
+        $("#tBodyList").html(strM);
+    }
+
+}
+
 (function (web, $) {
 
     //Document Ready  
@@ -203,6 +249,53 @@ function successCallBack_divPageingList_NumberCodedFiles_Supervisor(res) {
         }, true);
     }
 
+    function initPerformanceReportEvaluationStaffInDetail_ReportOne(id = 0) {
+
+        AjaxCallAction("GET", "/api/Supervisor/RequestForRating/Get_UsersByRole/0", null, true, function (resGet) {
+
+            var qD = '<option value="0">انتخاب کنید</option>';
+            if (resGet.isSuccess) {
+
+                for (var i = 0; i < resGet.data.length; i++) {
+
+                    qD += "<option value='" + resGet.data[i].userId + "' >" + (!isEmpty(resGet.data[i].user) ? resGet.data[i].user.realName : '') + "</option>";
+
+                }
+
+                $("#cboReciveUser").html(qD);
+                $("#cboReciveUser").val(id);
+
+                PersianDatePicker(".DatePicker");
+                ComboBoxWithSearch('.select2', 'rtl');
+                filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne();
+
+            }
+
+        }, true);
+
+    }
+
+    function filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne() {
+
+        pageingGrid("divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Supervisor", "/Supervisor/Report/GetPerformanceReportEvaluationStaffInDetail_ReportOne", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val(), ReciveUser: $("#cboReciveUser").val() }));
+
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function initPerformanceReportEvaluationStaffInDetail_ReportOne2() {
+
+        PersianDatePicker(".DatePicker");
+        filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2();
+
+    }
+
+    function filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2() {
+
+        pageingGrid("divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne2_Supervisor", "/Supervisor/Report/GetPerformanceReportEvaluationStaffInDetail_ReportOne2", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
+
+    }
+
     web.Report = {        
         TextSearchOnKeyDown: textSearchOnKeyDown,                        
         ExcelTotalNumberCustomersApprovedContract: excelTotalNumberCustomersApprovedContract,
@@ -217,7 +310,11 @@ function successCallBack_divPageingList_NumberCodedFiles_Supervisor(res) {
         Init_NumberCodedFiles: init_NumberCodedFiles,
         FilterReportGrid_NumberCodedFiles: filterReportGrid_NumberCodedFiles,
         ExcelNumberCodedFiles: excelNumberCodedFiles,
-        IndexBoxSupervisor: indexBoxSupervisor
+        IndexBoxSupervisor: indexBoxSupervisor,
+        InitPerformanceReportEvaluationStaffInDetail_ReportOne: initPerformanceReportEvaluationStaffInDetail_ReportOne,
+        FilterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne: filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne,
+        InitPerformanceReportEvaluationStaffInDetail_ReportOne2: initPerformanceReportEvaluationStaffInDetail_ReportOne2,
+        FilterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2: filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2
     };
 
 })(Web, jQuery);

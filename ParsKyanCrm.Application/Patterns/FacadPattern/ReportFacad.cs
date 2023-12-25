@@ -1,6 +1,8 @@
 ﻿using ParsKyanCrm.Application.Services.Reports.Queries.GeneralPerformanceReport;
 using ParsKyanCrm.Application.Services.Reports.Queries.IndexBoxAdmin;
 using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
+using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne;
+using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne2;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
@@ -26,6 +28,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ITotalNumberApplicationsAssessmentMinistryPrivacyService TotalNumberApplicationsAssessmentMinistryPrivacyService { get; }
 
         INumberCodedFilesService NumberCodedFilesService { get; }
+
+        IPerformanceReportEvaluationStaffInDetail_ReportOneService PerformanceReportEvaluationStaffInDetail_ReportOneService { get; }
+
+        IPerformanceReportEvaluationStaffInDetail_ReportOne2Service PerformanceReportEvaluationStaffInDetail_ReportOne2Service { get; }
 
     }
 
@@ -90,6 +96,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _numberCodedFilesService = _numberCodedFilesService ?? new NumberCodedFilesService();
+            }
+        }
+
+        private IPerformanceReportEvaluationStaffInDetail_ReportOneService _performanceReportEvaluationStaffInDetail_ReportOneService;
+        public IPerformanceReportEvaluationStaffInDetail_ReportOneService PerformanceReportEvaluationStaffInDetail_ReportOneService
+        {
+            get
+            {
+                return _performanceReportEvaluationStaffInDetail_ReportOneService = _performanceReportEvaluationStaffInDetail_ReportOneService ?? new PerformanceReportEvaluationStaffInDetail_ReportOneService();
+            }
+        }
+
+        private IPerformanceReportEvaluationStaffInDetail_ReportOne2Service _performanceReportEvaluationStaffInDetail_ReportOne2Service;
+        public IPerformanceReportEvaluationStaffInDetail_ReportOne2Service PerformanceReportEvaluationStaffInDetail_ReportOne2Service
+        {
+            get
+            {
+                return _performanceReportEvaluationStaffInDetail_ReportOne2Service = _performanceReportEvaluationStaffInDetail_ReportOne2Service ?? new PerformanceReportEvaluationStaffInDetail_ReportOne2Service();
             }
         }
 

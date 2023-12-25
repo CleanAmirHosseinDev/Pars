@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
                         cons += " and cteMain.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
                     }
                 }
-
+               
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
 
 select * from (
@@ -110,6 +110,33 @@ FETCH NEXT {request.PageSize} ROWS ONLY
 ");
 
                 request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);
+
+                return new ResultDto<IEnumerable<RequestForRatingDto>>
+                {
+                    Data = data,
+                    IsSuccess = true,
+                    Message = string.Empty,
+                    Rows = data.LongCount(),
+                };
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<ResultDto<IEnumerable<RequestForRatingDto>>> ExecuteHistory(RequestRequestForRatingDto request)
+        {
+            try
+            {
+
+                var data = await DapperOperation.Run<RequestForRatingDto>(@$"
+                                        select top 1 *  from RequestForRating where CustomerID in( select CustomerID from RequestForRating where RequestID={request.RequestId}) 
+                                        and KindOfRequest=(select KindOfRequest from RequestForRating where RequestID={request.RequestId}) and IsFinished=1 order by RequestID desc
+                  ");
+
+               // request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
                 {

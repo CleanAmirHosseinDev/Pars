@@ -402,5 +402,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
             }
         }
+
     }
 }

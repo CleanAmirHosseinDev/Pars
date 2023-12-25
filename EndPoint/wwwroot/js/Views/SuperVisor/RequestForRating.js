@@ -806,22 +806,45 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
         var v3 = $(e).attr("data-lssii");
 
-        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10') {
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' && $(e).attr("data-LSSII") != "11") {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
 
             tempSaveRFR(e);
+        } else if ($(e).attr("data-LSSII") == "11") {
+            hasHistory(e); 
         }
-        else if ($(e).attr("data-LSSII") != "26") {
+        else if ($(e).attr("data-LSSII") == "26") {
             temgetCodalInfo(e)
         }
         else temojsdkjsdjsdkjkjsdjksd(e);
 
-        temojsdkjsdjsdkjkjsdjksd(e);
+       
 
     }
+
+    function hasHistory(e) {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestHistory", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+            if (res.isSuccess) {
+                if (res.data.length > 0) {
+
+                    alertB("ثبت", "ایجاد کپی از سوابق قبلی مشتری", "success", "بله متوجه شدم", function () {
+                        tempSaveRFR(e);
+                    });
+                }
+            }
+
+        }, true);
+           
+    }
+
+
+
 
     var objE;
     function temojsdkjsdjsdkjkjsdjksd(e) {
@@ -888,11 +911,13 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     function tempSaveRFR(e) {
 
 
-        if ($(objE).attr("data-LSSII") == 26) {
+        if ($(objE).attr("data-LSSII") == 26 || $(objE).attr("data-LSSII") != 11 ) {
 
         }
-        else if
-            (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
+        else if (isEmpty($('#SUIRS').find(":selected").val()) &&
+            decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' &&
+            decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15' )
+        {
 
             alertB("هشدار", "کاربر را انتخاب کنید", "warning");
             return;
@@ -1742,7 +1767,8 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         InitContractNewText: initContractNewText,
         UpdateContract: updateContract,
         OnchangeKindOfRequest: onchangeKindOfRequest,
-        FilterGridA: filterGridA
+        FilterGridA: filterGridA,
+        HasHistory: hasHistory
     };
 
 })(Web, jQuery);

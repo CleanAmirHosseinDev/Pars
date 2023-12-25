@@ -20,7 +20,8 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles
             {
 
                 string strQuery = @$"
-select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from RequestForRating as rfr
+select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile, FORMAT(cast(rfr.CodalDate as date), 'yyyy/MM/dd', 'fa')CodalDate,
+	   rfr.CodalNumber from RequestForRating as rfr
 inner join Customers as cus on rfr.CustomerID = cus.CustomerID
 where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.IsFinished = 1
                
@@ -56,14 +57,16 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 var q = await Execute(request);
 
                 DataTable dt = new DataTable("Grid");
-                dt.Columns.AddRange(new DataColumn[7] {
+                dt.Columns.AddRange(new DataColumn[9] {
                 new DataColumn("ردیف"),
                 new DataColumn("شماره درخواست"),
                 new DataColumn("تاریخ ثبت درخواست "),
                 new DataColumn("نام شرکت"),
                 new DataColumn("نام رابط"),
                 new DataColumn("شناسه/کد ملی"),
-                new DataColumn("موبایل رابط	")
+                new DataColumn("موبایل رابط	"),
+                new DataColumn("تاریخ کدال	"),
+                new DataColumn("کد رهگیری	")
             });
                 int rowcount = 1;
                 foreach (var item in q.Data)
@@ -75,7 +78,10 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                           item.CompanyName,
                           item.AgentName,
                           item.NationalCode,
-                          item.AgentMobile
+                          item.AgentMobile,
+                          item.CodalDate,
+                          item.CodalNumber
+
                         );
                     rowcount++;
                 }

@@ -14,6 +14,8 @@
         public string NationalCode { get; set; }
 
         public string AgentMobile { get; set; }
+        public string CodalDate { get; set; }
+        public string CodalNumber { get; set; }
 
     }
 }

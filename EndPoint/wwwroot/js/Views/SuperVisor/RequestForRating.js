@@ -813,26 +813,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             $("#SUIRS").html('');
             objE = e;
 
-                 tempSaveRFR(e);
-             
-            //if ($(objE).attr("data-LSSII") == "11") {
-
-            //    //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
-
-            //        tempSaveRFR(e);
-            //  //  });
-            //} else {
-               
-          //  }
-
-                    tempSaveRFR(e);
-              //  });
-            } else {
-                tempSaveRFR(e);
-            }
-
+            tempSaveRFR(e);
+        }
+        else if ($(e).attr("data-LSSII") != "26") {
             temgetCodalInfo(e)
-        } 
+        }
         else temojsdkjsdjsdkjkjsdjksd(e);
 
     }

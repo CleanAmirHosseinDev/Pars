@@ -802,24 +802,38 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function saveRequestForRating(e) {
 
-        var v1 = decrypt($(e).attr("data-LSAR"), keyMaker());
-        var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
-        var v3 = $(e).attr("data-lssii");
 
-        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' && $(e).attr("data-LSSII") != "11") {
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' || decrypt($(e).attr("data-DLSI"), keyMaker()) == '15' && $(e).attr("data-LSSII") != "11") {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
-
             tempSaveRFR(e);
-        } else if ($(e).attr("data-LSSII") == "11") {
-            hasHistory(e); 
-        }
-        else if ($(e).attr("data-LSSII") == "26") {
-            temgetCodalInfo(e)
+
+        } else if ( $(e).attr("data-LSSII") == "11") {
+            temgetCodalInfo(e);
         }
         else temojsdkjsdjsdkjkjsdjksd(e);
+
+
+        //var v1 = decrypt($(e).attr("data-LSAR"), keyMaker());
+        //var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
+        //var v3 = $(e).attr("data-lssii");
+
+        //if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' && $(e).attr("data-LSSII") != "11") {
+
+        //    $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
+        //    $("#SUIRS").html('');
+        //    objE = e;
+
+        //    tempSaveRFR(e);
+        //} else if ($(e).attr("data-LSSII") == "11") {
+        //    hasHistory(e); 
+        //}
+        //else if ($(e).attr("data-LSSII") == "26") {
+        //    temgetCodalInfo(e)
+        //}
+        //else temojsdkjsdjsdkjkjsdjksd(e);
 
        
 

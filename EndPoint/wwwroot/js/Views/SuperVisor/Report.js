@@ -90,6 +90,9 @@ function successCallBack_divPageingList_NumberCodedFiles_Supervisor(res) {
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
                 + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
+    
+                + (!isEmpty(res.data[i].codalDate) ? res.data[i].codalDate : '') + "</td><td>"
+                + (!isEmpty(res.data[i].codalNumber) ? res.data[i].codalNumber : '') + "</td></tr>";
         }
 
         $("#tBodyList").html(strM);

@@ -47,6 +47,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         
         public int? TypeGroupCompanies { get; set; }
         public int? ReciveUser { get; set; }
+        public bool IsFinished { get; set; }
 
     }
 
@@ -66,6 +67,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string RequestNoStr { get; set; }
         public int? RequestNo { get; set; }
         public int? CustomerId { get; set; }
+
 
         public DateTime? DateOfRequest { get; set; }
         public string DateOfRequestStr

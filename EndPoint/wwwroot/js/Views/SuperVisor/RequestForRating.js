@@ -802,39 +802,63 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function saveRequestForRating(e) {
 
-        var v1 = decrypt($(e).attr("data-LSAR"), keyMaker());
-        var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
-        var v3 = $(e).attr("data-lssii");
 
-        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10') {
+        if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' || decrypt($(e).attr("data-DLSI"), keyMaker()) == '15' && $(e).attr("data-LSSII") != "11") {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
-
             tempSaveRFR(e);
 
-            //if ($(objE).attr("data-LSSII") == "11") {
-
-            //    //alertB("ثبت", "توجه، به دلیل وجود سابقه قبلی این مشتری از این نوع درخواست، یک کپی از اطلاعات قبلی برای او ارسال می شود.", "success", "بله متوجه شدم", function () {
-
-            //        tempSaveRFR(e);
-            //  //  });
-            //} else {
-
-            //  }
-
-            tempSaveRFR(e);
-            //  });
-        } else {
-            tempSaveRFR(e);
+        } else if ( $(e).attr("data-LSSII") == "11") {
+            temgetCodalInfo(e);
         }
+        else temojsdkjsdjsdkjkjsdjksd(e);
 
-        temgetCodalInfo(e)
 
-        temojsdkjsdjsdkjkjsdjksd(e);
+        //var v1 = decrypt($(e).attr("data-LSAR"), keyMaker());
+        //var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
+        //var v3 = $(e).attr("data-lssii");
+
+        //if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' && $(e).attr("data-LSSII") != "11") {
+
+        //    $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
+        //    $("#SUIRS").html('');
+        //    objE = e;
+
+        //    tempSaveRFR(e);
+        //} else if ($(e).attr("data-LSSII") == "11") {
+        //    hasHistory(e); 
+        //}
+        //else if ($(e).attr("data-LSSII") == "26") {
+        //    temgetCodalInfo(e)
+        //}
+        //else temojsdkjsdjsdkjkjsdjksd(e);
+
+       
 
     }
+
+    function hasHistory(e) {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestHistory", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+            if (res.isSuccess) {
+                if (res.data.length > 0) {
+
+                    alertB("ثبت", "ایجاد کپی از سوابق قبلی مشتری", "success", "بله متوجه شدم", function () {
+                        tempSaveRFR(e);
+                    });
+                }
+            }
+
+        }, true);
+           
+    }
+
+
+
 
     var objE;
     function temojsdkjsdjsdkjkjsdjksd(e) {
@@ -901,11 +925,13 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     function tempSaveRFR(e) {
 
 
-        if ($(objE).attr("data-LSSII") == 26) {
+        if ($(objE).attr("data-LSSII") == 26 || $(objE).attr("data-LSSII") != 11 ) {
 
         }
-        else if
-            (isEmpty($('#SUIRS').find(":selected").val()) && decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' && decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
+        else if (isEmpty($('#SUIRS').find(":selected").val()) &&
+            decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' &&
+            decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15' )
+        {
 
             alertB("هشدار", "کاربر را انتخاب کنید", "warning");
             return;
@@ -1755,7 +1781,8 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         InitContractNewText: initContractNewText,
         UpdateContract: updateContract,
         OnchangeKindOfRequest: onchangeKindOfRequest,
-        FilterGridA: filterGridA
+        FilterGridA: filterGridA,
+        HasHistory: hasHistory
     };
 
 })(Web, jQuery);

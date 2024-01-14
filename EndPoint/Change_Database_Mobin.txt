@@ -1,4 +1,12 @@
 ﻿
+--========add to column in RequestForRating
+
+alter table [dbo].[RequestForRating]
+add  [CodalNumber] nvarchar(50),[CodalDate] nvarchar(50)
+
+
+--========================================
+
 
 ---------------------------------------->>> یکشنبه - ۲۴ دی ۱۴۰۲
 alter table RankingOfCompanies

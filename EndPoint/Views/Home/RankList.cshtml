@@ -2,98 +2,98 @@
     ViewData["Title"] = "رتبه های اعتباری";
 }
 
+@section Styles{
+
 <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
-<div id="bg-img"></div>
-
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
-
 <link rel="stylesheet" href="~/css/landing/RankList.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
+
+}
+
+@section Scripts {
+
+<script src="~/js/landing/RankList.js" asp-append-version="true"></script>
+<script>
+    initPage();
+</script>
+
+}
+
+<div id="bg-img"></div>
 
 <section style="background: #325777cc;max-width: var(--max-site-width);z-index: 423;margin: auto;position: relative;padding: 20px;margin: 15px auto;border-radius: 20px;">
     <h1 style="color:white;text-align: center;margin-bottom: 10px;">رتبه های اعتباری</h1>
 
+    <center>
+        <div class="left_sec_item" style="width:25%;">
+            <div class="title">
+                <h4>جستجو</h4>
+            </div>
+            <div class="item">
+                <div class="search_bar">
+                    <input type="text" id="Search" placeholder="جستجو..." />
+                    <a class="jbtn" href="#" onclick="LoadData();">جستجو</a>
+                </div>
+            </div>
+        </div>
+    </center>
     <div style="display: flex;flex-wrap: wrap;width: auto;justify-content: space-around;">
-
 
         <div class="jtwrapper">
             <div class="jtable">
-
                 <div class="jtrow jtheader blue">
-                    <div class="jtcell">
-                        نام ناشر
+
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="PublishDate_A" data-D="PublishDate_D" data-Selected="PublishDate_A">
+                        تاریخ
+                        <i class="fa fa-arrow-up"></i>                        
                     </div>
 
-                    <div class="jtcell">
-                        تاریخ
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="CompanyName_A" data-D="CompanyName_D" >
+                        نام ناشر
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
                     </div>
-                    <div class="jtcell">
+                    
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="TradingSymbol_A" data-D="TradingSymbol_D">
+                        نماد معاملاتی
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
+                    </div>
+
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="RankingTypeText_A" data-D="RankingTypeText_D">
                         نوع رتبه بندی
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
                     </div>
                     <div class="jtcell">
                         بخش
                     </div>
 
-                    <div class="jtcell">
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="StatusText_A" data-D="StatusText_D">
                         وضعیت رتبه بندی
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
                     </div>
-                    <div class="jtcell">
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="LongTermRating_A" data-D="LongTermRating_D">
                         رتبه در بلند مدت
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
                     </div>
-                    <div class="jtcell">
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="ShortTermRating_A" data-D="ShortTermRating_D">
                         رتبه در کوتاه مدت
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
                     </div>
-                    <div class="jtcell">
+                    <div class="jtcell cursorPointer thtrtheadtableSortingGrid_LandingRankList" onclick="clickSortingGrid(this);" data-A="Vision_A" data-D="Vision_D">
                         دورنما
+                        <i class="fa fa-arrow-down" style="display:none;"></i>
                     </div>
                     <div class="jtcell">
-                        جزئیات
+                        جزئیات                        
                     </div>
                 </div>
-
-                @if(ViewData["ranks"] != null) {
-                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.RankingOfCompaniesDto>)ViewData["ranks"]) {
-                        <div class="jtrow">
-                            <div class="jtcell" data-title="نام شرکت">
-                                @item.Comany.CompanyName
-                            </div>
-                            <div class="jtcell" data-title="تاریخ">
-                                @item.PublishDate
-                            </div>
-                            <div class="jtcell" data-title="نوع رتبه بندی">
-                                @item.RankingTypeText
-                            </div>
-                            <div class="jtcell" data-title="بخش">
-                                @item.Comany.CompanyGroup.Label
-                            </div>
-
-                            <div class="jtcell" data-title="وضعیت رتبه بندی">
-                                @item.StatusText
-                            </div>
-                            <div class="jtcell" data-title="رتبه در بلند مدت">
-                                @item.LongTermRating
-                            </div>
-                            <div class="jtcell" data-title="رتبه در کوتاه مدت">
-                                @item.ShortTermRating
-                            </div>
-                            <div class="jtcell" data-title="دورنما">
-                                @item.Vision
-                            </div>
-                            <div class="jtcell" data-title="جزئیات">
-                                <div style="display: flex;/*flex-wrap: wrap;*/">
-                                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/ContactUs/" target="_blank">خلاصه‌گزارش</a>
-                                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/FileUpload/RankingOfCompanies/@item.PressRelease" target="_blank">بیانیه‌مطبوعاتی</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
 
             </div>
 
 
         </div>
 
+
     </div>
 
 </section>
-

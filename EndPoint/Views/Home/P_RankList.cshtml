@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ParsKyanCrm.Application.Dtos.Users.RankingOfCompaniesDto>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <div class="jtrow mainRowFull">
+
+            <div class="jtcell" data-title="تاریخ">
+                @item.PublishDate
+            </div>
+            <div class="jtcell" data-title="نام ناشر">
+                @item.Comany.CompanyName
+            </div>
+            
+            <div class="jtcell" data-title="نماد معاملاتی">
+                @item.TradingSymbol
+            </div>
+
+            <div class="jtcell" data-title="نوع رتبه بندی">
+                @item.RankingTypeText
+            </div>
+            <div class="jtcell" data-title="بخش">
+                @item.Comany.CompanyGroup.Label
+            </div>
+
+            <div class="jtcell" data-title="وضعیت رتبه بندی">
+                @item.StatusText
+            </div>
+            <div class="jtcell" data-title="رتبه در بلند مدت">
+                @item.LongTermRating
+            </div>
+            <div class="jtcell" data-title="رتبه در کوتاه مدت">
+                @item.ShortTermRating
+            </div>
+            <div class="jtcell" data-title="دورنما">
+                @item.Vision
+            </div>
+            <div class="jtcell" data-title="جزئیات">
+                <div style="display: flex;/*flex-wrap: wrap;*/">
+                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/FileUpload/RankingOfCompanies/@item.PressRelease" target="_blank">بیانیه‌ مطبوعاتی</a>
+                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/ContactUs/" target="_blank">خلاصه‌ گزارش</a>
+                </div>
+            </div>
+        </div>
+    }
+}

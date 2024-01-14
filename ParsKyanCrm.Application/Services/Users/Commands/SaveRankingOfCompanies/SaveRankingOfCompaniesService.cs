@@ -114,6 +114,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRankingOfCompanies
                         {
                             nameof(q_Entity.Entity.UserId),request.UserId
                         },
+                        {
+                            "TradingSymbol",request.TradingSymbol
+                        }
 
                     }, string.Format(nameof(q_Entity.Entity.RankingId) + " = {0} ", request.RankingId));
 

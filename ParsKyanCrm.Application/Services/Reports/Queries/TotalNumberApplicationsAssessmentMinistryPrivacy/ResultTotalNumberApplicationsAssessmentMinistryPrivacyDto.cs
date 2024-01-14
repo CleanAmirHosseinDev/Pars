@@ -2,6 +2,9 @@
 {
     public class ResultTotalNumberApplicationsAssessmentMinistryPrivacyDto
     {
+
+        public string FinalPriceContract { get; set; }
+
         public int? RequestNo { get; set; }
 
         public string DateOfRequestStr { get; set; }

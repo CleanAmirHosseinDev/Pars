@@ -28,7 +28,7 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.IndexBoxAdmin
                 
 declare @totalNumberCustomersApprovedContract as int = (select cast(count(*) as nvarchar(50)) as TotalNumberCustomersApprovedContract from Customers as cus
 inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
-where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (select ContractAndFinancialDocuments.RequestID from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15))
+where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (select ContractAndFinancialDocuments.RequestID from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.ContractCode is not null))
 
 
 declare @totalNumberCustomersWithoutRegistration as int = (select cast(count(*) as nvarchar(50)) as TotalNumberCustomersWithoutRegistration from Customers as cus

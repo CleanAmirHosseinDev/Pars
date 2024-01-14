@@ -14,7 +14,7 @@ function successCallBack_divPageingList_TotalNumberCustomersApprovedContract(res
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
         }
 
         $("#tBodyList").html(strM);
@@ -64,7 +64,7 @@ function successCallBack_divPageingList_TotalNumberApplicationsAssessmentMinistr
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
         }
 
         $("#tBodyList").html(strM);
@@ -89,7 +89,7 @@ function successCallBack_divPageingList_NumberCodedFiles(res) {
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract+"</td></tr>";
         }
 
         $("#tBodyList").html(strM);
@@ -422,8 +422,8 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
     }
 
     function initPerformanceReportEvaluationStaffInDetail_ReportOne(id = 0) {
-        
-        AjaxCallAction("GET", "/api/admin/RequestForRating/Get_UsersByRole/0", null, true, function (resGet) {            
+
+        AjaxCallAction("GET", "/api/admin/RequestForRating/Get_UsersByRole/0", null, true, function (resGet) {
 
             var qD = '<option value="0">انتخاب کنید</option>';
             if (resGet.isSuccess) {
@@ -441,6 +441,8 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
                 ComboBoxWithSearch('.select2', 'rtl');
                 filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne();
 
+                fillComboLevelStepSettingList();
+
             }
 
         }, true);
@@ -449,7 +451,7 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
     function filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne() {
 
-        pageingGrid("divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Admin", "/Admin/Report/GetPerformanceReportEvaluationStaffInDetail_ReportOne", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val(), ReciveUser: $("#cboReciveUser").val() }));
+        pageingGrid("divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Admin", "/Admin/Report/GetPerformanceReportEvaluationStaffInDetail_ReportOne", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val(), ReciveUser: $("#cboReciveUser").val(), FromLastDateReferrals: $("#FromLastDateReferrals").val(), ToLastDateReferrals: $("#ToLastDateReferrals").val(), cboSelectLS: $("#cboSelectLS").val() }));
 
     }
 
@@ -468,7 +470,65 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
     }
 
+    function fillComboLevelStepSettingList() {
+
+        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+            AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+                if (res.isSuccess) {
+                    var strKindOfRequest = '<option value="">انتخاب کنید</option>';
+
+                    for (var i = 0; i < res.data.length; i++) {
+                        strKindOfRequest += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+
+                    $("#cboKindOfRequest").html(strKindOfRequest);
+
+                }
+            }, true);
+
+        }, true);
+
+    }
+
+    function onchangeKindOfRequest(e) {
+
+        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+        }, true);
+
+    }
+
     web.Report = {
+        OnchangeKindOfRequest: onchangeKindOfRequest,
+        FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         FillComboFitterList: fillComboFitterList,
         FilterReportGrid: filterReportGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,

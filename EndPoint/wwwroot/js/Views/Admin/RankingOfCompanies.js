@@ -64,6 +64,7 @@
         AjaxCallAction("GET", "/api/admin/RankingOfCompanies/Get_RankingOfCompanies/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
             if (res != null) {
+                $("#TradingSymbol").val(res.tradingSymbol);
                 $("#ComanyId").val(res.ComanyId);
                 $("#PublishDate").val(res.publishDate);
                 $("#LongTermRating").val(res.longTermRating);

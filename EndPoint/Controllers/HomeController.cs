@@ -74,24 +74,25 @@ namespace EndPoint.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> RankList()
+        public IActionResult RankList()
+        {
+           
+            return View();
+        }
+
+        public async Task<IActionResult> RankList_Data(RequestRankingOfCompaniesDto request)
         {
             try
-            {
-
-                RequestRankingOfCompaniesDto request2 = new RequestRankingOfCompaniesDto();
-                request2.IsActive = (byte)TablesGeneralIsActive.Active;
-                request2.PageSize = 10000;
-                request2.PageIndex = 1;
-                var ranks = await _userFacad.GetRankingOfCompaniessService.Execute(request2);
-
-                ViewData["ranks"] = ranks.Data.OrderByDescending(a => a.PublishDate);
+            {                
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
+                request.PageSize = 10000;
+                request.PageIndex = 1;                
+                return PartialView("P_RankList", (await _userFacad.GetRankingOfCompaniessService.Execute(request)).Data);
             }
             catch (Exception ex)
             {
-                var x = ex;
-            }
-            return View();
+                return null;
+            }            
         }
 
         [HttpPost]

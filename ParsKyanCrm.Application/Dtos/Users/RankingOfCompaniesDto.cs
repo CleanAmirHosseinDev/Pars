@@ -55,5 +55,10 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public CompaniesDto Comany { get; set; }
         public UsersDto User { get; set; }
 
+        /// <summary>
+        /// نماد معاملاتی
+        /// </summary>
+        public string TradingSymbol { get; set; }
+
     }
 }

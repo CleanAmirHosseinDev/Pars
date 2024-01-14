@@ -20,7 +20,7 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles
             {
 
                 string strQuery = @$"
-select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from RequestForRating as rfr
+select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile,(select top 1 ISNULL(REPLACE(REPLACE(FORMAT(ContractAndFinancialDocuments.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ','), 0) from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.RequestID = rfr.RequestID order by ContractAndFinancialDocuments.FinancialID desc) as FinalPriceContract from RequestForRating as rfr
 inner join Customers as cus on rfr.CustomerID = cus.CustomerID
 where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.IsFinished = 1
                

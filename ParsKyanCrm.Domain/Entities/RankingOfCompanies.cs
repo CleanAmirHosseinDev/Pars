@@ -20,6 +20,8 @@ namespace ParsKyanCrm.Domain.Entities
         public int? UserId { get; set; }
         public int? IsActive { get; set; }
 
+        public string TradingSymbol { get; set; }
+
         public virtual Companies Comany { get; set; }
         public virtual Users User { get; set; }
     }

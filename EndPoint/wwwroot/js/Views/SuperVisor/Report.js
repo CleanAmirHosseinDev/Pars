@@ -14,7 +14,7 @@ function successCallBack_divPageingList_TotalNumberCustomersApprovedContractSupe
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
         }
 
         $("#tBodyList").html(strM);
@@ -64,7 +64,7 @@ function successCallBack_divPageingList_TotalNumberApplicationsAssessmentMinistr
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
         }
 
         $("#tBodyList").html(strM);
@@ -89,7 +89,7 @@ function successCallBack_divPageingList_NumberCodedFiles_Supervisor(res) {
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
-                + res.data[i].agentMobile + "</td></tr>";
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
         }
 
         $("#tBodyList").html(strM);
@@ -154,7 +154,7 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
 
-    }             
+    }
 
     function excelTotalNumberCustomersApprovedContract() {
 
@@ -162,9 +162,9 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
     }
 
-    function filterReportGrid_TotalNumberCustomersApprovedContract() {        
+    function filterReportGrid_TotalNumberCustomersApprovedContract() {
 
-        pageingGrid("divPageingList_TotalNumberCustomersApprovedContractSupervisor", "/SuperVisor/Report/GetTotalNumberCustomersApprovedContract", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(),FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
+        pageingGrid("divPageingList_TotalNumberCustomersApprovedContractSupervisor", "/SuperVisor/Report/GetTotalNumberCustomersApprovedContract", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
 
     }
 
@@ -269,6 +269,8 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
                 ComboBoxWithSearch('.select2', 'rtl');
                 filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne();
 
+                fillComboLevelStepSettingList();
+
             }
 
         }, true);
@@ -277,7 +279,7 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
     function filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne() {
 
-        pageingGrid("divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Supervisor", "/Supervisor/Report/GetPerformanceReportEvaluationStaffInDetail_ReportOne", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val(), ReciveUser: $("#cboReciveUser").val() }));
+        pageingGrid("divPageingList_PerformanceReportEvaluationStaffInDetail_ReportOne_Supervisor", "/Supervisor/Report/GetPerformanceReportEvaluationStaffInDetail_ReportOne", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val(), ReciveUser: $("#cboReciveUser").val(), FromLastDateReferrals: $("#FromLastDateReferrals").val(), ToLastDateReferrals: $("#ToLastDateReferrals").val(), cboSelectLS: $("#cboSelectLS").val() }));
 
     }
 
@@ -296,8 +298,66 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
     }
 
-    web.Report = {        
-        TextSearchOnKeyDown: textSearchOnKeyDown,                        
+    function fillComboLevelStepSettingList() {
+
+        AjaxCallAction("POST", "/api/supervisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+            AjaxCallAction("POST", "/api/supervisor/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "63", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+                if (res.isSuccess) {
+                    var strKindOfRequest = '<option value="">انتخاب کنید</option>';
+
+                    for (var i = 0; i < res.data.length; i++) {
+                        strKindOfRequest += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }
+
+                    $("#cboKindOfRequest").html(strKindOfRequest);
+
+                }
+            }, true);
+
+        }, true);
+
+    }
+
+    function onchangeKindOfRequest(e) {
+
+        AjaxCallAction("POST", "/api/supervisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strKindOfCompany = '<option value="">انتخاب کنید</option>';
+
+                for (var i = 0; i < res.data.length; i++) {
+                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                }
+
+                $("#cboSelectLS").html(strKindOfCompany);
+
+
+
+            }
+
+        }, true);
+
+    }
+
+    web.Report = {
+        OnchangeKindOfRequest: onchangeKindOfRequest,
+        FillComboLevelStepSettingList: fillComboLevelStepSettingList,
+        TextSearchOnKeyDown: textSearchOnKeyDown,
         ExcelTotalNumberCustomersApprovedContract: excelTotalNumberCustomersApprovedContract,
         FilterReportGrid_TotalNumberCustomersApprovedContract: filterReportGrid_TotalNumberCustomersApprovedContract,
         Init_TotalNumberCustomersApprovedContract: init_TotalNumberCustomersApprovedContract,

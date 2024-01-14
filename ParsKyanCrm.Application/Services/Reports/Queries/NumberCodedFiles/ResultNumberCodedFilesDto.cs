@@ -15,5 +15,7 @@
 
         public string AgentMobile { get; set; }
 
+        public string FinalPriceContract { get; set; }
+
     }
 }

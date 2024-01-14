@@ -51,6 +51,63 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRankingOfCompaniess
                     case "RankingId_A":
                         lists = lists.OrderBy(s => s.RankingId);
                         break;
+
+                    case "CompanyName_A":
+                        lists = lists.OrderBy(s => s.Comany.CompanyName);
+                        break;
+                    case "CompanyName_D":
+                        lists = lists.OrderByDescending(s => s.Comany.CompanyName);
+                        break;
+
+                    case "PublishDate_A":
+                        lists = lists.OrderBy(s => s.PublishDate);
+                        break;
+                    case "PublishDate_D":
+                        lists = lists.OrderByDescending(s => s.PublishDate);
+                        break;
+
+                    case "RankingTypeText_A":
+                        lists = lists.OrderBy(s => s.RankingTypeText);
+                        break;
+                    case "RankingTypeText_D":
+                        lists = lists.OrderByDescending(s => s.RankingTypeText);
+                        break;
+
+                    case "StatusText_A":
+                        lists = lists.OrderBy(s => s.StatusText);
+                        break;
+                    case "StatusText_D":
+                        lists = lists.OrderByDescending(s => s.StatusText);
+                        break;
+
+                    case "LongTermRating_A":
+                        lists = lists.OrderBy(s => s.LongTermRating);
+                        break;
+                    case "LongTermRating_D":
+                        lists = lists.OrderByDescending(s => s.LongTermRating);
+                        break;
+
+                    case "ShortTermRating_A":
+                        lists = lists.OrderBy(s => s.ShortTermRating);
+                        break;
+                    case "ShortTermRating_D":
+                        lists = lists.OrderByDescending(s => s.ShortTermRating);
+                        break;
+
+                    case "Vision_A":
+                        lists = lists.OrderBy(s => s.Vision);
+                        break;
+                    case "Vision_D":
+                        lists = lists.OrderByDescending(s => s.Vision);
+                        break;
+
+                    case "TradingSymbol_A":
+                        lists = lists.OrderBy(s => s.TradingSymbol);
+                        break;
+                    case "TradingSymbol_D":
+                        lists = lists.OrderByDescending(s => s.TradingSymbol);
+                        break;
+
                     default:
                         lists = lists.OrderByDescending(s => s.RankingId);
                         break;

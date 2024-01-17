@@ -26,6 +26,7 @@ namespace EndPoint.Controllers
         {
             return View();
         }
+
         [CaptchaCheck]
         [HttpPost]
         public JsonResult ContactUsForm([FromForm] ContactUsFormDto form)

@@ -135,7 +135,7 @@ namespace ParsKyanCrm.Infrastructure
             try
             {
 
-                string strU = ((VaribleForName.IsDebug == true ? AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")) : AppContext.BaseDirectory) + path + (string.IsNullOrEmpty(filename) ? VaribleForName.No_Photo : filename)).Replace("\\", "/").Replace("//", "/");
+                string strU = path + (string.IsNullOrEmpty(filename) ? VaribleForName.No_Photo : filename);
 
                 switch (!string.IsNullOrEmpty(filename) ? Path.GetExtension(filename.ToLower()).Replace(".", "") : string.Empty)
                 {

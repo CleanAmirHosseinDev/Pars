@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ParsKyanCrm.Application.Dtos.Users.RankingOfCompaniesDto>
-
+@{
+    int customerID = ViewBag.CustomerID != null ? ViewBag.CustomerID : 0;
+}
 @if (Model != null)
 {
     @foreach (var item in Model)
@@ -12,7 +14,7 @@
             <div class="jtcell" data-title="نام ناشر">
                 @item.Comany.CompanyName
             </div>
-            
+
             <div class="jtcell" data-title="نماد معاملاتی">
                 @item.TradingSymbol
             </div>
@@ -36,10 +38,18 @@
             <div class="jtcell" data-title="دورنما">
                 @item.Vision
             </div>
-            <div class="jtcell" data-title="جزئیات">
-                <div style="display: flex;/*flex-wrap: wrap;*/">
-                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/FileUpload/RankingOfCompanies/@item.PressRelease" target="_blank">بیانیه‌ مطبوعاتی</a>
-                    <a style="font-size: 12px;margin:4px;" class="jbtn" href="/ContactUs/" target="_blank">خلاصه‌ گزارش</a>
+            <div class="jtcell" data-title="جزئیات" id="divOpperationButtons">
+                <div style='display: flex;/*flex-wrap: wrap;*/'>
+                    <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/@item.PressRelease' target='_blank'>بیانیه‌ مطبوعاتی</a>
+                    
+                    @if (customerID == 0)
+                    {
+                        <a style='font-size: 12px;margin:4px;' class='jbtn' onclick="SummaryRankingAuten();" href="#">خلاصه‌ گزارش</a>
+                    }
+                    else
+                    {
+                        <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/@item.SummaryRanking' target='_blank'>خلاصه‌ گزارش</a>
+                    }
                 </div>
             </div>
         </div>

@@ -23,8 +23,9 @@ namespace EndPoint.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string u = null)
         {
+            ViewBag.u = u;
             return View();
         }
 

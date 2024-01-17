@@ -49,7 +49,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/BoardOfDirectors/";
+                return "/FileUpload/BoardOfDirectors/";
             }
         }
 
@@ -68,7 +68,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/Activity/";
+                return "/FileUpload/Activity/";
             }
         }
 
@@ -76,7 +76,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/Ckeditor/";
+                return "/FileUpload/Ckeditor/";
             }
         }
 
@@ -84,7 +84,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/LicensesAndHonors/";
+                return "/FileUpload/LicensesAndHonors/";
             }
         }
 
@@ -92,7 +92,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/Customers/FurtherInfo/";
+                return "/FileUpload/Customers/FurtherInfo/";
             }
         }
 
@@ -100,7 +100,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/ManagerOfParsKyan/";
+                return "/FileUpload/ManagerOfParsKyan/";
             }
         }
 
@@ -108,7 +108,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/RankingOfCompanies/";
+                return "/FileUpload/RankingOfCompanies/";
             }
         }
 
@@ -116,7 +116,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/NewsAndContent/";
+                return "/FileUpload/NewsAndContent/";
             }
         }
 
@@ -124,7 +124,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return "/wwwroot/FileUpload/Customers/";
+                return "/FileUpload/Customers/";
             }
         }
 

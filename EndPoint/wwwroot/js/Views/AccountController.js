@@ -166,7 +166,7 @@
 
             $(e).attr("disabled", "");
 
-            AjaxCallActionWithotHeading("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), IsCustomer:1, Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()) }), true, function (res) {
+            AjaxCallActionWithotHeading("POST", "/api/Securitys/AutenticatedCode", JSON.stringify({ CaptchaCodes: $("#form_n1 input[name='CaptchaCodes']").val(), IsCustomer: 1, Code: $("#Code").val(), Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh: decrypt($("#Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh").val(), keyMaker()), Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf: decrypt($("#Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf").val(), keyMaker()), u: $("#u").val() }), true, function (res) {
 
                 $(e).removeAttr("disabled");
 

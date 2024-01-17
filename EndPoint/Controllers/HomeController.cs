@@ -86,7 +86,8 @@ namespace EndPoint.Controllers
             {                
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
                 request.PageSize = 10000;
-                request.PageIndex = 1;                
+                request.PageIndex = 1;
+                ViewBag.CustomerID = request.CustomerID;
                 return PartialView("P_RankList", (await _userFacad.GetRankingOfCompaniessService.Execute(request)).Data);
             }
             catch (Exception ex)
@@ -215,6 +216,8 @@ namespace EndPoint.Controllers
                 throw;
             }
         }
+
+
 
     }
 }

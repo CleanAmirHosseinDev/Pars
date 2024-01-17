@@ -17,6 +17,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? RankingId { get; set; }
 
+        public int CustomerID { get; set; }
+
     }
 
     public class RankingOfCompaniesDto : BaseEntityDto

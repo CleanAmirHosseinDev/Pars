@@ -73,8 +73,8 @@
                 $("#RankingId").val(res.rankingId);
                 $("#StatusText").val(res.statusText);
                 $("#RankingTypeText").val(res.rankingTypeText);
-                $("#divDownload").html("<a href='/File/Download?path=" + res.pressReleaseFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
-                $("#divDownload_SummaryRanking").html("<a href='/File/Download?path=" + res.summaryRankingFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                $("#divDownload").html("<a href='" + res.pressReleaseFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                $("#divDownload_SummaryRanking").html("<a href='" + res.summaryRankingFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                 systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
             }

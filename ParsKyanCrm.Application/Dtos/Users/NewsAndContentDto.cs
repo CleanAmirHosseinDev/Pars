@@ -35,7 +35,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         {
             get
             {
-                return ServiceFileUploader.GetFullPath(ContentPic, VaribleForName.NewsAndContentFolder);
+                return ServiceFileUploader.GetFullPath(ContentPic, VaribleForName.NewsAndContentFolder,false);
             }
         }
 

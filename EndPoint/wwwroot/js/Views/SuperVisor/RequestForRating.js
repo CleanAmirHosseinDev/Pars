@@ -415,7 +415,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     $("#CanSeePreFactorStr").prop("checked", res.data.canSeePreFactor);
                     if (getlstor("loginName") === "1" || getlstor("loginName") === "4") {
                         if (res.data.contractDocumentCustomer != null && res.data.contractDocumentCustomer != "") {
-                            $("#divDownloadContractDocumentCustomer").html("<a  href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#divDownloadContractDocumentCustomer").html("<a  href='" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#ContentCKeditor").html("<textarea name='ContentContract' id='ContentContract'>" + res.data.contentContract + "</textarea>");
                         Ckeditor("ContentContract");
@@ -592,19 +592,19 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
                     if (res.lastInsuranceList != null && res.lastInsuranceList != "") {
-                        $("#divDownload").html("<a class='btn btn-success' href='/File/Download?path=" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload").html("<a class='btn btn-success' href='" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                     }
                     if (res.auditedFinancialStatements != null && res.auditedFinancialStatements != "") {
-                        $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='/File/Download?path=" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                     }
                     if (res.scanCustomerNationalCard != null && res.scanCustomerNationalCard != "") {
-                        $("#divDownload_ScanCustomerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanCustomerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_ScanCustomerNationalCard").html("<a class='btn btn-success' href='" + res.scanCustomerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                     }
                     if (res.scanManagerNationalCard != null && res.scanManagerNationalCard != "") {
-                        $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='/File/Download?path=" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                     }
 
@@ -1130,37 +1130,37 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
 
                     if (res.data.financialDocument != null && res.data.financialDocument != "") {
-                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.financialDocument2 != null && res.data.financialDocument2 != "") {
-                        $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument2").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.contractDocument != null && res.data.contractDocument != "") {
-                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.evaluationFile != null && res.data.evaluationFile != "") {
-                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") {
-                        $("#divDownload_CommitteeEvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.committeeEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_CommitteeEvaluationFile").html("<a class='btn btn-success' href='" + res.data.committeeEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_CommitteeEvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.lastFinancialDocument != null && res.data.lastFinancialDocument != "") {
-                        $("#divDownload_LastFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.lastFinancialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_LastFinancialDocument").html("<a class='btn btn-success' href='" + res.data.lastFinancialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_LastFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.leaderEvaluationFile != null && res.data.leaderEvaluationFile != "") {
-                        $("#divDownload_LeaderEvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.leaderEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_LeaderEvaluationFile").html("<a class='btn btn-success' href='" + res.data.leaderEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_LeaderEvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
@@ -1194,27 +1194,27 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     $("#ContractCode").val(res.data.contractCode);
 
                     if (res.data.financialDocument != null && res.data.financialDocument != "") {
-                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.financialDocument2 != null && res.data.financialDocument2 != "") {
-                        $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownloadFinancialDocument2").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.contractDocument != null && res.data.contractDocument != "") {
-                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_ContractDocument").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.evaluationFile != null && res.data.evaluationFile != "") {
-                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }
                     if (res.data.committeeEvaluationFile != null && res.data.committeeEvaluationFile != "") {
-                        $("#divDownload_CommitteeEvaluationFile").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.committeeEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownload_CommitteeEvaluationFile").html("<a class='btn btn-success' href='" + res.data.committeeEvaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     } else {
                         $("#divDownload_CommitteeEvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
                     }

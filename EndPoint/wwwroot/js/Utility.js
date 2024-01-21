@@ -153,19 +153,19 @@ function GetFullFilePath(path) {
         switch (GetExtension(path).toLowerCase()) {
             case 'pdf':
 
-                return "<a href='/File/Download?path=" + path + "' target='_blank'><img src='/FileUpload/pdf.jfif' class='img-circle' width='100' height='100' /></a>";
+                return "<a href='" + path + "' target='_blank'><img src='/FileUpload/pdf.jfif' class='img-circle' width='100' height='100' /></a>";
 
                 break;
             case 'xlsx':
             case 'xls':
 
-                return "<a href='/File/Download?path=" + path + "' target='_blank'><img src='/FileUpload/xls.jfif' class='img-circle' width='100' height='100' /></a>";
+                return "<a href='" + path + "' target='_blank'><img src='/FileUpload/xls.jfif' class='img-circle' width='100' height='100' /></a>";
 
                 break;
             default:
 
 
-                return "<a href='/File/Download?path=" + path + "' target='_blank'><img src='" + path.substring(path.indexOf("/FileUpload"), path.lenth) + "' class='img-circle' width='100' height='100' /></a>";
+                return "<a href='" + path + "' target='_blank'><img src='" + path.substring(path.indexOf("/FileUpload"), path.lenth) + "' class='img-circle' width='100' height='100' /></a>";
 
                 break;
         }

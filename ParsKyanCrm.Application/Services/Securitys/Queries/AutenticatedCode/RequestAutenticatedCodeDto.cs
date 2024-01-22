@@ -9,5 +9,10 @@
         public string Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf { get; set; }
         public string CaptchaCodes { get; set; }
 
+        /// <summary>
+        /// این خصوصیت برای یو آر ال می باشد
+        /// </summary>
+        public string u { get; set; }
+
     }
 }

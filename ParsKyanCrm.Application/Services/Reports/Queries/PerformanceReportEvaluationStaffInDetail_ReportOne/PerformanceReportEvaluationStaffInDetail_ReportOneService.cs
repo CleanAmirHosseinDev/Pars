@@ -27,7 +27,7 @@ as LastDateReferrals,
 from (
 	
 		select Requestid from RequestReferences as rr
-		{(!string.IsNullOrEmpty(request.ReciveUser) && request.ReciveUser !="0" ? " where rr.ReciveUser = " + request.ReciveUser : string.Empty)}
+		{(!string.IsNullOrEmpty(request.ReciveUser) && request.ReciveUser != "0" ? " where rr.ReciveUser = " + request.ReciveUser : string.Empty)}
 		group by Requestid
 
 ) as cte
@@ -36,6 +36,11 @@ left join Customers as cus on cus.CustomerID = rfr.CustomerID
 
 {(!string.IsNullOrEmpty(request.Search) ? " where ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}        
 {(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? (!string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " cast(rfr.DateOfRequest as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
+
+{(!string.IsNullOrEmpty(request.FromLastDateReferrals) && !string.IsNullOrEmpty(request.ToLastDateReferrals) ? (!string.IsNullOrEmpty(request.Search) || (!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr)) ? " and " : " where ") + " cast((select top 1 RequestReferences.SendTime from RequestReferences where RequestReferences.Requestid = cte.Requestid order by RequestReferences.ReferenceID desc) as date) between  " + request.FromLastDateReferrals1 + " and " + request.ToLastDateReferrals1 : string.Empty)}               
+
+{(!string.IsNullOrEmpty(request.cboSelectLS) ? (!string.IsNullOrEmpty(request.Search) || (!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr)) || (!string.IsNullOrEmpty(request.FromLastDateReferrals) && !string.IsNullOrEmpty(request.ToLastDateReferrals)) ? " and " : " where ") + "(select top 1 RequestReferences.DestLevelStepIndex from RequestReferences where RequestReferences.Requestid = cte.Requestid order by RequestReferences.ReferenceID desc) = " + request.cboSelectLS : string.Empty)}
+
 
 order by rfr.RequestID desc              
 

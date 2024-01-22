@@ -236,7 +236,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     {
                         Data = res_ResultLoginDto,
                         IsSuccess = true,
-                        Message = "/" + LoginName + "/Home/Index",
+                        Message = !string.IsNullOrEmpty(request.u) ? (request.u == "werew" ? "/Home/RankList" : string.Empty):"/" + LoginName + "/Home/Index",
                     };
 
                     #endregion

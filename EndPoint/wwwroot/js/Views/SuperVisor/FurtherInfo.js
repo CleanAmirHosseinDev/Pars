@@ -360,37 +360,37 @@
                     $("#HaveAuditCommitteeStr").prop("checked", res.data.haveAuditCommittee);
 
                     if (res.data.organazationChart != null && res.data.organazationChart != "") {
-                        $("#DivOrganazationChart").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.organazationChartFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivOrganazationChart").html("<a class='btn btn-info' href='" + res.data.organazationChartFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.organizationalDuties != null && res.data.organizationalDuties != "") {
-                        $("#DivOrganizationalDuties").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.organizationalDutiesFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivOrganizationalDuties").html("<a class='btn btn-info' href='" + res.data.organizationalDutiesFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.riskManagementGuidelines != null && res.data.riskManagementGuidelines != "") {
-                        $("#DivRiskManagementGuidelines").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.riskManagementGuidelinesFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivRiskManagementGuidelines").html("<a class='btn btn-info' href='" + res.data.riskManagementGuidelinesFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.transactionRegulations != null && res.data.transactionRegulations != "") {
-                        $("#DivTransactionRegulations").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.transactionRegulationsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivTransactionRegulations").html("<a class='btn btn-info' href='" + res.data.transactionRegulationsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.deductionTaxAccount != null && res.data.deductionTaxAccount != "") {
-                        $("#DivDeductionTaxAccount").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.deductionTaxAccountFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivDeductionTaxAccount").html("<a class='btn btn-info' href='" + res.data.deductionTaxAccountFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.crmSoftwareContract != null && res.data.crmSoftwareContract != "") {
-                        $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.crmSoftwareContract != null && res.data.crmSoftwareContract != "") {
-                        $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivCrmSoftwareContract").html("<a class='btn btn-info' href='" + res.data.crmSoftwareContractFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.representativeFile != null && res.data.representativeFile != "") {
-                        $("#DivRepresentativeFile").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.representativeFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivRepresentativeFile").html("<a class='btn btn-info' href='" + res.data.representativeFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.letterOfCommendation != null && res.data.letterOfCommendation != "") {
-                        $("#DivLetterOfCommendation").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.letterOfCommendationFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivLetterOfCommendation").html("<a class='btn btn-info' href='" + res.data.letterOfCommendationFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.proceedings != null && res.data.proceedings != "") {
-                        $("#DivProceedings").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.proceedingsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivProceedings").html("<a class='btn btn-info' href='" + res.data.proceedingsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.inovationFile != null && res.data.inovationFile != "") {
-                        $("#DivInovationFile").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.inovationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivInovationFile").html("<a class='btn btn-info' href='" + res.data.inovationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
 
                 }
@@ -414,86 +414,86 @@
 
 
                     if (res.data.vc1 != null && res.data.vc1 != "") {
-                        $("#DivVc1").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc1").html("<a class='btn btn-info' href='" + res.data.vc1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
 
                     if (res.data.vc2 != null && res.data.vc2 != "") {
-                        $("#DivVc2").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc2").html("<a class='btn btn-info' href='" + res.data.vc2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
 
                     if (res.data.vc3 != null && res.data.vc3 != "") {
-                        $("#DivVc3").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc3").html("<a class='btn btn-info' href='" + res.data.vc3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
 
                     if (res.data.vc4 != null && res.data.vc4 != "") {
-                        $("#DivVc4").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc4").html("<a class='btn btn-info' href='" + res.data.vc4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
 
                     if (res.data.vc4 != null && res.data.vc4 != "") {
-                        $("#DivVc4").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc4").html("<a class='btn btn-info' href='" + res.data.vc4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc5 != null && res.data.vc5 != "") {
-                        $("#DivVc5").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc5Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc5").html("<a class='btn btn-info' href='" + res.data.vc5Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc6 != null && res.data.vc6 != "") {
-                        $("#DivVc6").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc6Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc6").html("<a class='btn btn-info' href='" + res.data.vc6Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc7 != null && res.data.vc7 != "") {
-                        $("#DivVc7").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc7Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc7").html("<a class='btn btn-info' href='" + res.data.vc7Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc8 != null && res.data.vc8 != "") {
-                        $("#DivVc8").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc8Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc8").html("<a class='btn btn-info' href='" + res.data.vc8Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc9 != null && res.data.vc9 != "") {
-                        $("#DivVc9").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc9Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc9").html("<a class='btn btn-info' href='" + res.data.vc9Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc10 != null && res.data.vc10 != "") {
-                        $("#DivVc10").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc10Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc10").html("<a class='btn btn-info' href='" + res.data.vc10Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc11 != null && res.data.vc11 != "") {
-                        $("#DivVc11").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc11Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc11").html("<a class='btn btn-info' href='" + res.data.vc11Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc12 != null && res.data.vc12 != "") {
-                        $("#DivVc12").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc12Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc12").html("<a class='btn btn-info' href='" + res.data.vc12Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc13 != null && res.data.vc13 != "") {
-                        $("#DivVc13").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc13Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc13").html("<a class='btn btn-info' href='" + res.data.vc13Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc14 != null && res.data.vc14 != "") {
-                        $("#DivVc14").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc14Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc14").html("<a class='btn btn-info' href='" + res.data.vc14Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc15 != null && res.data.vc15 != "") {
-                        $("#DivVc15").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc15Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc15").html("<a class='btn btn-info' href='" + res.data.vc15Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc16 != null && res.data.vc16 != "") {
-                        $("#DivVc16").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc16Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc16").html("<a class='btn btn-info' href='" + res.data.vc16Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc17 != null && res.data.vc17 != "") {
-                        $("#DivVc17").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc17Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc17").html("<a class='btn btn-info' href='" + res.data.vc17Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc18 != null && res.data.vc18 != "") {
-                        $("#DivVc18").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc18Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc18").html("<a class='btn btn-info' href='" + res.data.vc18Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc19 != null && res.data.vc19 != "") {
-                        $("#DivVc19").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc19Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc19").html("<a class='btn btn-info' href='" + res.data.vc19Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc20 != null && res.data.vc20 != "") {
-                        $("#DivVc20").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc20Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc20").html("<a class='btn btn-info' href='" + res.data.vc20Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc21 != null && res.data.vc21 != "") {
-                        $("#DivVc21").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc21Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc21").html("<a class='btn btn-info' href='" + res.data.vc21Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc22 != null && res.data.vc22 != "") {
-                        $("#DivVc22").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc22Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc22").html("<a class='btn btn-info' href='" + res.data.vc22Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc23 != null && res.data.vc23 != "") {
-                        $("#DivVc23").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc23Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc23").html("<a class='btn btn-info' href='" + res.data.vc23Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc24 != null && res.data.vc24 != "") {
-                        $("#DivVc24").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc24Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc24").html("<a class='btn btn-info' href='" + res.data.vc24Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.vc25 != null && res.data.vc25 != "") {
-                        $("#DivVc25").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.vc25Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#DivVc25").html("<a class='btn btn-info' href='" + res.data.vc25Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
 
                 }
@@ -514,19 +514,19 @@
                     $("#FurtherInfoId").val(res.data.furtherInfoId);
 
                     if (res.data.lastAuditingTaxList != null && res.data.lastAuditingTaxList != "") {
-                        $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadLastAuditingTaxList").html("<a class='btn btn-info' href='" + res.data.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.statementTaxList != null && res.data.statementTaxList != "") {
-                        $("#divDownloadStatementTaxList").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statementTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadStatementTaxList").html("<a class='btn btn-info' href='" + res.data.statementTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.lastChangeOfficialNewspaper != null && res.data.lastChangeOfficialNewspaper != "") {
-                        $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.lastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadLastChangeOfficialNewspaper").html("<a class='btn btn-info' href='" + res.data.lastChangeOfficialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.statuteDoc != null && res.data.statuteDoc != "") {
-                        $("#divDownloadStatuteDoc").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.statuteDocFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadStatuteDoc").html("<a class='btn btn-info' href='" + res.data.statuteDocFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                     if (res.data.officialNewspaper != null && res.data.officialNewspaper != "") {
-                        $("#divDownloadOfficialNewspaper").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.officialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        $("#divDownloadOfficialNewspaper").html("<a class='btn btn-info' href='" + res.data.officialNewspaperFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                     }
                 }
 
@@ -634,7 +634,7 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 79:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivHumanResourcesFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivHumanResourcesFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivHumanResourcesFile").html("");
@@ -649,7 +649,7 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 47:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc1").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc1").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc1").html("");
@@ -657,7 +657,7 @@
                                 break;
                             case 48:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc2").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc2").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc2").html("");
@@ -665,7 +665,7 @@
                                 break;
                             case 49:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc3").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc3").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc3").html("");
@@ -673,7 +673,7 @@
                                 break;
                             case 50:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc4").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc4").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc4").html("");
@@ -689,7 +689,7 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 51:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc5").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc5").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc5").html("");
@@ -697,7 +697,7 @@
                                 break;
                             case 52:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc6").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc6").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc6").html("");
@@ -705,7 +705,7 @@
                                 break;
                             case 53:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc7").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc7").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc7").html("");
@@ -713,7 +713,7 @@
                                 break;
                             case 54:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc8").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc8").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc8").html("");
@@ -721,7 +721,7 @@
                                 break;
                             case 55:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc9").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc9").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc9").html("");
@@ -729,7 +729,7 @@
                                 break;
                             case 56:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc10").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc10").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc10").html("");
@@ -737,7 +737,7 @@
                                 break;
                             case 57:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc11").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc11").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc11").html("");
@@ -745,7 +745,7 @@
                                 break;
                             case 58:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc12").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc12").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc12").html("");
@@ -761,7 +761,7 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 59:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc13").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc13").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc13").html("");
@@ -769,7 +769,7 @@
                                 break;
                             case 60:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc14").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc14").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc14").html("");
@@ -777,7 +777,7 @@
                                 break;
                             case 61:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc15").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc15").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc15").html("");
@@ -785,7 +785,7 @@
                                 break;
                             case 62:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc16").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc16").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc16").html("");
@@ -793,7 +793,7 @@
                                 break;
                             case 63:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc17").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc17").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc17").html("");
@@ -801,7 +801,7 @@
                                 break;
                             case 64:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc18").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc18").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc18").html("");
@@ -809,7 +809,7 @@
                                 break;
                             case 65:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc19").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc19").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc19").html("");
@@ -817,7 +817,7 @@
                                 break;
                             case 66:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc20").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc20").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc20").html("");
@@ -825,7 +825,7 @@
                                 break;
                             case 67:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc21").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc21").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc21").html("");
@@ -841,7 +841,7 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 68:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc22").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc22").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc22").html("");
@@ -849,7 +849,7 @@
                                 break;
                             case 69:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc23").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc23").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc23").html("");
@@ -857,7 +857,7 @@
                                 break;
                             case 70:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc24").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc24").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc24").html("");
@@ -865,7 +865,7 @@
                                 break;
                             case 71:
                                 if (res.data[i].fileName1 != "" && res.data[i].fileName1 != null) {
-                                    $("#DivVc25").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivVc25").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 else {
                                     $("#DivVc25").html("");
@@ -880,7 +880,7 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 28:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivOrganazationChart").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivOrganazationChart").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 }
                                 else {
@@ -889,17 +889,17 @@
                                 break;
                             case 29:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivOrganizationalDuties").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivOrganizationalDuties").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 }
                                 else {
                                     $("#DivOrganizationalDuties").html("");
                                 }
-                                //  $("#DivOrganizationalDuties").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                //  $("#DivOrganizationalDuties").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 30:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivRiskManagementGuidelines").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivRiskManagementGuidelines").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 }
                                 else {
@@ -908,7 +908,7 @@
                                 break;
                             case 31:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivTransactionRegulations").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivTransactionRegulations").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 }
                                 else {
@@ -917,47 +917,47 @@
                                 break;
                             case 31:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivTransactionRegulations").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivTransactionRegulations").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 }
                                 break;
                             case 32:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivDeductionTaxAccount").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivDeductionTaxAccount").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 } else {
                                     $("#DivDeductionTaxAccount").html("");
                                 }
                                 break;
                             case 33:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivCrmSoftwareContract").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivCrmSoftwareContract").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 } else {
                                     $("#DivCrmSoftwareContract").html("");
                                 }
                                 break;
                             case 35:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivRepresentativeFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivRepresentativeFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 } else {
                                     $("#DivRepresentativeFile").html("");
                                 }
                                 break;
                             case 36:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivletterOfCommendation").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivletterOfCommendation").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 } else {
                                     $("#DivletterOfCommendation").html("");
                                 }
                                 break;
                             case 37:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivInovationFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivInovationFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 } else {
                                     $("#DivInovationFile").html("");
                                 }
                                 break;
                             case 40:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivProceedings").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivProceedings").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 } else {
                                     $("#DivProceedings").html("");
                                 }
@@ -972,40 +972,40 @@
                         switch (res.data[i].dataFormQuestionId) {
                             case 97:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivLastAuditingTaxList").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivLastAuditingTaxList").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 }
                                 else {
                                     $("#DivLastAuditingTaxList").html("");
                                 }
-                                // $("#DivLastAuditingTaxList").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                // $("#DivLastAuditingTaxList").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 98:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivLastChangeOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivLastChangeOfficialNewspaper").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 } else {
                                     $("#DivLastChangeOfficialNewspaper").html("");
                                 }
-                                // $("#DivLastChangeOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                // $("#DivLastChangeOfficialNewspaper").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 99:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivstatuteDoc").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivstatuteDoc").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 } else {
                                     $("#DivstatuteDoc").html("");
                                 }
-                                // $("#DivstatuteDoc").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                // $("#DivstatuteDoc").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
                             case 100:
                                 if (res.data[i].fileName1 != null && res.data[i].fileName1 != "") {
-                                    $("#DivOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                    $("#DivOfficialNewspaper").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                                 } else {
                                     $("#DivOfficialNewspaper").html("");
                                 }
-                                // $("#DivOfficialNewspaper").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                                // $("#DivOfficialNewspaper").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                                 break;
 
                         }
@@ -1063,11 +1063,11 @@
                                 strFormAnswer += res.data[i].answer6 + "</td><td>";
                                 break;
                             case "11":
-                                strFormAnswer += ((res.data[i].fileName1 != null && res.data[i].fileName1 != "") ? "<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" : "") + "</td><td>";
+                                strFormAnswer += ((res.data[i].fileName1 != null && res.data[i].fileName1 != "") ? "<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" : "") + "</td><td>";
 
                                 break;
                             case "12":
-                                strFormAnswer += ((res.data[i].fileName2 != null && res.data[i].fileName1 != "") ? "<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" : "") + "</td><td>";
+                                strFormAnswer += ((res.data[i].fileName2 != null && res.data[i].fileName1 != "") ? "<a href='" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>" : "") + "</td><td>";
                                 break;
                         }
                     }
@@ -1122,16 +1122,16 @@
                         $('#frmFrom' + FormID).find('input[name=Answer9]').val(res.data[0].answer9);
                         $('#frmFrom' + FormID).find('input[name=Answer10]').val(res.data[0].answer10);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivAcademicDegreePicture").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivAcademicDegreePicture").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         if (res.data[0].fileName2 != null && res.data[0].fileName2 != "") {
-                            $("#DivPicture2").html("<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivPicture2").html("<a href='" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         if (res.data[0].fileName3 != null && res.data[0].fileName3 != "") {
-                            $("#DivPicture3").html("<a href='/File/Download?path=" + res.data[i].fileName3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivPicture3").html("<a href='" + res.data[i].fileName3Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         if (res.data[0].fileName4 != null && res.data[0].fileName4 != "") {
-                            $("#DivPicture4").html("<a href='/File/Download?path=" + res.data[i].fileName4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivPicture4").html("<a href='" + res.data[i].fileName4Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         $("#btnform1").html("ویرایش");
                     }
@@ -1143,7 +1143,7 @@
                         comboBoxWithSearchUpdateText("IsGuideLineOrProcess", res.data[0].answer3);
 
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivGuidelinesAndRegulationsFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivGuidelinesAndRegulationsFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
                             $("#DivGuidelinesAndRegulationsFile").html("");
                         }
@@ -1155,7 +1155,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivCertificateAndPermitAndStandardFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivCertificateAndPermitAndStandardFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivCertificateAndPermitAndStandardFile").html("");
@@ -1168,7 +1168,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivAwardsFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivAwardsFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivAwardsFile").html("");
@@ -1178,13 +1178,13 @@
 
                     else if (FormID == 8) {
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivSwotFile1").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivSwotFile1").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivSwotFile1").html("");
                         }
                         if (res.data[0].fileName2 != null && res.data[0].fileName1 != "") {
-                            $("#DivSwotFile2").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivSwotFile2").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivSwotFile2").html("");
@@ -1197,7 +1197,7 @@
                         $('#DegreeOfEducation2').val(res.data[0].answer2Val);
                         comboBoxWithSearchUpdateText("DegreeOfEducation2", res.data[0].answer2);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivDegreeFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivDegreeFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivDegreeFile").html("");
@@ -1209,7 +1209,7 @@
                         $('#ReportTitle').val(res.data[0].answer1);
 
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivReportFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivReportFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivReportFile").html("");
@@ -1223,7 +1223,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer3]').val(res.data[0].answer3);
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivCertificationCourses2").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivCertificationCourses2").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivCertificationCourses2").html("");
@@ -1235,7 +1235,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
                         $('#PostInSociety').val(res.data[0].answer3Val);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivCertificationSociety").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivCertificationSociety").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivCertificationSociety").html("");
@@ -1248,7 +1248,7 @@
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         $('#frmFrom' + FormID).find('input[name=Answer2]').val(res.data[0].answer2);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivPublicActivityFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivPublicActivityFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivPublicActivityFile").html("");
@@ -1274,7 +1274,7 @@
                     } else if (FormID == 22) {
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivInvestmentFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivInvestmentFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivInvestmentFile").html("");
@@ -1284,7 +1284,7 @@
                     else if (FormID == 24) {
                         $('#frmFrom' + FormID).find('input[name=Answer1]').val(res.data[0].answer1);
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivEmploymentDisabledFile").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivEmploymentDisabledFile").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivEmploymentDisabledFile").html("");
@@ -1298,13 +1298,13 @@
                         $('#frmFrom' + FormID).find('input[name=Answer4]').val(res.data[0].answer4);
 
                         if (res.data[0].fileName1 != null && res.data[0].fileName1 != "") {
-                            $("#DivCertificationCourses").html("<a href='/File/Download?path=" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivCertificationCourses").html("<a href='" + res.data[i].fileName1Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivCertificationCourses").html("");
                         }
                         if (res.data[0].fileName2 != null && res.data[0].fileName2 != "") {
-                            $("#DivCertificationCoursesAttach").html("<a href='/File/Download?path=" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#DivCertificationCoursesAttach").html("<a href='" + res.data[i].fileName2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         }
                         else {
                             $("#DivCertificationCoursesAttach").html("");

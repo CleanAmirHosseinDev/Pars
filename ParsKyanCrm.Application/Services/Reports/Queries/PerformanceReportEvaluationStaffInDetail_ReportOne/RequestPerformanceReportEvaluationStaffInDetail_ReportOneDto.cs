@@ -39,6 +39,46 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEval
             }
         }
 
+        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public string FromLastDateReferrals { get; set; }
+        public string FromLastDateReferrals1
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(FromLastDateReferrals))
+                {
+                    DateTime dtFromDate = DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(FromLastDateReferrals)));
+                    return "'" + dtFromDate.Year +
+                              "/" + dtFromDate.Month +
+                              "/" + dtFromDate.Day + "'";
+                }
+                return "''";
+            }
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        public string ToLastDateReferrals { get; set; }
+        public string ToLastDateReferrals1
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(ToLastDateReferrals))
+                {
+                    DateTime dtFromDate = DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(ToLastDateReferrals)));
+                    return "'" + dtFromDate.Year +
+                              "/" + dtFromDate.Month +
+                              "/" + dtFromDate.Day + "'";
+                }
+                return "''";
+            }
+        }
+
         public string ReciveUser { get; set; }
+
+        public string cboSelectLS { get; set; }
+
     }
 }

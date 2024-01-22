@@ -529,22 +529,22 @@
                         }
 
                         if (res.data.financialDocument != null && res.data.financialDocument != "") {
-                            $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#divDownloadFinancialDocument").html("<a class='btn btn-success' href='" + res.data.financialDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
                             $("#divDownloadFinancialDocument").html("<p style='color:silver'></p>");
                         }
                         if (res.data.financialDocument2 != null && res.data.financialDocument2 != "") {
-                            $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#divDownloadFinancialDocument2").html("<a class='btn btn-success' href='" + res.data.financialDocument2Full + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
                             $("#divDownloadFinancialDocument2").html("<p style='color:silver'></p>");
                         }
                         if (res.data.contractDocument != null && res.data.contractDocument != "") {
-                            $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#divDownload_ContractDocument").html("<a class='btn btn-success' href='" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
                             $("#divDownload_ContractDocument").html("<p style='color:silver'></p>");
                         }
                         if (res.data.lastFinancialDocument != null && res.data.lastFinancialDocument != "") {
-                            $("#divDownload_LastFinancialDocument").html("<a class='btn btn-success' href='/File/Download?path=" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                            $("#divDownload_LastFinancialDocument").html("<a class='btn btn-success' href='" + res.data.contractDocumentFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                         } else {
                             $("#divDownload_LastFinancialDocument").html("<p style='color:silver'></p>");
                         }
@@ -634,7 +634,7 @@
 
     //                    $("#divDownloadContract").show();
 
-    //                    $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='/File/Download?path=" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+    //                    $("#divDownloadContractDocumentCustomer").html("<a class='btn btn-info' href='" + res.data.contractDocumentCustomerFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
     //                }
     //            }
 

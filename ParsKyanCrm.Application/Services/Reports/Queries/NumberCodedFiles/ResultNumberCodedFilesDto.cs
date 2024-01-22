@@ -17,5 +17,7 @@
         public string CodalDate { get; set; }
         public string CodalNumber { get; set; }
 
+        public string FinalPriceContract { get; set; }
+
     }
 }

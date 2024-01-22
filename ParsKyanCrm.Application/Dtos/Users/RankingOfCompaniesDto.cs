@@ -17,6 +17,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public int? RankingId { get; set; }
 
+        public int CustomerID { get; set; }
+
     }
 
     public class RankingOfCompaniesDto : BaseEntityDto
@@ -54,6 +56,11 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public CompaniesDto Comany { get; set; }
         public UsersDto User { get; set; }
+
+        /// <summary>
+        /// نماد معاملاتی
+        /// </summary>
+        public string TradingSymbol { get; set; }
 
     }
 }

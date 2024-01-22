@@ -66,7 +66,7 @@
                 $("#imgUpload_Picture").attr("src", res.pictureFull);
                 $("#EmailAddress").val(res.emailAddress);
                 
-                $("#divDownload").html("<a href='/File/Download?path=" + res.resumeFileFull +"' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                $("#divDownload").html("<a href='" + res.resumeFileFull +"' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                 systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
             }

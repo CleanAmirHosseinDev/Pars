@@ -17,6 +17,86 @@ function pageingGrid(idElement, url, data) {
 
 }
 
+function clickSortingGridWithConfig(e, className) {
+
+    $("." + className).find("i[class]").hide();
+
+    $("." + className).removeAttr("data-Selected");
+
+    if ($(e).find("i[class]").attr("class") == "fa fa-arrow-up") {
+
+        $(e).attr("data-Selected", $(e).attr("data-D"));
+        $(e).find("i[class]").attr("class", "fa fa-arrow-down");
+    }
+    else {
+
+        $(e).attr("data-Selected", $(e).attr("data-A"));
+        $(e).find("i[class]").attr("class", "fa fa-arrow-up");
+    }
+
+    $(e).find("i[class]").show();
+
+}
+
+function AjaxCallActionWithReturnHtml(type, url, data, async, successCallBack, isWait = true) {
+
+    removeCookieInMemoryFree();
+
+    $.ajax({
+        type: type,
+        url: url,
+        data: data,
+        dataType: 'html',
+        async: async,
+        beforeSend: function () {
+            //if (isWait)
+            showWait();
+        },
+        success: function (res) {
+
+            try {
+
+                if (res.statusCode == Web.Resources.Code301) {
+                    CloseModal();
+                    alertB("عدم دسترسی", !isEmpty(res.Message) ? res.Message : Web.Resources.MessageAccessDenied, 'error');
+                    return;
+                }
+                if (res.statusCode == Web.Resources.Code401) {
+                    goToUrl(res.redirectResult);
+                    return;
+                }
+                if (res.statusCode == "404") {
+
+                    if (!isEmpty(res.message)) alertB("", res.message, "error");
+                    else goToUrl("/Error/Code404");
+
+                    return;
+                }
+                successCallBack(res);
+            } catch (e) {
+                alert(e);
+            }
+
+        },
+        complete: function () {
+            //if (isWait)
+            hideWait();
+        },
+        error: function (error) {
+
+            if (error.status == 401) {
+
+                if (url.indexOf("admin") == -1) goToUrl("/Account/Login");
+                else goToUrl("/Account/LoginA");
+
+
+            }
+
+        }
+    });
+
+}
+
 function pageingGridCall(tid, url, data, isNext = null) {
 
     try {
@@ -73,19 +153,19 @@ function GetFullFilePath(path) {
         switch (GetExtension(path).toLowerCase()) {
             case 'pdf':
 
-                return "<a href='/File/Download?path=" + path + "' target='_blank'><img src='/FileUpload/pdf.jfif' class='img-circle' width='100' height='100' /></a>";
+                return "<a href='" + path + "' target='_blank'><img src='/FileUpload/pdf.jfif' class='img-circle' width='100' height='100' /></a>";
 
                 break;
             case 'xlsx':
             case 'xls':
 
-                return "<a href='/File/Download?path=" + path + "' target='_blank'><img src='/FileUpload/xls.jfif' class='img-circle' width='100' height='100' /></a>";
+                return "<a href='" + path + "' target='_blank'><img src='/FileUpload/xls.jfif' class='img-circle' width='100' height='100' /></a>";
 
                 break;
             default:
 
 
-                return "<a href='/File/Download?path=" + path + "' target='_blank'><img src='" + path.substring(path.indexOf("/FileUpload"), path.lenth) + "' class='img-circle' width='100' height='100' /></a>";
+                return "<a href='" + path + "' target='_blank'><img src='" + path.substring(path.indexOf("/FileUpload"), path.lenth) + "' class='img-circle' width='100' height='100' /></a>";
 
                 break;
         }

@@ -58,7 +58,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRankingOfCompanies
                 {
                     fileNameOldPic_PressRelease = request.PressRelease;
                     request.PressRelease = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_PressRelease.FileName);
-                    path_PressRelease = _env.ContentRootPath + VaribleForName.RankingOfCompaniesFolder + request.PressRelease;
+                    path_PressRelease = _env.ContentRootPath + VaribleForName.RankingOfCompaniesFolderWithwwwroot + request.PressRelease;
                     await ServiceFileUploader.SaveFile(request.Result_Final_PressRelease, path_PressRelease, "فایل بیانیه مطبوعاتی");
                 }
 
@@ -66,7 +66,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRankingOfCompanies
                 {
                     fileNameOldPic_SummaryRanking = request.SummaryRanking;
                     request.SummaryRanking = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_SummaryRanking.FileName);
-                    path_SummaryRanking = _env.ContentRootPath + VaribleForName.RankingOfCompaniesFolder + request.SummaryRanking;
+                    path_SummaryRanking = _env.ContentRootPath + VaribleForName.RankingOfCompaniesFolderWithwwwroot + request.SummaryRanking;
                     await ServiceFileUploader.SaveFile(request.Result_Final_SummaryRanking, path_SummaryRanking, "فایل خلاصه رتبه بندی");
                 }
 
@@ -123,10 +123,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRankingOfCompanies
                     #region Upload Image
 
                     if (request.Result_Final_PressRelease != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.RankingOfCompaniesFolder + fileNameOldPic_PressRelease);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.RankingOfCompaniesFolderWithwwwroot + fileNameOldPic_PressRelease);
 
                     if (request.Result_Final_SummaryRanking != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.RankingOfCompaniesFolder + fileNameOldPic_SummaryRanking);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.RankingOfCompaniesFolderWithwwwroot + fileNameOldPic_SummaryRanking);
 
                     path_PressRelease = string.Empty;
                     path_SummaryRanking = string.Empty;

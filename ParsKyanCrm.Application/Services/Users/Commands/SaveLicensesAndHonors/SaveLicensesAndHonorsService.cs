@@ -56,7 +56,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveLicensesAndHonors
                 {
                     fileNameOldPic_Picture = request.Picture;
                     request.Picture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_Picture = _env.ContentRootPath + VaribleForName.LicensesAndHonorsFolder + request.Picture;
+                    path_Picture = _env.ContentRootPath + VaribleForName.LicensesAndHonorsFolderWithwwwroot + request.Picture;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر جایزه");                    
                 }
@@ -94,7 +94,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveLicensesAndHonors
                     #region Upload Image
 
                     if (request.Result_Final_Picture != null && request.Result_Final_Picture.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.LicensesAndHonorsFolder + fileNameOldPic_Picture);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.LicensesAndHonorsFolderWithwwwroot + fileNameOldPic_Picture);
 
 
                     path_Picture = string.Empty;

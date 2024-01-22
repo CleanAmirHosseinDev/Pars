@@ -106,7 +106,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_OrganazationChart = request.OrganazationChart;
                     request.OrganazationChart = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_OrganazationChart.FileName);
-                    path_OrganazationChart = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OrganazationChart;
+                    path_OrganazationChart = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.OrganazationChart;
                     await ServiceFileUploader.SaveFile(request.Result_Final_OrganazationChart, path_OrganazationChart, "چارت سازمانی");
                 }
 
@@ -114,7 +114,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_OrganizationalDuties = request.OrganizationalDuties;
                     request.OrganizationalDuties = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_OrganizationalDuties.FileName);
-                    path_OrganizationalDuties = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OrganizationalDuties;
+                    path_OrganizationalDuties = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.OrganizationalDuties;
                     await ServiceFileUploader.SaveFile(request.Result_Final_OrganizationalDuties, path_OrganizationalDuties, "  فایل شرح وظایف شغلی پرسنل");
                 }
 
@@ -122,7 +122,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_RiskManagementGuidelines = request.RiskManagementGuidelines;
                     request.RiskManagementGuidelines = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_RiskManagementGuidelines.FileName);
-                    path_RiskManagementGuidelines = _env.ContentRootPath + VaribleForName.CustomersFolder + request.RiskManagementGuidelines;
+                    path_RiskManagementGuidelines = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.RiskManagementGuidelines;
                     await ServiceFileUploader.SaveFile(request.Result_Final_RiskManagementGuidelines, path_RiskManagementGuidelines, " دستورالعمل مدیریت ریسک");
                 }
 
@@ -130,7 +130,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_TransactionRegulations = request.TransactionRegulations;
                     request.TransactionRegulations = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_TransactionRegulations.FileName);
-                    path_TransactionRegulations = _env.ContentRootPath + VaribleForName.CustomersFolder + request.TransactionRegulations;
+                    path_TransactionRegulations = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.TransactionRegulations;
                     await ServiceFileUploader.SaveFile(request.Result_Final_TransactionRegulations, path_TransactionRegulations, "  آیین نامه معاملات");
                 }
 
@@ -138,7 +138,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_DeductionTaxAccount = request.DeductionTaxAccount;
                     request.DeductionTaxAccount = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_DeductionTaxAccount.FileName);
-                    path_DeductionTaxAccount = _env.ContentRootPath + VaribleForName.CustomersFolder + request.DeductionTaxAccount;
+                    path_DeductionTaxAccount = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.DeductionTaxAccount;
                     await ServiceFileUploader.SaveFile(request.Result_Final_DeductionTaxAccount, path_DeductionTaxAccount, "بارگذاری مفاصا حساب مالیاتی");
                 }
 
@@ -146,21 +146,21 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_RepresentativeFile = request.RepresentativeFile;
                     request.RepresentativeFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_RepresentativeFile.FileName);
-                    path_RepresentativeFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.RepresentativeFile;
+                    path_RepresentativeFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.RepresentativeFile;
                     await ServiceFileUploader.SaveFile(request.Result_Final_RepresentativeFile, path_RepresentativeFile, " مستندات نمایندگی");
                 }
                 if (request.Result_Final_LetterOfCommendation != null)
                 {
                     fileNameOldPic_LetterOfCommendation = request.LetterOfCommendation;
                     request.LetterOfCommendation = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LetterOfCommendation.FileName);
-                    path_LetterOfCommendation = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LetterOfCommendation;
+                    path_LetterOfCommendation = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LetterOfCommendation;
                     await ServiceFileUploader.SaveFile(request.Result_Final_LetterOfCommendation, path_LetterOfCommendation, "تقدیر نامه از تامین کنندگان یا مشتریان خود ");
                 }
                 if (request.Result_Final_CrmSoftwareContract != null)
                 {
                     fileNameOldPic_CrmSoftwareContract = request.CrmSoftwareContract;
                     request.CrmSoftwareContract = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_CrmSoftwareContract.FileName);
-                    path_CrmSoftwareContract = _env.ContentRootPath + VaribleForName.CustomersFolder + request.CrmSoftwareContract;
+                    path_CrmSoftwareContract = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.CrmSoftwareContract;
                     await ServiceFileUploader.SaveFile(request.Result_Final_CrmSoftwareContract, path_CrmSoftwareContract, "   تصویرقراداد نرم افزار امور مشتریان");
                 }
 
@@ -168,14 +168,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     fileNameOldPic_InovationFile = request.InovationFile;
                     request.InovationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_InovationFile.FileName);
-                    path_InovationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.InovationFile;
+                    path_InovationFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.InovationFile;
                     await ServiceFileUploader.SaveFile(request.Result_Final_InovationFile, path_InovationFile, " اختراع");
                 }
                 if (request.Result_Final_Proceedings != null)
                 {
                     fileNameOldPic_Proceedings = request.Proceedings;
                     request.Proceedings = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_Proceedings.FileName);
-                    path_Proceedings = _env.ContentRootPath + VaribleForName.CustomersFolder + request.Proceedings;
+                    path_Proceedings = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.Proceedings;
                     await ServiceFileUploader.SaveFile(request.Result_Final_Proceedings, path_Proceedings, " نمونه صورتجلسه حسابرسی");
                 }
 
@@ -249,34 +249,34 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                     #region Upload Image
 
                     if (request.Result_Final_CrmSoftwareContract != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_CrmSoftwareContract);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_CrmSoftwareContract);
 
                     if (request.Result_Final_DeductionTaxAccount != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_DeductionTaxAccount);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_DeductionTaxAccount);
 
                     if (request.Result_Final_InovationFile != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_InovationFile);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_InovationFile);
 
                     if (request.Result_Final_LetterOfCommendation != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LetterOfCommendation);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LetterOfCommendation);
 
                     if (request.Result_Final_OrganazationChart != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OrganazationChart);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_OrganazationChart);
 
                     if (request.Result_Final_OrganizationalDuties != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OrganizationalDuties);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_OrganizationalDuties);
 
                     if (request.Result_Final_Proceedings != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_Proceedings);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Proceedings);
 
                     if (request.Result_Final_RepresentativeFile != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_RepresentativeFile);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_RepresentativeFile);
 
                     if (request.Result_Final_RiskManagementGuidelines != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_RiskManagementGuidelines);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_RiskManagementGuidelines);
 
                     if (request.Result_Final_TransactionRegulations != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_TransactionRegulations);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_TransactionRegulations);
 
                  
 

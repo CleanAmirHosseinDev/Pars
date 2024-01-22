@@ -59,7 +59,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveActivity
                 {
                     fileNameOldPic_Picture1 = request.Picture1;
                     request.Picture1 = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_Picture1 = _env.ContentRootPath + VaribleForName.ActivityFolder + request.Picture1;
+                    path_Picture1 = _env.ContentRootPath + VaribleForName.ActivityFolderWithwwwroot + request.Picture1;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture1, path_Picture1, string.Empty, "تصویر یک");
                 }
@@ -68,7 +68,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveActivity
                 {
                     fileNameOldPic_Picture2 = request.Picture2;
                     request.Picture2 = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_Picture2 = _env.ContentRootPath + VaribleForName.ActivityFolder + request.Picture2;
+                    path_Picture2 = _env.ContentRootPath + VaribleForName.ActivityFolderWithwwwroot + request.Picture2;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture2, path_Picture2, string.Empty, "تصویر دو");
                 }
@@ -105,10 +105,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveActivity
                     #region Upload Image
 
                     if (request.Result_Final_Picture1 != null && request.Result_Final_Picture1.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ActivityFolder + fileNameOldPic_Picture1);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ActivityFolderWithwwwroot + fileNameOldPic_Picture1);
 
                     if (request.Result_Final_Picture2 != null && request.Result_Final_Picture2.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ActivityFolder + fileNameOldPic_Picture2);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ActivityFolderWithwwwroot + fileNameOldPic_Picture2);
 
                     path_Picture1 = string.Empty;
                     path_Picture2 = string.Empty;

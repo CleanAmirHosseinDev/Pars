@@ -62,7 +62,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                 {
                     fileNameOldPic_FileName1 = request.FileName1;
                     request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName1.FileName);
-                    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName1;
+                    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
                     await ServiceFileUploader.SaveFile(request.Result_Final_FileName1, path_FileName1, "فایل یک");
                 }
 
@@ -70,7 +70,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                 {
                     fileNameOldPic_FileName2 = request.FileName2;
                     request.FileName2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName2.FileName);
-                    path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName2;
+                    path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName2;
                     await ServiceFileUploader.SaveFile(request.Result_Final_FileName2, path_FileName2, "فایل دو");
                 }
 
@@ -78,7 +78,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                 {
                     fileNameOldPic_FileName3 = request.FileName3;
                     request.FileName3 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName3.FileName);
-                    path_FileName3 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName3;
+                    path_FileName3 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName3;
                     await ServiceFileUploader.SaveFile(request.Result_Final_FileName3, path_FileName3, "فایل سه");
                 }
 
@@ -86,7 +86,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                 {
                     fileNameOldPic_FileName4 = request.FileName4;
                     request.FileName4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName4.FileName);
-                    path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName4;
+                    path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName4;
                     await ServiceFileUploader.SaveFile(request.Result_Final_FileName4, path_FileName4, "فایل چهار");
                 }
 
@@ -157,16 +157,16 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
 
                     if (request.Result_Final_FileName1 != null)
                         
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName1);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1);
 
                     if (request.Result_Final_FileName2 != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName2);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName2);
 
                     if (request.Result_Final_FileName3 != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName3);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName3);
 
                     if (request.Result_Final_FileName4 != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName4);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName4);
 
                  
                     path_FileName1 = string.Empty;

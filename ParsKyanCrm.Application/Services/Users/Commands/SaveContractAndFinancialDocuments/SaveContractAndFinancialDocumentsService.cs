@@ -230,14 +230,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             fileNameOldPic_FinancialDocument = request.FinancialDocument;
                             request.FinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FinancialDocument.FileName);
-                            path_FinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.FinancialDocument;
+                            path_FinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.FinancialDocument;
                             await ServiceFileUploader.SaveFile(request.Result_Final_FinancialDocument, path_FinancialDocument, "سند تسویه");
                         }
                         if (request.Result_Final_FinancialDocument2 != null)
                         {
                             fileNameOldPic_FinancialDocument2 = request.FinancialDocument2;
                             request.FinancialDocument2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FinancialDocument2.FileName);
-                            path_FinancialDocument2 = _env.ContentRootPath + VaribleForName.CustomersFolder + request.FinancialDocument2;
+                            path_FinancialDocument2 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.FinancialDocument2;
                             await ServiceFileUploader.SaveFile(request.Result_Final_FinancialDocument2, path_FinancialDocument2, "سند تسویه2");
                         }
 
@@ -245,7 +245,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             fileNameOldPic_ContractDocument = request.ContractDocument;
                             request.ContractDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ContractDocument.FileName);
-                            path_ContractDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ContractDocument;
+                            path_ContractDocument = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.ContractDocument;
                             await ServiceFileUploader.SaveFile(request.Result_Final_ContractDocument, path_ContractDocument, "قرارداد مشتری");
                         }
 
@@ -269,10 +269,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
 
 
                         if (request.Result_Final_ContractDocument != null)
-                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ContractDocument);
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_ContractDocument);
 
                         if (request.Result_Final_FinancialDocument != null)
-                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_FinancialDocument);
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_FinancialDocument);
 
                         path_ContractDocument = string.Empty;
                         path_FinancialDocument = string.Empty;
@@ -287,7 +287,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             fileNameOldPic_EvaluationFile = request.EvaluationFile;
                             request.EvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_EvaluationFile.FileName);
-                            path_EvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.EvaluationFile;
+                            path_EvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.EvaluationFile;
                             await ServiceFileUploader.SaveFile(request.Result_Final_EvaluationFile, path_EvaluationFile, "فایل ارزیابی ارزیاب");
                         }                     
 
@@ -302,7 +302,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
 
                         if (request.Result_Final_EvaluationFile != null)
-                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_EvaluationFile);
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_EvaluationFile);
                         path_EvaluationFile = string.Empty;
                     }
                     if (request.EditStatuse == 10)
@@ -313,7 +313,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             fileNameOldPic_LeaderEvaluationFile = request.LeaderEvaluationFile;
                             request.LeaderEvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LeaderEvaluationFile.FileName);
-                            path_LeaderEvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LeaderEvaluationFile;
+                            path_LeaderEvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LeaderEvaluationFile;
                             await ServiceFileUploader.SaveFile(request.Result_Final_LeaderEvaluationFile, path_LeaderEvaluationFile, "فایل ارزیابی مسئول ارزیابی");
                         }
 
@@ -328,7 +328,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
 
                         if (request.Result_Final_LeaderEvaluationFile != null)
-                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LeaderEvaluationFile);
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LeaderEvaluationFile);
                         path_LeaderEvaluationFile = string.Empty;
                     }
 
@@ -340,7 +340,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             fileNameOldPic_CommitteeEvaluationFile = request.CommitteeEvaluationFile;
                             request.CommitteeEvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_CommitteeEvaluationFile.FileName);
-                            path_CommitteeEvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.CommitteeEvaluationFile;
+                            path_CommitteeEvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.CommitteeEvaluationFile;
                             await ServiceFileUploader.SaveFile(request.Result_Final_CommitteeEvaluationFile, path_CommitteeEvaluationFile, "فایل ارزیابی کمیته");
                         }
 
@@ -355,7 +355,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
 
                         if (request.Result_Final_CommitteeEvaluationFile != null)
-                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_CommitteeEvaluationFile);
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_CommitteeEvaluationFile);
                         path_CommitteeEvaluationFile = string.Empty;
                     }
 
@@ -367,7 +367,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         {
                             fileNameOldPic_LastFinancialDocument = request.LastFinancialDocument;
                             request.LastFinancialDocument = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastFinancialDocument.FileName);
-                            path_LastFinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastFinancialDocument;
+                            path_LastFinancialDocument = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastFinancialDocument;
                             await ServiceFileUploader.SaveFile(request.Result_Final_LastFinancialDocument, path_LastFinancialDocument, "سند تسویه");
                         }
 
@@ -382,7 +382,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
 
                         if (request.Result_Final_LastFinancialDocument != null)
-                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastFinancialDocument);
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastFinancialDocument);
                         path_LastFinancialDocument = string.Empty;
                     }
 

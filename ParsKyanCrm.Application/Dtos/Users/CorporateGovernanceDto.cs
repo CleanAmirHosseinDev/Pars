@@ -23,6 +23,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? CustomerId { get; set; }      
         public int? RequestId { get; set; }
 
+        public int? RequestIdNew { get; set; }
+
         #region حاکمیت شرکتی
         public string CompanyWebSite { get; set; }
         public string OrganazationChart { get; set; }

@@ -115,6 +115,49 @@ namespace ParsKyanCrm.Infrastructure
             }
         }
 
+        public async static Task CopyFile(string formFile, string imgpath, string strMessage)
+        {
+            try
+            {
+
+                // string strErr = string.Empty;
+
+                //switch (Path.GetExtension(formFile.FileName.ToLower()).Replace(".", ""))
+                //{
+                //    case "pdf":
+
+                //        strErr = IsPdf(formFile.OpenReadStream(), strMessage);
+
+                //        break;
+                //    case "xlsx":
+                //    case "xls":
+
+                //        strErr = IsExcel(formFile.OpenReadStream(), strMessage);
+
+                //        break;
+                //    default:
+                //        strErr = LoadBase64(formFile.OpenReadStream(), strMessage);
+                //        break;
+                //}
+
+                // if (!string.IsNullOrEmpty(strErr)) throw new Exception(strErr);
+
+                // if (formFile.Length > 10000000) throw new Exception("" + strMessage + " باید کمتر از 10 مگ باشد");
+                File.Copy(formFile, imgpath);
+
+                //using (Stream fileStream = new FileStream(imgpath, FileMode.Create))
+                //{
+                //    await formFile.CopyToAsync(fileStream);
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public static string ConvertImageToByte(string imgpath)
         {
             try

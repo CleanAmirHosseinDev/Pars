@@ -88,6 +88,20 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<CorporateGovernanceDto>> Copy_CorporateGovernance([FromForm] CorporateGovernanceDto request)
+        {
+            try
+            {
+
+                return await _userFacad.SaveCorporateGovernanceService.ExecuteCopy(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         [Route("[action]")]

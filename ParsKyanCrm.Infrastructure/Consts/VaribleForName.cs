@@ -52,6 +52,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "/FileUpload/BoardOfDirectors/";
             }
         }
+        public static string BoardOfDirectorsFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/BoardOfDirectors/";
+            }
+        }
+
 
         public static string SMSType
         {
@@ -71,12 +79,26 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "/FileUpload/Activity/";
             }
         }
+        public static string ActivityFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/Activity/";
+            }
+        }
 
         public static string CkeditorFolder
         {
             get
             {
                 return "/FileUpload/Ckeditor/";
+            }
+        }
+        public static string CkeditorFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/Ckeditor/";
             }
         }
 
@@ -87,12 +109,26 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "/FileUpload/LicensesAndHonors/";
             }
         }
+        public static string LicensesAndHonorsFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/LicensesAndHonors/";
+            }
+        }
 
         public static string CustomerFurtherInfoFolder
         {
             get
             {
                 return "/FileUpload/Customers/FurtherInfo/";
+            }
+        }
+        public static string CustomerFurtherInfoFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/Customers/FurtherInfo/";
             }
         }
 
@@ -103,12 +139,26 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "/FileUpload/ManagerOfParsKyan/";
             }
         }
+        public static string ManagerOfParsKyanFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/ManagerOfParsKyan/";
+            }
+        }
 
         public static string RankingOfCompaniesFolder
         {
             get
             {
                 return "/FileUpload/RankingOfCompanies/";
+            }
+        }
+        public static string RankingOfCompaniesFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/RankingOfCompanies/";
             }
         }
 
@@ -119,12 +169,26 @@ namespace ParsKyanCrm.Infrastructure.Consts
                 return "/FileUpload/NewsAndContent/";
             }
         }
+        public static string NewsAndContentFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/NewsAndContent/";
+            }
+        }
 
         public static string CustomersFolder
         {
             get
             {
                 return "/FileUpload/Customers/";
+            }
+        }
+        public static string CustomersFolderWithwwwroot
+        {
+            get
+            {
+                return "/wwwroot/FileUpload/Customers/";
             }
         }
 

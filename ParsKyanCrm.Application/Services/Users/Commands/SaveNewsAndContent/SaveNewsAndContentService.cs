@@ -56,7 +56,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveNewsAndContent
                 {
                     fileNameOldPic_ContentPic = request.ContentPic;
                     request.ContentPic = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_ContentPic = _env.ContentRootPath + VaribleForName.NewsAndContentFolder + request.ContentPic;
+                    path_ContentPic = _env.ContentRootPath + VaribleForName.NewsAndContentFolderWithwwwroot + request.ContentPic;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_ContentPic, path_ContentPic, string.Empty, "تصویر محتوا");
                 }
@@ -111,7 +111,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveNewsAndContent
                     #region Upload Image
 
                     if (request.Result_Final_ContentPic != null && request.Result_Final_ContentPic.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.NewsAndContentFolder + fileNameOldPic_ContentPic);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.NewsAndContentFolderWithwwwroot + fileNameOldPic_ContentPic);
 
 
                     path_ContentPic = string.Empty;

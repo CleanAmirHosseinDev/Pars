@@ -156,7 +156,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 {
                     fileNameOldPic_LastInsuranceList = request.LastInsuranceList;
                     request.LastInsuranceList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastInsuranceList.FileName);
-                    path_LastInsuranceList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastInsuranceList;
+                    path_LastInsuranceList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastInsuranceList;
                     await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "آخرین لیست بیمه");
                 }
 
@@ -164,7 +164,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 {
                     fileNameOldPic_AuditedFinancialStatements = request.AuditedFinancialStatements;
                     request.AuditedFinancialStatements = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_AuditedFinancialStatements.FileName);
-                    path_AuditedFinancialStatements = _env.ContentRootPath + VaribleForName.CustomersFolder + request.AuditedFinancialStatements;
+                    path_AuditedFinancialStatements = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.AuditedFinancialStatements;
                     await ServiceFileUploader.SaveFile(request.Result_Final_AuditedFinancialStatements, path_AuditedFinancialStatements, "آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی");
                 }
 
@@ -172,14 +172,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 {
                     fileNameOldPic_ScanCustomerNationalCard = request.ScanCustomerNationalCard;
                     request.ScanCustomerNationalCard = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ScanCustomerNationalCard.FileName);
-                    path_ScanCustomerNationalCard = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ScanCustomerNationalCard;
+                    path_ScanCustomerNationalCard = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.ScanCustomerNationalCard;
                     await ServiceFileUploader.SaveFile(request.Result_Final_ScanCustomerNationalCard, path_ScanCustomerNationalCard, "اسکن کارت ملی نماینده");
                 }
                 if (request.Result_Final_ScanManagerNationalCard != null)
                 {
                     fileNameOldPic_ScanManagerNationalCard = request.ScanManagerNationalCard;
                     request.ScanManagerNationalCard = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ScanManagerNationalCard.FileName);
-                    path_ScanManagerNationalCard = _env.ContentRootPath + VaribleForName.CustomersFolder + request.ScanManagerNationalCard;
+                    path_ScanManagerNationalCard = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.ScanManagerNationalCard;
                     await ServiceFileUploader.SaveFile(request.Result_Final_ScanManagerNationalCard, path_ScanManagerNationalCard, "اسکن کارت ملی نماینده");
                 }
 
@@ -353,17 +353,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 #region Upload Image
 
                 if (request.Result_Final_LastInsuranceList != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastInsuranceList);
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastInsuranceList);
 
                 if (request.Result_Final_AuditedFinancialStatements != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_AuditedFinancialStatements);
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_AuditedFinancialStatements);
 
                 if (request.Result_Final_ScanCustomerNationalCard != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ScanCustomerNationalCard);
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_ScanCustomerNationalCard);
 
 
                 if (request.Result_Final_ScanManagerNationalCard != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_ScanManagerNationalCard);
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_ScanManagerNationalCard);
 
 
                 path_LastInsuranceList = string.Empty;

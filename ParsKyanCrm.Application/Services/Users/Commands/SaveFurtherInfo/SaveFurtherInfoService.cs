@@ -64,7 +64,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 {
                     fileNameOldPic_LastAuditingTaxList = request.LastAuditingTaxList;
                     request.LastAuditingTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastAuditingTaxList.FileName);
-                    path_LastAuditingTaxList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastAuditingTaxList;
+                    path_LastAuditingTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastAuditingTaxList;
                     await ServiceFileUploader.SaveFile(request.Result_Final_LastAuditingTaxList, path_LastAuditingTaxList, "صورتهای مالی حسابرسی شده");
                 }
 
@@ -72,7 +72,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 {
                     fileNameOldPic_LastChangeOfficialNewspaper = request.LastChangeOfficialNewspaper;
                     request.LastChangeOfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastChangeOfficialNewspaper.FileName);
-                    path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LastChangeOfficialNewspaper;
+                    path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastChangeOfficialNewspaper;
                     await ServiceFileUploader.SaveFile(request.Result_Final_LastChangeOfficialNewspaper, path_LastChangeOfficialNewspaper, "آخرین تغییرات روزنامه رسمی");
                 }
 
@@ -80,7 +80,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 {
                     fileNameOldPic_StatuteDoc = request.StatuteDoc;
                     request.StatuteDoc = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_StatuteDoc.FileName);
-                    path_StatuteDoc = _env.ContentRootPath + VaribleForName.CustomersFolder + request.StatuteDoc;
+                    path_StatuteDoc = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatuteDoc;
                     await ServiceFileUploader.SaveFile(request.Result_Final_StatuteDoc, path_StatuteDoc, "اساسنامه");
                 }
 
@@ -88,7 +88,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 {
                     fileNameOldPic_OfficialNewspaper = request.OfficialNewspaper;
                     request.OfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_OfficialNewspaper.FileName);
-                    path_OfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OfficialNewspaper;
+                    path_OfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.OfficialNewspaper;
                     await ServiceFileUploader.SaveFile(request.Result_Final_OfficialNewspaper, path_OfficialNewspaper, " روزنامه رسمی");
                 }
 
@@ -96,7 +96,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 {
                     fileNameOldPic_StatementTaxList = request.StatementTaxList;
                     request.StatementTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_StatementTaxList.FileName);
-                    path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolder + request.StatementTaxList;
+                    path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatementTaxList;
                     await ServiceFileUploader.SaveFile(request.Result_Final_StatementTaxList, path_StatementTaxList, " اظهارنامه مالیاتی");
                 }
 
@@ -137,20 +137,20 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                     #region Upload Image
 
                     if (request.Result_Final_OfficialNewspaper != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OfficialNewspaper);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_OfficialNewspaper);
 
                     if (request.Result_Final_LastAuditingTaxList != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastAuditingTaxList);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastAuditingTaxList);
 
                     if (request.Result_Final_LastChangeOfficialNewspaper != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LastChangeOfficialNewspaper);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastChangeOfficialNewspaper);
 
                     if (request.Result_Final_StatuteDoc != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_StatuteDoc);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_StatuteDoc);
 
 
                     if (request.Result_Final_StatementTaxList != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_StatementTaxList);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_StatementTaxList);
 
                     path_StatuteDoc = string.Empty;
                     path_LastChangeOfficialNewspaper = string.Empty;

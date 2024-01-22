@@ -60,7 +60,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                 {
                     fileNameOldPic_AcademicDegreePicture = request.AcademicDegreePicture;
                     request.AcademicDegreePicture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_AcademicDegreePicture = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + request.AcademicDegreePicture;
+                    path_AcademicDegreePicture = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolderWithwwwroot + request.AcademicDegreePicture;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_AcademicDegreePicture, path_AcademicDegreePicture, string.Empty, "تصویر مدرک تحصیلی");
                 }
@@ -69,7 +69,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                 {
                     fileNameOldPic_PictureOfEducationCourse = request.PictureOfEducationCourse;
                     request.PictureOfEducationCourse = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_PictureOfEducationCourse = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + request.PictureOfEducationCourse;
+                    path_PictureOfEducationCourse = _env.ContentRootPath + VaribleForName.BoardOfDirectorsFolderWithwwwroot + request.PictureOfEducationCourse;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_PictureOfEducationCourse, path_PictureOfEducationCourse, string.Empty, "تصویر دوره آموزشی");
                     
@@ -140,10 +140,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors
                     #region Upload Image
 
                     if (request.Result_Final_AcademicDegreePicture != null && request.Result_Final_AcademicDegreePicture.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + fileNameOldPic_AcademicDegreePicture);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.BoardOfDirectorsFolderWithwwwroot + fileNameOldPic_AcademicDegreePicture);
 
                     if (request.Result_Final_PictureOfEducationCourse != null && request.Result_Final_PictureOfEducationCourse.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.BoardOfDirectorsFolder + fileNameOldPic_PictureOfEducationCourse);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.BoardOfDirectorsFolderWithwwwroot + fileNameOldPic_PictureOfEducationCourse);
 
                     path_AcademicDegreePicture = string.Empty;
                     path_PictureOfEducationCourse = string.Empty;

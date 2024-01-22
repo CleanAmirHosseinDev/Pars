@@ -83,7 +83,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                 {
                     fileNameOldPic_FileName1 = request.FileName1;
                     request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_FileName1.FileName);
-                    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + request.FileName1;
+                    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
                     await ServiceFileUploader.SaveFile(request.Result_Final_FileName1, path_FileName1, "فایل یک");
                 }
                 #endregion
@@ -121,7 +121,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 if (request.Result_Final_FileName1 != null)
 
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolder + fileNameOldPic_FileName1);
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1);
 
                 
                 path_FileName1 = string.Empty;

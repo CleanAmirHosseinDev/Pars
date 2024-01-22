@@ -56,7 +56,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveManagerOfParsKyan
                 {
                     fileNameOldPic_Picture = request.Picture;
                     request.Picture = Guid.NewGuid().ToString().Replace("-", "") + ".png";
-                    path_Picture = _env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + request.Picture;
+                    path_Picture = _env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolderWithwwwroot + request.Picture;
 
                     ServiceFileUploader.SaveImageByByte_InExistNextDelete(request.Result_Final_Picture, path_Picture, string.Empty, "تصویر یک");                    
                 }
@@ -65,7 +65,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveManagerOfParsKyan
                 {
                     fileNameOldPic_ResumeFile = request.ResumeFile;
                     request.ResumeFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_ResumeFile.FileName);
-                    path_ResumeFile = _env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + request.ResumeFile;
+                    path_ResumeFile = _env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolderWithwwwroot + request.ResumeFile;
                     await ServiceFileUploader.SaveFile(request.Result_Final_ResumeFile, path_ResumeFile, "فایل رزومه");                    
                 }
 
@@ -120,10 +120,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveManagerOfParsKyan
                     #region Upload Image
 
                     if (request.Result_Final_Picture != null && request.Result_Final_Picture.Length > 10)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + fileNameOldPic_Picture);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolderWithwwwroot + fileNameOldPic_Picture);
 
                     if (request.Result_Final_ResumeFile != null)
-                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolder + fileNameOldPic_ResumeFile);
+                        FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.ManagerOfParsKyanFolderWithwwwroot + fileNameOldPic_ResumeFile);
 
                     path_Picture = string.Empty;
                     path_ResumeFile = string.Empty;

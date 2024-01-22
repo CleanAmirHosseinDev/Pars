@@ -222,6 +222,19 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
                         "ScanManagerNationalCard",request.ScanManagerNationalCard
                     }
                     }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
+                if (request.ChangeUsername)
+                {
+                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Users).Name, new Dictionary<string, object>()
+                    {
+                    {
+                        "UserName",request.AgentMobile
+                    },
+                    {
+                        "Mobile",request.AgentMobile
+                    }
+                    }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
+
+                }
 
                 #region Upload Image
 

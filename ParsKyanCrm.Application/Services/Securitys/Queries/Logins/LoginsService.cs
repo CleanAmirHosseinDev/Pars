@@ -290,8 +290,10 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
 
                     if (request.nkekkfjdkjjkjkdjkdjkjkkj)
                     {
-
-                        MailSender.SendMail("parscrc@outlook.com", "ارسال از سامانه", "درخواست تغییر شماره موبایل کاربری", "ادمین سامانه پارس کیان  لطفا نسبت به تغییر پروفایل اینجانب با کد ملی " + request.NationalCode + " با شماره جدید " + request.Mobile + " اقدام فرمایید با تشکر", "info@parscrc.ir");
+                        var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
+                        //  MailSender.SendMail("parscrc@outlook.com", "ارسال از سامانه", "درخواست تغییر شماره موبایل کاربری", "ادمین سامانه پارس کیان  لطفا نسبت به تغییر پروفایل اینجانب با کد ملی " + request.NationalCode + " با شماره جدید " + request.Mobile + " اقدام فرمایید با تشکر", "info@parscrc.ir");
+                        await WebService.SMSService.Execute(aboutEntity.Mobile1, string.Format("شماره {0} با  شناسه {1} درخواست تغییر شماره موبایل دارد.", request.Mobile,request.NationalCode));
+                        await WebService.SMSService.Execute(aboutEntity.Mobile2, string.Format("شماره {0} با  شناسه {1} درخواست تغییر شماره موبایل دارد.", request.Mobile, request.NationalCode));
 
                         return new ResultDto<ResultLoginDto>
                         {
@@ -333,11 +335,11 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             res_ResultLoginDto.CustomerID = objSingleCus.CustomerId.ToString().Encrypt_Advanced_For_Number();
 
                             Ado_NetOperation.SqlUpdate(nameof(Customers), new Dictionary<string, object>()
-                        {
+                          {
                             {
                                 nameof(objSingleCus.AuthenticateCode),r
                             }
-                        }, nameof(objSingleCus.CustomerId) + " = " + "'" + objSingleCus.CustomerId + "'");
+                           }, nameof(objSingleCus.CustomerId) + " = " + "'" + objSingleCus.CustomerId + "'");
 
                             needSms = true;
 

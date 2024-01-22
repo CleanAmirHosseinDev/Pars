@@ -62,6 +62,30 @@
 
     }
 
+    function saveMobileUser(e) {
+
+        $("#btnSaveMobileUser").attr("disabled", "");
+       
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
+
+            $("#btnSaveMobileUser").removeAttr("disabled");
+
+            if (res.isSuccess) {
+
+                alertB("ثبت", res.message, "success");
+             
+
+            }
+            else {
+                alertB("خطا", res.message, "error");
+            }
+
+        }, true);
+
+
+    }
+
+
     function systemSeting_Combo(resSingle, showdrp) {
 
 
@@ -621,7 +645,8 @@
         CheckForFirstRequest: checkForFirstRequest,
         OnChangeCustomerPersonalityType: onChangeCustomerPersonalityType,
         OnKeyPressInCountOfPersonal: onKeyPressInCountOfPersonal,
-        OnkeuUpInAmountOsLastSales: onkeuUpInAmountOsLastSales
+        OnkeuUpInAmountOsLastSales: onkeuUpInAmountOsLastSales,
+        SaveMobileUser: saveMobileUser
     };
 
 })(Web, jQuery);

@@ -62,6 +62,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
+                request.ChangeUsername = true;
                 return await _userFacad.SaveCustomersService.Execute(request);
             }
             catch (Exception ex)

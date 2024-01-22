@@ -803,31 +803,15 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     function saveRequestForRating(e) {
 
 
-        if ((decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' || decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') && $(e).attr("data-LSSII") != "11") {
+        if ((decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' ||
+            decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') && $(e).attr("data-LSSII") != "26") {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
             tempSaveRFR(e);
 
-        } else if ($(e).attr("data-LSSII") == "11") {
-            var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-
-            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestHistory", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
-
-                if (res.isSuccess) {
-                    if (res.data.length > 0) {
-
-                        alertB("ثبت", " این مشتری دارای سابقه می باشد. لطفا کمی صبر کنید تا کپی از سابقه ایجاد گردد.", "success", "بله متوجه شدم", function () {
-                            addToHistory(e, res.data[0].requestId);
-                        });
-                    }
-                }
-
-            }, true);
-
-        }
-        else if ($(e).attr("data-LSSII") == "26") {
+        } else if ($(e).attr("data-LSSII") != "26") {
             temgetCodalInfo(e);
         }
         else temojsdkjsdjsdkjkjsdjksd(e);
@@ -852,26 +836,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         //}
         //else temojsdkjsdjsdkjkjsdjksd(e);
 
-       
 
-    }
-
-    function addToHistory(e, RequestIdOld = null) {
-
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-
-        AjaxCallAction("POST", "/api/superVisor/FurtherInfo/Copy_CorporateGovernance", JSON.stringify({ RequestId: id, RequestIdNew: RequestIdOld, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
-
-            if (res.isSuccess) {
-                if (res.data.length > 0) {
-
-                    //alertB("ثبت", " این مشتری دارای سابقه می باشد. لطفا کمی صبر کنید تا کپی از سابقه ایجاد گردد.", "success", "بله متوجه شدم", function () {
-                    //    addToHistory(e, res.data[0].requestId);
-                    //});
-                }
-            }
-
-        }, true);
 
     }
 
@@ -890,7 +855,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             }
 
         }, true);
-           
+
     }
 
 
@@ -958,32 +923,15 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     }
 
-    function copyCorporateGovernance(e) {
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-        if (!isEmpty(id) && id != 0) {
-            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Copy_CorporateGovernance", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
-
-                if (res.isSuccess) {
-                    alertB("ثبت", "مرحله اول انجام شد", "success", "بله متوجه شدم", function () {
-                        tempSaveRFR(e);
-                    });
-                }
-
-            }, true);
-        }
-
-    }
-
     function tempSaveRFR(e) {
 
 
-        if ($(objE).attr("data-LSSII") == 26 || $(objE).attr("data-LSSII") != 11 ) {
+        if ($(objE).attr("data-LSSII") == 26 || $(objE).attr("data-LSSII") != 11) {
 
         }
         else if (isEmpty($('#SUIRS').find(":selected").val()) &&
             decrypt($(objE).attr("data-LSAR"), keyMaker()) != '10' &&
-            decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15' )
-        {
+            decrypt($(objE).attr("data-DLSI"), keyMaker()) != '15') {
 
             alertB("هشدار", "کاربر را انتخاب کنید", "warning");
             return;
@@ -1834,9 +1782,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         UpdateContract: updateContract,
         OnchangeKindOfRequest: onchangeKindOfRequest,
         FilterGridA: filterGridA,
-        HasHistory: hasHistory,
-        CopyCorporateGovernance: copyCorporateGovernance,
-        AddToHistory: addToHistory
+        HasHistory: hasHistory
     };
 
 })(Web, jQuery);

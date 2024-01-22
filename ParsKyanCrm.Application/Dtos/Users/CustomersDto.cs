@@ -20,7 +20,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
     public class CustomersDto : BaseEntityDto
     {
-
+        public bool ChangeUsername { get; set; } = false;
         public string EmailRepresentative { get; set; }
 
         public string NationalCodeRepresentative { get; set; }

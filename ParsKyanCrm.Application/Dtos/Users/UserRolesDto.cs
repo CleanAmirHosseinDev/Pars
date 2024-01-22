@@ -27,6 +27,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
         public RolesDto Role { get; set; }
         public UsersDto User { get; set; }
+        public bool JustMobile { get; set; }
        
 
     }

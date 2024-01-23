@@ -1479,7 +1479,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     function initRequestReferences(id = null) {
 
-        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1, RequestId: id }), true, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1, RequestId: id, ForTimeLine: true }), true, function (res) {
 
             if (res.isSuccess) {
                 for (var i = 0; i < res.data.length; i++) {

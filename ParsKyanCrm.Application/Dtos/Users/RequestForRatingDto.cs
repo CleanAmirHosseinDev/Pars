@@ -13,7 +13,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
 {
     public class RequestRequestForRatingDto : PageingParamerDto
     {
-
+        public bool ForTimeLine { get; set; } = false;
         public int? CustomerId { get; set; }
         public bool IsExcelReport { get; set; }
         public string LoginName { get; set; }

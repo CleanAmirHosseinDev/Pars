@@ -811,7 +811,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             objE = e;
             tempSaveRFR(e);
 
-        } else if ($(e).attr("data-LSSII") != "26") {
+        } else if ($(e).attr("data-LSSII") == "26") {
             temgetCodalInfo(e);
         }
         else temojsdkjsdjsdkjkjsdjksd(e);

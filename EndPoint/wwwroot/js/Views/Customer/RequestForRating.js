@@ -584,7 +584,7 @@
 
                         } else {
 
-                            var strhtml = "<div class='bc'><p> قرارداد زیر را چاپ و سپس همه صفحات آن <span style='color:red; font-size:1.5em;'>امضاء شود</span> و سپس آن را از تب <span style='color: forestgreen; font - weight: bolder'>بارگذاری اسناد قرارداد و پرداخت</span> به همراه سند تسویه بارگذاری کنید.</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
+                            var strhtml = "<div class='bc'><p>لطفا تمام صفحات مهر و امضا در سربرگ شرکت انجام شود و اصل قرارداد با مهر و امضای همه صفحات به شرکت پارس کیان ارسال گردد</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
 
                             strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                             $("#divDownloadContract").html(strhtml);

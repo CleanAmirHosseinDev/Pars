@@ -77,6 +77,7 @@
                 $("#divDownload_SummaryRanking").html("<a href='" + res.summaryRankingFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
 
                 systemSeting_Combo(!isEmpty(id) && id != 0 ? res : null);
+                systemSeting_Combo2(res);
             }
         }, true);
 
@@ -103,6 +104,50 @@
         }, true);
 
     }
+
+    function systemSeting_Combo2(resSingle) {
+
+        AjaxCallAction("POST", "/api/admin/SystemSeting/Get_SystemSetings", JSON.stringify({ ParentCodeArr: "257,258,259,260,261", PageIndex: 0, PageSize: 0 }), true, function (res) {
+
+            if (res.isSuccess) {
+                var strLongTermRating = '<option value="">انتخاب کنید</option>';//257
+                var strShortTermRating = '<option value="">انتخاب کنید</option>';//258
+                var strVision = '<option value="">انتخاب کنید</option>';//259
+                var strStatusText = '<option value="">انتخاب کنید</option>';//260
+                var strRankingTypeText= '<option value="">انتخاب کنید</option>';//261
+
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[i].parentCode == 257) {
+                        strLongTermRating += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 258) {
+                        strShortTermRating += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 259) {
+                        strVision += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 260) {
+                        strStatusText += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    } else if (res.data[i].parentCode == 261) {
+                        strRankingTypeText += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    }                  
+
+                }
+
+                $("#LongTermRating").html(strLongTermRating);
+                $("#ShortTermRating").html(strShortTermRating);
+                $("#Vision").html(strVision);
+                $("#StatusText").html(strStatusText);
+                $("#RankingTypeText").html(strRankingTypeText);
+
+                if (resSingle != null) {
+                    $("#LongTermRating").val(resSingle.longTermRating);
+                    $("#ShortTermRating").html(resSingle.shortTermRating);
+                    $("#Vision").html(resSingle.vision);
+                    $("#StatusText").html(resSingle.statusText);
+                    $("#RankingTypeText").html(resSingle.rankingTypeText);
+                }
+            }
+        }, true);
+    }
+
 
     function delete_RankingOfCompanies(id) {
 
@@ -148,7 +193,8 @@
         SaveRankingOfCompanies: saveRankingOfCompanies,
         InitRankingOfCompanies: initRankingOfCompanies,
         SystemSeting_Combo: systemSeting_Combo,
-        Delete_RankingOfCompanies: delete_RankingOfCompanies
+        Delete_RankingOfCompanies: delete_RankingOfCompanies,
+        SystemSeting_Combo2: systemSeting_Combo2
     };
 
 })(Web, jQuery);

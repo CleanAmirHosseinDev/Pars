@@ -35,7 +35,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers
             {
 
                 var cus = await _context.Customers.FindAsync(id);
-                var q_req = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == id);
+                var q_req = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == id && p.IsFinished==true);
 
                 if (q_req!=null)
                 {
@@ -49,11 +49,16 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers
                 }
               
                 var q_user = await _context.Users.FirstOrDefaultAsync(p => p.CustomerId == id);
-               
+                var q_reqNoComplet = await _context.RequestForRating.FirstOrDefaultAsync(p => p.CustomerId == id && p.IsFinished == false);
+                if (q_reqNoComplet!=null)
+                {
+                    Ado_NetOperation.SqlDelete(typeof(Domain.Entities.RequestReferences).Name, string.Format("Requestid" + " = '{0}'", q_reqNoComplet.RequestId));
+                    Ado_NetOperation.SqlDelete(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, string.Format("Requestid" + " = '{0}'", q_reqNoComplet.RequestId));
+                    Ado_NetOperation.SqlDelete(typeof(Domain.Entities.RequestForRating).Name, string.Format("Requestid" + " = '{0}'", q_reqNoComplet.RequestId));
+
+                }
                 Ado_NetOperation.SqlDelete(typeof(Domain.Entities.UserRoles).Name, string.Format("UserID" + " = '{0}'", q_user.UserId));
-
                 Ado_NetOperation.SqlDelete(typeof(Domain.Entities.Users).Name, string.Format("CustomerID" + " = '{0}'", id));
-
                 Ado_NetOperation.SqlDelete(typeof(Domain.Entities.Customers).Name, string.Format("CustomerID" + " = '{0}'", id));
 
 

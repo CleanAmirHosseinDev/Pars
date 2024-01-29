@@ -103,5 +103,72 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
                 throw ex;
             }
         }
+
+        public async Task<ResultDto<PublicActivitiesDto>> ExecuteCopy(string Request)
+        {
+
+            try
+            {
+                string[] values = Request.Split('-');
+                int newReq = Convert.ToInt32(values[0]);
+                int OldReq = Convert.ToInt32(values[1]);
+
+                #region Validation
+
+
+
+                #endregion
+                var con = await Infrastructure.DapperOperation.Run<PublicActivitiesDto>("select * from PublicActivities where RequestId=" + OldReq);
+
+                foreach (var item in con)
+                {
+                    PublicActivitiesDto request = new PublicActivitiesDto();
+
+                    if (item.IsPublicActivityFileStr != null)
+                    {
+                        if (item.IsPublicActivityFileStr == "on")
+                        {
+                            request.IsPublicActivityFile = true;
+                        }
+                        else
+                        {
+                            request.IsPublicActivityFile = false;
+                        }
+                    }
+
+                    request.CustomerID = item.CustomerID;
+                    request.EmploymentDisabled = item.EmploymentDisabled;
+                    request.Investment = item.Investment;
+                    request.IsActive = item.IsActive;
+                    request.IsPublicActivityFile = item.IsPublicActivityFile;
+                    request.RequestId = newReq;
+
+                    EntityEntry<PublicActivities> q_Entity;
+                    if (request.PublicActivitiesID == 0)
+                    {
+                        // request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+                        q_Entity = _context.PublicActivities.Add(_mapper.Map<PublicActivities>(request));
+                        await _context.SaveChangesAsync();
+                        request = _mapper.Map<PublicActivitiesDto>(q_Entity.Entity);
+                    }
+
+                }
+
+
+                return new ResultDto<PublicActivitiesDto>()
+                {
+                    IsSuccess = true,
+                    Message = " با موفقیت انجام شد",
+                    Data = null
+                };
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

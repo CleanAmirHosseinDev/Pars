@@ -133,7 +133,7 @@ FETCH NEXT {request.PageSize} ROWS ONLY
 
                 var data = await DapperOperation.Run<RequestForRatingDto>(@$"
                                         select top 1 *  from RequestForRating where CustomerID in( select CustomerID from RequestForRating where RequestID={request.RequestId}) 
-                                        and KindOfRequest=(select KindOfRequest from RequestForRating where RequestID={request.RequestId}) and IsFinished=1 order by RequestID desc
+                                        and KindOfRequest=(select KindOfRequest from RequestForRating where RequestID={request.RequestId}) and IsFinished=1 and (select count(*) from DataFormAnswerTables where RequestId={request.RequestId})=0 order by RequestID desc
                   ");
 
                // request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);

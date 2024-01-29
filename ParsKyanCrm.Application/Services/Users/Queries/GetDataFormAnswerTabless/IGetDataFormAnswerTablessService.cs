@@ -8,5 +8,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTables
     public interface IGetDataFormAnswerTablessService
     {
         Task<ResultDto<IEnumerable<DataFormAnswerTablesDto>>> Execute(RequestDataFormAnswerTablesDto request);
+       
     }
 }

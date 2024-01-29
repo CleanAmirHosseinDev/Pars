@@ -11,6 +11,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
     public interface ISaveCorporateGovernanceService
     {
         Task<ResultDto<CorporateGovernanceDto>> Execute(CorporateGovernanceDto request);
-        Task<ResultDto<CorporateGovernanceDto>> ExecuteCopy(CorporateGovernanceDto request);
+        Task<ResultDto<CorporateGovernanceDto>> ExecuteCopy(string request);
     }
 }

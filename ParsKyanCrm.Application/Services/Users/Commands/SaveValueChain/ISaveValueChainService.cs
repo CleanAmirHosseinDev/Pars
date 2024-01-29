@@ -11,5 +11,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveValueChain
     public interface ISaveValueChainService
     {
         Task<ResultDto<ValueChainDto>> Execute(ValueChainDto request);
+        Task<ResultDto<ValueChainDto>> ExecuteCopy(string Request);
     }
 }

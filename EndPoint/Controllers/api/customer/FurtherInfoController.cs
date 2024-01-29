@@ -280,6 +280,23 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
-
+        [HttpGet]
+        [Route("[action]/{id}/")]
+        public async Task<ResultDto<CorporateGovernanceDto>> Copy_FurtherInfo(string id)
+        {
+            try
+            {
+                await _userFacad.SaveDataFormAnswerTablesService.ExecuteCopy(id);
+                await _userFacad.SaveDataFromAnswersService.ExecuteCopy(id);
+                await _userFacad.SaveFurtherInfoService.ExecuteCopy(id);
+                await _userFacad.SavePublicActivitiesService.ExecuteCopy(id);
+                await _userFacad.SaveValueChainService.ExecuteCopy(id);
+                return await _userFacad.SaveCorporateGovernanceService.ExecuteCopy(id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

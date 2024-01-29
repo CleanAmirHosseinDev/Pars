@@ -804,61 +804,19 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
 
         if ((decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' ||
-            decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') && $(e).attr("data-LSSII") != "26") {
+            decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') && $(e).attr("data-LSSII") != "26" ) {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
             objE = e;
             tempSaveRFR(e);
 
-        } else if ($(e).attr("data-LSSII") == "26") {
-            temgetCodalInfo(e);
+        }
+        else if ($(e).attr("data-LSSII") == "26") {
+            temgetCodalInfo(e)
         }
         else temojsdkjsdjsdkjkjsdjksd(e);
-
-
-        //var v1 = decrypt($(e).attr("data-LSAR"), keyMaker());
-        //var v2 = decrypt($(e).attr("data-DLSI"), keyMaker());
-        //var v3 = $(e).attr("data-lssii");
-
-        //if (decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' && $(e).attr("data-LSSII") != "11") {
-
-        //    $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
-        //    $("#SUIRS").html('');
-        //    objE = e;
-
-        //    tempSaveRFR(e);
-        //} else if ($(e).attr("data-LSSII") == "11") {
-        //    hasHistory(e); 
-        //}
-        //else if ($(e).attr("data-LSSII") == "26") {
-        //    temgetCodalInfo(e)
-        //}
-        //else temojsdkjsdjsdkjkjsdjksd(e);
-
-
-
     }
-
-    function hasHistory(e) {
-        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
-
-        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestHistory", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
-
-            if (res.isSuccess) {
-                if (res.data.length > 0) {
-
-                    alertB("ثبت", "ایجاد کپی از سوابق قبلی مشتری", "success", "بله متوجه شدم", function () {
-                        tempSaveRFR(e);
-                    });
-                }
-            }
-
-        }, true);
-
-    }
-
-
 
 
     var objE;
@@ -1782,7 +1740,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         UpdateContract: updateContract,
         OnchangeKindOfRequest: onchangeKindOfRequest,
         FilterGridA: filterGridA,
-        HasHistory: hasHistory
+       
     };
 
 })(Web, jQuery);

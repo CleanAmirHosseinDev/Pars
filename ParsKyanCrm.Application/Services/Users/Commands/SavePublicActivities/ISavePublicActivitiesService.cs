@@ -7,5 +7,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SavePublicActivities
     public interface ISavePublicActivitiesService
     {
         Task<ResultDto<PublicActivitiesDto>> Execute(PublicActivitiesDto request);
+        Task<ResultDto<PublicActivitiesDto>> ExecuteCopy(string Request);
     }
 }

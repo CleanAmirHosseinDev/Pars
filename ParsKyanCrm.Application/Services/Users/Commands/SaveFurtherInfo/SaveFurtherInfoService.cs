@@ -182,5 +182,114 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                 throw ex;
             }
         }
+
+        public async Task<ResultDto<FurtherInfoDto>> ExecuteCopy(string Request)
+        {
+
+            string[] values = Request.Split('-');
+            int newReq = Convert.ToInt32(values[0]);
+            int OldReq = Convert.ToInt32(values[1]);
+
+            
+
+            #region Upload Image
+            //
+
+           
+            #endregion
+            try
+            {
+
+                var con = await Infrastructure.DapperOperation.Run<FurtherInfoDto>("select * from FurtherInfo where RequestId=" + OldReq);
+
+                foreach (var item in con)
+                {
+                    FurtherInfoDto request = new FurtherInfoDto();
+
+                    request.IsActive = item.IsActive;
+                    request.RequestId = newReq;
+                    
+                    string fileNameOldPic_LastAuditingTaxList = string.Empty, path_LastAuditingTaxList = string.Empty;
+                    string fileNameOldPic_LastChangeOfficialNewspaper = string.Empty, path_LastChangeOfficialNewspaper = string.Empty;
+                    string fileNameOldPic_StatuteDoc = string.Empty, path_StatuteDoc = string.Empty;
+                    string fileNameOldPic_OfficialNewspaper = string.Empty, path_OfficialNewspaper = string.Empty;
+                    string fileNameOldPic_StatementTaxList = string.Empty, path_StatementTaxList = string.Empty;
+
+
+                    request.LastAuditingTaxList = con != null && !string.IsNullOrEmpty(item.LastAuditingTaxList) ? item.LastAuditingTaxList : string.Empty;
+                    request.LastChangeOfficialNewspaper = con != null && !string.IsNullOrEmpty(item.LastChangeOfficialNewspaper) ? item.LastChangeOfficialNewspaper : string.Empty;
+                    request.StatuteDoc = con != null && !string.IsNullOrEmpty(item.StatuteDoc) ? item.StatuteDoc : string.Empty;
+                    request.OfficialNewspaper = con != null && !string.IsNullOrEmpty(item.OfficialNewspaper) ? item.OfficialNewspaper : string.Empty;
+                    request.StatementTaxList = con != null && !string.IsNullOrEmpty(item.StatementTaxList) ? item.StatementTaxList : string.Empty;
+
+                    #region Upload Image
+
+                    if (request.LastAuditingTaxList != null)
+                    {
+                        fileNameOldPic_LastAuditingTaxList = request.LastAuditingTaxList;
+                        request.LastAuditingTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LastAuditingTaxList);
+                        path_LastAuditingTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastAuditingTaxList;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastAuditingTaxList, path_LastAuditingTaxList, "صورتهای مالی حسابرسی شده");
+                    }
+
+                    if (request.LastChangeOfficialNewspaper != null)
+                    {
+                        fileNameOldPic_LastChangeOfficialNewspaper = request.LastChangeOfficialNewspaper;
+                        request.LastChangeOfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LastChangeOfficialNewspaper);
+                        path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastChangeOfficialNewspaper;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastChangeOfficialNewspaper, path_LastChangeOfficialNewspaper, "آخرین تغییرات روزنامه رسمی");
+                    }
+
+                    if (request.Result_Final_StatuteDoc != null)
+                    {
+                        fileNameOldPic_StatuteDoc = request.StatuteDoc;
+                        request.StatuteDoc = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_StatuteDoc);
+                        path_StatuteDoc = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatuteDoc;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_StatuteDoc, path_StatuteDoc, "اساسنامه");
+                    }
+
+                    if (request.Result_Final_OfficialNewspaper != null)
+                    {
+                        fileNameOldPic_OfficialNewspaper = request.OfficialNewspaper;
+                        request.OfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OfficialNewspaper);
+                        path_OfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.OfficialNewspaper;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_OfficialNewspaper, path_OfficialNewspaper, " روزنامه رسمی");
+                    }
+
+                    if (request.Result_Final_StatementTaxList != null)
+                    {
+                        fileNameOldPic_StatementTaxList = request.StatementTaxList;
+                        request.StatementTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_StatementTaxList);
+                        path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatementTaxList;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_StatementTaxList, path_StatementTaxList, " اظهارنامه مالیاتی");
+                    }
+
+                    #endregion
+
+                    EntityEntry<FurtherInfo> q_Entity;
+                    if (request.FurtherInfoId == 0)
+                    {
+                        q_Entity = _context.FurtherInfo.Add(_mapper.Map<FurtherInfo>(request));
+                        await _context.SaveChangesAsync();
+                        request = _mapper.Map<FurtherInfoDto>(q_Entity.Entity);
+                    }
+
+                }
+
+                return new ResultDto<FurtherInfoDto>()
+                {
+                    IsSuccess = true,
+                    Message = "ثبت نرخ نامه قرارداد با موفقیت انجام شد",
+                    Data = null
+                };
+
+
+            }
+            catch (Exception ex)
+            {
+              
+                throw ex;
+            }
+        }
     }
 }

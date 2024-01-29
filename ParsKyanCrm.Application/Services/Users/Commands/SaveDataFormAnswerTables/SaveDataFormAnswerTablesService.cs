@@ -200,5 +200,118 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                 throw ex;
             }
         }
+
+
+        public async Task<ResultDto<DataFormAnswerTablesDto>> ExecuteCopy(string Request)
+        {
+
+            string[] values = Request.Split('-');
+            int newReq = Convert.ToInt32(values[0]);
+            int OldReq = Convert.ToInt32(values[1]);
+
+            #region Upload Image
+
+            string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
+            string fileNameOldPic_FileName2 = string.Empty, path_FileName2 = string.Empty;
+            string fileNameOldPic_FileName3 = string.Empty, path_FileName3 = string.Empty;
+            string fileNameOldPic_FileName4 = string.Empty, path_FileName4 = string.Empty;
+
+            #endregion
+
+           
+            try
+            {
+                #region Validation
+
+                #endregion
+                var con = await Infrastructure.DapperOperation.Run<DataFormAnswerTablesDto>("select * from DataFormAnswerTables where RequestId="+OldReq);
+                foreach (var item in con)
+                {
+                    #region کپی
+                    DataFormAnswerTablesDto request = new DataFormAnswerTablesDto();
+
+
+                    request.FileName1 = item != null && !string.IsNullOrEmpty(item.FileName1) ? item.FileName1 : string.Empty;
+                    request.FileName2 = item != null && !string.IsNullOrEmpty(item.FileName2) ? item.FileName2 : string.Empty;
+                    request.FileName3 = item != null && !string.IsNullOrEmpty(item.FileName3) ? item.FileName3 : string.Empty;
+                    request.FileName4 = item != null && !string.IsNullOrEmpty(item.FileName4) ? item.FileName4 : string.Empty;
+                    request.Answer1 = item.Answer1;
+                    request.Answer2 = item.Answer2;
+                    request.Answer3 = item.Answer3;
+                    request.Answer4 = item.Answer5;
+                    request.Answer6 = item.Answer7;
+                    request.Answer8 = item.Answer9;
+                    request.Answer10 = item.Answer10;
+                    request.RequestId = newReq;
+                    request.IsActive = item.IsActive;
+                    request.FormId = item.FormId;
+                   
+                    #region Upload Image
+
+                    if (!string.IsNullOrEmpty(request.FileName1) )
+                    {
+                        fileNameOldPic_FileName1 = request.FileName1;
+                        request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName1);
+                        path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1, path_FileName1, "فایل یک");
+                    
+                    }
+
+                    if (!string.IsNullOrEmpty(request.FileName2))
+                    {
+                        fileNameOldPic_FileName2 = request.FileName2;
+                        request.FileName2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName2);
+                        path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName2;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName2, path_FileName2, "فایل دو");
+                    }
+
+                    if (!string.IsNullOrEmpty(request.FileName3))
+                    {
+                        fileNameOldPic_FileName3 = request.FileName3;
+                        request.FileName3 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName3);
+                        path_FileName3 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName3;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName3, path_FileName3, "فایل سه");
+                    }
+
+                    if (!string.IsNullOrEmpty(request.FileName4))
+                    {
+                        fileNameOldPic_FileName4 = request.FileName4;
+                        request.FileName4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName4);
+                        path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName4;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName4, path_FileName4, "فایل چهار");
+                    }
+
+                    #endregion
+
+                    EntityEntry<DataFormAnswerTables> q_Entity;
+                    if (request.AnswerTableId == 0)
+                    {
+                        request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
+                        q_Entity = _context.DataFormAnswerTables.Add(_mapper.Map<DataFormAnswerTables>(request));
+                        await _context.SaveChangesAsync();
+                        request = _mapper.Map<DataFormAnswerTablesDto>(q_Entity.Entity);
+                    }
+
+                    #endregion
+                }
+
+                return new ResultDto<DataFormAnswerTablesDto>()
+                {
+                    IsSuccess = true,
+                    Message = "ثبت فرم با موفقیت انجام شد",
+                    Data = null
+                };
+
+
+            }
+            catch (Exception ex)
+            {
+               
+                throw ex;
+            }
+        }
+
+
+
     }
 }

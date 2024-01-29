@@ -522,5 +522,284 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveValueChainService
                 throw ex;
             }
         }
+
+        public async Task<ResultDto<ValueChainDto>> ExecuteCopy(string Request)
+        {
+            string[] values = Request.Split('-');
+            int newReq = Convert.ToInt32(values[0]);
+            int OldReq = Convert.ToInt32(values[1]);
+
+            try
+            {
+                var con = await Infrastructure.DapperOperation.Run<ValueChainDto>("select * from ValueChain where RequestId=" + OldReq);
+
+                foreach (var item in con)
+                {
+
+                    #region Upload Image
+                    //
+
+                    string fileNameOldPic_Vc1 = string.Empty, path_Vc1 = string.Empty;
+                    string fileNameOldPic_Vc2 = string.Empty, path_Vc2 = string.Empty;
+                    string fileNameOldPic_Vc3 = string.Empty, path_Vc3 = string.Empty;
+                    string fileNameOldPic_Vc4 = string.Empty, path_Vc4 = string.Empty;
+                    string fileNameOldPic_Vc5 = string.Empty, path_Vc5 = string.Empty;
+                    string fileNameOldPic_Vc6 = string.Empty, path_Vc6 = string.Empty;
+                    string fileNameOldPic_Vc7 = string.Empty, path_Vc7 = string.Empty;
+                    string fileNameOldPic_Vc8 = string.Empty, path_Vc8 = string.Empty;
+                    string fileNameOldPic_Vc9 = string.Empty, path_Vc9 = string.Empty;
+                    string fileNameOldPic_Vc10 = string.Empty, path_Vc10 = string.Empty;
+                    string fileNameOldPic_Vc11 = string.Empty, path_Vc11 = string.Empty;
+                    string fileNameOldPic_Vc12 = string.Empty, path_Vc12 = string.Empty;
+                    string fileNameOldPic_Vc13 = string.Empty, path_Vc13 = string.Empty;
+                    string fileNameOldPic_Vc14 = string.Empty, path_Vc14 = string.Empty;
+                    string fileNameOldPic_Vc15 = string.Empty, path_Vc15 = string.Empty;
+                    string fileNameOldPic_Vc16 = string.Empty, path_Vc16 = string.Empty;
+                    string fileNameOldPic_Vc17 = string.Empty, path_Vc17 = string.Empty;
+                    string fileNameOldPic_Vc18 = string.Empty, path_Vc18 = string.Empty;
+                    string fileNameOldPic_Vc19 = string.Empty, path_Vc19 = string.Empty;
+                    string fileNameOldPic_Vc20 = string.Empty, path_Vc20 = string.Empty;
+                    string fileNameOldPic_Vc21 = string.Empty, path_Vc21 = string.Empty;
+                    string fileNameOldPic_Vc22 = string.Empty, path_Vc22 = string.Empty;
+                    string fileNameOldPic_Vc23 = string.Empty, path_Vc23 = string.Empty;
+                    string fileNameOldPic_Vc24 = string.Empty, path_Vc24 = string.Empty;
+                    string fileNameOldPic_Vc25 = string.Empty, path_Vc25 = string.Empty;
+
+                    #endregion
+
+                    ValueChainDto request = new ValueChainDto();
+                    request.RequestId = newReq;
+
+                    request.vc1 = item != null && !string.IsNullOrEmpty(item.vc1) ? item.vc1 : string.Empty;
+                    request.vc2 = item != null && !string.IsNullOrEmpty(item.vc2) ? item.vc2 : string.Empty;
+                    request.vc3 = item != null && !string.IsNullOrEmpty(item.vc3) ? item.vc3 : string.Empty;
+                    request.vc4 = item != null && !string.IsNullOrEmpty(item.vc4) ? item.vc4 : string.Empty;
+                    request.vc5 = item != null && !string.IsNullOrEmpty(item.vc5) ? item.vc5 : string.Empty;
+                    request.vc6 = item != null && !string.IsNullOrEmpty(item.vc6) ? item.vc6 : string.Empty;
+                    request.vc7 = item != null && !string.IsNullOrEmpty(item.vc7) ? item.vc7 : string.Empty;
+                    request.vc8 = item != null && !string.IsNullOrEmpty(item.vc8) ? item.vc8 : string.Empty;
+                    request.vc9 =  item != null && !string.IsNullOrEmpty(item.vc9) ?  item.vc9 : string.Empty;
+                    request.vc10 = item != null && !string.IsNullOrEmpty(item.vc10) ? item.vc10 : string.Empty;
+                    request.vc11 = item != null && !string.IsNullOrEmpty(item.vc11) ? item.vc11 : string.Empty;
+                    request.vc12 = item != null && !string.IsNullOrEmpty(item.vc12) ? item.vc12 : string.Empty;
+                    request.vc13 = item != null && !string.IsNullOrEmpty(item.vc13) ? item.vc13 : string.Empty;
+                    request.vc14 = item != null && !string.IsNullOrEmpty(item.vc14) ? item.vc14 : string.Empty;
+                    request.vc15 = item != null && !string.IsNullOrEmpty(item.vc15) ? item.vc15 : string.Empty;
+                    request.vc16 = item != null && !string.IsNullOrEmpty(item.vc16) ? item.vc16 : string.Empty;
+                    request.vc17 = item != null && !string.IsNullOrEmpty(item.vc17) ? item.vc17 : string.Empty;
+                    request.vc18 = item != null && !string.IsNullOrEmpty(item.vc18) ? item.vc18 : string.Empty;
+                    request.vc19 = item != null && !string.IsNullOrEmpty(item.vc19) ? item.vc19 : string.Empty;
+                    request.vc20 = item != null && !string.IsNullOrEmpty(item.vc20) ? item.vc20 : string.Empty;
+                    request.vc21 = item != null && !string.IsNullOrEmpty(item.vc21) ? item.vc21 : string.Empty;
+                    request.vc22 = item != null && !string.IsNullOrEmpty(item.vc22) ? item.vc22 : string.Empty;
+                    request.vc23 = item != null && !string.IsNullOrEmpty(item.vc23) ? item.vc23 : string.Empty;
+                    request.vc24 = item != null && !string.IsNullOrEmpty(item.vc24) ? item.vc24 : string.Empty;
+                    request.vc25 = item != null && !string.IsNullOrEmpty(item.vc25) ? item.vc25 : string.Empty;
+
+                    //#region Upload Image
+
+                    if (request.vc1 != null)
+                    {
+                        fileNameOldPic_Vc1 = request.vc1;
+                        request.vc1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc1);
+                        path_Vc1 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc1;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc1, path_Vc1, "انبار / سند مالکیت انبار");
+                    }
+                    if (request.vc2 != null)
+                    {
+                        fileNameOldPic_Vc2 = request.vc2;
+                        request.vc2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc2);
+                        path_Vc2 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc2;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc2, path_Vc2, "عکس/سند تجهیزات انبارش و بارگیری");
+                    }
+                   
+                    if (request.vc3 != null)
+                    {
+                        fileNameOldPic_Vc3 = request.vc3;
+                        request.vc3 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc3);
+                        path_Vc3 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc3;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc3, path_Vc3, "عکس/سند مالکیت تجهیزات حمل و نقل به/ از  انبار");
+                    }
+                    if (request.vc4 != null)
+                    {
+                        fileNameOldPic_Vc4 = request.vc4;
+                        request.vc4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc4);
+                        path_Vc4 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc4;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc4, path_Vc4, "عکس / قراداد نرم افزار انبارداری");
+                    }
+                    if (request.vc5 != null)
+                    {
+                        fileNameOldPic_Vc5 = request.vc5;
+                        request.vc5 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc5);
+                        path_Vc5 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc5;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc5, path_Vc5, "دفتر مرکزی(اجاره نامه یا سند مالکیت");
+                    }
+                    if (request.vc6 != null)
+                    {
+                        fileNameOldPic_Vc6 = request.vc6;
+                        request.vc6 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc6);
+                        path_Vc6 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc6;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc6, path_Vc6, "دفتر خارج از کشور (اجاره نامه یا سند مالکیت");
+                    }
+                    if (request.vc7 != null)
+                    {
+                        fileNameOldPic_Vc7 = request.vc7;
+                        request.vc7 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc7);
+                        path_Vc7 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc7;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc7, path_Vc7, "یک نمونه فیش حقوقی پرسنل نشان دهنده واریز پاداش");
+                    }
+                    if (request.vc8 != null)
+                    {
+                        fileNameOldPic_Vc8 = request.vc8;
+                        request.vc8 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc8);
+                        path_Vc8 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc8;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc8, path_Vc8, "عکس یا قرارداد نرم افزار های یکپارچه مدیریتی");
+                    }
+                    if (request.vc9 != null)
+                    {
+                        fileNameOldPic_Vc9 = request.vc9;
+                        request.vc9 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc9);
+                        path_Vc9 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc9;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc9, path_Vc9, "عکس از آزمایشگاه  (در صورت برون سپاری قرارداد مربوطه");
+                    }
+                    if (request.vc10 != null)
+                    {
+                        fileNameOldPic_Vc10 = request.vc10;
+                        request.vc10 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc10);
+                        path_Vc10 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc10;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc10, path_Vc10, "تصویر مجوز دانش بنیان");
+                    }
+                    if (request.vc11 != null)
+                    {
+                        fileNameOldPic_Vc11 = request.vc11;
+                        request.vc11 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc11);
+                        path_Vc11 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc11;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc11, path_Vc11, "سند مالکیت یا قراداد یا غیره برای ناوگان حمل و نقل");
+                    }
+                    if (request.vc12 != null)
+                    {
+                        fileNameOldPic_Vc12 = request.vc12;
+                        request.vc12 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc12);
+                        path_Vc12 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc12;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc12, path_Vc12, "درصورت وجود یک مدل جهت ردیابی محصول با بارکد یا کد رجیستری");
+                    }
+                    if (request.vc13 != null)
+                    {
+                        fileNameOldPic_Vc13 = request.vc13;
+                        request.vc13 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc13);
+                        path_Vc13 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc13;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc13, path_Vc13, "نمایندگی شرکت  ");
+                    }
+                    if (request.vc14 != null)
+                    {
+                        fileNameOldPic_Vc14 = request.vc14;
+                        request.vc14 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc14);
+                        path_Vc14 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc14;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc14, path_Vc14, " شرکت نمایندگان خودد را ارزیابی کرده");
+                    }
+                    if (request.vc15 != null)
+                    {
+                        fileNameOldPic_Vc15 = request.vc15;
+                        request.vc15 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc15);
+                        path_Vc15 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc15;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc15, path_Vc15, " تصویر یا آدرس سایت و فعالیت در شبکه های اجتماعی");
+                    }
+                    if (request.vc16 != null)
+                    {
+                        fileNameOldPic_Vc16 = request.vc16;
+                        request.vc16 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc16);
+                        path_Vc16 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc16;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot +fileNameOldPic_Vc16, path_Vc16, "اجاره نامه / سند مالکیت فروشگاه");
+                    }
+                    if (request.vc17 != null)
+                    {
+                        fileNameOldPic_Vc17 = request.vc17;
+                        request.vc17 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc17);
+                        path_Vc17 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc17;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc17, path_Vc17, "تصویر یا آدرس سایت فروش آنلاین");
+                    }
+                    if (request.vc18 != null)
+                    {
+                        fileNameOldPic_Vc18 = request.vc18;
+                        request.vc18 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc18);
+                        path_Vc18 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc18;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc18, path_Vc18, "گزارش های بازاریابی حضوری");
+                    }
+                    if (request.vc19 != null)
+                    {
+                        fileNameOldPic_Vc19 = request.vc19;
+                        request.vc19 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc19);
+                        path_Vc19 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc19;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc19, path_Vc19, " مجوز حضور در نمایشگاه ها");
+                    }
+                    if (request.vc20 != null)
+                    {
+                        fileNameOldPic_Vc20 = request.vc20;
+                        request.vc20 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc20);
+                        path_Vc20 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc20;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc20, path_Vc20, "قرارداد های فروش به سازمان ها");
+                    }
+                    if (request.vc21 != null)
+                    {
+                        fileNameOldPic_Vc21 = request.vc21;
+                        request.vc21 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc21);
+                        path_Vc21 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc21;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc21, path_Vc21, "نمونه تبلیغات محیطی");
+                    }
+                    if (request.vc22 != null)
+                    {
+                        fileNameOldPic_Vc22 = request.vc22;
+                        request.vc22 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc22);
+                        path_Vc22 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc22;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc22, path_Vc22, "کارت گارانتی");
+                    }
+                    if (request.vc23 != null)
+                    {
+                        fileNameOldPic_Vc23 = request.vc23;
+                        request.vc23 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc23);
+                        path_Vc23 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc23;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc23, path_Vc23, "عکس از واحد خدمات پس از فروش یا سایر مستندات");
+                    }
+                    if (request.vc24 != null)
+                    {
+                        fileNameOldPic_Vc24 = request.vc24;
+                        request.vc24 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc24);
+                        path_Vc24 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc24;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_Vc24, path_Vc24, "گزارش و گواهی بررسی و ارزیابی خدمات پس از فروش");
+                    }
+                    if (request.vc25 != null)
+                    {
+                        fileNameOldPic_Vc25 = request.vc25;
+                        request.vc25 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Vc25);
+                        path_Vc25 = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.vc25;
+                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_Vc25, path_Vc25, "عکس از تجهیزات  واحد خدمات پس از فروش");
+                    }
+                    //#endregion                                
+
+                    EntityEntry<ValueChain> q_Entity;
+                    if (request.ValueChainId == 0)
+                    {
+                        // request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+                        q_Entity = _context.ValueChain.Add(_mapper.Map<ValueChain>(request));
+                        await _context.SaveChangesAsync();
+                        request = _mapper.Map<ValueChainDto>(q_Entity.Entity);
+                    }
+
+                }
+                    return new ResultDto<ValueChainDto>()
+                    {
+                        IsSuccess = true,
+                        Message = "ثبت نرخ نامه قرارداد با موفقیت انجام شد",
+                        Data = null
+                    };
+                }
+                           
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
     }
 }

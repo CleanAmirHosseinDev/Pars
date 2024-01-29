@@ -7,5 +7,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
     public interface ISaveDataFormAnswerTablesService
     {
         Task<ResultDto<DataFormAnswerTablesDto>> Execute(DataFormAnswerTablesDto request);
+        Task<ResultDto<DataFormAnswerTablesDto>> ExecuteCopy(string Request);
     }
 }

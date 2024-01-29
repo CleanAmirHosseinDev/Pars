@@ -66,7 +66,7 @@
 
                     }
                     if (res.data[i].destLevelStepIndex == 7) {
-                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
+                        strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
 
                     } else if (res.data[i].destLevelStepIndex >= 7 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده اطلاعات تکمیلی") {
                         strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
@@ -875,7 +875,45 @@
 
     }
 
- 
+    function copyFurtherInfo(id=null,preReq = null) {       
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("GET", "/api/customer/FurtherInfo/Copy_FurtherInfo/" + id + "-" + preReq, null, true, function (res) {
+
+                if (res.isSuccess) {
+                    alertB("ثبت", "کپی انجام شد", "success", "بله متوجه شدم", function () {
+                        goToUrl("/Customer/FurtherInfo/index/" + id);
+                    });
+                }
+
+            }, true);
+        }
+
+    }
+
+
+    
+
+    function showFurtherInfo(e, RequestId) {
+       
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestHistory", JSON.stringify({ RequestId: RequestId, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+            if (res.isSuccess) {
+                if (res.data.length > 0) {
+
+                    alertB("ثبت", "به دلیل وجود سابقه اطلاعاتی یک کپی از اطلاعات درست می شود تا شما بتوانید آنها را ویرایش کنید", "success", "بله متوجه شدم", function () {
+                        copyFurtherInfo(RequestId,res.data[0].requestId);
+                        // tempSaveRFR(e);
+                    });
+                }
+                else {
+                    goToUrl("/Customer/FurtherInfo/index/" + RequestId);
+                }
+            }
+
+        }, true);
+
+    }
+
 
     web.RequestForRating = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
@@ -906,7 +944,9 @@
         PrintPerFactor: printPerFactor,
         InitCustomer: initCustomer,
         SaveReferralRequestForRatingCancel: saveReferralRequestForRatingCancel,
-        DashboardInformation: dashboardInformation,
+        DashboardInformation: dashboardInformation,       
+        CopyFurtherInfo: copyFurtherInfo,
+        ShowFurtherInfo: showFurtherInfo
         
     };
 

@@ -66,7 +66,8 @@
 
                     }
                     if (res.data[i].destLevelStepIndex == 7) {
-                        strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
+                     //   strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
+                        strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
 
                     } else if (res.data[i].destLevelStepIndex >= 7 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده اطلاعات تکمیلی") {
                         strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";

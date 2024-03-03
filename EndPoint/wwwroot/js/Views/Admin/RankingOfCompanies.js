@@ -118,15 +118,15 @@
 
                 for (var i = 0; i < res.data.length; i++) {
                     if (res.data[i].parentCode == 257) {
-                        strLongTermRating += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strLongTermRating += " <option value='" + res.data[i].label + "'>" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 258) {
-                        strShortTermRating += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strShortTermRating += " <option value='" + res.data[i].label + "'>" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 259) {
-                        strVision += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strVision += " <option value='" + res.data[i].label + "'>" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 260) {
-                        strStatusText += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strStatusText += " <option value='" + res.data[i].label + "'>" + res.data[i].label + "</option>";
                     } else if (res.data[i].parentCode == 261) {
-                        strRankingTypeText += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        strRankingTypeText += " <option value='" + res.data[i].label + "'>" + res.data[i].label + "</option>";
                     }                  
 
                 }
@@ -139,10 +139,10 @@
 
                 if (resSingle != null) {
                     $("#LongTermRating").val(resSingle.longTermRating);
-                    $("#ShortTermRating").html(resSingle.shortTermRating);
-                    $("#Vision").html(resSingle.vision);
-                    $("#StatusText").html(resSingle.statusText);
-                    $("#RankingTypeText").html(resSingle.rankingTypeText);
+                    $("#ShortTermRating").val(resSingle.shortTermRating);
+                    $("#Vision").val(resSingle.vision);
+                    $("#StatusText").val(resSingle.statusText);
+                    $("#RankingTypeText").val(resSingle.rankingTypeText);
                 }
             }
         }, true);

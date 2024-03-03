@@ -32,7 +32,21 @@ input,button { font-family:inherit;}
 
 
 .header_parent { display: flex; justify-content: center; position: fixed; z-index: 1000; width: 100%;  }
-.header { align-items: center; clear: both; position: absolute; transition-property: background-color,border-radius,margin; transition-duration: 0.3s; transition-timing-function: ease-out; width: 100%; z-index: 1000; display: flex; max-width: var(--max-site-width); height: 70px; background-color: #09355cd4; border-radius: 0px 0px 25px 25px; }
+.header {
+    align-items: center;
+    clear: both;
+    position: absolute;
+    transition-property: background-color,border-radius,margin;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    max-width: var(--max-site-width);
+    height: 70px;
+    background-color: #f71212d4;
+    border-radius: 0px 0px 25px 25px;
+}
     .header.gapped { border-radius: 25px; margin-top: 10px; }
     .header:active, .header:focus, .header:hover { background-color: #fff; border-radius: 30px; margin-top: 5px; }
     .header .logo { width: 31%; min-width: 313px; display: flex; margin: 0 15px; justify-content: center; }

@@ -24,14 +24,17 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEval
 
 select ROW_NUMBER() OVER (order by r.RoleDesc desc) as [Row],cte.ReciveUser,ISNULL(u.RealName,u.UserName) as UserName,r.RoleDesc as RoleName,
 (
-	select count(*) from RequestReferences
+	select count(distinct RequestReferences.Requestid) from RequestReferences
 	inner join RequestForRating on RequestForRating.RequestID = RequestReferences.Requestid
 	where RequestReferences.ReciveUser = cte.ReciveUser and RequestForRating.IsFinished = 1
+
+{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(CodalDate as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
 ) as NumberCompletedRequests,
 (
-	select count(*) from RequestReferences
+	select count(distinct RequestReferences.Requestid) from RequestReferences
 	inner join RequestForRating on RequestForRating.RequestID = RequestReferences.Requestid
 	where RequestReferences.ReciveUser = cte.ReciveUser and RequestForRating.IsFinished = 0
+{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(SendTime as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
 
 ) as NumberOpenAndCurrentRequests,
 
@@ -41,7 +44,6 @@ from(
 
 	select rr.ReciveUser from RequestReferences as rr
 	where rr.ReciveUser is not null
-{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rr.SendTime as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
 group by rr.ReciveUser
 	
 ) as cte

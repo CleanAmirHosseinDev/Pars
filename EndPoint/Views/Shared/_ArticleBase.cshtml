@@ -1,7 +1,10 @@
 ﻿@{
     Layout = "_Layout";
 }
-
+@section meta
+    {
+    @RenderSection("_meta", false)
+}
 <link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
 
 <div id="bg-img"></div>

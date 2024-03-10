@@ -1,12 +1,21 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@{
     var ContentData = (ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto)ViewData["content"];
     ViewData["Title"] = @ContentData.Title;
+    ViewData["canonical"] = ViewContext.HttpContext.Request.GetEncodedUrl();
     Layout = "_ArticleBase";
 }
 
+@section _meta
+{
+    <meta name="description" content="@ContentData.MeteDesc">
+    <meta name="keywords" content="@ContentData.Keywords">
+    <meta name="robots" content="index, follow">
+}
 
-@if(!string.IsNullOrEmpty(ContentData.ContentPic)) {
-    <img class="article_img" src="@ContentData.ContentPicFull" />
+@if (!string.IsNullOrEmpty(ContentData.ContentPic))
+{
+    <img class="article_img" src="@ContentData.ContentPicFull" alt="@ContentData.Title" />
 }
 <div class="article_title_div">
     <p class="article_titile_p">@ContentData.Title</p>

@@ -1,8 +1,6 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
-@{
+﻿@{
     var NewsData = (ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto)ViewData["news"];
     ViewData["Title"] = @NewsData.Title;
-    ViewData["canonical"] = ViewContext.HttpContext.Request.GetEncodedUrl();
     Layout = "_ArticleBase";
 }
 
@@ -15,7 +13,7 @@
 
 @if (!string.IsNullOrEmpty(NewsData.ContentPic))
 {
-    <img class="article_img" src="@NewsData.ContentPicFull" alt="@NewsData.Title" />
+    <img class="article_img" src="@NewsData.ContentPicFull" alt="@NewsData.Title" title="@NewsData.Title" />
 }
 <div class="article_title_div">
     <p class="article_titile_p">@NewsData.Title</p>

@@ -43,8 +43,8 @@
                 <div class="captcha_group">
                     <input type="hidden" name="CaptchaCodes" id="local_captcha_code_#randcode" >
                             <input class="input" maxlength="6" placeholder="کد مقابل" oninput="captchaCodeChange(#randcode)" id="local_captcha_input_#randcode">
-                            <img class="renew" style="display:none;" onclick="reGetCaptcha(#randcode)" src="#">
-                                <img class="image" onclick="reGetCaptcha(#randcode)" id="local_captcha_image_#randcode">
+                            <img class="renew" style="display:none;" onclick="reGetCaptcha(#randcode)" src="#" alt="reGetCaptcha" title="reGetCaptcha">
+                                <img class="image" onclick="reGetCaptcha(#randcode)" id="local_captcha_image_#randcode" alt="reGetCaptcha" title="reGetCaptcha">
                         </div>
             </div>`;
         var rcode = parseInt(((Math.random() * 8999) + 1000));

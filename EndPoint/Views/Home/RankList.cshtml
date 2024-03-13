@@ -4,19 +4,22 @@
 
 @section Styles{
 
-<link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/landing/RankList.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/landing/RankList.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
 
 }
 
 @section Scripts {
 
-<script src="~/js/landing/RankList.js" asp-append-version="true"></script>
-<script>
-    initPage();
-</script>
+    <script src="~/js/landing/RankList.js" asp-append-version="true"></script>
+    <script>
+        initPage();
+        $(document).ready(function () {
+            clickSortingGrid(this)
+        });
+    </script>
 
 }
 
@@ -33,7 +36,7 @@
             <div class="item">
                 <div class="search_bar">
                     <input type="text" id="Search" placeholder="جستجو..." />
-                    <a class="jbtn" href="#" onclick="LoadData();">جستجو</a>
+                    <a class="jbtn" href="javascript:void(0)" onclick="LoadData();">جستجو</a>
                 </div>
             </div>
         </div>

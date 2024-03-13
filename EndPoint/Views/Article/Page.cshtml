@@ -4,7 +4,7 @@
     Layout = "_ArticleBase";
 }
 @if(!string.IsNullOrEmpty(NewsData.ContentPic)) {
-    <img class="article_img" src="@NewsData.ContentPicFull" />
+    <img class="article_img" src="@NewsData.ContentPicFull" alt="@NewsData.Title" title="@NewsData.Title"/>
 }
 <div class="article_title_div">
     <p class="article_titile_p">@NewsData.Title</p>

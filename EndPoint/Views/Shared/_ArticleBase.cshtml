@@ -4,9 +4,37 @@
 @section meta
     {
     @RenderSection("_meta", false)
+    <link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
 }
-<link rel="stylesheet" href="~/css/landing/ArticleBase.css" asp-append-version="true" />
+@section Styles{
+    <style>
+        .myrow {
+            color: var(--nv-color1);
+            padding: 6px 14px 0 14px;
+            text-align: justify;
+            display: flex;
+            margin-right: -15px;
+            margin-left: -15px;
+            align-items: center;
+        }
 
+        .mycol-9 {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            -webkit-box-flex: 0;
+            flex: 0 0 75%;
+            max-width: 75%;
+        }
+
+        img.tumb-image {
+            max-width: 50px;
+            margin-right: 1rem;
+        }
+    </style>
+}
 <div id="bg-img"></div>
 
 <section class="sec_title">
@@ -22,16 +50,16 @@
 <section class="article_body">
     <div class="right">
         @*
-        <img class="article_img" src="~/image/landing/slider_3.webp" />
-        <div class="article_title_div">
-            <p class="article_titile_p">موضوع مطلب در حال نمایش به صورت بلند</p>
-            <div class="article_title_info_parrent">
-                <p>نویسنده: پارس کیان</p>
-                <p>تاریخ انتشار: دوشنبه ۱۴ آبان ۱۴۰۱</p>
-            </div>
-        </div>*@
+            <img class="article_img" src="~/image/landing/slider_3.webp" alt="Parskyan" title="پارس کیان"/>
+            <div class="article_title_div">
+                <p class="article_titile_p">موضوع مطلب در حال نمایش به صورت بلند</p>
+                <div class="article_title_info_parrent">
+                    <p>نویسنده: پارس کیان</p>
+                    <p>تاریخ انتشار: دوشنبه ۱۴ آبان ۱۴۰۱</p>
+                </div>
+            </div>*@
         @RenderBody()
-        
+
     </div>
 
     <div class="center">
@@ -44,7 +72,7 @@
             <div class="item">
                 <div class="search_bar">
                     <input type="text" placeholder="جستجو..." />
-                    <a class="jbtn" href="#" onclick="">جستجو</a>
+                    <a href="javascript:void(0)" class="jbtn" onclick="">جستجو</a>
                 </div>
             </div>
         </div>
@@ -53,22 +81,46 @@
                 <h4><a href="/Article/NewsList">خبر های تازه</a></h4>
             </div>
             <div class="item">
-                @if(ViewData["NewNews"] != null) {
-                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["NewNews"]) {
-                <a href="/Article/News/@item.ContentId">@item.Title<span>(@item.DatePersianShortDate)</span></a>
+                @if (ViewData["NewNews"] != null)
+                {
+                    @foreach (var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["NewNews"])
+                    {
+                        <div class="myrow">
+                            <img class="tumb-image" src="@item.ContentPic" alt="@item.Title" title="@item.Title" />
+                            <div class="mycol-9">
+                                <p class="item-text">
+                                    <a href="/Article/News/@item.ContentId">
+                                        @item.Title
+                                        <span>(@item.DatePersianShortDate)</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     }
 
                 }
             </div>
         </div>
-                <div class="left_sec_item">
+        <div class="left_sec_item">
             <div class="title">
                 <h4><a href="/Article/ContentList">مقالات تازه</a></h4>
             </div>
             <div class="item">
-                @if(ViewData["NewContent"] != null) {
-                    @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["NewContent"]) {
-                <a href="/Article/Content/@item.ContentId">@item.Title<span>(@item.DatePersianShortDate)</span></a>
+                @if (ViewData["NewContent"] != null)
+                {
+                    @foreach (var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["NewContent"])
+                    {
+                        <div class="myrow">
+                            <img class="tumb-image" src="@item.ContentPic" alt="@item.Title" title="@item.Title" />
+                            <div class="mycol-9">
+                                <p class="item-text">
+                                    <a href="/Article/Content/@item.ContentId">
+                                        @item.Title
+                                        <span>(@item.DatePersianShortDate)</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     }
 
                 }
@@ -89,11 +141,8 @@
 </section>
 
 
-<style>
 
-</style>
-
-
-
-<script src="~/lib/particlesjs/particles.min.js"></script>
-<script src="~/lib/particlesjs/type1.js"></script>
+@section Scripts {
+    <script src="~/lib/particlesjs/particles.min.js"></script>
+    <script src="~/lib/particlesjs/type1.js"></script>
+}

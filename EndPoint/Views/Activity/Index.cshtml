@@ -5,7 +5,7 @@
 }
 
 @if(!string.IsNullOrEmpty(ActivityData.Picture1)) {
-    <img class="article_img" src="@ActivityData.Picture1" />
+    <img class="article_img" src="@ActivityData.Picture1" alt="@ActivityData.ActivityTitleNavigation.Label" title="@ActivityData.ActivityTitleNavigation.Label" />
 }
 <div class="article_title_div">
     <p class="article_titile_p">@ActivityData.ActivityTitleNavigation.Label</p>

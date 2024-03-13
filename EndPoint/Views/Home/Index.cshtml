@@ -1,44 +1,44 @@
 ﻿@{
     ViewData["Title"] = "صفحه‌ی اصلی";
 }
-
-<link rel="stylesheet" href="~/css/landing/index.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/lib/magic-card/magic_card.css" asp-append-version="true" />
-
+@section Styles{
+    <link rel="stylesheet" href="~/css/landing/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/magic-card/magic_card.css" asp-append-version="true" />
+}
 <div class="main">
 
     <section class="sec1">
         <div class="slider topslider">
             <div class="slider_pages">
                 <div class="slider_page" id="slide1">
-                    <img src="~/image/landing/ExhibitionParscrc.jpg" />
+                    <img src="~/image/landing/ExhibitionParscrc.jpg" alt="Parskyan" title="پارس کیان" />
                     <div class="label">
                         <h2 class="slider_text" id="cursor_node_1" slider_text="نماد اعتماد در اعتبارسنجی" slider_text2=" پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
 
                 </div>
                 <div class="slider_page" id="slide2">
-                    <img src="~/image/landing/ExhibitionParskyan.jpg" />
+                    <img src="~/image/landing/ExhibitionParskyan.jpg" alt="Parskyan" title="پارس کیان" />
                     <div class="label">
                         <h2 class="slider_text" id="cursor_node_2" slider_text="ارزیابی شاخصهای کسب و کار( کیفی) فعالان اقتصادی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
                 </div>
                 @*<div class="slider_page" id="slide1">
-            <img src="~/image/landing/slider_4.jpg" />
+            <img src="~/image/landing/slider_4.jpg" alt="Parskyan" title="پارس کیان"/>
             <div class="label">
                 <h2 class="slider_text" id="cursor_node_1" slider_text="ارزشیابی شاخصهای کسب و کار( کیفی) فعالان اقتصادی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
             </div>
 
         </div>*@
                 @*<div class="slider_page" id="slide2">
-            <img src="~/image/landing/slider_5.jpg" />
+            <img src="~/image/landing/slider_5.jpg" alt="Parskyan" title="پارس کیان"/>
             <div class="label">
                 <h2 class="slider_text" id="cursor_node_2" slider_text=" رتبه بندی اعتباری با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
             </div>
         </div>*@
                 <div class="slider_page" id="slide3">
-                    <img src="~/image/landing/slider_3.webp" />
+                    <img src="~/image/landing/slider_3.webp"alt="Parskyan" title="پارس کیان" />
 
                     <div class="label">
 
@@ -97,7 +97,7 @@
                                     </div>
 
                                 </div>
-                                <img src="/image/landing/logo.png" class="top_rateing_card_under_img"/>
+                                <img src="/image/landing/logo.png" class="top_rateing_card_under_img"alt="Parskyan" title="پارس کیان"/>
                             </div>
                         }
                     }
@@ -266,8 +266,8 @@
 
                         <figure class="snip1249">
                             <div class="image">
-                                <img class="postimg" src="@item.ContentPicFull" />
-                                <i><img class="icon" src="~/image/landing/news_outline.png" /></i>
+                                <img class="postimg" src="@item.ContentPicFull" alt="@item.Title" title="@item.Title"/>
+                                <i><img class="icon" src="~/image/landing/news_outline.png" alt="icon" title="پارس کیان"/></i>
                             </div>
                             <figcaption>
                                 <h3>@item.Title</h3>

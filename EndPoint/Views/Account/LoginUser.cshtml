@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@{
     Layout = null;
 }
 
@@ -19,7 +20,9 @@
     <meta name="language" content="fa" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="icon" type="image/png" href="~/css/GlobalAreas/dist/img/Logo/hnet.com-image.ico" />
-    <link rel="canonical" href="https://parscrc.ir/" />
+    @*The canonical tag should point to the URL of the current page*@
+    @*<link rel="canonical" href="https://parscrc.ir/" />*@
+    <link rel="canonical" href="@ViewContext.HttpContext.Request.GetEncodedUrl();" />
     <link rel="stylesheet" href="~/lib/font/vazir.css" />
     <link rel="stylesheet" href="~/css/landing/site.css" />
     <link rel="stylesheet" href="~/css/landing/AccountLogin.css" />
@@ -33,7 +36,7 @@
 <body>
     <div style="box-shadow: 0 0 2px 2px #ffffff50; height: 70px;width: 350px;    margin: 10px;    border-radius: 12px;    background: #0b2544;color: white !important;z-index: 100;display: flex;justify-content: center;align-items: center;">
         <a href="/" style="display: flex;color: white;">
-            <img src="~/image/landing/logo.png" style="filter: brightness(1.4);height: 70px;">
+            <img src="~/image/landing/logo.png" style="filter: brightness(1.4);height: 70px;" alt="Parskyan" title="پارس کیان">
             <div style=" display: flex;  flex-direction: column;   margin-left: 25px;">
                 <span>شرکت رتبه بندی اعتباری </span><span style="font-size: 1.7em;font-weight: 900;">پـــارس کــیــان</span>
             </div>
@@ -55,7 +58,7 @@
         <div class="login slide-up">
             <div class="center">
                 <input type="hidden" id="Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh" />
-                <input type="hidden" id="Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf" />              
+                <input type="hidden" id="Fulllfsdfdsflsfldsfldslflsdlfdslflsdlfldsflldsf" />
                 <h2 class="form-title" id="login"><span></span>ثبت کد احراز</h2>
 
                 <br />

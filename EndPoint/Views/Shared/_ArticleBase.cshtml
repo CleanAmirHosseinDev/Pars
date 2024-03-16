@@ -30,8 +30,12 @@
         }
 
         img.tumb-image {
-            max-width: 50px;
+            width: 50px;
             margin-right: 1rem;
+            height: 50px;
+            overflow: hidden;
+            text-indent: 100%;
+            white-space: nowrap;
         }
     </style>
 }
@@ -86,7 +90,7 @@
                     @foreach (var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["NewNews"])
                     {
                         <div class="myrow">
-                            <img class="tumb-image" src="@item.ContentPic" alt="@item.Title" title="@item.Title" />
+                            <img class="tumb-image" src="@item.ContentPicFull" alt="@item.Title" title="@item.Title" />
                             <div class="mycol-9">
                                 <p class="item-text">
                                     <a href="/Article/News/@item.ContentId">
@@ -111,7 +115,7 @@
                     @foreach (var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["NewContent"])
                     {
                         <div class="myrow">
-                            <img class="tumb-image" src="@item.ContentPic" alt="@item.Title" title="@item.Title" />
+                            <img class="tumb-image" src="@item.ContentPicFull" alt="@item.Title" title="@item.Title" />
                             <div class="mycol-9">
                                 <p class="item-text">
                                     <a href="/Article/Content/@item.ContentId">

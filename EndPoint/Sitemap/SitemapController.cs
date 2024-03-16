@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Common.Enums;
 using System;
 using System.Linq;
 using System.Text;
@@ -16,17 +17,43 @@ namespace EndPoint.Sitemap
             _userFacad = userFacad;
         }
         [HttpGet("sitemap.xml")]
-        public async System.Threading.Tasks.Task<IActionResult> IndexAsync()
+        public IActionResult Index()
         {
-            add_url(Url.Action("Index", "Home"), modified: DateTime.Now, changeFrequency: "daily", priority: "1.0");
-            var content = (await _userFacad.GetNewsAndContentsService.Execute(new RequestNewsAndContentDto()));
+            add_url(Url.Action("Index", "Home"), modified: DateTime.Now, changeFrequency: "never", priority: "1.0");
+            add_url(Url.Action("Register", "Home"), modified: DateTime.Now, changeFrequency: "never", priority: "1.0");
+            add_url(Url.Action("RankList", "Home"), modified: DateTime.Now, changeFrequency: "never", priority: "1.0");
+            add_url(Url.Action("ContentList", "Article"), modified: DateTime.Now, changeFrequency: "never", priority: "1.0");
+            add_url(Url.Action("NewsList", "Article"), modified: DateTime.Now, changeFrequency: "never", priority: "1.0");
+            add_url(Url.Action("Index", "ContactUs"), modified: DateTime.Now, changeFrequency: "never", priority: "1.0");
+            
+            var article = _userFacad.GetNewsAndContentsService.Execute(new RequestNewsAndContentDto()
+            {
+                KindOfContent = 62,
+                IsActive = (byte)TablesGeneralIsActive.Active,
+                PageSize = 0,
+                PageIndex = 0
+            }).Result.Data;
 
-            //add_url(Url.Action("Article", "Content", obj.ContentId), (DateTime)obj.DateSave, "monthly", priority: "1.0");
+            var content = _userFacad.GetNewsAndContentsService.Execute(new RequestNewsAndContentDto()
+            {
+                KindOfContent = 61,
+                IsActive = (byte)TablesGeneralIsActive.Active,
+                PageSize = 0,
+                PageIndex = 0
+            }).Result.Data;
+
+            foreach (var item in article)
+            {
+                add_url(Url.Action("News", "Article", new { id = item.ContentId }), (DateTime)item.DateSave, "monthly", priority: "1.0");
+            }
+            foreach (var item in content)
+            {
+                add_url(Url.Action("Content", "Article", new { id=item.ContentId }), (DateTime)item.DateSave, "monthly", priority: "1.0");
+            }
 
             XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
             var sitemap = new XDocument(new XDeclaration("1.0", "utf-8", null),
                 new XElement(ns + "urlset",
-                    // Add URL entries here
                     from item in GetSitemapItems()
                     select CreateUrlElement(item)
                 ));

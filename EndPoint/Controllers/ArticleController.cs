@@ -211,8 +211,27 @@ namespace EndPoint.Controllers
 
             return View();
         }
-
-
+        // This function defines how to get a value from search input, find the result, and return it.
+        public async Task<IActionResult> Search(string search = null, int offset = 1)
+        {
+            try
+            {
+                var content = (await _userFacad.GetNewsAndContentsService.Execute(new RequestNewsAndContentDto()
+                {
+                    //KindOfContent = 62,
+                    IsActive = (byte)TablesGeneralIsActive.Active,
+                    PageSize = 1000,
+                    PageIndex = offset
+                })).Data;
+                ViewData["query"] = search;
+                ViewData["content"] = content.Where(x=> (x.Title.Contains(search) || x.Body.Contains(search)) && (x.KindOfContent == 61 || x.KindOfContent == 62)).Distinct();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
     }
 }

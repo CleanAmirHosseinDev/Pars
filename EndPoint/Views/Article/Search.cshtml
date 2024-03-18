@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "آرشیو مقالات و اخبار";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/landing/ArticleListBase.css" asp-append-version="true" />
+}
+<div id="bg-img"></div>
+<section id="section_list_x1">
+    <h1 id="ListTitle">نتایج جستجوی شما برای عبارت @ViewData["query"]</h1>
+    <div class="inner_div">
+        @if(ViewData["content"] != null) {
+            @foreach(var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["content"]) {
+                <figure class="snip1249">
+                    <div class="image">
+                        <img class="postimg" src="@item.ContentPicFull" alt="@item.Title" title="@item.Title"/>
+                        <i><img class="icon" src="~/image/landing/news_outline.png" alt="icon" title="پارس کیان"/></i>
+                    </div>
+                    <figcaption>
+                        <h6>@item.Title</h6>
+                        <p>@item.Summary</p>
+                        <div class="date">
+                            <l2>@item.DatePersianDayAndMonth</l2>@item.DatePersianYear
+                        </div>
+                        <a href="/Article/Content/@item.ContentId" class="jbtn">ادامه مطلب</a>
+                    </figcaption>
+                </figure>
+            }
+        }
+    </div>
+</section>

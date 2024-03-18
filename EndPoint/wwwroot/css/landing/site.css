@@ -134,10 +134,10 @@ header > .items > div:hover .header_dropdown_handle { color: var(--nv-color1); }
 #footer_desc { display: flex; flex-direction: column; align-items: center; }
     #footer_desc p { color: #fff; padding: 3px; margin: 0; }
 
-.footer_block a { color:white;}
+.footer_block a { color:white;padding: 7px;}
 .footer_block { display: flex; color: #d5d5d5; font-size: 16px; align-content: stretch; align-items: flex-start; flex-direction: column; font-weight: 200; }
     .footer_block > .block_header { padding: 0; margin: 0; margin-top: 9px; font-size: 1.1em; color: white; }
-    .footer_block > .block_content { margin-right: 10px;margin-bottom:5px; }
+    .footer_block > .block_content { margin-right: 10px;margin-bottom:5px; margin-top: 7px;}
 
 .block_content > p { margin: 0; text-align: right; }
 

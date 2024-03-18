@@ -28,7 +28,7 @@ namespace EndPoint.Sitemap
             
             var article = _userFacad.GetNewsAndContentsService.Execute(new RequestNewsAndContentDto()
             {
-                KindOfContent = 62,
+                KindOfContent = 61,
                 IsActive = (byte)TablesGeneralIsActive.Active,
                 PageSize = 0,
                 PageIndex = 0
@@ -36,7 +36,7 @@ namespace EndPoint.Sitemap
 
             var content = _userFacad.GetNewsAndContentsService.Execute(new RequestNewsAndContentDto()
             {
-                KindOfContent = 61,
+                KindOfContent = 62,
                 IsActive = (byte)TablesGeneralIsActive.Active,
                 PageSize = 0,
                 PageIndex = 0

@@ -160,5 +160,5 @@ h4 { font-size: 35px; }
         .main .sec5 .slider .overlay { overflow: hidden; height: fit-content; margin-top: 233px; width: 100%; position: absolute; max-width: var(--max-site-width); }
             .main .sec5 .slider .overlay #thedot { position: absolute; border-radius: 100%; background-image: radial-gradient(circle closest-side,#1952a8 0,#1953a9c0 60%,transparent 100%); margin-right: -30%; transform: scale(1.5); }
             .main .sec5 .slider .overlay .slider_buttons { display: flex; justify-content: center; align-items: end; z-index: 20; }
-                .main .sec5 .slider .overlay .slider_buttons button { background: #ddd; border: none; width: 10px; height: 12px; border-radius: 47px; margin: 8px 10px; cursor: pointer; box-shadow: 0 0 5px 1px #0000003f; }
+                .main .sec5 .slider .overlay .slider_buttons button { background: #ddd; border: none; width: 25px; height: 25px; border-radius: 47px; margin: 3px 3px; cursor: pointer; box-shadow: 0 0 5px 1px #0000003f; }
                     .main .sec5 .slider .overlay .slider_buttons button.selected { background: #0083ac; }

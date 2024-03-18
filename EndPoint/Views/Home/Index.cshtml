@@ -12,44 +12,44 @@
         <div class="slider topslider">
             <div class="slider_pages">
                 <div class="slider_page" id="slide1">
-                    <img src="~/image/landing/ExhibitionParscrc.jpg" alt="Parskyan" title="پارس کیان" />
+                        <img src="~/image/landing/ExhibitionParscrc.jpg"  width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
                     <div class="label">
                         <h2 class="slider_text" id="cursor_node_1" slider_text="نماد اعتماد در اعتبارسنجی" slider_text2=" پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
 
                 </div>
                 <div class="slider_page" id="slide2">
-                    <img src="~/image/landing/ExhibitionParskyan.jpg" alt="Parskyan" title="پارس کیان" />
+                        <img src="~/image/landing/ExhibitionParskyan.jpg"  width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
                     <div class="label">
                         <h2 class="slider_text" id="cursor_node_2" slider_text="ارزیابی شاخصهای کسب و کار( کیفی) فعالان اقتصادی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
                 </div>
                 @*<div class="slider_page" id="slide1">
-            <img src="~/image/landing/slider_4.jpg" alt="Parskyan" title="پارس کیان"/>
+                <img src="~/image/landing/slider_4.jpg"  width="1300" height="620" alt="پارس کیان" title="پارس کیان"/>
             <div class="label">
                 <h2 class="slider_text" id="cursor_node_1" slider_text="ارزشیابی شاخصهای کسب و کار( کیفی) فعالان اقتصادی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
             </div>
 
         </div>*@
                 @*<div class="slider_page" id="slide2">
-            <img src="~/image/landing/slider_5.jpg" alt="Parskyan" title="پارس کیان"/>
+                <img src="~/image/landing/slider_5.jpg"  width="1300" height="620" alt="پارس کیان" title="پارس کیان"/>
             <div class="label">
                 <h2 class="slider_text" id="cursor_node_2" slider_text=" رتبه بندی اعتباری با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
             </div>
         </div>*@
                 <div class="slider_page" id="slide3">
-                    <img src="~/image/landing/slider_3.webp"alt="Parskyan" title="پارس کیان" />
+                        <img src="~/image/landing/slider_3.webp"  width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
 
                     <div class="label">
 
-                        <h2 class="slider_text" id="cursor_node_3" slider_text="تجربه ای متفاوت در ارزیابی و رتبه بندی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
+                            <h2 class="slider_text" id="cursor_node_3"  slider_text="تجربه ای متفاوت در ارزیابی و رتبه بندی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
                 </div>
 
             </div>
             <div class="overlay">
-                <div id="thedot">
-                </div>
+                @*<div id="thedot">
+                </div>*@
                 <div class="slider_buttons"></div>
                 <div id="slider_mobile_controller">
                     <div onclick="jvSlider_prev();"></div>
@@ -109,7 +109,7 @@
 
             </div>
         </div>
-        <div style="font-size: 14px;margin: 10px auto 18px 3vw;display: block;">
+        <div style="font-size: 14px;margin: 2rem auto 18px 3vw;display: block;">
 
             <a class="jbtn" style="margin-right:5px;font-size: 14px;" href="/home/ranklist">مشاهده فهرست آخرین رتبه های اعتباری &gt;</a>
         </div>
@@ -266,7 +266,7 @@
 
                         <figure class="snip1249">
                             <div class="image">
-                                <img class="postimg" src="@item.ContentPicFull" alt="@item.Title" title="@item.Title"/>
+                                <img class="postimg" src="@item.ContentPicFull" onerror="this.src='https://parscrc.ir/FileUpload/NewsAndContent/no-photo.png'" alt="@item.Title" title="@item.Title" />
                                 <i><img class="icon" src="~/image/landing/news_outline.png" alt="icon" title="پارس کیان"/></i>
                             </div>
                             <figcaption>

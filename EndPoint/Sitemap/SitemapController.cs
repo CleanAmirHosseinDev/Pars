@@ -53,7 +53,7 @@ namespace EndPoint.Sitemap
                 add_url(Url.Action("Content", "Article", new { id=item.ContentId }), (DateTime)item.DateSave, "monthly", priority: "1.0");
             }
 
-            XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
+            XNamespace ns = "https://www.sitemaps.org/schemas/sitemap/0.9";
             var sitemap = new XDocument(new XDeclaration("1.0", "utf-8", null),
                 new XElement(ns + "urlset",
                     from item in GetSitemapItems()

@@ -54,7 +54,7 @@
             <div id="ontop_div_mess" style="display: none;">
                 <div style="display: flex;">
                     <h3 id="message_title"></h3>
-                    <a href="/" onclick="return false" id="message_btn_close" onclick="$('#message_main').fadeOut(300);">x</a>
+                    <a href="/" id="message_btn_close" onclick="$('#message_main').fadeOut(300);return false;">x</a>
                 </div>
                 <p id="message_text"></p>
             </div>
@@ -76,7 +76,7 @@
     <div class="header_parent">
         <header class="header">
 
-            <a id="side_slider_tgl_items" class="abtn" onclick="toggleSideSlider()" href="/">...</a>
+            <a id="side_slider_tgl_items" class="abtn" onclick="toggleSideSlider();return false;" href="/">...</a>
             <div class="logo">
                 <a href="/" id="header_logo_parent">
                     <div>
@@ -84,7 +84,7 @@
                         <img src="~/image/landing/logo.png" class="header_logo_img type2" width="140px" height="70px" alt="پارس کیان" title="پارس کیان" />
                     </div>
                 </a>
-                <a href="/" style="line-height: 23px;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+                <a href="/" style="line-height: 23px;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;" onclick="return false;">
                     <span>شرکت رتبه بندی اعتباری </span>
                     <h1 style="font-size: 1.7em;font-weight: 900;display: contents;">پـــارس کــیــان</h1>
                 </a>

@@ -116,7 +116,9 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                         decimal tax = 0;
                         decimal Price = (qServiceFee != null ? Convert.ToDecimal(CalcContractPrice(qCustomer, qServiceFee)) : 0);
                         decimal FinalPrice=(Price-Convert.ToDecimal(Price.ToString().Substring(Price.ToString().Length - 5)));
-                        tax = Math.Round((Price!=0 ? FinalPrice * 9 : 0) / 100, 0);
+                        //tax = Math.Round((Price!=0 ? FinalPrice * 9 : 0) / 100, 0);
+                        // مالیات به 10 درصد تغییر یافت
+                        tax = Math.Round((Price!=0 ? FinalPrice * 10 : 0) / 100, 0);
 
                         // مبلع فرمول
                         strContract = strContract.Replace("ServiceFeePriceValue", qServiceFee != null ? CalcContractPrice(qCustomer, qServiceFee) : "0");

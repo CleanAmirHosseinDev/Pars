@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="max-age=21600" />
     <title>پارس‌کیان | @ViewData["Title"]</title>
-    @RenderSection("meta", false)@if (!IsSectionDefined("meta")){<meta name="description" content="شرکت رتبه‌بندی اعتباری پارس کیان: مرجعی معتبر برای سرمایه‌گذاران و اعتباردهندگان">
-    <meta name="keywords" content="رتبه‌بندی اعتباری, ریسک اعتباری, سرمایه‌گذاری, اعتباردهندگان, شفافیت, مدیریت ریسک, تامین مالی">
-    <meta name="robots" content="index, follow">
+    @RenderSection("meta", false)@if (!IsSectionDefined("meta"))
+    {
+        <meta name="description" content="شرکت رتبه‌بندی اعتباری پارس کیان: مرجعی معتبر برای سرمایه‌گذاران و اعتباردهندگان">
+        <meta name="keywords" content="رتبه‌بندی اعتباری, ریسک اعتباری, سرمایه‌گذاری, اعتباردهندگان, شفافیت, مدیریت ریسک, تامین مالی">
+        <meta name="robots" content="index, follow">
     }
     <link rel="icon" type="image/png" href="~/css/GlobalAreas/dist/img/Logo/hnet.com-image.ico" />
     <meta name="copyright" content="پارس کیان" />
@@ -52,7 +54,7 @@
             <div id="ontop_div_mess" style="display: none;">
                 <div style="display: flex;">
                     <h3 id="message_title"></h3>
-                    <a href="/" onclick="return false" id="message_btn_close" onclick="$('#message_main').fadeOut(300);">x</a>
+                    <a href="/" id="message_btn_close" onclick="$('#message_main').fadeOut(300);return false;">x</a>
                 </div>
                 <p id="message_text"></p>
             </div>
@@ -74,15 +76,15 @@
     <div class="header_parent">
         <header class="header">
 
-            <a id="side_slider_tgl_items" class="abtn" onclick="toggleSideSlider()" href="/">...</a>
+            <a id="side_slider_tgl_items" class="abtn" onclick="toggleSideSlider();return false;" href="/">...</a>
             <div class="logo">
                 <a href="/" id="header_logo_parent">
                     <div>
                         <img src="~/image/landing/logo.png" class="header_logo_img type1" width="140px" height="70px" alt="پارس کیان" title="پارس کیان" />
-                        <img src="~/image/landing/logo.png" class="header_logo_img type2" width="140px" height="70px" alt="پارس کیان" title="پارس کیان"/>
+                        <img src="~/image/landing/logo.png" class="header_logo_img type2" width="140px" height="70px" alt="پارس کیان" title="پارس کیان" />
                     </div>
                 </a>
-                <a href="/" style="line-height: 23px;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;">
+                <a href="/" style="line-height: 23px;display: flex;flex-direction: column;align-items: flex-start;justify-content: center;" onclick="return false;">
                     <span>شرکت رتبه بندی اعتباری </span>
                     <h1 style="font-size: 1.7em;font-weight: 900;display: contents;">پـــارس کــیــان</h1>
                 </a>
@@ -296,8 +298,11 @@
     <script src="~/js/iu.min.js" asp-append-version="true"></script>
     <script src="~/js/landing/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        ["keydown", "touchmove", "touchstart", "mouseover"].forEach(function (v) { window.addEventListener(v, function () { if (!window.isGoftinoAdded) { window.isGoftinoAdded = 1; var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } }) });
+        !function () { var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); }();
     </script>
+    @*<script type="text/javascript">
+        ["keydown", "touchmove", "touchstart", "mouseover"].forEach(function (v) { window.addEventListener(v, function () { if (!window.isGoftinoAdded) { window.isGoftinoAdded = 1; var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } }) });
+    </script>*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>

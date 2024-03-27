@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "صفحه‌ی اصلی";
 }
+@section meta {
+    <meta name="google-site-verification" content="qTsTIpKZ6fKL0HJfl-W07pIzw52q8X7Ue0lvOSnGeKw" />
+}
 @section Styles{
     <link rel="stylesheet" href="~/css/landing/index.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/figure-card/figure.css" asp-append-version="true" />
@@ -12,7 +15,7 @@
         <div class="slider topslider">
             <div class="slider_pages">
                 <div class="slider_page" id="slide1">
-                        <img src="~/image/landing/ExhibitionParscrc.jpg"  width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
+                        <img src="~/image/landing/happy_new_year.jpg" style="object-fit: fill;max-height: 90%;bottom: 0px;" width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
                     <div class="label">
                         <h2 class="slider_text" id="cursor_node_1" slider_text="نماد اعتماد در اعتبارسنجی" slider_text2=" پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
@@ -37,12 +40,21 @@
                 <h2 class="slider_text" id="cursor_node_2" slider_text=" رتبه بندی اعتباری با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
             </div>
         </div>*@
-                <div class="slider_page" id="slide3">
+               @* <div class="slider_page" id="slide3">
                         <img src="~/image/landing/slider_3.webp"  width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
 
                     <div class="label">
 
                             <h2 class="slider_text" id="cursor_node_3"  slider_text="تجربه ای متفاوت در ارزیابی و رتبه بندی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
+                    </div>
+                </div>*@
+
+                <div class="slider_page" id="slide3">
+                        <img src="~/image/landing/ExhibitionParscrc.jpg" width="1300" height="620" alt="پارس کیان" title="پارس کیان" />
+
+                    <div class="label">
+
+                        <h2 class="slider_text" id="cursor_node_3" slider_text="تجربه ای متفاوت در ارزیابی و رتبه بندی با" slider_text2="پارس کیان" slider_text2_color="#ff2626"></h2>
                     </div>
                 </div>
 

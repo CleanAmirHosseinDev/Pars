@@ -53,14 +53,17 @@ namespace EndPoint.Sitemap
                 add_url(Url.Action("Content", "Article", new { id=item.ContentId }), (DateTime)item.DateSave, "monthly", priority: "1.0");
             }
 
-            XNamespace ns = "https://www.sitemaps.org/schemas/sitemap/0.9";
-            var sitemap = new XDocument(new XDeclaration("1.0", "utf-8", null),
-                new XElement(ns + "urlset",
-                    from item in GetSitemapItems()
-                    select CreateUrlElement(item)
-                ));
-
-            return Content(sitemap.ToString(), "text/xml", Encoding.UTF8);
+            var sitemap = new XDocument(
+				new XDeclaration("1.0", "utf-8", null),
+				new XElement(XNamespace.None + "urlset",
+					from item in GetSitemapItems()
+					select CreateUrlElement(
+						item
+					).SetAttributeValue(XNamespace.Xmlns, "http://www.sitemaps.org/schemas/sitemap/0.9")
+				)
+			);
+			
+			return new FileContentResult(sitemap, "application/xml");
         }
     }
 

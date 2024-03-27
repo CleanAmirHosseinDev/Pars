@@ -31,7 +31,7 @@ namespace EndPoint.Sitemap
         {
             return new XElement("url",
                 new XElement("loc", $"https://parscrc.ir{item.Url}"),
-                new XElement("lastmod", item.Modified.ToString("yyyy-MM-dd")),
+                new XElement("lastmod", item.Modified.ToString()),
                 new XElement("changefreq", item.ChangeFrequency),
                 new XElement("priority", item.Priority)
             );

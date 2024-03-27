@@ -585,7 +585,7 @@
 
                         } else {
 
-                            var strhtml = "<div class='bc'><p>لطفا تمام صفحات مهر و امضا در سربرگ شرکت انجام شود و اصل قرارداد با مهر و امضای همه صفحات به شرکت پارس کیان ارسال گردد</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
+                            var strhtml = "<div class='bc'><p>لطفا تمام صفحات مهر و امضا در سربرگ شرکت پارس کیان انجام شود و اصل قرارداد با مهر و امضای همه صفحات به شرکت پارس کیان ارسال گردد</p><div id='divDownloadContractDocumentCustomer' ></div ><br/><br/>";
 
                             strhtml += "<br/><p>" + " نکته: هنگام چاپ حتما اندازه کاغذ را روی A4 تنظیم کنید و گزینه Background graphics  را انتخاب کنید." + "</p></div>";
                             $("#divDownloadContract").html(strhtml);

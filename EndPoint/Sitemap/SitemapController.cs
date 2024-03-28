@@ -67,15 +67,14 @@ namespace EndPoint.Sitemap
             }
 			var sitemap = new XDocument(
 				new XDeclaration("1.0", "utf-8", null),
-				new XElement(XName.Get("urlset"),
+				new XElement("urlset",
+					new XAttribute("xmlns", "https://www.sitemaps.org/schemas/sitemap/0.9"),
 					from item in GetSitemapItems()
 					select CreateUrlElement(
 						item
-					).SetAttributeValue(XNamespace.Xmlns, "http://www.sitemaps.org/schemas/sitemap/0.9")
+					)
 				)
 			);
-			sitemap.Save("sitemap.xml");
-
 			return new FileContentResult(sitemap, "application/xml");
         }
     }

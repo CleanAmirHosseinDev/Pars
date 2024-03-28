@@ -65,17 +65,17 @@ namespace EndPoint.Sitemap
             {
                 add_url(Url.Action("Page", "Article", new { dlink=item.DirectLink }), (DateTime)item.DateSave, "monthly", priority: "1.0");
             }
-
-            var sitemap = new XDocument(
+			var sitemap = new XDocument(
 				new XDeclaration("1.0", "utf-8", null),
-				new XElement(XNamespace.None + "urlset",
+				new XElement(XName.Get("urlset"),
 					from item in GetSitemapItems()
 					select CreateUrlElement(
 						item
 					).SetAttributeValue(XNamespace.Xmlns, "http://www.sitemaps.org/schemas/sitemap/0.9")
 				)
 			);
-			
+			sitemap.Save("sitemap.xml");
+
 			return new FileContentResult(sitemap, "application/xml");
         }
     }

@@ -65,17 +65,20 @@ namespace EndPoint.Sitemap
             {
                 add_url(Url.Action("Page", "Article", new { dlink=item.DirectLink }), (DateTime)item.DateSave, "monthly", priority: "1.0");
             }
-			var sitemap = new XDocument(
-				new XDeclaration("1.0", "utf-8", null),
-				new XElement("urlset",
-					new XAttribute("xmlns", "https://www.sitemaps.org/schemas/sitemap/0.9"),
-					from item in GetSitemapItems()
-					select CreateUrlElement(
-						item
-					)
-				)
-			);
-			return new FileContentResult(sitemap, "application/xml");
+            XNamespace xmlNamespace = "https://www.sitemaps.org/schemas/sitemap/0.9";
+            XNamespace xsi = "https://www.w3.org/2001/XMLSchema-instance";
+            var sitemap = new XDocument(
+                new XDeclaration("1.0", "utf-8", null),
+                new XElement("urlset",
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
+                    new XAttribute(xsi + "schemaLocation", "https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"),
+                    from item in GetSitemapItems()
+                    select CreateUrlElement(item)
+                )
+            );
+            var sitemapStr = sitemap.ToString();
+            byte[] sitemapByte = Encoding.UTF8.GetBytes(sitemapStr);
+			return new FileContentResult(sitemapByte, "application/xml");
         }
     }
 

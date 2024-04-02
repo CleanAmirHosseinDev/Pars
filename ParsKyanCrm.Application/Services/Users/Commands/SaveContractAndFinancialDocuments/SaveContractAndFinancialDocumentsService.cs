@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ParsKyanCrm.Application.Dtos.Users;
@@ -131,8 +133,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         request.ContractCode = MaxAllContractCode();
                     }
 
-
-                    request.Tax = Math.Round((request.FinalPriceContract.HasValue ? request.FinalPriceContract.Value * 9 : 0) / 100, 0);
+                    //request.Tax = Math.Round((request.FinalPriceContract.HasValue ? request.FinalPriceContract.Value * 9 : 0) / 100, 0);
+                    //Tax is Now 10 percent
+                    request.Tax = Math.Round((request.FinalPriceContract.HasValue ? request.FinalPriceContract.Value * 10 : 0) / 100, 0);
                     q_Entity = _context.ContractAndFinancialDocuments.Add(_mapper.Map<ContractAndFinancialDocuments>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Entity.Entity);
@@ -163,7 +166,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                             nameof(q_Entity.Entity.PriceContract),request.PriceContract
                         },
                         {
-                            nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.FinalPriceContract.Value * 9:0)/100,0)
+                            //nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.FinalPriceContract.Value * 9:0)/100,0)
+                            //Tax is Now 10 percent
+                            nameof(q_Entity.Entity.Tax),Math.Round((request.PriceContract.HasValue?request.FinalPriceContract.Value * 10:0)/100,0)
                         },
                         {
                             nameof(q_Entity.Entity.DicCountPerecent),request.DicCountPerecent

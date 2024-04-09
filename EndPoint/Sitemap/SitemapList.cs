@@ -27,13 +27,12 @@ namespace EndPoint.Sitemap
         {
             return _sitemap_list;
         }
-        public XElement CreateUrlElement(SitemapModel item)
+        public XElement CreateUrlElement(SitemapModel item, XNamespace ns)
         {
-            return new XElement("url",
-                new XElement("loc", $"https://parscrc.ir{item.Url}"),
-                new XElement("lastmod", item.Modified.ToString("yyyy-MM-dd")),
-                new XElement("changefreq", item.ChangeFrequency),
-                new XElement("priority", item.Priority)
+            return new XElement(ns + "url",
+                new XElement(ns + "loc", $"https://parscrc.ir{item.Url}"),
+                new XElement(ns + "changefreq", item.ChangeFrequency),
+                new XElement(ns + "priority", item.Priority)
             );
         }
     }

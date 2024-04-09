@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace EndPoint.Sitemap
@@ -65,15 +66,27 @@ namespace EndPoint.Sitemap
             {
                 add_url(Url.Action("Page", "Article", new { dlink=item.DirectLink }), (DateTime)item.DateSave, "monthly", priority: "1.0");
             }
-            XNamespace xmlNamespace = "https://www.sitemaps.org/schemas/sitemap/0.9";
-            XNamespace xsi = "https://www.w3.org/2001/XMLSchema-instance";
+            //var sitemap = new XDocument(
+            //    new XDeclaration("1.0", "utf-8", "yes"),
+            //    new XElement("urlset",
+            //        new XAttribute(XNamespace.Xmlns + "xhtml", "http://www.w3.org/1999/xhtml"),
+            //        new XAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9"),
+    
+            //        from item in GetSitemapItems()
+            //        select CreateUrlElement(item)
+            //    )
+            //);
+
+            XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
+            XNamespace xhtmlNs = "http://www.w3.org/1999/xhtml";
             var sitemap = new XDocument(
-                new XDeclaration("1.0", "utf-8", null),
-                new XElement("urlset",
-                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
-                    new XAttribute(xsi + "schemaLocation", "https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"),
+                new XDeclaration("1.0", "utf-8", "yes"),
+                new XElement(ns + "urlset",
+                    new XAttribute("xmlns", ns),
+                    new XAttribute(XNamespace.Xmlns + "xhtml", xhtmlNs),
+
                     from item in GetSitemapItems()
-                    select CreateUrlElement(item)
+                    select CreateUrlElement(item, ns)
                 )
             );
             var sitemapStr = sitemap.ToString();

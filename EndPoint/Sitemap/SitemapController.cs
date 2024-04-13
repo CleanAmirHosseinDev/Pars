@@ -66,16 +66,6 @@ namespace EndPoint.Sitemap
             {
                 add_url(Url.Action("Page", "Article", new { dlink=item.DirectLink }), (DateTime)item.DateSave, "monthly", priority: "1.0");
             }
-            //var sitemap = new XDocument(
-            //    new XDeclaration("1.0", "utf-8", "yes"),
-            //    new XElement("urlset",
-            //        new XAttribute(XNamespace.Xmlns + "xhtml", "http://www.w3.org/1999/xhtml"),
-            //        new XAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9"),
-    
-            //        from item in GetSitemapItems()
-            //        select CreateUrlElement(item)
-            //    )
-            //);
 
             XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
             XNamespace xhtmlNs = "http://www.w3.org/1999/xhtml";

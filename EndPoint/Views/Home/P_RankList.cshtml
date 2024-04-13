@@ -40,8 +40,13 @@
             </div>
             <div class="jtcell" data-title="جزئیات" id="divOpperationButtons">
                 <div style='display: flex;/*flex-wrap: wrap;*/'>
-                    <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/@item.PressRelease' target='_blank'>بیانیه‌ مطبوعاتی</a>
-                    
+                    @if (!String.IsNullOrWhiteSpace(@item.PressRelease))
+                    {
+                        <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/@item.PressRelease' target='_blank'>بیانیه‌ مطبوعاتی</a>
+                    }
+                    else{
+                        <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/' onclick="return false;">بیانیه‌ مطبوعاتی</a>
+                    }
                     @if (customerID == 0)
                     {
                         <a style='font-size: 12px;margin:4px;' class='jbtn' onclick="SummaryRankingAuten();" href="javascript:void(0)">خلاصه‌ گزارش</a>

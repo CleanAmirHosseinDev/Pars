@@ -88,7 +88,7 @@ namespace EndPoint.Controllers
                 request.PageSize = 10000;
                 request.PageIndex = 1;
                 ViewBag.CustomerID = request.CustomerID;
-                return PartialView("P_RankList", (await _userFacad.GetRankingOfCompaniessService.Execute(request)).Data.Reverse());
+                return PartialView("P_RankList", (await _userFacad.GetRankingOfCompaniessService.Execute(request)).Data);
             }
             catch (Exception ex)
             {

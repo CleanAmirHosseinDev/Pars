@@ -15,6 +15,9 @@
     <link rel="icon" type="image/png" href="~/css/GlobalAreas/dist/img/Logo/hnet.com-image.ico" />
     <meta name="copyright" content="پارس کیان" />
     <link rel="alternate" href="https://parscrc.ir/" hreflang="fa" />
+    @*The canonical tag should point to the URL of the current page*@
+    @*<link rel="canonical" href="https://parscrc.ir/" />*@
+    <link rel="canonical" href="@ViewContext.HttpContext.Request.GetEncodedUrl()" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta name="rating" content="General" />
@@ -24,9 +27,6 @@
     <meta name="language" content="fa" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="icon" type="image/png" href="~/css/GlobalAreas/dist/img/Logo/hnet.com-image.ico" />
-    @*The canonical tag should point to the URL of the current page*@
-    @*<link rel="canonical" href="https://parscrc.ir/" />*@
-    <link rel="canonical" href="@ViewContext.HttpContext.Request.GetEncodedUrl()" />
     <link rel="stylesheet" href="~/lib/font/vazir.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/landing/site.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
@@ -147,7 +147,7 @@
                                 <br>
                                 <h3>تماس با ما</h3>
                                 <a href="/ContactUs/">تماس با ما</a>
-                                @*<a href="#footer">شبکه‌های اجتماعی</a>*@
+                                <a href="/Page/career-opportunities/">فرصت های شغلی</a>
                             </div>
                         </div>
                     </div>
@@ -246,7 +246,7 @@
                                     <div style="display:flex;flex-direction:column;align-items: flex-start;margin-right: 70px;">
                                         <a href="/Article/ContentList">دانشنامه و مقالات</a>
                                         <a href="/Account/Login">ثبت درخواست</a>
-                                        <a href="/Page/Career/">فرصت‌های شغلی</a>
+                                        <a href="/Page/career-opportunities/">فرصت‌های شغلی</a>
                                         <a href="/ContactUs/">تماس با ما</a>
                                     </div>
                                 </div>

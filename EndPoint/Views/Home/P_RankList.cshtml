@@ -49,11 +49,18 @@
                     }
                     @if (customerID == 0)
                     {
-                        <a style='font-size: 12px;margin:4px;' class='jbtn' onclick="SummaryRankingAuten();" href="javascript:void(0)">خلاصه‌ گزارش</a>
+                        <a style='font-size: 12px;margin:4px;' class='jbtn' onclick="SummaryRankingAuten(); return false;" href="/">خلاصه‌ گزارش</a>
                     }
                     else
                     {
-                        <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/@item.SummaryRanking' target='_blank'>خلاصه‌ گزارش</a>
+                        if (!String.IsNullOrWhiteSpace(@item.SummaryRanking))
+                        {
+                            <a style='font-size: 12px;margin:4px;' class='jbtn' href='/FileUpload/RankingOfCompanies/@item.SummaryRanking' target='_blank'>خلاصه‌ گزارش</a>
+                        }
+                        else
+                        {
+                            <a style='font-size: 12px;margin:4px;' class='jbtn' onclick="return false;" href="/FileUpload/RankingOfCompanies/">خلاصه‌ گزارش</a>
+                        }
                     }
                 </div>
             </div>

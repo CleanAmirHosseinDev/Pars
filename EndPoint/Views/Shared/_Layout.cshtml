@@ -34,7 +34,12 @@
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" asp-append-version="true" />
 
     @RenderSection("Styles", false)
-
+    <script type="text/javascript">
+        !function () { var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); }();
+    </script>
+    @*<script type="text/javascript">
+        ["keydown", "touchmove", "touchstart", "mouseover"].forEach(function (v) { window.addEventListener(v, function () { if (!window.isGoftinoAdded) { window.isGoftinoAdded = 1; var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } }) });
+    </script>*@
 </head>
 
 <body>
@@ -297,12 +302,6 @@
 
     <script src="~/js/iu.min.js" asp-append-version="true"></script>
     <script src="~/js/landing/site.js" asp-append-version="true"></script>
-    <script type="text/javascript">
-        !function () { var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); }();
-    </script>
-    @*<script type="text/javascript">
-        ["keydown", "touchmove", "touchstart", "mouseover"].forEach(function (v) { window.addEventListener(v, function () { if (!window.isGoftinoAdded) { window.isGoftinoAdded = 1; var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } }) });
-    </script>*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>

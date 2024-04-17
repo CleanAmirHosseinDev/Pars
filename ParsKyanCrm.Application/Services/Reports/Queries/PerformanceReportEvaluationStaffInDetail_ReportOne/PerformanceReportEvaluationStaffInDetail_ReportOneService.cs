@@ -1,7 +1,10 @@
-﻿using ParsKyanCrm.Common.Dto;
+﻿using ClosedXML.Excel;
+using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,5 +66,60 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 throw ex;
             }
         }
+
+        public async Task<byte[]> Execute1(RequestPerformanceReportEvaluationStaffInDetail_ReportOneDto request)
+        {
+            try
+            {
+                request.IsExcel = true;
+                var q = await Execute(request);
+
+                DataTable dt = new DataTable("Grid");
+                dt.Columns.AddRange(new DataColumn[7] {
+                new DataColumn("ردیف"),
+                new DataColumn("کد مشتری"),
+                new DataColumn("تاریخ ثبت "),
+                new DataColumn("نام شرکت"),
+                new DataColumn("نام رابط	 "),
+                new DataColumn("شناسه/کد ملی"),
+                new DataColumn("موبایل رابط")
+            });
+                int rowcount = 1;
+                foreach (var item in q.Data)
+                {
+                    dt.Rows.Add(
+                          rowcount,
+                          "",
+                          "",
+                        //  item.CustomerID,
+                        //  item.SaveDateStr,
+                          item.CompanyName,
+                          "",
+                          "",
+                          ""
+                         // item.AgentName,
+                         // item.NationalCode,
+                         // item.AgentMobile
+                        );
+                    rowcount++;
+                }
+
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dt);
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        wb.SaveAs(stream);
+                        return stream.ToArray();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

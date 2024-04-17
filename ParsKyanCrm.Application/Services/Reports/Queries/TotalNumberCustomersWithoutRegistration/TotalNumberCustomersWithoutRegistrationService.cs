@@ -23,7 +23,7 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersW
                 string strQuery = @$"
 
                select cus.CustomerID,FORMAT(cast(cus.SaveDate as date), 'yyyy/MM/dd', 'fa') as SaveDateStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile from Customers as cus
-                                                                                               where cus.IsActive = 15 and cus.IsProfileComplete = 0
+                                                                                               where cus.IsActive = 15 and cus.CustomerID not in( select CustomerID from RequestForRating )
 {(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(cus.SaveDate as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
 {(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or cus.CustomerID like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
         ORDER BY cus.CustomerID desc

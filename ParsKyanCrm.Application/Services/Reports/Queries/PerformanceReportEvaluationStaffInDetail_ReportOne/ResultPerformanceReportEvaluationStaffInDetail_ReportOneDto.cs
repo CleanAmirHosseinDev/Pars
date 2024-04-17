@@ -30,6 +30,7 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEval
         /// مدت زمان انتظار در این وضعیت
         /// </summary>
         public string WaitingTimeInThisSituation { get; set; }
+      
 
     }
 }

@@ -7,7 +7,7 @@ function pageingGrid(idElement, url, data) {
         var resQ = "<div class='text-center' id=''><ul class='pagination pagination-small' style='margin-bottom: auto;'><li style='cursor:pointer;' id='id_Left'><a onclick='pageingGridCall(\" " + idElement + " \", \"" + url + "\", " + data + ",false);'>صفحه قبل</a></li><li style='cursor:pointer;' id='li_Number' class='active'><a title='صفحه جاری' id='a_Id_Number'>1</a></li><li style='cursor:pointer;' id='li_Right'><a onclick='pageingGridCall(\" " + idElement + " \", \"" + url + "\", " + data + ",true);'>صفحه بعد</a></li></ul></div>";
 
         $("#" + idElement).html(resQ);
-
+        debugger;
         pageingGridCall(idElement, url, data);
 
 

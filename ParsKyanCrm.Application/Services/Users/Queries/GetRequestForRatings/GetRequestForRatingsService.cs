@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ClosedXML.Excel;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
@@ -7,6 +8,8 @@ using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,6 +129,61 @@ FETCH NEXT {request.PageSize} ROWS ONLY
             }
         }
 
+       
+        public async Task<byte[]> Execute1(RequestRequestForRatingDto request)
+        {
+            try
+            {
+                request.IsExcel = true;
+                var q = await Execute(request);
+
+                DataTable dt = new DataTable("Grid");
+                dt.Columns.AddRange(new DataColumn[9] {
+                new DataColumn("ردیف"),
+                new DataColumn("شماره درخواست"),
+                new DataColumn("تاریخ ثبت درخواست "),
+                new DataColumn("نام شرکت"),
+                new DataColumn("نام رابط"),
+                new DataColumn("شناسه/کد ملی"),
+                new DataColumn("موبایل رابط	"),
+                new DataColumn("تاریخ کدال	"),
+                new DataColumn("کد رهگیری	")
+            });
+                int rowcount = 1;
+                foreach (var item in q.Data)
+                {
+                    dt.Rows.Add(
+                          rowcount,
+                          item.RequestNo,
+                          item.DateOfRequestStr,
+                          item.CompanyName,
+                          item.AgentName,
+                          item.NationalCode,
+                          item.AgentMobile,
+                          item.CodalDate,
+                          item.CodalNumber
+
+                        );
+                    rowcount++;
+                }
+
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dt);
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        wb.SaveAs(stream);
+                        return stream.ToArray();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<ResultDto<IEnumerable<RequestForRatingDto>>> ExecuteHistory(RequestRequestForRatingDto request)
         {
             try
@@ -152,6 +210,8 @@ FETCH NEXT {request.PageSize} ROWS ONLY
                 throw ex;
             }
         }
+
+
 
     }
 }

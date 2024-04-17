@@ -7,5 +7,6 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEval
     public interface IPerformanceReportEvaluationStaffInDetail_ReportOneService
     {
         Task<ResultDto<IEnumerable<ResultPerformanceReportEvaluationStaffInDetail_ReportOneDto>>> Execute(RequestPerformanceReportEvaluationStaffInDetail_ReportOneDto request);
+        Task<byte[]> Execute1(RequestPerformanceReportEvaluationStaffInDetail_ReportOneDto request);
     }
 }

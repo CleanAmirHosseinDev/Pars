@@ -110,6 +110,21 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
+                                <div>
+                                    <label class="">از تاریخ اقدام</label>
+                                    <input type="text" name="FromSendTimeDateStr" id="FromSendTimeDateStr" class="form-control DatePicker" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label>تا تاریخ اقدم</label>
+                                    <input type="text" name="ToSendTimeDateStr" id="ToSendTimeDateStr" class="form-control DatePicker" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGridA();" title="جستجو">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -146,6 +161,9 @@
                                     اقدام کننده
                                 </th>
                                 <th>
+                                    تاریخ اقدام
+                                </th>
+                                <th>
                                     نظرسنجی
                                 </th>
                                 <th>
@@ -154,6 +172,7 @@
                                 <th>
                                     وضعیت
                                 </th>
+
                                 <th style="min-width:250px;">عملیات</th>
                             </tr>
                         </thead>

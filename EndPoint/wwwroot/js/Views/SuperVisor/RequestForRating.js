@@ -96,7 +96,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 + res.data[i].dateOfRequestStr + "</td>";
 
             strM += "<td>" + res.data[i].reciveUserName + "</td>"
-
+            strM += "<td>" + res.data[i].sendTimeStr + "</td>"
             strM += "<td>";
 
             if (!isEmpty(res.data[i].assessment)) {
@@ -203,6 +203,9 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(),
             FromDateStr: $("#FromDateStr").val(),
             ToDateStr: $("#ToDateStr").val(),
+            FromSendTimeDateStr: $("#FromSendTimeDateStr").val(),
+            ToSendTimeDateStr: $("#ToSendTimeDateStr").val(),
+
         }));
 
     }

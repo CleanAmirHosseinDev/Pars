@@ -32,7 +32,7 @@ where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (sele
 
 
 declare @totalNumberCustomersWithoutRegistration as int = (select cast(count(*) as nvarchar(50)) as TotalNumberCustomersWithoutRegistration from Customers as cus
-where cus.IsActive = 15 and cus.IsProfileComplete = 0);
+where cus.IsActive = 15 and cus.CustomerID not in(select CustomerID from RequestForRating));
 
 
 declare @totalNumberApplicationsAssessmentMinistryPrivacy as int = (select cast(count(*) as nvarchar(50)) as TotalNumberApplicationsAssessmentMinistryPrivacy from Customers as cus

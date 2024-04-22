@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ClosedXML.Excel;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
@@ -7,6 +8,8 @@ using ParsKyanCrm.Domain.Entities;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +36,9 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
                 string cons = "";
                 if (request.FromDate.HasValue && request.ToDate.HasValue)
                 {
-                    cons = " cteMain.DateOfRequest between N'" + request.FromDate.Value + "' and N'" + request.ToDate.Value + "'";
+                    cons = "  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.DateOfRequest))  between N'" + request.FromDate.Value.ToShortDateString() + "' and N'" + request.ToDate.Value.ToShortDateString() + "'";
                 }
+
                 if (request.TypeGroupCompanies.HasValue)
                 {
                     if (cons == "")
@@ -47,6 +51,20 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
                     }
 
                 }
+                if (request.FromSendTimeDate.HasValue)
+                {
+                    if (cons == "")
+                    {
+                        cons = "  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.SendTime))  between N'" + request.FromSendTimeDate.Value.ToShortDateString() + "' and N'" + request.ToSendTimeDate.Value.ToShortDateString() + "'";
+                    }
+                    else
+                    {
+                        cons = "and  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.SendTime))  between N'" + request.FromSendTimeDate.Value.ToShortDateString() + "' and N'" + request.ToSendTimeDate.Value.ToShortDateString() + "'";
+
+                    }
+
+                }
+
                 if (request.ReciveUser != null)
                 {
                     if (cons == "")
@@ -64,7 +82,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
 select * from (
 
         select cte.Assessment,cte.ReasonAssessment1,cte.ChangeDate,cte.RequestNo,cte.EvaluationExpert,cte.NationalCode,cte.TypeGroupCompanies,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
-dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID from (
+dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID,
+		dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',9) as SendTime from (
 
 	select rfr.CustomerID,
                 rfr.DateOfConfirmed,
@@ -75,7 +94,7 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                 rfr.RequestID,
                 rfr.RequestNo,
                 (select RealName from users where userid=(select top 1 ReciveUser from RequestReferences where ReciveUser  is not null and [DestLevelStepIndex]=6 and RequestID=rfr.RequestID)) EvaluationExpert,               
-                (select top 1 RequestReferences.LevelStepStatus+'|'+RequestReferences.LevelStepAccessRole+'|'+RequestReferences.DestLevelStepIndex+'|'+isnull(RequestReferences.Comment,N'')+'|'+isnull(RequestReferences.DestLevelStepIndexButton,N'')+'|'+isnull(RequestReferences.ReciveUser,'')+'|'+isnull(CAST(RequestReferences.SendUser AS nvarchar),'0')+'|'+isnull(CAST(RequestReferences.LevelStepSettingIndexID AS nvarchar),'0') from RequestReferences where RequestReferences.Requestid = rfr.RequestID order by RequestReferences.ReferenceID desc) as RequestReferences,
+                (select top 1 RequestReferences.LevelStepStatus+'|'+RequestReferences.LevelStepAccessRole+'|'+RequestReferences.DestLevelStepIndex+'|'+isnull(RequestReferences.Comment,N'')+'|'+isnull(RequestReferences.DestLevelStepIndexButton,N'')+'|'+isnull(RequestReferences.ReciveUser,'')+'|'+isnull(CAST(RequestReferences.SendUser AS nvarchar),'0')+'|'+isnull(CAST(RequestReferences.LevelStepSettingIndexID AS nvarchar),'0')+'|'+CAST(RequestReferences.SendTime AS nvarchar) from RequestReferences where RequestReferences.Requestid = rfr.RequestID order by RequestReferences.ReferenceID desc) as RequestReferences,
                  ss.Label as KindOfRequestName,
                  cus.AgentName,
                  cus.AgentMobile,
@@ -126,6 +145,61 @@ FETCH NEXT {request.PageSize} ROWS ONLY
             }
         }
 
+       
+        public async Task<byte[]> Execute1(RequestRequestForRatingDto request)
+        {
+            try
+            {
+                request.IsExcel = true;
+                var q = await Execute(request);
+
+                DataTable dt = new DataTable("Grid");
+                dt.Columns.AddRange(new DataColumn[9] {
+                new DataColumn("ردیف"),
+                new DataColumn("شماره درخواست"),
+                new DataColumn("تاریخ ثبت درخواست "),
+                new DataColumn("نام شرکت"),
+                new DataColumn("نام رابط"),
+                new DataColumn("شناسه/کد ملی"),
+                new DataColumn("موبایل رابط	"),
+                new DataColumn("تاریخ کدال	"),
+                new DataColumn("کد رهگیری	")
+            });
+                int rowcount = 1;
+                foreach (var item in q.Data)
+                {
+                    dt.Rows.Add(
+                          rowcount,
+                          item.RequestNo,
+                          item.DateOfRequestStr,
+                          item.CompanyName,
+                          item.AgentName,
+                          item.NationalCode,
+                          item.AgentMobile,
+                          item.CodalDate,
+                          item.CodalNumber
+
+                        );
+                    rowcount++;
+                }
+
+                using (XLWorkbook wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dt);
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        wb.SaveAs(stream);
+                        return stream.ToArray();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<ResultDto<IEnumerable<RequestForRatingDto>>> ExecuteHistory(RequestRequestForRatingDto request)
         {
             try
@@ -152,6 +226,8 @@ FETCH NEXT {request.PageSize} ROWS ONLY
                 throw ex;
             }
         }
+
+
 
     }
 }

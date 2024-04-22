@@ -79,6 +79,7 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEval
         public string ReciveUser { get; set; }
 
         public string cboSelectLS { get; set; }
+        public bool IsExcel { get; set; }
 
     }
 }

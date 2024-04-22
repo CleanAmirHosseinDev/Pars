@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
 using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne;
@@ -187,6 +188,8 @@ namespace EndPoint.Areas.SuperVisor.Controllers
 
         #endregion
 
+      
+
         #region گزارش عملکرد کارکنان ارزیابی با جزئیات )گزارش یک(
 
         public IActionResult PerformanceReportEvaluationStaffInDetail_ReportOne(int id = 0)
@@ -201,6 +204,20 @@ namespace EndPoint.Areas.SuperVisor.Controllers
             try
             {
                 return Json(await _reportFacad.PerformanceReportEvaluationStaffInDetail_ReportOneService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<IActionResult> GetPerformanceReportEvaluationStaffInDetail_ReportOne1(RequestPerformanceReportEvaluationStaffInDetail_ReportOneDto request)
+        {
+            try
+            {
+                return File(await _reportFacad.PerformanceReportEvaluationStaffInDetail_ReportOneService.Execute1(request), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+
             }
             catch (Exception ex)
             {

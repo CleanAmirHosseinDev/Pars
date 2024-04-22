@@ -71,7 +71,7 @@ namespace EndPoint.Areas.Admin.Controllers
 
         #endregion
 
-        #region تعداد کل مشتریان که قرارداد را تایید کردند
+        #region تعداد کل قراردادهایی که تایید شده است
 
         public IActionResult TotalNumberCustomersApprovedContract()
         {

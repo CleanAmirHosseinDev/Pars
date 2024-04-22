@@ -20,12 +20,12 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles
             {
 
                 string strQuery = @$"
-select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile, FORMAT(cast(rfr.CodalDate as date), 'yyyy/MM/dd', 'fa')CodalDate,
+                 select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile, FORMAT(cast(rfr.CodalDate as date), 'yyyy/MM/dd', 'fa')CodalDate,
 	   rfr.CodalNumber from RequestForRating as rfr
 inner join Customers as cus on rfr.CustomerID = cus.CustomerID
 where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.IsFinished = 1
                
-{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rfr.DateOfRequest as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
+{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rfr.CodalDate as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
 {(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
         ORDER BY cus.CustomerID desc
 

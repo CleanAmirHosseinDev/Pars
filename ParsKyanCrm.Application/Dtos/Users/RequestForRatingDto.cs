@@ -29,12 +29,25 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public bool IsMyRequests { get; set; }
 
         public string FromDateStr { get; set; }
+       
         public DateTime? FromDate
         {
             get
             {
 
                 return (FromDateStr != "" && FromDateStr!=null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(FromDateStr))) : null);
+            }
+        }
+
+
+        public string FromSendTimeDateStr { get; set; }
+
+        public DateTime? FromSendTimeDate
+        {
+            get
+            {
+
+                return (FromSendTimeDateStr != "" && FromSendTimeDateStr != null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(FromSendTimeDateStr))) : null);
             }
         }
         public string ToDateStr { get; set; }
@@ -44,10 +57,22 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 return (ToDateStr!="" && ToDateStr != null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(ToDateStr))):null);
             } 
         }
-        
+
+        public string ToSendTimeDateStr { get; set; }
+        public DateTime? ToSendTimeDate
+        {
+            get
+            {
+
+                return (ToSendTimeDateStr != "" && ToSendTimeDateStr != null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(ToSendTimeDateStr))) : null);
+            }
+        }
+
         public int? TypeGroupCompanies { get; set; }
         public int? ReciveUser { get; set; }
         public bool IsFinished { get; set; }
+
+        public bool IsExcel { get; set; }
 
     }
 
@@ -75,6 +100,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
             get
             {
                 if (DateOfRequest.HasValue) return DateTimeOperation.ToPersianDate(DateOfRequest.Value);
+                return string.Empty;
+            }
+        }
+
+        public DateTime? SendTime { get; set; }
+        public string SendTimeStr
+        {
+            get
+            {
+                if (SendTime.HasValue) return DateTimeOperation.ToPersianDate(SendTime.Value);
                 return string.Empty;
             }
         }

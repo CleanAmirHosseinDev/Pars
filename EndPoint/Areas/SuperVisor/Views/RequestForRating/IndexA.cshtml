@@ -70,6 +70,9 @@
                                     <option value="200">
                                         200
                                     </option>
+                                    <option value="500">
+                                        500
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -92,8 +95,41 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
+                                <div>
+                                    <label class="">از تاریخ درخواست</label>
+                                    <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label>تا تاریخ درخواست</label>
+                                    <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label class="">از تاریخ اقدام</label>
+                                    <input type="text" name="FromSendTimeDateStr" id="FromSendTimeDateStr" class="form-control DatePicker" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label>تا تاریخ اقدم</label>
+                                    <input type="text" name="ToSendTimeDateStr" id="ToSendTimeDateStr" class="form-control DatePicker" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGridA();" title="جستجو">
                                     <i class="fa fa-search"></i>
+                                </button>
+                                <button class="btn btn-success fontForAllPage" type="button" onclick="Web.Report.ExcelTotalFilterGridA();" title="خروجی Excell">
+                                    <i class="fa fa-file-excel-o"></i>
                                 </button>
                             </div>
                         </div>
@@ -125,6 +161,9 @@
                                     اقدام کننده
                                 </th>
                                 <th>
+                                    تاریخ اقدام
+                                </th>
+                                <th>
                                     نظرسنجی
                                 </th>
                                 <th>
@@ -133,6 +172,7 @@
                                 <th>
                                     وضعیت
                                 </th>
+
                                 <th style="min-width:250px;">عملیات</th>
                             </tr>
                         </thead>
@@ -154,6 +194,7 @@
 </div>
 
 @section Styles{
+    <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 <style>
     td {
@@ -163,6 +204,7 @@
 }
 
 @section Scripts {
+<script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
 <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
 <script>
     Web.RequestForRating.FilterGridA();

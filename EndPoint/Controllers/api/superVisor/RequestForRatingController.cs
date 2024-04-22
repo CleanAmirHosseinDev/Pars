@@ -51,7 +51,7 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
 
-                request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
+                request.LoginName = null;
                 request.CustomerId = null;
                 //request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
@@ -60,6 +60,24 @@ namespace EndPoint.Controllers.api.superVisor
             {
                 throw;
             }
+        }
+
+        public async Task<ActionResult> Get_RequestForRatingsA1(RequestRequestForRatingDto request)
+        {
+            try
+            {
+
+                request.LoginName = null;
+                request.CustomerId = null;
+                //request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
+                return File(await _userFacad.GetRequestForRatingsService.Execute1(request), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+               
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
         [HttpPost]

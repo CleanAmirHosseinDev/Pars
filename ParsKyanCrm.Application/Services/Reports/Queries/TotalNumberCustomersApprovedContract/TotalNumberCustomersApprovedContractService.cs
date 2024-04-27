@@ -22,12 +22,14 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersA
 
                 string strQuery = @$"
 
-                select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile,(select top 1 ISNULL(REPLACE(REPLACE(FORMAT(ContractAndFinancialDocuments.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ','), 0) from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.RequestID = rfr.RequestID order by ContractAndFinancialDocuments.FinancialID desc) as FinalPriceContract from Customers as cus
-inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
-where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.RequestID in (select ContractAndFinancialDocuments.RequestID from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.ContractCode is not null)
-{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rfr.DateOfRequest as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
-{(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
-        ORDER BY cus.CustomerID desc
+                select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,
+				FORMAT(cast(rrs.SendTime  as date), 'yyyy/MM/dd', 'fa') as SendTimeStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile,(select top 1 ISNULL(REPLACE(REPLACE(FORMAT(ContractAndFinancialDocuments.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ','), 0) from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.RequestID = rfr.RequestID order by ContractAndFinancialDocuments.FinancialID desc) as FinalPriceContract from Customers as cus
+                inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
+                inner join RequestReferences as rrs on rfr.RequestID=rrs.Requestid and rrs.LevelStepSettingIndexID=7
+                where cus.IsActive = 15 
+                {(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rrs.SendTime as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
+                {(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
+                ORDER BY cus.CustomerID desc
 
 ";
                 if (!request.IsExcel) strQuery += @$" OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS

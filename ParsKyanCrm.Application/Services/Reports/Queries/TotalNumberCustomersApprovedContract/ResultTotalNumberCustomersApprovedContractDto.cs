@@ -17,5 +17,9 @@
 
         public string FinalPriceContract { get; set; }
 
+        public string SendTimeStr { get; set; }
+
+
+
     }
 }

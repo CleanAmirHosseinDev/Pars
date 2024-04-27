@@ -10,7 +10,9 @@ function successCallBack_divPageingList_TotalNumberCustomersApprovedContractSupe
 
             strM += "<tr><td>" + (i + 1) + "</td><td>"
                 + res.data[i].requestNo + "</td><td>"
-                + res.data[i].dateOfRequestStr + "</td><td>"
+
+                + res.data[i].sendTimeStr + "</td><td>"
+                + res.data[i].dateOfRequestStr + "</td><td>"                
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"

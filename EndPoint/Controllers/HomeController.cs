@@ -51,6 +51,14 @@ namespace EndPoint.Controllers
 
                 ViewData["news"] = news.Data;
 
+                request.IsActive = (byte)TablesGeneralIsActive.Active;
+                request.PageSize = 4;
+                request.KindOfContent = 62;
+                request.PageIndex = 1;
+                var content = await _userFacad.GetNewsAndContentsService.Execute(request);
+
+                ViewData["content"] = content.Data;
+
                 RequestRankingOfCompaniesDto request2 = new RequestRankingOfCompaniesDto();
                 request2.IsActive = (byte)TablesGeneralIsActive.Active;
                 request2.PageSize = 10;
@@ -76,14 +84,14 @@ namespace EndPoint.Controllers
 
         public IActionResult RankList()
         {
-           
+
             return View();
         }
 
         public async Task<IActionResult> RankList_Data(RequestRankingOfCompaniesDto request)
         {
             try
-            {                
+            {
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
                 request.PageSize = 10000;
                 request.PageIndex = 1;
@@ -93,7 +101,7 @@ namespace EndPoint.Controllers
             catch (Exception ex)
             {
                 return null;
-            }            
+            }
         }
 
         [HttpPost]

@@ -259,7 +259,6 @@
         </div>
     </section>
 
-    
     <section>
         <div style="display:flex;align-items: center;">
             <h3></h3>
@@ -273,7 +272,7 @@
                 <h3>
                     جدید ترین خبرها
                 </h3>
-                <a class="jbtn" href="/article/newslist/">آرشیو خبرها</a>
+                <a class="jbtn" href="/Article/Newslist/">آرشیو خبرها</a>
             </div>
             <div class="left_div">
                 @if(ViewData["news"] != null) {
@@ -302,6 +301,46 @@
         </div>
 
     </section>
+
+    <section>
+        <div style="display:flex;align-items: center;">
+            <h3></h3>
+        </div>
+    </section>
+
+    <section class="sec4">
+        <div class="inner_div">
+            <div class="right_div">
+                <h3>
+                    جدید ترین مقالات
+                </h3>
+                <a class="jbtn" href="/Article/ContentList/">آرشیو مقالات</a>
+            </div>
+            <div class="left_div">
+                @if (ViewData["news"] != null)
+                {
+                    @foreach (var item in (IEnumerable<ParsKyanCrm.Application.Dtos.Users.NewsAndContentDto>)ViewData["content"])
+                    {
+                        <figure class="snip1249">
+                            <div class="image">
+                                <img class="postimg" src="@item.ContentPicFull" onerror="this.src='https://parscrc.ir/FileUpload/NewsAndContent/no-photo.png'" alt="@item.Title" title="@item.Title" />
+                                <i><img class="icon" src="~/image/landing/news_outline.png" alt="icon" title="پارس کیان" /></i>
+                            </div>
+                            <figcaption>
+                                <h3>@item.Title</h3>
+                                <p>@item.Summary</p>
+                                <div class="date">
+                                    <l2>@item.DatePersianDayAndMonth</l2>@item.DatePersianYear
+                                </div>
+                                <a href="/Article/Content/@item.ContentId" class="jbtn">ادامه مطلب</a>
+                            </figcaption>
+                        </figure>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+
     <section class="sec6">
         <div class="right">
             <div>

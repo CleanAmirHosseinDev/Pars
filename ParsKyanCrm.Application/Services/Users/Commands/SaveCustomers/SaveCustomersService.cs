@@ -42,7 +42,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.Customers).Name, "*", strCondition + " AND " + nameof(request.AgentMobile) + " != " + request.AgentMobile);
+                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.Customers).Name, "*", strCondition + " AND " + nameof(request.CustomerId) + " != " + request.CustomerId);
                     return q != null && q.Rows.Count > 0 ? false : true;
                 }
                 return true;

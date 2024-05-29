@@ -65,7 +65,6 @@ namespace EndPoint.Controllers
                 request2.PageIndex = 1;
                 request2.SortOrder = "PublishDate_D";
                 var ranks = await _userFacad.GetRankingOfCompaniessService.Execute(request2);
-
                 ViewData["ranks"] = ranks.Data;
             }
             catch (Exception ex)

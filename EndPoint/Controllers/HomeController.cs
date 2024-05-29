@@ -63,6 +63,7 @@ namespace EndPoint.Controllers
                 request2.IsActive = (byte)TablesGeneralIsActive.Active;
                 request2.PageSize = 10;
                 request2.PageIndex = 1;
+                request2.SortOrder = "PublishDate_D";
                 var ranks = await _userFacad.GetRankingOfCompaniessService.Execute(request2);
 
                 ViewData["ranks"] = ranks.Data;
@@ -95,6 +96,7 @@ namespace EndPoint.Controllers
                 request.IsActive = (byte)TablesGeneralIsActive.Active;
                 request.PageSize = 10000;
                 request.PageIndex = 1;
+                request.SortOrder = "PublishDate_D";
                 ViewBag.CustomerID = request.CustomerID;
                 return PartialView("P_RankList", (await _userFacad.GetRankingOfCompaniessService.Execute(request)).Data);
             }

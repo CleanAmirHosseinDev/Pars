@@ -692,13 +692,18 @@
             AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
                 if (res.isSuccess) {
-
                     $("#SaveDate").html(res.data.saveDateStr);
                     $("#PriceFee").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
                     $("#PriceFee2").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#PriceFee3").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#PriceFee4").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
+                    $("#PriceFee5").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
                     $("#TaxPrice").html(moneyCommaSepWithReturn(res.data.tax.toString()));
+                    $("#TaxPrice2").html(moneyCommaSepWithReturn(res.data.tax.toString()));
                     $("#TotalPrice").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
-                    initCustomer();
+                    $("#TotalPrice2").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
+                    $("#TotalPrice3").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
+  initCustomer();
 
                 }
 

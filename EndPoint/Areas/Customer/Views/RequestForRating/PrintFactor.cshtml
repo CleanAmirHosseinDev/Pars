@@ -285,113 +285,113 @@
     <div class="graph-image graph-7" style=" width: 297mm;margin:auto;" id="divPrint">
         <section class="sheet padding-10mm">
             <div class="print-part">
-                <table style="width:100%;border-collapse:collapse; direction:rtl">
-                    <tr>
-                        <td rowspan="2"><span style="font-family:NazaninBold;font-size:1.25em">پيش فاکتور فروش کالا و خدمات</span></td>
-                        <td rowspan="2">
-                            <p>
-                                شماره سریال
-                                <br />
-                                <br />
-                                تاریخ
-                            </p>
-                        </td>
-                        <td><span style="font-family:NazaninBold;color:red !important;font-size:1.25em">پیش فاکتور</span></td>
-                    </tr>
-                    <tr>
-                        <td><span id="SaveDate"></span> </td>
-                    </tr>
+                <div style="width:100%">
+                    <div style="float:right;width:90%">
+                        <h2 style="text-align: center; font-family: NazaninBold;margin-top: 0px">پیش پرداخت</h2>
+                        <p style="text-align: center;margin-top:0px">
+                            پیش فاکتور مربوط به پیش پرداخت بسته ارزیابی شاخص های کسب و کار کیفی
 
-                </table>
-                <br />
+                            <span id="CustomerName3"></span>
+                        </p>
+                    </div>
+                    <div style="float:right;width:10%">
+                        <p style="text-align:left">
+                            <strong>تاریخ:</strong>  <span id="SaveDate"></span>
+                        </p>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
                 <table style="width:100%;border-collapse:collapse; direction:rtl" class="righta">
                     <tr>
                     <tr>
-                        <td colspan="3" style="text-align:center"><span style="font-family:NazaninBold;font-size:1.25em">مشخصات فروشنده</span></td>
+                        <td style="text-align:center"><span style="font-family:NazaninBold;"> فروشنده</span></td>
 
                     </tr>
                     <tr>
                         <td>شرکت رتبه بندي اعتباري پارس کیان (سهامی خاص)</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td> نشان کامل:   &nbsp&nbsp استان: تهران &nbsp&nbsp   شهرستان: تهران</td>
-                        <td>کد پستی 10 رقمی: 15969934715 </td>
-                        <td>شهر: تهران</td>
-                    </tr>
-                    <tr>
-                        <td> نشانی: خیابان مطهری- خیابان میرزای شیرازی شمالی- خیابان منصور- پلاک 2 - طبقه 3</td>
-                        <td colspan="2"> شماره تلفن/ نمابر: 88727819-88714209</td>
+
                     </tr>
 
                 </table>
-                <br />
                 <table style="width: 100%; border-collapse: collapse; direction: rtl" class="righta">
-                    <tr>
-                        <td colspan="3" style="text-align:center"><span style="font-family:NazaninBold;font-size:1.25em">مشخصات خريدار</span></td>
+                    <tr class="Noborder">
+                        <td colspan="4" style="text-align:center"><span style="font-family:NazaninBold;"> خريدار</span></td>
                     </tr>
-                    <tr>
-                        <td>نام خريدار: <span id="CustomerName"></span></td>
-                        <td>شماره کد اقتصادی <span id="EconomicCode"></span></td>
-                        <td>شماره ثبت / شماره م <span id="NationalCode"></span></td>
+                    <tr class="Noborder">
+                        <td class="Noborder">نام شخص حقیقی / حقوقی: <span id="CustomerName"></span></td>
+                        <td class="Noborder">کد اقتصادی: <span id="EconomicCodeReal"></span></td>
+                        <td class="Noborder">کد پستی: <span id="PostalCode"></span></td>
+                        <td class="Noborder">شماره/ شناسه ملی <span id="EconomicCode"></span> / <span id="NationalCode"></span></td>
                     </tr>
-                    <tr>
-                        <td>نشانی کامل: استان:</td>
-                        <td>کد پستی 10 رقمی:<span id="PostalCode"></span> </td>
-                        <td>شهر: </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">نشانی: <span id="AddressCompany"></span></td>
-                        <td>شماره تلفن / نمابر:<span id="Tel"></span> </td>
-
+                    <tr class="Noborder">
+                        <td class="Noborder" style="max-width:200px">نشانی:<span id="AddressCompany"></span> </td>
+                        <td class="Noborder">شماره ثبت:  </td>
+                        <td class="Noborder">شهر:</td>
+                        <td class="Noborder">تلفن:<span id="Tel"></span></td>
                     </tr>
                 </table>
-                <br />
                 <table style="width: 100%; border-collapse: collapse; direction: rtl">
                     <tr>
-                        <td colspan="9"><span style="font-family:NazaninBold;font-size:1.25em">مشخصات کالا یا خدمات مورد معامله</span> </td>
+                        <td colspan="10"><span style="font-family:NazaninBold;">مشخصات مورد معامله</span> </td>
                     </tr>
                     <tr>
                         <td>رديف</td>
-                        <td>کد</td>
-                        <td>شرح خدمات</td>
+                        <td>شرح </td>
                         <td>تعداد/ مقدار</td>
-                        <td>واحد</td>
+                        <td>واحد اندازه گیری</td>
                         <td>مبلغ واحد (ریال)</td>
                         <td>مبلغ کل (ریال)</td>
-                        <td> جمع ماليات وعوارض (ریال)</td>
+                        <td>مبلغ تخفیف (ریال)</td>
+                        <td>مبلغ کل پس از کسر تخفیف (ریال)</td>
+                        <td> جمع ماليات وعوارض 0% (ریال)</td>
                         <td>
-                            جمع مبلغ کل بعلاوه جمع ماليات و عوارض
+                            جمع مبلغ کل بعلاوه 0% ماليات و عوارض
                             (ریال)
                         </td>
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td></td>
                         <td>بسته ارزیابی <span id="CustomerName2"></span></td>
                         <td>1</td>
                         <td></td>
                         <td><span id="PriceFee"></span></td>
                         <td><span id="PriceFee2"></span></td>
+                        <td>0</td>
+                        <td><span id="PriceFee3"></span></td>
                         <td><span id="TaxPrice"></span></td>
                         <td><span id="TotalPrice"></span></td>
                     </tr>
+                    <tr>
+                        <td colspan="5">جمع کل</td>
+                        <td><span id="PriceFee4"></span></td>
+                        <td><span>0</span></td>
+                        <td><span id="PriceFee5"></span></td>
+                        <td><span id="TaxPrice2"></span></td>
+                        <td><span id="TotalPrice3"></span></td>
+                    </tr>
+                    <tr class="Noborder">
+                        <td colspan="8" class="Noborder"></td>
+                        <td>مبلغ پرداختی (ریال)</td>
+                        <td>0</td>
+                    </tr>
+                    <tr class="Noborder">
+                        <td colspan="8" class="Noborder"></td>
+                        <td>مبلغ قابل پرداختی (ریال)</td>
+                        <td><span id="TotalPrice2"></span></td>
+                    </tr>
                 </table>
                 <br />
-                <table style="width: 100%; border-collapse: collapse; direction: rtl">
-                    <tr>
-                        <td colspan="2">توضيحات: خواهشمند است مبلغ پيش فاکتور <span style="font-family:NazaninBold">فقط از حساب متعلق به خريدار</span> به شماره شبا IR340560086604002685706001 ، بانک سامان کد 866 شعبه قائم مقام، واريز گردد</td>
-                    </tr>
-                    <tr style="height:60px">
-                        <td width="50%">مهر و امضاء فروشنده</td>
-                        <td width="50%">مهر و امضاء خريدار</td>
-                    </tr>
-                </table>
-                <p>***  این پیش فاکتور صرفا <span style="font-family:NazaninBold">جهت اطلاع خریدار</span> از بسته ارزیابی و حساب فی مابین صادر شده و <span style="font-family:NazaninBold">قابل ثبت در دفاتر قانونی نمی باشد</span>. لذا پس از صدور صورتحساب <span style="font-family:NazaninBold">اقدام به انجام تکالیف قانونی نمایید</span>. ***</p>
-
-
-
+                <p>
+                    <span style="font-family:NazaninBold"> توضيحات:</span>
+                    این پیش فاکتور صرفا جهت اطلاع از مبلغ پیش پرداخت آن شرکت محترم می باشد و قابل ثبت در دفاتر قانونی نمی باشد.
+                    لذا پس از اتمام ارزیابی مذکور و صدور صورتحساب نهایی اقدام به انجام تکالیف قانونی نمایید.
+                    <br />
+                    <span style="font-family:NazaninBold"> مشخصات حساب:</span>
+                    بانک سامان کد 866 شعبه قائم مقام : به نام شرکت رتبه بندی پارس کیان <br />
+                    <span style="font-family:NazaninBold"> شماره شبا:</span>
+                    IR340560086604002685706001<br />
+                    خواهشمند است مبلغ پيش فاکتور <span style="font-family:NazaninBold">فقط از حساب متعلق به خريدار</span> واريز گردد
+                </p>
             </div>
         </section>
     </div>

@@ -13,5 +13,6 @@ namespace ParsKyanCrm.Domain.Entities
         public string QuestionName { get; set; }
         public string QuestionType { get; set; }       
         public int? QuestionOrder { get; set; }
+        public float? Score { get; set; }
     }
 }

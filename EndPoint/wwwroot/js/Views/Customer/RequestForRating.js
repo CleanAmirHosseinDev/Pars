@@ -66,12 +66,12 @@
                             strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + ");'>ارسال مجدد </button >";
 
                         }
-                        if (res.data[i].destLevelStepIndex == 7) {
+                        if (res.data[i].destLevelStepIndex == 105) {
                             //   strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
-                            strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
+                            strM += "<a style='margin-right:5px;color:black' title='پرسشنامه' class='btn btn-success fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i>پرسشنامه</a>";
 
-                        } else if (res.data[i].destLevelStepIndex >= 7 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده اطلاعات تکمیلی") {
-                            strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
+                        } else if (res.data[i].destLevelStepIndex >= 105 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده پرسشنامه") {
+                            strM += "<a style='margin-right:5px;color:black' title='اپرسشنامه' class='btn btn-default fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
 
                         }
                         if (res.data[i].contractDocument != null && res.data[i].contractDocument != "") {

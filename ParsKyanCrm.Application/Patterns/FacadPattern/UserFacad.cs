@@ -33,6 +33,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
@@ -154,6 +155,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetRequestReferencessService GetRequestReferencessService { get; }
 
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
+        IGetDataFormQuestionsOptionService GetDataFormQuestionsOptionService { get; }
 
         IGetDataFormAnswerTablessService GetDataFormAnswerTablessService { get; }
 
@@ -573,6 +575,14 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFormQuestionssService = _getDataFormQuestionssService ?? new GetDataFormQuestionssService(_context, _mapper);
+            }
+        }
+        private IGetDataFormQuestionsOptionService _getDataFormQuestionsOptionService;
+        public IGetDataFormQuestionsOptionService GetDataFormQuestionsOptionService
+        {
+            get
+            {
+                return _getDataFormQuestionsOptionService = _getDataFormQuestionsOptionService ?? new GetDataFormQuestionsOptionService(_context, _mapper);
             }
         }
 

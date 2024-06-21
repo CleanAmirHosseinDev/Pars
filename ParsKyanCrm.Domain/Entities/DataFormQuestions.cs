@@ -11,9 +11,10 @@ namespace ParsKyanCrm.Domain.Entities
         public int? DataFormId { get; set; }
         public string QuestionText { get; set; }
         public string QuestionName { get; set; }
-        public string QuestionType { get; set; }       
+        public string QuestionType { get; set; }
         public int? QuestionOrder { get; set; }
         public int? Score { get; set; }
         public string HelpText { get; set; }
+        public byte IsActive { get; set; }
     }
 }

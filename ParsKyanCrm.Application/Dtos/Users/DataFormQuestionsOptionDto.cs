@@ -18,6 +18,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int Id { get; set; }
         public string Text { get; set; }
         public int DataFormQuestionsId { get; set; }
-        public int? Ratio { get; set; }
+        public double? Ratio { get; set; }
     }
 }

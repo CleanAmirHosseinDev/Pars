@@ -170,6 +170,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.QuestionType).HasMaxLength(50);
                 entity.Property(e => e.HelpText).HasMaxLength(500);
+                entity.Property(e => e.Score).HasDefaultValue(0);
             });
 
             modelBuilder.Entity<DataFormQuestionsOption>(entity =>
@@ -185,7 +186,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasKey(e => e.FormId)
                     .HasName("PK_Forms");
 
-                entity.Property(e => e.FormTitle).HasMaxLength(50);
+                entity.Property(e => e.FormTitle).HasMaxLength(255);
             });
 
             modelBuilder.Entity<DataFormAnswerTables>(entity =>
@@ -922,7 +923,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.DestLevelStepIndexButton).HasMaxLength(100);
 
-                entity.HasKey(e => e.ReferenceId);                
+                entity.HasKey(e => e.ReferenceId);
 
                 entity.HasComment("جدول ارجاعات درخواست مشتری");
 

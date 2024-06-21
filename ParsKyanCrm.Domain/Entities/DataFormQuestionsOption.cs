@@ -11,5 +11,6 @@ namespace ParsKyanCrm.Domain.Entities
         public string Text { get; set; }
         public int DataFormQuestionsId { get; set; }
         public double? Ratio { get; set; }
+        public byte IsActive { get; set; }
     }
 }

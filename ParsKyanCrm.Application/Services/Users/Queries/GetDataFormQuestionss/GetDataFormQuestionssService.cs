@@ -29,7 +29,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
         {
             try
             {
-
                 var lists = (
                     from s in _context.DataFormQuestions
                     where (s.DataFormId == request.DataFormId || request.DataFormId == null)

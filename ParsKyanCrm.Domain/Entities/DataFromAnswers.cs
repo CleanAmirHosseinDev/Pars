@@ -14,5 +14,6 @@ namespace ParsKyanCrm.Domain.Entities
         public int? DataFormQuestionId { get; set; }
         public string Answer { get; set; }
         public string FileName1 { get; set; }
+        public int? IsActive { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace ParsKyanCrm.Domain.Entities
         public int FormId { get; set; }
         public string FormTitle { get; set; }
         public bool? IsTable { get; set; }
+        public int? IsActive { get; set; }
     }
 }

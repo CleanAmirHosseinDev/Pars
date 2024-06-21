@@ -78,8 +78,8 @@
                                                                 <div class="nav-tabs-custom">
                                                                     <ul class="nav nav-tabs">
                                                                         <li class="active"><a href="#FormDetailTab3" data-toggle="tab" aria-expanded="false">A1</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(4, '1,3,11,4', $('#RequestId').val());" href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">A2</a></li>
-                                                                        <li class=""><a onclick="Web.FurtherInfo.IntiFormShow(5,'1,3,11,4',$('#RequestId').val())" href="#FormDetailTab5" data-toggle="tab" aria-expanded="false">A3</a></li>
+                                                                        <li class=""><a href="#FormDetailTab4" data-toggle="tab" aria-expanded="false">A2</a></li>
+                                                                        <li class=""><a href="#FormDetailTab5" data-toggle="tab" aria-expanded="false">A3</a></li>
                                                                     </ul>
                                                                     <div class="tab-content">
                                                                         <div class="tab-pane active" id="FormDetailTab1">
@@ -88,9 +88,9 @@
                                                                                 <form id="frmFrom26" class="changeData">
                                                                                     <input type="hidden" id="FormID" name="FormID" value="26" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
-
+                                                                                    <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
                                                                                     <div class="row" id="FormDetail26">
-                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                        
                                                                                         @*<div class="col-md-12">
                                                                                              Single Question Radio Type 
                                                                                             <div class="form-group">

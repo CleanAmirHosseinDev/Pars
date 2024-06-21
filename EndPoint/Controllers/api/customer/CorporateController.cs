@@ -39,13 +39,13 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
-        [Route("[action]/{id}/")]
-        [HttpGet]
-        public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_Options(int? id = null)
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_Options([FromBody] RequestDataFormQuestionsOptionDto request)
         {
             try
             {
-                return await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
+                return await _userFacad.GetDataFormQuestionsOptionService.Execute(request);
             }
             catch (Exception ex)
             {

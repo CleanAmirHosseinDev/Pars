@@ -1,4 +1,5 @@
 ﻿
+using Org.BouncyCastle.Asn1.Ocsp;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Common.Dto;
 using System.Collections.Generic;
@@ -8,6 +9,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
 {
     public interface IGetDataFormQuestionsOptionService
     {
-        Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Execute(int? id);
+        Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Execute(RequestDataFormQuestionsOptionDto request);
     }
 }

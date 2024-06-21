@@ -24,13 +24,13 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
             _mapper = mapper;
         }
 
-        public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Execute(int? id = null)
+        public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Execute(RequestDataFormQuestionsOptionDto request)
         {
             try
             {
                 List<DataFormQuestionsOptionDto> res = new List<DataFormQuestionsOptionDto>();
                 var lists = (from s in _context.DataFormQuestionsOption
-                             where (s.DataFormQuestionsId == id)
+                             where (s.DataFormQuestionsId == request.DataFormQuestionsId)
                              select s);
 
                 res = _mapper.Map<List<DataFormQuestionsOptionDto>>(await lists.ToListAsync());

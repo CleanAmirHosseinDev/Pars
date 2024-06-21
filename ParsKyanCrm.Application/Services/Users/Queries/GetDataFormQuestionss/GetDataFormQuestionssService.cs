@@ -30,10 +30,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
             try
             {
 
-                var lists = (from s in _context.DataFormQuestions
-                             where (s.DataFormId == request.DataFormId || request.DataFormId == null)
-                             select s);
-
+                var lists = (
+                    from s in _context.DataFormQuestions
+                    where (s.DataFormId == request.DataFormId || request.DataFormId == null)
+                    select s
+                );
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.QuestionName.Contains(request.Search) ||
                 p.QuestionText.Contains(request.Search) ||
                 p.QuestionType.Contains(request.Search)

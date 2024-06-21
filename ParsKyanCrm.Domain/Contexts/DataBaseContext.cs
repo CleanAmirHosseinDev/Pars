@@ -53,6 +53,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
         DbSet<FurtherInfo> FurtherInfo { get; set; }
         DbSet<DataFormQuestions> DataFormQuestions { get; set; }
+        DbSet<DataFormQuestionsOption> DataFormQuestionsOption { get; set; }
         DbSet<DataForms> DataForms { get; set; }
         DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
         DbSet<ValueChain> ValueChain { get; set; }
@@ -81,6 +82,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<LoginLog> LoginLogs { get; set; }
 
         public virtual DbSet<DataFormQuestions> DataFormQuestions { get; set; }
+        public virtual DbSet<DataFormQuestionsOption> DataFormQuestionsOption { get; set; }
         public virtual DbSet<DataForms> DataForms { get; set; }
         public virtual DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
 
@@ -162,11 +164,20 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.DataFormQuestionId).HasColumnName("DataFormQuestionID");
 
-                entity.Property(e => e.QuestionName).HasMaxLength(50);
+                entity.Property(e => e.QuestionName).HasMaxLength(150);
 
-                entity.Property(e => e.QuestionText).HasMaxLength(50);
+                entity.Property(e => e.QuestionText).HasMaxLength(255);
 
                 entity.Property(e => e.QuestionType).HasMaxLength(50);
+                entity.Property(e => e.HelpText).HasMaxLength(500);
+            });
+
+            modelBuilder.Entity<DataFormQuestionsOption>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Text).IsRequired().HasMaxLength(250);
+                entity.Property(e => e.DataFormQuestionsId).IsRequired();
+                entity.Property(e => e.Ratio).HasDefaultValue(1);
             });
 
             modelBuilder.Entity<DataForms>(entity =>

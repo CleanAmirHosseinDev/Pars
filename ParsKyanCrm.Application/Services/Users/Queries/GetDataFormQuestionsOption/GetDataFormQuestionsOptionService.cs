@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
             try
             {
                 List<DataFormQuestionsOptionDto> res = new List<DataFormQuestionsOptionDto>();
-                var lists = (from s in _context.DataFormQuestionOptions
+                var lists = (from s in _context.DataFormQuestionsOption
                              where (s.DataFormQuestionsId == id)
                              select s);
 

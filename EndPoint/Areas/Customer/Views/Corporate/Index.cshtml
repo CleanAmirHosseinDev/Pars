@@ -90,132 +90,22 @@
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
                                                                                     <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
                                                                                     <div class="row" id="FormDetail26">
-                                                                                        
-                                                                                        @*<div class="col-md-12">
-                                                                                             Single Question Radio Type 
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12">
-                                                                                                    <h4 style="line-height: 1.5;">1 - آیا شرکت معاملات سهام خود را با افراد درون شرکتی افشا می کند؟</h4>
-                                                                                                </div>
-                                                                                                <div class="col-md-12" >
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-md-2">
-                                                                                                            <label class="control-label" for="r1">بله</label>
-                                                                                                            <input name="Q1" type="radio" id="r1" value="0" />
-                                                                                                            <label class="control-label" for="r2">خیر</label>
-                                                                                                            <input name="Q1" type="radio" id="r2" value="1" />
-                                                                                                        </div>
-                                                                                                        <div class="col-md-10">
-                                                                                                            <input class="form-control" name="Q1D" type="text" id="r3" placeholder="توضیحات" />
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                             End Single Question Radio Type  
-
-                                                                                             Single Question Likert Type
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12">
-                                                                                                    <h4 style="line-height: 1.5;">2 - آیا شرکت نام، رابطه، ماهیت و ارزش هر معامله با اهمیت با اشخاص وابسته را افشا می کند؟</h4>
-                                                                                                </div>
-                                                                                                <div class="col-md-12" >
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-md-2">
-                                                                                                            <select class="form-control">
-                                                                                                                <option value="1">مقبول</option>
-                                                                                                                <option value="2">مشروط</option>
-                                                                                                                <option value="3">عدم اظهار</option>
-                                                                                                                <option value="4">مردود</option>
-                                                                                                                <option value="5">ندارد</option>
-                                                                                                            </select>
-                                                                                                        </div>
-                                                                                                        <div class="col-md-10">
-                                                                                                            <input class="form-control" name="Q1D" type="text" id="r3" placeholder="توضیحات" />
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                             End Single Question 
-                                                                                        </div>*@
                                                                                     </div>
                                                                                 </form>
                                                                             </div>
-
                                                                         </div>
                                                                         <!-- /.tab-pane -->
                                                                         <div class="tab-pane" id="FormDetailTab4">
                                                                             <h2 class="fs-title">A2</h2>
                                                                             <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px">
-                                                                                <form id="frmFrom4" class="changeData">
-                                                                                    <input type="hidden" id="FormID" name="FormID" value="4" />
+                                                                                <form id="frmFrom27" class="changeData">
+                                                                                    <input type="hidden" id="FormID" name="FormID" value="27" />
                                                                                     <input type="hidden" id="AnswerTableId" name="AnswerTableId" value="0" />
-
-                                                                                    <div class="row" id="FormDetail4">
-                                                                                        <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
-                                                                                        <div class="col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">نام گواهینامه، مجوز، تاییدیه یا استاندارد</label>
-                                                                                                    <input type="text" name="Answer1" id="CertificateAndPermitAndStandard" placeholder="نام گواهینامه، مجوز، تاییدیه یا استاندارد" class="form-control" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">مرجع صادر کننده</label>
-                                                                                                    <input type="text" name="Answer3" id="ExporterReferenceForCertificate" placeholder="مرجع صادر کننده" class="form-control" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">تاریخ انقضا</label>
-                                                                                                    <input type="text" name="Answer4" id="ExpireDate" placeholder="تاریخ انقضا" class="form-control DatePicker" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <label class="control-label" for="">بارگذاری فایل گواهینامه، مجوز، تاییدیه یا استاندارد</label>
-                                                                                                    <input type="file" name="Result_Final_FileName1" id="CertificateAndPermitAndStandardFile" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'فایل گواهینامه، مجوز، تاییدیه یا استاندارد',5);" />
-                                                                                                    <div id="DivCertificateAndPermitAndStandardFile"></div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row changeData">
-                                                                                        <div class="col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <div class="col-md-12" style="margin-bottom:10px">
-                                                                                                    <button class="btn btn-success fontForAllPage" type="button" id="btnform4" onclick="Web.FurtherInfo.SaveForm(this,4,'1,3,11,4');">
-                                                                                                        افزودن
-                                                                                                    </button>
-                                                                                                    <button class="btn btn-default fontForAllPage" type="reset" onclick="Web.FurtherInfo.ClearFormDetail4()">
-                                                                                                        پاک کن
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
+                                                                                    <input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
+                                                                                    <div class="row" id="FormDetail27">
                                                                                     </div>
                                                                                 </form>
-                                                                                <table class="table">
-                                                                                    <thead>
-                                                                                        <tr>
-
-                                                                                            <th>ردیف</th>
-                                                                                            <th>  نام گواهینامه، مجوز، تاییدیه یا استاندارد</th>
-                                                                                            <th>  مرجع صادر کننده</th>
-                                                                                            <th>  فایل گواهینامه، مجوز، تاییدیه یا استاندارد</th>
-                                                                                            <th> تاریخ انقضا</th>
-                                                                                            <th>عملیات</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody id="FormDetailAnswer4">
-                                                                                    </tbody>
-                                                                                </table>
-
-
                                                                             </div>
-
                                                                         </div>
                                                                         <!-- /.tab-pane -->
                                                                         <div class="tab-pane" id="FormDetailTab5">

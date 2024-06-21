@@ -177,7 +177,7 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Text).IsRequired().HasMaxLength(250);
                 entity.Property(e => e.DataFormQuestionsId).IsRequired();
-                entity.Property(e => e.Ratio).HasDefaultValue(1);
+                entity.Property(e => e.Ratio).HasDefaultValue(0.2);
             });
 
             modelBuilder.Entity<DataForms>(entity =>

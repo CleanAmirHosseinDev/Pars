@@ -29,9 +29,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
             try
             {
                 List<DataFormQuestionsOptionDto> res = new List<DataFormQuestionsOptionDto>();
-                var lists = (from s in _context.DataFormQuestionsOption
-                             where (s.DataFormQuestionsId == request.DataFormQuestionsId)
-                             select s);
+                var lists = (
+                    from s in _context.DataFormQuestionsOption
+                     where (s.DataFormQuestionsId == request.DataFormQuestionsId)
+                     select s
+                );
 
                 res = _mapper.Map<List<DataFormQuestionsOptionDto>>(await lists.ToListAsync());
 

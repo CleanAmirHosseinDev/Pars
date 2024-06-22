@@ -23,5 +23,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string QuestionType { get; set; }       
         public int? QuestionOrder { get; set; }
         public int? Score { get; set; }
+        public string HelpText { get; set; }
     }
 }

@@ -33,6 +33,8 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormQuestions;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormQuestionsOption;
@@ -165,10 +167,13 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFormQuestionsOptionService GetDataFormQuestionsOptionService { get; }
 
+        ISaveDataFormQuestionsService SaveDataFormQuestionsService { get; }
+
         ISaveDataFormQuestionsOptionService SaveDataFormQuestionsOptionService { get; }
+        
+        IDeleteDataFormQuestionsService DeleteDataFormQuestionsService { get; }
 
         IDeleteDataFormQuestionsOptionService DeleteDataFormQuestionsOptionService { get; }
-
         IGetDataFormAnswerTablessService GetDataFormAnswerTablessService { get; }
 
         IGetDataFormAnswerTablesService GetDataFormAnswerTablesService { get; }
@@ -611,12 +616,29 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private ISaveDataFormQuestionsService _saveDataFormQuestionsService;
+        public ISaveDataFormQuestionsService SaveDataFormQuestionsService
+        {
+            get
+            {
+                return _saveDataFormQuestionsService = _saveDataFormQuestionsService ?? new SaveDataFormQuestionsService(_context, _mapper, _env);
+            }
+        }
+
         private IDeleteDataFormQuestionsOptionService _deleteDataFormQuestionsOptionService;
         public IDeleteDataFormQuestionsOptionService DeleteDataFormQuestionsOptionService
         {
             get
             {
                 return _deleteDataFormQuestionsOptionService = _deleteDataFormQuestionsOptionService ?? new DeleteDataFormQuestionsOptionService(_context, _mapper, _env);
+            }
+        }
+        private IDeleteDataFormQuestionsService _deleteDataFormQuestionsService;
+        public IDeleteDataFormQuestionsService DeleteDataFormQuestionsService
+        {
+            get
+            {
+                return _deleteDataFormQuestionsService = _deleteDataFormQuestionsService ?? new DeleteDataFormQuestionsService(_context, _mapper, _env);
             }
         }
         private IGetDataFormAnswerTablesService _getDataFormAnswerTablesService;

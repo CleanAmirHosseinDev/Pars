@@ -38,6 +38,8 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsOptio
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataForms;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataForm;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers;
@@ -168,6 +170,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFormAnswerTablesService GetDataFormAnswerTablesService { get; }
 
+        IGetDataFormsService GetDataFormsService { get; }
+        IGetDataFormService GetDataFormService { get; }
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
 
         IGetCustomerssService GetCustomerssService { get; }
@@ -195,7 +199,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveDataFromAnswersService SaveDataFromAnswersService { get; }
 
         IDeleteDataFormAnswerTablesService DeleteDataFormAnswerTablesService { get; }
-        
+
         IGetServiceFeeAndCustomerByRequestService GetServiceFeeAndCustomerByRequestService { get; }
 
         IGetContractAndFinancialDocumentsService GetContractAndFinancialDocumentsService { get; }
@@ -300,7 +304,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _env;        
+        private readonly IWebHostEnvironment _env;
 
         private readonly IValidator<RequestReferencesDto> _validatorRequestReferencesDto;
 
@@ -308,7 +312,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             _context = context;
             _mapper = mapper;
-            _env = env;            
+            _env = env;
             _validatorRequestReferencesDto = validatorRequestReferencesDto;
         }
 
@@ -625,7 +629,22 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _getDataFormAnswerTablessService = _getDataFormAnswerTablessService ?? new GetDataFormAnswerTablessService(_context, _mapper);
             }
         }
-
+        private IGetDataFormsService _getDataFormsService;
+        public IGetDataFormsService GetDataFormsService
+        {
+            get
+            {
+                return _getDataFormsService = _getDataFormsService ?? new GetDataFormsService(_context, _mapper);
+            }
+        }
+        private IGetDataFormService _getDataFormService;
+        public IGetDataFormService GetDataFormService
+        {
+            get
+            {
+                return _getDataFormService = _getDataFormService ?? new GetDataFormService(_context, _mapper);
+            }
+        }
         private IGetDataFromAnswerssService _getDataFromAnswerssService;
         public IGetDataFromAnswerssService GetDataFromAnswerssService
         {
@@ -1171,6 +1190,6 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
     }
 
-    
+
 
 }

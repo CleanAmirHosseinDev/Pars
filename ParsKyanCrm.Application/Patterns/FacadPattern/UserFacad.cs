@@ -40,6 +40,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataForms;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataForm;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers;
@@ -103,6 +105,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
+
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -172,6 +175,9 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFormsService GetDataFormsService { get; }
         IGetDataFormService GetDataFormService { get; }
+        ISaveDataFormService SaveDataFormService { get; }
+        IDeleteDataFormService DeleteDataFormService { get; }
+
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
 
         IGetCustomerssService GetCustomerssService { get; }
@@ -643,6 +649,22 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFormService = _getDataFormService ?? new GetDataFormService(_context, _mapper);
+            }
+        }
+        private ISaveDataFormService _saveDataFormService;
+        public ISaveDataFormService SaveDataFormService
+        {
+            get
+            {
+                return _saveDataFormService = _saveDataFormService ?? new SaveDataFormService(_context, _mapper);
+            }
+        }
+        private IDeleteDataFormService _deleteDataFormService;
+        public IDeleteDataFormService DeleteDataFormService
+        {
+            get
+            {
+                return _deleteDataFormService = _deleteDataFormService ?? new DeleteDataFormService(_context, _mapper, _env);
             }
         }
         private IGetDataFromAnswerssService _getDataFromAnswerssService;

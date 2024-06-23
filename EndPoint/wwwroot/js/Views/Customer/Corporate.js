@@ -5,7 +5,10 @@
     function initCorporate(id = null) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
-       // initReferral(id);        
+       // initReferral(id);
+        for (let i = 26; i < 30; i++) {
+            dellocalstor("intiForm" + i + id);
+        }
         corporateIntiTab(1);
         initCustomer();
     }
@@ -26,49 +29,58 @@
     }
 
     function intiForm(FormID = null, RequestId = null) {
-
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0, IsActive:15 }), true, function (res) {
-
-            if (res.isSuccess) {
-
-                var strFormId = '';
-                var Filename = 1;
-                for (var i = 0; i < res.data.length; i++) {
-                    if (i == 0) {
-                        strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/><div class='col-md-12'>";
-                    }
-                    strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-2'>";
-                    if (res.data[i].questionType == 'select') {
-                        var options = combo(res.data[i].dataFormQuestionId);
-                        strFormId += "<select name='question" + res.data[i].dataFormQuestionId + "' id='question" + res.data[i].dataFormQuestionId + "' class='form-control select2' >" + options + "</select>";
-                    } else if (res.data[i].questionType == 'textarea') {
-                        strFormId += "<textarea name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
-                    }
-                    else if (res.data[i].questionType == 'checkbox') {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
-                    } else if (res.data[i].questionType == 'file') {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='Result_Final_FileName" + Filename + "' id='" + res.data[i].questionName + "' /><div id='Div" + res.data[i].questionName + "'></div>";
-                        Filename++;
-                    }
-                    else if (res.data[i].questionType == 'yesNo') {
-                        strFormId += "<label class='control-label'>بله</label><input type='radio' name='Form" + FormID + res.data[i].dataFormQuestionId + "' id='" + FormID + res.data[i].dataFormQuestionId + "Yes' />";
-                        strFormId += "<label class='control-label'>خیر</label><input type='radio' name='Form" + FormID + res.data[i].dataFormQuestionId + "' id='" + FormID + res.data[i].dataFormQuestionId + "No' />";
-                        Filename++;
-                    }
-                    else {
-                        strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
-                    }
-                    strFormId += "</div><div class='col-md-10'>";
-                    strFormId += "<input class='form-control' name='Description_" + FormID + "_" + res.data[i].dataFormQuestionId + "' type='text' id='Description_" + FormID + "_" + res.data[i].dataFormQuestionId +"' placeholder='توضیحات' /></div></div></div></div>";
-                    if (i == res.data.length && res.data.length > 1) {
-                        strFormId += "</div>";
-                    }
+        let strFormId = getlocalstor("intiForm" + FormID + RequestId);
+        if (strFormId === "") {
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({ DataFormId: FormID, PageIndex: 0, PageSize: 0, IsActive: 15 }), true, function (res) {
+                if (res.isSuccess) {
+                    strFormId = generate_strFormId(res, RequestId);
+                    setlocalstor("intiForm" + FormID + RequestId, strFormId)
+                    $("#FormDetail" + FormID).html(strFormId);
+                    ComboBoxWithSearch('.select2', 'rtl');
                 }
-                $("#FormDetail" + FormID).html(strFormId);
-                ComboBoxWithSearch('.select2', 'rtl');
-           }
-        }, true);
+            }, true);
+        }
+        $("#FormDetail" + FormID).html(strFormId);
+        ComboBoxWithSearch('.select2', 'rtl');
     }
+
+    function generate_strFormId(res, RequestId) {
+        let strFormId = "";
+        let Filename = 1;
+        for (var i = 0; i < res.data.length; i++) {
+            if (i == 0) {
+                strFormId += "<Input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "'/><div class='col-md-12'>";
+            }
+            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-2'>";
+            if (res.data[i].questionType == 'select') {
+                var options = combo(res.data[i].dataFormQuestionId);
+                strFormId += "<select name='question" + res.data[i].dataFormQuestionId + "' id='question" + res.data[i].dataFormQuestionId + "' class='form-control select2' >" + options + "</select>";
+            } else if (res.data[i].questionType == 'textarea') {
+                strFormId += "<textarea name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' class='form-control' ></textarea>";
+            }
+            else if (res.data[i].questionType == 'checkbox') {
+                strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' style='text-align:right; width: 30px' />";
+            } else if (res.data[i].questionType == 'file') {
+                strFormId += "<input type='" + res.data[i].questionType + "' name='Result_Final_FileName" + Filename + "' id='" + res.data[i].questionName + "' /><div id='Div" + res.data[i].questionName + "'></div>";
+                Filename++;
+            }
+            else if (res.data[i].questionType == 'yesNo') {
+                strFormId += "<label class='control-label'>بله</label><input type='radio' name='Form" + FormID + res.data[i].dataFormQuestionId + "' id='" + FormID + res.data[i].dataFormQuestionId + "Yes' />";
+                strFormId += "<label class='control-label'>خیر</label><input type='radio' name='Form" + FormID + res.data[i].dataFormQuestionId + "' id='" + FormID + res.data[i].dataFormQuestionId + "No' />";
+                Filename++;
+            }
+            else {
+                strFormId += "<input type='" + res.data[i].questionType + "' name='Answer" + res.data[i].questionOrder + "' id='" + res.data[i].questionName + "' placeholder='" + res.data[i].questionText + "' class='form-control' />";
+            }
+            strFormId += "</div><div class='col-md-10'>";
+            strFormId += "<input class='form-control' name='Description_" + FormID + "_" + res.data[i].dataFormQuestionId + "' type='text' id='Description_" + FormID + "_" + res.data[i].dataFormQuestionId + "' placeholder='توضیحات' /></div></div></div></div>";
+            if (i == res.data.length && res.data.length > 1) {
+                strFormId += "</div>";
+            }
+        }
+        return strFormId;
+    }
+
 
     function combo(QuestionID = null) {
         let strM = '<option value="">انتخاب کنید</option>';
@@ -101,6 +113,25 @@
 
     }
 
+    function makeForm() {
+
+    }
+
+    setlocalstor = function (k, v) {
+        var key = encrypt(k.toString(), keyMaker());
+        var val = encrypt(v.toString(), keyMaker());
+        localStorage.setItem(key, val);
+    };
+    getlocalstor = function (k) {
+        var t = encrypt(k.toString(), keyMaker());
+        var dd = localStorage.getItem(t);
+        var tt = decrypt(dd, keyMaker());
+        return tt;
+    };
+    dellocalstor = function (k) {
+        var t = encrypt(k.toString(), keyMaker());
+        localStorage.removeItem(t);
+    };
     
     web.Corporate = {
         IntiForm: intiForm,
@@ -108,6 +139,7 @@
         InitCustomer: initCustomer,
         CorporateIntiTab: corporateIntiTab,
         Combo: combo,
+        makeForm: makeForm,
     };
 
 })(Web, jQuery);

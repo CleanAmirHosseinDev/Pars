@@ -11,14 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOption
+namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOptions
 {
 
-    public class GetDataFormQuestionsOptionService : IGetDataFormQuestionsOptionService
+    public class GetDataFormQuestionsOptionsService : IGetDataFormQuestionsOptionsService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public GetDataFormQuestionsOptionService(IDataBaseContext context, IMapper mapper)
+        public GetDataFormQuestionsOptionsService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

@@ -35,6 +35,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormQuestions;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOptions;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormQuestionsOption;
@@ -165,6 +166,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
 
+        IGetDataFormQuestionsOptionsService GetDataFormQuestionsOptionsService { get; }
         IGetDataFormQuestionsOptionService GetDataFormQuestionsOptionService { get; }
 
         ISaveDataFormQuestionsService SaveDataFormQuestionsService { get; }
@@ -597,6 +599,14 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFormQuestionssService = _getDataFormQuestionssService ?? new GetDataFormQuestionssService(_context, _mapper);
+            }
+        }
+        private IGetDataFormQuestionsOptionsService _getDataFormQuestionsOptionsService;
+        public IGetDataFormQuestionsOptionsService GetDataFormQuestionsOptionsService
+        {
+            get
+            {
+                return _getDataFormQuestionsOptionsService = _getDataFormQuestionsOptionsService ?? new GetDataFormQuestionsOptionsService(_context, _mapper);
             }
         }
         private IGetDataFormQuestionsOptionService _getDataFormQuestionsOptionService;

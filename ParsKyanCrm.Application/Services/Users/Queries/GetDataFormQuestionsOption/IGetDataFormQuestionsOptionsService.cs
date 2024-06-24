@@ -9,6 +9,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
 {
     public interface IGetDataFormQuestionsOptionService
     {
-        Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Execute(RequestDataFormQuestionsOptionDto request);
+        Task<DataFormQuestionsOptionDto> Execute(int? id = null);
     }
 }

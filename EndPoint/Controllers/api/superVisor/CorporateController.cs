@@ -46,7 +46,7 @@ namespace EndPoint.Controllers.api.superVisor
         {
             try
             {
-                return await _userFacad.GetDataFormQuestionsOptionService.Execute(request);
+                return await _userFacad.GetDataFormQuestionsOptionsService.Execute(request);
             }
             catch (Exception ex)
             {

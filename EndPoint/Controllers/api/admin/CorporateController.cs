@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Controllers.api.admin
 {
-    [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City })]
+    [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
     public class CorporateController : BaseController
     {
         private readonly ILogger<CorporateController> _logger;
@@ -25,11 +25,11 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_DataFormQuestionsOptione([FromBody] RequestDataFormQuestionsOptionDto request)
+        public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_DataFormQuestionsOptiones([FromBody] RequestDataFormQuestionsOptionDto request)
         {
             try
             {
-                return await _userFacad.GetDataFormQuestionsOptionService.Execute(request);
+                return await _userFacad.GetDataFormQuestionsOptionsService.Execute(request);
             }
             catch (Exception ex)
             {
@@ -39,12 +39,12 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]/{id}/")]
         [HttpGet]
-        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
         public async Task<DataFormQuestionsOptionDto> Get_DataFormQuestionsOptione(int? id = null)
         {
             try
             {
-                return; //await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
+                return await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
             }
             catch (Exception)
             {

@@ -11,6 +11,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
     public class RequestDataFormQuestionsOptionDto : PageingParamerDto
     {
         public int? DataFormQuestionsId { get; set; }
+        public int Id { get; set; }
     }
 
     public class DataFormQuestionsOptionDto

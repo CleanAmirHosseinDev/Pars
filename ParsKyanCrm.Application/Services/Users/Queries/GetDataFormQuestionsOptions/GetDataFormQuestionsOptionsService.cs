@@ -28,22 +28,63 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
         {
             try
             {
-                List<DataFormQuestionsOptionDto> res = new List<DataFormQuestionsOptionDto>();
                 var lists = (
                     from s in _context.DataFormQuestionsOption
-                     where (s.DataFormQuestionsId == request.DataFormQuestionsId)
-                     select s
-                );
+                    where s.Id == request.Id
+                    select s).AsQueryable();
 
-                res = _mapper.Map<List<DataFormQuestionsOptionDto>>(await lists.ToListAsync());
+                if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);
+                
+                if (request.IsActive == 14) lists = lists.Where(p => p.IsActive == 14);
 
-                return new ResultDto<IEnumerable<DataFormQuestionsOptionDto>>
+                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Text.Contains(request.Search));
+                
+                if (request.DataFormQuestionsId != null)
+                    lists = (
+                        from s in _context.DataFormQuestionsOption
+                        where s.DataFormQuestionsId == request.DataFormQuestionsId
+                        select s
+                    );
+                
+                switch (request.SortOrder)
                 {
-                    Data = res,
-                    IsSuccess = true,
-                    Message = null,
-                    Rows = lists.Count()
-                };
+                    case "Id_D":
+                        lists = lists.OrderByDescending(s => s.Id);
+                        break;
+                    case "Id_A":
+                        lists = lists.OrderBy(s => s.Id);
+                        break;
+                    default:
+                        lists = lists.OrderByDescending(s => s.Id);
+                        break;
+                }
+
+                if (request.PageIndex == 0 && request.PageSize == 0)
+                {
+                    var res_Lists = await lists.ToListAsync();
+
+                    return new ResultDto<IEnumerable<DataFormQuestionsOptionDto>>
+                    {
+                        Data = _mapper.Map<IEnumerable<DataFormQuestionsOptionDto>>(res_Lists),
+                        IsSuccess = true,
+                        Message = string.Empty,
+                        Rows = res_Lists.LongCount(),
+                    };
+                }
+                else
+                {
+                    var lists_Res_Pageing = (
+                        await Pagination<DataFormQuestionsOption>.CreateAsync(lists.AsNoTracking(), request)
+                    );
+
+                    return new ResultDto<IEnumerable<DataFormQuestionsOptionDto>>
+                    {
+                        Data = _mapper.Map<IEnumerable<DataFormQuestionsOptionDto>>(lists_Res_Pageing),
+                        IsSuccess = true,
+                        Message = string.Empty,
+                        Rows = lists_Res_Pageing.Rows,
+                    };
+                }
             }
             catch (Exception ex)
             {

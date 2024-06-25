@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Controllers.api.admin
 {
-    [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
     public class CorporateController : BaseController
     {
         private readonly ILogger<CorporateController> _logger;
@@ -25,6 +24,7 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]")]
         [HttpPost]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_DataFormQuestionsOptiones([FromBody] RequestDataFormQuestionsOptionDto request)
         {
             try
@@ -51,35 +51,5 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
-
-        [HttpPost]
-        [Route("[action]")]
-        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
-        public async Task<ResultDto<CityDto>> Save_City([FromBody] CityDto request)
-        {
-            try
-            {
-                return await _userFacad.SaveCityService.Execute(request);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        [HttpPost]
-        [Route("[action]")]
-        public async Task<ResultDto<IEnumerable<StateDto>>> Get_States_Combo(RequestStateDto request)
-        {
-            try
-            {
-                return (await _userFacad.GetStatesService.Execute(request));
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
     }
 }

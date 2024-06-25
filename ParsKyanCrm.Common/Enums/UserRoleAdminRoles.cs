@@ -460,32 +460,32 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 5)]
         CorporateDataFormQuestions_Delete = 800,
 
-        [Display(Name = "مشاهده")]
-        [Category("BaseInfo")]
-        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
-        [DisplayFiledAttribute1(Name = "/Admin/Corporate/DataFormQuestionsOptione")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "گزینه های سوالات")]
-        [OrderAttribute(Order = 5)]
-        CorporateDataFormQuestionsOptione = 121,
+        //[Display(Name = "مشاهده")]
+        //[Category("BaseInfo")]
+        //[DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        //[DisplayFiledAttribute1(Name = "/Admin/Corporate/DataFormQuestionsOptione")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "گزینه های سوالات")]
+        //[OrderAttribute(Order = 5)]
+        //CorporateDataFormQuestionsOptione = 121,
 
-        [Display(Name = "ویرایش و افزودن")]
-        [Category("BaseInfo")]
-        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "گزینه های سوالات")]
-        [OrderAttribute(Order = 5)]
-        CorporateDataFormQuestionsOptione_Save = 902,
+        //[Display(Name = "ویرایش و افزودن")]
+        //[Category("BaseInfo")]
+        //[DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "گزینه های سوالات")]
+        //[OrderAttribute(Order = 5)]
+        //CorporateDataFormQuestionsOptione_Save = 902,
 
-        [Display(Name = "حذف")]
-        [Category("BaseInfo")]
-        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "گزینه های سوالات")]
-        [OrderAttribute(Order = 5)]
-        CorporateDataFormQuestionsOptione_Delete = 801,
+        //[Display(Name = "حذف")]
+        //[Category("BaseInfo")]
+        //[DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "گزینه های سوالات")]
+        //[OrderAttribute(Order = 5)]
+        //CorporateDataFormQuestionsOptione_Delete = 801,
         #endregion
     }
 }

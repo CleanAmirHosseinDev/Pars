@@ -62,12 +62,19 @@
             AjaxCallAction("GET", "/api/admin/Corporate/Get_DataFormQuestions/" + id, null, true, function (res) {
                 console.log(res);
                 if (res != null) {
+                    let type = "";
+                    if (res.data[i].questionType == "yesNo") {
+                        type = "بله/خیر";
+                    }
+                    else {
+                        type = "لیکرتی";
+                    }
                     $("#DataFormQuestionId").val(res.dataFormQuestionId);
                     $("#DataFormId").val(res.dataFormId);
                     $("#QuestionText").val(res.questionText);
                     $("#QuestionName").val(res.questionName);
                     $("#QuestionType").val(res.questionType);
-                    //comboBoxWithSearchUpdateText("#QuestionType", res.data[i].questionType)
+                    //comboBoxWithSearchUpdateText("#QuestionType", type);
                     $("#QuestionOrder").val(res.questionOrder);
                     $("#Score").val(res.score);
                     $("#HelpText").val(res.helpText);
@@ -88,14 +95,14 @@
         let HelpText = $("#HelpText").val();
         AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormQuestions", JSON.stringify(
             {
-                DataFormQuestionId: !isEmpty(DataFormQuestionId) ? 0,
+                DataFormQuestionId: !isEmpty(DataFormQuestionId) ? DataFormQuestionId : 0,
                 DataFormId: !isEmpty(DataFormId) ? DataFormId : 0, 
-                QuestionText: !isEmpty(QuestionText) ? QuestionText : "",
-                QuestionName: !isEmpty(QuestionName) ? QuestionName : "",
-                QuestionType: !isEmpty(QuestionType) ? QuestionType : "",
+                QuestionText: QuestionText,
+                QuestionName: QuestionName,
+                QuestionType: QuestionType,
                 QuestionOrder: !isEmpty(QuestionOrder) ? QuestionOrder : 0,
                 Score: !isEmpty(Score) ? Score : 0,
-                HelpText: !isEmpty(HelpText) ? HelpText : "",
+                HelpText: HelpText,
             }), true, function (res) {
 
             $(e).removeAttr("disabled");

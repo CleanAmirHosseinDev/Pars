@@ -60,10 +60,10 @@
         if (!isEmpty(id) && id != 0) {
 
             AjaxCallAction("GET", "/api/admin/Corporate/Get_DataFormQuestions/" + id, null, true, function (res) {
+                console.log(res);
                 if (res != null) {
                     $("#DataFormQuestionId").val(res.dataFormQuestionId);
                     $("#DataFormId").val(res.dataFormId);
-                    $("#OldDataFormId").val(res.dataFormId);
                     $("#QuestionText").val(res.questionText);
                     $("#QuestionName").val(res.questionName);
                     $("#QuestionType").val(res.questionType);
@@ -73,23 +73,29 @@
                     $("#HelpText").val(res.helpText);
                 }
             }, true);
-
         }
     }
     function saveDataFormQuestions(e) {
 
-        $(e).attr("disabled", "");
+        //$(e).attr("disabled", "");
+        let DataFormQuestionId = $("#DataFormQuestionId").val();
+        let DataFormId = $("#DataFormId").val();
+        let QuestionText = $("#QuestionText").val();
+        let QuestionName = $("#QuestionName").val();
+        let QuestionType = $("#QuestionType").val();
+        let QuestionOrder = $("#QuestionOrder").val();
+        let Score = $("#Score").val();
+        let HelpText = $("#HelpText").val();
         AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormQuestions", JSON.stringify(
             {
-                OldDataFormId: $("#OldDataFormId").val(),
-                DataFormQuestionId: $("#DataFormQuestionId").val(),
-                DataFormId: $("#DataFormId").val(),
-                QuestionText: $("#QuestionText").val(),
-                QuestionName: $("#QuestionName").val(),
-                QuestionType: $("#QuestionType").val(),
-                QuestionOrder: $("#QuestionOrder").val(),
-                Score: $("#Score").val(),
-                HelpText: $("#HelpText").val(),
+                DataFormQuestionId: !isEmpty(DataFormQuestionId) ? 0,
+                DataFormId: !isEmpty(DataFormId) ? DataFormId : 0, 
+                QuestionText: !isEmpty(QuestionText) ? QuestionText : "",
+                QuestionName: !isEmpty(QuestionName) ? QuestionName : "",
+                QuestionType: !isEmpty(QuestionType) ? QuestionType : "",
+                QuestionOrder: !isEmpty(QuestionOrder) ? QuestionOrder : 0,
+                Score: !isEmpty(Score) ? Score : 0,
+                HelpText: !isEmpty(HelpText) ? HelpText : "",
             }), true, function (res) {
 
             $(e).removeAttr("disabled");

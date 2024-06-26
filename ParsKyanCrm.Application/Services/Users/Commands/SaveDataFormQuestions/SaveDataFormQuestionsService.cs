@@ -38,7 +38,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
             {
                 string strCondition = string.Empty;
 
-                if (request.DataFormQuestionId != 0)
+                if (request.DataFormQuestionId == 0)
                 {
                     strCondition = "" + nameof(request.DataFormQuestionId) + " = " + request.DataFormQuestionId;
                 }
@@ -92,7 +92,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
                             {
                                 nameof(q_Entity.Entity.HelpText), request.HelpText
                             },
-                        }, $"DataFormQuestionId = {request.DataFormQuestionId} And DataFormId = {request.OldDataFormId}");
+                        }, $"DataFormQuestionId = {request.DataFormQuestionId}");
                 }
 
                 return new ResultDto<DataFormQuestionsDto>()

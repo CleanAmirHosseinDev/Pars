@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "ثبت شهر";
+    ViewData["Title"] = "ثبت یک گزینه";
 }
 
 @section Styles{
@@ -10,12 +10,12 @@
 @section PageHeader{
     <section class="content-header">
         <h1>
-            ثبت شهر
+            ثبت گزینه
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
             <li><a href="/Admin/City/Index"><i></i> شهر ها</a></li>
-            <li class="active"><a href="/Admin/City/EditCity@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت شهر</a></li>
+            <li><a href="/Admin/Corporate/DataFormQuestionsOptione/@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i>گزینه ها</a></li>
         </ol>
     </section>
 }
@@ -50,26 +50,35 @@
                 <form action="/Admin/City/index" id="frmFormMain" method="post">
                     <div class="form-horizontal">
 
-                        <input type="hidden" value="0" id="CityId" name="CityId" />
+                        <input type="hidden" value="0" id="Id" name="Id" />
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                        استان
+                                        متن گزینه
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+                                        <input type="text" class="form-control" name="Text" id="Text" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                        نام شهر
+                                        مرتبط به سوال
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="CityName" id="CityName" />
+                                        <input type="text" class="form-control" name="DataFormQuestionsId" id="DataFormQuestionsId" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        ظریب ارزش گزینه
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Ratio" id="Ratio" />
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -21,12 +21,10 @@ namespace EndPoint.Areas.Admin.Controllers
             ViewBag.id = id;
             return View();
         }
-
         public IActionResult DataFormQuestionsOptione()
         {
             return View();
         }
-
         public IActionResult EditDataFormQuestionsOptione()
         {
             return View();

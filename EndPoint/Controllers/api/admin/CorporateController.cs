@@ -21,10 +21,54 @@ namespace EndPoint.Controllers.api.admin
             _logger = logger;
             _userFacad = userFacad;
         }
+        [Route("[action]")]
+        [HttpPost]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
+        public async Task<ResultDto<IEnumerable<DataFormQuestionsDto>>> Get_DataFormQuestionss([FromBody] RequestDataFormQuestionsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionssService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
+        public async Task<DataFormQuestionsDto> Get_DataFormQuestions(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionsService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
+        public async Task<ResultDto<DataFormQuestionsDto>> Save_DataFormQuestions([FromBody] DataFormQuestionsDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormQuestionsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]
-        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_DataFormQuestionsOptiones([FromBody] RequestDataFormQuestionsOptionDto request)
         {
             try
@@ -39,7 +83,7 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]/{id}/")]
         [HttpGet]
-        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
         public async Task<DataFormQuestionsOptionDto> Get_DataFormQuestionsOptione(int? id = null)
         {
             try

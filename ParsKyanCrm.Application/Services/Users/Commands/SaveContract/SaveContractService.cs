@@ -30,12 +30,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContract
         {
             try
             {
-                #region Validation
-
-
-
-                #endregion
-
                 EntityEntry<Contract> q_Entity;
                 if (request.ContractId == 0)
                 {

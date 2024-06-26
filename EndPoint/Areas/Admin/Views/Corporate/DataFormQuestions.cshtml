@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "تنظیمات پایه ها";
+    ViewData["Title"] = "سوالات";
 }
 
 @section PageHeader{
 <section class="content-header">
     <h1>
-        شهر ها
+        سوالات
     </h1>
     <ol class="breadcrumb">
         <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/city/Index"><i></i> شهر ها</a></li>
+        <li><a href="/Admin/Corporate/DataFormQuestions"><i></i>سوالات</a></li>
     </ol>
 </section>
 }
@@ -39,7 +39,6 @@
                 <!-- /. tools -->
             </div>
             <div class="box-body" style="">
-
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <span id="TotalRowRep" name="TotalRowRep"> کادر جستجو </span>
@@ -47,7 +46,7 @@
                     <div class="panel-body">
                         <div class="row" style="margin-bottom: 5px;">
                             <div class="col-md-6">
-                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.City.TextSearchOnKeyDown(event);" />
+                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.Corporate.TextSearchOnKeyDown(event);" />
                             </div>
                             <div class="col-md-2">
                                 <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
@@ -75,7 +74,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.City.FilterGrid();" title="جستجو">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Corporate.DataFormQuestionsFilterGrid();" title="جستجو">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
@@ -83,11 +82,10 @@
                     </div>
                 </div>
 
-                <a href="/Admin/city/Editcity" class="btn btn-success fontForAllPage" style="margin-bottom:10px">
+                <a href="/Admin/Corporate/EditDataFormQuestions" class="btn btn-success fontForAllPage" style="margin-bottom:10px">
                     <i class="fa fa-plus"></i>
                     افزودن
                 </a>
-
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
@@ -97,22 +95,27 @@
                                     #
                                 </th>
                                 <th>
-                                    نام استان
+                                    متن سوال
                                 </th>
                                 <th>
-                                    نام شهر
+                                    ایدی سوال
+                                </th>
+                                <th>
+                                    نوع سوال
+                                </th>
+                                <th>
+                                    نمره سوال
+                                </th>
+                                <th>
+                                    جایگاه سوال
                                 </th>
                                 <th>عملیات</th>
                             </tr>
                         </thead>
-
                         <tbody id="tBodyList">
                         </tbody>
-
                     </table>
-
                 </div>
-
             </div>
         </div>
     </section>
@@ -120,6 +123,6 @@
 
 @section Scripts {
 <script>
-    Web.City.FilterGrid();
+        Web.Corporate.DataFormQuestionsFilterGrid();
 </script>
 }

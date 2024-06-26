@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "تنظیمات پایه ها";
+    ViewData["Title"] = "لیست گزینه ها";
 }
 
 @section PageHeader{
@@ -9,7 +9,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/Corporate/DataFormQuestionsOptione"><i></i>لیست گزینه ها</a></li>
+        <li><a href="/Admin/Corporate/DataFormQuestionsOptione"><i></i>لیست گزینه ها</a></li>
     </ol>
 </section>
 }
@@ -47,7 +47,7 @@
                     <div class="panel-body">
                         <div class="row" style="margin-bottom: 5px;">
                             <div class="col-md-6">
-                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.City.TextSearchOnKeyDown(event);" />
+                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.Corporate.TextSearchOnKeyDown(event);" />
                             </div>
                             <div class="col-md-2">
                                 <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
@@ -75,7 +75,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.City.FilterGrid();" title="جستجو">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Corporate.DataFormQuestionsOptioneFilterGrid();" title="جستجو">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>

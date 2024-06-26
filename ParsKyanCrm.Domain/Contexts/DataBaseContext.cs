@@ -160,9 +160,9 @@ namespace ParsKyanCrm.Domain.Contexts
             modelBuilder.Entity<DataFormQuestions>(entity =>
             {
                 entity.HasKey(e => e.DataFormQuestionId)
-                    .HasName("PK_DataForm");
+                    .HasName("PK_DataFormQuestionId");
 
-                entity.Property(e => e.DataFormQuestionId).HasColumnName("DataFormQuestionID");
+                entity.Property(e => e.DataFormId).HasColumnName("DataFormId");
 
                 entity.Property(e => e.QuestionName).HasMaxLength(150);
 

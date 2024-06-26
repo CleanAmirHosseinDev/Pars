@@ -30,7 +30,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
             {
                 var lists = (
                     from s in _context.DataFormQuestionsOption
-                    where s.Id == request.Id
                     select s).AsQueryable();
 
                 if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);

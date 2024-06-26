@@ -44,7 +44,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
                 }
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(nameof(DataFormQuestions), "*", strCondition + " AND " + nameof(request.DataFormId) + " = " + request.DataFormId);
+                    var q = Ado_NetOperation.GetAll_Table(nameof(DataFormQuestions), "*", strCondition + " AND " + "DataFormQuestionID" + " = " + request.DataFormQuestionId);
                     return q != null && q.Rows.Count > 0 ? true : false;
                 }
                 return true;
@@ -68,32 +68,31 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
                 }
                 else
                 {
-                    Ado_NetOperation.SqlUpdate(nameof(DataFormQuestions), new Dictionary<string, object>()
-                    {
+                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.DataFormQuestions).Name,
+                        new Dictionary<string, object>()
                         {
-                            nameof(q_Entity.Entity.DataFormId),request.DataFormId
-                        },
-                        {
-                            nameof(q_Entity.Entity.QuestionText),request.QuestionText
-                        },
-                        {
-                            nameof(q_Entity.Entity.QuestionName),request.QuestionName
-                        },
-                        {
-                            nameof(q_Entity.Entity.QuestionType),request.QuestionType
-                        },
-                        {
-                            nameof(q_Entity.Entity.QuestionOrder),request.QuestionOrder
-                        },
-                        {
-                            nameof(q_Entity.Entity.Score),request.Score
-                        },
-                        {
-                            nameof(q_Entity.Entity.HelpText),request.HelpText
-                        },
-                    },
-                        nameof(q_Entity.Entity.DataFormQuestionId) +
-                        $" = {request.DataFormQuestionId} and DataFormId={request.DataFormId} ");
+                            {
+                                nameof(q_Entity.Entity.DataFormId), request.DataFormId
+                            },
+                            {
+                                nameof(q_Entity.Entity.QuestionText), request.QuestionText
+                            },
+                            {
+                                nameof(q_Entity.Entity.QuestionName), request.QuestionName
+                            },
+                            {
+                                nameof(q_Entity.Entity.QuestionType), request.QuestionType
+                            },
+                            {
+                                nameof(q_Entity.Entity.QuestionOrder), request.QuestionOrder
+                            },
+                            {
+                                nameof(q_Entity.Entity.Score), request.Score
+                            },
+                            {
+                                nameof(q_Entity.Entity.HelpText), request.HelpText
+                            },
+                        }, $"DataFormQuestionId = {request.DataFormQuestionId} And DataFormId = {request.OldDataFormId}");
                 }
 
                 return new ResultDto<DataFormQuestionsDto>()

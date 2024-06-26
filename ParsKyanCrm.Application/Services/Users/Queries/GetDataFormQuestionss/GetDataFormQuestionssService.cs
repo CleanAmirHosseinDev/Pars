@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
+using ParsKyanCrm.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,30 +32,39 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
             {
                 var lists = (
                     from s in _context.DataFormQuestions
-                    where (s.DataFormId == request.DataFormId || request.DataFormId == null)
-                    select s
-                );
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.QuestionName.Contains(request.Search) ||
-                p.QuestionText.Contains(request.Search) ||
-                p.QuestionType.Contains(request.Search)
-                );
+                    where s.DataFormId > 25
+                    select s).AsQueryable();
+
+                if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);
+
+                if (request.IsActive == 14) lists = lists.Where(p => p.IsActive == 14);
+
+                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(
+                    p => p.QuestionText.Contains(request.Search) || p.QuestionName.Contains(request.Search) || p.HelpText.Contains(request.Search)
+                    );
+
+                if (request.DataFormId != null)
+                    lists = (
+                        from s in _context.DataFormQuestions
+                        where s.DataFormId == request.DataFormId
+                        select s
+                    );
 
                 switch (request.SortOrder)
                 {
-                    case "DataFormQuestionId_D":
-                        lists = lists.OrderByDescending(s => s.DataFormQuestionId);
+                    case "Id_D":
+                        lists = lists.OrderByDescending(s => s.DataFormId);
                         break;
-                    case "DataFormQuestionId_A":
-                        lists = lists.OrderBy(s => s.DataFormQuestionId);
+                    case "Id_A":
+                        lists = lists.OrderBy(s => s.DataFormId);
                         break;
                     default:
-                        lists = lists.OrderBy(s => s.QuestionOrder);
+                        lists = lists.OrderByDescending(s => s.DataFormId);
                         break;
                 }
 
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
-
                     var res_Lists = await lists.ToListAsync();
 
                     return new ResultDto<IEnumerable<DataFormQuestionsDto>>
@@ -64,23 +74,21 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                         Message = string.Empty,
                         Rows = res_Lists.LongCount(),
                     };
-
                 }
                 else
                 {
-
-                    var list_Res_Pageing = await Pagination<Domain.Entities.DataFormQuestions>.CreateAsync(lists.AsNoTracking(), request);
+                    var lists_Res_Pageing = (
+                        await Pagination<DataFormQuestions>.CreateAsync(lists.AsNoTracking(), request)
+                    );
 
                     return new ResultDto<IEnumerable<DataFormQuestionsDto>>
                     {
-                        Data = _mapper.Map<IEnumerable<DataFormQuestionsDto>>(list_Res_Pageing),
+                        Data = _mapper.Map<IEnumerable<DataFormQuestionsDto>>(lists_Res_Pageing),
                         IsSuccess = true,
                         Message = string.Empty,
-                        Rows = list_Res_Pageing.Rows,
+                        Rows = lists_Res_Pageing.Rows,
                     };
-
                 }
-
             }
             catch (Exception ex)
             {

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "ثبت شهر";
+    ViewData["Title"] = "ثبت سوال";
 }
 
 @section Styles{
@@ -10,12 +10,12 @@
 @section PageHeader{
     <section class="content-header">
         <h1>
-            ثبت شهر
+            ثبت سوال
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/City/Index"><i></i> شهر ها</a></li>
-            <li class="active"><a href="/Admin/City/EditCity@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت شهر</a></li>
+            <li><a href="/Admin/Corporate/DataFormQuestions"><i></i>سوالات</a></li>
+            <li class="active"><a href="/Admin/Corporate/EditDataFormQuestions@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i> ثبت سوال</a></li>
         </ol>
     </section>
 }
@@ -45,52 +45,93 @@
                 <!-- /. tools -->
             </div>
             <div class="box-body" style="">
-
-
-                <form action="/Admin/City/index" id="frmFormMain" method="post">
+                <form action="/Admin/Corporate/DataFormQuestions" id="frmFormMain" method="post">
                     <div class="form-horizontal">
 
-                        <input type="hidden" value="0" id="CityId" name="CityId" />
+                        <input type="hidden" value="@ViewBag.id" id="DataFormQuestionId" name="DataFormQuestionId" />
+                        <input type="hidden" value="@ViewBag.id" id="OldDataFormId" name="OldDataFormId" />
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                        استان
+                                        ایدی فرم
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+                                        <input type="text" class="form-control" name="DataFormId" id="DataFormId" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="">
-                                        نام شهر
+                                        متن سوال
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="CityName" id="CityName" />
+                                        <input type="text" class="form-control" name="QuestionText" id="QuestionText" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        نام سوال
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="QuestionName" id="QuestionName" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        نوع سوال
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="QuestionType" id="QuestionType" class="form-control select2" style="width:100% !important;">
+                                            <option value="yesNo">بله/خیر</option>
+                                            <option value="select">لیکرتی</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        جایگاه سوال
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="QuestionOrder" id="QuestionOrder" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        نمره سوال
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Score" id="Score" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="">
+                                        متن راهنما سوال
+                                        <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="HelpText" id="HelpText" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3">
-
                                     </div>
                                     <div class="col-md-9">
-                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.City.SaveCity(this);">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.Corporate.SaveDataFormQuestions(this);">
                                             <i class="fa fa-save"></i>
                                         </button>
                                     </div>
                                 </div>
-                               
                             </div>
-                            <div class="col-md-6"></div>
                         </div>
-
                     </div>
                 </form>
-
-
             </div>
         </div>
     </section>
@@ -98,7 +139,7 @@
 
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>    
-    <script>       
-        Web.City.InitCity(@ViewBag.id);
+    <script>
+        Web.Corporate.InitdataFormQuestions(@ViewBag.id);
     </script>
 }

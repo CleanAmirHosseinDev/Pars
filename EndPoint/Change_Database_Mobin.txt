@@ -12,3 +12,23 @@ add  [CodalNumber] nvarchar(50),[CodalDate] nvarchar(50)
 alter table RankingOfCompanies
 add TradingSymbol nvarchar(500) null;
 
+
+---------------------------------------->>> یکشنبه - 07 تیر 1403
+
+IsActive از جدول DataFormAnswerTanles
+
+Score از جدول DataFormQuestion
+IsActive از جدول DataFormQuestion
+DataFormQuestionId از جدول DataFormQuestion (شک دارم)
+DataFormId از جدول DataFormQuestion (شک دارم)
+
+کل جدول DataFormQuestionOption 
+
+IsActive از جدول DataForm
+CategoryId از جدول DataForm
+
+IsActive از جدول DataFormAnswer
+
+That's all
+
+

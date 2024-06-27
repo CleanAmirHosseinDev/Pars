@@ -65,10 +65,12 @@ var sideSliderShown = false;
 function toggleSideSlider() {
     if (sideSliderShown) {
         $("#sideslider_main").fadeOut();
+        $("#alert").fadeOut();
         $("#sideslider_panel").animate({ 'marginRight': '-80%' }, 1000);
     }
     else {
         $("#sideslider_main").fadeIn();
+        $("#alert").fadeIn();
         $("#sideslider_panel").animate({ 'marginRight': '0' }, 500);
     }
     sideSliderShown = !sideSliderShown;

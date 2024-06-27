@@ -70,33 +70,50 @@
         </div>
     </div>
 
-    <div id="message_main" style="display:none;">
-        <div id="close_div" onclick="$('#message_main').fadeOut(300);"></div>
-        <div id="div1">
-            <div id="ontop_div_mess" style="display: none;">
-                <div style="display: flex;">
-                    <h3 id="message_title"></h3>
-                    <a href="/" id="message_btn_close" onclick="$('#message_main').fadeOut(300);return false;">x</a>
-                </div>
-                <p id="message_text"></p>
+<div id="message_main" style="display:none;">
+    <div id="close_div" onclick="$('#message_main').fadeOut(300);"></div>
+    <div id="div1">
+        <div id="ontop_div_mess" style="display: none;">
+            <div style="display: flex;">
+                <h3 id="message_title"></h3>
+                <a href="/" id="message_btn_close" onclick="$('#message_main').fadeOut(300);return false;">x</a>
             </div>
-            <div id="ontop_div_login" style="display: none;">
-                <h4 style="text-align:center;">zxy</h4>
-                <div id="inner_div">
-                    <a style="background:#3c8dbc;" href="/" onclick="return false">
-
-                        @*<img />*@
-
-                    </a>
-                </div>
-            </div>
-
+            <p id="message_text"></p>
         </div>
+        <div id="ontop_div_login" style="display: none;">
+            <h4 style="text-align:center;">zxy</h4>
+            <div id="inner_div">
+                <a style="background:#3c8dbc;" href="/" onclick="return false">
+
+                    @*<img />*@
+
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <div id="alert" style="text-align: center;">
+        <script>alert("به دلیل عملیات فنی و کابل برگردان مخابرات برخی از خطوط شرکت دچار اختلال می باشد لطفا با شماره های\n09059034646\n09059034747\n02188102175\n02188109134\nتماس حاصل فرمایید")</script>
+        <p style="color:red;margin: 85px auto 0;width: 90%;" id="alert_message">
+            به دلیل عملیات فنی و کابل برگردان مخابرات برخی از خطوط شرکت دچار اختلال می باشد لطفا با شماره های
+            09059034646 - 09059034747 - 02188102175 - 02188109134 تماس حاصل فرمایید
+        </p>
+        <script>
+            var i = 0;
+            function change() {
+                var doc = $('#alert_message')
+                var color = ["black", "blue", "red", "green"];
+                doc.css('color', color[i]);
+                i = (i + 1) % color.length;
+            }
+            setInterval(change, 1000);
+        </script>
     </div>
 
-
     <div class="header_parent">
-        <header class="header">
+        <header class="header" style="position: fixed;top: 0;">
 
             <a id="side_slider_tgl_items" class="abtn" onclick="toggleSideSlider();return false;" href="/">...</a>
             <div class="logo">

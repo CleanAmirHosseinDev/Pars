@@ -63,7 +63,7 @@
                 console.log(res);
                 if (res != null) {
                     let type = "";
-                    if (res.data[i].questionType == "yesNo") {
+                    if (res.questionType == "yesNo") {
                         type = "بله/خیر";
                     }
                     else {
@@ -74,7 +74,7 @@
                     $("#QuestionText").val(res.questionText);
                     $("#QuestionName").val(res.questionName);
                     $("#QuestionType").val(res.questionType);
-                    //comboBoxWithSearchUpdateText("#QuestionType", type);
+                    comboBoxWithSearchUpdateText("QuestionType", type);
                     $("#QuestionOrder").val(res.questionOrder);
                     $("#Score").val(res.score);
                     $("#HelpText").val(res.helpText);

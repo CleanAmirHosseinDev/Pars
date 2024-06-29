@@ -95,7 +95,20 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
-
+        [HttpPost]
+        [Route("[action]")]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
+        public async Task<ResultDto<DataFormQuestionsOptionDto>> Save_DataFormQuestionsOptione([FromBody] DataFormQuestionsOptionDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormQuestionsOptionService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         [Route("[action]")]
         [HttpPost]
         //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]

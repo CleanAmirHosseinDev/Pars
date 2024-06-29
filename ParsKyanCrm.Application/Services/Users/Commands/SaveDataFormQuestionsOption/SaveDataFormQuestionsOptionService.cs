@@ -38,15 +38,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsO
             {
                 string strCondition = string.Empty;
                 
-                if (request.DataFormQuestionsId!=0)
+                if (request.Id == 0)
                 {
-                    strCondition = " " + nameof(request.DataFormQuestionsId) + " = " + request.DataFormQuestionsId ;
+                    strCondition = " " + nameof(request.Id) + " = " + request.Id;
                 }
                          
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.DataFromAnswers).Name, "*", strCondition + " AND " + nameof(request.Id) + " = " + request.Id);
+                    var q = Ado_NetOperation.GetAll_Table(nameof(DataFormQuestionsOption), "*", strCondition);
                     return q != null && q.Rows.Count > 0 ? true : false;
                 }
                 return true;
@@ -61,11 +61,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsO
         {
             try
             {
-                #region Validation
-                #endregion
-                var qFind = await _context.DataFormQuestionsOption.FirstOrDefaultAsync(m => m.Id == request.Id && m.DataFormQuestionsId == request.DataFormQuestionsId);
-                //request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
-
                 EntityEntry<DataFormQuestionsOption> q_Entity;
                 if (Check_Remote(request) == false)
                 {
@@ -77,9 +72,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsO
                 {
                     Ado_NetOperation.SqlUpdate(nameof(DataFormQuestionsOption), new Dictionary<string, object>()
                     {
-                        //{
-                        //    nameof(q_Entity.Entity.Id),request.Id
-                        //},
                         {
                             nameof(q_Entity.Entity.Text),request.Text
                         },
@@ -89,7 +81,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsO
                         {
                             nameof(q_Entity.Entity.Ratio),request.Ratio
                         }
-                    }, string.Format(nameof(q_Entity.Entity.DataFormQuestionsId) + " = {0} and Id={1} ", request.DataFormQuestionsId, request.Id));
+                    }, nameof(q_Entity.Entity.Id) + $" = {request.Id}");
                 }
 
                 return new ResultDto<DataFormQuestionsOptionDto>()

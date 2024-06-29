@@ -2059,6 +2059,22 @@ function TextBoxOnlyNumber(e) {
 
 }
 
+function TextBoxOnlyNumberFloat(e) {
+    try {
+        e = e || window.event;
+        var charCode = e.which || e.keyCode;
+        if ((charCode >= 48 && charCode <= 57) || charCode === 46) {
+            if (charCode === 46 && e.target.value.includes('.')) {
+                return false;
+            }
+            return true;
+        }
+
+        return false;
+    } catch (e) {
+    }
+}
+
 function InputNoType(e) {
 
     try {

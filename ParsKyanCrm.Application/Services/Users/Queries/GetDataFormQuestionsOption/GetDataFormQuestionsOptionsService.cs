@@ -31,7 +31,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionsOpt
                 DataFormQuestionsOptionDto res = new DataFormQuestionsOptionDto();
                 if (id != null && id != 0)
                 {
-                    var q_Find = await _context.DataFormQuestionsOption.FirstOrDefaultAsync(p => p.DataFormQuestionsId == id.Value);
+                    var q_Find = await _context.DataFormQuestionsOption.FirstOrDefaultAsync(p => p.Id == id.Value);
                     res = _mapper.Map<DataFormQuestionsOptionDto>(q_Find);
                 }
                 return res;

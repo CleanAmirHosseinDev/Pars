@@ -14,8 +14,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Admin/City/Index"><i></i> شهر ها</a></li>
-            <li><a href="/Admin/Corporate/DataFormQuestionsOptione/@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i>گزینه ها</a></li>
+            <li><a href="/Admin/Corporate/DataFormQuestionsOptione"><i></i>لیست گزینه ها</a></li>
+            <li><a href="/Admin/Corporate/DataFormQuestionsOptione@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i>گزینه</a></li>
         </ol>
     </section>
 }
@@ -47,10 +47,10 @@
             <div class="box-body" style="">
 
 
-                <form action="/Admin/City/index" id="frmFormMain" method="post">
+                <form action="/Corporate/DataFormQuestionsOptione" id="frmFormMain" method="post">
                     <div class="form-horizontal">
 
-                        <input type="hidden" value="0" id="Id" name="Id" />
+                        <input type="hidden" value="@ViewBag.id" id="Id" name="Id" />
 
                         <div class="row">
                             <div class="col-md-6">
@@ -69,7 +69,9 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="DataFormQuestionsId" id="DataFormQuestionsId" />
+                                        <select name="DataFormQuestionsId" id="DataFormQuestionsId" class="form-control select2" style="width:100% !important;">
+                                        </select>
+                                        <span id="DataFormQuestionsText" style="color:green"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -78,28 +80,21 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="Ratio" id="Ratio" />
+                                        <input type="text" class="form-control" name="Ratio" id="Ratio" onkeypress="return TextBoxOnlyNumberFloat(event);" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-3">
-
-                                    </div>
                                     <div class="col-md-9">
-                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.City.SaveCity(this);">
+                                        <button title="ثبت" class="btn btn-info fontForAllPage" onclick="Web.Corporate.SaveDataFormQuestionsOptione(this);">
                                             <i class="fa fa-save"></i>
                                         </button>
                                     </div>
                                 </div>
-                               
                             </div>
                             <div class="col-md-6"></div>
                         </div>
-
                     </div>
                 </form>
-
-
             </div>
         </div>
     </section>
@@ -107,7 +102,7 @@
 
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>    
-    <script>       
-        Web.City.InitCity(@ViewBag.id);
+    <script>
+        Web.Corporate.InitDataFormQuestionsOptione(@ViewBag.id);
     </script>
 }

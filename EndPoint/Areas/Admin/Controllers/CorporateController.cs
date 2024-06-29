@@ -12,6 +12,15 @@ namespace EndPoint.Areas.Admin.Controllers
 {
     public class CorporateController : BaseController
     {
+        public IActionResult DataForm()
+        {
+            return View();
+        }
+        public IActionResult EditDataForm(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
         public IActionResult DataFormQuestions()
         {
             return View();
@@ -25,8 +34,9 @@ namespace EndPoint.Areas.Admin.Controllers
         {
             return View();
         }
-        public IActionResult EditDataFormQuestionsOptione()
+        public IActionResult EditDataFormQuestionsOptione(int? id = null)
         {
+            ViewBag.id = id;
             return View();
         }
     }

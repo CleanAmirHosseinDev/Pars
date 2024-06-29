@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Org.BouncyCastle.Asn1.Ocsp;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
@@ -90,6 +91,49 @@ namespace EndPoint.Controllers.api.admin
                 return await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
+        public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
+        public async Task<DataFormsDto> Get_DataForm(int id)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpPost]
+        [Route("[action]")]
+        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
+        public async Task<ResultDto<DataFormsDto>> Save_DataForm([FromBody] DataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormService.Execute(request);
+            }
+            catch (Exception ex)
             {
                 throw;
             }

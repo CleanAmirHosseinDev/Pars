@@ -34,6 +34,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                     from s in _context.DataFormQuestions
                     where s.DataFormId > 25
                     select s).AsQueryable();
+                    //.Include(p => p.DataForms)
 
                 if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);
 

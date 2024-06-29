@@ -171,6 +171,11 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.Property(e => e.QuestionType).HasMaxLength(50);
                 entity.Property(e => e.HelpText).HasMaxLength(500);
                 entity.Property(e => e.Score).HasDefaultValue(0);
+
+                //entity.HasOne(d => d.DataForms)
+                //    .WithMany(p => p.DataFormQuestions)
+                //    .HasForeignKey(d => d.DataFormId)
+                //    .HasConstraintName("FK_DataFormQuestions_DataForms");
             });
 
             modelBuilder.Entity<DataFormQuestionsOption>(entity =>

@@ -22,6 +22,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string FormTitle { get; set; }
         public bool? IsTable { get; set; }
         public int? CategoryId { get; set; }
+        public byte? IsActive { get; set; }
 
     }
 }

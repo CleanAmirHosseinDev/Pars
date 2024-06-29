@@ -16,5 +16,6 @@ namespace ParsKyanCrm.Domain.Entities
         public int? Score { get; set; }
         public string HelpText { get; set; }
         public byte IsActive { get; set; }
+        //public virtual DataForms DataForms { get; set; }
     }
 }

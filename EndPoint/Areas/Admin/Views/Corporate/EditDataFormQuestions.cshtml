@@ -56,7 +56,8 @@
                                         <span class="RequiredLabel">*</span>
                                     </label>
                                     <div class="col-md-9">
-                                            <input type="text" class="form-control" name="DataFormId" id="DataFormId" onkeypress="return TextBoxOnlyNumber(event);"  />
+                                        <select name="DataForms" id="DataForms" class="form-control select2" style="width:100% !important;">
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -137,6 +138,6 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>    
     <script>
-        Web.Corporate.InitdataFormQuestions(@ViewBag.id);
+        Web.Corporate.InitDataFormQuestions(@ViewBag.id);
     </script>
 }

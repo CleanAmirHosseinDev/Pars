@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm
             {
                 string strCondition = string.Empty;
 
-                if (request.FormId != 0)
+                if (request.FormId == 0)
                 {
                     strCondition = "" + nameof(request.FormId) + " = " + request.FormId;
                 }
@@ -59,6 +59,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm
                 EntityEntry<DataForms> q_Entity;
                 if (Check_Remote(request) == false)
                 {
+                    request.IsActive = 15;
                     q_Entity = _context.DataForms.Add(_mapper.Map<DataForms>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<DataFormsDto>(q_Entity.Entity);
@@ -68,17 +69,11 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm
                     Ado_NetOperation.SqlUpdate(nameof(DataForms), new Dictionary<string, object>()
                     {
                         {
-                            nameof(q_Entity.Entity.FormId),request.FormId
-                        },
-                        {
                             nameof(q_Entity.Entity.FormTitle),request.FormTitle
                         },
                         {
                             nameof(q_Entity.Entity.CategoryId),request.CategoryId
                         },
-                        {
-                            nameof(q_Entity.Entity.IsTable),request.IsTable
-                        }
                     }, nameof(q_Entity.Entity.FormId) + $" = {request.FormId}");
                 }
 
@@ -93,68 +88,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm
             {
                 throw ex;
             }
-        }
-
-        //public async Task<ResultDto<DataFormsDto>> ExecutdeCopy(string Request)
-        //{
-        //try
-        //{
-        //    string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
-
-        //    string[] values = Request.Split('-');
-        //    int newReq = Convert.ToInt32(values[0]);
-        //    int OldReq = Convert.ToInt32(values[1]);
-
-        //    var con = await Infrastructure.DapperOperation.Run<DataFromAnswersDto>("select * from DataFromAnswers where RequestId=" + OldReq);
-
-        //    foreach (var item in con)
-        //    {
-
-        //        DataFromAnswersDto request = new DataFromAnswersDto();
-
-        //        request.FileName1 = item != null && !string.IsNullOrEmpty(item.FileName1) ? item.FileName1 : string.Empty;
-        //        request.FormId = item.FormId;
-        //        request.RequestId = newReq;
-        //        request.DataFormQuestionId = item.DataFormQuestionId;
-        //        request.Answer = item.Answer;
-        //        #region Upload Image
-
-        //        if (request.FileName1 != null)
-        //        {
-        //            fileNameOldPic_FileName1 = request.FileName1;
-        //            request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName1);
-        //            path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
-        //            await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1, path_FileName1, "فایل یک");
-        //        }
-        //        #endregion
-
-        //        EntityEntry<DataFromAnswers> q_Entity;
-        //        if (Check_Remote(request) == false)
-        //        {
-        //            q_Entity = _context.DataFromAnswers.Add(_mapper.Map<DataFromAnswers>(request));
-        //            await _context.SaveChangesAsync();
-        //            request = _mapper.Map<DataFromAnswersDto>(q_Entity.Entity);
-        //        }
-        //    }
-
-        //    return new ResultDto<DataFromAnswersDto>()
-        //    {
-        //        IsSuccess = true,
-        //        Message = "ثبت فرم با موفقیت انجام شد",
-        //        Data = null
-        //    };
-
-
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
-        //}
-
-        public Task<ResultDto<DataFormsDto>> ExecuteCopy(string Request)
-        {
-            throw new NotImplementedException();
         }
     }
 }

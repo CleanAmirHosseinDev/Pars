@@ -16,8 +16,10 @@
     function makeDataFormQuestionsList() {
         var strM = '';
         for (var i = 0; i < DataFormQuestionsList.length; i++) {
-            let questionText = DataFormQuestionsList[i].questionText.length > 79 ? DataFormQuestionsList[i].questionText.slice(0, 75) + " ..." : DataFormQuestionsList[i].questionText;
-            strM += " <option value=" + DataFormQuestionsList[i].dataFormQuestionId + ">" + questionText + "</option>";
+            if (DataFormQuestionsList[i].questionType === "select") {
+                let questionText = DataFormQuestionsList[i].questionText.length > 79 ? DataFormQuestionsList[i].questionText.slice(0, 75) + " ..." : DataFormQuestionsList[i].questionText;
+                strM += " <option value=" + DataFormQuestionsList[i].dataFormQuestionId + ">" + questionText + "</option>";
+            }
         }
         $("#DataFormQuestionsId").html(strM);
     }

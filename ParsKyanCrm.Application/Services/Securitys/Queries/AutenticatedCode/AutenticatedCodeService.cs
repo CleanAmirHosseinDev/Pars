@@ -127,7 +127,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                         obj_fillUserRoleCustomerRoles = user.UserName != "admin" ? FillUserRoleAdminRolesService(qCheckUserRole.Roles).Where(p => p.Selected).ToList() :
                              FillUserRoleAdminRolesService();
 
-                        tokenDescriptor.Subject.AddClaim(new Claim("Menus", JsonConvert.SerializeObject(obj_fillUserRoleCustomerRoles)));
+                        //tokenDescriptor.Subject.AddClaim(new Claim("Menus", JsonConvert.SerializeObject(obj_fillUserRoleCustomerRoles)));
 
                         break;
 

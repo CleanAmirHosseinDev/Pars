@@ -133,7 +133,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.Logins
                             FillUserRoleAdminRolesService(qCheckUserRole.Roles).Where(p => p.Selected).ToList() :
                             FillUserRoleAdminRolesService();
 
-                        tokenDescriptor.Subject.AddClaim(new Claim("Menus", JsonConvert.SerializeObject(obj_fillUserRoleCustomerRoles)));
+                        //tokenDescriptor.Subject.AddClaim(new Claim("Menus", JsonConvert.SerializeObject(obj_fillUserRoleCustomerRoles)));
 
                         break;
 

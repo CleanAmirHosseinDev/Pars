@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Controllers.api.admin
 {
+    [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm })]
     public class CorporateController : BaseController
     {
         private readonly ILogger<CorporateController> _logger;
@@ -22,9 +23,55 @@ namespace EndPoint.Controllers.api.admin
             _logger = logger;
             _userFacad = userFacad;
         }
+
         [Route("[action]")]
         [HttpPost]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm })]
+        public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm_Save })]
+        public async Task<DataFormsDto> Get_DataForm(int id)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm_Save })]
+        public async Task<ResultDto<DataFormsDto>> Save_DataForm([FromBody] DataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsDto>>> Get_DataFormQuestionss([FromBody] RequestDataFormQuestionsDto request)
         {
             try
@@ -39,7 +86,7 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]/{id}/")]
         [HttpGet]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
         public async Task<DataFormQuestionsDto> Get_DataFormQuestions(int? id = null)
         {
             try
@@ -54,7 +101,7 @@ namespace EndPoint.Controllers.api.admin
 
         [HttpPost]
         [Route("[action]")]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
         public async Task<ResultDto<DataFormQuestionsDto>> Save_DataFormQuestions([FromBody] DataFormQuestionsDto request)
         {
             try
@@ -66,9 +113,10 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+
         [Route("[action]")]
         [HttpPost]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestionsOptione })]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_DataFormQuestionsOptiones([FromBody] RequestDataFormQuestionsOptionDto request)
         {
             try
@@ -83,7 +131,7 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]/{id}/")]
         [HttpGet]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestionsOptione_Save })]
         public async Task<DataFormQuestionsOptionDto> Get_DataFormQuestionsOptione(int? id = null)
         {
             try
@@ -95,56 +143,15 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+
         [HttpPost]
         [Route("[action]")]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestionsOptione_Save })]
         public async Task<ResultDto<DataFormQuestionsOptionDto>> Save_DataFormQuestionsOptione([FromBody] DataFormQuestionsOptionDto request)
         {
             try
             {
                 return await _userFacad.SaveDataFormQuestionsOptionService.Execute(request);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-        [Route("[action]")]
-        [HttpPost]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
-        public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
-        {
-            try
-            {
-                return await _userFacad.GetDataFormsService.Execute(request);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        [Route("[action]/{id}/")]
-        [HttpGet]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Save })]
-        public async Task<DataFormsDto> Get_DataForm(int id)
-        {
-            try
-            {
-                return await _userFacad.GetDataFormService.Execute(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        [HttpPost]
-        [Route("[action]")]
-        //[UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.City_Save })]
-        public async Task<ResultDto<DataFormsDto>> Save_DataForm([FromBody] DataFormsDto request)
-        {
-            try
-            {
-                return await _userFacad.SaveDataFormService.Execute(request);
             }
             catch (Exception ex)
             {

@@ -21,17 +21,40 @@ namespace ParsKyanCrm.Infrastructure.Filters
             set { _enumRole = value; }
         }
 
+        private List<NormalJsonClassDto> FillUserRoleAdminRolesService(string roles = null)
+        {
+            try
+            {
+
+                List<string> lstArr = new List<string>();
+
+                if (!string.IsNullOrEmpty(roles)) lstArr.AddRange(roles.Split(','));
+
+                UserRoleAdminRoles? qEnum = null;
+                var q = EnumOperation<UserRoleAdminRoles>.ToSelectListByGroup(qEnum, lstArr).ToList();
+
+                return q;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
 
             try
             {
 
-                var q_C = filterContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Menus");
+                //var q_C = filterContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Menus");
 
-                NormalJsonClassDto[] listMenus = null;
+                NormalJsonClassDto qSingle = Ado_NetOperation.ConvertDataTableToList<NormalJsonClassDto>(Ado_NetOperation.Select("select ur.Roles as Text,cast(ur.UserID as nvarchar(50)) as Value from UserRoles as ur where ur.UserID = " + filterContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserID").Value)).FirstOrDefault();
+                NormalJsonClassDto[] listMenus = FillUserRoleAdminRolesService(qSingle.Text).Where(p => p.Selected == true).ToArray();
 
-                if (q_C != null) listMenus = JsonConvert.DeserializeObject<NormalJsonClassDto[]>(q_C.Value);
+               // NormalJsonClassDto[] listMenus = null;
+
+               // if (q_C != null) listMenus = JsonConvert.DeserializeObject<NormalJsonClassDto[]>(q_C.Value);
 
                 if (rolesCheck(listMenus))
                     base.OnActionExecuting(filterContext);
@@ -44,6 +67,7 @@ namespace ParsKyanCrm.Infrastructure.Filters
                         Message = "شما مجوز انجام این عملیات را ندارید",
                         StatusCode = 301
                     });
+
                 }
             }
             catch (Exception ex)

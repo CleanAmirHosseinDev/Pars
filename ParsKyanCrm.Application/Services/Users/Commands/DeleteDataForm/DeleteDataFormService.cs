@@ -14,13 +14,13 @@ using ParsKyanCrm.Domain.Entities;
 namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm
 {
 
-    public class DeleteDataFormDocumentService : IDeleteDataFormDocumentService
+    public class DeleteDataFormService : IDeleteDataFormService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;        
         private readonly IWebHostEnvironment _env;
 
-        public DeleteDataFormDocumentService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
+        public DeleteDataFormService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;            

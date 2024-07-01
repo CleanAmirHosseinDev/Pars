@@ -80,7 +80,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
 
         public virtual DbSet<LoginLog> LoginLogs { get; set; }
-        public virtual DbSet DataFormDocuments { get; set; }
+        public virtual DbSet<DataFormDocument> DataFormDocuments { get; set; }
         public virtual DbSet<DataFormQuestions> DataFormQuestions { get; set; }
         public virtual DbSet<DataFormQuestionsOption> DataFormQuestionsOption { get; set; }
         public virtual DbSet<DataForms> DataForms { get; set; }

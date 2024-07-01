@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm
 {
-    public interface IDeleteDataFormDocumentService
+    public interface IDeleteDataFormService
     {
         ResultDto Execute(int id);
     }

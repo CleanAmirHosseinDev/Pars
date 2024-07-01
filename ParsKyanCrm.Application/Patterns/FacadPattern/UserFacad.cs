@@ -34,6 +34,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument;
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormDocument;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestions;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions;
@@ -113,6 +115,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
 
 
+
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
     public interface IUserFacad
@@ -172,6 +175,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
         IGetDataFormQuestionsService GetDataFormQuestionsService { get; }
+        ISaveDataFormDocumentService SaveDataFormDocumentService { get; }
+        IDeleteDataFormDocumentService DeleteDataFormDocumentService { get; }
 
         IGetDataFormQuestionsOptionsService GetDataFormQuestionsOptionsService { get; }
         IGetDataFormQuestionsOptionService GetDataFormQuestionsOptionService { get; }
@@ -190,8 +195,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetDataFormsService GetDataFormsService { get; }
         IGetDataFormService GetDataFormService { get; }
         ISaveDataFormService SaveDataFormService { get; }
-        IDeleteDataFormDocumentService DeleteDataFormService { get; }
-
+        IDeleteDataFormService DeleteDataFormService { get; }
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
 
         IGetCustomerssService GetCustomerssService { get; }
@@ -618,6 +622,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private ISaveDataFormDocumentService _saveDataFormDocumentService;
+        public ISaveDataFormDocumentService SaveDataFormDocumentService
+        {
+            get
+            {
+                return _saveDataFormDocumentService = _saveDataFormDocumentService ?? new SaveDataFormDocumentService(_context, _mapper);
+            }
+        }
+
+        private IDeleteDataFormDocumentService _deleteDataFormDocumentService;
+        public IDeleteDataFormDocumentService DeleteDataFormDocumentService
+        {
+            get
+            {
+                return _deleteDataFormDocumentService = _deleteDataFormDocumentService ?? new DeleteDataFormDocumentService(_context, _mapper, _env);
+            }
+        }
+
         private IGetDataFormQuestionssService _getDataFormQuestionssService;
         public IGetDataFormQuestionssService GetDataFormQuestionssService
         {
@@ -724,8 +746,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _saveDataFormService = _saveDataFormService ?? new SaveDataFormService(_context, _mapper);
             }
         }
-        private IDeleteDataFormDocumentService _deleteDataFormService;
-        public IDeleteDataFormDocumentService DeleteDataFormService
+        private IDeleteDataFormService _deleteDataFormService;
+        public IDeleteDataFormService DeleteDataFormService
         {
             get
             {

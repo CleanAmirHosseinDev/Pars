@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
 {
-    public interface ISaveSaveDataFormDocumentService
+    public interface ISaveDataFormDocumentService
     {
         Task<ResultDto<DataFormDocumentsDto>> Execute(DataFormDocumentsDto request);
     }

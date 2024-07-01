@@ -18,11 +18,11 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument;
 
 namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
 {
-    public class SaveSaveDataFormDocumentService : ISaveSaveDataFormDocumentService
+    public class SaveDataFormDocumentService : ISaveDataFormDocumentService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public SaveSaveDataFormDocumentService(IDataBaseContext context, IMapper mapper)
+        public SaveDataFormDocumentService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

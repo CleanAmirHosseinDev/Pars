@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm
+namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormDocument
 {
     public interface IDeleteDataFormDocumentService
     {

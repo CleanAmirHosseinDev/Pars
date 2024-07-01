@@ -50,8 +50,8 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<SystemSeting> SystemSeting { get; set; }
         DbSet<UserRoles> UserRoles { get; set; }
         DbSet<Users> Users { get; set; }
-
         DbSet<FurtherInfo> FurtherInfo { get; set; }
+        DbSet<DataFormDocument> DataFormDocuments { get; set; }
         DbSet<DataFormQuestions> DataFormQuestions { get; set; }
         DbSet<DataFormQuestionsOption> DataFormQuestionsOption { get; set; }
         DbSet<DataForms> DataForms { get; set; }
@@ -80,7 +80,7 @@ namespace ParsKyanCrm.Domain.Contexts
 
 
         public virtual DbSet<LoginLog> LoginLogs { get; set; }
-
+        public virtual DbSet DataFormDocuments { get; set; }
         public virtual DbSet<DataFormQuestions> DataFormQuestions { get; set; }
         public virtual DbSet<DataFormQuestionsOption> DataFormQuestionsOption { get; set; }
         public virtual DbSet<DataForms> DataForms { get; set; }
@@ -119,6 +119,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<ValueChain> ValueChain { get; set; }
         public virtual DbSet<PublicActivities> PublicActivities { get; set; }
         public virtual DbSet<ContractPages> ContractPages { get; set; }
+        
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,6 +140,13 @@ namespace ParsKyanCrm.Domain.Contexts
                 e.Property(e => e.SignOutDate).HasColumnType("datetime");
 
 
+            });
+
+            modelBuilder.Entity<DataFormDocument>(entity =>
+            {
+                entity.HasKey(e => e.DataFormDocumentId);
+                entity.Property(e => e.Title).IsRequired();
+                entity.Property(e => e.CategoryId).IsRequired();
             });
 
             modelBuilder.Entity<DataFromAnswers>(entity =>

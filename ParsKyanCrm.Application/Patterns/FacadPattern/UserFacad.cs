@@ -32,6 +32,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetCompaniess;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCompanies;
 using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestions;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions;
@@ -165,6 +167,9 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetRequestReferencessService GetRequestReferencessService { get; }
 
+        IGetDataFormDocumentService GetDataFormDocumentService { get; }
+        IGetDataFormDocumentsService GetDataFormDocumentsService { get; }
+
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
         IGetDataFormQuestionsService GetDataFormQuestionsService { get; }
 
@@ -185,7 +190,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetDataFormsService GetDataFormsService { get; }
         IGetDataFormService GetDataFormService { get; }
         ISaveDataFormService SaveDataFormService { get; }
-        IDeleteDataFormService DeleteDataFormService { get; }
+        IDeleteDataFormDocumentService DeleteDataFormService { get; }
 
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
 
@@ -595,6 +600,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private IGetDataFormDocumentService _getDataFormDocumentService;
+        public IGetDataFormDocumentService GetDataFormDocumentService
+        {
+            get
+            {
+                return _getDataFormDocumentService = _getDataFormDocumentService ?? new GetDataFormDocumentService(_context, _mapper);
+            }
+        }
+
+        private IGetDataFormDocumentsService _getDataFormDocumentsService;
+        public IGetDataFormDocumentsService GetDataFormDocumentsService
+        {
+            get
+            {
+                return _getDataFormDocumentsService = _getDataFormDocumentsService ?? new GetDataFormDocumentsService(_context, _mapper);
+            }
+        }
+
         private IGetDataFormQuestionssService _getDataFormQuestionssService;
         public IGetDataFormQuestionssService GetDataFormQuestionssService
         {
@@ -701,8 +724,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
                 return _saveDataFormService = _saveDataFormService ?? new SaveDataFormService(_context, _mapper);
             }
         }
-        private IDeleteDataFormService _deleteDataFormService;
-        public IDeleteDataFormService DeleteDataFormService
+        private IDeleteDataFormDocumentService _deleteDataFormService;
+        public IDeleteDataFormDocumentService DeleteDataFormService
         {
             get
             {

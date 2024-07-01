@@ -10,8 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ParsKyanCrm.Domain.Entities;
+using Org.BouncyCastle.Asn1.Ocsp;
+using static Dapper.SqlMapper;
 
-namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm
+namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormDocument
 {
 
     public class DeleteDataFormDocumentService : IDeleteDataFormDocumentService
@@ -31,12 +33,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm
         {
             try
             {
-                Ado_NetOperation.SqlUpdate(nameof(DataForms), new Dictionary<string, object>()
+                Ado_NetOperation.SqlUpdate(nameof(DataFormDocument), new Dictionary<string, object>()
                     {
                     {
                         "IsActive",(byte)Common.Enums.TablesGeneralIsActive.InActive
                     }
-                    }, "FormId" + $" = {id} ");
+                }, "DataFormDocumentId" + $" = {id}");
 
                 return new ResultDto()
                 {

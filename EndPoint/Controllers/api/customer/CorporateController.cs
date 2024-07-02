@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
+using ParsKyanCrm.Infrastructure.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,6 @@ namespace EndPoint.Controllers.api.customer
 
     public class CorporateController : BaseController
     {
-
         private readonly ILogger<FurtherInfoController> _logger;
         private readonly IUserFacad _userFacad;
         public CorporateController(ILogger<FurtherInfoController> logger, IUserFacad userFacad)
@@ -24,6 +24,19 @@ namespace EndPoint.Controllers.api.customer
             _userFacad = userFacad;
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]

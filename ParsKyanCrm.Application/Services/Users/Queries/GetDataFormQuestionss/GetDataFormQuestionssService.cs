@@ -6,6 +6,7 @@ using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,14 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                         where (s.DataFormType == 2)
                         select s
                     );
+                    if (request.DataFormId != null)
+                    {
+                        lists = (
+                            from s in _context.DataFormQuestions
+                            where (s.DataFormType == 2 && s.DataFormId == request.DataFormId)
+                            select s
+                        );
+                    }
                 }
                 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.QuestionName.Contains(request.Search) ||

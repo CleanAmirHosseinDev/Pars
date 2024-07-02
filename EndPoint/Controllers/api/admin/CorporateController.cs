@@ -26,6 +26,51 @@ namespace EndPoint.Controllers.api.admin
 
         [Route("[action]")]
         [HttpPost]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormDocument })]
+        public async Task<ResultDto<IEnumerable<DataFormDocumentsDto>>> Get_DataFormDocuments([FromBody] RequestDataFormDocumentsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormDocumentsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormDocument_Save })]
+        public async Task<DataFormDocumentsDto> Get_DataFormDocument(int id)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormDocumentService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormDocument_Save })]
+        public async Task<ResultDto<DataFormDocumentsDto>> Save_DataFormDocument([FromBody] DataFormDocumentsDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormDocumentService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm })]
         public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
         {

@@ -30,7 +30,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments
             try
             {
                 var lists = (
-                    from s in _context.DataFormDocuments
+                    from s in _context.DataFormDocument
                     select s).AsQueryable();
 
                 if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);
@@ -74,9 +74,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments
                 }
                 else
                 {
-                    var lists_Res_Pageing = (
-                        await Pagination<DataFormDocument>.CreateAsync(lists.AsNoTracking(), request)
-                    );
+                    var lists_Res_Pageing = 
+                        await Pagination<Domain.Entities.DataFormDocument>.CreateAsync(lists.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<DataFormDocumentsDto>>
                     {

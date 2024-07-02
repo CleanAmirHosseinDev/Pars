@@ -12,6 +12,15 @@ namespace EndPoint.Areas.Admin.Controllers
 {
     public class CorporateController : BaseController
     {
+        public IActionResult DataFormDocument()
+        {
+            return View();
+        }
+        public IActionResult EditDataFormDocument(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
         public IActionResult DataForm()
         {
             return View();

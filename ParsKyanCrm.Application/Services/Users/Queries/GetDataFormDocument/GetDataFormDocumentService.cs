@@ -30,7 +30,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument
             try
             {
                 var lists = (
-                    from s in _context.DataFormDocuments
+                    from s in _context.DataFormDocument
                     where (s.IsActive == 15) && (s.DataFormDocumentId == id)
                     select s
                 );

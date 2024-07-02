@@ -42,7 +42,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(nameof(DataForms), "*", strCondition);
+                    var q = Ado_NetOperation.GetAll_Table(nameof(DataFormDocument), "*", strCondition);
                     return q != null && q.Rows.Count > 0 ? true : false;
                 }
                 return true;
@@ -60,7 +60,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
                 if (Check_Remote(request) == false)
                 {
                     request.IsActive = 15;
-                    q_Entity = _context.DataFormDocuments.Add(_mapper.Map<DataFormDocument>(request));
+                    q_Entity = _context.DataFormDocument.Add(_mapper.Map<DataFormDocument>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<DataFormDocumentsDto>(q_Entity.Entity);
                 }

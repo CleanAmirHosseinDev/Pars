@@ -514,7 +514,34 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute3(Name = "گزینه های لیکرتی")]
         [OrderAttribute(Order = 5)]
         CorporateDataFormQuestionsOptione_Delete = 802,
-        
+
+        [Display(Name = "مشاهده")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "/Admin/Corporate/DataFormDocument")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مدارک مورد نیاز")]
+        [OrderAttribute(Order = 5)]
+        CorporateDataFormDocument = 123,
+
+        [Display(Name = "ویرایش و افزودن")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مدارک مورد نیاز")]
+        [OrderAttribute(Order = 5)]
+        CorporateDataFormDocument_Save = 904,
+
+        [Display(Name = "حذف")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "مدارک مورد نیاز")]
+        [OrderAttribute(Order = 5)]
+        CorporateDataFormDocument_Delete = 803,
+
         #endregion
     }
 }

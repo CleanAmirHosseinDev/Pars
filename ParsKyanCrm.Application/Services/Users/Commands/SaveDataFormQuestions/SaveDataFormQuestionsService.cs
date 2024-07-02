@@ -75,6 +75,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
                                 nameof(q_Entity.Entity.DataFormId), request.DataFormId
                             },
                             {
+                                nameof(q_Entity.Entity.DataFormType), request.DataFormType
+                            },
+                            {
                                 nameof(q_Entity.Entity.QuestionText), request.QuestionText
                             },
                             {

@@ -9,6 +9,7 @@ namespace ParsKyanCrm.Domain.Entities
     {
         public int DataFormQuestionId { get; set; }
         public int? DataFormId { get; set; }
+        public int? DataFormType { get; set; } // 1 - Normal Question  | 2 - Corporate Question
         public string QuestionText { get; set; }
         public string QuestionName { get; set; }
         public string QuestionType { get; set; }

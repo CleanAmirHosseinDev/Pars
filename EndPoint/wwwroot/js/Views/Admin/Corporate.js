@@ -9,7 +9,8 @@
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (let i = 0; i < res.data.length; i++) {
-                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + res.data[i].categoryId + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    let category = getCategoryName(res.data[i].categoryId);
+                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -20,10 +21,12 @@
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("GET", "/api/admin/Corporate/Get_DataForm/" + id, null, true, function (res) {
                 if (res != null) {
+                    let category = getCategoryName(res.categoryId);
                     $("#FormId").val(res.formId);
                     $("#FormTitle").val(res.formTitle);
                     $("#CategoryId").val(res.categoryId);
                     $("#IsTable").val(res.isTable);
+                    comboBoxWithSearchUpdateText("CategoryId", category);
                 }
             }, true);
         }
@@ -57,7 +60,7 @@
                 DataFormList = res.data;
             }
         }, true);
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType:2 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -110,22 +113,26 @@
         $(e).attr("disabled", "");
         let DataFormQuestionId = $("#DataFormQuestionId").val();
         let DataFormId = $("#DataForms").val();
+        let DataFormType = 2;
         let QuestionText = $("#QuestionText").val();
         let QuestionName = $("#QuestionName").val();
         let QuestionType = $("#QuestionType").val();
         let QuestionOrder = $("#QuestionOrder").val();
         let Score = $("#Score").val();
         let HelpText = $("#HelpText").val();
+
         AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormQuestions", JSON.stringify(
             {
                 DataFormQuestionId: !isEmpty(DataFormQuestionId) ? DataFormQuestionId : 0,
                 DataFormId: !isEmpty(DataFormId) ? DataFormId : 0,
+                DataFormType: DataFormType,
                 QuestionText: QuestionText,
                 QuestionName: QuestionName,
                 QuestionType: QuestionType,
                 QuestionOrder: !isEmpty(QuestionOrder) ? QuestionOrder : 0,
                 Score: !isEmpty(Score) ? Score : 0,
                 HelpText: HelpText,
+                IsActive:15,
             }), true, function (res) {
 
                 $(e).removeAttr("disabled");
@@ -151,24 +158,7 @@
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
-                    let category = "";
-                    switch (res.data[i].categoryId) {
-                        case 287:
-                            category = "حقوق و رفتار عادلانه با سهامدار";
-                            break;
-                        case 288:
-                            category = "نقش ذینفعان";
-                            break;
-                        case 289:
-                            category = "افشاء و شفافیت";
-                            break;
-                        case 290:
-                            category = "مسئولیت های هیئت مدیره";
-                            break;
-                        default:
-                            category = "نا مشخص";
-                            break;
-                    }
+                    let category = getCategoryName(res.data[i].categoryId);
                     strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
@@ -314,6 +304,27 @@
     }
     function getObjectWithDataFormQuestionsId(object_list, id) {
         return object_list.find(o => o.dataFormQuestionId === parseInt(id));
+    }
+
+    function getCategoryName(id) {
+        switch (id) {
+            case 287:
+                category = "حقوق و رفتار عادلانه با سهامدار";
+                break;
+            case 288:
+                category = "نقش ذینفعان";
+                break;
+            case 289:
+                category = "افشاء و شفافیت";
+                break;
+            case 290:
+                category = "مسئولیت های هیئت مدیره";
+                break;
+            default:
+                category = "نا مشخص";
+                break;
+        }
+        return category;
     }
     
     web.Corporate = {

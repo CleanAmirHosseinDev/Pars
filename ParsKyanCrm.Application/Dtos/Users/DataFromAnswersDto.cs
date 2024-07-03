@@ -23,6 +23,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
         public string Answer { get; set; }
+        public string Description { get; set; }
         public string FileName1 { get; set; }
 
         public IFormFile Result_Final_FileName1 { get; set; }

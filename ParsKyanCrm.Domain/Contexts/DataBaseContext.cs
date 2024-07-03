@@ -156,7 +156,8 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.AnswerId).HasColumnName("AnswerID");
 
-                entity.Property(e => e.Answer).HasMaxLength(50);
+                entity.Property(e => e.Answer).HasMaxLength(100);
+                entity.Property(e => e.Description).HasMaxLength(1000);
 
                 entity.Property(e => e.RequestId).HasColumnName("RequestId");
 

@@ -37,7 +37,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
             {
                 string strCondition = string.Empty;
                 
-                if (request.DataFormQuestionId!=0)
+                if (request.DataFormQuestionId == 0)
                 {
                     strCondition = " " + nameof(request.DataFormQuestionId) + " = " + request.DataFormQuestionId ;
                 }
@@ -45,7 +45,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(typeof(Domain.Entities.DataFromAnswers).Name, "*", strCondition + " AND " + nameof(request.RequestId) + " = " + request.RequestId);
+                    var q = Ado_NetOperation.GetAll_Table(nameof(DataFromAnswers), "*", strCondition + " AND " + nameof(request.RequestId) + " = " + request.RequestId);
                     return q != null && q.Rows.Count > 0 ? true : false;
                 }
                 return true;
@@ -63,22 +63,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
             {
                 string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
 
-              
-                
-
-                #region Validation
-
-
-
-                #endregion
-
-
                 var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.RequestId==request.RequestId && m.DataFormQuestionId==request.DataFormQuestionId);
                  request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
 
                 #region Upload Image
-
-
                 if (request.Result_Final_FileName1 != null)
                 {
                     fileNameOldPic_FileName1 = request.FileName1;
@@ -110,22 +98,21 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                         },
                         {
                             nameof(q_Entity.Entity.Answer),request.Answer
-                        }
-                        ,
+                        },
+                        {
+                            nameof(q_Entity.Entity.Description),request.Description
+                        },
                         {
                             nameof(q_Entity.Entity.FileName1),request.FileName1
                         },
                     }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and RequestId={1} ", request.DataFormQuestionId,request.RequestId));
                 }
                 #region Upload Image
-
                 if (request.Result_Final_FileName1 != null)
 
                     FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1);
 
-                
                 path_FileName1 = string.Empty;
-               
 
                 #endregion
 
@@ -135,8 +122,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                     Message = "ثبت فرم با موفقیت انجام شد",
                     Data = request
                 };
-
-
             }
             catch (Exception ex)
             {
@@ -170,6 +155,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                     request.RequestId = newReq;
                     request.DataFormQuestionId = item.DataFormQuestionId;
                     request.Answer = item.Answer;
+                    request.Description = item.Description;
                     #region Upload Image
 
                     if (request.FileName1 != null)

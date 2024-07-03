@@ -23,6 +23,26 @@
             if (res.isSuccess) {
                 let strFormId = generate_strFormId(res, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
+
+                let LoadedDataFromDb = "";
+                AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
+                    PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
+                }), false, function (res) {
+                    if (res.isSuccess) {
+                        LoadedDataFromDb = res.data;
+                        for (let i = 0; LoadedDataFromDb.length > i; i++) {
+                            if (LoadedDataFromDb[i].answer == "Yes") {
+                                $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='Yes']").prop('checked', true);
+                            } else if (LoadedDataFromDb[i].answer == "No") {
+                                $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='No']").prop('checked', true);
+                            } else {
+                                $("input[name*='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "']").val(LoadedDataFromDb[i].answer);
+                            }
+                            $("input[name*='Description_Q" + LoadedDataFromDb[i].dataFormQuestionId + "']").val(LoadedDataFromDb[i].description);
+                        }
+                    }
+                }, true);
+
                 ComboBoxWithSearch('.select2', 'rtl');
             }
         }, true);
@@ -31,7 +51,7 @@
         let strFormId = "";
         strFormId += "<div class='col-md-12'>";
         for (var i = 0; i < res.data.length; i++) {
-            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-2'>";
+            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
             if (res.data[i].questionType == 'select') {
                 var options = combo(res.data[i].dataFormQuestionId);
                 strFormId += "<select name='Q_" + res.data[i].dataFormQuestionId + "' class='form-control select2' >" + options + "</select>";
@@ -40,17 +60,17 @@
                 strFormId += "<label class='control-label'>بله</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
                 strFormId += "<label class='control-label'>خیر</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
             }
-            strFormId += "</div><div class='col-md-10'>";
+            strFormId += "</div><div class='col-md-8'>";
             strFormId += "<input class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' type='text' placeholder='توضیحات' /></div></div></div></div>"; 
         }
         strFormId += "</div>";
         return strFormId;
     }
     function combo(QuestionID = null) {
-        let strM = '<option value="">انتخاب کنید</option>';
+        let strM = '';
         AjaxCallAction("POST", "/api/customer/Corporate/Get_Options", JSON.stringify({ DataFormQuestionsId: QuestionID, PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
-                strM = '<option value="">انتخاب کنید</option>';
+                strM = '';
                 for (var i = 0; i < res.data.length; i++) {
                     strM += " <option value=" + res.data[i].id + ">" + res.data[i].text + "</option>";
                 }
@@ -89,7 +109,7 @@
             if (DataFormList[i].formTitle.slice(0, 1) === SubCategoryName) {
                 intiForm(DataFormList[i].formId, ID);
             }
-        }  
+        }
     }
 
     function makeTabPane(FormTitle, FormId, RequestId, FirstItemActive = true) {
@@ -103,7 +123,7 @@
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId +");'>ذخیره تغییرات</a></div>";
+        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات" + FormTitle + "</a></div>";
         strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";
         strM += "<input type='hidden' id='FormID' name='FormID' value='" + FormId + "' />";
@@ -144,7 +164,7 @@
             IsActive: 15,
         }), false, function (res) {
             if (res.isSuccess) {
-                //  alertB("ثبت", res.message, "success");
+                alertB("ثبت", res.message, "success")
             }
             else {
                 alertB("خطا", res.message, "error");

@@ -37,7 +37,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
             {
                 string strCondition = string.Empty;
                 
-                if (request.DataFormQuestionId == 0)
+                if (request.DataFormQuestionId != 0)
                 {
                     strCondition = " " + nameof(request.DataFormQuestionId) + " = " + request.DataFormQuestionId ;
                 }

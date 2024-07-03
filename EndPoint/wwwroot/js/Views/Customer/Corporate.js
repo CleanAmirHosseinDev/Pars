@@ -141,6 +141,7 @@
             FormId: parseInt(formId),
             RequestId: parseInt(requestId),
             DataFormQuestionId: parseInt(dataFormQuestionId),
+            IsActive: 15,
         }), false, function (res) {
             if (res.isSuccess) {
                 //  alertB("ثبت", res.message, "success");

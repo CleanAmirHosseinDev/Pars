@@ -19,15 +19,13 @@
         let strFormId = "";
         AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
             DataFormId: FormID, PageIndex: 0, PageSize: 0, DataFormType: 2, IsActive: 15
-        }), false, function (res) {
+        }), true, function (res) {
             if (res.isSuccess) {
                 let strFormId = generate_strFormId(res, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
                 ComboBoxWithSearch('.select2', 'rtl');
             }
         }, true);
-        $("#FormDetail" + FormID).html(strFormId);
-        ComboBoxWithSearch('.select2', 'rtl');
     }
     function generate_strFormId(res, RequestId, FormID) {
         let strFormId = "";

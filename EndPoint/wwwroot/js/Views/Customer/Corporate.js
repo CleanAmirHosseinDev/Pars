@@ -23,11 +23,10 @@
             if (res.isSuccess) {
                 let strFormId = generate_strFormId(res, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
-
                 let LoadedDataFromDb = "";
                 AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
                     PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
-                }), false, function (res) {
+                }), true, function (res) {
                     if (res.isSuccess) {
                         LoadedDataFromDb = res.data;
                         for (let i = 0; LoadedDataFromDb.length > i; i++) {
@@ -36,14 +35,12 @@
                             } else if (LoadedDataFromDb[i].answer == "No") {
                                 $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='No']").prop('checked', true);
                             } else {
-                                $("input[name*='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "']").val(LoadedDataFromDb[i].answer);
+                                $("#Q_" + LoadedDataFromDb[i].dataFormQuestionId + " option[value='" + LoadedDataFromDb[i].answer + "']").prop("selected", true);
                             }
                             $("input[name*='Description_Q" + LoadedDataFromDb[i].dataFormQuestionId + "']").val(LoadedDataFromDb[i].description);
                         }
                     }
                 }, true);
-
-                ComboBoxWithSearch('.select2', 'rtl');
             }
         }, true);
     }
@@ -54,7 +51,7 @@
             strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
             if (res.data[i].questionType == 'select') {
                 var options = combo(res.data[i].dataFormQuestionId);
-                strFormId += "<select name='Q_" + res.data[i].dataFormQuestionId + "' class='form-control select2' >" + options + "</select>";
+                strFormId += "<select name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
             }
             else if (res.data[i].questionType == 'yesNo') {
                 strFormId += "<label class='control-label'>بله</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
@@ -72,7 +69,7 @@
             if (res.isSuccess) {
                 strM = '';
                 for (var i = 0; i < res.data.length; i++) {
-                    strM += " <option value=" + res.data[i].id + ">" + res.data[i].text + "</option>";
+                    strM += " <option value='" + res.data[i].id + "_" + res.data[i].text + "'>" + res.data[i].text + "</option>";
                 }
             }
         }, true);
@@ -142,7 +139,7 @@
                 let SingleQuestion = ListOfAnswers.slice(0, 2);
                 ListOfAnswers = ListOfAnswers.slice(2, ListOfAnswers.length)
                 let question_id = SingleQuestion[0].split("_")[1].split("=")[0]
-                let answer = SingleQuestion[0].split("_")[1].split("=")[1]
+                let answer = decodeURIComponent(SingleQuestion[0].split("=")[1])
                 let description = decodeURIComponent(SingleQuestion[1].split("=")[1])
                 if (!isEmpty(answer)) {
                     saveSingelAnswerForm(formId, answer, description, question_id);

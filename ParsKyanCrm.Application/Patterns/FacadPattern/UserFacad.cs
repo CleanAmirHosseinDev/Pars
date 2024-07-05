@@ -34,6 +34,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.InitReferral;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReports;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormReports;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormDocument;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss;
@@ -172,7 +174,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IGetDataFormDocumentService GetDataFormDocumentService { get; }
         IGetDataFormDocumentsService GetDataFormDocumentsService { get; }
-
+        IGetDataFormReportsService GetDataFormReportsService { get; }
+        ISaveDataFormReportsService SaveDataFormReportsService { get; }
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
         IGetDataFormQuestionsService GetDataFormQuestionsService { get; }
         ISaveDataFormDocumentService SaveDataFormDocumentService { get; }
@@ -637,6 +640,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _deleteDataFormDocumentService = _deleteDataFormDocumentService ?? new DeleteDataFormDocumentService(_context, _mapper, _env);
+            }
+        }
+
+        private IGetDataFormReportsService _getDataFormReportsService;
+        public IGetDataFormReportsService GetDataFormReportsService
+        {
+            get
+            {
+                return _getDataFormReportsService = _getDataFormReportsService ?? new GetDataFormReportsService(_context, _mapper);
+            }
+        }
+
+        private ISaveDataFormReportsService _saveDataFormReportsService;
+        public ISaveDataFormReportsService SaveDataFormReportsService
+        {
+            get
+            {
+                return _saveDataFormReportsService = _saveDataFormReportsService ?? new SaveDataFormReportsService(_context, _mapper);
             }
         }
 

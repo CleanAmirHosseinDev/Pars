@@ -78,7 +78,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 EntityEntry<DataFromAnswers> q_Entity;
                 if (Check_Remote(request) == false)
-                {                    
+                {   
                     q_Entity = _context.DataFromAnswers.Add(_mapper.Map<DataFromAnswers>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<DataFromAnswersDto>(q_Entity.Entity);

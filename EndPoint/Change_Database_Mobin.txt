@@ -13,22 +13,55 @@ alter table RankingOfCompanies
 add TradingSymbol nvarchar(500) null;
 
 
----------------------------------------->>> یکشنبه - 07 تیر 1403
+---------------------------------------->>> یکشنبه - 14 تیر 1403
+تغییرات حمیدرضا رضایی در دیتا بیس در رابطه با پارس کیان
 
-IsActive از جدول DataFormAnswerTanles
+-- ایجاد یک جدول برای ذخیره سازی فایل هایی که در فرم توسط کاربران ارسال می گردد
+CREATE TABLE [dbo].[DataFormDocument](
+	[DataFormDocumentId] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](max) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[HelpText] [nvarchar](max) NULL,
+	[IsActive] [tinyint] NULL,
+ CONSTRAINT [PK_DataFormDocument] PRIMARY KEY CLUSTERED 
+(
+	[DataFormDocumentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-Score از جدول DataFormQuestion
-IsActive از جدول DataFormQuestion
-DataFormQuestionId از جدول DataFormQuestion (شک دارم)
-DataFormId از جدول DataFormQuestion (شک دارم)
+-- افزودن مقدار پیشفرض 15 برای وضعیت
+ALTER TABLE [dbo].[DataFormDocument] ADD CONSTRAINT [DF_DataFormDocument_IsActive]  DEFAULT ((15)) FOR [IsActive]
 
-کل جدول DataFormQuestionOption 
+-- نال پذیر بودن توضیحات
+ALTER TABLE [dbo].[DataFromAnswers] ADD Description nvarchar(MAX) null;
 
-IsActive از جدول DataForm
-CategoryId از جدول DataForm
+نال پذیر بودن نوع فرم سوال حاکمیت یا فرم عادی
+ALTER TABLE [dbo].[DataFormQuestions] ADD DataFormType int null;
 
-IsActive از جدول DataFormAnswer
+-- تعیین مقدار پیش فرض نوع سوال 1 بعنی سوال عادی
+ALTER TABLE [dbo].[DataFormQuestions] ADD CONSTRAINT [DF_DataFormQuestions_DataFormType] DEFAULT ((1)) FOR [DataFormType]
 
-That's all
+-- تعیین مقدار پیش فرض 0 برای نمره
+ALTER TABLE [dbo].[DataFormQuestions] ADD CONSTRAINT [DF_DataFormQuestions_Score_1] DEFAULT ((0)) FOR [Score]
+
+-- افزودن مقدار پیشفرض 15 برای وضعیت
+ALTER TABLE [dbo].[DataFormQuestions] ADD CONSTRAINT [DF_DataFormQuestions_IsActive] DEFAULT ((15)) FOR [IsActive]
 
 
+-- ایجاد یک جدول برای آنالیز نمره هر کاربر توسط ارزیاب
+CREATE TABLE [dbo].[DataFormReport](
+	[DataReportId] [int] IDENTITY(1,1) NOT NULL,
+	[RequestId] [int] NOT NULL,
+	[DataFormAnswerId] [int] NOT NULL,
+	[SystemScore] [int] NOT NULL,
+	[AnalizeScore] [int] NOT NULL,
+	[Description] [nvarchar](max) NULL,
+	[IsActive] [tinyint] NULL,
+ CONSTRAINT [PK_DataFormReport] PRIMARY KEY CLUSTERED 
+(
+	[DataReportId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+-- افزودن مقدار پیشفرض 15 برای وضعیت
+ALTER TABLE [dbo].[DataFormReport] ADD  CONSTRAINT [DF_DataFormReport_IsActive]  DEFAULT ((15)) FOR [IsActive]

@@ -67,9 +67,9 @@
         let strM = '';
         AjaxCallAction("POST", "/api/customer/Corporate/Get_Options", JSON.stringify({ DataFormQuestionsId: QuestionID, PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
-                strM = '';
+                strM = '<option value="0">انتخاب کنید</option>';
                 for (var i = 0; i < res.data.length; i++) {
-                    strM += " <option value='" + res.data[i].id + "_" + res.data[i].text + "'>" + res.data[i].text + "</option>";
+                    strM += "<option value='" + res.data[i].id + "_" + res.data[i].text + "'>" + res.data[i].text + "</option>";
                 }
             }
         }, true);
@@ -141,7 +141,7 @@
                 let question_id = SingleQuestion[0].split("_")[1].split("=")[0]
                 let answer = decodeURIComponent(SingleQuestion[0].split("=")[1])
                 let description = decodeURIComponent(SingleQuestion[1].split("=")[1])
-                if (!isEmpty(answer)) {
+                if (!isEmpty(answer) && answer != "0") {
                     saveSingelAnswerForm(formId, answer, description, question_id);
                 }
             }
@@ -161,6 +161,25 @@
             IsActive: 15,
         }), false, function (res) {
             if (res.isSuccess) {
+                // سوال رو دریافت کردم تا نمره مربوط به اون رو داشته باشم
+                var dataFormQuestionScore = 0;
+                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + dataFormQuestionId, null, false, function (res) {
+                    dataFormQuestionScore = res.score;
+                }, true);
+
+                // اگر خواست فرم رو اپدیت کنه یعنی پاسخ اش رو عوض کنه ای دی پاسخش عوض نمی شه فقط
+                // متن پاسخش عوض میشه پس اگر ایدی پاسخ توی کد وضعیت 0 بود یعنی فرم اپدیت شده
+                // وقتی فرم پاسخ اپدیت میشه نیازی به ذخیره فرم آنالیز پاسخ نیست
+                if (res.dataId != 0)
+                    // ذخیره سوال در جدول آنالیز نمره
+                    AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromReport", JSON.stringify({
+                        RequestId: requestId,
+                        DataFormAnswerId: res.dataId,
+                        SystemScore: parseInt(dataFormQuestionScore),
+                        AnalizeScore: 0,
+                        IsActive: 15,
+                    }), true, undefined, true);
+
                 alertB("ثبت", res.message, "success")
             }
             else {

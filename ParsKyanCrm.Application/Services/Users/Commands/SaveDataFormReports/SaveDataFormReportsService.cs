@@ -35,9 +35,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
             {
                 string strCondition = string.Empty;
 
-                if (request.DataReportId == 0)
+                if (request.RequestId != 0)
                 {
-                    strCondition = "" + nameof(request.DataReportId) + " = " + request.DataReportId;
+                    strCondition = "" + nameof(request.RequestId) + " = " + request.RequestId + " AND " + nameof(request.DataFormAnswerId) + $" = {request.DataFormAnswerId}";
                 }
                 if (!string.IsNullOrEmpty(strCondition))
                 {

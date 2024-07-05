@@ -77,10 +77,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                 #endregion
 
                 EntityEntry<DataFromAnswers> q_Entity;
+                int answer_id = 0;
                 if (Check_Remote(request) == false)
                 {   
                     q_Entity = _context.DataFromAnswers.Add(_mapper.Map<DataFromAnswers>(request));
                     await _context.SaveChangesAsync();
+                    answer_id = q_Entity.Entity.AnswerId;
+                    request.AnswerId = answer_id;
                     request = _mapper.Map<DataFromAnswersDto>(q_Entity.Entity);
                 }
                 else
@@ -120,7 +123,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                 {
                     IsSuccess = true,
                     Message = "ثبت فرم با موفقیت انجام شد",
-                    Data = request
+                    Data = request,
+                    DataId = answer_id,
                 };
             }
             catch (Exception ex)

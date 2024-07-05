@@ -52,6 +52,20 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFormQuestionsDto> Get_DataFormQuestions(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionsService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_Options([FromBody] RequestDataFormQuestionsOptionDto request)
@@ -149,6 +163,20 @@ namespace EndPoint.Controllers.api.customer
                 return _userFacad.DeleteDataFormAnswerTablesService.Execute(id);
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFormReportDto>> Save_DataFromReport([FromBody] DataFormReportDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormReportsService.Execute(request);
+            }
+            catch (Exception ex)
             {
                 throw;
             }

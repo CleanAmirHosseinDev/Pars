@@ -12,9 +12,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
 {
     public class RequestDataFormReportDto : PageingParamerDto
     {
-        public int DataReportId { get; set; }
+        public int? DataReportId { get; set; }
         public int? RequestId { get; set; }
-        public int DataFormAnswerId { get; set; }
+        public int? DataFormAnswerId { get; set; }
     }
 
     public class DataFormReportDto

@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Controllers.api.superVisor
 {
-
     public class CorporateController : BaseController
     {
 
@@ -23,7 +22,6 @@ namespace EndPoint.Controllers.api.superVisor
             _logger = logger;
             _userFacad = userFacad;
         }
-
         #region دریافت ذخیره حذف سوالات یا اپشن ها
         // نمایش همه سوالات مرتبط با ایدی دریافتی
         [Route("[action]")]

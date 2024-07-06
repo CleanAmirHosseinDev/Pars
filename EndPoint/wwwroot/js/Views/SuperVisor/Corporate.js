@@ -8,9 +8,9 @@
     }
     function initCustomer(dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
-        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+        AjaxCallAction("GET", "/api/superVisor/Customers/Get_Customers/", null, true, function (res) {
             if (res != null) {
-                $("#CutomerName").html("<h4> فرم پاسخ حاکمیت شرکتی " + res.companyName + "</h4>");
+                $("#CutomerName").html("<h4> فرم پاسخ های حاکمیت شرکتی " + res.companyName + "</h4>");
             }
         }, true);
     }
@@ -20,61 +20,46 @@
             DataFormId: FormID, PageIndex: 0, PageSize: 0, DataFormType: 2, IsActive: 15
         }), true, function (res) {
             if (res.isSuccess) {
-                let strFormId = generate_strFormId(res, RequestId, FormID);
+                strFormId = generate_strFormId(res, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
-                let LoadedDataFromDb = "";
-                AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
-                    PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
-                }), true, function (res) {
-                    if (res.isSuccess) {
-                        LoadedDataFromDb = res.data;
-                        for (let i = 0; LoadedDataFromDb.length > i; i++) {
-                            if (LoadedDataFromDb[i].answer == "Yes") {
-                                $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='Yes']").prop('checked', true);
-                            } else if (LoadedDataFromDb[i].answer == "No") {
-                                $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='No']").prop('checked', true);
-                            } else {
-                                $("#Q_" + LoadedDataFromDb[i].dataFormQuestionId + " option[value='" + LoadedDataFromDb[i].answer + "']").prop("selected", true);
-                            }
-                            $("input[name*='Description_Q" + LoadedDataFromDb[i].dataFormQuestionId + "']").val(LoadedDataFromDb[i].description);
-                        }
-                    }
-                }, true);
             }
         }, true);
     }
-    function generate_strFormId(res, RequestId, FormID) {
-        let strFormId = "";
-        strFormId += "<div class='col-md-12'>";
-        for (var i = 0; i < res.data.length; i++) {
-            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
-            if (res.data[i].questionType == 'select') {
-                var options = combo(res.data[i].dataFormQuestionId);
-                strFormId += "<select name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
-            }
-            else if (res.data[i].questionType == 'yesNo') {
-                strFormId += "<label class='control-label'>بله</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
-                strFormId += "<label class='control-label'>خیر</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
-            }
-            strFormId += "</div><div class='col-md-8'>";
-            strFormId += "<input class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' type='text' placeholder='توضیحات' /></div></div></div></div>"; 
-        }
-        strFormId += "</div>";
-        return strFormId;
-    }
-    function _getAllFromOption(QuestionID = null, OptionId) {
-        var result;
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_Option/" + OptionId, JSON.stringify({ DataFormQuestionsId: QuestionID, PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
+    function generate_strFormId(QuestionData, RequestId, FormID) {
+        var _DataAnswer;
+        var _str_tag;
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
+            PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
+        }), false, function (res) {
             if (res.isSuccess) {
-                result = res;
+                _DataAnswer = res.data;
             }
         }, true);
-        return result;
+        for (let i = 0; QuestionData.length > i; i++) {
+            var report;
+            var answer = _DataAnswer.find(o => o.dataFormQuestionID === QuestionData[i].dataFormQuestionId)
+            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
+                DataFormAnswerId: answer.answerID,
+                RequestId: RequestId,
+            }), false, function (res) {
+                if (res != null) {
+                    report = res;
+                }
+            }, true);
+            _str_tag = "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
+            _str_tag += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-2'><p>" + answer.answer;
+            _str_tag += "</p></div><div class='col-md-6'><p>" + answer.description;
+            _str_tag += "</p></div><div class='col-md-2'><p>" + report.systemScore;
+            _str_tag += "</p></div><div class='col-md-2'><p>" + "<input type='text' value='' />";
+            _str_tag += "</p></div></div></div></div><br>";
+        }
+        return _str_tag;
     }
+
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
         let DataFormList = "";
         let ID = $("#RequestIdForms").val();
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataForms", JSON.stringify({PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
             }
@@ -93,7 +78,7 @@
                     tabPane += makeTabPane(DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
                     li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formTitle + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
                 }
-                
+
             }
         }
         $("#" + PutPlace).append(li_option);
@@ -143,7 +128,7 @@
         catch (e) {
         }
     }
-    function saveSingelAnswerForm(formId, answer, description = "" ,dataFormQuestionId) {
+    function saveSingelAnswerForm(formId, answer, description = "", dataFormQuestionId) {
         var requestId = $("#RequestId").val();
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers", JSON.stringify({
             Answer: answer,
@@ -188,12 +173,11 @@
             }
         }, true);
     }
-    
-    web.Corporate = {
+
+    web.CorporateSuperVisor = {
         IntiForm: intiForm,
         InitCorporate: initCorporate,
         InitCustomer: initCustomer,
-        Combo: combo,
         MakeDynamicForm: makeDynamicForm,
         SaveSerializedForm: saveSerializedForm,
     };

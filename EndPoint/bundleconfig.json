@@ -33,6 +33,7 @@
     "outputFileName": "wwwroot/js/Views/SuperVisor/all.min.js",
     "inputFiles": [
       "wwwroot/js/Views/SuperVisor/Layout.js",
+      "wwwroot/js/Views/SuperVisor/Corporate.js",
       "wwwroot/js/Views/SuperVisor/RequestForRating.js",
       "wwwroot/js/Views/SuperVisor/Customer.js",
       "wwwroot/js/Views/SuperVisor/Users.js",

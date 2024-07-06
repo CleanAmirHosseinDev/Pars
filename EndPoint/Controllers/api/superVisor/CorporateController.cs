@@ -155,6 +155,18 @@ namespace EndPoint.Controllers.api.superVisor
                 throw;
             }
         }
-
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<DataFormReportDto> Get_DataFormReport([FromBody] RequestDataFormReportDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormReportService.ExecuteWhithParam(request);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

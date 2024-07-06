@@ -35,6 +35,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetRequestReferencess;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReports;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormReports;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormDocument;
@@ -175,6 +176,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetDataFormDocumentService GetDataFormDocumentService { get; }
         IGetDataFormDocumentsService GetDataFormDocumentsService { get; }
         IGetDataFormReportsService GetDataFormReportsService { get; }
+        IGetDataFormReportService GetDataFormReportService { get; }
         ISaveDataFormReportsService SaveDataFormReportsService { get; }
         IGetDataFormQuestionssService GetDataFormQuestionssService { get; }
         IGetDataFormQuestionsService GetDataFormQuestionsService { get; }
@@ -649,6 +651,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFormReportsService = _getDataFormReportsService ?? new GetDataFormReportsService(_context, _mapper);
+            }
+        }
+
+        private IGetDataFormReportService _getDataFormReportService;
+        public IGetDataFormReportService GetDataFormReportService
+        {
+            get
+            {
+                return _getDataFormReportService = _getDataFormReportService ?? new GetDataFormReportService(_context, _mapper);
             }
         }
 

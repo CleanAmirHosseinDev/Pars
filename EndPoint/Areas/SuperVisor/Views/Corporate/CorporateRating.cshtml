@@ -1,207 +1,214 @@
 ﻿@{
-    ViewData["Title"] = "مشتریان";
+    ViewData["Title"] = "حاکمیت شرکتی";
 }
 
-@section PageHeader {
+@section PageHeader{
     <section class="content-header">
         <h1>
-            تحلیل پاسخ های مشتری
+            حاکمیت شرکتی
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li class="active"><a href="/Admin/Corporate/CorporateRating@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i>پاسخ های مشتری</a></li>
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/FurtherInfo/Index"><i></i> حاکمیت شرکتی</a></li>
         </ol>
     </section>
 }
+    @section Styles{
+    <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
+}
 
-<input type="hidden" id="RequestId" name="RequestId" value="@ViewBag.id" />
-<div class="row">
-    <section class="col-lg-12 col-md-12">
-        <div class="box box-info">
-            <div class="box-header">
-                @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
-                    <div class="portlet-title">
-                        <div class="caption font-green-haze">
-                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+    <input type="hidden" id="RequestIdForms" name="RequestIdForms" value="0" />
+    <input type="hidden" id="sdfcddf" name="sdfcddf" value="0" />
+    <div class="row">
+        <section class="col-lg-12 col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    @*<i class="fa fa-cloud"></i>*@
+                    <h3 class="box-title">
+                        <div class="portlet-title">
+                            <div class="caption font-green-haze">
+                                @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                            </div>
+                            <div class="tools">
+                                <a href="" class="collapse" data-original-title="" title="">
+                                </a>
+                            </div>
                         </div>
-                        <div class="tools">
-                            <a href="" class="collapse" data-original-title="" title="">
-                            </a>
-                        </div>
+                    </h3>
+                    <!-- tools box -->
+                    <div class="pull-left box-tools">
+                        <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
-                </h3>
-                <!-- tools box -->
-                <div class="pull-left box-tools">
-                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <!-- /. tools -->
                 </div>
-                <!-- /. tools -->
-            </div>
-            <div class="box-body">
-                <div id="CutomerName" style="text-align:center;background-color:#f6f4f4;padding:7px"></div>
-                <div class="row">
-                    <!-- MultiStep Form -->
-                    <div class="container-fluid" id="grad1">
-                        <div class="row justify-content-center mt-0">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
-                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <div class="box-body">
+                    <div id="CutomerName" style="text-align:center;background-color:#f6f4f4;padding:7px"></div>
+                    <div class="row">
+                        <!-- MultiStep Form -->
+                        <div class="container-fluid" id="grad1">
+                            <div class="row justify-content-center mt-0">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
+                                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
 
-                                    @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
-                                    <div class="row">
-                                        <div class="col-md-12 mx-0">
-                                            <div id="msform">
-                                                <!-- progressbar -->
-                                                <ul id="progressbar">
-                                                    <li class="active" id="account"><strong>حقوق و رفتار عادلانه با سهامدار</strong></li>
-                                                    <li id="personal"><strong>نقش ذینفعان</strong></li>
-                                                    <li id="payment"><strong>افشاء و شفافیت</strong></li>
-                                                    <li id="confirm"><strong>مسئولیت های هیئت مدیره</strong></li>
-                                                    <li id="confirm"><strong>بارگذاری مدارک</strong></li>
-                                                </ul>
+                                        @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
+                                        <div class="row">
+                                            <div class="col-md-12 mx-0">
+                                                <div id="msform">
+                                                    <!-- progressbar -->
+                                                    <ul id="progressbar">
+                                                        <li class="active" id="account"><strong>حقوق و رفتار عادلانه با سهامدار</strong></li>
+                                                        <li id="personal"><strong>نقش ذینفعان</strong></li>
+                                                        <li id="payment"><strong>افشاء و شفافیت</strong></li>
+                                                        <li id="confirm"><strong>مسئولیت های هیئت مدیره</strong></li>
+                                                        <li id="confirm"><strong>بارگذاری مدارک</strong></li>
+                                                    </ul>
 
-                                                <!-- حقوق و رفتار عادلانه با سهامدار -->
-                                                <fieldset>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
-                                                    <div class="form-card">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="nav-tabs-custom">
-                                                                    <ul class="nav nav-tabs" id="TargetTabs287">
-                                                                    </ul>
-                                                                    <div class="tab-content" id="TabPaneTargetTabs287">
+                                                    <!-- حقوق و رفتار عادلانه با سهامدار -->
+                                                    <fieldset>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                        <div class="form-card">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="nav-tabs-custom">
+                                                                        <ul class="nav nav-tabs" id="TargetTabs287">
+                                                                        </ul>
+                                                                        <div class="tab-content" id="TabPaneTargetTabs287">
+                                                                        </div>
+                                                                        <!-- /.tab-content -->
                                                                     </div>
-                                                                    <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <button type="button" name="next" class="next action-button" style="width:100px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
-                                                </fieldset>
+                                                        <button type="button" name="next" class="next action-button" style="width:100px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                    </fieldset>
 
 
-                                                <!-- نقش ذینفعان -->
-                                                <fieldset>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
-                                                    <div class="form-card">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="nav-tabs-custom">
-                                                                    <ul class="nav nav-tabs" id="TargetTabs288">
-                                                                    </ul>
-                                                                    <div class="tab-content" id="TabPaneTargetTabs288">
+                                                    <!-- نقش ذینفعان -->
+                                                    <fieldset>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                        <div class="form-card">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="nav-tabs-custom">
+                                                                        <ul class="nav nav-tabs" id="TargetTabs288">
+                                                                        </ul>
+                                                                        <div class="tab-content" id="TabPaneTargetTabs288">
+                                                                        </div>
+                                                                        <!-- /.tab-content -->
                                                                     </div>
-                                                                    <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
-                                                </fieldset>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                    </fieldset>
 
-                                                <!-- افشاء و شفافیت -->
-                                                <fieldset>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                    <!-- افشاء و شفافیت -->
+                                                    <fieldset>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
 
-                                                    <div class="form-card">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="nav-tabs-custom">
-                                                                    <ul class="nav nav-tabs" id="TargetTabs289">
-                                                                    </ul>
-                                                                    <div class="tab-content" id="TabPaneTargetTabs289">
+                                                        <div class="form-card">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="nav-tabs-custom">
+                                                                        <ul class="nav nav-tabs" id="TargetTabs289">
+                                                                        </ul>
+                                                                        <div class="tab-content" id="TabPaneTargetTabs289">
+                                                                        </div>
+                                                                        <!-- /.tab-content -->
                                                                     </div>
-                                                                    <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
 
-                                                </fieldset>
+                                                    </fieldset>
 
-                                                <!-- مسئولیت های هیئت مدیره -->
-                                                <fieldset>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                    <!-- مسئولیت های هیئت مدیره -->
+                                                    <fieldset>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
 
-                                                    <div class="form-card">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="nav-tabs-custom">
-                                                                    <ul class="nav nav-tabs" id="TargetTabs290">
-                                                                    </ul>
-                                                                    <div class="tab-content" id="TabPaneTargetTabs290">
+                                                        <div class="form-card">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="nav-tabs-custom">
+                                                                        <ul class="nav nav-tabs" id="TargetTabs290">
+                                                                        </ul>
+                                                                        <div class="tab-content" id="TabPaneTargetTabs290">
+                                                                        </div>
+                                                                        <!-- /.tab-content -->
                                                                     </div>
-                                                                    <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
 
-                                                </fieldset>
+                                                    </fieldset>
 
-                                                <!-- بارگذاری مدارک -->
-                                                <fieldset>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
+                                                    <!-- بارگذاری مدارک -->
+                                                    <fieldset>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
 
-                                                    <div class="form-card">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="nav-tabs-custom">
-                                                                    <ul class="nav nav-tabs">
-                                                                    </ul>
-                                                                    <div class="tab-content">
+                                                        <div class="form-card">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="nav-tabs-custom">
+                                                                        <ul class="nav nav-tabs">
+                                                                        </ul>
+                                                                        <div class="tab-content">
+                                                                        </div>
+                                                                        <!-- /.tab-content -->
                                                                     </div>
-                                                                    <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
 
-                                                </fieldset>
+                                                    </fieldset>
 
-                                                <!-- تایید و ارسال -->
-                                                <fieldset>
-                                                    <div class="form-card">
-                                                        <div class="text-center">
-                                                            <h2 class=" text-center">تایید نهایی و ارسال </h2>
-                                                            <img src="/image/okv2.png" class="fit-image" style="max-width:50px">
-                                                        </div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-7 text-center" id="EndfurtherInfo">
-                                                                <h5>تایید اطلاعات جهت شروع ارزیابی</h5>
-                                                                <p>
-                                                                    اگر از تکمیل اطلاعات این فرم مطمئن هستید روی دکمه ریز کلیک نمایید؛ در صورت این دسترسی به فرم ها برای شما محدود می شود.
-                                                                </p>
+                                                    <!-- تایید و ارسال -->
+                                                    <fieldset>
+                                                        <div class="form-card">
+                                                            <div class="text-center">
+                                                                <h2 class=" text-center">تایید نهایی و ارسال </h2>
+                                                                <img src="/image/okv2.png" class="fit-image" style="max-width:50px">
                                                             </div>
-                                                        </div>
-                                                        <div class="row" style="margin:20px">
-                                                            <div class="form-group">
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-7 text-center" id="EndfurtherInfo">
+                                                                    <h5>تایید اطلاعات جهت شروع ارزیابی</h5>
+                                                                    <p>
+                                                                        اگر از تکمیل اطلاعات این فرم مطمئن هستید روی دکمه ریز کلیک نمایید؛ در صورت این دسترسی به فرم ها برای شما محدود می شود.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin:20px">
+                                                                <div class="form-group">
 
-                                                                <div class="col-md-12 text-center">
-                                                                    <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="@ViewBag.id" />
-                                                                    <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sdel" value="@ViewBag.id" />
-                                                                    <label for="Comment">توضیحات بیشتر : </label>
-                                                                    <textarea id="Comment" name="Comment" class="form-control" style="border:1px solid #0026ff;border-radius:5px"></textarea>
-                                                                    <div id="bLLSS"></div>
+                                                                    <div class="col-md-12 text-center">
+                                                                        <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="@ViewBag.id" />
+                                                                        <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sdel" value="@ViewBag.id" />
+                                                                        <label for="Comment">توضیحات بیشتر : </label>
+                                                                        <textarea id="Comment" name="Comment" class="form-control" style="border:1px solid #0026ff;border-radius:5px"></textarea>
+                                                                        <div id="bLLSS"></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </fieldset>
+                                                    </fieldset>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -211,23 +218,27 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
-@section Scripts {
+
+    @section Scripts {
+    <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
     <script>
-        Web.Corporate.InitCorporate(@ViewBag.id);
+        Web.CorporateSuperVisor.InitCorporate(@ViewBag.id);
 
-        Web.Corporate.MakeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
+        Web.CorporateSuperVisor.MakeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
 
-        Web.Corporate.MakeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
+        Web.CorporateSuperVisor.MakeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
 
-        Web.Corporate.MakeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
+        Web.CorporateSuperVisor.MakeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
 
-        Web.Corporate.MakeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
+        Web.CorporateSuperVisor.MakeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
 
-        Web.Corporate.MakeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
+        Web.CorporateSuperVisor.MakeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();

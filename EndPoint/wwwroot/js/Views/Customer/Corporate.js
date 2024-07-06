@@ -1,5 +1,4 @@
-﻿
-(function (web, $) {
+﻿(function (web, $) {
 
     //Document Ready   
     function initCorporate(id = null) {
@@ -108,7 +107,6 @@
             }
         }
     }
-
     function makeTabPane(FormTitle, FormId, RequestId, FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
@@ -128,7 +126,6 @@
         strM += "<div class='row' id='FormDetail" + FormId + "'></div></form></div></div>";
         return strM
     }
-
     function saveSerializedForm(FormId) {
         let SerializerForm = $("#frmFrom" + FormId).serialize().split('&');
         let formId = SerializerForm[0].split("=")[1];
@@ -149,7 +146,6 @@
         catch (e) {
         }
     }
-
     function saveSingelAnswerForm(formId, answer, description = "" ,dataFormQuestionId) {
         var requestId = $("#RequestId").val();
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers", JSON.stringify({
@@ -164,7 +160,15 @@
                 // سوال رو دریافت کردم تا نمره مربوط به اون رو داشته باشم
                 var dataFormQuestionScore = 0;
                 AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + dataFormQuestionId, null, false, function (res) {
-                    dataFormQuestionScore = res.score;
+                    if (res.isSuccess) {
+                        dataFormQuestionScore = res.score;
+                        if (res.questionType == 'select')
+                            AjaxCallAction("GET", "/api/customer/Corporate/Get_Option/" + answer.split("_")[0], null, false, function (datares) {
+                                if (datares.isSuccess) {
+                                    dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
+                                }
+                            }, true);
+                    }
                 }, true);
 
                 // اگر خواست فرم رو اپدیت کنه یعنی پاسخ اش رو عوض کنه ای دی پاسخش عوض نمی شه فقط

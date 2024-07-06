@@ -80,7 +80,19 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
-
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFormQuestionsOptionDto> Get_Option(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]

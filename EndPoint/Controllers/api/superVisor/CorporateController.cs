@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
+using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,27 @@ namespace EndPoint.Controllers.api.superVisor
 {
     public class CorporateController : BaseController
     {
-
-        private readonly ILogger<FurtherInfoController> _logger;
+        private readonly ILogger<CorporateController> _logger;
         private readonly IUserFacad _userFacad;
-        public CorporateController(ILogger<FurtherInfoController> logger, IUserFacad userFacad)
+        public CorporateController(ILogger<CorporateController> logger, IUserFacad userFacad)
         {
             _logger = logger;
             _userFacad = userFacad;
         }
-        #region دریافت ذخیره حذف سوالات یا اپشن ها
-        // نمایش همه سوالات مرتبط با ایدی دریافتی
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsDto>>> Get_DataFormQuestionss([FromBody] RequestDataFormQuestionsDto request)
@@ -37,7 +49,21 @@ namespace EndPoint.Controllers.api.superVisor
                 throw ex;
             }
         }
-        // نمایش همه گزینه های سوالاتی که دارای گزینه هستند
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFormQuestionsDto> Get_DataFormQuestions(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionsService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormQuestionsOptionDto>>> Get_Options([FromBody] RequestDataFormQuestionsOptionDto request)
@@ -51,74 +77,14 @@ namespace EndPoint.Controllers.api.superVisor
                 throw ex;
             }
         }
-        // ذخیره آپشن برای فرم های دارای سلک باکس
-        [Route("[action]")]
-        [HttpPost]
-        public async Task<ResultDto<DataFormQuestionsOptionDto>> Save_DataFormQuestionsOptionDto([FromForm] DataFormQuestionsOptionDto request)
-        {
-            try
-            {
-                return await _userFacad.SaveDataFormQuestionsOptionService.Execute(request);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        // حذف یک آپشن از سلک باکس
-        [Route("[action]/{id}/")]
-        [HttpGet]
-        public ResultDto Delete_DataFormQuestionsOption(int id)
-        {
-            try
-            {
-                return _userFacad.DeleteDataFormQuestionsOptionService.Execute(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        #endregion
-
 
         [Route("[action]/{id}/")]
         [HttpGet]
-        public async Task<CustomersDto> Get_Customers(int? id = null)
+        public async Task<DataFormQuestionsOptionDto> Get_Option(int? id = null)
         {
             try
             {
-                return await _userFacad.GetCustomersService.Execute(new RequestCustomersDto() { CustomerId = id.Value, IsActive = (byte)TablesGeneralIsActive.Active });
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        [Route("[action]")]
-        [HttpPost]
-        public async Task<ResultDto<IEnumerable<DataFormAnswerTablesDto>>> Get_DataFormAnswerTabless([FromBody] RequestDataFormAnswerTablesDto request)
-        {
-            try
-            {
-                
-                request.IsActive = (byte)TablesGeneralIsActive.Active;
-                return await _userFacad.GetDataFormAnswerTablessService.Execute(request);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-        [Route("[action]/{id}/")]
-        [HttpGet]
-       
-        public async Task<DataFormAnswerTablesDto> Get_DataFormAnswerTables(int? id = null)
-        {
-            try
-            {
-                return await _userFacad.GetDataFormAnswerTablesService.Execute(id);
+                return await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
             }
             catch (Exception)
             {
@@ -140,9 +106,10 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswers([FromForm] DataFromAnswersDto request)
+        public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswers([FromBody] DataFromAnswersDto request)
         {
             try
             {
@@ -155,7 +122,7 @@ namespace EndPoint.Controllers.api.superVisor
         }
 
         [Route("[action]/{id}/")]
-        [HttpGet]        
+        [HttpGet]
         public ResultDto Delete_DataFormAnswerTables(int id)
         {
             try
@@ -167,17 +134,33 @@ namespace EndPoint.Controllers.api.superVisor
                 throw;
             }
         }
+
         [Route("[action]")]
         [HttpPost]
-        public async Task<DataFormReportDto> Get_DataFormReport([FromBody] RequestDataFormReportDto request)
+        public async Task<ResultDto<DataFormReportDto>> Get_DataFromReport([FromBody] DataFormReportDto request)
         {
             try
             {
-                return await _userFacad.GetDataFormReportService.ExecuteWhithParam(request);
+                return null;
+                //return await _userFacad.GetDataFormReportService.ExecuteWhithParam(request);
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFormReportDto>> Save_DataFromReport([FromBody] DataFormReportDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormReportsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

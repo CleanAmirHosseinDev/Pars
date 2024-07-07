@@ -4,23 +4,36 @@
     function initCorporate(id = null) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
-        initCustomer(id);
+        getCustomerInfo(id, dir = 'rtl');
     }
-    function initCustomer(dir = 'rtl', id) {
-        ComboBoxWithSearch('.select2', dir);
-        AjaxCallAction("GET", "/api/superVisor/Corporate/Get_Customers/" + id, null, true, function (res) {
+
+    function getCustomerInfo(id = null) {
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+                if (res.isSuccess) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        initCustomer(res.data[i].customerId);
+                    }
+                }
+            }, true);
+        }
+    }
+
+    function initCustomer(id, dir = 'rtl') {
+        AjaxCallAction("GET", "/api/superVisor/Customers/Get_Customers/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
             if (res != null) {
                 $("#CutomerName").html("<h4> فرم پاسخ های حاکمیت شرکتی " + res.companyName + "</h4>");
             }
         }, true);
     }
+
     function intiForm(FormID = null, RequestId = null) {
         let strFormId = "";
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormQuestionss", JSON.stringify({
             DataFormId: FormID, PageIndex: 0, PageSize: 0, DataFormType: 2, IsActive: 15
         }), true, function (res) {
             if (res.isSuccess) {
-                strFormId = generate_strFormId(res, RequestId, FormID);
+                strFormId = generate_strFormId(res.data, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
             }
         }, true);
@@ -28,7 +41,7 @@
     function generate_strFormId(QuestionData, RequestId, FormID) {
         var _DataAnswer;
         var _str_tag;
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
             PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
         }), false, function (res) {
             if (res.isSuccess) {
@@ -37,9 +50,9 @@
         }, true);
         for (let i = 0; QuestionData.length > i; i++) {
             var report;
-            var answer = _DataAnswer.find(o => o.dataFormQuestionID === QuestionData[i].dataFormQuestionId)
+            var answer = _DataAnswer.find(o => o.dataFormQuestionId === QuestionData[i].dataFormQuestionId)
             AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
-                DataFormAnswerId: answer.answerID,
+                DataFormAnswerId: answer.answerId,
                 RequestId: RequestId,
             }), false, function (res) {
                 if (res != null) {
@@ -59,7 +72,7 @@
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
         let DataFormList = "";
         let ID = $("#RequestIdForms").val();
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
             }
@@ -130,7 +143,7 @@
     }
     function saveSingelAnswerForm(formId, answer, description = "", dataFormQuestionId) {
         var requestId = $("#RequestId").val();
-        AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers", JSON.stringify({
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromAnswers", JSON.stringify({
             Answer: answer,
             Description: description,
             FormId: parseInt(formId),
@@ -158,7 +171,7 @@
                 // وقتی فرم پاسخ اپدیت میشه نیازی به ذخیره فرم آنالیز پاسخ نیست
                 if (res.dataId != 0)
                     // ذخیره سوال در جدول آنالیز نمره
-                    AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromReport", JSON.stringify({
+                    AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromReport", JSON.stringify({
                         RequestId: requestId,
                         DataFormAnswerId: res.dataId,
                         SystemScore: parseInt(dataFormQuestionScore),

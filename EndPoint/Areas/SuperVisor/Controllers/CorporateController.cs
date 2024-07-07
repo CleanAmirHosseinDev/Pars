@@ -10,7 +10,10 @@ namespace EndPoint.Areas.SuperVisor.Controllers
     {
         public IActionResult CorporateRating(int? id = null)
         {
+            ViewBag.id = id;
             return View();
         }
+
+
     }
 }

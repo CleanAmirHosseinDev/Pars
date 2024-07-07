@@ -179,7 +179,7 @@ namespace EndPoint.Controllers.api.customer
                 throw;
             }
         }
-
+        
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<DataFormReportDto>> Save_DataFromReport([FromBody] DataFormReportDto request)

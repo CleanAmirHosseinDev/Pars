@@ -46,7 +46,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport
             }
         }
 
-        public async Task<DataFormReportDto> ExecuteWhithParam(RequestDataFormReportDto request)
+        public async Task<DataFormReportDto> ExecuteWhithParam(DataFormReportDto request)
         {
             try
             {

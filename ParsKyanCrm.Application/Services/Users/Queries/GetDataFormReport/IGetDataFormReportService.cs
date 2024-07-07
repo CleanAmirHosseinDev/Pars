@@ -8,6 +8,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport
     public interface IGetDataFormReportService
     {
         Task<DataFormReportDto> Execute(int? id = null);
-        Task<DataFormReportDto> ExecuteWhithParam(RequestDataFormReportDto request);
+        Task<DataFormReportDto> ExecuteWhithParam(DataFormReportDto request);
     }
 }

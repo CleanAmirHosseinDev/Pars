@@ -82,6 +82,20 @@ namespace EndPoint.Controllers.api.superVisor
         #endregion
 
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<CustomersDto> Get_Customers(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetCustomersService.Execute(new RequestCustomersDto() { CustomerId = id.Value, IsActive = (byte)TablesGeneralIsActive.Active });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormAnswerTablesDto>>> Get_DataFormAnswerTabless([FromBody] RequestDataFormAnswerTablesDto request)

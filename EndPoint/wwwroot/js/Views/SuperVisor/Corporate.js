@@ -4,11 +4,11 @@
     function initCorporate(id = null) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
-        initCustomer();
+        initCustomer(id);
     }
-    function initCustomer(dir = 'rtl') {
+    function initCustomer(dir = 'rtl', id) {
         ComboBoxWithSearch('.select2', dir);
-        AjaxCallAction("GET", "/api/superVisor/Customers/Get_Customers/", null, true, function (res) {
+        AjaxCallAction("GET", "/api/superVisor/Corporate/Get_Customers/" + id, null, true, function (res) {
             if (res != null) {
                 $("#CutomerName").html("<h4> فرم پاسخ های حاکمیت شرکتی " + res.companyName + "</h4>");
             }

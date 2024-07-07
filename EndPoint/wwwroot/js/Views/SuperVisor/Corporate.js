@@ -1,5 +1,5 @@
 ﻿(function (web, $) {
-
+    var DataFormList = "";
     //Document Ready   
     function initCorporate(id = null) {
         PersianDatePicker(".DatePicker");
@@ -40,7 +40,7 @@
     }
     function generate_strFormId(QuestionData, RequestId, FormID) {
         var _DataAnswer;
-        var _str_tag;
+        var _str_tag = "";
         AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
             PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
         }), false, function (res) {
@@ -49,34 +49,40 @@
             }
         }, true);
         for (let i = 0; QuestionData.length > i; i++) {
-            var report;
+            var report = "";
             var answer = _DataAnswer.find(o => o.dataFormQuestionId === QuestionData[i].dataFormQuestionId)
             AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
-                DataFormAnswerId: answer.answerId,
+                DataFormAnswerId: !isEmpty(answer.answerId) ? answer.answerId : 0,
                 RequestId: RequestId,
             }), false, function (res) {
                 if (res != null) {
                     report = res;
                 }
             }, true);
-            _str_tag = "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
-            _str_tag += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-2'><p>" + answer.answer;
-            _str_tag += "</p></div><div class='col-md-6'><p>" + answer.description;
-            _str_tag += "</p></div><div class='col-md-2'><p>" + report.systemScore;
-            _str_tag += "</p></div><div class='col-md-2'><p>" + "<input type='text' value='' />";
-            _str_tag += "</p></div></div></div></div><br>";
+            if (!isEmpty(report)) {
+                _str_tag += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
+                _str_tag += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-12'>";
+                _str_tag += "<label>پاسخ مشتری : </label><p style='display: inline-block;margin-right: 20px;'>";
+                _str_tag += answer.answer == "Yes" || answer.answer == "No" ? answer.answer : answer.answer.split("_")[1]
+                _str_tag += "</p></div><div class='col-md-12'><label>توضیحات : </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
+                _str_tag += "</p></div><div class='col-md-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + report.systemScore;
+                _str_tag += "</p></div><div class='col-md-12'><label>امتیاز کارشناس</label>";
+                _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
+                _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.systemScore +"' min='0'></p></div></div></div></div>"
+            }
         }
         return _str_tag;
     }
 
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
-        let DataFormList = "";
         let ID = $("#RequestIdForms").val();
-        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
-            if (res.isSuccess) {
-                DataFormList = res.data;
-            }
-        }, true);
+        if (isEmpty(DataFormList))
+            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
+                if (res.isSuccess) {
+                    DataFormList = res.data;
+                }
+            }, true);
+
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";

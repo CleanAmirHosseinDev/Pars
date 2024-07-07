@@ -1,5 +1,5 @@
 ﻿(function (web, $) {
-
+    var DataFormList = "";
     //Document Ready   
     function initCorporate(id = null) {
         PersianDatePicker(".DatePicker");
@@ -57,7 +57,7 @@
                 strFormId += "<label class='control-label'>خیر</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
             }
             strFormId += "</div><div class='col-md-8'>";
-            strFormId += "<input class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' type='text' placeholder='توضیحات' /></div></div></div></div>"; 
+            strFormId += "توضیحات : <input class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' type='text' /></div></div></div></div>"; 
         }
         strFormId += "</div>";
         return strFormId;
@@ -75,13 +75,13 @@
         return strM;
     }
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
-        let DataFormList = "";
         let ID = $("#RequestIdForms").val();
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataForms", JSON.stringify({PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
-            if (res.isSuccess) {
-                DataFormList = res.data;
-            }
-        }, true);
+        if (isEmpty(DataFormList))
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataForms", JSON.stringify({PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
+                if (res.isSuccess) {
+                    DataFormList = res.data;
+                }
+            }, true);
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";
@@ -148,6 +148,7 @@
     }
     function saveSingelAnswerForm(formId, answer, description = "" ,dataFormQuestionId) {
         var requestId = $("#RequestId").val();
+        var dataFormQuestionScore = 0;
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers", JSON.stringify({
             Answer: answer,
             Description: description,
@@ -158,32 +159,30 @@
         }), false, function (res) {
             if (res.isSuccess) {
                 // سوال رو دریافت کردم تا نمره مربوط به اون رو داشته باشم
-                var dataFormQuestionScore = 0;
-                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + dataFormQuestionId, null, false, function (res) {
-                    if (res.isSuccess) {
-                        dataFormQuestionScore = res.score;
-                        if (res.questionType == 'select')
+                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + dataFormQuestionId, null, false, function (res1) {
+                    if (!isEmpty(res1)) {
+                        dataFormQuestionScore = res1.score;
+                        if (res1.questionType == 'select')
                             AjaxCallAction("GET", "/api/customer/Corporate/Get_Option/" + answer.split("_")[0], null, false, function (datares) {
-                                if (datares.isSuccess) {
+                                if (!isEmpty(datares)) {
                                     dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
                                 }
                             }, true);
+
+                        // اگر خواست فرم رو اپدیت کنه یعنی پاسخ اش رو عوض کنه ای دی پاسخش عوض نمی شه فقط
+                        // متن پاسخش عوض میشه پس اگر ایدی پاسخ توی کد وضعیت 0 بود یعنی فرم اپدیت شده
+                        // وقتی فرم پاسخ اپدیت میشه نیازی به ذخیره فرم آنالیز پاسخ نیست
+                        if (res.dataId != 0)
+                            // ذخیره سوال در جدول آنالیز نمره
+                            AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromReport", JSON.stringify({
+                                RequestId: requestId,
+                                DataFormAnswerId: res.dataId,
+                                SystemScore: dataFormQuestionScore,
+                                AnalizeScore: 0,
+                                IsActive: 15,
+                            }), true, function (reee) { }, true);
                     }
                 }, true);
-
-                // اگر خواست فرم رو اپدیت کنه یعنی پاسخ اش رو عوض کنه ای دی پاسخش عوض نمی شه فقط
-                // متن پاسخش عوض میشه پس اگر ایدی پاسخ توی کد وضعیت 0 بود یعنی فرم اپدیت شده
-                // وقتی فرم پاسخ اپدیت میشه نیازی به ذخیره فرم آنالیز پاسخ نیست
-                if (res.dataId != 0)
-                    // ذخیره سوال در جدول آنالیز نمره
-                    AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromReport", JSON.stringify({
-                        RequestId: requestId,
-                        DataFormAnswerId: res.dataId,
-                        SystemScore: parseInt(dataFormQuestionScore),
-                        AnalizeScore: 0,
-                        IsActive: 15,
-                    }), true, undefined, true);
-
                 alertB("ثبت", res.message, "success")
             }
             else {

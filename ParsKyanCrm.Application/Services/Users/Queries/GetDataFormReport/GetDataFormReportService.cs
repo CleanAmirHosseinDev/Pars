@@ -46,40 +46,27 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport
             }
         }
 
-        public async Task<DataFormReportDto> ExecuteWhithParam(DataFormReportDto request)
+        public async Task<DataFormReportDto> ExecuteWhithParam(RequestDataFormReportDto request)
         {
             try
             {
-                var res_Lists = (
-                    from s in _context.DataFormReport
-                    where s.DataFormAnswerId == request.DataFormAnswerId && s.RequestId == request.RequestId
-                    select s);
+                DataFormReportDto res = new DataFormReportDto();
 
-                var res = await res_Lists.FirstOrDefaultAsync();
-
-                if (res != null)
+                if (request.DataFormAnswerId != null && request.DataFormAnswerId != 0)
                 {
-                    return new DataFormReportDto()
+                    if (request.RequestId != null && request.RequestId != 0)
                     {
-                        DataReportId = res.DataReportId,
-                        RequestId = res.RequestId,
-                        DataFormAnswerId = res.DataFormAnswerId,
-                        SystemScore = res.SystemScore,
-                        AnalizeScore = res.AnalizeScore,
-                        Description = res.Description,
-                        IsActive = 15,
-                    };
+                        var q_Find = await _context.DataFormReport.FirstOrDefaultAsync(
+                            p => p.DataFormAnswerId == request.DataFormAnswerId.Value && p.RequestId == request.RequestId.Value
+                        );
+                        res = _mapper.Map<DataFormReportDto>(q_Find);
+                        return res;
+                    }
+                    var q_Find1 = await _context.DataFormReport.FirstOrDefaultAsync(p => p.DataFormAnswerId == request.DataFormAnswerId.Value);
+                    res = _mapper.Map<DataFormReportDto>(q_Find1);
                 }
-                return new DataFormReportDto()
-                {
-                    DataReportId = 0,
-                    RequestId = 0,
-                    DataFormAnswerId = 0,
-                    SystemScore = 0,
-                    AnalizeScore = 0,
-                    Description = null,
-                    IsActive = 14,
-                };
+
+                return res;
 
             }
             catch (Exception ex)

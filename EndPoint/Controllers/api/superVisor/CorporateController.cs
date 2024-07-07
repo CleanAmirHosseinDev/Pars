@@ -137,12 +137,11 @@ namespace EndPoint.Controllers.api.superVisor
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResultDto<DataFormReportDto>> Get_DataFromReport([FromBody] DataFormReportDto request)
+        public async Task<DataFormReportDto> Get_DataFormReport([FromBody] RequestDataFormReportDto request)
         {
             try
             {
-                return null;
-                //return await _userFacad.GetDataFormReportService.ExecuteWhithParam(request);
+                return await _userFacad.GetDataFormReportService.ExecuteWhithParam(request);
             }
             catch (Exception ex)
             {

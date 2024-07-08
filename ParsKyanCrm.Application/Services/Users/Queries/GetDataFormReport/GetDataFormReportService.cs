@@ -48,6 +48,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport
 
         public async Task<DataFormReportDto> ExecuteWhithParam(RequestDataFormReportDto request)
         {
+            // https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
             try
             {
                 DataFormReportDto res = new DataFormReportDto();

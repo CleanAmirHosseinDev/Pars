@@ -51,14 +51,15 @@
         for (let i = 0; QuestionData.length > i; i++) {
             var report = "";
             var answer = _DataAnswer.find(o => o.dataFormQuestionId === QuestionData[i].dataFormQuestionId)
-            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
-                DataFormAnswerId: !isEmpty(answer.answerId) ? answer.answerId : 0,
-                RequestId: RequestId,
-            }), false, function (res) {
-                if (res != null) {
-                    report = res;
-                }
-            }, true);
+            if (!isEmpty(answer))
+                AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
+                    DataFormAnswerId: !isEmpty(answer.answerId) ? answer.answerId : 0,
+                    RequestId: RequestId,
+                }), false, function (res) {
+                    if (res != null) {
+                        report = res;
+                    }
+                }, true);
             if (!isEmpty(report)) {
                 _str_tag += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
                 _str_tag += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-12'>";
@@ -140,7 +141,7 @@
                 let answer = decodeURIComponent(SingleQuestion[0].split("=")[1])
                 let description = decodeURIComponent(SingleQuestion[1].split("=")[1])
                 if (!isEmpty(answer) && answer != "0") {
-                    saveSingelAnswerForm(formId, answer, description, question_id);
+                    // saveSingelAnswerForm(formId, answer, description, question_id);
                 }
             }
         }
@@ -149,47 +150,18 @@
     }
     function saveSingelAnswerForm(formId, answer, description = "", dataFormQuestionId) {
         var requestId = $("#RequestId").val();
-        AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromAnswers", JSON.stringify({
-            Answer: answer,
-            Description: description,
-            FormId: parseInt(formId),
-            RequestId: parseInt(requestId),
-            DataFormQuestionId: parseInt(dataFormQuestionId),
+        // ذخیره سوال در جدول آنالیز نمره
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromReport", JSON.stringify({
+            RequestId: requestId,
+            DataFormAnswerId: res.dataId,
+            SystemScore: parseInt(dataFormQuestionScore),
+            AnalizeScore: 0,
             IsActive: 15,
-        }), false, function (res) {
-            if (res.isSuccess) {
-                // سوال رو دریافت کردم تا نمره مربوط به اون رو داشته باشم
-                var dataFormQuestionScore = 0;
-                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + dataFormQuestionId, null, false, function (res) {
-                    if (res.isSuccess) {
-                        dataFormQuestionScore = res.score;
-                        if (res.questionType == 'select')
-                            AjaxCallAction("GET", "/api/customer/Corporate/Get_Option/" + answer.split("_")[0], null, false, function (datares) {
-                                if (datares.isSuccess) {
-                                    dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
-                                }
-                            }, true);
-                    }
-                }, true);
+        }), true, function (data) { }, true);
+        alertB("ثبت", res.message, "success")
 
-                // اگر خواست فرم رو اپدیت کنه یعنی پاسخ اش رو عوض کنه ای دی پاسخش عوض نمی شه فقط
-                // متن پاسخش عوض میشه پس اگر ایدی پاسخ توی کد وضعیت 0 بود یعنی فرم اپدیت شده
-                // وقتی فرم پاسخ اپدیت میشه نیازی به ذخیره فرم آنالیز پاسخ نیست
-                if (res.dataId != 0)
-                    // ذخیره سوال در جدول آنالیز نمره
-                    AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromReport", JSON.stringify({
-                        RequestId: requestId,
-                        DataFormAnswerId: res.dataId,
-                        SystemScore: parseInt(dataFormQuestionScore),
-                        AnalizeScore: 0,
-                        IsActive: 15,
-                    }), true, undefined, true);
+        // alertB("خطا", res.message, "error");
 
-                alertB("ثبت", res.message, "success")
-            }
-            else {
-                alertB("خطا", res.message, "error");
-            }
         }, true);
     }
 

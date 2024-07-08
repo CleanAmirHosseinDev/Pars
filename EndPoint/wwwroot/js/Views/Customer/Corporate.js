@@ -50,14 +50,14 @@
             strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText + "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
             if (res.data[i].questionType == 'select') {
                 var options = combo(res.data[i].dataFormQuestionId);
-                strFormId += "<select name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
+                strFormId += "<select required name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
             }
             else if (res.data[i].questionType == 'yesNo') {
-                strFormId += "<label class='control-label'>بله</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
-                strFormId += "<label class='control-label'>خیر</label><input type='radio' name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
+                strFormId += "<label class='control-label'>بله</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
+                strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
             }
             strFormId += "</div><div class='col-md-8'>";
-            strFormId += "توضیحات : <input class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' type='text' /></div></div></div></div>"; 
+            strFormId += "توضیحات : <input class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' onfocus='select();' type='text' value='ندارد...' /></div></div></div></div>"; 
         }
         strFormId += "</div>";
         return strFormId;

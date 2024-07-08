@@ -43,6 +43,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataForm
                     {
                         CategoryId = res.CategoryId,
                         FormId = res.FormId,
+                        FormCode = res.FormCode,
                         FormTitle = res.FormTitle,
                         IsTable = res.IsTable,
                     };
@@ -51,6 +52,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataForm
                 {
                     CategoryId = null,
                     FormId = id,
+                    FormCode = null,
                     FormTitle = null,
                     IsTable = null,
                 };

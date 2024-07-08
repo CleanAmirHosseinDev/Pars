@@ -76,7 +76,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
                             {
                                 nameof(q_Entity.Entity.Description),request.Description
                             },
-                        }, nameof(q_Entity.Entity.DataReportId) + $" = {request.DataReportId}");
+                        }, nameof(request.RequestId) + " = " + request.RequestId + " AND " + nameof(request.DataFormAnswerId) + $" = {request.DataFormAnswerId}");
                 }
 
                 return new ResultDto<DataFormReportDto>()

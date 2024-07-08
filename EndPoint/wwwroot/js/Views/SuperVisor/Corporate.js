@@ -51,7 +51,25 @@
         for (let i = 0; QuestionData.length > i; i++) {
             var report = "";
             var answer = _DataAnswer.find(o => o.dataFormQuestionId === QuestionData[i].dataFormQuestionId)
-            if (!isEmpty(answer))
+
+            var dataFormQuestionScore = 0;
+            if (!isEmpty(answer)) {
+
+                AjaxCallAction("GET", "/api/superVisor/Corporate/Get_DataFormQuestions/" + answer.dataFormQuestionId, null, false, function (res1) {
+                    if (!isEmpty(res1)) {
+                        dataFormQuestionScore = res1.score;
+                        if (res1.questionType == 'select')
+                            AjaxCallAction("GET", "/api/superVisor/Corporate/Get_Option/" + answer.answer.split("_")[0], null, false, function (datares) {
+                                if (!isEmpty(datares)) {
+                                    dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
+                                }
+                            }, true);
+                        if (res1.questionType == 'yesNo')
+                            if (answer.answer == "No")
+                                dataFormQuestionScore = 0;
+                    }
+                }, true);
+
                 AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
                     DataFormAnswerId: !isEmpty(answer.answerId) ? answer.answerId : 0,
                     RequestId: RequestId,
@@ -60,16 +78,20 @@
                         report = res;
                     }
                 }, true);
+            }
             if (!isEmpty(report)) {
                 _str_tag += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
                 _str_tag += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-12'>";
                 _str_tag += "<label>پاسخ مشتری : </label><p style='display: inline-block;margin-right: 20px;'>";
                 _str_tag += answer.answer == "Yes" || answer.answer == "No" ? answer.answer : answer.answer.split("_")[1]
                 _str_tag += "</p></div><div class='col-md-12'><label>توضیحات : </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
-                _str_tag += "</p></div><div class='col-md-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + report.systemScore;
+                _str_tag += "</p></div><div class='col-md-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
                 _str_tag += "</p></div><div class='col-md-12'><label>امتیاز کارشناس</label>";
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
-                _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.systemScore +"' min='0'></p></div></div></div></div>"
+                _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + dataFormQuestionScore + "' min='0'></p></div>";
+                _str_tag += "<div class='col-md-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
+                _str_tag += "<input type='text' name='descriptoin_" + report.dataReportId + "' value='ندارد ...' onfocus='select();'></p></div></div>"
+                _str_tag += "<input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div>"
             }
         }
         return _str_tag;
@@ -88,15 +110,15 @@
         let li_option = "";
         let tabPane = "";
         for (let i = 0; i < DataFormList.length; i++) {
-            if (DataFormList[i].formTitle.slice(0, 1) === SubCategoryName) {
+            if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 if (is_first) {
-                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formTitle + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
-                    tabPane += makeTabPane(DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
+                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
+                    tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
                     is_first = false;
                 }
                 else {
-                    tabPane += makeTabPane(DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
-                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formTitle + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
+                    tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
+                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
                 }
 
             }
@@ -109,18 +131,18 @@
             }
         }
     }
-    function makeTabPane(FormTitle, FormId, RequestId, FirstItemActive = true) {
+    function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
-            strM = "<div class='tab-pane active' id='FormDetailTab" + FormTitle + "'>";
+            strM = "<div class='tab-pane active' id='FormDetailTab" + FormCode + "'>";
         }
         else {
-            strM = "<div class='tab-pane' id='FormDetailTab" + FormTitle + "'>";
+            strM = "<div class='tab-pane' id='FormDetailTab" + FormCode + "'>";
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات" + FormTitle + "</a></div>";
+        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.CorporateSuperVisor.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات" + FormTitle + "</a></div>";
         strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";
         strM += "<input type='hidden' id='FormID' name='FormID' value='" + FormId + "' />";
@@ -134,35 +156,36 @@
         let ListOfAnswers = SerializerForm.slice(2, SerializerForm.length);
         let counter = ListOfAnswers.length;
         try {
-            for (let i = 0; i < counter && counter % 2 == 0; i += 2) {
-                let SingleQuestion = ListOfAnswers.slice(0, 2);
-                ListOfAnswers = ListOfAnswers.slice(2, ListOfAnswers.length)
-                let question_id = SingleQuestion[0].split("_")[1].split("=")[0]
-                let answer = decodeURIComponent(SingleQuestion[0].split("=")[1])
-                let description = decodeURIComponent(SingleQuestion[1].split("=")[1])
-                if (!isEmpty(answer) && answer != "0") {
-                    // saveSingelAnswerForm(formId, answer, description, question_id);
+            for (let i = 0; i < counter && counter % 3 == 0; i += 3) {
+                let SingleQuestion = ListOfAnswers.slice(0, 3);
+                let question_score = SingleQuestion[2].split("=")[1]
+                let report_id = SingleQuestion[1].split("=")[0].split("_")[1]
+                let description = decodeURIComponent(SingleQuestion[1].split("=")[1]);
+                let answer_id = SingleQuestion[0].split("=")[0].split("_")[1]
+                let score = SingleQuestion[0].split("=")[1]
+                ListOfAnswers = ListOfAnswers.slice(3, ListOfAnswers.length)
+                if (!isEmpty(score)) {
+                    saveSingelAnswerForm(formId, answer_id, score, question_score, description, report_id);
                 }
             }
+            alertB("ثبت", "ثبت فرم با موفقیت انجام شد", "success");
         }
         catch (e) {
+            alertB("خطا", "عملیات ذخیره سازی با خطا مواجه شد", "error");
         }
     }
-    function saveSingelAnswerForm(formId, answer, description = "", dataFormQuestionId) {
+    function saveSingelAnswerForm(formId, answer_id, score, question_score, description, reportId) {
         var requestId = $("#RequestId").val();
         // ذخیره سوال در جدول آنالیز نمره
         AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromReport", JSON.stringify({
+            DataReportId: reportId,
             RequestId: requestId,
-            DataFormAnswerId: res.dataId,
-            SystemScore: parseInt(dataFormQuestionScore),
-            AnalizeScore: 0,
+            DataFormAnswerId: answer_id,
+            AnalizeScore: score,
+            SystemScore: question_score,
             IsActive: 15,
+            Description: description,
         }), true, function (data) { }, true);
-        alertB("ثبت", res.message, "success")
-
-        // alertB("خطا", res.message, "error");
-
-        }, true);
     }
 
     web.CorporateSuperVisor = {

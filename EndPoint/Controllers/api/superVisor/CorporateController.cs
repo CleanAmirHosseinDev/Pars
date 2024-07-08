@@ -121,20 +121,6 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
-        [Route("[action]/{id}/")]
-        [HttpGet]
-        public ResultDto Delete_DataFormAnswerTables(int id)
-        {
-            try
-            {
-                return _userFacad.DeleteDataFormAnswerTablesService.Execute(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         [Route("[action]")]
         [HttpPost]
         public async Task<DataFormReportDto> Get_DataFormReport([FromBody] RequestDataFormReportDto request)

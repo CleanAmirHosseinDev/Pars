@@ -86,15 +86,15 @@
         let li_option = "";
         let tabPane = "";
         for (let i = 0; i < DataFormList.length; i++) {
-            if (DataFormList[i].formTitle.slice(0, 1) === SubCategoryName) {
+            if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 if (is_first) {
-                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formTitle + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
-                    tabPane += makeTabPane(DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
+                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
+                    tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
                     is_first = false;
                 }
                 else {
-                    tabPane += makeTabPane(DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
-                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formTitle + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
+                    tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
+                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
                 }
                 
             }
@@ -107,14 +107,14 @@
             }
         }
     }
-    function makeTabPane(FormTitle, FormId, RequestId, FirstItemActive = true) {
+    function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
-            strM = "<div class='tab-pane active' id='FormDetailTab" + FormTitle + "'>";
+            strM = "<div class='tab-pane active' id='FormDetailTab" + FormCode + "'>";
         }
         else {
-            strM = "<div class='tab-pane' id='FormDetailTab" + FormTitle + "'>";
+            strM = "<div class='tab-pane' id='FormDetailTab" + FormCode + "'>";
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
@@ -168,6 +168,9 @@
                                     dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
                                 }
                             }, true);
+                        if (res1.questionType == 'yesNo')
+                            if (answer == "No")
+                                dataFormQuestionScore = 0;
 
                         // اگر خواست فرم رو اپدیت کنه یعنی پاسخ اش رو عوض کنه ای دی پاسخش عوض نمی شه فقط
                         // متن پاسخش عوض میشه پس اگر ایدی پاسخ توی کد وضعیت 0 بود یعنی فرم اپدیت شده

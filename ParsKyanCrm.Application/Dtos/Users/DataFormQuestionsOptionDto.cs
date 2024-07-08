@@ -12,6 +12,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
         public int? DataFormQuestionsId { get; set; }
         public int Id { get; set; }
+        public byte? IsActive { get; set; }
     }
 
     public class DataFormQuestionsOptionDto

@@ -47,7 +47,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                     {
                         lists = (
                             from s in _context.DataFormQuestions
-                            where (s.DataFormType == 2 && s.DataFormId == request.DataFormId)
+                            where (s.DataFormType == 2 && s.DataFormId == request.DataFormId && s.IsActive == 15)
                             select s
                         );
                     }

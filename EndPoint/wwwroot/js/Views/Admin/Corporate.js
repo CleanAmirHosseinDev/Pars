@@ -10,7 +10,7 @@
                 var strM = '';
                 for (let i = 0; i < res.data.length; i++) {
                     let category = getCategoryName(res.data[i].categoryId);
-                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formCode + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -23,6 +23,7 @@
                 if (res != null) {
                     let category = getCategoryName(res.categoryId);
                     $("#FormId").val(res.formId);
+                    $("#FormCode").val(res.formCode);
                     $("#FormTitle").val(res.formTitle);
                     $("#CategoryId").val(res.categoryId);
                     $("#IsTable").val(res.isTable);
@@ -36,10 +37,12 @@
         $(e).attr("disabled", "");
         let FormId = $("#FormId").val();
         let FormTitle = $("#FormTitle").val();
+        let FormCode = $("#FormCode").val();
         let CategoryId = $("#CategoryId").val();
         AjaxCallAction("POST", "/api/admin/Corporate/Save_DataForm", JSON.stringify(
             {
                 FormId: !isEmpty(FormId) ? FormId : 0,
+                FormCode: FormCode,
                 FormTitle: FormTitle,
                 CategoryId: !isEmpty(CategoryId) ? CategoryId : null,
             }), true, function (res) {
@@ -81,9 +84,6 @@
         }, true);
     }
     function initDataFormQuestions(id = null, dir = 'rtl') {
-
-        ComboBoxWithSearch('.select2', dir);
-        makeDataFormComboBoxForSelectSubCategory();
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("GET", "/api/admin/Corporate/Get_DataFormQuestions/" + id, null, true, function (res) {
                 if (res != null) {
@@ -99,6 +99,7 @@
                     $("#QuestionName").val(res.questionName);
                     $("#QuestionType").val(res.questionType);
                     $("#DataFormId").val(res.dataFormId);
+                    makeDataFormComboBoxForSelectSubCategory(res.dataFormId);
                     comboBoxWithSearchUpdateText("QuestionType", type);
                     comboBoxWithSearchUpdateText("DataForms", getObjectWithFormId(DataFormList, res.dataFormId).formTitle);
                     $("#QuestionOrder").val(res.questionOrder);
@@ -107,6 +108,7 @@
                 }
             }, true);
         }
+        //ComboBoxWithSearch('.select2', dir);
     }
     function saveDataFormQuestions(e) {
 
@@ -146,7 +148,7 @@
             }, true);
     }
     function getDataFormQuestionsList() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive:15 }), false, function (res) {
             if (res.isSuccess)
                 DataFormQuestionsList = res.data;
         }, true);
@@ -204,7 +206,7 @@
     }
     function dataFormQuestionsOptioneFilterGrid() {
         getDataFormQuestionsList();
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionsOptiones", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionsOptiones", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -281,7 +283,7 @@
         }
         $("#DataFormQuestionsId").html(strM);
     }
-    function makeDataFormComboBoxForSelectSubCategory() {
+    function makeDataFormComboBoxForSelectSubCategory(id) {
         let strM = '<option value="">انتخاب کنید</option>';
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0 }), false, function (res) {
             if (res.isSuccess) {
@@ -289,7 +291,13 @@
                 // TODO Remove this statement
                 strM = '<option value="">انتخاب کنید</option>';
                 for (var i = 0; i < res.data.length; i++) {
-                    strM += " <option value=" + res.data[i].formId + ">" + res.data[i].formTitle + "</option>";
+                    if (res.data[i].formId == id) {
+                        strM += " <option value='" + res.data[i].formId + "' selected>" + res.data[i].formTitle + "</option>";
+                    }
+                    else {
+                        strM += " <option value='" + res.data[i].formId + "'>" + res.data[i].formTitle + "</option>";
+                    }
+                   
                 }
                 $("#DataForms").html(strM);
             }

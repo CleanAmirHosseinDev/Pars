@@ -8,6 +8,7 @@ namespace ParsKyanCrm.Domain.Entities
     public partial class DataForms
     {
         public int FormId { get; set; }
+        public string FormCode { get; set; }
         public string FormTitle { get; set; }
         public bool? IsTable { get; set; }
         public int? CategoryId { get; set; }

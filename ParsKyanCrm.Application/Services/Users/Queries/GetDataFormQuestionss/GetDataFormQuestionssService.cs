@@ -20,11 +20,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;        
+        private readonly IMapper _mapper;
         public GetDataFormQuestionssService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
         }
 
         public async Task<ResultDto<IEnumerable<DataFormQuestionsDto>>> Execute(RequestDataFormQuestionsDto request)
@@ -33,15 +33,14 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
             {
                 var lists = (
                     from s in _context.DataFormQuestions
-                    join d in _context.DataForms on s.DataFormId equals d.FormId
-                    where ((s.DataFormId == request.DataFormId || request.DataFormId == null) && d.IsActive==15)
+                    where (s.DataFormId == request.DataFormId || request.DataFormId == null)
                     select s
                 );
-                if (request.DataFormType == 2 )
+                if (request.DataFormType == 2)
                 {
                     lists = (
                         from s in _context.DataFormQuestions
-                        where (s.DataFormType == 2)
+                        where (s.DataFormType == 2 && s.IsActive == 15)
                         select s
                     );
                     if (request.DataFormId != null)
@@ -53,7 +52,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                         );
                     }
                 }
-                
+
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.QuestionName.Contains(request.Search) ||
                     p.QuestionText.Contains(request.Search) ||
                     p.QuestionType.Contains(request.Search)

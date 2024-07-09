@@ -62,14 +62,14 @@
             confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
                 AjaxCallAction("GET", "/api/admin/Corporate/Delete_DataForm/" + (isEmpty(id) ? '0' : id),
                     null, true, function (result) {
-                    if (result.isSuccess) {
-                        dataFormFilterGrid();
-                        alertB("", result.message, "success");
-                    }
-                    else {
-                        alertB("خطا", result.message, "error");
-                    }
-                }, true);
+                        if (result.isSuccess) {
+                            dataFormFilterGrid();
+                            alertB("", result.message, "success");
+                        }
+                        else {
+                            alertB("خطا", result.message, "error");
+                        }
+                    }, true);
             }, function () {
             }, ["خیر", "بلی"]);
         } catch (e) {
@@ -93,7 +93,13 @@
                     else {
                         type = "لیکرتی";
                     }
-                    let dataFormTitle = getObjectWithFormId(DataFormList, res.data[i].dataFormId).formTitle;
+                    let dataFormTitle = getObjectWithFormId(DataFormList, res.data[i].dataFormId);
+                    if (dataFormTitle) {
+                        dataFormTitle = dataFormTitle.formTitle.length > 79 ? dataFormTitle.formTitle.slice(0, 75) + " ..." : dataFormTitle.formTitle;
+                    }
+                    else {
+                        dataFormTitle = "حذف شده";
+                    }
                     let questionText = res.data[i].questionText.length > 79 ? res.data[i].questionText.slice(0, 75) + " ..." : res.data[i].questionText;
                     strM += "<tr><td>" + (i + 1) + "</td><td>" + questionText + "</td><td>" + dataFormTitle + "</td><td>" + type + "</td><td>" + res.data[i].score + "</td><td>" + res.data[i].questionOrder + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestions?id=" + res.data[i].dataFormQuestionId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormQuestions(" + res.data[i].dataFormQuestionId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
@@ -184,14 +190,14 @@
         }
     }
     function getDataFormQuestionsList() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15, DataFormType: 2 }), false, function (res) {
             if (res.isSuccess)
                 DataFormQuestionsList = res.data;
         }, true);
 
     }
     function dataFormDocumentFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormDocuments", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive:15 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormDocuments", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -264,7 +270,12 @@
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
-                    let questionText = getObjectWithDataFormQuestionsId(DataFormQuestionsList, res.data[i].dataFormQuestionsId).questionText;
+                    let questionText = getObjectWithDataFormQuestionsId(DataFormQuestionsList, res.data[i].dataFormQuestionsId);
+                    if (questionText) {
+                        questionText = questionText.questionText;
+                    } else {
+                        questionText = "حذف شده";
+                    }
                     questionText = questionText.length > 79 ? questionText.slice(0, 75) + " ..." : questionText;
                     strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].text + "</td><td>" + questionText + "</td><td>" + res.data[i].ratio + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestionsOptione?id=" + res.data[i].id + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormQuestionsOptione(" + res.data[i].id + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
@@ -279,12 +290,18 @@
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("GET", "/api/admin/Corporate/Get_DataFormQuestionsOptione/" + id, null, true, function (res) {
                 if (res != null) {
-                    let questionText = getObjectWithDataFormQuestionsId(DataFormQuestionsList, res.dataFormQuestionsId).questionText;
+                    let questionText = getObjectWithDataFormQuestionsId(DataFormQuestionsList, res.dataFormQuestionsId);
+                    if (questionText) {
+                        questionText = questionText.questionText;
+                    } else {
+                        questionText = "حذف شده";
+                    }
+                    questionText = questionText.length > 79 ? questionText.slice(0, 75) + " ..." : questionText;;
                     $("#Text").val(res.text);
                     $("#DataFormQuestionsId").val(res.dataFormQuestionsId);
                     $("#DataFormQuestionsText").text(questionText);
                     $("#Ratio").val(res.ratio);
-                    questionText = questionText.length > 79 ? questionText.slice(0, 75) + " ..." : questionText;
+                    questionText = questionText;
                     comboBoxWithSearchUpdateText("DataFormQuestionsId", questionText);
                     $("#Id").val(id);
                 }
@@ -303,23 +320,29 @@
         let Text_ = $("#Text").val();
         let DataFormQuestionsId = $("#DataFormQuestionsId").val();
         let Ratio = $("#Ratio").val();
-        AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormQuestionsOptione", JSON.stringify(
-            {
-                Id: !isEmpty(Id) ? Id : 0,
-                Text: Text_,
-                DataFormQuestionsId: DataFormQuestionsId,
-                Ratio: Ratio,
-            }), true, function (res) {
+        if (DataFormQuestionsId != null) {
+            AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormQuestionsOptione", JSON.stringify(
+                {
+                    Id: !isEmpty(Id) ? Id : 0,
+                    Text: Text_,
+                    DataFormQuestionsId: DataFormQuestionsId,
+                    Ratio: Ratio,
+                }), true, function (res) {
 
-                $(e).removeAttr("disabled");
+                    $(e).removeAttr("disabled");
 
-                if (res.isSuccess) {
-                    goToUrl("/Admin/Corporate/DataFormQuestionsOptione");
-                }
-                else {
-                    alertB("خطا", res.message, "error");
-                }
-            }, true);
+                    if (res.isSuccess) {
+                        goToUrl("/Admin/Corporate/DataFormQuestionsOptione");
+                    }
+                    else {
+                        alertB("خطا", res.message, "error", "متوجه شدم");
+                    }
+                }, true);
+        }
+        else {
+            alert("ابتدا سوال حذف نشده ای را انتخاب نمایید");
+            $(e).removeAttr("disabled");
+        }
     }
     function deleteDataFormQuestionsOptione(id) {
         try {
@@ -346,7 +369,7 @@
     function makeDataFormQuestionsList() {
         var strM = '';
         for (var i = 0; i < DataFormQuestionsList.length; i++) {
-            if (DataFormQuestionsList[i].questionType === "select" && DataFormQuestionsList[i].dataFormType == 2) {
+            if (DataFormQuestionsList[i].questionType === "select" && DataFormQuestionsList[i].dataFormType == 2 && DataFormQuestionsList[i].isActive == 15) {
                 let questionText = DataFormQuestionsList[i].questionText.length > 79 ? DataFormQuestionsList[i].questionText.slice(0, 75) + " ..." : DataFormQuestionsList[i].questionText;
                 strM += " <option value=" + DataFormQuestionsList[i].dataFormQuestionId + ">" + questionText + "</option>";
             }

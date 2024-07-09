@@ -88,13 +88,13 @@
         for (let i = 0; i < DataFormList.length; i++) {
             if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 if (is_first) {
-                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
+                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
                     tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
                     is_first = false;
                 }
                 else {
                     tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first)
-                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formTitle + "</a></li>";
+                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
                 }
                 
             }
@@ -102,7 +102,7 @@
         $("#" + PutPlace).append(li_option);
         $("#" + PutTabPane).append(tabPane);
         for (let i = 0; i < DataFormList.length; i++) {
-            if (DataFormList[i].formTitle.slice(0, 1) === SubCategoryName) {
+            if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 intiForm(DataFormList[i].formId, ID);
             }
         }
@@ -118,7 +118,7 @@
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات" + FormTitle + "</a></div>";
+        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات" + FormCode + "</a></div>";
         strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";
         strM += "<input type='hidden' id='FormID' name='FormID' value='" + FormId + "' />";

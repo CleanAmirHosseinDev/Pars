@@ -3,14 +3,14 @@
     var DataFormList = null;
     var DataFormQuestionsList = null;
     function dataFormFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType:2 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (let i = 0; i < res.data.length; i++) {
                     let category = getCategoryName(res.data[i].categoryId);
-                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formCode + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formCode + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataForm(" + res.data[i].formId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -57,13 +57,30 @@
                 }
             }, true);
     }
+    function deleteDataForm(id) {
+        try {
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+                AjaxCallAction("GET", "/api/admin/Corporate/Delete_DataForm/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+                    if (result.isSuccess) {
+                        dataFormFilterGrid();
+                        alertB("", result.message, "success");
+                    }
+                    else {
+                        alertB("خطا", result.message, "error");
+                    }
+                }, true);
+            }, function () {
+            }, ["خیر", "بلی"]);
+        } catch (e) {
+        }
+    }
     function dataFormQuestionsFilterGrid() {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
             }
         }, true);
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType:2 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -77,7 +94,7 @@
                     }
                     let dataFormTitle = getObjectWithFormId(DataFormList, res.data[i].dataFormId).formTitle;
                     let questionText = res.data[i].questionText.length > 79 ? res.data[i].questionText.slice(0, 75) + " ..." : res.data[i].questionText;
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + questionText + "</td><td>" + dataFormTitle + "</td><td>" + type + "</td><td>" + res.data[i].score + "</td><td>" + res.data[i].questionOrder + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestions?id=" + res.data[i].dataFormQuestionId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataFormQuestions?id=" + res.data[i].dataFormQuestionId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + questionText + "</td><td>" + dataFormTitle + "</td><td>" + type + "</td><td>" + res.data[i].score + "</td><td>" + res.data[i].questionOrder + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestions?id=" + res.data[i].dataFormQuestionId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormQuestions(" + res.data[i].dataFormQuestionId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -107,8 +124,9 @@
                     $("#HelpText").val(res.helpText);
                 }
             }, true);
+        } else {
+            makeDataFormComboBoxForSelectSubCategory(0);
         }
-        //ComboBoxWithSearch('.select2', dir);
     }
     function saveDataFormQuestions(e) {
 
@@ -134,7 +152,7 @@
                 QuestionOrder: !isEmpty(QuestionOrder) ? QuestionOrder : 0,
                 Score: !isEmpty(Score) ? Score : 0,
                 HelpText: HelpText,
-                IsActive:15,
+                IsActive: 15,
             }), true, function (res) {
 
                 $(e).removeAttr("disabled");
@@ -147,8 +165,25 @@
                 }
             }, true);
     }
+    function deleteDataFormQuestions(id) {
+        try {
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+                AjaxCallAction("GET", "/api/admin/Corporate/Delete_DataFormQuestions/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+                    if (result.isSuccess) {
+                        dataFormQuestionsFilterGrid();
+                        alertB("", result.message, "success");
+                    }
+                    else {
+                        alertB("خطا", result.message, "error");
+                    }
+                }, true);
+            }, function () {
+            }, ["خیر", "بلی"]);
+        } catch (e) {
+        }
+    }
     function getDataFormQuestionsList() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive:15 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess)
                 DataFormQuestionsList = res.data;
         }, true);
@@ -161,7 +196,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
                     let category = getCategoryName(res.data[i].categoryId);
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormDocument(" + res.data[i].dataFormDocumentId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -204,6 +239,23 @@
                 }
             }, true);
     }
+    function deleteDataFormDocument(id) {
+        try {
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+                AjaxCallAction("GET", "/api/admin/Corporate/Delete_DataFormDocument/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+                    if (result.isSuccess) {
+                        dataFormDocumentFilterGrid();
+                        alertB("", result.message, "success");
+                    }
+                    else {
+                        alertB("خطا", result.message, "error");
+                    }
+                }, true);
+            }, function () {
+            }, ["خیر", "بلی"]);
+        } catch (e) {
+        }
+    }
     function dataFormQuestionsOptioneFilterGrid() {
         getDataFormQuestionsList();
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionsOptiones", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
@@ -213,7 +265,7 @@
                 for (var i = 0; i < res.data.length; i++) {
                     let questionText = getObjectWithDataFormQuestionsId(DataFormQuestionsList, res.data[i].dataFormQuestionsId).questionText;
                     questionText = questionText.length > 79 ? questionText.slice(0, 75) + " ..." : questionText;
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].text + "</td><td>" + questionText + "</td><td>" + res.data[i].ratio + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestionsOptione?id=" + res.data[i].id + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' href='/Admin/Corporate/EditDataFormQuestionsOptione?id=" + res.data[i].id + "' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].text + "</td><td>" + questionText + "</td><td>" + res.data[i].ratio + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestionsOptione?id=" + res.data[i].id + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormQuestionsOptione(" + res.data[i].id + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -268,6 +320,23 @@
                 }
             }, true);
     }
+    function deleteDataFormQuestionsOptione(id) {
+        try {
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+                AjaxCallAction("GET", "/api/admin/Corporate/Delete_DataFormQuestionsOptione/" + (isEmpty(id) ? '0' : id), null, true, function (result) {
+                    if (result.isSuccess) {
+                        dataFormQuestionsOptioneFilterGrid();
+                        alertB("", result.message, "success");
+                    }
+                    else {
+                        alertB("خطا", result.message, "error");
+                    }
+                }, true);
+            }, function () {
+            }, ["خیر", "بلی"]);
+        } catch (e) {
+        }
+    }
     function textSearchOnKeyDown(event) {
 
         if (event.keyCode == 13) $(`button[title='جستجو']`).click();
@@ -276,7 +345,7 @@
     function makeDataFormQuestionsList() {
         var strM = '';
         for (var i = 0; i < DataFormQuestionsList.length; i++) {
-            if (DataFormQuestionsList[i].questionType === "select") {
+            if (DataFormQuestionsList[i].questionType === "select" && DataFormQuestionsList[i].dataFormType == 2) {
                 let questionText = DataFormQuestionsList[i].questionText.length > 79 ? DataFormQuestionsList[i].questionText.slice(0, 75) + " ..." : DataFormQuestionsList[i].questionText;
                 strM += " <option value=" + DataFormQuestionsList[i].dataFormQuestionId + ">" + questionText + "</option>";
             }
@@ -297,7 +366,7 @@
                     else {
                         strM += " <option value='" + res.data[i].formId + "'>" + res.data[i].formTitle + "</option>";
                     }
-                   
+
                 }
                 $("#DataForms").html(strM);
             }
@@ -334,24 +403,28 @@
         }
         return category;
     }
-    
+
     web.Corporate = {
         DataFormFilterGrid: dataFormFilterGrid,
         InitDataForm: initDataForm,
         SaveDataForm: saveDataForm,
+        DeleteDataForm: deleteDataForm,
 
         DataFormQuestionsFilterGrid: dataFormQuestionsFilterGrid,
         InitDataFormQuestions: initDataFormQuestions,
         SaveDataFormQuestions: saveDataFormQuestions,
         GetDataFormQuestionsList: getDataFormQuestionsList,
+        DeleteDataFormQuestions: deleteDataFormQuestions,
 
         DataFormDocumentFilterGrid: dataFormDocumentFilterGrid,
         InitDataFormDocument: initDataFormDocument,
         SaveDataFormDocument: saveDataFormDocument,
+        DeleteDataFormDocument: deleteDataFormDocument,
 
         DataFormQuestionsOptioneFilterGrid: dataFormQuestionsOptioneFilterGrid,
         InitDataFormQuestionsOptione: initDataFormQuestionsOptione,
         SaveDataFormQuestionsOptione: saveDataFormQuestionsOptione,
+        DeleteDataFormQuestionsOptione: deleteDataFormQuestionsOptione,
 
         TextSearchOnKeyDown: textSearchOnKeyDown,
         MakeDataFormComboBoxForSelectSubCategory: makeDataFormComboBoxForSelectSubCategory,

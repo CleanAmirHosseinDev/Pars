@@ -68,6 +68,20 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+        [HttpGet]
+        [Route("[action]/id/")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormDocument_Delete })]
+        public ResultDto Delete_DataFormDocument(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteDataFormDocumentService.Execute(id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]
@@ -114,6 +128,23 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
+        [Route("[action]/id/")]
+        [HttpGet]       
+       // [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm_Delete })]
+        public ResultDto Delete_DataForm(int? id = null)
+        {
+            try
+            {
+                return _userFacad.DeleteDataFormService.Execute(id.Value);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+     
+
         [Route("[action]")]
         [HttpPost]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions })]
@@ -152,6 +183,20 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 return await _userFacad.SaveDataFormQuestionsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        [HttpGet]
+        [Route("[action]/id/")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Delete })]
+        public ResultDto Delete_DataFormQuestions(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteDataFormQuestionsService.Execute(id);
             }
             catch (Exception ex)
             {
@@ -197,6 +242,21 @@ namespace EndPoint.Controllers.api.admin
             try
             {
                 return await _userFacad.SaveDataFormQuestionsOptionService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("[action]/id/")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestionsOptione_Delete })]
+        public ResultDto Delete_DataFormQuestionsOptione(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteDataFormQuestionsOptionService.Execute(id);
             }
             catch (Exception ex)
             {

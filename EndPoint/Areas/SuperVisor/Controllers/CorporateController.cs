@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace EndPoint.Areas.SuperVisor.Controllers
 {
-    public class CorporateController : Controller
+    public class CorporateController : BaseController
     {
-        public IActionResult Index()
+        public IActionResult CorporateRating(int? id = null)
         {
+            ViewBag.id = id;
             return View();
         }
+
+
     }
 }

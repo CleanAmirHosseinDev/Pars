@@ -17,24 +17,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? CustomerId { get; set; }
         public bool IsExcelReport { get; set; }
         public string LoginName { get; set; }
-
         public int? RequestId { get; set; }
-
         public int? DestLevelStepIndex { get; set; }
-
         public string UserID { get; set; }
-
         public int? KindOfRequest { get; set; }
-
         public bool IsMyRequests { get; set; }
-
         public string FromDateStr { get; set; }
-       
         public DateTime? FromDate
         {
             get
             {
-
                 return (FromDateStr != "" && FromDateStr!=null ? DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(FromDateStr))) : null);
             }
         }

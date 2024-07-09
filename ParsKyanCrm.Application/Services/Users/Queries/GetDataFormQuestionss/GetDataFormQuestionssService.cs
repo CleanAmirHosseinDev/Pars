@@ -6,6 +6,7 @@ using ParsKyanCrm.Common;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Domain.Entities;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,40 +33,47 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
             {
                 var lists = (
                     from s in _context.DataFormQuestions
-                    where s.DataFormId > 25
-                    select s).AsQueryable();
-                    //.Include(p => p.DataForms)
-
-                if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);
-
-                if (request.IsActive == 14) lists = lists.Where(p => p.IsActive == 14);
-
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(
-                    p => p.QuestionText.Contains(request.Search) || p.QuestionName.Contains(request.Search) || p.HelpText.Contains(request.Search)
-                    );
-
-                if (request.DataFormId != null)
+                    where (s.DataFormId == request.DataFormId || request.DataFormId == null)
+                    select s
+                );
+                if (request.DataFormType == 2)
+                {
                     lists = (
                         from s in _context.DataFormQuestions
-                        where s.DataFormId == request.DataFormId
+                        where (s.DataFormType == 2)
                         select s
                     );
+                    if (request.DataFormId != null)
+                    {
+                        lists = (
+                            from s in _context.DataFormQuestions
+                            where (s.DataFormType == 2 && s.DataFormId == request.DataFormId && s.IsActive == 15)
+                            select s
+                        );
+                    }
+                }
+                
+                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.QuestionName.Contains(request.Search) ||
+                    p.QuestionText.Contains(request.Search) ||
+                    p.QuestionType.Contains(request.Search)
+                );
 
                 switch (request.SortOrder)
                 {
-                    case "Id_D":
-                        lists = lists.OrderByDescending(s => s.DataFormId);
+                    case "DataFormQuestionId_D":
+                        lists = lists.OrderByDescending(s => s.DataFormQuestionId);
                         break;
-                    case "Id_A":
-                        lists = lists.OrderBy(s => s.DataFormId);
+                    case "DataFormQuestionId_A":
+                        lists = lists.OrderBy(s => s.DataFormQuestionId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.DataFormId);
+                        lists = lists.OrderBy(s => s.QuestionOrder);
                         break;
                 }
 
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
+
                     var res_Lists = await lists.ToListAsync();
 
                     return new ResultDto<IEnumerable<DataFormQuestionsDto>>
@@ -75,21 +83,23 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                         Message = string.Empty,
                         Rows = res_Lists.LongCount(),
                     };
+
                 }
                 else
                 {
-                    var lists_Res_Pageing = (
-                        await Pagination<DataFormQuestions>.CreateAsync(lists.AsNoTracking(), request)
-                    );
+
+                    var list_Res_Pageing = await Pagination<Domain.Entities.DataFormQuestions>.CreateAsync(lists.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<DataFormQuestionsDto>>
                     {
-                        Data = _mapper.Map<IEnumerable<DataFormQuestionsDto>>(lists_Res_Pageing),
+                        Data = _mapper.Map<IEnumerable<DataFormQuestionsDto>>(list_Res_Pageing),
                         IsSuccess = true,
                         Message = string.Empty,
-                        Rows = lists_Res_Pageing.Rows,
+                        Rows = list_Res_Pageing.Rows,
                     };
+
                 }
+
             }
             catch (Exception ex)
             {

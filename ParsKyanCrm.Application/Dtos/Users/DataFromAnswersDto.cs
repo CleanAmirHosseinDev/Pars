@@ -12,8 +12,10 @@ namespace ParsKyanCrm.Application.Dtos.Users
 {
     public class RequestDataFromAnswersDto : PageingParamerDto
     {
+        public int AnswerId { get; set; }
         public int? RequestId { get; set; }
         public int? FormId { get; set; }
+        public int? DataFormQuestionId { get; set; }
     }
 
     public class DataFromAnswersDto
@@ -23,10 +25,10 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
         public string Answer { get; set; }
+        public string Description { get; set; }
         public string FileName1 { get; set; }
-
+        public byte? IsActive { get; set; }
         public IFormFile Result_Final_FileName1 { get; set; }
-
         public string FileName1Full
         {
             get

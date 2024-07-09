@@ -62,6 +62,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
                 EntityEntry<DataFormQuestions> q_Entity;
                 if (Check_Remote(request) == false)
                 {
+                    request.IsActive = 15;
                     q_Entity = _context.DataFormQuestions.Add(_mapper.Map<DataFormQuestions>(request));
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<DataFormQuestionsDto>(q_Entity.Entity);
@@ -73,6 +74,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestions
                         {
                             {
                                 nameof(q_Entity.Entity.DataFormId), request.DataFormId
+                            },
+                            {
+                                nameof(q_Entity.Entity.DataFormType), request.DataFormType
                             },
                             {
                                 nameof(q_Entity.Entity.QuestionText), request.QuestionText

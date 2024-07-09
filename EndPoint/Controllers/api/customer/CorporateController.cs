@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
+using ParsKyanCrm.Infrastructure.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,6 @@ namespace EndPoint.Controllers.api.customer
 
     public class CorporateController : BaseController
     {
-
         private readonly ILogger<FurtherInfoController> _logger;
         private readonly IUserFacad _userFacad;
         public CorporateController(ILogger<FurtherInfoController> logger, IUserFacad userFacad)
@@ -24,6 +24,19 @@ namespace EndPoint.Controllers.api.customer
             _userFacad = userFacad;
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]
@@ -36,6 +49,20 @@ namespace EndPoint.Controllers.api.customer
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFormQuestionsDto> Get_DataFormQuestions(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionsService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -53,7 +80,19 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
-
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFormQuestionsOptionDto> Get_Option(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormQuestionsOptionService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [Route("[action]")]
         [HttpPost]
@@ -115,7 +154,7 @@ namespace EndPoint.Controllers.api.customer
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswers([FromForm] DataFromAnswersDto request)
+        public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswers([FromBody] DataFromAnswersDto request)
         {
             try
             {
@@ -136,6 +175,20 @@ namespace EndPoint.Controllers.api.customer
                 return _userFacad.DeleteDataFormAnswerTablesService.Execute(id);
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+        
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFormReportDto>> Save_DataFromReport([FromBody] DataFormReportDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormReportsService.Execute(request);
+            }
+            catch (Exception ex)
             {
                 throw;
             }

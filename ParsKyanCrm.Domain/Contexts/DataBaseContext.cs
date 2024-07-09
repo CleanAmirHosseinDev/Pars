@@ -12,13 +12,13 @@ namespace ParsKyanCrm.Domain.Contexts
 {
     //Scaffold-DbContext "Server=77.238.123.197;Database=ParsKyanCrmDB;user id=pars;password=Pars@10155;Integrated Security=false;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -NoPluralize
     //namespace ParsKyanCrm.Domain.Entities    
+
     public interface IDataBaseContext
     {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
 
         DbSet<LoginLog> LoginLogs { get; set; }
-
         DbSet<AboutUs> AboutUs { get; set; }
         DbSet<Activity> Activity { get; set; }
         DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
@@ -29,18 +29,14 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<Contract> Contract { get; set; }
         DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         DbSet<CorporateGovernance> CorporateGovernance { get; set; }
-
         DbSet<Customers> Customers { get; set; }
-
         DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
-
         DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
-
         DbSet<ManagerOfParsKyan> ManagerOfParsKyan { get; set; }
         DbSet<NewsAndContent> NewsAndContent { get; set; }
-
         DbSet<DataFromAnswers> DataFromAnswers { get; set; }
+        DbSet<DataFormReport> DataFormReport { get; set; }
         DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         DbSet<RequestForRating> RequestForRating { get; set; }
         DbSet<RequestReferences> RequestReferences { get; set; }
@@ -85,8 +81,8 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<DataFormQuestionsOption> DataFormQuestionsOption { get; set; }
         public virtual DbSet<DataForms> DataForms { get; set; }
         public virtual DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
-
         public virtual DbSet<DataFromAnswers> DataFromAnswers { get; set; }
+        public virtual DbSet<DataFormReport> DataFormReport { get; set; }
 
         public virtual DbSet<AboutUs> AboutUs { get; set; }
         public virtual DbSet<Activity> Activity { get; set; }
@@ -156,7 +152,8 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.AnswerId).HasColumnName("AnswerID");
 
-                entity.Property(e => e.Answer).HasMaxLength(50);
+                entity.Property(e => e.Answer).HasMaxLength(100);
+                entity.Property(e => e.Description).HasMaxLength(1000);
 
                 entity.Property(e => e.RequestId).HasColumnName("RequestId");
 
@@ -216,6 +213,12 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.FormId).HasColumnName("FormID");
             });
+
+            modelBuilder.Entity<DataFormReport>(entity =>
+            {
+                entity.HasKey(e => e.DataReportId);
+            });
+
 
             modelBuilder.Entity<AboutUs>(entity =>
             {

@@ -34,7 +34,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
                              (s.RequestId == request.RequestId || request.RequestId == null)
                              select s);
 
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Answer.Contains(request.Search));
+                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Answer.Contains(request.Search) || p.Description.Contains(request.Search));
 
                 switch (request.SortOrder)
                 {

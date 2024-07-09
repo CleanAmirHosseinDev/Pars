@@ -69,6 +69,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm
                     Ado_NetOperation.SqlUpdate(nameof(DataForms), new Dictionary<string, object>()
                     {
                         {
+                            nameof(q_Entity.Entity.FormCode),request.FormCode
+                        },
+                        {
                             nameof(q_Entity.Entity.FormTitle),request.FormTitle
                         },
                         {

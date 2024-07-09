@@ -51,7 +51,7 @@
                         }
                         strM += "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> </a>";
                         if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
-                            if (res.data[i].destLevelStepIndex == 4) {
+                            if (res.data[i].levelStepSettingIndexID == 34) {
                                 strM += "<a style='margin-right:5px;' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward'></i> تایید قرارداد و بارگذاری قرارداد </a>";
 
                             }

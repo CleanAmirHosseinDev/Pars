@@ -33,10 +33,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
             {
                 var lists = (
                     from s in _context.DataFormQuestions
-                    where (s.DataFormId == request.DataFormId || request.DataFormId == null)
+                    join d in _context.DataForms on s.DataFormId equals d.FormId
+                    where ((s.DataFormId == request.DataFormId || request.DataFormId == null) && d.IsActive==15)
                     select s
                 );
-                if (request.DataFormType == 2)
+                if (request.DataFormType == 2 )
                 {
                     lists = (
                         from s in _context.DataFormQuestions

@@ -31,6 +31,7 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
+                request.IsActive = 15;
                 return await _userFacad.GetDataFormDocumentsService.Execute(request);
             }
             catch (Exception)
@@ -69,7 +70,7 @@ namespace EndPoint.Controllers.api.admin
             }
         }
         [HttpGet]
-        [Route("[action]/id/")]
+        [Route("[action]/{id}/")]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormDocument_Delete })]
         public ResultDto Delete_DataFormDocument(int id)
         {
@@ -128,14 +129,14 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
-        [Route("[action]/id/")]
+        [Route("[action]/{id}/")]
         [HttpGet]       
-       // [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm_Delete })]
-        public ResultDto Delete_DataForm(int? id = null)
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataForm_Delete })]
+        public ResultDto Delete_DataForm(int id)
         {
             try
             {
-                return _userFacad.DeleteDataFormService.Execute(id.Value);
+                return _userFacad.DeleteDataFormService.Execute(id);
             }
             catch (Exception ex)
             {
@@ -189,8 +190,9 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+        
+        [Route("[action]/{id}/")]
         [HttpGet]
-        [Route("[action]/id/")]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestions_Delete })]
         public ResultDto Delete_DataFormQuestions(int id)
         {
@@ -249,8 +251,8 @@ namespace EndPoint.Controllers.api.admin
             }
         }
 
+        [Route("[action]/{id}/")]
         [HttpGet]
-        [Route("[action]/id/")]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateDataFormQuestionsOptione_Delete })]
         public ResultDto Delete_DataFormQuestionsOptione(int id)
         {

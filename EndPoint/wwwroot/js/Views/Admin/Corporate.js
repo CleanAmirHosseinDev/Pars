@@ -3,7 +3,7 @@
     var DataFormList = null;
     var DataFormQuestionsList = null;
     function dataFormFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
@@ -76,12 +76,12 @@
         }
     }
     function dataFormQuestionsFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
             }
         }, true);
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -191,7 +191,7 @@
 
     }
     function dataFormDocumentFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormDocuments", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val() }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormDocuments", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive:15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';

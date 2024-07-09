@@ -31,7 +31,6 @@ namespace EndPoint.Controllers.api.admin
         {
             try
             {
-                request.IsActive = 15;
                 return await _userFacad.GetDataFormDocumentsService.Execute(request);
             }
             catch (Exception)

@@ -29,12 +29,20 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataForms
         {
             try
             {
-
                 var lists = (
                     from s in _context.DataForms
-                     where (s.IsActive == 15 && s.CategoryId != null)
-                     select s
+                    where (s.IsActive == 15)
+                    select s
+                ).AsQueryable();
+
+                if (request.CategoryId == null)
+                {
+                    lists = (
+                        from s in _context.DataForms
+                        where (s.IsActive == 15 && s.CategoryId != null)
+                        select s
                     ).AsQueryable();
+                }
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.FormTitle.Contains(request.Search));
 
@@ -59,13 +67,12 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataForms
                         lists = lists.OrderBy(s => s.CategoryId);
                         break;
                     default:
-                        lists = lists = lists.OrderBy(s => s.FormTitle);
+                        lists = lists.OrderBy(s => s.FormTitle);
                         break;
                 }
 
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
-
                     var res_Lists = await lists.ToListAsync();
 
                     return new ResultDto<IEnumerable<DataFormsDto>>
@@ -79,7 +86,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataForms
                 else
                 {
                     var lists_Res_Pageing = (await Pagination<DataForms>.CreateAsync(lists.AsNoTracking(), request));
-
                     return new ResultDto<IEnumerable<DataFormsDto>>
                     {
                         Data = _mapper.Map<IEnumerable<DataFormsDto>>(lists_Res_Pageing),

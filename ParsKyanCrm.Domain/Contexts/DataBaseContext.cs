@@ -37,6 +37,7 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<NewsAndContent> NewsAndContent { get; set; }
         DbSet<DataFromAnswers> DataFromAnswers { get; set; }
         DbSet<DataFormReport> DataFormReport { get; set; }
+        DbSet<DataFormReportCheck> DataFormReportCheck { get; set; }
         DbSet<RankingOfCompanies> RankingOfCompanies { get; set; }
         DbSet<RequestForRating> RequestForRating { get; set; }
         DbSet<RequestReferences> RequestReferences { get; set; }
@@ -83,7 +84,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<DataFormAnswerTables> DataFormAnswerTables { get; set; }
         public virtual DbSet<DataFromAnswers> DataFromAnswers { get; set; }
         public virtual DbSet<DataFormReport> DataFormReport { get; set; }
-
+        public virtual DbSet<DataFormReportCheck> DataFormReportCheck { get; set; }
         public virtual DbSet<AboutUs> AboutUs { get; set; }
         public virtual DbSet<Activity> Activity { get; set; }
         public virtual DbSet<BoardOfDirectors> BoardOfDirectors { get; set; }
@@ -116,6 +117,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<PublicActivities> PublicActivities { get; set; }
         public virtual DbSet<ContractPages> ContractPages { get; set; }
         
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -219,6 +221,10 @@ namespace ParsKyanCrm.Domain.Contexts
                 entity.HasKey(e => e.DataReportId);
             });
 
+            modelBuilder.Entity<DataFormReportCheck>(entity =>
+            {
+                entity.HasKey(e => e.CheckId);
+            });
 
             modelBuilder.Entity<AboutUs>(entity =>
             {

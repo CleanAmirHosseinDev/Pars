@@ -13,7 +13,5 @@ namespace EndPoint.Areas.SuperVisor.Controllers
             ViewBag.id = id;
             return View();
         }
-
-
     }
 }

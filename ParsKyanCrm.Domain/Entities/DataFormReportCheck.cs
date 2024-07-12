@@ -17,8 +17,7 @@ namespace ParsKyanCrm.Domain.Entities
         public string FormCode { get; set; }
         public string AnswerBeforEdit { get; set; }
         public string AnswerAfterEdit { get; set; }
-        public string DocumentBeforEdit { get; set; }
-        public string DocumentAfterEdit { get; set; }
+        public string Document { get; set; }
         public double? SystemScore { get; set; }
         public string SuperVisorDescription { get; set; }
         public string CostumerDescriptionBeforEdit { get; set; }

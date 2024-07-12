@@ -34,13 +34,19 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string FormCode { get; set; }
         public string AnswerBeforEdit { get; set; }
         public string AnswerAfterEdit { get; set; }
-        public string DocumentBeforEdit { get; set; }
-        public string DocumentAfterEdit { get; set; }
+        public string Document { get; set; }
         public double? SystemScore { get; set; }
         public string SuperVisorDescription { get; set; }
         public string CostumerDescriptionBeforEdit { get; set; }
         public string CostumerDescriptionAfterEdit { get; set; }
         public byte? IsActive { get; set; }
-
+        public IFormFile DocumentFile { get; set; }
+        public string DocumentFileFull
+        {
+            get
+            {
+                return ServiceFileUploader.GetFullPath(Document, VaribleForName.CustomerFurtherInfoFolder, false);
+            }
+        }
     }
 }

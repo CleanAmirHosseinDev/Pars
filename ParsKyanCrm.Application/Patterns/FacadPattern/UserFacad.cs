@@ -53,6 +53,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetDataForms;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataForm;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportCheck;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers;
@@ -116,8 +118,6 @@ using ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
-
-
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -202,7 +202,8 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveDataFormService SaveDataFormService { get; }
         IDeleteDataFormService DeleteDataFormService { get; }
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
-
+        IGetDataFormReportCheckService GetDataFormReportCheckService { get; }
+        IGetDataFormReportChecksService GetDataFormReportChecksService { get; }
         IGetCustomerssService GetCustomerssService { get; }
 
         ISaveCustomersService SaveCustomersService { get; }
@@ -792,6 +793,24 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper);
+            }
+        }
+
+        private IGetDataFormReportCheckService _getDataFormReportCheckService;
+        public IGetDataFormReportCheckService GetDataFormReportCheckService
+        {
+            get
+            {
+                return _getDataFormReportCheckService = _getDataFormReportCheckService ?? new GetDataFormReportCheckService(_context, _mapper);
+            }
+        }
+
+        private IGetDataFormReportChecksService _getDataFormReportChecksService;
+        public IGetDataFormReportChecksService GetDataFormReportChecksService
+        {
+            get
+            {
+                return _getDataFormReportChecksService = _getDataFormReportChecksService ?? new GetDataFormReportChecksService(_context, _mapper);
             }
         }
 

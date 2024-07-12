@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks
 {
-    public interface IGetDataFormReportCheckService
+    public interface IGetDataFormReportChecksService
     {
         Task<ResultDto<IEnumerable<DataFormReportCheckDto>>> Execute(RequestDataFormReportCheckDto request);
     }

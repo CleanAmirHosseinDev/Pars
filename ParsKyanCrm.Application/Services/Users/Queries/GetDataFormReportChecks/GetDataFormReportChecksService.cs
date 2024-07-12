@@ -15,11 +15,11 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks
 {
-    public class GetDataFormReportCheckService : IGetDataFormReportCheckService
+    public class GetDataFormReportChecksService : IGetDataFormReportChecksService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;        
-        public GetDataFormReportCheckService(IDataBaseContext context, IMapper mapper)
+        public GetDataFormReportChecksService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;            

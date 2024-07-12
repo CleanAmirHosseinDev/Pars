@@ -173,5 +173,47 @@ namespace EndPoint.Controllers.api.superVisor
                 throw;
             }
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFormReportCheckDto>> Save_DataFormReportCheck([FromBody] DataFormReportCheckDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFormReportCheckService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormReportCheckDto>>> Get_DataFormReportChecks([FromBody] RequestDataFormReportCheckDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormReportChecksService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<DataFormReportCheckDto> Get_DataFormReportCheck([FromBody] RequestDataFormReportCheckDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormReportCheckService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

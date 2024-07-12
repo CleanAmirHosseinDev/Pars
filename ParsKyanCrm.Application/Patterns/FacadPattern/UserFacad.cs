@@ -55,6 +55,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataForm;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportCheck;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormReportCheck;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomers;
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteCustomers;
@@ -204,6 +205,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
         IGetDataFormReportCheckService GetDataFormReportCheckService { get; }
         IGetDataFormReportChecksService GetDataFormReportChecksService { get; }
+        ISaveDataFormReportCheckService SaveDataFormReportCheckService { get; }
         IGetCustomerssService GetCustomerssService { get; }
 
         ISaveCustomersService SaveCustomersService { get; }
@@ -811,6 +813,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFormReportChecksService = _getDataFormReportChecksService ?? new GetDataFormReportChecksService(_context, _mapper);
+            }
+        }
+
+        private ISaveDataFormReportCheckService _saveDataFormReportCheckService;
+        public ISaveDataFormReportCheckService SaveDataFormReportCheckService
+        {
+            get
+            {
+                return _saveDataFormReportCheckService = _saveDataFormReportCheckService ?? new SaveDataFormReportCheckService(_context, _mapper, _env);
             }
         }
 

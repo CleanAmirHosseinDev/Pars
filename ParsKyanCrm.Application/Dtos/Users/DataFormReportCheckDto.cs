@@ -17,7 +17,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? AnswerId { get; set; }
         public int? FormId { get; set; }
         public int? RequestId { get; set; }
-        public int? CheCategoryIdckId { get; set; }
+        public int? CategoryId { get; set; }
         public int? DocumentId { get; set; }
         public byte? IsActive { get; set; }
     }
@@ -29,7 +29,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? AnswerId { get; set; }
         public int? FormId { get; set; }
         public int? RequestId { get; set; }
-        public int? CheCategoryIdckId { get; set; }
+        public int? CategoryId { get; set; }
         public int? DocumentId { get; set; }
         public string FormCode { get; set; }
         public string AnswerBeforEdit { get; set; }

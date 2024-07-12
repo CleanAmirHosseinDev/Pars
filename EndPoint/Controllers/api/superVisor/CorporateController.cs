@@ -35,6 +35,20 @@ namespace EndPoint.Controllers.api.superVisor
                 throw;
             }
         }
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFormsDto> Get_DataForm(int id)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)

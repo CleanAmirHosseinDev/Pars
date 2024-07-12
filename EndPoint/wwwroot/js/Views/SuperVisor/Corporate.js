@@ -79,6 +79,16 @@
                     }
                 }, true);
             }
+            var formDate = {
+                "formCode":"0",
+                "categoryId": "0",
+            }
+            AjaxCallAction("GET", "/api/superVisor/Corporate/Get_DataForm/" + FormID, null, false, function (res) {
+                if (res != null) {
+                    formDate = res;
+                }
+            }, true);
+
             if (!isEmpty(report)) {
                 _str_tag += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
                 _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-12'>";
@@ -90,14 +100,15 @@
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
                 _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' min='0'></p></div>";
                 _str_tag += "<div class='col-md-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
-                _str_tag += "<input type='text' name='descriptoin_" + report.dataReportId + "' value='ندارد ...' onfocus='select();'></p>";
-                _str_tag += "<div class='col-md-12'><a class='btn btn-warning' onclick='Web.CorporateSuperVisor.ReturnToCustomer(";
-                _str_tag += QuestionData[i].dataFormQuestionId + ");'>بازگشت به مشتری برای اصلاح</a></div></div>"
+                _str_tag += "<input type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' value='ندارد ...' onfocus='select();'></p>";
+                _str_tag += '<div class="col-md-12"><a class="btn btn-warning" onclick="Web.CorporateSuperVisor.ReturnToCustomer(';
+                _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
+                _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
+                _str_tag += report.dataReportId + ", '" + answer.description + "'," + "''";
+                _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
                 _str_tag += "<input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div>"
             }
         }
-
-        
         return _str_tag;
     }
 
@@ -166,18 +177,19 @@
             let title = DataFormDocumentList[i].title;
             let formId = "Doc" + DataFormDocumentList[i].dataFormDocumentId;
             let helpText = DataFormDocumentList[i].helpText;
+            let categoryId = DataFormDocumentList[i].categoryId;
             switch (DataFormDocumentList[i].categoryId) {
                 case 287:
-                    _str287 += makeFileInput(title, formId, helpText);
+                    _str287 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
                     break;
                 case 288:
-                    _str288 += makeFileInput(title, formId, helpText);
+                    _str288 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
                     break;
                 case 289:
-                    _str289 += makeFileInput(title, formId, helpText);
+                    _str289 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
                     break;
                 case 290:
-                    _str290 += makeFileInput(title, formId, helpText);
+                    _str290 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
                     break;
                 default:
                     break;
@@ -200,16 +212,35 @@
         }, true);
 
     }
-    function makeFileInput(inputTitle, inputName, helpText) {
+    function makeFileInput(inputTitle, inputName, helpText, categoryId, documentId) {
+        let RequestId = $("#RequestIdForms").val();
+        var _DataAnswer;
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
+            PageIndex: 0, PageSize: 0, FormID: null, RequestId: RequestId
+        }), false, function (res) {
+            if (res.isSuccess) {
+                _DataAnswer = res.data;
+            }
+        }, true);
+        var answer = _DataAnswer.find(o => o.requestId == RequestId && o.dataFormDocumentId == documentId)
+        if (isEmpty(answer)) {
+            answer = {
+                "description": "",
+                "fileName1Full":"",
+            }
+        }
         let _str = "";
         _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
         _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
         _str += "<a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a></div>";
         _str += "<div class='col-md-12'><label>توضیحات کارشناس</label>";
-        _str += "<input style='width: 100%;margin: 10px;' type='text' name='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' value='ندارد ...' onfocus='select();'>";
-        _str += '<a style="margin: 10px;" class="btn btn-warning" onclick="Web.CorporateSuperVisor.ReturnToCustomerDoc(' + inputName.slice(3, inputName.length) + ');"';
-        _str += ">بازگشت به مشتری برای اصلاح</a></div>";
+        _str += "<input style='width: 100%;margin: 10px;' type='text' id='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' name='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' ";
+        _str += 'value="ندارد ..." onfocus="select();"><a style="margin: 10px;" class="btn btn-warning" onclick="Web.CorporateSuperVisor.ReturnToCustomerDoc(';
+        _str += 0 + "," + 0 + "," + 0 + "," + RequestId + "," + categoryId + ",";
+        _str += documentId + "," + "''," + "''," + "''," + "'', '" + answer.fileName1Full + "'," + 0 + "," + inputName.slice(3, inputName.length) + "," + "'',";
+        _str += "'', ";
+        _str += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
         return _str;
     }
     function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
@@ -316,6 +347,29 @@
         }), true, function (data) { }, true);
     }
 
+    function returnToCustomer(
+        QuestionId, AnswerId, FormId, RequestId, CategoryId,
+        FormCode, QuestionType, AnswerBeforEdit, AnswerAfterEdit, SystemScore,
+        DataReportId, CostumerDescriptionBeforEdit, CostumerDescriptionAfterEdit
+    ) {
+        let superVisorDescription = $('#descriptoin_' + DataReportId).val();
+        console.log(QuestionId, AnswerId, FormId, RequestId, CategoryId,
+            FormCode, QuestionType, AnswerBeforEdit, AnswerAfterEdit, SystemScore,
+            superVisorDescription, CostumerDescriptionBeforEdit, CostumerDescriptionAfterEdit);
+    }
+
+    function returnToCustomerDoc(
+        QuestionId, AnswerId, FormId, RequestId, CategoryId, DocumentId,
+        FormCode, QuestionType, AnswerBeforEdit, AnswerAfterEdit, _Document, SystemScore,
+        DataReportId, CostumerDescriptionBeforEdit, CostumerDescriptionAfterEdit
+    ) {
+        let superVisorDescription = $('#descriptoinDoc_' + DataReportId).val();
+        console.log(QuestionId, AnswerId, FormId, RequestId, CategoryId, DocumentId,
+            FormCode, QuestionType, AnswerBeforEdit, AnswerAfterEdit, _Document, SystemScore,
+            superVisorDescription, CostumerDescriptionBeforEdit, CostumerDescriptionAfterEdit
+        );
+    }
+
     web.CorporateSuperVisor = {
         IntiForm: intiForm,
         InitCorporate: initCorporate,
@@ -324,6 +378,8 @@
         MakeDynamicDocumentForm: makeDynamicDocumentForm,
         SaveSerializedForm: saveSerializedForm,
         Save_AnswersAnalize: save_AnswersAnalize,
+        ReturnToCustomer: returnToCustomer,
+        ReturnToCustomerDoc: returnToCustomerDoc,
     }; 
 
 })(Web, jQuery);

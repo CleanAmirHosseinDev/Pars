@@ -33,6 +33,10 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
                              where (s.FormId == request.FormId || request.FormId == null) &&
                              (s.RequestId == request.RequestId || request.RequestId == null)
                              select s);
+                if(request.DataFormQuestionId == null && request.FormId == null)
+                    lists = (from s in _context.DataFromAnswers
+                        where (s.FormId == 0 && s.RequestId == request.RequestId && s.DataFormQuestionId == 0)
+                             select s);
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Answer.Contains(request.Search) || p.Description.Contains(request.Search));
 

@@ -26,6 +26,20 @@ namespace EndPoint.Controllers.api.customer
 
         [Route("[action]")]
         [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormDocumentsDto>>> Get_DataFormDocuments([FromBody] RequestDataFormDocumentsDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormDocumentsService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormsDto>>> Get_DataForms([FromBody] RequestDataFormsDto request)
         {
             try
@@ -140,6 +154,20 @@ namespace EndPoint.Controllers.api.customer
 
         [Route("[action]")]
         [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFromAnswersDto>>> Get_DataFromAnswersDocuments([FromBody] RequestDataFromAnswersDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFromAnswerssService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
         public async Task<ResultDto<DataFormAnswerTablesDto>> Save_DataFormAnswerTabless([FromForm] DataFormAnswerTablesDto request)
         {
             try
@@ -155,6 +183,20 @@ namespace EndPoint.Controllers.api.customer
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswers([FromBody] DataFromAnswersDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveDataFromAnswersService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<DataFromAnswersDto>> Save_DataFromAnswersUpload([FromForm] DataFromAnswersDto request)
         {
             try
             {

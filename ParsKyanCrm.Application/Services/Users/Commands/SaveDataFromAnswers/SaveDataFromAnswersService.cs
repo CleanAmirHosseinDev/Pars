@@ -45,9 +45,21 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 if (!string.IsNullOrEmpty(strCondition))
                 {
-                    var q = Ado_NetOperation.GetAll_Table(nameof(DataFromAnswers), "*", strCondition + " AND " + nameof(request.RequestId) + " = " + request.RequestId);
+                    var q = Ado_NetOperation.GetAll_Table(
+                        nameof(DataFromAnswers), "*", strCondition + " AND " + nameof(request.RequestId) + " = " + request.RequestId
+                    );
                     return q != null && q.Rows.Count > 0 ? true : false;
                 }
+
+                if (request.Answer == null && request.DataFormDocumentId != 0)
+                {
+                    var q = Ado_NetOperation.GetAll_Table(
+                        nameof(DataFromAnswers), "*", 
+                        nameof(request.DataFormDocumentId) + " = " + request.DataFormDocumentId + " AND " + nameof(request.RequestId) + " = " + request.RequestId
+                    );
+                    return q != null && q.Rows.Count > 0;
+                }
+
                 return true;
             }
             catch (Exception ex)
@@ -88,27 +100,38 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                 }
                 else
                 {
-                    Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.DataFromAnswers).Name, new Dictionary<string, object>()
+                    if(request.DataFormQuestionId != 0) {
+                        Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.DataFromAnswers).Name, new Dictionary<string, object>()
+                        {
+                            {
+                                nameof(q_Entity.Entity.RequestId),request.RequestId
+                            },
+                            {
+                                nameof(q_Entity.Entity.FormId),request.FormId
+                            },
+                            {
+                                nameof(q_Entity.Entity.DataFormQuestionId),request.DataFormQuestionId
+                            },
+                            {
+                                nameof(q_Entity.Entity.Answer),request.Answer
+                            },
+                            {
+                                nameof(q_Entity.Entity.Description),request.Description
+                            },
+                            {
+                                nameof(q_Entity.Entity.FileName1),request.FileName1
+                            },
+                        }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and RequestId={1} ", request.DataFormQuestionId,request.RequestId));
+                    }
+                    else
                     {
+                        Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.DataFromAnswers).Name, new Dictionary<string, object>()
                         {
-                            nameof(q_Entity.Entity.RequestId),request.RequestId
-                        },
-                        {
-                            nameof(q_Entity.Entity.FormId),request.FormId
-                        },
-                        {
-                            nameof(q_Entity.Entity.DataFormQuestionId),request.DataFormQuestionId
-                        },
-                        {
-                            nameof(q_Entity.Entity.Answer),request.Answer
-                        },
-                        {
-                            nameof(q_Entity.Entity.Description),request.Description
-                        },
-                        {
-                            nameof(q_Entity.Entity.FileName1),request.FileName1
-                        },
-                    }, string.Format(nameof(q_Entity.Entity.DataFormQuestionId) + " = {0} and RequestId={1} ", request.DataFormQuestionId,request.RequestId));
+                            {
+                                nameof(q_Entity.Entity.FileName1),request.FileName1
+                            },
+                        }, string.Format(nameof(q_Entity.Entity.DataFormDocumentId) + " = {0} and RequestId={1} ", request.DataFormDocumentId, request.RequestId));
+                    }
                 }
                 #region Upload Image
                 if (request.Result_Final_FileName1 != null)

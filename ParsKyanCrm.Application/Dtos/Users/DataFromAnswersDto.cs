@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ParsKyanCrm.Application.Dtos.Users
 {
@@ -16,6 +17,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? RequestId { get; set; }
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
+        public int? DataFormDocumentId { get; set; }
     }
 
     public class DataFromAnswersDto
@@ -24,6 +26,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? RequestId { get; set; }
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
+        public int? DataFormDocumentId { get; set; }
         public string Answer { get; set; }
         public string Description { get; set; }
         public string FileName1 { get; set; }

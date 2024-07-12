@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParsKyanCrm.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace ParsKyanCrm.Domain.Entities
         public int? RequestId { get; set; }
         public int? FormId { get; set; }
         public int? DataFormQuestionId { get; set; }
+        public int? DataFormDocumentId { get; set; }
         public string Answer { get; set; }
         public string Description { get; set; }
         public string FileName1 { get; set; }

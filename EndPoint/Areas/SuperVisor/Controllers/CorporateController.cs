@@ -8,7 +8,7 @@ namespace EndPoint.Areas.SuperVisor.Controllers
 {
     public class CorporateController : BaseController
     {
-        public IActionResult CorporateRating(int? id = null)
+        public IActionResult Index(int? id = null)
         {
             ViewBag.id = id;
             return View();

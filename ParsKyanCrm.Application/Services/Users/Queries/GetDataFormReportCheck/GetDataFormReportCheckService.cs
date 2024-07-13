@@ -33,7 +33,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportCheck
                      where (
                          s.IsActive == 15 &&
                          s.CheckId == request.CheckId ||
-                         s.QuestionId == request.QuestionId && s.FormId == request.FormId ||
+                         s.QuestionId == request.QuestionId && s.FormId == request.FormId && s.RequestId == request.RequestId ||
                          s.RequestId == request.RequestId && s.DocumentId == request.DocumentId ||
                          s.AnswerId == request.AnswerId ||
                          s.CategoryId == request.CategoryId && s.QuestionId == request.QuestionId

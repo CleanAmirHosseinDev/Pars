@@ -62,8 +62,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormReportChec
             {
                 string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
 
-                var qFind = await _context.DataFormReportCheck.FirstOrDefaultAsync(m => m.RequestId == request.RequestId && m.DocumentId == request.DocumentId);
-                request.Document = qFind != null && !string.IsNullOrEmpty(qFind.Document) ? qFind.Document : string.Empty;
+                var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m => m.RequestId == request.RequestId && m.DataFormDocumentId == request.DocumentId);
+                request.Document = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
 
                 #region Upload Image
                 if (request.DocumentFile != null)

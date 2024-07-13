@@ -79,7 +79,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportCheck
                     FormCode = null,
                     AnswerBeforEdit = null,
                     AnswerAfterEdit = null,
-                    Document = res.Document,
+                    Document = null,
                     SystemScore = null,
                     SuperVisorDescription = null,
                     CostumerDescriptionBeforEdit = null,

@@ -2,7 +2,7 @@
     ViewData["Title"] = "حاکمیت شرکتی";
 }
 
-@section PageHeader {
+@section PageHeader{
     <section class="content-header">
         <h1>
             حاکمیت شرکتی
@@ -13,7 +13,7 @@
         </ol>
     </section>
 }
-@section Styles {
+@section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
@@ -63,10 +63,10 @@
                                                     <li class="active" id="account"><strong>حقوق و رفتار عادلانه با سهامدار</strong></li>
                                                     <li id="personal"><strong>نقش ذینفعان</strong></li>
                                                     <li id="payment"><strong>افشاء و شفافیت</strong></li>
-                                                    <li id="confirm"><strong>مسئولیت های هیئت مدیره</strong></li>
+                                                    <li id="account"><strong>مسئولیت های هیئت مدیره</strong></li>
                                                     <li id="confirm"><strong>بارگذاری مدارک</strong></li>
                                                 </ul>
-
+                                            
                                                 <!-- حقوق و رفتار عادلانه با سهامدار -->
                                                 <fieldset>
                                                     <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
@@ -77,6 +77,7 @@
                                                                     <ul class="nav nav-tabs" id="TargetTabs287">
                                                                     </ul>
                                                                     <div class="tab-content" id="TabPaneTargetTabs287">
+                                                                        
                                                                     </div>
                                                                     <!-- /.tab-content -->
                                                                 </div>
@@ -86,7 +87,7 @@
                                                     <button type="button" name="next" class="next action-button" style="width:100px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
                                                 </fieldset>
 
-
+                                                
                                                 <!-- نقش ذینفعان -->
                                                 <fieldset>
                                                     <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
@@ -98,6 +99,7 @@
                                                                     <ul class="nav nav-tabs" id="TargetTabs288">
                                                                     </ul>
                                                                     <div class="tab-content" id="TabPaneTargetTabs288">
+                                                                        
                                                                     </div>
                                                                     <!-- /.tab-content -->
                                                                 </div>
@@ -136,7 +138,7 @@
                                                 <fieldset>
                                                     <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
                                                     <button type="button" name="next" class="next action-button" style="border:none;width:90px">فرم بعدی <i class="fa fa-arrow-left"></i></button>
-
+                                                    
                                                     <div class="form-card">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -160,19 +162,19 @@
                                                     <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
                                                     <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
 
-                                                    <div class="form-card">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="nav-tabs-custom">
-                                                                    <ul class="nav nav-tabs" id="ducument_save">
-                                                                    </ul>
-                                                                    <div class="tab-content" id="document_save_pane">
+                                                        <div class="form-card">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="nav-tabs-custom">
+                                                                        <ul class="nav nav-tabs" id="ducument_save">
+                                                                        </ul>
+                                                                        <div class="tab-content" id="document_save_pane">
+                                                                        </div>
+                                                                        <!-- /.tab-content -->
                                                                     </div>
-                                                                    <!-- /.tab-content -->
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
                                                     <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
                                                     <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
@@ -196,7 +198,7 @@
                                                         </div>
                                                         <div class="row" style="margin:20px">
                                                             <div class="form-group">
-
+                                                               
                                                                 <div class="col-md-12 text-center">
                                                                     <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="@ViewBag.id" />
                                                                     <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sdel" value="@ViewBag.id" />
@@ -228,8 +230,7 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 
     <script>
-        Web.CorporateSuperVisor.InitCorporate(@ViewBag.id);
-
+        Web.Corporate.InitCorporate(@ViewBag.id, false);
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });

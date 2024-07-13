@@ -5,6 +5,20 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         getCustomerInfo(id, dir = 'rtl');
+
+        if (makeQuestionForm) {
+            makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
+
+            makeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
+
+            makeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
+
+            makeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
+
+            makeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
+
+            makeDynamicDocumentForm("ducument_save", "document_save_pane");
+        }
     }
 
     function getCustomerInfo(id = null) {
@@ -56,7 +70,7 @@
                 AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReportCheck", JSON.stringify({
                     FormID: FormID, RequestId: RequestId, QuestionId: QuestionData[i].dataFormQuestionId
                 }), false, function (res) {
-                    if (!isEmpty(res)) {
+                    if (res.isActive == 15 && res.requestId != 0 && res.checkId != 0) {
                         questionIsNotInReturnCustomer = false;
                     }
                 }, true);
@@ -254,7 +268,7 @@
             AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReportCheck", JSON.stringify({
                 RequestId: RequestId, DocumentId: documentId
             }), false, function (res) {
-                if (!isEmpty(res)) {
+                if (res.isActive == 15 && res.requestId != 0 && res.checkId != 0) {
                     DocumentIsNotInReturnCustomer = false;
                 }
             }, true);

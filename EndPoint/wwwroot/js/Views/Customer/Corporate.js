@@ -1,10 +1,24 @@
 ﻿(function (web, $) {
     var DataFormList = "";
     //Document Ready   
-    function initCorporate(id = null) {
+    function initCorporate(id = null, makeQuestionForm = true) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initCustomer();
+
+        if (makeQuestionForm) {
+            makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
+
+            makeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
+
+            makeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
+
+            makeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
+
+            makeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
+
+            makeDynamicDocumentForm("ducument_save", "document_save_pane");
+        }
     }
     function initCustomer(dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
@@ -164,7 +178,7 @@
         $("#FormDocumentDocument290").append(_str290);
 
         AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
-            PageIndex: 0, PageSize: 0, FormID: null, RequestId: RequestId, DataFormQuestionId: null
+            PageIndex: 0, PageSize: 0, FormID: null, RequestId: ID, DataFormQuestionId: null
         }), false, function (res) {
             if (res.isSuccess) {
                 LoadedDataFromDb = res.data;
@@ -245,6 +259,7 @@
                             AnalizeScore: 0,
                             IsActive: 15,
                         }), true, function (reee) { }, true);
+                    $("#Download_" + FormName.slice(6, FormName.length)).prop("href", res.data.fileName1Full);
                     alertB("ثبت", "اطلاعات ثبت شد", "success");
                 }
                 else {

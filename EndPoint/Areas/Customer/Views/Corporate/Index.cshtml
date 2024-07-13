@@ -230,20 +230,7 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 
     <script>
-        Web.Corporate.InitCorporate(@ViewBag.id);
-
-        Web.Corporate.MakeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
-
-        Web.Corporate.MakeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
-
-        Web.Corporate.MakeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
-
-        Web.Corporate.MakeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
-
-        Web.Corporate.MakeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
-
-        Web.Corporate.MakeDynamicDocumentForm("ducument_save", "document_save_pane");
-
+        Web.Corporate.InitCorporate(@ViewBag.id, true);
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });

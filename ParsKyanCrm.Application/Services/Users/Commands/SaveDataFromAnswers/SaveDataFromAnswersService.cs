@@ -75,7 +75,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
             {
                 string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
 
-                var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.RequestId==request.RequestId && m.DataFormQuestionId==request.DataFormQuestionId);
+                var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.RequestId==request.RequestId && m.DataFormDocumentId==request.DataFormDocumentId);
                  request.FileName1 = qFind != null && !string.IsNullOrEmpty(qFind.FileName1) ? qFind.FileName1 : string.Empty;
 
                 #region Upload Image

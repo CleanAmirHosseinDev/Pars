@@ -13,5 +13,11 @@ namespace EndPoint.Areas.Customer.Controllers
             ViewBag.id = id;
             return View();
         }
+
+        public IActionResult ReturnBackQuestion(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }

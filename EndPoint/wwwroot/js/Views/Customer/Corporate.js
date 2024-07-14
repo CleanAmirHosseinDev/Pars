@@ -18,8 +18,135 @@
             makeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
+        } else {
+            var checkReport = "";
+
+            var cat287li = ""
+            var cat288li = ""
+            var cat289li = ""
+            var cat290li = ""
+
+            var cat287Pan = ""
+            var cat288Pan = ""
+            var cat289Pan = ""
+            var cat290Pan = ""
+
+            var cat1287Doc = ""
+            var cat1288Doc = ""
+            var cat1289Doc = ""
+            var cat1290Doc = ""
+
+            var fisrtInGroup287 = true;
+            var fisrtInGroup288 = true;
+            var fisrtInGroup289 = true;
+            var fisrtInGroup290 = true;
+
+            makeDocLiAndPan("ducument_save", "document_save_pane");
+
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReportChecks/", JSON.stringify({
+                PageIndex: 0, PageSize: 0, IsActive: 15
+            }), false, function (res) {
+                if (res != null) {
+                    checkReport = res;
+                    for (let i = 0; i < res.data.length; i++) {
+                        let dataForm = "";
+                        let question = "";
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataForm/" + res.data[i].formId, null, false, function (form) { dataForm = form; }, false);
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + res.data[i].questionId, null, false, function (form) { question = form; }, false);
+
+                        switch (res.data[i].categoryId) {
+                            case 287:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
+                                    cat287li += tempresult[0];
+                                    cat287Pan += tempresult[1];
+                                } else {
+
+                                }
+                                break;
+                            case 288:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
+                                    cat288li += tempresult[0];
+                                    cat288Pan += tempresult[1];
+                                } else {
+
+                                }
+                                break;
+                            case 289:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup289);
+                                    cat289li += tempresult[0];
+                                    cat289Pan += tempresult[1];
+                                } else {
+
+                                }
+                                break;
+                            case 290:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
+                                    cat290li += tempresult[0];
+                                    cat290Pan += tempresult[1];
+                                } else {
+
+                                }
+                                break;
+                        }
+                    }
+                    $("#TargetTabs287").append(cat287li)
+                    $("#TabPaneTargetTabs287").append(cat287Pan)
+
+                    $("#TargetTabs288").append(cat288li)
+                    $("#TabPaneTargetTabs288").append(cat288Pan)
+
+                    $("#TargetTabs289").append(cat289li)
+                    $("#TabPaneTargetTabs289").append(cat289Pan)
+
+                    $("#TargetTabs290").append(cat290li)
+                    $("#TabPaneTargetTabs290").append(cat290Pan)
+                }
+            }, true);
+
+            for (let i = 0; i < checkReport.data.length; i++) {
+                let question = "";
+                let answer = ""
+                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + checkReport.data[i].questionId, null, false, function (form) { question = form; }, false);
+                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFromAnswers/" + checkReport.data[i].answerId, null, false, function (form) { answer = form; }, false);
+
+                if (checkReport.data[i].questionId != 0 && checkReport.data[i].formId != 0) {
+                    let strFormId = generate_strFormId(question, id, checkReport.data[i].formId, true);
+                    $("#FormDetail" + checkReport.data[i].formId).append(strFormId);
+                    if (answer.answer == "Yes") {
+                        $("input:radio[name='Q_" + answer.dataFormQuestionId + "'][value='Yes']").prop('checked', true);
+                    } else if (answer.answer == "No") {
+                        $("input:radio[name='Q_" + answer.dataFormQuestionId + "'][value='No']").prop('checked', true);
+                    } else {
+                        $("#Q_" + answer.dataFormQuestionId + " option[value='" + answer.answer + "']").prop("selected", true);
+                    }
+                    $("input[name*='Description_Q" + answer.dataFormQuestionId + "']").val(answer.description);
+                } else {
+
+                }
+            }
+
         }
     }
+
+    function makeLiAndPan(formCode, formTitle, formId, reqid, isActive) {
+        let li_option = "";
+        let tabPane = "";
+        if (isActive) {
+            li_option = "<li class='active'><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
+            tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive)
+            isActive = false;
+        }
+        else {
+            tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive)
+            li_option = "<li class=''><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
+        }
+        return [li_option, tabPane];
+    }
+
     function initCustomer(dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
@@ -57,25 +184,43 @@
             }
         }, true);
     }
-    function generate_strFormId(res, RequestId, FormID) {
+    function generate_strFormId(res, RequestId, FormId, isSingle=false) {
         let strFormId = "";
-        strFormId += "<div class='col-md-12'>";
-        for (var i = 0; i < res.data.length; i++) {
-            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText
-            strFormId += " <span title='" + res.data[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
-            if (res.data[i].questionType == 'select') {
-                var options = combo(res.data[i].dataFormQuestionId);
-                strFormId += "<select required name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
+        if (isSingle) {
+            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.questionText
+            strFormId += " <span title='" + res.helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
+            if (res.questionType == 'select') {
+                var options = combo(res.dataFormQuestionId);
+                strFormId += "<select required name='Q_" + res.dataFormQuestionId + "' id='Q_" + res.dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
             }
-            else if (res.data[i].questionType == 'yesNo') {
-                strFormId += "<label class='control-label'>بله</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
-                strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
+            else if (res.questionType == 'yesNo') {
+                strFormId += "<label class='control-label'>بله</label><input type='radio' required name='Q_" + res.dataFormQuestionId + "' value='Yes' />";
+                strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.dataFormQuestionId + "' value='No' />";
             }
             strFormId += "</div><div class='col-md-8'>";
-            strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />"
+            strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />"
             strFormId += "</div ></div ></div ></div >";
+            
+            return strFormId;
+        } else {
+            strFormId = "<div class='col-md-12'>";
+            for (var i = 0; i < res.data.length; i++) {
+                strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText
+                strFormId += " <span title='" + res.data[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
+                if (res.data[i].questionType == 'select') {
+                    var options = combo(res.data[i].dataFormQuestionId);
+                    strFormId += "<select required name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
+                }
+                else if (res.data[i].questionType == 'yesNo') {
+                    strFormId += "<label class='control-label'>بله</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
+                    strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
+                }
+                strFormId += "</div><div class='col-md-8'>";
+                strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />"
+                strFormId += "</div ></div ></div ></div >";
+            }
+            strFormId += "</div>";
         }
-        strFormId += "</div>";
         return strFormId;
     }
     function combo(QuestionID = null) {
@@ -124,14 +269,8 @@
             }
         }
     }
-    function makeDynamicDocumentForm(PutPlace, PutTabPane) {
-        var DataFormDocumentList = [];
+    function makeDocLiAndPan(putPlace, putTabPan) {
         let ID = $("#RequestIdForms").val();
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
-            if (res.isSuccess) {
-                DataFormDocumentList = res.data;
-            }
-        }, true);
         let li_option = "";
         let tabPane = "";
         li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >حقوق و رفتار عادلانه با سهامدار</a></li>";
@@ -139,14 +278,25 @@
         li_option += "<li class=''><a href='#FormDocumentTabDocument289' data-toggle='tab' aria-expanded='false' >افشاء و شفافیت</a></li>";
         li_option += "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >مسئولیت های هیئت مدیره</a></li>";
 
-        $("#" + PutPlace).append(li_option);
+        $("#" + putPlace).append(li_option);
 
         tabPane += makeDocumentTabPane("Document287", "حقوق و رفتار عادلانه با سهامدار", ID, true);
         tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, false);
         tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, false);
         tabPane += makeDocumentTabPane("Document290", "مسئولیت های هیئت مدیره", ID, false);
 
-        $("#" + PutTabPane).append(tabPane);
+        $("#" + putTabPan).append(tabPane);
+    }
+    function makeDynamicDocumentForm(PutPlace, PutTabPane) {
+        makeDocLiAndPan(PutPlace, PutTabPane);
+
+        var DataFormDocumentList = [];
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
+            if (res.isSuccess) {
+                DataFormDocumentList = res.data;
+            }
+        }, true);
+
         let _str287 = "";
         let _str288 = "";
         let _str289 = "";

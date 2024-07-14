@@ -164,6 +164,20 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        public async Task<DataFromAnswersDto> Get_DataFromAnswers(int? id = null)
+        {
+            try
+            {
+                return await _userFacad.GetDataFromAnswersService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFromAnswersDto>>> Get_DataFromAnswersDocuments([FromBody] RequestDataFromAnswersDto request)

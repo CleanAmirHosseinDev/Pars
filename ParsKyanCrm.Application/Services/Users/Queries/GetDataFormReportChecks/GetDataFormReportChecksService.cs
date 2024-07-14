@@ -32,15 +32,33 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks
                 var lists = (
                     from s in _context.DataFormReportCheck
                     where (
-                        s.IsActive == 15 &&
-                        s.CheckId == request.CheckId ||
-                        s.QuestionId == request.QuestionId && s.FormId == request.FormId ||
-                        s.RequestId == request.RequestId && s.DocumentId == request.DocumentId ||
-                        s.AnswerId == request.AnswerId ||
-                        s.CategoryId == request.CategoryId && s.QuestionId == request.QuestionId
+                        s.IsActive == 15
                     )
                     select s
                 );
+
+                if (request.QuestionId != 0 && request.QuestionId != null && request.FormId != 0 && request.FormId != null)
+                {
+                    lists = (
+                        from s in _context.DataFormReportCheck
+                        where (
+                            s.IsActive == 15 &&
+                            s.QuestionId == request.QuestionId && s.FormId == request.FormId
+                        )
+                        select s
+                    );
+                }
+                else if (request.RequestId != 0 && request.RequestId != null && request.DocumentId != 0 && request.DocumentId != null)
+                {
+                    lists = (
+                        from s in _context.DataFormReportCheck
+                        where (
+                            s.IsActive == 15 &&
+                            s.RequestId == request.RequestId && s.DocumentId == request.DocumentId
+                        )
+                        select s
+                    );
+                }
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(
                     p => p.FormCode.Contains(request.Search) || p.AnswerAfterEdit.Contains(request.Search) || p.AnswerBeforEdit.Contains(request.Search) ||

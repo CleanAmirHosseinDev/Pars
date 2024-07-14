@@ -49,6 +49,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormQuestionsOptio
 using ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormQuestionsOption;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFormAnswerTabless;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss;
+using ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswers;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataForms;
 using ParsKyanCrm.Application.Services.Users.Queries.GetDataForm;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveDataForm;
@@ -203,6 +204,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveDataFormService SaveDataFormService { get; }
         IDeleteDataFormService DeleteDataFormService { get; }
         IGetDataFromAnswerssService GetDataFromAnswerssService { get; }
+        IGetDataFromAnswersService GetDataFromAnswersService { get; }
         IGetDataFormReportCheckService GetDataFormReportCheckService { get; }
         IGetDataFormReportChecksService GetDataFormReportChecksService { get; }
         ISaveDataFormReportCheckService SaveDataFormReportCheckService { get; }
@@ -795,6 +797,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getDataFromAnswerssService = _getDataFromAnswerssService ?? new GetDataFromAnswerssService(_context, _mapper);
+            }
+        }
+
+        private IGetDataFromAnswersService _getDataFromAnswersService;
+        public IGetDataFromAnswersService GetDataFromAnswersService
+        {
+            get
+            {
+                return _getDataFromAnswersService = _getDataFromAnswersService ?? new GetDataFromAnswersService(_context, _mapper);
             }
         }
 

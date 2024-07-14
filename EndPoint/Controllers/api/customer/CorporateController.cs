@@ -37,6 +37,20 @@ namespace EndPoint.Controllers.api.customer
                 throw;
             }
         }
+        [Route("[action]/{id}")]
+        [HttpGet]
+        public async Task<DataFormDocumentsDto> Get_DataFormDocument(int id)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormDocumentService.Execute(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]/{id}/")]
         [HttpGet]
         public async Task<DataFormsDto> Get_DataForm(int id)

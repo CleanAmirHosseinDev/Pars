@@ -1,5 +1,6 @@
 ﻿(function (web, $) {
     var DataFormList = "";
+    var LoadedDataFromDb = "";
     //Document Ready   
     function initCorporate(id = null, makeQuestionForm = true) {
         PersianDatePicker(".DatePicker");
@@ -60,8 +61,6 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
                                     cat287li += tempresult[0];
                                     cat287Pan += tempresult[1];
-                                } else {
-
                                 }
                                 break;
                             case 288:
@@ -69,8 +68,6 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
                                     cat288li += tempresult[0];
                                     cat288Pan += tempresult[1];
-                                } else {
-
                                 }
                                 break;
                             case 289:
@@ -78,8 +75,6 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup289);
                                     cat289li += tempresult[0];
                                     cat289Pan += tempresult[1];
-                                } else {
-
                                 }
                                 break;
                             case 290:
@@ -87,8 +82,6 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
                                     cat290li += tempresult[0];
                                     cat290Pan += tempresult[1];
-                                } else {
-
                                 }
                                 break;
                         }
@@ -110,11 +103,14 @@
             for (let i = 0; i < checkReport.data.length; i++) {
                 let question = "";
                 let answer = ""
+                let document = ""
                 AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + checkReport.data[i].questionId, null, false, function (form) { question = form; }, false);
                 AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFromAnswers/" + checkReport.data[i].answerId, null, false, function (form) { answer = form; }, false);
+                if (checkReport.data[i].documentId != null)
+                    AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormDocument/" + checkReport.data[i].documentId, null, false, function (form) { document = form; }, false);
 
                 if (checkReport.data[i].questionId != 0 && checkReport.data[i].formId != 0) {
-                    let strFormId = generate_strFormId(question, id, checkReport.data[i].formId, true);
+                    let strFormId = generate_strFormId(question, id, checkReport.data[i].formId, true, checkReport.data[i].superVisorDescription);
                     $("#FormDetail" + checkReport.data[i].formId).append(strFormId);
                     if (answer.answer == "Yes") {
                         $("input:radio[name='Q_" + answer.dataFormQuestionId + "'][value='Yes']").prop('checked', true);
@@ -125,9 +121,12 @@
                     }
                     $("input[name*='Description_Q" + answer.dataFormQuestionId + "']").val(answer.description);
                 } else {
-
+                    if (document != "")
+                        makeDocumentFile([document], checkReport.data[i].superVisorDescription);
                 }
             }
+
+
 
         }
     }
@@ -163,7 +162,6 @@
             if (res.isSuccess) {
                 let strFormId = generate_strFormId(res, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
-                let LoadedDataFromDb = "";
                 AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
                     PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
                 }), true, function (res) {
@@ -184,7 +182,7 @@
             }
         }, true);
     }
-    function generate_strFormId(res, RequestId, FormId, isSingle=false) {
+    function generate_strFormId(res, RequestId, FormId, isSingle=false, analizeDescription="") {
         let strFormId = "";
         if (isSingle) {
             strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.questionText
@@ -199,6 +197,8 @@
             }
             strFormId += "</div><div class='col-md-8'>";
             strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />"
+            strFormId += "</div><div class='col-md-8'>";
+            strFormId += "<p style='color: blue;'>توضیح کارشناس : " + analizeDescription + "</p>"
             strFormId += "</div ></div ></div ></div >";
             
             return strFormId;
@@ -297,6 +297,11 @@
             }
         }, true);
 
+        makeDocumentFile(DataFormDocumentList);
+    }
+
+    function makeDocumentFile(DataFormDocumentList, description = '') {
+        let ID = $("#RequestIdForms").val();
         let _str287 = "";
         let _str288 = "";
         let _str289 = "";
@@ -307,16 +312,16 @@
             let helpText = DataFormDocumentList[i].helpText;
             switch (DataFormDocumentList[i].categoryId) {
                 case 287:
-                    _str287 += makeFileInput(title, formId, helpText, ID);
+                    _str287 += makeFileInput(title, formId, helpText, ID, description);
                     break;
                 case 288:
-                    _str288 += makeFileInput(title, formId, helpText, ID);
+                    _str288 += makeFileInput(title, formId, helpText, ID, description);
                     break;
                 case 289:
-                    _str289 += makeFileInput(title, formId, helpText, ID);
+                    _str289 += makeFileInput(title, formId, helpText, ID, description);
                     break;
                 case 290:
-                    _str290 += makeFileInput(title, formId, helpText, ID);
+                    _str290 += makeFileInput(title, formId, helpText, ID, description);
                     break;
                 default:
                     break;
@@ -327,19 +332,24 @@
         $("#FormDocumentDocument289").append(_str289);
         $("#FormDocumentDocument290").append(_str290);
 
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
-            PageIndex: 0, PageSize: 0, FormID: null, RequestId: ID, DataFormQuestionId: null
-        }), false, function (res) {
-            if (res.isSuccess) {
-                LoadedDataFromDb = res.data;
-                for (let i = 0; i < LoadedDataFromDb.length; i++) {
-                    $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
+        if (isEmpty(LoadedDataFromDb))
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
+                PageIndex: 0, PageSize: 0, FormID: null, RequestId: ID, DataFormQuestionId: null
+            }), false, function (res) {
+                if (res.isSuccess) {
+                    LoadedDataFromDb = res.data;
                 }
-            }
-        }, true);
+            }, true);
+        for (let i = 0; i < LoadedDataFromDb.length; i++) {
+            try {
+                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
+            } catch {
 
+            }
+        }
     }
-    function makeFileInput(inputTitle, inputName, helpText, RequestId) {
+
+    function makeFileInput(inputTitle, inputName, helpText, RequestId, analaizeDescription="") {
         let _str = "<form id='frmDoc" + inputName + "'>";
         _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
         _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
@@ -347,7 +357,12 @@
         _str += 'onchange="checkUploadWithFileSiza(this, \'' + inputTitle + '\' , 5);">';
         _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
         _str += 'onclick="return Web.Corporate.Save_AnswersUpload(this, \'frmDoc' + inputName + '\')">';
-        _str += "<a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'><i class='fa fa-download'></i> &nbsp;دانلود</a></div></div>";
+        _str += "<a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
+        if (analaizeDescription != '') {
+            _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a><br/><p style='color:blue;'> توضیحات کارشناس : " + analaizeDescription + "</p></div></div>";
+        } else {
+            _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a></div></div>";
+        }
         _str += "<input type='hidden' id='FormId' name='FormId' value='0' />";
         _str += "<input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "' />";
         _str += "<input type='hidden' id='DataFormQuestionId' name='DataFormQuestionId' value='0' />";

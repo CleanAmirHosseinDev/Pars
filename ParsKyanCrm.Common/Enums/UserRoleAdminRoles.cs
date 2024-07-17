@@ -542,6 +542,24 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 5)]
         CorporateDataFormDocument_Delete = 803,
 
+        [Display(Name = "مشاهده درخواست ها")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "درخواست ها")]
+        [OrderAttribute(Order = 1)]
+        Corporate_Request = 905,
+
+        [Display(Name = "گزارش درخواست ها")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "گزارش ها")]
+        [OrderAttribute(Order = 1)]
+        Corporate_Report = 906,
+
         #endregion
     }
 }

@@ -325,7 +325,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                         getlstor("loginName") === "6" ||
                         (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)
                     )
-                        || res.data[0].levelStepIndex < 5) {
+                        || (res.data[0].levelStepIndex < 5 || res.data[0].kindOfRequest==254)) {
                         $("#svisorShowEvaluationFile").remove();
                     }
                     var htmlB = "";

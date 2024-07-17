@@ -1,11 +1,113 @@
 ﻿(function (web, $) {
     var DataFormList = "";
-    //Document Ready   
+    var progresDynamicBar = []
+    //Document Ready
+
+    function makeLiProgresBar(progresDynamicBar) {
+        let _strM = "";
+        for (let i = 0; i < progresDynamicBar.length; i++) {
+            if (i == 0)
+                _strM += "<li class='active' id='payment'><strong>" + progresDynamicBar[i].label + "</strong></li>";
+            else {
+                _strM += "<li class='' id='payment'><strong>" + progresDynamicBar[i].label + "</strong></li>";
+            }
+        }
+        _strM += "<li id='confirm'><strong>بارگذاری مدارک</strong></li>";
+        return _strM;
+    }
+
+    function makeFieldset(fieldId, isFirst = true) {
+        let str_M = "";
+        if (isFirst) {
+            str_M += "<fieldset><button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button>";
+            str_M += "<div class='form-card'><div class='row'><div class='col-md-12'><div class='nav-tabs-custom'><ul class='nav nav-tabs' id='TargetTabs" + fieldId + "'></ul>";
+            str_M += "<div class='tab-content' id='TabPaneTargetTabs" + fieldId + "'></div></div></div></div></div>";
+            str_M += "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button></fieldset>";
+        } else {
+            str_M += "<fieldset><button type='button' name='previous' class='previous action-button-previous' style='border:none;width:90px'><i class='fa fa-arrow-right'></i> فرم قبلی </button>";
+            str_M += "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button>";
+            str_M += "<div class='form-card'><div class='row'><div class='col-md-12'><div class='nav-tabs-custom'><ul class='nav nav-tabs' id='TargetTabs" + fieldId + "'></ul>";
+            str_M += "<div class='tab-content' id='TabPaneTargetTabs" + fieldId + "'></div></div></div></div></div>";
+            str_M += "<button type='button' name='previous' class='previous action-button-previous' style='border:none;width:90px'><i class='fa fa-arrow-right'></i> فرم قبلی </button>";
+            str_M += "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button></fieldset>";
+        }
+        return str_M;
+    }
+
+    function makeTabProgresDynamic() {
+        if (progresDynamicBar.length == 0)
+            AjaxCallAction("POST", "/api/superVisor/SystemSeting/Get_SystemSetings/", JSON.stringify({
+                PageIndex: 0, PageSize: 0, ParentCode: 286, SortOrder: "SystemSetingId_A",
+            }), false, function (result) { progresDynamicBar = result.data; }, false);
+        let _strM = "";
+        if (progresDynamicBar.length > 1)
+            for (let i = 0; i < progresDynamicBar.length; i++) {
+                if (i == 0)
+                    _strM += makeFieldset(progresDynamicBar[i].systemSetingId, true);
+                else {
+                    _strM += makeFieldset(progresDynamicBar[i].systemSetingId, false);
+                }
+            }
+        let _strLi = makeLiProgresBar(progresDynamicBar);
+        $("#progressbar").html(_strLi);
+        $("#progressbar").after(_strM);
+        $(".next").click(function () {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
+            });
+        });
+
+        $(".previous").click(function () {
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    previous_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
+            });
+        });
+    }
     function initCorporate(id = null, makeQuestionForm = true) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         getCustomerInfo(id, dir = 'rtl');
-
+        makeTabProgresDynamic();
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
 

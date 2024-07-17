@@ -343,6 +343,7 @@
         for (let i = 0; i < LoadedDataFromDb.length; i++) {
             try {
                 $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
+                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css("display", 'inline-block');
             } catch {
 
             }
@@ -357,7 +358,7 @@
         _str += 'onchange="checkUploadWithFileSiza(this, \'' + inputTitle + '\' , 5);">';
         _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
         _str += 'onclick="return Web.Corporate.Save_AnswersUpload(this, \'frmDoc' + inputName + '\')">';
-        _str += "<a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
+        _str += "<a class='btn btn-success' style='margin-right: 10px;display:none;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         if (analaizeDescription != '') {
             _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a><br/><p style='color:blue;'> توضیحات کارشناس : " + analaizeDescription + "</p></div></div>";
         } else {
@@ -424,7 +425,8 @@
                             AnalizeScore: 0,
                             IsActive: 15,
                         }), true, function (reee) { }, true);
-                    $("#Download_" + FormName.slice(6, FormName.length)).prop("href", res.data.fileName1Full);
+                    $("#Download_" + FormName.slice(9, FormName.length)).prop("href", res.data.fileName1Full);
+                    $("#Download_" + FormName.slice(9, FormName.length)).css("display", 'inline-block');
                     alertB("ثبت", "اطلاعات ثبت شد", "success");
                 }
                 else {

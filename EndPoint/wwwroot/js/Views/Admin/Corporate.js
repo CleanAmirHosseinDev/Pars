@@ -410,7 +410,7 @@
     function getCategoryName(id) {
         switch (id) {
             case 287:
-                category = "حقوق و رفتار عادلانه با سهامدار";
+                category = "حقوق سهامداران";
                 break;
             case 288:
                 category = "نقش ذینفعان";
@@ -419,7 +419,22 @@
                 category = "افشاء و شفافیت";
                 break;
             case 290:
-                category = "مسئولیت های هیئت مدیره";
+                category = "هیئت مدیره";
+                break;
+            case 291:
+                category = " اطلاعات نهانی و اشخاص وابسته";
+                break;
+            case 291:
+                category = " صورت های مالی و حسابرسی";
+                break;
+            case 291:
+                category = " کمیته ها";
+                break;
+            case 292:
+                category = " کمیته ها";
+                break;
+            case 293:
+                category = " کمیته ها";
                 break;
             default:
                 category = "نا مشخص";

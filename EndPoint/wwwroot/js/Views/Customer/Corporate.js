@@ -114,13 +114,13 @@
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
 
-            makeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
+           // makeDynamicForm("E", "TargetTabs287", false, "TabPaneTargetTabs287");
 
             makeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
 
             makeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
 
-            makeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
+            makeDynamicForm("B", "TargetTabs290", true, "TabPaneTargetTabs290");
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
         } else {

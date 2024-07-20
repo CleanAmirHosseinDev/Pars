@@ -13,6 +13,7 @@ namespace ParsKyanCrm.Domain.Entities
         public bool? IsTable { get; set; }
         public int? CategoryId { get; set; }
         public byte IsActive { get; set; }
+       
         //public virtual ICollection<DataFormQuestions> DataFormQuestions { get; set; }
     }
 }

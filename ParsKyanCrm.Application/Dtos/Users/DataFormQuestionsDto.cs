@@ -14,6 +14,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int DataFormQuestionId { get; set; }
         public byte? IsActive { get; set; }
         public int? DataFormType { get; set; } // 1 - Normal Question  | 2 - Corporate Question
+        public int? Version { get; set; }
     }
 
     public class DataFormQuestionsDto
@@ -29,5 +30,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? Score { get; set; }
         public string? HelpText { get; set; }
         public byte? IsActive { get; set; }
+        public int? Version { get; set; }
     }
 }

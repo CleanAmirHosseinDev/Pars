@@ -193,7 +193,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     //Document Ready  
 
     function filterGridA() {
-      
+
         ComboBoxWithSearch('.select2', 'rtl');
         PersianDatePicker(".DatePicker");
         pageingGrid("divPageingList_RequestForRatingsASuperVisor", "/api/superVisor/RequestForRating/Get_RequestForRatingsA", JSON.stringify({
@@ -215,14 +215,16 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             '&ToDateStr=' + $("#ToDateStr").val() +
             '&PageIndex=1' +
             '&PageSize=' + $("#cboSelectCount").val() +
-            '&DestLevelStepIndex=' + isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val()+
+            '&DestLevelStepIndex=' + isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val() +
             "&Search=" + $("#txtSearch").val(), '_blank');
-                                                           
+
     }
 
     function onchangeKindOfRequest(e) {
 
-        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null }), true, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({
+            PageIndex: 0, PageSize: 0, KindOfRequest: !isEmpty($(e).val()) ? $(e).val() : null
+        }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
@@ -248,19 +250,30 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     }
 
     function fillComboLevelStepSettingList() {
+        var UserAccessRole = getlstor("roleDesc")
+        let requestKind = 0;
 
+        if (UserAccessRole == "مدیر حاکمیت شرکتی" || UserAccessRole == "کارشناس حاکمیت شرکتی") {
+            requestKind = 254;
+        }
         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
 
             if (res.isSuccess) {
                 var strKindOfCompany = '<option value="">انتخاب کنید</option>';
-
-                for (var i = 0; i < res.data.length; i++) {
-                    strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                if (requestKind == 0) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].kindOfRequest != 254 || res.data[i].kindOfRequest != "254")
+                            strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                    }
+                }
+                else if (requestKind == 254) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].kindOfRequest == 254 || res.data[i].kindOfRequest == "254")
+                            strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                    }
                 }
 
                 $("#cboSelectLS").html(strKindOfCompany);
-
-
 
             }
 
@@ -268,9 +281,16 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
                 if (res.isSuccess) {
                     var strKindOfRequest = '<option value="">انتخاب کنید</option>';
-
-                    for (var i = 0; i < res.data.length; i++) {
-                        strKindOfRequest += " <option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                    if (requestKind == 0) {
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].systemSetingId != 254 || res.data[i].systemSetingId != "254")
+                                strKindOfRequest += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
+                    } else if (requestKind == 254) {
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].systemSetingId == 254 || res.data[i].systemSetingId == "254")
+                                strKindOfRequest += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
                     }
 
                     $("#cboKindOfRequest").html(strKindOfRequest);
@@ -279,15 +299,29 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             }, true);
 
         }, true);
-
     }
 
     function filterGrid() {
 
         ComboBoxWithSearch('.select2', 'rtl');
 
-        pageingGrid("divPageingList_RequestForRatingsSupervisor", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), IsMyRequests: $('#IsMyRequests').is(":checked"), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
+        var UserAccessRole = getlstor("roleDesc")
 
+        let requestKind = 0;
+
+        if (UserAccessRole == "مدیر حاکمیت شرکتی" || UserAccessRole == "کارشناس حاکمیت شرکتی") {
+            requestKind = 254;
+        }
+
+        pageingGrid("divPageingList_RequestForRatingsSupervisor", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify(
+            {
+                Search: $("#txtSearch").val(),
+                PageIndex: 1,
+                PageSize: $("#cboSelectCount").val(),
+                DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(),
+                IsMyRequests: $('#IsMyRequests').is(":checked"),
+                KindOfRequest: requestKind == 254 ? 254 : !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null
+            }));
     }
 
     function initReferral(id = null) {
@@ -325,7 +359,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                         getlstor("loginName") === "6" ||
                         (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8)
                     )
-                        || (res.data[0].levelStepIndex < 5 || res.data[0].kindOfRequest==254)) {
+                        || (res.data[0].levelStepIndex < 5 || res.data[0].kindOfRequest == 254)) {
                         $("#svisorShowEvaluationFile").remove();
                     }
                     var htmlB = "";
@@ -824,7 +858,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
 
         if ((decrypt($(e).attr("data-LSAR"), keyMaker()) == '10' ||
-            decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') && $(e).attr("data-LSSII") != "26" ) {
+            decrypt($(e).attr("data-DLSI"), keyMaker()) == '15') && $(e).attr("data-LSSII") != "26") {
 
             $("#hidSeSIRR").val(decrypt($(e).attr("data-LSAR"), keyMaker()));
             $("#SUIRS").html('');
@@ -1648,7 +1682,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
                 if (res.isSuccess) {
 
-                    $("#SaveDate").html(res.data.saveDateStr);                   
+                    $("#SaveDate").html(res.data.saveDateStr);
                     $("#PriceFee1").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
                     $("#PriceFee2").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
                     $("#PriceFee3").html(moneyCommaSepWithReturn(res.data.finalPriceContract.toString()));
@@ -1767,7 +1801,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         OnchangeKindOfRequest: onchangeKindOfRequest,
         FilterGridA: filterGridA,
         ExcelTotalFilterGridA: excelTotalFilterGridA
-       
+
     };
 
 })(Web, jQuery);

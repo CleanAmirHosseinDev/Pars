@@ -420,16 +420,43 @@ namespace ParsKyanCrm.Common.Enums
 
         #endregion
 
-        #region گزارش
+        #region درخواست ها و گزارش ها
 
         [Display(Name = "مشاهده")]
         [Category("Report")]
-        [DisplayFiledAttribute(Name = "گزارش ها")]
+        [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
         [DisplayFiledAttribute1(Name = "/Admin/Report/Index")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "نمایش گزارش ها")]
         [OrderAttribute(Order = 4)]
         ReportVisitor = 616,
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "همه درخواست ها و گزارشات")]
+        [OrderAttribute(Order = 4)]
+        AllReportVisitor = 547,
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "درخواست ها و گزارشات وزارت سمت")]
+        [OrderAttribute(Order = 4)]
+        SamtReportVisitor = 548,
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "درخواست ها و گزارشات حاکمیت شرکتی")]
+        [OrderAttribute(Order = 4)]
+        CopReportVisitor = 549,
         #endregion
 
         #region حاکمیت شرکتی
@@ -542,24 +569,33 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 5)]
         CorporateDataFormDocument_Delete = 803,
 
-        [Display(Name = "مشاهده درخواست ها")]
-        [Category("BaseInfo")]
-        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "درخواست ها")]
-        [OrderAttribute(Order = 1)]
-        Corporate_Request = 905,
+        //[Display(Name = "مشاهده درخواست ها")]
+        //[Category("BaseInfo")]
+        //[DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "درخواست ها")]
+        //[OrderAttribute(Order = 1)]
+        //Corporate_Request = 905,
 
-        [Display(Name = "گزارش درخواست ها")]
-        [Category("BaseInfo")]
-        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "گزارش ها")]
-        [OrderAttribute(Order = 1)]
-        Corporate_Report = 906,
+        //[Display(Name = "گزارش درخواست ها")]
+        //[Category("BaseInfo")]
+        //[DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "گزارش ها")]
+        //[OrderAttribute(Order = 1)]
+        //Corporate_Report = 906,
 
         #endregion
+
+        //[Display(Name = "مشاهده")]
+        //[Category("IndexPanel")]
+        //[DisplayFiledAttribute(Name = "داشبورد پنل")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "نمایش باکس")]
+        //[OrderAttribute(Order = 5)]
+        //DisplayBoxInAdminPanel = 733,
     }
 }

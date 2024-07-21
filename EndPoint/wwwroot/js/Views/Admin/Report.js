@@ -342,6 +342,10 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
         }, true);
 
+        //var item = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 733);
+        //if (item == null) {
+        //    $(".divMainBoxDoshboard").remove();
+        //}
     }
 
     function excelTotalNumberCustomersApprovedContract() {

@@ -10,7 +10,7 @@ namespace EndPoint.Controllers.api.superVisor
 {
     [Route("api/superVisor/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ResponsibleEvaluation,ContractsExpert,Evaluator,KodalExpert,Support,ChairmanEvaluationCommittee,FinancialManager")]
+    [Authorize(Roles = "ResponsibleEvaluation,ContractsExpert,Evaluator,KodalExpert,Support,ChairmanEvaluationCommittee,FinancialManager,CorporateAdmin,CorporateUser")]
     public class BaseController : ControllerBase
     {
     }

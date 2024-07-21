@@ -35,7 +35,7 @@ namespace EndPoint.Controllers.api.admin
             {
                 
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
-                request.CustomerId = null;
+                request.CustomerId = request.CustomerId;
                 //request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;
                 return await _userFacad.GetRequestForRatingsService.Execute(request);
             }

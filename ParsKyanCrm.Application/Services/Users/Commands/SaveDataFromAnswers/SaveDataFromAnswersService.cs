@@ -73,6 +73,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
         {
             try
             {
+                request.IsActive = 15;
                 string fileNameOldPic_FileName1 = string.Empty, path_FileName1 = string.Empty;
 
                 var qFind = await _context.DataFromAnswers.FirstOrDefaultAsync(m=>m.RequestId==request.RequestId && m.DataFormDocumentId==request.DataFormDocumentId);
@@ -91,7 +92,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                 EntityEntry<DataFromAnswers> q_Entity;
                 int answer_id = 0;
                 if (Check_Remote(request) == false)
-                {   
+                {
+                   
                     q_Entity = _context.DataFromAnswers.Add(_mapper.Map<DataFromAnswers>(request));
                     await _context.SaveChangesAsync();
                     answer_id = q_Entity.Entity.AnswerId;

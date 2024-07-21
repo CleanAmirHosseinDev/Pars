@@ -32,9 +32,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.DeleteDataFormAnswerTa
             try
             {
 
-                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.RequestReferences).Name, string.Format("Requestid" + " = '{0}'", id));
+                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.RequestReferences).Name, string.Format("Requestid" + " = '{0}'", id));               
+                Ado_NetOperation.SqlDelete(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, string.Format("Requestid" + " = '{0}'", id));
                 Ado_NetOperation.SqlDelete(typeof(Domain.Entities.RequestForRating).Name, string.Format("Requestid" + " = '{0}'", id));
-
 
                 return new ResultDto()
                 {

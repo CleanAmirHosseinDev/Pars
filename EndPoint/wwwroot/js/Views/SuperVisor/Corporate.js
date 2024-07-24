@@ -163,7 +163,6 @@
     function generate_strFormId(QuestionData, RequestId, FormID) {
         var _DataAnswer;
         var _str_tag = "";
-        var questionIsNotInReturnCustomer = false;
 
         AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
             PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
@@ -173,6 +172,8 @@
             }
         }, true);
         for (let i = 0; QuestionData.length > i; i++) {
+            let questionIsNotInReturnCustomer = false;
+            let questionReturnCustomer = null;
             // بررسی اینکه آیا سوال به مشتری بازگردانده شده است یا خیر
             try {
                 AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReportCheck", JSON.stringify({
@@ -180,8 +181,9 @@
                 }), false, function (res) {
                     if (res.isActive == 15 && res.requestId != 0 && res.checkId != 0) {
                         questionIsNotInReturnCustomer = true;
+                        questionReturnCustomer = res;
                     }
-                }, true);
+                }, false);
             } catch {
 
             }
@@ -227,6 +229,7 @@
             }, true);
 
             if (!isEmpty(report)) {
+                let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
                 if (questionIsNotInReturnCustomer) {
                     _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-md-12'><h4 style='line-height: 1.5;'>";
                     _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12' style='border: 2px solid red;'>"
@@ -244,7 +247,7 @@
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
                 _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' min='0'></p></div>";
                 _str_tag += "<div class='col-md-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
-                _str_tag += "<input type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' value='ندارد ...' onfocus='select();'></p>";
+                _str_tag += "<input type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' value='" + value + "' onfocus='select();'></p>";
                 _str_tag += '<div class="col-md-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
@@ -568,7 +571,7 @@
                     CostumerDescriptionBeforEdit: CostumerDescriptionBeforEdit,
                     CostumerDescriptionAfterEdit: CostumerDescriptionAfterEdit,
                     IsActive: 15,
-                }), true, function (data) { p.css('border', 'solid red 2px'); }, true);
+                }), true, function (data) { console.log(p); p.css('border', 'solid red 2px'); }, true);
                 alertB("ثبت", "بعد از تایید نهایی سوالات انتخاب شده به مشتری باز گردانده خواهد شد", "success");
             }, function () {
             }, ["خیر", "بلی"]);

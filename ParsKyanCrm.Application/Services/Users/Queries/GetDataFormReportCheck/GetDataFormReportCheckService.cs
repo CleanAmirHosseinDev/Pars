@@ -31,15 +31,41 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportCheck
                 var lists = (
                     from s in _context.DataFormReportCheck
                      where (
-                         s.IsActive == 15 &&
-                         s.CheckId == request.CheckId ||
-                         s.QuestionId == request.QuestionId && s.FormId == request.FormId && s.RequestId == request.RequestId ||
-                         s.RequestId == request.RequestId && s.DocumentId == request.DocumentId ||
-                         s.AnswerId == request.AnswerId ||
-                         s.CategoryId == request.CategoryId && s.QuestionId == request.QuestionId
+                         s.IsActive == 15 && s.CheckId == request.CheckId
                      )
                      select s
                 );
+                if (request.CategoryId != 0 && request.CategoryId != null && request.QuestionId != 0 && request.QuestionId != null)
+                {
+                    lists = (
+                        from s in _context.DataFormReportCheck
+                        where (
+                            s.IsActive == 15 && s.CategoryId == request.CategoryId && s.QuestionId == request.QuestionId
+                        )
+                        select s
+                    );
+                }
+                else if (request.DocumentId != 0 && request.DocumentId != null && request.RequestId != 0 && request.RequestId != null)
+                {
+                    lists = (
+                        from s in _context.DataFormReportCheck
+                        where (
+                            s.IsActive == 15 && s.DocumentId == request.DocumentId && s.RequestId == request.RequestId
+                        )
+                        select s
+                    );
+                }
+                else if (request.QuestionId!=0 && request.FormId!=0 && request.RequestId!=0 && request.QuestionId != null && request.FormId != null && request.RequestId != null)
+                {
+                    lists = (
+                        from s in _context.DataFormReportCheck
+                        where (
+                            s.IsActive == 15 && s.QuestionId == request.QuestionId && s.FormId == request.FormId && s.RequestId == request.RequestId
+                        )
+                        select s
+                    );
+                }
+
 
                 var res_Lists = await lists.ToListAsync();
 

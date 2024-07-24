@@ -92,7 +92,7 @@ namespace EndPoint.Controllers.api.admin
             {
                 return await _userFacad.GetDataFormsService.Execute(request);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

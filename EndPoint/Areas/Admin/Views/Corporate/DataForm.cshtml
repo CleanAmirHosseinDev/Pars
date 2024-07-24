@@ -3,15 +3,15 @@
 }
 
 @section PageHeader{
-<section class="content-header">
-    <h1>
-        دسته سوالات
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/Corporate/DataForm"><i></i>دسته سوالات</a></li>
-    </ol>
-</section>
+    <section class="content-header">
+        <h1>
+            دسته سوالات
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/Corporate/DataForm"><i></i>دسته سوالات</a></li>
+        </ol>
+    </section>
 }
 
 <div class="row">
@@ -71,7 +71,6 @@
                                     <option value="200">
                                         200
                                     </option>
-                                  
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -111,13 +110,28 @@
                         </tbody>
                     </table>
                 </div>
+                <div>
+                    <div class="text-center" id="">
+                        <ul class="pagination pagination-small" style="margin-bottom: auto;">
+                            <li style="cursor:pointer;" id="id_Left">
+                                <a onclick="Web.Corporate.PrevLits(Web.Corporate.DataFormFilterGrid);">صفحه قبل</a>
+                            </li>
+                            <li style="cursor:pointer;" id="li_Number" class="active">
+                                <a title="صفحه جاری" data-page="1" id="current_page">1</a>
+                            </li>
+                            <li style="cursor:pointer;" id="li_Right">
+                                <a onclick="Web.Corporate.NextList(Web.Corporate.DataFormFilterGrid);">صفحه بعد</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </div>
 
 @section Scripts {
-<script>
+    <script>
         Web.Corporate.DataFormFilterGrid();
-</script>
+    </script>
 }

@@ -205,7 +205,6 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             ToDateStr: $("#ToDateStr").val(),
             FromSendTimeDateStr: $("#FromSendTimeDateStr").val(),
             ToSendTimeDateStr: $("#ToSendTimeDateStr").val(),
-
         }));
 
     }

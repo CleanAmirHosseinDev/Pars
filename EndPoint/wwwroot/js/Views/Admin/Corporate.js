@@ -1,16 +1,44 @@
-﻿
-(function (web, $) {
+﻿(function (web, $) {
     var DataFormList = null;
     var DataFormQuestionsList = null;
-    function dataFormFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), false, function (res) {
+
+    function go_prev(filterGrid) {
+        let current_page = $("#current_page")
+        let page = current_page.data("page");
+        if (page > 1) {
+            current_page.text(String(page - 1))
+            current_page.data("page", page - 1)
+            filterGrid(page - 1);
+        }
+    }
+
+    function go_next(filterGrid) {
+        let current_page = $("#current_page")
+        let page = current_page.data("page");
+        if (page) {
+            current_page.text(String(page + 1))
+            current_page.data("page", page + 1)
+            filterGrid(page + 1);
+        }
+    }
+
+    //function createTotalInput(value, putPlace) {
+    //    var inp = document.createElement("input");
+    //    inp.setAttribute("type", "hidden");
+    //    inp.setAttribute("value", value);
+    //    inp.setAttribute("id", "TotalSearchCount");
+    //    document.getElementById("putPlace").appendChild(inp)
+    //}
+
+    function dataFormFilterGrid(page=1) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
                 for (let i = 0; i < res.data.length; i++) {
                     let category = getCategoryName(res.data[i].categoryId);
-                    strM += "<tr><td>" + i + "</td><td>" + res.data[i].formCode + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataForm(" + res.data[i].formId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].formCode + "</td><td>" + res.data[i].formTitle.slice(0, 75) + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataForm?id=" + res.data[i].formId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataForm(" + res.data[i].formId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -75,13 +103,13 @@
         } catch (e) {
         }
     }
-    function dataFormQuestionsFilterGrid() {
+    function dataFormQuestionsFilterGrid(page = 1) {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
             }
         }, true);
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -196,8 +224,8 @@
         }, true);
 
     }
-    function dataFormDocumentFilterGrid() {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormDocuments", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
+    function dataFormDocumentFilterGrid(page = 1) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormDocuments", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -263,9 +291,9 @@
         } catch (e) {
         }
     }
-    function dataFormQuestionsOptioneFilterGrid() {
+    function dataFormQuestionsOptioneFilterGrid(page = 1) {
         getDataFormQuestionsList();
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionsOptiones", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionsOptiones", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), true, function (res) {
             if (res.isSuccess) {
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
                 var strM = '';
@@ -464,6 +492,9 @@
 
         TextSearchOnKeyDown: textSearchOnKeyDown,
         MakeDataFormComboBoxForSelectSubCategory: makeDataFormComboBoxForSelectSubCategory,
+
+        PrevLits: go_prev,
+        NextList: go_next,
     };
 
 })(Web, jQuery);

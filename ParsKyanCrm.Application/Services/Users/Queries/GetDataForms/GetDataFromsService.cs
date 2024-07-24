@@ -54,6 +54,12 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataForms
                     case "FormId_A":
                         lists = lists.OrderBy(s => s.FormId);
                         break;
+                    case "FormCode_D":
+                        lists = lists.OrderByDescending(s => s.FormCode);
+                        break;
+                    case "FormCode_A":
+                        lists = lists.OrderBy(s => s.FormCode);
+                        break;
                     case "FormTitle_D":
                         lists = lists.OrderByDescending(s => s.FormTitle);
                         break;

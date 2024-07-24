@@ -111,13 +111,19 @@
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
 
-            makeDynamicForm("B", "TargetTabs287", false, "TabPaneTargetTabs287");
+            makeDynamicForm("D", "TargetTabs288", true, "TabPaneTargetTabs288");
 
-            makeDynamicForm("C", "TargetTabs288", true, "TabPaneTargetTabs288");
+            makeDynamicForm("E", "TargetTabs289", true, "TabPaneTargetTabs289");
 
-            makeDynamicForm("D", "TargetTabs289", true, "TabPaneTargetTabs289");
+            makeDynamicForm("B", "TargetTabs290", true, "TabPaneTargetTabs290");
 
-            makeDynamicForm("E", "TargetTabs290", true, "TabPaneTargetTabs290");
+            makeDynamicForm("C", "TargetTabs291", true, "TabPaneTargetTabs291");
+
+            makeDynamicForm("F", "TargetTabs292", true, "TabPaneTargetTabs292");
+
+            makeDynamicForm("G", "TargetTabs293", true, "TabPaneTargetTabs293");
+
+            makeDynamicForm("H", "TargetTabs294", true, "TabPaneTargetTabs294");
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
         }
@@ -295,23 +301,35 @@
         }, true);
         let li_option = "";
         let tabPane = "";
-        li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >حقوق و رفتار عادلانه با سهامدار</a></li>";
+        li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >سهامداران</a></li>";
         li_option += "<li class=''><a href='#FormDocumentTabDocument288' data-toggle='tab' aria-expanded='false' >نقش ذینفعان</a></li>";
         li_option += "<li class=''><a href='#FormDocumentTabDocument289' data-toggle='tab' aria-expanded='false' >افشاء و شفافیت</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >مسئولیت های هیئت مدیره</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >هیئت مدیره</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument291' data-toggle='tab' aria-expanded='false' >اطلاعات نهایی و اشخاص وابسته</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument292' data-toggle='tab' aria-expanded='false' >صورت های مالی و حسابرسی</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument293' data-toggle='tab' aria-expanded='false' >کمیته ها</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument294' data-toggle='tab' aria-expanded='false' >سایر</a></li>";
 
         $("#" + PutPlace).append(li_option);
 
-        tabPane += makeDocumentTabPane("Document287", "حقوق و رفتار عادلانه با سهامدار", ID, true);
+        tabPane += makeDocumentTabPane("Document287","سهامداران",ID,true);
         tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, false);
         tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, false);
-        tabPane += makeDocumentTabPane("Document290", "مسئولیت های هیئت مدیره", ID, false);
+        tabPane += makeDocumentTabPane("Document290", "هیئت مدیره", ID, false);
+        tabPane += makeDocumentTabPane("Document291", "اطلاعات نهایی و اشخاص وابسته", ID, false);
+        tabPane += makeDocumentTabPane("Document292", "صورت های مالی و حسابرسی", ID, false);
+        tabPane += makeDocumentTabPane("Document293", "کمیته ها", ID, false);
+        tabPane += makeDocumentTabPane("Document294", "سایر", ID, false);
 
         $("#" + PutTabPane).append(tabPane);
         let _str287 = "";
         let _str288 = "";
         let _str289 = "";
         let _str290 = "";
+        let _str291 = "";
+        let _str292 = "";
+        let _str293 = "";
+        let _str294 = "";
         for (let i = 0; i < DataFormDocumentList.length; i++) {
             let title = DataFormDocumentList[i].title;
             let formId = "Doc" + DataFormDocumentList[i].dataFormDocumentId;
@@ -330,6 +348,18 @@
                 case 290:
                     _str290 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
                     break;
+                case 291:
+                    _str291 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    break;
+                case 292:
+                    _str292 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    break;
+                case 293:
+                    _str293 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    break;
+                case 294:
+                    _str294 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    break;
                 default:
                     break;
             }
@@ -338,6 +368,10 @@
         $("#FormDocumentDocument288").append(_str288);
         $("#FormDocumentDocument289").append(_str289);
         $("#FormDocumentDocument290").append(_str290);
+        $("#FormDocumentDocument291").append(_str291);
+        $("#FormDocumentDocument292").append(_str292);
+        $("#FormDocumentDocument293").append(_str293);
+        $("#FormDocumentDocument294").append(_str294);
 
         AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
             PageIndex: 0, PageSize: 0, FormID: null, RequestId: ID, DataFormQuestionId: null

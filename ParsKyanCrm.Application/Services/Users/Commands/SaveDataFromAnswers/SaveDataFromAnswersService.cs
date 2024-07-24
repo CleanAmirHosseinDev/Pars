@@ -134,6 +134,19 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                             },
                         }, string.Format(nameof(q_Entity.Entity.DataFormDocumentId) + " = {0} and RequestId={1} ", request.DataFormDocumentId, request.RequestId));
                     }
+
+                    try
+                    {
+                        var query = Ado_NetOperation.Select(
+                            $"select AnswerID from [ParsKyanCrmDB].[dbo].[DataFromAnswers] where RequestId = {request.RequestId} and FormID = {request.FormId} and DataFormQuestionID = {request.DataFormQuestionId}"
+                        ).Rows[0].ItemArray;
+                        answer_id = (int)query[0];
+                    }
+                    catch (Exception e)
+                    {
+                        throw;
+                    }
+
                 }
                 #region Upload Image
                 if (request.Result_Final_FileName1 != null)

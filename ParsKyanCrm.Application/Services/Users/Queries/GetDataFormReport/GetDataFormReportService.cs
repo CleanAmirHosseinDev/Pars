@@ -61,14 +61,26 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport
                             p => p.DataFormAnswerId == request.DataFormAnswerId.Value && p.RequestId == request.RequestId.Value
                         );
                         res = _mapper.Map<DataFormReportDto>(q_Find);
-                        return res;
+                        if (res != null)
+                            return res;
                     }
                     var q_Find1 = await _context.DataFormReport.FirstOrDefaultAsync(p => p.DataFormAnswerId == request.DataFormAnswerId.Value);
                     res = _mapper.Map<DataFormReportDto>(q_Find1);
+
                 }
+                if (res != null)
+                    return res;
 
-                return res;
-
+                return new DataFormReportDto()
+                {
+                    RequestId = request.RequestId.Value,
+                    AnalizeScore = 0,
+                    DataFormAnswerId = request.DataFormAnswerId.Value,
+                    DataReportId = 0,
+                    Description = "",
+                    IsActive = 14,
+                    SystemScore = 0,
+                };
             }
             catch (Exception ex)
             {

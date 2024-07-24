@@ -60,6 +60,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
                 {
                     request.IsActive = 15;
                     q_Entity = _context.DataFormReport.Add(_mapper.Map<DataFormReport>(request));
+                    request.DataReportId = q_Entity.Entity.DataReportId;
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<DataFormReportDto>(q_Entity.Entity);
                 }

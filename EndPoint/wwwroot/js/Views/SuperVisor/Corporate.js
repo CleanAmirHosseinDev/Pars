@@ -230,30 +230,36 @@
 
             if (!isEmpty(report)) {
                 let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
+                let checkIsReturnBackForBtn = "style=display:none;";
                 if (questionIsNotInReturnCustomer) {
-                    _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-md-12'><h4 style='line-height: 1.5;'>";
-                    _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12' style='border: 2px solid red;'>"
+
+                    _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>";
+                    _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-12'>"
                 }
                 else {
-                    _str_tag += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>";
-                    _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'>"
+                    _str_tag += "<div class='form-group'><div class='col-12'><h4 style='line-height: 1.5;'>";
+                    _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-12'>"
                 }
-                _str_tag += "<div class='row'><div class='col-md-12'>";
+                _str_tag += "<div class='col-12'>";
                 _str_tag += "<label>پاسخ مشتری : </label><p style='display: inline-block;margin-right: 20px;'>";
                 _str_tag += answer.answer == "Yes" || answer.answer == "No" ? answer.answer : answer.answer.split("_")[1]
-                _str_tag += "</p></div><div class='col-md-12'><label>توضیحات : </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
-                _str_tag += "</p></div><div class='col-md-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
-                _str_tag += "</p></div><div class='col-md-12'><label>امتیاز کارشناس</label>";
+                _str_tag += "</p></div><div class='col-12'><label>توضیحات : </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
+                _str_tag += "</p></div><div class='col-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
+                _str_tag += "</p></div><div class='col-12'><label>امتیاز کارشناس</label>";
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
                 _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' min='0'></p></div>";
-                _str_tag += "<div class='col-md-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
-                _str_tag += "<input type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' value='" + value + "' onfocus='select();'></p>";
-                _str_tag += '<div class="col-md-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
+                _str_tag += "<div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
+                _str_tag += "<textarea type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' onfocus='select();'>" + value +"</textarea></p>";
+                _str_tag += '<div class="col-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
                 _str_tag += report.dataReportId + ", '" + answer.description + "'," + "''";
-                _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
-                _str_tag += "<input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div>"
+                if (questionIsNotInReturnCustomer)
+                    _str_tag += ');" ' + checkIsReturnBackForBtn + ' >بازگشت به مشتری برای اصلاح</a></div></div>'
+                else {
+                    _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
+                }
+                _str_tag += "<input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div></div>"
             }
 
         }
@@ -409,6 +415,7 @@
             }
         }
         var DocumentIsNotInReturnCustomer = false;
+        let value = "";
         // بررسی اینکه آیا سوال به مشتری بازگردانده شده است یا خیر
         try {
             AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReportCheck", JSON.stringify({
@@ -416,31 +423,33 @@
             }), false, function (res) {
                 if (res.isActive == 15 && res.requestId != 0 && res.checkId != 0) {
                     DocumentIsNotInReturnCustomer = true;
+                    value = res.superVisorDescription;
                 }
             }, true);
         } catch {
 
         }
         let _str = "";
-        if (DocumentIsNotInReturnCustomer)
-            _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px;border: 2px solid red;'><label class='control-label'>" + inputTitle;
-        else {
-            _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
-        }
+        value != "" ? value : "ندارد ..."
+        _str += "<div class='form-group'><div class='col-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
         _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
         _str += "<a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a></div>";
         if (DocumentIsNotInReturnCustomer)
-            _str += "<div class='col-md-12' style='border: 2px solid red;'><label>توضیحات کارشناس</label>";
+            _str += "<div class='col-12' style='border: 2px solid red;'><label>توضیحات کارشناس</label>";
         else {
-            _str += "<div class='col-md-12'><label>توضیحات کارشناس</label>";
+            _str += "<div class='col-12'><label>توضیحات کارشناس</label>";
         }
         _str += "<input style='width: 100%;margin: 10px;' type='text' id='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' name='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' ";
-        _str += 'value="ندارد ..." onfocus="select();"><a style="margin: 10px;" class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomerDoc(this,';
+        _str += 'value="' + value + '" onfocus="select();"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomerDoc(this,';
         _str += 0 + "," + 0 + "," + 0 + "," + RequestId + "," + categoryId + ",";
         _str += documentId + "," + "''," + "''," + "''," + "'', '" + answer.fileName1Full + "'," + 0 + "," + inputName.slice(3, inputName.length) + "," + "'',";
         _str += "'', ";
-        _str += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
+        if (DocumentIsNotInReturnCustomer)
+            _str += ');" style="display:none;">بازگشت به مشتری برای اصلاح</a></div></div>'
+        else {
+            _str += ');" style="margin: 10px;">بازگشت به مشتری برای اصلاح</a></div></div>'
+        }
         return _str;
     }
     function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
@@ -553,7 +562,7 @@
         DataReportId, CostumerDescriptionBeforEdit, CostumerDescriptionAfterEdit
     ) {
         try {
-            const p = $($(el).parent().parent().parent().parent().parent());
+            const p = $($(el).parent().parent().parent());
             confirmB("", "آیا از بازگرداند به مشتری مطمئن هستید توجه کنید امکان بازگشت وجود ندارد", 'error', function () {
                 let SuperVisorDescription = $('#descriptoin_' + DataReportId).val();
                 AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFormReportCheck", JSON.stringify({

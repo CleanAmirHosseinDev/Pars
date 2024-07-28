@@ -230,7 +230,6 @@
 
             if (!isEmpty(report)) {
                 let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
-                let checkIsReturnBackForBtn = "style=display:none;";
                 if (questionIsNotInReturnCustomer) {
 
                     _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>";
@@ -254,11 +253,7 @@
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
                 _str_tag += report.dataReportId + ", '" + answer.description + "'," + "''";
-                if (questionIsNotInReturnCustomer)
-                    _str_tag += ');" ' + checkIsReturnBackForBtn + ' >بازگشت به مشتری برای اصلاح</a></div></div>'
-                else {
-                    _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
-                }
+                _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
                 _str_tag += "<input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div></div>"
             }
 
@@ -441,15 +436,11 @@
             _str += "<div class='col-12'><label>توضیحات کارشناس</label>";
         }
         _str += "<input style='width: 100%;margin: 10px;' type='text' id='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' name='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' ";
-        _str += 'value="' + value + '" onfocus="select();"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomerDoc(this,';
+        _str += 'value="' + value + '" onfocus="select();"><a style="margin: 10px;" class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomerDoc(this,';
         _str += 0 + "," + 0 + "," + 0 + "," + RequestId + "," + categoryId + ",";
         _str += documentId + "," + "''," + "''," + "''," + "'', '" + answer.fileName1Full + "'," + 0 + "," + inputName.slice(3, inputName.length) + "," + "'',";
         _str += "'', ";
-        if (DocumentIsNotInReturnCustomer)
-            _str += ');" style="display:none;">بازگشت به مشتری برای اصلاح</a></div></div>'
-        else {
-            _str += ');" style="margin: 10px;">بازگشت به مشتری برای اصلاح</a></div></div>'
-        }
+        _str += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
         return _str;
     }
     function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {

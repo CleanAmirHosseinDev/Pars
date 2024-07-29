@@ -24,7 +24,7 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.IndexBoxAdmin
 
                 var data = (await DapperOperation.Run<ResultIndexBoxAdminDto>(@$"
 
- declare @totalNumberCustomersApprovedContract as int = (select cast(count(*) as nvarchar(50)) as TotalNumberCustomersApprovedContract from Customers as cus
+declare @totalNumberCustomersApprovedContract as int = (select cast(count(*) as nvarchar(50)) as TotalNumberCustomersApprovedContract from Customers as cus
 inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
 inner join RequestReferences as rrs on rfr.RequestID=rrs.Requestid and rrs.LevelStepSettingIndexID=7
 where cus.IsActive = 15)               
@@ -39,6 +39,12 @@ declare @totalNumberApplicationsAssessmentMinistryPrivacy as int = (select cast(
 inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
 where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.KindOfRequest = 66)
 
+
+declare @NumberCorporateCustomer as int = (select cast(count(*) as nvarchar(50)) as NumberCorporateCustomer from Customers as cus
+inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
+where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.KindOfRequest = 254)
+
+
 declare @numberCodedFiles as int = (
         select cast(count(*) as nvarchar(50)) as NumberCodedFiles from RequestForRating as rfr
         inner join Customers as cus on rfr.CustomerID = cus.CustomerID
@@ -48,7 +54,8 @@ declare @numberCodedFiles as int = (
 select @totalNumberCustomersApprovedContract as TotalNumberCustomersApprovedContract,
 @totalNumberCustomersWithoutRegistration as TotalNumberCustomersWithoutRegistration,
 @totalNumberApplicationsAssessmentMinistryPrivacy as TotalNumberApplicationsAssessmentMinistryPrivacy,
-@numberCodedFiles as NumberCodedFiles
+@numberCodedFiles as NumberCodedFiles, @NumberCorporateCustomer as NumberCorporateCustomer
+
 
 ")).ToList().FirstOrDefault();
 

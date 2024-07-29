@@ -15,6 +15,9 @@
         //تعداد پرونده های کدال شده
         public string NumberCodedFiles { get; set; } = "0";
 
+        //تعداد پرونده های حاکمیت شرکتی
+        public string NumberCorporateCustomer { get; set; } = "0";
+
 
     }
 }

@@ -342,6 +342,10 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
         }, true);
 
+        let CorporateAccess = ["4", "9"]
+        if (CorporateAccess.includes(getlstor("loginName"))) {
+            $(".divMainBoxDoshboard").remove();
+        }
         //var item = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 733);
         //if (item == null) {
         //    $(".divMainBoxDoshboard").remove();

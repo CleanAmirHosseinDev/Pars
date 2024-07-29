@@ -63,7 +63,7 @@
                         }
                         if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
                             strM += "<a style='margin-right:5px;color:black' title='اصلاح/ تکمیل اطلاعات'  class='btn btn-edit fontForAllPage' href='/Customer/Customer/EditCustomer/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اصلاح/ تکمیل اطلاعات اولیه</a>";
-                            strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + ");'>ارسال مجدد </button >";
+                            strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + "," + res.data[i].kindOfRequest + ");'>ارسال مجدد </button >";
 
                         }
                         if (res.data[i].destLevelStepIndex == 105) {
@@ -921,22 +921,40 @@
 
     }
 
-    function saveReferralRequestForRatingAgain(e, Requestid = null) {
+    function saveReferralRequestForRatingAgain(e, Requestid = null,RequestType=null) {
+        if (RequestType==66) {
+            var objJ = {};
+            objJ.DestLevelStepIndex = "3";
+            objJ.Comment = "اطلاعات اصلاح شد";// getDataCkeditor("ReferralExplanation");
+            objJ.LevelStepAccessRole = "4";
+            objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
+            objJ.Request = {};
+            objJ.Request.Requestid = Requestid;
+            objJ.Request.KindOfRequest = '0';
+            objJ.SmsContent = null;
+            objJ.SmsType = null;
+            objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
+            objJ.ReciveUser = "146";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
+            objJ.LevelStepSettingIndexID = "1";
+
+        } else if(RequestType == 254) {
+            var objJ = {};
+            objJ.DestLevelStepIndex = "101";
+            objJ.Comment = "اطلاعات اصلاح شد";// getDataCkeditor("ReferralExplanation");
+            objJ.LevelStepAccessRole = "4";
+            objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
+            objJ.Request = {};
+            objJ.Request.Requestid = Requestid;
+            objJ.Request.KindOfRequest = '254';
+            objJ.SmsContent = null;
+            objJ.SmsType = null;
+            objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
+            objJ.ReciveUser = "146";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
+            objJ.LevelStepSettingIndexID = "100";
+
+        }
 
 
-        var objJ = {};
-        objJ.DestLevelStepIndex = "3";
-        objJ.Comment = "اطلاعات اصلاح شد";// getDataCkeditor("ReferralExplanation");
-        objJ.LevelStepAccessRole = "4";
-        objJ.LevelStepStatus = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
-        objJ.Request = {};
-        objJ.Request.Requestid = Requestid;
-        objJ.Request.KindOfRequest = '0';
-        objJ.SmsContent = null;
-        objJ.SmsType = null;
-        objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
-        objJ.ReciveUser = "146";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
-        objJ.LevelStepSettingIndexID = "1"
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify(objJ), true, function (res) {
 
             if (res.isSuccess) {

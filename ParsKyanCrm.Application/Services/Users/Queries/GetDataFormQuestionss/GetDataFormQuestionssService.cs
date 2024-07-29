@@ -58,6 +58,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                     p.QuestionType.Contains(request.Search)
                 );
 
+                if (request.Version != null) lists = lists.Where(p => p.Version == request.Version);
+
                 switch (request.SortOrder)
                 {
                     case "DataFormQuestionId_D":

@@ -973,7 +973,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (!res.isSuccess && $(objE).attr("data-LSSII") != "2") {
+                if (!res.isSuccess && ($(objE).attr("data-LSSII") != "2" && $(objE).attr("data-LSSII") != "46")) {
                     alertB("خطا", " کاربر گرامی شما قرارداد را تایید نکرده اید", "error");
                 } else {
                     $(".ButtonOpperationLSSlss").attr("disabled", "");

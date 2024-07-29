@@ -252,7 +252,20 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
             $("#NumberCodedFiles").html(res.numberCodedFiles);
 
+            $("#NumberCorporateCustomer").html(res.numberCorporateCustomer);
+
         }, true);
+
+        let CorporateAccess = ["11", "12"];
+        let ContractAccess = ["4", "9", "11", "12"];
+
+        if (CorporateAccess.includes(getlstor("loginName"))) {
+            $(".ShowBox").remove();
+        }
+
+        if (!ContractAccess.includes(getlstor("loginName"))) {
+            $("#ShowBoxCorporate").remove();
+        }
     }
 
     function initPerformanceReportEvaluationStaffInDetail_ReportOne(id = 0) {

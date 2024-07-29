@@ -341,6 +341,8 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
             $("#NumberCodedFiles").html(res.numberCodedFiles);
 
+            $("#NumberCorporateCustomer").html(res.numberCorporateCustomer);
+
         }, true);
         
         const Samt = $("#Samt");

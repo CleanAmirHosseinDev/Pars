@@ -350,13 +350,13 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         let isAccessToAll = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 547);
         let isAccessToSamt = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 548);
         let isAccessToCorporate = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 549);
-        if (isAccessToAll == null) {
+        if (isEmpty(isAccessToAll)) {
             topReport.remove();
         }
-        if (isAccessToSamt == null) {
+        if (isEmpty(isAccessToSamt)) {
             Samt.remove();
         }
-        if (isAccessToCorporate != null) {
+        if (isEmpty(isAccessToCorporate)) {
             Corporate.remove();
         }
     }

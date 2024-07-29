@@ -1,4 +1,5 @@
-﻿
+﻿const { read } = require("node:fs");
+
 var divPageingList_RequestForRatingsSupervisor_pageG = 1;
 function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
 
@@ -249,11 +250,15 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     }
 
     function fillComboLevelStepSettingList() {
-        var UserAccessRole = getlstor("roleDesc")
         let requestKind = 0;
+        let CorporateAccess = ["11", "12"];
+        let ContractAccess = ["4", "9"];
 
-        if (UserAccessRole == "مدیر حاکمیت شرکتی" || UserAccessRole == "کارشناس حاکمیت شرکتی") {
+        if (CorporateAccess.includes(getlstor("loginName"))) {
             requestKind = 254;
+        }
+        else if (ContractAccess.includes(getlstor("loginName"))) {
+            requestKind = 1;
         }
         AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_LevelStepSetings", JSON.stringify({ PageIndex: 0, PageSize: 0 }), true, function (res) {
 
@@ -263,6 +268,11 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                     for (var i = 0; i < res.data.length; i++) {
                         if (res.data[i].kindOfRequest != 254 || res.data[i].kindOfRequest != "254")
                             strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
+                    }
+                }
+                if (requestKind == 1) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        strKindOfCompany += " <option value=" + res.data[i].levelStepIndex + ">" + res.data[i].levelStepStatus + "</option>";
                     }
                 }
                 else if (requestKind == 254) {
@@ -285,7 +295,13 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                             if (res.data[i].systemSetingId != 254 || res.data[i].systemSetingId != "254")
                                 strKindOfRequest += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
                         }
-                    } else if (requestKind == 254) {
+                    }
+                    else if (requestKind == 1) {
+                        for (var i = 0; i < res.data.length; i++) {
+                            strKindOfRequest += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
+                        }
+                    }
+                    else if (requestKind == 254) {
                         for (var i = 0; i < res.data.length; i++) {
                             if (res.data[i].systemSetingId == 254 || res.data[i].systemSetingId == "254")
                                 strKindOfRequest += "<option value=" + res.data[i].systemSetingId + ">" + res.data[i].label + "</option>";
@@ -304,12 +320,14 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
         ComboBoxWithSearch('.select2', 'rtl');
 
-        var UserAccessRole = getlstor("roleDesc")
+        let CorporateAccess = ["11", "12"];
+        let ContractAccess = ["4", "9"];
 
-        let requestKind = 0;
-
-        if (UserAccessRole == "مدیر حاکمیت شرکتی" || UserAccessRole == "کارشناس حاکمیت شرکتی") {
+        if (CorporateAccess.includes(getlstor("loginName"))) {
             requestKind = 254;
+        }
+        else if (ContractAccess.includes(getlstor("loginName"))) {
+            requestKind = 1;
         }
 
         pageingGrid("divPageingList_RequestForRatingsSupervisor", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify(
@@ -319,7 +337,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                 PageSize: $("#cboSelectCount").val(),
                 DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(),
                 IsMyRequests: $('#IsMyRequests').is(":checked"),
-                KindOfRequest: requestKind == 254 ? 254 : !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null
+                KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : requestKind == 254 ? 254 : requestKind == 1? null:null
             }));
     }
 

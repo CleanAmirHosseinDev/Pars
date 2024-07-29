@@ -332,6 +332,7 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
         AjaxCallAction("POST", "/Admin/Report/IndexBoxAdmin", {}, true, function (res) {
 
+
             $("#TotalNumberCustomersApprovedContract").html(res.totalNumberCustomersApprovedContract);
 
             $("#TotalNumberCustomersWithoutRegistration").html(res.totalNumberCustomersWithoutRegistration);
@@ -341,15 +342,23 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
             $("#NumberCodedFiles").html(res.numberCodedFiles);
 
         }, true);
+        
+        const Samt = $("#Samt");
+        const Corporate = $("#Corporate");
+        const topReport = $("#topReport");
 
-        let CorporateAccess = ["4", "9"]
-        if (CorporateAccess.includes(getlstor("loginName"))) {
-            $(".divMainBoxDoshboard").remove();
+        let isAccessToAll = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 547);
+        let isAccessToSamt = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 548);
+        let isAccessToCorporate = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 549);
+        if (isAccessToAll == null) {
+            topReport.remove();
         }
-        //var item = JSON.parse(localStorage.getItem("menu")).find(o => o.value == 733);
-        //if (item == null) {
-        //    $(".divMainBoxDoshboard").remove();
-        //}
+        if (isAccessToSamt == null) {
+            Samt.remove();
+        }
+        if (isAccessToCorporate != null) {
+            Corporate.remove();
+        }
     }
 
     function excelTotalNumberCustomersApprovedContract() {

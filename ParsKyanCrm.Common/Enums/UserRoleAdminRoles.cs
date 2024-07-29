@@ -425,18 +425,9 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("Report")]
         [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
-        [DisplayFiledAttribute1(Name = "/Admin/Report/Index")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "نمایش گزارش ها")]
-        [OrderAttribute(Order = 4)]
-        ReportVisitor = 616,
-
-        [Display(Name = "مشاهده")]
-        [Category("Report")]
-        [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
         [DisplayFiledAttribute1(Name = "")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "همه درخواست ها و گزارشات")]
+        [DisplayFiledAttribute3(Name = "درخواست ها و گزارشات کلی")]
         [OrderAttribute(Order = 4)]
         AllReportVisitor = 547,
 

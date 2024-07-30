@@ -317,7 +317,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
     function filterGrid() {
 
         ComboBoxWithSearch('.select2', 'rtl');
-
+        let requestKind = 1;
         let CorporateAccess = ["11", "12"];
         let ContractAccess = ["4", "9"];
 

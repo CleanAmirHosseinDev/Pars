@@ -618,6 +618,7 @@
         }
         return false
     }
+ 
 
     web.CorporateSuperVisor = {
         IntiForm: intiForm,
@@ -629,6 +630,7 @@
         Save_AnswersAnalize: save_AnswersAnalize,
         ReturnToCustomer: returnToCustomer,
         ReturnToCustomerDoc: returnToCustomerDoc,
+      
     };
 
 })(Web, jQuery);

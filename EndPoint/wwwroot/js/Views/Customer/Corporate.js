@@ -154,6 +154,7 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initCustomer();
+        initReferral(id);
         makeTabProgresDynamic();
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
@@ -466,6 +467,9 @@
             }
         }
     }
+
+
+
 
     function makeLiAndPan(formCode, formTitle, formId, reqid, isActive) {
         let li_option = "";
@@ -1166,6 +1170,36 @@
         );
     }
 
+    function initReferral(id = null) {
+
+        AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
+
+            if (res.isSuccess) {
+
+                $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
+                $("#sdklsslks3498sjdkxhjsd_823sdel").val(res.data[0].sendUser);
+                var htmlB = "";
+                for (var i = 0; i < res.data.length; i++) {
+                    if (res.data[0].levelStepIndex == 105 && res.data[0].levelStepAccessRole == 12) {
+                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);'" + "data-SIndex='" + res.data[i].levelStepSettingIndexId + "' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+
+                    }
+                }
+                $("#bLLSS").html(htmlB);
+                $("#sdfcddf").val(1);
+
+            } else {
+                $(".changeData").remove();
+                $("#EndCorporateInfo").html("اطلاعات شما برای پارس کیان جهت بررسی و ارزیابی ارسال شده است و قابل ویرایش نمی باشد.");
+
+            }
+
+
+        }, true);
+
+    }
+
+
     web.Corporate = {
         IntiForm: intiForm,
         InitCorporate: initCorporate,
@@ -1175,5 +1209,6 @@
         MakeDynamicDocumentForm: makeDynamicDocumentForm,
         SaveSerializedForm: saveSerializedForm,
         Save_AnswersUpload: save_AnswersUpload,
+        InitReferral: initReferral
     };
 })(Web, jQuery);

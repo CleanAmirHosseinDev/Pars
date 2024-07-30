@@ -8,15 +8,9 @@
         let _strM = "";
         for (let i = 0; i < progresDynamicBar.length; i++) {
             if (i == 0)
-                _strM +=
-                    "<li class='active' id='payment'><strong>" +
-                    progresDynamicBar[i].label +
-                    "</strong></li>";
+                _strM += "<li class='active' id='payment'><strong>" + progresDynamicBar[i].label + "</strong></li>";
             else {
-                _strM +=
-                    "<li class='' id='payment'><strong>" +
-                    progresDynamicBar[i].label +
-                    "</strong></li>";
+                _strM += "<li class='' id='payment'><strong>" + progresDynamicBar[i].label + "</strong></li>";
             }
         }
         _strM += "<li id='confirm'><strong>بارگذاری مدارک</strong></li>";
@@ -26,56 +20,31 @@
     function makeFieldset(fieldId, isFirst = true) {
         let str_M = "";
         if (isFirst) {
-            str_M +=
-                "<fieldset><button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button>";
-            str_M +=
-                "<div class='form-card'><div class='row'><div class='col-md-12'><div class='nav-tabs-custom'><ul class='nav nav-tabs' id='TargetTabs" +
-                fieldId +
-                "'></ul>";
-            str_M +=
-                "<div class='tab-content' id='TabPaneTargetTabs" +
-                fieldId +
-                "'></div></div></div></div></div>";
-            str_M +=
-                "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button></fieldset>";
+            str_M += "<fieldset><button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button>";
+            str_M += "<div class='form-card'><div class='row'><div class='col-md-12'><div class='nav-tabs-custom'><ul class='nav nav-tabs' id='TargetTabs" + fieldId + "'></ul>";
+            str_M += "<div class='tab-content' id='TabPaneTargetTabs" + fieldId + "'></div></div></div></div></div>";
+            str_M += "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button></fieldset>";
         } else {
-            str_M +=
-                "<fieldset><button type='button' name='previous' class='previous action-button-previous' style='border:none;width:90px'><i class='fa fa-arrow-right'></i> فرم قبلی </button>";
-            str_M +=
-                "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button>";
-            str_M +=
-                "<div class='form-card'><div class='row'><div class='col-md-12'><div class='nav-tabs-custom'><ul class='nav nav-tabs' id='TargetTabs" +
-                fieldId +
-                "'></ul>";
-            str_M +=
-                "<div class='tab-content' id='TabPaneTargetTabs" +
-                fieldId +
-                "'></div></div></div></div></div>";
-            str_M +=
-                "<button type='button' name='previous' class='previous action-button-previous' style='border:none;width:90px'><i class='fa fa-arrow-right'></i> فرم قبلی </button>";
-            str_M +=
-                "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button></fieldset>";
+            str_M += "<fieldset><button type='button' name='previous' class='previous action-button-previous' style='border:none;width:90px'><i class='fa fa-arrow-right'></i> فرم قبلی </button>";
+            str_M += "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button>";
+            str_M += "<div class='form-card'><div class='row'><div class='col-md-12'><div class='nav-tabs-custom'><ul class='nav nav-tabs' id='TargetTabs" + fieldId + "'></ul>";
+            str_M += "<div class='tab-content' id='TabPaneTargetTabs" + fieldId + "'></div></div></div></div></div>";
+            str_M += "<button type='button' name='previous' class='previous action-button-previous' style='border:none;width:90px'><i class='fa fa-arrow-right'></i> فرم قبلی </button>";
+            str_M += "<button type='button' name='next' class='next action-button' style='border:none;width:90px'>فرم بعدی <i class='fa fa-arrow-left'></i></button></fieldset>";
         }
         return str_M;
     }
 
     function makeTabProgresDynamic() {
         if (progresDynamicBar.length == 0)
-            AjaxCallAction(
-                "POST",
-                "/api/customer/SystemSeting/Get_SystemSetings/",
-                JSON.stringify({
+            AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings/", JSON.stringify({
                     PageIndex: 0,
                     PageSize: 0,
                     ParentCode: 286,
                     SortOrder: "SystemSetingId_A",
-                }),
-                false,
-                function (result) {
+                }), false, function (result) {
                     progresDynamicBar = result.data;
-                },
-                false
-            );
+                }, false );
         let _strM = "";
         if (progresDynamicBar.length > 1)
             for (let i = 0; i < progresDynamicBar.length; i++) {
@@ -206,92 +175,48 @@
 
             makeDocLiAndPan("ducument_save", "document_save_pane");
 
-            AjaxCallAction(
-                "POST",
-                "/api/customer/Corporate/Get_DataFormReportChecks/",
-                JSON.stringify({
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReportChecks/", JSON.stringify({
                     PageIndex: 0,
                     PageSize: 0,
                     IsActive: 15,
-                }),
-                false,
-                function (res) {
+                }), false, function (res) {
                     if (res != null) {
                         checkReport = res;
                         for (let i = 0; i < res.data.length; i++) {
                             let dataForm = "";
                             let question = "";
-                            AjaxCallAction(
-                                "GET",
-                                "/api/customer/Corporate/Get_DataForm/" + res.data[i].formId,
-                                null,
-                                false,
-                                function (form) {
-                                    dataForm = form;
-                                },
-                                false
-                            );
-                            AjaxCallAction(
-                                "GET",
-                                "/api/customer/Corporate/Get_DataFormQuestions/" +
-                                res.data[i].questionId,
-                                null,
-                                false,
-                                function (form) {
-                                    question = form;
-                                },
-                                false
-                            );
+                            AjaxCallAction("GET", "/api/customer/Corporate/Get_DataForm/" + res.data[i].formId, null, false, function (form) {
+                                dataForm = form;
+                            }, false);
+                            AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + res.data[i].questionId, null, false, function (form) {
+                                question = form;
+                            }, false);
 
                             switch (res.data[i].categoryId) {
                                 case 287:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup287
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
                                         cat287li += tempresult[0];
                                         cat287Pan += tempresult[1];
                                     }
                                     break;
                                 case 288:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup288
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
                                         cat288li += tempresult[0];
                                         cat288Pan += tempresult[1];
                                     }
                                     break;
                                 case 289:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup289
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup289);
                                         cat289li += tempresult[0];
                                         cat289Pan += tempresult[1];
                                     }
                                     break;
                                 case 290:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup290
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
                                         cat290li += tempresult[0];
                                         cat290Pan += tempresult[1];
                                     }
@@ -299,13 +224,7 @@
 
                                 case 291:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup291
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle,res.data[i].formId,id,fisrtInGroup291);
                                         cat291li += tempresult[0];
                                         cat291Pan += tempresult[1];
                                     }
@@ -313,13 +232,7 @@
 
                                 case 292:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup292
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup292);
                                         cat292li += tempresult[0];
                                         cat292Pan += tempresult[1];
                                     }
@@ -327,13 +240,7 @@
 
                                 case 293:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup293
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup293);
                                         cat293li += tempresult[0];
                                         cat293Pan += tempresult[1];
                                     }
@@ -341,13 +248,7 @@
 
                                 case 294:
                                     if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(
-                                            res.data[i].formCode,
-                                            dataForm.formTitle,
-                                            res.data[i].formId,
-                                            id,
-                                            fisrtInGroup294
-                                        );
+                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup294);
                                         cat294li += tempresult[0];
                                         cat294Pan += tempresult[1];
                                     }
@@ -355,28 +256,28 @@
                             }
                         }
                         $("#TargetTabs287").append(cat287li);
-                        $("#TabPaneTargetTabs287").append(cat287Pan);
+                        $("#TabPaneTargetTabs287").append(cat287Pan != "" ? cat287Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs288").append(cat288li);
-                        $("#TabPaneTargetTabs288").append(cat288Pan);
+                        $("#TabPaneTargetTabs288").append(cat288Pan != "" ? cat288Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs289").append(cat289li);
-                        $("#TabPaneTargetTabs289").append(cat289Pan);
+                        $("#TabPaneTargetTabs289").append(cat289Pan != "" ? cat289Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs290").append(cat290li);
-                        $("#TabPaneTargetTabs290").append(cat290Pan);
+                        $("#TabPaneTargetTabs290").append(cat290Pan != "" ? cat290Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs291").append(cat291li);
-                        $("#TabPaneTargetTabs291").append(cat291Pan);
+                        $("#TabPaneTargetTabs291").append(cat291Pan != "" ? cat291Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs292").append(cat292li);
-                        $("#TabPaneTargetTabs292").append(cat292Pan);
+                        $("#TabPaneTargetTabs292").append(cat292Pan != "" ? cat292Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs293").append(cat293li);
-                        $("#TabPaneTargetTabs293").append(cat293Pan);
+                        $("#TabPaneTargetTabs293").append(cat293Pan != "" ? cat293Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
 
                         $("#TargetTabs294").append(cat294li);
-                        $("#TabPaneTargetTabs294").append(cat294Pan);
+                        $("#TabPaneTargetTabs294").append(cat294Pan != "" ? cat294Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
                     }
                 },
                 true
@@ -386,83 +287,34 @@
                 let question = "";
                 let answer = "";
                 let document = "";
-                AjaxCallAction(
-                    "GET",
-                    "/api/customer/Corporate/Get_DataFormQuestions/" +
-                    checkReport.data[i].questionId,
-                    null,
-                    false,
-                    function (form) {
-                        question = form;
-                    },
-                    false
-                );
-                AjaxCallAction(
-                    "GET",
-                    "/api/customer/Corporate/Get_DataFromAnswers/" +
-                    checkReport.data[i].answerId,
-                    null,
-                    false,
-                    function (form) {
-                        answer = form;
-                    },
-                    false
-                );
+                AjaxCallAction("GET","/api/customer/Corporate/Get_DataFormQuestions/" + checkReport.data[i].questionId,null,false,function (form) {
+                    question = form;
+                },false);
+                AjaxCallAction("GET","/api/customer/Corporate/Get_DataFromAnswers/" + checkReport.data[i].answerId,null,false,function (form) {
+                    answer = form;
+                }, false);
                 if (checkReport.data[i].documentId != null)
-                    AjaxCallAction(
-                        "GET",
-                        "/api/customer/Corporate/Get_DataFormDocument/" +
-                        checkReport.data[i].documentId,
-                        null,
-                        false,
-                        function (form) {
-                            document = form;
-                        },
-                        false
-                    );
+                    AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormDocument/" + checkReport.data[i].documentId, null, false, function (form) {
+                        document = form;
+                    }, false );
 
                 if (
                     checkReport.data[i].questionId != 0 &&
                     checkReport.data[i].formId != 0
                 ) {
-                    let strFormId = generate_strFormId(
-                        question,
-                        id,
-                        checkReport.data[i].formId,
-                        true,
-                        checkReport.data[i].superVisorDescription
-                    );
+                    let strFormId = generate_strFormId(question, id, checkReport.data[i].formId, true, checkReport.data[i].superVisorDescription);
                     $("#FormDetail" + checkReport.data[i].formId).append(strFormId);
                     if (answer.answer == "Yes") {
-                        $(
-                            "input:radio[name='Q_" +
-                            answer.dataFormQuestionId +
-                            "'][value='Yes']"
-                        ).prop("checked", true);
+                        $("input:radio[name='Q_" + answer.dataFormQuestionId + "'][value='Yes']").prop("checked", true);
                     } else if (answer.answer == "No") {
-                        $(
-                            "input:radio[name='Q_" +
-                            answer.dataFormQuestionId +
-                            "'][value='No']"
-                        ).prop("checked", true);
+                        $("input:radio[name='Q_" + answer.dataFormQuestionId + "'][value='No']").prop("checked", true);
                     } else {
-                        $(
-                            "#Q_" +
-                            answer.dataFormQuestionId +
-                            " option[value='" +
-                            answer.answer +
-                            "']"
-                        ).prop("selected", true);
+                        $("#Q_" + answer.dataFormQuestionId + " option[value='" + answer.answer + "']").prop("selected", true);
                     }
-                    $(
-                        "input[name*='Description_Q" + answer.dataFormQuestionId + "']"
-                    ).val(answer.description);
+                    $("input[name*='Description_Q" + answer.dataFormQuestionId + "']").val(answer.description);
                 } else {
                     if (document != "")
-                        makeDocumentFile(
-                            [document],
-                            checkReport.data[i].superVisorDescription
-                        );
+                        makeDocumentFile([document],checkReport.data[i].superVisorDescription);
                 }
             }
         }
@@ -472,73 +324,46 @@
         let li_option = "";
         let tabPane = "";
         if (isActive) {
-            li_option =
-                "<li class='active'><a href='#FormDetailTab" +
-                formCode +
-                "' data-toggle='tab' aria-expanded='false' >" +
-                formCode +
-                "</a></li>";
+            li_option = "<li class='active'><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
             tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive);
             isActive = false;
         } else {
             tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive);
-            li_option =
-                "<li class=''><a href='#FormDetailTab" +
-                formCode +
-                "' data-toggle='tab' aria-expanded='false' >" +
-                formCode +
-                "</a></li>";
+            li_option = "<li class=''><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
         }
         return [li_option, tabPane];
     }
 
     function initCustomer(dir = "rtl") {
         ComboBoxWithSearch(".select2", dir);
-        AjaxCallAction(
-            "GET",
-            "/api/customer/Customers/Get_Customers/",
-            null,
-            true,
-            function (res) {
-                if (res != null) {
-                    $("#CutomerName").html(
-                        "<h4> فرم پرسشنامه حاکمیت شرکتی " + res.companyName + "</h4>"
-                    );
-                }
-            },
-            true
-        );
+        AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
+            if (res != null) {
+                $("#CutomerName").html(
+                    "<h4> فرم پرسشنامه حاکمیت شرکتی " + res.companyName + "</h4>"
+                );
+            }
+        }, true);
     }
 
     function intiForm(FormID = null, RequestId = null) {
         let strFormId = "";
-        AjaxCallAction(
-            "POST",
-            "/api/customer/Corporate/Get_DataFormQuestionss",
-            JSON.stringify({
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
                 DataFormId: FormID,
                 PageIndex: 0,
                 PageSize: 0,
                 DataFormType: 2,
                 IsActive: 15,
-                Version:1, // تعیین ورژن سوالات
-            }),
-            true,
-            function (res) {
+                Version: 1, // تعیین ورژن سوالات
+            }), true, function (res) {
                 if (res.isSuccess) {
                     let strFormId = generate_strFormId(res, RequestId, FormID);
                     $("#FormDetail" + FormID).html(strFormId);
-                    AjaxCallAction(
-                        "POST",
-                        "/api/customer/Corporate/Get_DataFromAnswerss",
-                        JSON.stringify({
+                    AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
                             PageIndex: 0,
                             PageSize: 0,
                             FormID: FormID,
                             RequestId: RequestId,
-                        }),
-                        true,
-                        function (res) {
+                        }), true, function (res) {
                             if (res.isSuccess) {
                                 LoadedDataFromDb = res.data;
                                 for (let i = 0; LoadedDataFromDb.length > i; i++) {
@@ -570,99 +395,43 @@
                                     ).val(LoadedDataFromDb[i].description);
                                 }
                             }
-                        },
-                        true
-                    );
+                        }, true);
                 }
-            },
-            true
-        );
+            }, true);
     }
 
-    function generate_strFormId(
-        res,
-        RequestId,
-        FormId,
-        isSingle = false,
-        analizeDescription = ""
-    ) {
+    function generate_strFormId(res, RequestId, FormId, isSingle = false, analizeDescription = "") {
         let strFormId = "";
         if (isSingle) {
-            strFormId +=
-                "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" +
-                res.questionText;
-            strFormId +=
-                " <span title='" +
-                res.helpText +
-                "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
+            strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.questionText;
+            strFormId += " <span title='" + res.helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
             if (res.questionType == "select") {
                 var options = combo(res.dataFormQuestionId);
-                strFormId +=
-                    "<select required name='Q_" +
-                    res.dataFormQuestionId +
-                    "' id='Q_" +
-                    res.dataFormQuestionId +
-                    "' class='form-control' style='padding: 0px 15px;' >" +
-                    options +
-                    "</select>";
+                strFormId += "<select required name='Q_" + res.dataFormQuestionId + "' id='Q_" + res.dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
             } else if (res.questionType == "yesNo") {
-                strFormId +=
-                    "<label class='control-label'>بله</label><input type='radio' required name='Q_" +
-                    res.dataFormQuestionId +
-                    "' value='Yes' />";
-                strFormId +=
-                    "<label class='control-label'>خیر</label><input type='radio' required name='Q_" +
-                    res.dataFormQuestionId +
-                    "' value='No' />";
+                strFormId += "<label class='control-label'>بله</label><input type='radio' required name='Q_" + res.dataFormQuestionId + "' value='Yes' />";
+                strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.dataFormQuestionId + "' value='No' />";
             }
             strFormId += "</div><div class='col-md-8'>";
-            strFormId +=
-                "<input placeholder='توضیحات' class='form-control' name='Description_Q" +
-                res.dataFormQuestionId +
-                "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />";
+            strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />";
             strFormId += "</div><div class='col-md-8'>";
-            strFormId +=
-                "<p style='color: blue;'>توضیح کارشناس : " +
-                analizeDescription +
-                "</p>";
+            strFormId += "<p style='color: blue;'>توضیح کارشناس : " + analizeDescription + "</p>";
             strFormId += "</div ></div ></div ></div >";
-
             return strFormId;
         } else {
             strFormId = "<div class='col-md-12'>";
             for (var i = 0; i < res.data.length; i++) {
-                strFormId +=
-                    "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" +
-                    res.data[i].questionText;
-                strFormId +=
-                    " <span title='" +
-                    res.data[i].helpText +
-                    "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
+                strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText;
+                strFormId += " <span title='" + res.data[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
                 if (res.data[i].questionType == "select") {
                     var options = combo(res.data[i].dataFormQuestionId);
-                    strFormId +=
-                        "<select required name='Q_" +
-                        res.data[i].dataFormQuestionId +
-                        "' id='Q_" +
-                        res.data[i].dataFormQuestionId +
-                        "' class='form-control' style='padding: 0px 15px;' >" +
-                        options +
-                        "</select>";
+                    strFormId += "<select required name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
                 } else if (res.data[i].questionType == "yesNo") {
-                    strFormId +=
-                        "<label class='control-label'>بله</label><input type='radio' required name='Q_" +
-                        res.data[i].dataFormQuestionId +
-                        "' value='Yes' />";
-                    strFormId +=
-                        "<label class='control-label'>خیر</label><input type='radio' required name='Q_" +
-                        res.data[i].dataFormQuestionId +
-                        "' value='No' />";
+                    strFormId += "<label class='control-label'>بله</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='Yes' />";
+                    strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
                 }
                 strFormId += "</div><div class='col-md-8'>";
-                strFormId +=
-                    "<input placeholder='توضیحات' class='form-control' name='Description_Q" +
-                    res.data[i].dataFormQuestionId +
-                    "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />";
+                strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />";
                 strFormId += "</div ></div ></div ></div >";
             }
             strFormId += "</div>";
@@ -672,88 +441,47 @@
 
     function combo(QuestionID = null) {
         let strM = "";
-        AjaxCallAction(
-            "POST",
-            "/api/customer/Corporate/Get_Options",
-            JSON.stringify({
-                DataFormQuestionsId: QuestionID,
-                PageIndex: 0,
-                PageSize: 0,
-                IsActive: 15,
-            }),
-            false,
-            function (res) {
-                if (res.isSuccess) {
-                    strM = '<option value="0">انتخاب کنید</option>';
-                    for (var i = 0; i < res.data.length; i++) {
-                        strM +=
-                            "<option value='" +
-                            res.data[i].id +
-                            "_" +
-                            res.data[i].text +
-                            "'>" +
-                            res.data[i].text +
-                            "</option>";
-                    }
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_Options", JSON.stringify({
+            DataFormQuestionsId: QuestionID,
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                strM = '<option value="0">انتخاب کنید</option>';
+                for (var i = 0; i < res.data.length; i++) {
+                    strM += "<option value='" + res.data[i].id + "_" + res.data[i].text + "'>" + res.data[i].text + "</option>";
                 }
-            },
-            true
-        );
+            }
+        }, true );
         return strM;
     }
 
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
         let ID = $("#RequestIdForms").val();
         if (isEmpty(DataFormList))
-            AjaxCallAction(
-                "POST",
-                "/api/customer/Corporate/Get_DataForms",
-                JSON.stringify({
+            AjaxCallAction("POST","/api/customer/Corporate/Get_DataForms",JSON.stringify({
                     PageIndex: 0,
                     PageSize: 0,
                     DataFormType: 2,
                     SortOrder: "FormCode_A",
-                }), false, function (res) {
+                }) , false, function (res) {
                     if (res.isSuccess) {
                         DataFormList = res.data;
                     }
-                },
-                true
-            );
+            },true);
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";
         for (let i = 0; i < DataFormList.length; i++) {
             if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 if (is_first) {
-                    li_option +=
-                        "<li class='active'><a href='#FormDetailTab" +
-                        DataFormList[i].formCode +
-                        "' data-toggle='tab' aria-expanded='false' >" +
-                        DataFormList[i].formCode +
-                        "</a></li>";
-                    tabPane += makeTabPane(
-                        DataFormList[i].formCode,
-                        DataFormList[i].formTitle,
-                        DataFormList[i].formId,
-                        ID,
-                        is_first
-                    );
+                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
+                    tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first);
                     is_first = false;
                 } else {
-                    tabPane += makeTabPane(
-                        DataFormList[i].formCode,
-                        DataFormList[i].formTitle,
-                        DataFormList[i].formId,
-                        ID,
-                        is_first
-                    );
-                    li_option +=
-                        "<li class=''><a href='#FormDetailTab" +
-                        DataFormList[i].formCode +
-                        "' data-toggle='tab' aria-expanded='false' >" +
-                        DataFormList[i].formCode +
-                        "</a></li>";
+                    tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first);
+                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
                 }
             }
         }
@@ -771,22 +499,14 @@
         let ID = $("#RequestIdForms").val();
         let li_option = "";
         let tabPane = "";
-        li_option +=
-            "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >سهامداران</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument288' data-toggle='tab' aria-expanded='false' >نقش ذینفعان</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument289' data-toggle='tab' aria-expanded='false' >افشاء و شفافیت</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >هیئت مدیره</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument291' data-toggle='tab' aria-expanded='false' >اطلاعات نهایی و اشخاص وابسته</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument292' data-toggle='tab' aria-expanded='false' >صورت های مالی و حسابرسی</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument293' data-toggle='tab' aria-expanded='false' >کمیته ها</a></li>";
-        li_option +=
-            "<li class=''><a href='#FormDocumentTabDocument294' data-toggle='tab' aria-expanded='false' >سایر</a></li>";
+        li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >سهامداران</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument288' data-toggle='tab' aria-expanded='false' >نقش ذینفعان</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument289' data-toggle='tab' aria-expanded='false' >افشاء و شفافیت</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >هیئت مدیره</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument291' data-toggle='tab' aria-expanded='false' >اطلاعات نهایی و اشخاص وابسته</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument292' data-toggle='tab' aria-expanded='false' >صورت های مالی و حسابرسی</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument293' data-toggle='tab' aria-expanded='false' >کمیته ها</a></li>";
+        li_option += "<li class=''><a href='#FormDocumentTabDocument294' data-toggle='tab' aria-expanded='false' >سایر</a></li>";
 
         $("#" + putPlace).append(li_option);
 
@@ -806,22 +526,15 @@
         makeDocLiAndPan(PutPlace, PutTabPane);
 
         var DataFormDocumentList = [];
-        AjaxCallAction(
-            "POST",
-            "/api/customer/Corporate/Get_DataFormDocuments",
-            JSON.stringify({
-                PageIndex: 0,
-                PageSize: 0,
-                IsActive: 15,
-            }),
-            false,
-            function (res) {
-                if (res.isSuccess) {
-                    DataFormDocumentList = res.data;
-                }
-            },
-            true
-        );
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                DataFormDocumentList = res.data;
+            }
+        }, true );
 
         makeDocumentFile(DataFormDocumentList);
     }
@@ -879,100 +592,48 @@
         $("#FormDocumentDocument294").append(_str294);
 
         if (isEmpty(LoadedDataFromDb))
-            AjaxCallAction(
-                "POST",
-                "/api/customer/Corporate/Get_DataFromAnswersDocuments",
-                JSON.stringify({
-                    PageIndex: 0,
-                    PageSize: 0,
-                    FormID: null,
-                    RequestId: ID,
-                    DataFormQuestionId: null,
-                }),
-                false,
-                function (res) {
-                    if (res.isSuccess) {
-                        LoadedDataFromDb = res.data;
-                    }
-                },
-                true
-            );
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
+                PageIndex: 0,
+                PageSize: 0,
+                FormID: null,
+                RequestId: ID,
+                DataFormQuestionId: null,
+            }), false, function (res) {
+                if (res.isSuccess) {
+                    LoadedDataFromDb = res.data;
+                }
+            }, true );
         for (let i = 0; i < LoadedDataFromDb.length; i++) {
             try {
-                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop(
-                    "href",
-                    LoadedDataFromDb[i].fileName1Full
-                );
-                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css(
-                    "display",
-                    "inline-block"
-                );
+                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full );
+                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css("display", "inline-block");
             } catch { }
         }
     }
 
-    function makeFileInput(
-        inputTitle,
-        inputName,
-        helpText,
-        RequestId,
-        analaizeDescription = ""
-    ) {
+    function makeFileInput(inputTitle, inputName, helpText, RequestId, analaizeDescription = "") {
         let _str = "<form id='frmDoc" + inputName + "'>";
-        _str +=
-            "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" +
-            inputTitle;
-        _str +=
-            " <span title='" + helpText + "'><i class='fa'></i></span></label>";
-        _str +=
-            "<input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" +
-            inputName +
-            "'";
-        _str +=
-            "onchange=\"checkUploadWithFileSiza(this, '" + inputTitle + "' , 5);\">";
-        _str +=
-            '<input type="submit" value="ذخیره سازی ' +
-            inputTitle +
-            '" class="btn btn-success" ';
-        _str +=
-            "onclick=\"return Web.Corporate.Save_AnswersUpload(this, 'frmDoc" +
-            inputName +
-            "')\">";
-        _str +=
-            "<a class='btn btn-success' style='margin-right: 10px;display:none;' target='_blank' id='Download_" +
-            inputName.slice(3, inputName.length) +
-            "'>";
+        _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
+        _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
+        _str +=  "<input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" + inputName + "'";
+        _str += "onchange=\"checkUploadWithFileSiza(this, '" + inputTitle + "' , 5);\">";
+        _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
+        _str += "onclick=\"return Web.Corporate.Save_AnswersUpload(this, 'frmDoc" + inputName + "')\">";
+        _str += "<a class='btn btn-success' style='margin-right: 10px;display:none;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         if (analaizeDescription != "") {
-            _str +=
-                "<i class='fa fa-download'></i> &nbsp;دانلود</a><br/><p style='color:blue;'> توضیحات کارشناس : " +
-                analaizeDescription +
-                "</p></div></div>";
+            _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a><br/><p style='color:blue;'> توضیحات کارشناس : " + analaizeDescription + "</p></div></div>";
         } else {
             _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a></div></div>";
         }
         _str += "<input type='hidden' id='FormId' name='FormId' value='0' />";
-        _str +=
-            "<input type='hidden' id='RequestId' name='RequestId' value='" +
-            RequestId +
-            "' />";
-        _str +=
-            "<input type='hidden' id='DataFormQuestionId' name='DataFormQuestionId' value='0' />";
-        _str +=
-            "<input type='hidden' id='DataFormDocumentId' name='DataFormDocumentId' value='" +
-            inputName.slice(3, inputName.length) +
-            "' />";
-        _str +=
-            "<input type='hidden' id='IsActive' name='IsActive' value='15' /></form>";
+        _str += "<input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "' />";
+        _str += "<input type='hidden' id='DataFormQuestionId' name='DataFormQuestionId' value='0' />";
+        _str += "<input type='hidden' id='DataFormDocumentId' name='DataFormDocumentId' value='" + inputName.slice(3, inputName.length) + "' />";
+        _str += "<input type='hidden' id='IsActive' name='IsActive' value='15' /></form>";
         return _str;
     }
 
-    function makeTabPane(
-        FormCode,
-        FormTitle,
-        FormId,
-        RequestId,
-        FirstItemActive = true
-    ) {
+    function makeTabPane(FormCode,FormTitle,FormId,RequestId,FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
@@ -980,61 +641,31 @@
         } else {
             strM = "<div class='tab-pane' id='FormDetailTab" + FormCode + "'>";
         }
-        strM +=
-            "<div style='display:flex;justify-content: space-between;align-items: center;'>";
+        strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        strM +=
-            "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" +
-            FormId +
-            ");'>ذخیره تغییرات " +
-            FormCode +
-            "</a></div>";
-        strM +=
-            "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
+        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a></div>";
+        strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";
-        strM +=
-            "<input type='hidden' id='FormID' name='FormID' value='" +
-            FormId +
-            "' />";
-        strM +=
-            "<input type='hidden' id='RequestId' name='RequestId' value='" +
-            RequestId +
-            "' />";
-        strM +=
-            "<div class='row' id='FormDetail" +
-            FormId +
-            "'></div></form></div></div>";
+        strM += "<input type='hidden' id='FormID' name='FormID' value='" + FormId + "' />";
+        strM += "<input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "' />";
+        strM += "<div class='row' id='FormDetail" + FormId + "'></div></form></div></div>";
         return strM;
     }
 
-    function makeDocumentTabPane(
-        FormCode,
-        FormTitle,
-        RequestId,
-        FirstItemActive = true
-    ) {
+    function makeDocumentTabPane( FormCode, FormTitle, RequestId, FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
-            strM =
-                "<div class='tab-pane active' id='FormDocumentTab" + FormCode + "'>";
+            strM = "<div class='tab-pane active' id='FormDocumentTab" + FormCode + "'>";
         } else {
             strM = "<div class='tab-pane' id='FormDocumentTab" + FormCode + "'>";
         }
-        strM +=
-            "<div style='display:flex;justify-content: space-between;align-items: center;'>";
+        strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2></div>";
-        strM +=
-            "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
+        strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormCode + "' class='changeData'>";
-        strM +=
-            "<input type='hidden' id='RequestId' name='RequestId' value='" +
-            RequestId +
-            "' />";
-        strM +=
-            "<div class='row' id='FormDocument" +
-            FormCode +
-            "'></div></form></div></div>";
+        strM += "<input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "' />";
+        strM += "<div class='row' id='FormDocument" + FormCode + "'></div></form></div></div>";
         return strM;
     }
 
@@ -1045,37 +676,24 @@
             "Inp" + FormName.slice(6, FormName.length)
         );
         if (fileInp.files.length != 0) {
-            AjaxCallActionPostSaveFormWithUploadFile(
-                "/api/customer/Corporate/Save_DataFromAnswersUpload",
-                fill_AjaxCallActionPostSaveFormWithUploadFile(FormName),
-                true,
+            AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Corporate/Save_DataFromAnswersUpload", fill_AjaxCallActionPostSaveFormWithUploadFile(FormName), true,
                 function (res) {
                     $(el).removeAttr("disabled");
                     if (res.isSuccess) {
                         if (res.dataId != 0)
                             // ذخیره سوال در جدول آنالیز نمره
-                            AjaxCallAction(
-                                "POST",
-                                "/api/customer/Corporate/Save_DataFromReport",
-                                JSON.stringify({
-                                    RequestId: requestId,
-                                    DataFormAnswerId: res.dataId,
-                                    SystemScore: 0,
-                                    AnalizeScore: 0,
-                                    IsActive: 15,
-                                }),
-                                true,
-                                function (reee) { },
+                            AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromReport", JSON.stringify({
+                                RequestId: requestId,
+                                DataFormAnswerId: res.dataId,
+                                SystemScore: 0,
+                                AnalizeScore: 0,
+                                IsActive: 15,
+                            }), true,
+                            function (reee) { },
                                 true
                             );
-                        $("#Download_" + FormName.slice(9, FormName.length)).prop(
-                            "href",
-                            res.data.fileName1Full
-                        );
-                        $("#Download_" + FormName.slice(9, FormName.length)).css(
-                            "display",
-                            "inline-block"
-                        );
+                        $("#Download_" + FormName.slice(9, FormName.length)).prop("href", res.data.fileName1Full);
+                        $("#Download_" + FormName.slice(9, FormName.length)).css("display", "inline-block");
                         alertB("ثبت", "اطلاعات ثبت شد", "success");
                     } else {
                         alertB("خطا", "ذخیره موفقیت آمیز نبود مجددا تلاش فرماید", "error");
@@ -1091,9 +709,7 @@
     }
 
     function saveSerializedForm(FormId) {
-        let SerializerForm = $("#frmFrom" + FormId)
-            .serialize()
-            .split("&");
+        let SerializerForm = $("#frmFrom" + FormId).serialize().split("&");
         let formId = SerializerForm[0].split("=")[1];
         let ListOfAnswers = SerializerForm.slice(2, SerializerForm.length);
         let counter = ListOfAnswers.length;
@@ -1111,10 +727,10 @@
         } catch (e) { }
     }
 
-    function saveSingelAnswerForm(formId = "0",answer = "0",description = "",dataFormQuestionId = "0",fileName = "") {
+    function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
         var requestId = $("#RequestId").val();
         var dataFormQuestionScore = 0;
-        AjaxCallAction("POST","/api/customer/Corporate/Save_DataFromAnswers",
+        AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers",
             JSON.stringify({
                 Answer: answer,
                 Description: description,
@@ -1123,22 +739,22 @@
                 DataFormQuestionId: parseInt(dataFormQuestionId),
                 FileName1: fileName,
                 IsActive: 15,
-            }),false,function (res) {
+            }), false, function (res) {
                 if (res.isSuccess) {
                     if (dataFormQuestionId != 0 || dataFormQuestionId != "0") {
                         // سوال رو دریافت کردم تا نمره مربوط به اون رو داشته باشم
-                        AjaxCallAction("GET","/api/customer/Corporate/Get_DataFormQuestions/" +dataFormQuestionId,null,false,
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + dataFormQuestionId, null, false,
                             function (res1) {
                                 if (!isEmpty(res1)) {
                                     dataFormQuestionScore = res1.score;
                                     if (res1.questionType == "select") {
-                                        AjaxCallAction("GET","/api/customer/Corporate/Get_Option/" +answer.split("_")[0],null,false,
+                                        AjaxCallAction("GET", "/api/customer/Corporate/Get_Option/" + answer.split("_")[0], null, false,
                                             function (datares) {
                                                 if (!isEmpty(datares)) {
                                                     dataFormQuestionScore =
                                                         dataFormQuestionScore * datares.ratio;
                                                 }
-                                            },false);
+                                            }, false);
                                     } else if (res1.questionType == "yesNo") {
                                         if (answer == "No") {
                                             dataFormQuestionScore = 0;
@@ -1147,24 +763,22 @@
                                     // اگر با موفقیت پاسخ ذخیره شد
                                     if (res.dataId != 0)
                                         // ذخیره سوال در جدول آنالیز نمره
-                                        AjaxCallAction("POST","/api/customer/Corporate/Save_DataFromReport",
+                                        AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromReport",
                                             JSON.stringify({
                                                 RequestId: requestId,
                                                 DataFormAnswerId: res.dataId,
                                                 SystemScore: dataFormQuestionScore,
                                                 AnalizeScore: 0,
                                                 IsActive: 15,
-                                            }),false,function (reee) { },false);
+                                            }), false, function (reee) { }, false);
                                 }
-                            },false);
+                            }, false);
                     }
                     alertB("ثبت", res.message, "success");
                 } else {
                     alertB("خطا", res.message, "error");
                 }
-            },
-            true
-        );
+            }, true);
     }
 
     function initReferral(id = null) {
@@ -1177,7 +791,7 @@
                 $("#sdklsslks3498sjdkxhjsd_823sdel").val(res.data[0].sendUser);
                 var htmlB = "";
                 for (var i = 0; i < res.data.length; i++) {
-                    if ((res.data[0].levelStepIndex == 105 || res.data[0].levelStepIndex == 106)&& res.data[0].levelStepAccessRole == 12) {
+                    if ((res.data[0].levelStepIndex == 105 || res.data[0].levelStepIndex == 106) && res.data[0].levelStepAccessRole == 12) {
                         htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);'" + "data-SIndex='" + res.data[i].levelStepSettingIndexId + "' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
@@ -1188,12 +802,33 @@
             } else {
                 $(".changeData").remove();
                 $("#EndCorporateInfo").html("اطلاعات شما برای پارس کیان جهت بررسی و ارزیابی ارسال شده است و قابل ویرایش نمی باشد.");
-              
             }
 
 
         }, true);
 
+    }
+
+    function initCorporateScore(id) {
+        let sum_score = 0;
+        let all_score = 0;
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReports", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            RequestId: id
+        }), false, function (res) {
+            if (res.isSuccess) {
+                console.log(res)
+                for (let i = 0; i < res.data.length; i++) {
+                    sum_score += res.data[i].analizeScore;
+                    all_score += res.data[i].systemScore;
+                }
+                    
+            }
+        }, true);
+        $("#msform").html('<p>نمره نهایی شما برابر است با ' + sum_score + ' از ' + all_score + ' نمره</p>')
+        
     }
 
 
@@ -1206,6 +841,7 @@
         MakeDynamicDocumentForm: makeDynamicDocumentForm,
         SaveSerializedForm: saveSerializedForm,
         Save_AnswersUpload: save_AnswersUpload,
-        InitReferral: initReferral
+        InitReferral: initReferral,
+        InitCorporateScore: initCorporateScore,
     };
 })(Web, jQuery);

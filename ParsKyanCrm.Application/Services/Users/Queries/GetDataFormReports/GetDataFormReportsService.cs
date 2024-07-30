@@ -29,9 +29,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReports
         {
             try
             {
+
                 var lists = (from s in _context.DataFormReport
-                    where (s.DataReportId == request.DataReportId || s.RequestId == request.RequestId && s.DataFormAnswerId == request.DataFormAnswerId)
+                    where (s.IsActive == 15 && (s.DataReportId == request.DataReportId || s.RequestId == request.RequestId && s.DataFormAnswerId == request.DataFormAnswerId))
                     select s);
+
+                if(request.PageIndex == 0 && request.PageSize == 0 && (request.RequestId != 0 || request.RequestId != null))
+                    lists = (from s in _context.DataFormReport
+                        where (s.RequestId == request.RequestId && s.IsActive == 15)
+                        select s);
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Description.Contains(request.Search));
 

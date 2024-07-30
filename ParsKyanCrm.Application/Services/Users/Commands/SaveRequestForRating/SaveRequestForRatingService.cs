@@ -217,6 +217,19 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
 
                     }
+                    if (request.DestLevelStepIndex == "110")
+                    {
+
+                        Ado_NetOperation.SqlUpdate(typeof(RequestForRating).Name, new Dictionary<string, object>()
+                        {
+                            {
+                                "IsFinished",true
+                            }
+                        }, " RequestID = " + request.Request.RequestId);
+
+
+
+                    }
 
                     switch (request.SmsType) // تمومه
                     {

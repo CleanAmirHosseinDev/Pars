@@ -70,13 +70,17 @@
                             //   strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
                             strM += "<a style='margin-right:5px;color:black' title='پرسشنامه' class='btn btn-success fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i>پرسشنامه</a>";
 
-                        } else if (res.data[i].destLevelStepIndex >= 105 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده پرسشنامه") {
-                            strM += "<a style='margin-right:5px;color:black' title='اپرسشنامه' class='btn btn-default fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
+                        } else if (res.data[i].destLevelStepIndex == 106 ) {
+                            strM += "<a style='margin-right:5px;color:black' title='بررسی پرسشنامه' class='btn btn-default fontForAllPage' href='/Customer/Corporate/ReturnBackQuestion/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
 
+                        }
+                        else if (res.data[i].destLevelStepIndex == 110) {
+                            strM += "<a style='margin-right:5px;color:black' title='نمایج امتیازها' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
                         if (res.data[i].contractDocument != null && res.data[i].contractDocument != "") {
                             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
+                       
 
                         strM += "</td></tr>";
                     }

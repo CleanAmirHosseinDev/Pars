@@ -127,6 +127,14 @@
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
         }
+        $(".confrimForm").on("click", function () {
+            alertB("موفقیت", "فرم با موفقیت ثبت شد جهت ادامه فرایند به مشاهده و اقدام مراجعه فرمایید", "success", "بله متوجه شدم", function () {
+
+                goToUrl("/SuperVisor/RequestForRating/Referral/" + id);
+
+            });
+            
+        });
     }
 
     function getCustomerInfo(id = null) {

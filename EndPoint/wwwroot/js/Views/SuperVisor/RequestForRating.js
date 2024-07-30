@@ -54,6 +54,12 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             if ((n == 8 || n == 1 || n == 5 || n == 4 || n == 9) && Number(res.data[i].levelStepSettingIndexID) >= 12 && res.data[i].kindOfRequest=="66") {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
+            if ((n == 12 || n == 11) && Number(res.data[i].levelStepSettingIndexID) >= 45 && res.data[i].kindOfRequest == "254") {
+                strM += "<a style='margin-right:5px;color:black' title='مشاهده پرسشنامه' class='btn btn-default fontForAllPage' href='/SuperVisor/corporate/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
+            }
+            else if (res.data[i].destLevelStepIndex == 110) {
+                strM += "<a style='margin-right:5px;color:black' title='نمایج امتیازها' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+            }
             //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
             //  }

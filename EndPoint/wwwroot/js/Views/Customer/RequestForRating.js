@@ -122,7 +122,7 @@
                         }
                         if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
                             strM += "<a style='margin-right:5px;color:black' title='اصلاح/ تکمیل اطلاعات'  class='btn btn-edit fontForAllPage' href='/Customer/Customer/EditCustomer/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اصلاح/ تکمیل اطلاعات اولیه</a>";
-                            strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + ");'>ارسال مجدد </button >";
+                            strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + "," + res.data[i].kindOfRequest + ");'>ارسال مجدد </button >";
 
                         }
                         if (res.data[i].destLevelStepIndex == 7) {

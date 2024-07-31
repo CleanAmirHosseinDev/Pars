@@ -60,6 +60,24 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
 
                 if (request.Version != null) lists = lists.Where(p => p.Version == request.Version);
 
+                if (request.PageIndex == 0 && request.PageSize == 0 && request.IsActive == 15 && request.DataFormType == 2)
+                {
+                    if (request.Version != null)
+                    {
+                        lists = (
+                            from s in _context.DataFormQuestions
+                            where ((s.DataFormType == 2 && s.IsActive == 15 && s.Version == request.Version))
+                            select s
+                        );
+                    }
+                    else
+                    {
+                        lists = from s in _context.DataFormQuestions
+                            where (s.DataFormType == 2 && s.IsActive == 15)
+                            select s;
+                    }
+                }
+
                 switch (request.SortOrder)
                 {
                     case "DataFormQuestionId_D":
@@ -69,7 +87,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                         lists = lists.OrderBy(s => s.DataFormQuestionId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.DataFormId).ThenByDescending(s=>s.DataFormQuestionId);
+                        lists = lists.OrderByDescending(s => s.DataFormId).ThenByDescending(s => s.DataFormQuestionId);
                         break;
                 }
 

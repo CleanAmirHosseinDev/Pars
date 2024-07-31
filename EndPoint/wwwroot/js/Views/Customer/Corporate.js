@@ -2,6 +2,7 @@
     var DataFormList = "";
     var LoadedDataFromDb = "";
     var progresDynamicBar = [];
+    var VersionQuestion = null; // تعیین ورژن سوالات
     //Document Ready
 
     function makeLiProgresBar(progresDynamicBar) {
@@ -38,13 +39,13 @@
     function makeTabProgresDynamic() {
         if (progresDynamicBar.length == 0)
             AjaxCallAction("POST", "/api/customer/SystemSeting/Get_SystemSetings/", JSON.stringify({
-                    PageIndex: 0,
-                    PageSize: 0,
-                    ParentCode: 286,
-                    SortOrder: "SystemSetingId_A",
-                }), false, function (result) {
-                    progresDynamicBar = result.data;
-                }, false );
+                PageIndex: 0,
+                PageSize: 0,
+                ParentCode: 286,
+                SortOrder: "SystemSetingId_A",
+            }), false, function (result) {
+                progresDynamicBar = result.data;
+            }, false);
         let _strM = "";
         if (progresDynamicBar.length > 1)
             for (let i = 0; i < progresDynamicBar.length; i++) {
@@ -123,7 +124,7 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initCustomer();
-        initReferral(id);
+
         makeTabProgresDynamic();
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
@@ -143,7 +144,8 @@
             makeDynamicForm("H", "TargetTabs294", true, "TabPaneTargetTabs294");
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
-        } else {
+        }
+        else {
             var checkReport = "";
 
             var cat287li = "";
@@ -176,110 +178,110 @@
             makeDocLiAndPan("ducument_save", "document_save_pane");
 
             AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReportChecks/", JSON.stringify({
-                    PageIndex: 0,
-                    PageSize: 0,
-                    IsActive: 15,
-                }), false, function (res) {
-                    if (res != null) {
-                        checkReport = res;
-                        for (let i = 0; i < res.data.length; i++) {
-                            let dataForm = "";
-                            let question = "";
-                            AjaxCallAction("GET", "/api/customer/Corporate/Get_DataForm/" + res.data[i].formId, null, false, function (form) {
-                                dataForm = form;
-                            }, false);
-                            AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + res.data[i].questionId, null, false, function (form) {
-                                question = form;
-                            }, false);
+                PageIndex: 0,
+                PageSize: 0,
+                IsActive: 15,
+            }), false, function (res) {
+                if (res != null) {
+                    checkReport = res;
+                    for (let i = 0; i < res.data.length; i++) {
+                        let dataForm = "";
+                        let question = "";
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataForm/" + res.data[i].formId, null, false, function (form) {
+                            dataForm = form;
+                        }, false);
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + res.data[i].questionId, null, false, function (form) {
+                            question = form;
+                        }, false);
 
-                            switch (res.data[i].categoryId) {
-                                case 287:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
-                                        cat287li += tempresult[0];
-                                        cat287Pan += tempresult[1];
-                                    }
-                                    break;
-                                case 288:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
-                                        cat288li += tempresult[0];
-                                        cat288Pan += tempresult[1];
-                                    }
-                                    break;
-                                case 289:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup289);
-                                        cat289li += tempresult[0];
-                                        cat289Pan += tempresult[1];
-                                    }
-                                    break;
-                                case 290:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
-                                        cat290li += tempresult[0];
-                                        cat290Pan += tempresult[1];
-                                    }
-                                    break;
+                        switch (res.data[i].categoryId) {
+                            case 287:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
+                                    cat287li += tempresult[0];
+                                    cat287Pan += tempresult[1];
+                                }
+                                break;
+                            case 288:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
+                                    cat288li += tempresult[0];
+                                    cat288Pan += tempresult[1];
+                                }
+                                break;
+                            case 289:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup289);
+                                    cat289li += tempresult[0];
+                                    cat289Pan += tempresult[1];
+                                }
+                                break;
+                            case 290:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
+                                    cat290li += tempresult[0];
+                                    cat290Pan += tempresult[1];
+                                }
+                                break;
 
-                                case 291:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle,res.data[i].formId,id,fisrtInGroup291);
-                                        cat291li += tempresult[0];
-                                        cat291Pan += tempresult[1];
-                                    }
-                                    break;
+                            case 291:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup291);
+                                    cat291li += tempresult[0];
+                                    cat291Pan += tempresult[1];
+                                }
+                                break;
 
-                                case 292:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup292);
-                                        cat292li += tempresult[0];
-                                        cat292Pan += tempresult[1];
-                                    }
-                                    break;
+                            case 292:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup292);
+                                    cat292li += tempresult[0];
+                                    cat292Pan += tempresult[1];
+                                }
+                                break;
 
-                                case 293:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup293);
-                                        cat293li += tempresult[0];
-                                        cat293Pan += tempresult[1];
-                                    }
-                                    break;
+                            case 293:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup293);
+                                    cat293li += tempresult[0];
+                                    cat293Pan += tempresult[1];
+                                }
+                                break;
 
-                                case 294:
-                                    if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                        let tempresult = makeLiAndPan(res.data[i].formCode,dataForm.formTitle,res.data[i].formId,id,fisrtInGroup294);
-                                        cat294li += tempresult[0];
-                                        cat294Pan += tempresult[1];
-                                    }
-                                    break;
-                            }
+                            case 294:
+                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup294);
+                                    cat294li += tempresult[0];
+                                    cat294Pan += tempresult[1];
+                                }
+                                break;
                         }
-                        $("#TargetTabs287").append(cat287li);
-                        $("#TabPaneTargetTabs287").append(cat287Pan != "" ? cat287Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs288").append(cat288li);
-                        $("#TabPaneTargetTabs288").append(cat288Pan != "" ? cat288Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs289").append(cat289li);
-                        $("#TabPaneTargetTabs289").append(cat289Pan != "" ? cat289Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs290").append(cat290li);
-                        $("#TabPaneTargetTabs290").append(cat290Pan != "" ? cat290Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs291").append(cat291li);
-                        $("#TabPaneTargetTabs291").append(cat291Pan != "" ? cat291Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs292").append(cat292li);
-                        $("#TabPaneTargetTabs292").append(cat292Pan != "" ? cat292Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs293").append(cat293li);
-                        $("#TabPaneTargetTabs293").append(cat293Pan != "" ? cat293Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-
-                        $("#TargetTabs294").append(cat294li);
-                        $("#TabPaneTargetTabs294").append(cat294Pan != "" ? cat294Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
                     }
-                },
+                    $("#TargetTabs287").append(cat287li);
+                    $("#TabPaneTargetTabs287").append(cat287Pan != "" ? cat287Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs288").append(cat288li);
+                    $("#TabPaneTargetTabs288").append(cat288Pan != "" ? cat288Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs289").append(cat289li);
+                    $("#TabPaneTargetTabs289").append(cat289Pan != "" ? cat289Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs290").append(cat290li);
+                    $("#TabPaneTargetTabs290").append(cat290Pan != "" ? cat290Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs291").append(cat291li);
+                    $("#TabPaneTargetTabs291").append(cat291Pan != "" ? cat291Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs292").append(cat292li);
+                    $("#TabPaneTargetTabs292").append(cat292Pan != "" ? cat292Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs293").append(cat293li);
+                    $("#TabPaneTargetTabs293").append(cat293Pan != "" ? cat293Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+
+                    $("#TargetTabs294").append(cat294li);
+                    $("#TabPaneTargetTabs294").append(cat294Pan != "" ? cat294Pan : '<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+                }
+            },
                 true
             );
 
@@ -287,16 +289,16 @@
                 let question = "";
                 let answer = "";
                 let document = "";
-                AjaxCallAction("GET","/api/customer/Corporate/Get_DataFormQuestions/" + checkReport.data[i].questionId,null,false,function (form) {
+                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + checkReport.data[i].questionId, null, false, function (form) {
                     question = form;
-                },false);
-                AjaxCallAction("GET","/api/customer/Corporate/Get_DataFromAnswers/" + checkReport.data[i].answerId,null,false,function (form) {
+                }, false);
+                AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFromAnswers/" + checkReport.data[i].answerId, null, false, function (form) {
                     answer = form;
                 }, false);
                 if (checkReport.data[i].documentId != null)
                     AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormDocument/" + checkReport.data[i].documentId, null, false, function (form) {
                         document = form;
-                    }, false );
+                    }, false);
 
                 if (
                     checkReport.data[i].questionId != 0 &&
@@ -314,10 +316,12 @@
                     $("input[name*='Description_Q" + answer.dataFormQuestionId + "']").val(answer.description);
                 } else {
                     if (document != "")
-                        makeDocumentFile([document],checkReport.data[i].superVisorDescription);
+                        makeDocumentFile([document], checkReport.data[i].superVisorDescription);
                 }
             }
         }
+
+        initReferral(id);
     }
 
     function makeLiAndPan(formCode, formTitle, formId, reqid, isActive) {
@@ -348,56 +352,56 @@
     function intiForm(FormID = null, RequestId = null) {
         let strFormId = "";
         AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
-                DataFormId: FormID,
-                PageIndex: 0,
-                PageSize: 0,
-                DataFormType: 2,
-                IsActive: 15,
-                Version: null, // تعیین ورژن سوالات
-            }), true, function (res) {
-                if (res.isSuccess) {
-                    let strFormId = generate_strFormId(res, RequestId, FormID);
-                    $("#FormDetail" + FormID).html(strFormId);
-                    AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
-                            PageIndex: 0,
-                            PageSize: 0,
-                            FormID: FormID,
-                            RequestId: RequestId,
-                        }), true, function (res) {
-                            if (res.isSuccess) {
-                                LoadedDataFromDb = res.data;
-                                for (let i = 0; LoadedDataFromDb.length > i; i++) {
-                                    if (LoadedDataFromDb[i].answer == "Yes") {
-                                        $(
-                                            "input:radio[name='Q_" +
-                                            LoadedDataFromDb[i].dataFormQuestionId +
-                                            "'][value='Yes']"
-                                        ).prop("checked", true);
-                                    } else if (LoadedDataFromDb[i].answer == "No") {
-                                        $(
-                                            "input:radio[name='Q_" +
-                                            LoadedDataFromDb[i].dataFormQuestionId +
-                                            "'][value='No']"
-                                        ).prop("checked", true);
-                                    } else {
-                                        $(
-                                            "#Q_" +
-                                            LoadedDataFromDb[i].dataFormQuestionId +
-                                            " option[value='" +
-                                            LoadedDataFromDb[i].answer +
-                                            "']"
-                                        ).prop("selected", true);
-                                    }
-                                    $(
-                                        "input[name*='Description_Q" +
-                                        LoadedDataFromDb[i].dataFormQuestionId +
-                                        "']"
-                                    ).val(LoadedDataFromDb[i].description);
-                                }
+            DataFormId: FormID,
+            PageIndex: 0,
+            PageSize: 0,
+            DataFormType: 2,
+            IsActive: 15,
+            Version: VersionQuestion,
+        }), true, function (res) {
+            if (res.isSuccess) {
+                let strFormId = generate_strFormId(res, RequestId, FormID);
+                $("#FormDetail" + FormID).html(strFormId);
+                AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
+                    PageIndex: 0,
+                    PageSize: 0,
+                    FormID: FormID,
+                    RequestId: RequestId,
+                }), true, function (res) {
+                    if (res.isSuccess) {
+                        LoadedDataFromDb = res.data;
+                        for (let i = 0; LoadedDataFromDb.length > i; i++) {
+                            if (LoadedDataFromDb[i].answer == "Yes") {
+                                $(
+                                    "input:radio[name='Q_" +
+                                    LoadedDataFromDb[i].dataFormQuestionId +
+                                    "'][value='Yes']"
+                                ).prop("checked", true);
+                            } else if (LoadedDataFromDb[i].answer == "No") {
+                                $(
+                                    "input:radio[name='Q_" +
+                                    LoadedDataFromDb[i].dataFormQuestionId +
+                                    "'][value='No']"
+                                ).prop("checked", true);
+                            } else {
+                                $(
+                                    "#Q_" +
+                                    LoadedDataFromDb[i].dataFormQuestionId +
+                                    " option[value='" +
+                                    LoadedDataFromDb[i].answer +
+                                    "']"
+                                ).prop("selected", true);
                             }
-                        }, true);
-                }
-            }, true);
+                            $(
+                                "input[name*='Description_Q" +
+                                LoadedDataFromDb[i].dataFormQuestionId +
+                                "']"
+                            ).val(LoadedDataFromDb[i].description);
+                        }
+                    }
+                }, true);
+            }
+        }, true);
     }
 
     function generate_strFormId(res, RequestId, FormId, isSingle = false, analizeDescription = "") {
@@ -453,23 +457,23 @@
                     strM += "<option value='" + res.data[i].id + "_" + res.data[i].text + "'>" + res.data[i].text + "</option>";
                 }
             }
-        }, true );
+        }, true);
         return strM;
     }
 
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
         let ID = $("#RequestIdForms").val();
         if (isEmpty(DataFormList))
-            AjaxCallAction("POST","/api/customer/Corporate/Get_DataForms",JSON.stringify({
-                    PageIndex: 0,
-                    PageSize: 0,
-                    DataFormType: 2,
-                    SortOrder: "FormCode_A",
-                }) , false, function (res) {
-                    if (res.isSuccess) {
-                        DataFormList = res.data;
-                    }
-            },true);
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataForms", JSON.stringify({
+                PageIndex: 0,
+                PageSize: 0,
+                DataFormType: 2,
+                SortOrder: "FormCode_A",
+            }), false, function (res) {
+                if (res.isSuccess) {
+                    DataFormList = res.data;
+                }
+            }, true);
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";
@@ -534,7 +538,7 @@
             if (res.isSuccess) {
                 DataFormDocumentList = res.data;
             }
-        }, true );
+        }, true);
 
         makeDocumentFile(DataFormDocumentList);
     }
@@ -602,10 +606,10 @@
                 if (res.isSuccess) {
                     LoadedDataFromDb = res.data;
                 }
-            }, true );
+            }, true);
         for (let i = 0; i < LoadedDataFromDb.length; i++) {
             try {
-                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full );
+                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
                 $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css("display", "inline-block");
             } catch { }
         }
@@ -615,7 +619,7 @@
         let _str = "<form id='frmDoc" + inputName + "'>";
         _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
         _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
-        _str +=  "<input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" + inputName + "'";
+        _str += "<input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" + inputName + "'";
         _str += "onchange=\"checkUploadWithFileSiza(this, '" + inputTitle + "' , 5);\">";
         _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
         _str += "onclick=\"return Web.Corporate.Save_AnswersUpload(this, 'frmDoc" + inputName + "')\">";
@@ -633,7 +637,7 @@
         return _str;
     }
 
-    function makeTabPane(FormCode,FormTitle,FormId,RequestId,FirstItemActive = true) {
+    function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
@@ -652,7 +656,7 @@
         return strM;
     }
 
-    function makeDocumentTabPane( FormCode, FormTitle, RequestId, FirstItemActive = true) {
+    function makeDocumentTabPane(FormCode, FormTitle, RequestId, FirstItemActive = true) {
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
@@ -689,7 +693,7 @@
                                 AnalizeScore: 0,
                                 IsActive: 15,
                             }), true,
-                            function (reee) { },
+                                function (reee) { },
                                 true
                             );
                         $("#Download_" + FormName.slice(9, FormName.length)).prop("href", res.data.fileName1Full);
@@ -782,32 +786,7 @@
     }
 
     function initReferral(id = null) {
-
-        let is_success = false;
-        let countOfQuestion = 0;
-        let countOfReport = 0;
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReports", JSON.stringify({
-            PageIndex: 0,
-            PageSize: 0,
-            IsActive: 15,
-            RequestId: id
-        }), false, function (res) {
-            if (res.isSuccess) {
-                countOfReport = res.data.length;
-            }
-        }, false);
-
-        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
-            PageIndex: 0,
-            PageSize: 0,
-            IsActive: 15,
-            Version: null, // تعیین ورژن سوالات
-        }), false, function (res) {
-            countOfQuestion = res.data.length;
-        }, false);
-
         AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
-            // این قسمت رو قرار شد آقای رضایی بررسی کند. 
             if (res.isSuccess) {
 
                 $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));
@@ -815,7 +794,7 @@
                 var htmlB = "";
                 for (var i = 0; i < res.data.length; i++) {
                     if ((res.data[0].levelStepIndex == 105 || res.data[0].levelStepIndex == 106) && res.data[0].levelStepAccessRole == 12) {
-                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.RequestForRating.SaveReferralRequestForRating(this);'" + "data-SIndex='" + res.data[i].levelStepSettingIndexId + "' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.Corporate.CheckAnswerToAllQuestion(this, true);'" + "data-SIndex='" + res.data[i].levelStepSettingIndexId + "' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
                 }
@@ -829,6 +808,44 @@
 
 
         }, true);
+    }
+
+    function checkAnswerToAllQuestion(el, is_check = true) {
+        if (is_check == true) {
+            let countOfQuestion = 0;
+            let countOfReport = 0;
+            let ID = $("#RequestIdForms").val();
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReports", JSON.stringify({
+                PageIndex: 0,
+                PageSize: 0,
+                IsActive: 15,
+                RequestId: ID
+            }), false, function (res) {
+                if (res.isSuccess) {
+                    countOfReport = res.data.length;
+                }
+            }, false);
+
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
+                PageIndex: 0,
+                PageSize: 0,
+                IsActive: 15,
+                DataFormType: 2,
+                Version: VersionQuestion,
+            }), false, function (res) {
+                countOfQuestion = res.data.length;
+            }, false);
+
+            if (countOfReport == countOfQuestion) {
+                Web.RequestForRating.SaveReferralRequestForRating(el)
+            }
+            else {
+                alertB("خطا", "ابتدا باید به همه سوالات پاسخ بدهید سپس اقدام به ذخیره سازی نمایید", "error", "بله متوجه شدم", function () { });
+            }
+        }
+        else {
+            Web.RequestForRating.SaveReferralRequestForRating(el)
+        }
 
     }
 
@@ -847,11 +864,11 @@
                     sum_score += res.data[i].analizeScore;
                     all_score += res.data[i].systemScore;
                 }
-                    
+
             }
         }, true);
         $("#msform").html('<p>نمره نهایی شما برابر است با ' + sum_score + ' از ' + all_score + ' نمره</p>')
-        
+
     }
 
 
@@ -866,5 +883,6 @@
         Save_AnswersUpload: save_AnswersUpload,
         InitReferral: initReferral,
         InitCorporateScore: initCorporateScore,
+        CheckAnswerToAllQuestion: checkAnswerToAllQuestion,
     };
 })(Web, jQuery);

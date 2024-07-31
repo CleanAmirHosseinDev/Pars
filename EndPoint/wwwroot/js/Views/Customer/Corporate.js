@@ -783,8 +783,31 @@
 
     function initReferral(id = null) {
 
-        AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
+        let is_success = false;
+        let countOfQuestion = 0;
+        let countOfReport = 0;
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReports", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            RequestId: id
+        }), false, function (res) {
+            if (res.isSuccess) {
+                countOfReport = res.data.length;
+            }
+        }, false);
 
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            Version: null, // تعیین ورژن سوالات
+        }), false, function (res) {
+            countOfQuestion = res.data.length;
+        }, false);
+
+        AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
+            // این قسمت رو قرار شد آقای رضایی بررسی کند. 
             if (res.isSuccess) {
 
                 $("#sdklsslks3498sjdkxhjsd_823sa").val(encrypt(id.toString(), keyMaker()));

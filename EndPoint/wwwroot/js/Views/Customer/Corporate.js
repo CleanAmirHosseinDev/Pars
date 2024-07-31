@@ -353,7 +353,7 @@
                 PageSize: 0,
                 DataFormType: 2,
                 IsActive: 15,
-                Version: 1, // تعیین ورژن سوالات
+                Version: null, // تعیین ورژن سوالات
             }), true, function (res) {
                 if (res.isSuccess) {
                     let strFormId = generate_strFormId(res, RequestId, FormID);

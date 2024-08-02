@@ -200,6 +200,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
                                     cat287li += tempresult[0];
                                     cat287Pan += tempresult[1];
+                                    fisrtInGroup287 = false;
                                 }
                                 break;
                             case 288:
@@ -207,6 +208,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
                                     cat288li += tempresult[0];
                                     cat288Pan += tempresult[1];
+                                    fisrtInGroup288 = false;
                                 }
                                 break;
                             case 289:
@@ -214,6 +216,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup289);
                                     cat289li += tempresult[0];
                                     cat289Pan += tempresult[1];
+                                    fisrtInGroup289 = false;
                                 }
                                 break;
                             case 290:
@@ -221,6 +224,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
                                     cat290li += tempresult[0];
                                     cat290Pan += tempresult[1];
+                                    fisrtInGroup290 = false;
                                 }
                                 break;
 
@@ -229,6 +233,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup291);
                                     cat291li += tempresult[0];
                                     cat291Pan += tempresult[1];
+                                    fisrtInGroup291 = false;
                                 }
                                 break;
 
@@ -237,6 +242,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup292);
                                     cat292li += tempresult[0];
                                     cat292Pan += tempresult[1];
+                                    fisrtInGroup292 = false;
                                 }
                                 break;
 
@@ -245,6 +251,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup293);
                                     cat293li += tempresult[0];
                                     cat293Pan += tempresult[1];
+                                    fisrtInGroup293 = false;
                                 }
                                 break;
 
@@ -253,6 +260,7 @@
                                     let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup294);
                                     cat294li += tempresult[0];
                                     cat294Pan += tempresult[1];
+                                    fisrtInGroup294 = false;
                                 }
                                 break;
                         }

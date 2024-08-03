@@ -366,7 +366,7 @@
             DataFormType: 2,
             IsActive: 15,
             Version: VersionQuestion,
-        }), true, function (res) {
+        }), false, function (res) {
             if (res.isSuccess) {
                 let strFormId = generate_strFormId(res, RequestId, FormID);
                 $("#FormDetail" + FormID).html(strFormId);
@@ -380,31 +380,13 @@
                         LoadedDataFromDb = res.data;
                         for (let i = 0; LoadedDataFromDb.length > i; i++) {
                             if (LoadedDataFromDb[i].answer == "Yes") {
-                                $(
-                                    "input:radio[name='Q_" +
-                                    LoadedDataFromDb[i].dataFormQuestionId +
-                                    "'][value='Yes']"
-                                ).prop("checked", true);
+                                $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='Yes']").prop("checked", true);
                             } else if (LoadedDataFromDb[i].answer == "No") {
-                                $(
-                                    "input:radio[name='Q_" +
-                                    LoadedDataFromDb[i].dataFormQuestionId +
-                                    "'][value='No']"
-                                ).prop("checked", true);
+                                $("input:radio[name='Q_" + LoadedDataFromDb[i].dataFormQuestionId + "'][value='No']").prop("checked", true);
                             } else {
-                                $(
-                                    "#Q_" +
-                                    LoadedDataFromDb[i].dataFormQuestionId +
-                                    " option[value='" +
-                                    LoadedDataFromDb[i].answer +
-                                    "']"
-                                ).prop("selected", true);
+                                $("#Q_" + LoadedDataFromDb[i].dataFormQuestionId + " option[value='" + LoadedDataFromDb[i].answer + "']").prop("selected", true);
                             }
-                            $(
-                                "input[name*='Description_Q" +
-                                LoadedDataFromDb[i].dataFormQuestionId +
-                                "']"
-                            ).val(LoadedDataFromDb[i].description);
+                            $("input[name*='Description_Q" + LoadedDataFromDb[i].dataFormQuestionId + "']").val(LoadedDataFromDb[i].description);
                         }
                     }
                 }, true);

@@ -144,6 +144,8 @@
             makeDynamicForm("H", "TargetTabs294", true, "TabPaneTargetTabs294");
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
+
+            initReferral(id, true);
         }
         else {
             var checkReport = "";
@@ -181,6 +183,7 @@
                 PageIndex: 0,
                 PageSize: 0,
                 IsActive: 15,
+                RequestId: id,
             }), false, function (res) {
                 if (res != null) {
                     checkReport = res;
@@ -296,7 +299,7 @@
             for (let i = 0; i < checkReport.data.length; i++) {
                 let question = "";
                 let answer = "";
-                let document = "";
+                let _document = "";
                 AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + checkReport.data[i].questionId, null, false, function (form) {
                     question = form;
                 }, false);
@@ -305,13 +308,10 @@
                 }, false);
                 if (checkReport.data[i].documentId != null)
                     AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormDocument/" + checkReport.data[i].documentId, null, false, function (form) {
-                        document = form;
+                        _document = form;
                     }, false);
 
-                if (
-                    checkReport.data[i].questionId != 0 &&
-                    checkReport.data[i].formId != 0
-                ) {
+                if (checkReport.data[i].questionId != 0 && checkReport.data[i].formId != 0) {
                     let strFormId = generate_strFormId(question, id, checkReport.data[i].formId, true, checkReport.data[i].superVisorDescription);
                     $("#FormDetail" + checkReport.data[i].formId).append(strFormId);
                     if (answer.answer == "Yes") {
@@ -322,14 +322,14 @@
                         $("#Q_" + answer.dataFormQuestionId + " option[value='" + answer.answer + "']").prop("selected", true);
                     }
                     $("input[name*='Description_Q" + answer.dataFormQuestionId + "']").val(answer.description);
+                    makeDocumentFile([_document], checkReport.data[i].superVisorDescription);
                 } else {
-                    if (document != "")
-                        makeDocumentFile([document], checkReport.data[i].superVisorDescription);
+                    if (_document != "")
+                        makeDocumentFile([_document], checkReport.data[i].superVisorDescription);
                 }
             }
+            initReferral(id, false);
         }
-
-        initReferral(id);
     }
 
     function makeLiAndPan(formCode, formTitle, formId, reqid, isActive) {
@@ -511,25 +511,26 @@
         let ID = $("#RequestIdForms").val();
         let li_option = "";
         let tabPane = "";
-        li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >سهامداران</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument288' data-toggle='tab' aria-expanded='false' >نقش ذینفعان</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument289' data-toggle='tab' aria-expanded='false' >افشاء و شفافیت</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >هیئت مدیره</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument291' data-toggle='tab' aria-expanded='false' >اطلاعات نهایی و اشخاص وابسته</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument292' data-toggle='tab' aria-expanded='false' >صورت های مالی و حسابرسی</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument293' data-toggle='tab' aria-expanded='false' >کمیته ها</a></li>";
-        li_option += "<li class=''><a href='#FormDocumentTabDocument294' data-toggle='tab' aria-expanded='false' >سایر</a></li>";
+        li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >بارگذاری مدارک</a></li>";
+        //li_option += "<li class='active'><a href='#FormDocumentTabDocument287' data-toggle='tab' aria-expanded='true' >سهامداران</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument288' data-toggle='tab' aria-expanded='false' >نقش ذینفعان</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument289' data-toggle='tab' aria-expanded='false' >افشاء و شفافیت</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument290' data-toggle='tab' aria-expanded='false' >هیئت مدیره</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument291' data-toggle='tab' aria-expanded='false' >اطلاعات نهایی و اشخاص وابسته</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument292' data-toggle='tab' aria-expanded='false' >صورت های مالی و حسابرسی</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument293' data-toggle='tab' aria-expanded='false' >کمیته ها</a></li>";
+        //li_option += "<li class=''><a href='#FormDocumentTabDocument294' data-toggle='tab' aria-expanded='false' >سایر</a></li>";
 
         $("#" + putPlace).append(li_option);
 
         tabPane += makeDocumentTabPane("Document287", "سهامداران", ID, true);
-        tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, false);
-        tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, false);
-        tabPane += makeDocumentTabPane("Document290", "هیئت مدیره", ID, false);
-        tabPane += makeDocumentTabPane("Document291", "اطلاعات نهایی و اشخاص وابسته", ID, false);
-        tabPane += makeDocumentTabPane("Document292", "صورت های مالی و حسابرسی", ID, false);
-        tabPane += makeDocumentTabPane("Document293", "کمیته ها", ID, false);
-        tabPane += makeDocumentTabPane("Document294", "سایر", ID, false);
+        tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, true);
+        tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, true);
+        tabPane += makeDocumentTabPane("Document290", "هیئت مدیره", ID, true);
+        tabPane += makeDocumentTabPane("Document291", "اطلاعات نهایی و اشخاص وابسته", ID, true);
+        tabPane += makeDocumentTabPane("Document292", "صورت های مالی و حسابرسی", ID, true);
+        tabPane += makeDocumentTabPane("Document293", "کمیته ها", ID, true);
+        tabPane += makeDocumentTabPane("Document294", "سایر", ID, true);
 
         $("#" + putTabPan).append(tabPane);
     }
@@ -594,14 +595,54 @@
                     break;
             }
         }
-        $("#FormDocumentDocument287").append(_str287);
-        $("#FormDocumentDocument288").append(_str288);
-        $("#FormDocumentDocument289").append(_str289);
-        $("#FormDocumentDocument290").append(_str290);
-        $("#FormDocumentDocument291").append(_str291);
-        $("#FormDocumentDocument292").append(_str292);
-        $("#FormDocumentDocument293").append(_str293);
-        $("#FormDocumentDocument294").append(_str294);
+
+        if (_str287 == "") {
+            $("#FormDocumentDocument287").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument287").append(_str287);
+        }
+
+        if (_str288 == "") {
+            $("#FormDocumentDocument288").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument288").append(_str288);
+        }
+
+        if (_str289 == "") {
+            $("#FormDocumentDocument289").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument289").append(_str289);
+        }
+
+        if (_str290 == "") {
+            $("#FormDocumentDocument290").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument290").append(_str290);
+        }
+
+        if (_str291 == "") {
+            $("#FormDocumentDocument291").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument291").append(_str291);
+        }
+
+        if (_str292 == "") {
+            $("#FormDocumentDocument292").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument292").append(_str292);
+        }
+
+        if (_str293 == "") {
+            $("#FormDocumentDocument293").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument293").append(_str293);
+        }
+
+        if (_str294 == "") {
+            $("#FormDocumentDocument294").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument294").append(_str294);
+        }
 
         if (isEmpty(LoadedDataFromDb))
             AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
@@ -793,7 +834,7 @@
             }, true);
     }
 
-    function initReferral(id = null) {
+    function initReferral(id = null, is_check=true) {
         AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
             if (res.isSuccess) {
 
@@ -802,7 +843,7 @@
                 var htmlB = "";
                 for (var i = 0; i < res.data.length; i++) {
                     if ((res.data[0].levelStepIndex == 105 || res.data[0].levelStepIndex == 106) && res.data[0].levelStepAccessRole == 12) {
-                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.Corporate.CheckAnswerToAllQuestion(this, true);'" + "data-SIndex='" + res.data[i].levelStepSettingIndexId + "' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
+                        htmlB += "<button type='button' id='btnreq' style='margin:5px' class='btn btn-info ButtonOpperationLSSlss' onclick='Web.Corporate.CheckAnswerToAllQuestion(this, " + is_check + ");'" + "data-SIndex='" + res.data[i].levelStepSettingIndexId + "' data-DLSI='" + encrypt(res.data[i].destLevelStepIndex, keyMaker()) + "' data-LSAR='" + encrypt(res.data[i].levelStepAccessRole, keyMaker()) + "' data-LSS='" + encrypt(res.data[i].levelStepStatus, keyMaker()) + "' data-SC='" + encrypt(res.data[i].smsContent, keyMaker()) + "' data-ST='" + res.data[i].smsType + "' data-DLSIB='" + encrypt(res.data[i].destLevelStepIndexButton, keyMaker()) + "'>" + res.data[i].destLevelStepIndexButton + "</button>";
 
                     }
                 }

@@ -32,7 +32,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks
                 var lists = (
                     from s in _context.DataFormReportCheck
                     where (
-                        s.IsActive == 15
+                        s.IsActive == 15 && s.RequestId == request.RequestId
                     )
                     select s
                 );
@@ -43,7 +43,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormReportChecks
                         from s in _context.DataFormReportCheck
                         where (
                             s.IsActive == 15 &&
-                            s.QuestionId == request.QuestionId && s.FormId == request.FormId
+                            s.QuestionId == request.QuestionId && s.FormId == request.FormId && s.RequestId == request.RequestId
                         )
                         select s
                     );

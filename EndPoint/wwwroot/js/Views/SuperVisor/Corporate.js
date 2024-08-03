@@ -127,6 +127,14 @@
 
             makeDynamicDocumentForm("ducument_save", "document_save_pane");
         }
+        $(".confrimForm").on("click", function () {
+            alertB("موفقیت", "فرم با موفقیت ثبت شد جهت ادامه فرایند به مشاهده و اقدام مراجعه فرمایید", "success", "بله متوجه شدم", function () {
+
+                goToUrl("/SuperVisor/RequestForRating/Referral/" + id);
+
+            });
+            
+        });
     }
 
     function getCustomerInfo(id = null) {
@@ -246,7 +254,7 @@
                 _str_tag += "</p></div><div class='col-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
                 _str_tag += "</p></div><div class='col-12'><label>امتیاز کارشناس</label>";
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
-                _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' min='0'></p></div>";
+                _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' ></p></div>";
                 _str_tag += "<div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
                 _str_tag += "<textarea type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' onfocus='select();'>" + value +"</textarea></p>";
                 _str_tag += '<div class="col-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';

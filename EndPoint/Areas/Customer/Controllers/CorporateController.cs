@@ -19,5 +19,11 @@ namespace EndPoint.Areas.Customer.Controllers
             ViewBag.id = id;
             return View();
         }
+
+        public IActionResult ShowScore(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }

@@ -261,7 +261,21 @@ namespace EndPoint.Controllers.api.customer
                 throw;
             }
         }
-        
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormReportDto>>> Get_DataFormReports([FromBody] RequestDataFormReportDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormReportsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<DataFormReportDto>> Save_DataFromReport([FromBody] DataFormReportDto request)

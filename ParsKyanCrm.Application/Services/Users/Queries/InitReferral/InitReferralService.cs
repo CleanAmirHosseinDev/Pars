@@ -180,7 +180,7 @@ order by cte.ChangeDate desc
                 foreach (var item in qLSI)
                 {
 
-                    if (!string.IsNullOrEmpty(item.DestLevelStepIndex))
+                    if (!string.IsNullOrEmpty(item.DestLevelStepIndex)&& item.DestLevelStepIndex!="0")
                     {
                         var qqxcmcx = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + item.DestLevelStepIndex);
                         item.LevelStepAccessRole = qqxcmcx.FirstOrDefault().LevelStepAccessRole;

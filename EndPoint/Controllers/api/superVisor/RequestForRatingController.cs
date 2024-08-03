@@ -87,6 +87,7 @@ namespace EndPoint.Controllers.api.superVisor
             try
             {
                 request.SendUser = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "UserID").Value);
+
                 return await _userFacad.SaveRequestForRatingService.Execute(request);
             }
             catch (Exception ex)

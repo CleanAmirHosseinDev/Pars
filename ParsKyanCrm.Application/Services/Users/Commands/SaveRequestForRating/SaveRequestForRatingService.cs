@@ -198,8 +198,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                     });
                     await _context.SaveChangesAsync();
 
-                    if (request.DestLevelStepIndex == "15")
+                    if (request.DestLevelStepIndex == "0")
                     {
+                        DateTime CodalDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(request.CodalDate));
 
                         Ado_NetOperation.SqlUpdate(typeof(RequestForRating).Name, new Dictionary<string, object>()
                         {
@@ -207,7 +208,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                                 "IsFinished",true
                             },
                             {
-                                 "CodalDate",DateTimeOperation.PersianToGregorian0Time( request.CodalDate )                              
+                                 "CodalDate",   CodalDate.ToString()
                             },
                             {
                                 "CodalNumber",request.CodalNumber
@@ -241,14 +242,15 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                             break;
                         case false:
 
-                            var requestForRating = await _context.RequestForRating.Include(p => p.Customer).FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
+                           
+                            //var requestForRating = await _context.RequestForRating.FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
+                            //var cust = await _context.Customers.FirstOrDefaultAsync(p => p.CustomerId == requestForRating.CustomerId);
+                            //if (request.SmsContent.Contains("{0}"))
+                            //    request.SmsContent = "مشتری محترم،" + cus.CompanyName + "\n" + string.Format(request.SmsContent, request.Request.RequestId).Replace("\\n", System.Environment.NewLine)
+                            //        + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
+                            //else request.SmsContent = "مشتری محترم،" + cust.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + request.Request.RequestNo + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
 
-                            if (request.SmsContent.Contains("{0}"))
-                                request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + string.Format(request.SmsContent, request.Request.RequestId).Replace("\\n", System.Environment.NewLine)
-                                    + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
-                            else request.SmsContent = "مشتری محترم،" + requestForRating.Customer.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + requestForRating.RequestNo + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
-
-                            await WebService.SMSService.Execute(requestForRating.Customer.AgentMobile, request.SmsContent);
+                            //await WebService.SMSService.Execute(cust.AgentMobile, request.SmsContent);
 
                             break;
 

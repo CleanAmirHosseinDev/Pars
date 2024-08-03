@@ -913,11 +913,9 @@
                     sum_score += res.data[i].analizeScore;
                     all_score += res.data[i].systemScore;
                 }
-
             }
         }, true);
         $("#msform").html('<p>نمره نهایی شما برابر است با ' + sum_score + ' از ' + all_score + ' نمره</p>')
-
     }
 
 

@@ -75,7 +75,7 @@
 
                         }
                         else if (res.data[i].destLevelStepIndex == 110) {
-                            strM += "<a style='margin-right:5px;color:black' title='نمایج امتیازها' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+                            strM += "<a style='margin-right:5px;color:black' title='نمایج امتیازها' class='btn btn-success fontForAllPage' href='/Customer/Corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
                         }
                         if (res.data[i].contractDocument != null && res.data[i].contractDocument != "") {
                             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";

@@ -240,13 +240,13 @@
                 let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
                 if (questionIsNotInReturnCustomer) {
 
-                    _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
+                    _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + QuestionData[i].questionText;
                     if (isEmpty(QuestionData[i].helpText))
                         _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span>"
                     _str_tag += "</h4></div><div class='col-12'>"
                 }
                 else {
-                    _str_tag += "<div class='form-group'><div class='col-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
+                    _str_tag += "<div class='form-group'><div class='col-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + QuestionData[i].questionText;
                     if (isEmpty(QuestionData[i].helpText))
                         _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span>"
                     _str_tag += "</h4></div><div class='col-12'>"

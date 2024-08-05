@@ -184,47 +184,52 @@
                 PageSize: 0,
                 IsActive: 15,
                 RequestId: id,
+                SortOrder: "QuestionId_A",
             }), false, function (res) {
                 if (res != null) {
                     checkReport = res;
-                    for (let i = 0; i < res.data.length; i++) {
+                    let list_li_data = res.data;
+                    list_li_data = res.data.filter((arr, index, self) =>
+                        index === self.findIndex((t) => (t.formCode === arr.formCode)))
+                    
+                    for (let i = 0; i < list_li_data.length; i++) {
                         let dataForm = "";
                         let question = "";
-                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataForm/" + res.data[i].formId, null, false, function (form) {
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataForm/" + list_li_data[i].formId, null, false, function (form) {
                             dataForm = form;
                         }, false);
-                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + res.data[i].questionId, null, false, function (form) {
+                        AjaxCallAction("GET", "/api/customer/Corporate/Get_DataFormQuestions/" + list_li_data[i].questionId, null, false, function (form) {
                             question = form;
                         }, false);
 
-                        switch (res.data[i].categoryId) {
+                        switch (list_li_data[i].categoryId) {
                             case 287:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup287);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup287);
                                     cat287li += tempresult[0];
                                     cat287Pan += tempresult[1];
                                     fisrtInGroup287 = false;
                                 }
                                 break;
                             case 288:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup288);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup288);
                                     cat288li += tempresult[0];
                                     cat288Pan += tempresult[1];
                                     fisrtInGroup288 = false;
                                 }
                                 break;
                             case 289:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup289);
+                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup289);
                                     cat289li += tempresult[0];
                                     cat289Pan += tempresult[1];
                                     fisrtInGroup289 = false;
                                 }
                                 break;
                             case 290:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup290);
+                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup290);
                                     cat290li += tempresult[0];
                                     cat290Pan += tempresult[1];
                                     fisrtInGroup290 = false;
@@ -232,8 +237,8 @@
                                 break;
 
                             case 291:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup291);
+                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup291);
                                     cat291li += tempresult[0];
                                     cat291Pan += tempresult[1];
                                     fisrtInGroup291 = false;
@@ -241,8 +246,8 @@
                                 break;
 
                             case 292:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup292);
+                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup292);
                                     cat292li += tempresult[0];
                                     cat292Pan += tempresult[1];
                                     fisrtInGroup292 = false;
@@ -250,8 +255,8 @@
                                 break;
 
                             case 293:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup293);
+                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup293);
                                     cat293li += tempresult[0];
                                     cat293Pan += tempresult[1];
                                     fisrtInGroup293 = false;
@@ -259,8 +264,8 @@
                                 break;
 
                             case 294:
-                                if (res.data[i].questionId != 0 && res.data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(res.data[i].formCode, dataForm.formTitle, res.data[i].formId, id, fisrtInGroup294);
+                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup294);
                                     cat294li += tempresult[0];
                                     cat294Pan += tempresult[1];
                                     fisrtInGroup294 = false;
@@ -417,7 +422,7 @@
         } else {
             strFormId = "<div class='col-md-12'>";
             for (var i = 0; i < res.data.length; i++) {
-                strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.data[i].questionText;
+                strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + res.data[i].questionText;
                 strFormId += " <span title='" + res.data[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
                 if (res.data[i].questionType == "select") {
                     var options = combo(res.data[i].dataFormQuestionId);

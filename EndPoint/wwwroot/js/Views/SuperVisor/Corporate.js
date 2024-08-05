@@ -240,12 +240,16 @@
                 let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
                 if (questionIsNotInReturnCustomer) {
 
-                    _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>";
-                    _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-12'>"
+                    _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
+                    if (isEmpty(QuestionData[i].helpText))
+                        _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span>"
+                    _str_tag += "</h4></div><div class='col-12'>"
                 }
                 else {
-                    _str_tag += "<div class='form-group'><div class='col-12'><h4 style='line-height: 1.5;'>";
-                    _str_tag += QuestionData[i].questionText + " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-12'>"
+                    _str_tag += "<div class='form-group'><div class='col-12'><h4 style='line-height: 1.5;'>" + QuestionData[i].questionText;
+                    if (isEmpty(QuestionData[i].helpText))
+                        _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span>"
+                    _str_tag += "</h4></div><div class='col-12'>"
                 }
                 _str_tag += "<div class='col-12'>";
                 _str_tag += "<label>پاسخ مشتری : </label><p style='display: inline-block;margin-right: 20px;'>";
@@ -272,7 +276,7 @@
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
         let ID = $("#RequestIdForms").val();
         if (isEmpty(DataFormList))
-            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2 }), false, function (res) {
+            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2, SortOrder: "FormCode_A", }), false, function (res) {
                 if (res.isSuccess) {
                     DataFormList = res.data;
                 }
@@ -326,13 +330,13 @@
         $("#" + PutPlace).append(li_option);
 
         tabPane += makeDocumentTabPane("Document287","سهامداران",ID,true);
-        tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, false);
-        tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, false);
-        tabPane += makeDocumentTabPane("Document290", "هیئت مدیره", ID, false);
-        tabPane += makeDocumentTabPane("Document291", "اطلاعات نهایی و اشخاص وابسته", ID, false);
-        tabPane += makeDocumentTabPane("Document292", "صورت های مالی و حسابرسی", ID, false);
-        tabPane += makeDocumentTabPane("Document293", "کمیته ها", ID, false);
-        tabPane += makeDocumentTabPane("Document294", "سایر", ID, false);
+        tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, true);
+        tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, true);
+        tabPane += makeDocumentTabPane("Document290", "هیئت مدیره", ID, true);
+        tabPane += makeDocumentTabPane("Document291", "اطلاعات نهایی و اشخاص وابسته", ID, true);
+        tabPane += makeDocumentTabPane("Document292", "صورت های مالی و حسابرسی", ID, true);
+        tabPane += makeDocumentTabPane("Document293", "کمیته ها", ID, true);
+        tabPane += makeDocumentTabPane("Document294", "سایر", ID, true);
 
         $("#" + PutTabPane).append(tabPane);
         let _str287 = "";

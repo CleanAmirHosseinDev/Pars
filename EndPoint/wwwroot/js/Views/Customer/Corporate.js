@@ -398,7 +398,9 @@
         let strFormId = "";
         if (isSingle) {
             strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.questionText;
-            strFormId += " <span title='" + res.helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
+            if (isEmpty(res.helpText))
+                strFormId += " <span title='" + res.helpText + "'><i class='fa'></i></span>";
+            strFormId += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>"
             if (res.questionType == "select") {
                 var options = combo(res.dataFormQuestionId);
                 strFormId += "<select required name='Q_" + res.dataFormQuestionId + "' id='Q_" + res.dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
@@ -578,53 +580,62 @@
             }
         }
 
-        if (_str287 == "") {
-            $("#FormDocumentDocument287").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument287").append(_str287);
-        }
+        $("#FormDocumentDocument287").append(_str287);
+        $("#FormDocumentDocument288").append(_str288);
+        $("#FormDocumentDocument289").append(_str289);
+        $("#FormDocumentDocument290").append(_str290);
+        $("#FormDocumentDocument291").append(_str291);
+        $("#FormDocumentDocument292").append(_str292);
+        $("#FormDocumentDocument293").append(_str293);
+        $("#FormDocumentDocument294").append(_str294);
 
-        if (_str288 == "") {
-            $("#FormDocumentDocument288").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument288").append(_str288);
-        }
+        //if (_str287 == "") {
+        //    $("#FormDocumentDocument287").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument287").append(_str287);
+        //}
 
-        if (_str289 == "") {
-            $("#FormDocumentDocument289").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument289").append(_str289);
-        }
+        //if (_str288 == "") {
+        //    $("#FormDocumentDocument288").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument288").append(_str288);
+        //}
 
-        if (_str290 == "") {
-            $("#FormDocumentDocument290").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument290").append(_str290);
-        }
+        //if (_str289 == "") {
+        //    $("#FormDocumentDocument289").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument289").append(_str289);
+        //}
 
-        if (_str291 == "") {
-            $("#FormDocumentDocument291").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument291").append(_str291);
-        }
+        //if (_str290 == "") {
+        //    $("#FormDocumentDocument290").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument290").append(_str290);
+        //}
 
-        if (_str292 == "") {
-            $("#FormDocumentDocument292").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument292").append(_str292);
-        }
+        //if (_str291 == "") {
+        //    $("#FormDocumentDocument291").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument291").append(_str291);
+        //}
 
-        if (_str293 == "") {
-            $("#FormDocumentDocument293").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument293").append(_str293);
-        }
+        //if (_str292 == "") {
+        //    $("#FormDocumentDocument292").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument292").append(_str292);
+        //}
 
-        if (_str294 == "") {
-            $("#FormDocumentDocument294").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        } else {
-            $("#FormDocumentDocument294").append(_str294);
-        }
+        //if (_str293 == "") {
+        //    $("#FormDocumentDocument293").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument293").append(_str293);
+        //}
+
+        //if (_str294 == "") {
+        //    $("#FormDocumentDocument294").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        //} else {
+        //    $("#FormDocumentDocument294").append(_str294);
+        //}
 
         if (isEmpty(LoadedDataFromDb))
             AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({

@@ -77,6 +77,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
                             {
                                 nameof(q_Entity.Entity.HelpText),request.HelpText
                             },
+                            {
+                                nameof(q_Entity.Entity.IsRequierd),request.IsRequierd
+                            },
                         }, nameof(q_Entity.Entity.DataFormDocumentId) + $" = {request.DataFormDocumentId}");
                 }
 

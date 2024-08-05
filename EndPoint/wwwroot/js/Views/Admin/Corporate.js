@@ -231,7 +231,7 @@
                 var strM = '';
                 for (var i = 0; i < res.data.length; i++) {
                     let category = getCategoryName(res.data[i].categoryId);
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + category + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormDocument(" + res.data[i].dataFormDocumentId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].title + "</td><td>" + category + "</td><td>" + res.data[i].isRequierd + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormDocument?id=" + res.data[i].dataFormDocumentId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormDocument(" + res.data[i].dataFormDocumentId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
@@ -246,6 +246,7 @@
                     $("#CategoryId").val(res.categoryId);
                     $("#Title").val(res.title);
                     $("#HelpText").val(res.helpText);
+                    $("#IsRequired").val(res.isRequired);
                 }
             }, true);
         }
@@ -256,12 +257,14 @@
         let _CategoryId = $("#CategoryId").val();
         let _Title = $("#Title").val();
         let _HelpText = $("#HelpText").val();
+        let _IsRequired = $("#IsRequired").val();
         AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormDocument", JSON.stringify(
             {
                 DataFormDocumentId: !isEmpty(_DataFormDocumentId) ? _DataFormDocumentId : 0,
                 CategoryId: _CategoryId,
                 Title: _Title,
                 HelpText: _HelpText,
+                IsRequired: _IsRequired,
             }), true, function (res) {
 
                 $(e).removeAttr("disabled");

@@ -47,6 +47,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument
                         Title = res.Title,
                         CategoryId = res.CategoryId,
                         HelpText = res.HelpText,
+                        IsRequierd = res.IsRequierd,
                     };
                 }
                 return new DataFormDocumentsDto()
@@ -55,6 +56,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocument
                     Title = null,
                     CategoryId = 0,
                     HelpText = null,
+                    IsRequierd = false,
                 };
             }
             catch (Exception ex)

@@ -13,5 +13,6 @@ namespace ParsKyanCrm.Domain.Entities
         public int CategoryId { get; set; }
         public string HelpText { get; set; }
         public byte? IsActive { get; set; }
+        public bool? IsRequierd { get; set; }
     }
 }

@@ -13,58 +13,67 @@
         </ol>
     </section>
 }
-@section Styles{
+    @section Styles{
     <link rel="stylesheet" href="~/css/GlobalAreas/Views/Customer/FurtherInfo.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
     <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
 }
 
-<input type="hidden" id="RequestIdForms" name="RequestIdForms" value="0" />
-<input type="hidden" id="sdfcddf" name="sdfcddf" value="0" />
-<div class="row">
-    <section class="col-lg-12 col-md-12">
-        <div class="box box-info">
-            <div class="box-header">
-                @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
-                    <div class="portlet-title">
-                        <div class="caption font-green-haze">
-                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
-                        </div>
-                        <div class="tools">
-                            <a href="" class="collapse" data-original-title="" title="">
-                            </a>
-                        </div>
-                    </div>
-                </h3>
-                <!-- tools box -->
-                <div class="pull-left box-tools">
-                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+    <input type="hidden" id="RequestIdForms" name="RequestIdForms" value="0" />
+    <input type="hidden" id="sdfcddf" name="sdfcddf" value="0" />
+    <div class='swal-overlay swal-overlay--show-modal' tabindex='-1' id="message_start">
+        <div class='swal-modal' role='dialog' aria-modal='true' style='width: 1000px!important;'>
+            <div class='swal-text' style=''>مشتری گرامی<br>با سلام و احترام<br>پیش از تکمیل و ثبت نهایی پرسشنامه ارزیابی حاکمیت شرکتی لطفا موارد ذیل دقت نمایید :<br>1 - جهت ارزیابی پرسش های ثبت شده ، بارگذاری مدارک و مستندات طبق فیلدهای طراحی شده در بخش 'بارگذاری مدارک' الزامی است، لذا خواهشمند است نسبت به ارسال مدارک درخواستی بصورت خوانا و دقیق دقت فرمایید<br>2 - فرمت فایلهای قابل قبول جهت ارسال در بخش 'بارگذاری مدارک' ، PDF, Excel, image است.<br>3 - لطفا پس از پاسخ دادن به سوالات هر فرم ، دکمه 'ذخیره سازی' در آن فرم را کلیک کرده و سپس جهت پاسخ دهی به فرم بعدی بروید.<br>4 - با توجه به اینکه سوالات بصورت بلی / خیر طراحی شده است، در صورت عدم امکان پاسخ دهی دقیق به هر سوال، ضمن ارائه توضیحات کد در بخش 'توضیحات' پاسخ خود را از بین دو گزینه موجود انتخاب نمایید<br>5 - توجه کنید در صورت مغایرت پاسخ های ارسالی با مدارک بارگذاری شده، ضمن عدم تعلق نمره مربوطه ، آن سوال مجددا جهت اصلاح پاسخ یا باگذاری مدارک مربوطه بازگشت داده میشود.لذا خواهشمند است جهت تسریع در امر ارزیابی، با دقت نسبت به پاسخ دهی به سوالات و بارگذاری مدارک اقدام نمایید.<br>6 - در صورت بازگشت مجدد سوالات، جهت اصلاح ، به توضیحات کارشناس ارزیابی حاکمیت شرکتی توجه فرمایید و در صورت وجود هر گونه ابهام با شماره پشتیبانی کارشناس حاکمیت شرکتی تماس حاصل فرمایید.<br></div><div class='swal-footer'>
+                <div class='swal-button-container'>
+                    <button onclick="$('#message_start').css('opacity', '0')" class='swal-button swal-button--confirm'>بله متوجه شدم</button><div class='swal-button__loader'><div></div><div></div><div></div></div>
                 </div>
-                <!-- /. tools -->
             </div>
-            <div class="box-body">
-                <div id="CutomerName" style="text-align:center;background-color:#f6f4f4;padding:7px"></div>
-                <div class="row">
-                    <!-- MultiStep Form -->
-                    <div class="container-fluid" id="grad1">
-                        <div class="row justify-content-center mt-0">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
-                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+        </div>
+    </div>
+    <div class="row">
+        <section class="col-lg-12 col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    @*<i class="fa fa-cloud"></i>*@
+                    <h3 class="box-title">
+                        <div class="portlet-title">
+                            <div class="caption font-green-haze">
+                                @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                            </div>
+                            <div class="tools">
+                                <a href="" class="collapse" data-original-title="" title="">
+                                </a>
+                            </div>
+                        </div>
+                    </h3>
+                    <!-- tools box -->
+                    <div class="pull-left box-tools">
+                        <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <div class="box-body">
+                    <div id="CutomerName" style="text-align:center;background-color:#f6f4f4;padding:7px"></div>
+                    <div class="row">
+                        <!-- MultiStep Form -->
+                        <div class="container-fluid" id="grad1">
+                            <div class="row justify-content-center mt-0">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
+                                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
 
-                                    @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
-                                    <div class="row">
-                                        <div class="col-md-12 mx-0">
-                                            <div id="msform">
-                                                <!-- progressbar -->
-                                                <ul id="progressbar">
-                                                </ul>
-                                                <!-- بارگذاری مدارک -->
-                                                <fieldset>
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
+                                        @*<p>لطفا هر مرحله را کامل کنید و سپس وارد مرحله بعد شوید</p>*@
+                                        <div class="row">
+                                            <div class="col-md-12 mx-0">
+                                                <div id="msform">
+                                                    <!-- progressbar -->
+                                                    <ul id="progressbar">
+                                                    </ul>
+                                                    <!-- بارگذاری مدارک -->
+                                                    <fieldset>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
 
                                                         <div class="form-card">
                                                             <div class="row">
@@ -80,40 +89,41 @@
                                                             </div>
                                                         </div>
 
-                                                    <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
-                                                    <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
+                                                        <button type="button" name="previous" class="previous action-button-previous" style="border:none;width:90px"><i class="fa fa-arrow-right"></i> فرم قبلی </button>
+                                                        <button type="button" name="next" class="next action-button" style="border:2px solid green;width:160px;background-color:white">اتمام و تایید نهایی <i class="fa fa-check-circle-o" style="color:green;font-size:1.5em"></i></button>
 
-                                                </fieldset>
+                                                    </fieldset>
 
-                                                <!-- تایید و ارسال -->
-                                                <fieldset>
-                                                    <div class="form-card">
-                                                        <div class="text-center">
-                                                            <h2 class=" text-center">تایید نهایی و ارسال </h2>
-                                                            <img src="/image/okv2.png" class="fit-image" style="max-width:50px">
-                                                        </div>
-                                                        <div class="row justify-content-center">
-                                                            <div class="col-7 text-center" id="EndCorporateInfo">
-                                                                <h5>تایید اطلاعات جهت شروع ارزیابی</h5>
-                                                                <p>
-                                                                    اگر از تکمیل اطلاعات این فرم مطمئن هستید روی دکمه ریز کلیک نمایید؛ در صورت این دسترسی به فرم ها برای شما محدود می شود.
-                                                                </p>
+                                                    <!-- تایید و ارسال -->
+                                                    <fieldset>
+                                                        <div class="form-card">
+                                                            <div class="text-center">
+                                                                <h2 class=" text-center">تایید نهایی و ارسال </h2>
+                                                                <img src="/image/okv2.png" class="fit-image" style="max-width:50px">
                                                             </div>
-                                                        </div>
-                                                        <div class="row" style="margin:20px">
-                                                            <div class="form-group">
-                                                               
-                                                                <div class="col-md-12 text-center">
-                                                                    <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="@ViewBag.id" />
-                                                                    <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sdel" value="@ViewBag.id" />
-                                                                    <label for="Comment">توضیحات بیشتر : </label>
-                                                                    <textarea id="Comment" name="Comment" class="form-control" style="border:1px solid #0026ff;border-radius:5px"></textarea>
-                                                                    <div id="bLLSS"></div>
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-7 text-center" id="EndCorporateInfo">
+                                                                    <h5>تایید اطلاعات جهت شروع ارزیابی</h5>
+                                                                    <p>
+                                                                        اگر از تکمیل اطلاعات این فرم مطمئن هستید روی دکمه ریز کلیک نمایید؛ در صورت این دسترسی به فرم ها برای شما محدود می شود.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin:20px">
+                                                                <div class="form-group">
+
+                                                                    <div class="col-md-12 text-center">
+                                                                        <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sa" value="@ViewBag.id" />
+                                                                        <input type="hidden" id="sdklsslks3498sjdkxhjsd_823sdel" value="@ViewBag.id" />
+                                                                        <label for="Comment">توضیحات بیشتر : </label>
+                                                                        <textarea id="Comment" name="Comment" class="form-control" style="border:1px solid #0026ff;border-radius:5px"></textarea>
+                                                                        <div id="bLLSS"></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </fieldset>
+                                                    </fieldset>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -123,12 +133,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
 
-@section Scripts {
+    @section Scripts {
     <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>

@@ -124,7 +124,7 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initCustomer();
-
+        
         makeTabProgresDynamic();
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
@@ -189,8 +189,9 @@
                 if (res != null) {
                     checkReport = res;
                     let list_li_data = res.data;
+
                     list_li_data = res.data.filter((arr, index, self) =>
-                        index === self.findIndex((t) => (t.formCode === arr.formCode)))
+                        index === self.findIndex((t) => (t.formCode === arr.formCode && t.formCode != "")))
                     
                     for (let i = 0; i < list_li_data.length; i++) {
                         let dataForm = "";
@@ -213,23 +214,23 @@
                                 break;
                             case 288:
                                 if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup288);
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup288);
                                     cat288li += tempresult[0];
                                     cat288Pan += tempresult[1];
                                     fisrtInGroup288 = false;
                                 }
                                 break;
                             case 289:
-                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup289);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup289);
                                     cat289li += tempresult[0];
                                     cat289Pan += tempresult[1];
                                     fisrtInGroup289 = false;
                                 }
                                 break;
                             case 290:
-                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup290);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup290);
                                     cat290li += tempresult[0];
                                     cat290Pan += tempresult[1];
                                     fisrtInGroup290 = false;
@@ -237,8 +238,8 @@
                                 break;
 
                             case 291:
-                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup291);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup291);
                                     cat291li += tempresult[0];
                                     cat291Pan += tempresult[1];
                                     fisrtInGroup291 = false;
@@ -246,8 +247,8 @@
                                 break;
 
                             case 292:
-                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup292);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup292);
                                     cat292li += tempresult[0];
                                     cat292Pan += tempresult[1];
                                     fisrtInGroup292 = false;
@@ -255,8 +256,8 @@
                                 break;
 
                             case 293:
-                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup293);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup293);
                                     cat293li += tempresult[0];
                                     cat293Pan += tempresult[1];
                                     fisrtInGroup293 = false;
@@ -264,8 +265,8 @@
                                 break;
 
                             case 294:
-                                if (list_li_data.questionId != 0 && list_li_data.formId != 0) {
-                                    let tempresult = makeLiAndPan(list_li_data.formCode, dataForm.formTitle, list_li_data.formId, id, fisrtInGroup294);
+                                if (list_li_data[i].questionId != 0 && list_li_data[i].formId != 0) {
+                                    let tempresult = makeLiAndPan(list_li_data[i].formCode, dataForm.formTitle, list_li_data[i].formId, id, fisrtInGroup294);
                                     cat294li += tempresult[0];
                                     cat294Pan += tempresult[1];
                                     fisrtInGroup294 = false;
@@ -403,7 +404,7 @@
         let strFormId = "";
         if (isSingle) {
             strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + res.questionText;
-            if (isEmpty(res.helpText))
+            if (!isEmpty(res.helpText))
                 strFormId += " <span title='" + res.helpText + "'><i class='fa'></i></span>";
             strFormId += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>"
             if (res.questionType == "select") {
@@ -423,7 +424,9 @@
             strFormId = "<div class='col-md-12'>";
             for (var i = 0; i < res.data.length; i++) {
                 strFormId += "<div class='form-group'><div class='col-md-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + res.data[i].questionText;
-                strFormId += " <span title='" + res.data[i].helpText + "'><i class='fa'></i></span></h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
+                if (!isEmpty(res.data[i].helpText))
+                    strFormId += " <span title='" + res.data[i].helpText + "'><i class='fa'></i></span>"
+                strFormId += "</h4></div><div class='col-md-12'><div class='row'><div class='col-md-4'>";
                 if (res.data[i].questionType == "select") {
                     var options = combo(res.data[i].dataFormQuestionId);
                     strFormId += "<select required name='Q_" + res.data[i].dataFormQuestionId + "' id='Q_" + res.data[i].dataFormQuestionId + "' class='form-control' style='padding: 0px 15px;' >" + options + "</select>";
@@ -585,62 +588,53 @@
             }
         }
 
-        $("#FormDocumentDocument287").append(_str287);
-        $("#FormDocumentDocument288").append(_str288);
-        $("#FormDocumentDocument289").append(_str289);
-        $("#FormDocumentDocument290").append(_str290);
-        $("#FormDocumentDocument291").append(_str291);
-        $("#FormDocumentDocument292").append(_str292);
-        $("#FormDocumentDocument293").append(_str293);
-        $("#FormDocumentDocument294").append(_str294);
+        if (_str287 == "") {
+            $("#FormDocumentDocument287").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument287").append(_str287);
+        }
 
-        //if (_str287 == "") {
-        //    $("#FormDocumentDocument287").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument287").append(_str287);
-        //}
+        if (_str288 == "") {
+            $("#FormDocumentDocument288").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument288").append(_str288);
+        }
 
-        //if (_str288 == "") {
-        //    $("#FormDocumentDocument288").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument288").append(_str288);
-        //}
+        if (_str289 == "") {
+            $("#FormDocumentDocument289").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument289").append(_str289);
+        }
 
-        //if (_str289 == "") {
-        //    $("#FormDocumentDocument289").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument289").append(_str289);
-        //}
+        if (_str290 == "") {
+            $("#FormDocumentDocument290").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument290").append(_str290);
+        }
 
-        //if (_str290 == "") {
-        //    $("#FormDocumentDocument290").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument290").append(_str290);
-        //}
+        if (_str291 == "") {
+            $("#FormDocumentDocument291").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument291").append(_str291);
+        }
 
-        //if (_str291 == "") {
-        //    $("#FormDocumentDocument291").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument291").append(_str291);
-        //}
+        if (_str292 == "") {
+            $("#FormDocumentDocument292").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument292").append(_str292);
+        }
 
-        //if (_str292 == "") {
-        //    $("#FormDocumentDocument292").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument292").append(_str292);
-        //}
+        if (_str293 == "") {
+            $("#FormDocumentDocument293").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument293").append(_str293);
+        }
 
-        //if (_str293 == "") {
-        //    $("#FormDocumentDocument293").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument293").append(_str293);
-        //}
-
-        //if (_str294 == "") {
-        //    $("#FormDocumentDocument294").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
-        //} else {
-        //    $("#FormDocumentDocument294").append(_str294);
-        //}
+        if (_str294 == "") {
+            $("#FormDocumentDocument294").html('<p class="text-primary text-center">سوالی برای نمایش وجود ندارد</p>');
+        } else {
+            $("#FormDocumentDocument294").append(_str294);
+        }
 
         if (isEmpty(LoadedDataFromDb))
             AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
@@ -694,6 +688,7 @@
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
+        #TODO
         strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a></div>";
         strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";

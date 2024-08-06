@@ -1,4 +1,9 @@
-﻿(function (web, $) {
+﻿function changeInput(el, showItemID) {
+    let value = el.value;
+    $("#" + showItemID).text(value);
+}
+
+(function (web, $) {
     var DataFormList = "";
     var progresDynamicBar = []
     //Document Ready
@@ -107,6 +112,7 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         getCustomerInfo(id, dir = 'rtl');
+
         makeTabProgresDynamic();
         if (makeQuestionForm) {
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
@@ -241,13 +247,13 @@
                 if (questionIsNotInReturnCustomer) {
 
                     _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + QuestionData[i].questionText;
-                    if (isEmpty(QuestionData[i].helpText))
+                    if (!isEmpty(QuestionData[i].helpText))
                         _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span>"
                     _str_tag += "</h4></div><div class='col-12'>"
                 }
                 else {
                     _str_tag += "<div class='form-group'><div class='col-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + QuestionData[i].questionText;
-                    if (isEmpty(QuestionData[i].helpText))
+                    if (!isEmpty(QuestionData[i].helpText))
                         _str_tag += " <span title='" + QuestionData[i].helpText + "'><i class='fa'></i></span>"
                     _str_tag += "</h4></div><div class='col-12'>"
                 }
@@ -258,9 +264,21 @@
                 _str_tag += "</p></div><div class='col-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
                 _str_tag += "</p></div><div class='col-12'><label>امتیاز کارشناس</label>";
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
-                _str_tag += "type='number' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' ></p></div>";
-                _str_tag += "<div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
-                _str_tag += "<textarea type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "' onfocus='select();'>" + value +"</textarea></p>";
+                if (getlstor("loginName") == "11") {
+                    _str_tag += "type='range' disabled='disabled' "
+                }
+                else {
+                    _str_tag += "type='range' oninput='changeInput(this, \"range_" + answer.answerId + "\")' "
+                }
+                if (QuestionData[i].score > 0) {
+                    _str_tag += "min='0' max='" + QuestionData[i].score + "' value='" + report.analizeScore + "' >";
+                }
+                else {
+                    _str_tag += "max='0' min='" + QuestionData[i].score + "' value='" + report.analizeScore + "' >";
+                }
+                _str_tag += "<span style='padding:5px;' id='range_" + answer.answerId + "'>" + report.analizeScore + "</span>" 
+                _str_tag += "</p></div><div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
+                _str_tag += "<textarea rows='3' cols='100' type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value +"</textarea></p>";
                 _str_tag += '<div class="col-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
@@ -457,6 +475,14 @@
         return _str;
     }
     function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
+        let levelStepRequest = 0;
+
+        AjaxCallAction("POST", "", JSON.stringify({
+            RequestId: RequestId, 
+        }), false, function (res) {
+            levelStepRequest = res.data[0].fsvrsgs
+        }, false)
+
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
@@ -467,8 +493,10 @@
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.CorporateSuperVisor.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a></div>";
-        strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
+        if (levelStepRequest >= ) {
+            strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.CorporateSuperVisor.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a>";
+        }
+        strM += "</div><div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";
         strM += "<input type='hidden' id='FormID' name='FormID' value='" + FormId + "' />";
         strM += "<input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "' />";

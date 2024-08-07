@@ -6,6 +6,7 @@
 (function (web, $) {
     var DataFormList = "";
     var progresDynamicBar = []
+    var userAccessSaveForm = true
     //Document Ready
 
     function makeLiProgresBar(progresDynamicBar) {
@@ -112,6 +113,14 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         getCustomerInfo(id, dir = 'rtl');
+
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings",
+            JSON.stringify({ PageIndex: 1, PageSize: 1, RequestId: id, KindOfRequest: 254 }), false,
+            function (res) {
+                if (res.isSuccess)
+                    userAccessSaveForm = (res.data[0].destLevelStepIndex < 105) && (res.data[0].destLevelStepAccessRole == 12)
+            }, false);
+
 
         makeTabProgresDynamic();
         if (makeQuestionForm) {
@@ -475,14 +484,6 @@
         return _str;
     }
     function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
-        let levelStepRequest = 0;
-
-        AjaxCallAction("POST", "", JSON.stringify({
-            RequestId: RequestId, 
-        }), false, function (res) {
-            levelStepRequest = res.data[0].fsvrsgs
-        }, false)
-
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
@@ -493,7 +494,7 @@
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        if (levelStepRequest >= ) {
+        if (userAccessSaveForm) {
             strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.CorporateSuperVisor.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a>";
         }
         strM += "</div><div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";

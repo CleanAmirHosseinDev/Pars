@@ -333,7 +333,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         else if (ContractAccess.includes(getlstor("loginName"))) {
             requestKind = 1;
         }
-
+        console.log(!isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : requestKind == 254 ? 254 : requestKind == 1 ? null : null)
         pageingGrid("divPageingList_RequestForRatingsSupervisor", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify(
             {
                 Search: $("#txtSearch").val(),

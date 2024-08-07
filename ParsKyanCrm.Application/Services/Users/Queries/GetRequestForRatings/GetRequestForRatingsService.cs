@@ -127,7 +127,14 @@ OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize
 FETCH NEXT {request.PageSize} ROWS ONLY
 
 ");
-
+                if (request.KindOfRequest == 254)
+                {
+                    data = data.Where(p => p.KindOfRequest == 254);
+                }
+                else if (request.KindOfRequest == 66)
+                {
+                    data = data.Where(p => p.KindOfRequest == 66);
+                }
                 request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>

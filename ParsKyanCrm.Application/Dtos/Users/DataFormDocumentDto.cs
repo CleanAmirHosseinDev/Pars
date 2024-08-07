@@ -14,6 +14,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
     {
         public int DataFormDocumentId { get; set; }
         public int CategoryId { get; set; }
+        public bool? IsRequierd { get; set; }
     }
 
     public class DataFormDocumentsDto

@@ -40,6 +40,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormDocuments
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(
                     p => p.Title.Contains(request.Search) || p.HelpText.Contains(request.Search));
 
+                if (request.IsRequierd == true) lists = lists.Where(p => p.IsRequierd == true);
+
                 //if (request.CategoryId != 0)
                 //    lists = (
                 //        from s in _context.DataFormDocuments

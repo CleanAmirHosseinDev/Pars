@@ -40,6 +40,17 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
 
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Answer.Contains(request.Search) || p.Description.Contains(request.Search));
 
+                if (request.PageIndex == 0 && request.PageSize == 0 && request.FormId == 0 &&
+                    request.DataFormQuestionId == 0)
+                {
+                    lists = (from s in _context.DataFromAnswers
+                        where (s.FormId == 0) &&
+                        (s.RequestId == request.RequestId) &&
+                        (s.DataFormDocumentId != null) &&
+                        (s.DataFormQuestionId == 0) && (s.IsActive == 15)
+                        select s);
+                }
+
                 switch (request.SortOrder)
                 {
                     case "AnswerId_D":

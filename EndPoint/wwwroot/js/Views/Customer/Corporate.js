@@ -1,4 +1,68 @@
-﻿(function (web, $) {
+﻿function checkAllDocUpload(el) {
+    let count_of_requierd_doc = 0;
+    let count_of_requierd_doc_answerd = 0;
+    AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({
+        PageIndex: 0,
+        PageSize: 0,
+        IsActive: 15,
+        IsRequierd: true
+    }), false, function (res) {
+        if (res.isSuccess) {
+            count_of_requierd_doc = res.data.length;
+        }
+    }, false);
+
+    AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
+        PageIndex: 0,
+        PageSize: 0,
+        IsActive: 15,
+        FormId: 0,
+        RequestId: $("#RequestIdForms").val(),
+        DataFormQuestionId: 0,
+    }), false, function (res) {
+        if (res.isSuccess) {
+            count_of_requierd_doc_answerd = res.data.length;
+        }
+    }, false);
+
+    if (count_of_requierd_doc == count_of_requierd_doc_answerd) {
+        current_fs = $(el).parent();
+        next_fs = $(el).parent().next();
+
+        //Add Class Active
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({
+            opacity: 0,
+        }, {
+            step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+
+                current_fs.css({
+                    display: "none",
+                    position: "relative",
+                });
+                next_fs.css({
+                    opacity: opacity,
+                });
+            },
+            duration: 600,
+        });
+        return true;
+    }
+    else {
+        alertB("خطا", "فایل هایی که در کنار آنها علامت * می باشد اجباری هستند توجه نمایید بعد از اپلود فایل باید بر روی ذخیره کلیک نمایید تا اپلود شود", "error", "بله متوجه شدم", function () { });
+        return false;
+    }
+    return false;
+}
+
+(function (web, $) {
+    var userAccessSaveForm = true
     var DataFormList = "";
     var LoadedDataFromDb = "";
     var progresDynamicBar = [];
@@ -127,6 +191,14 @@
         
         makeTabProgresDynamic();
         if (makeQuestionForm) {
+
+            AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings",
+                JSON.stringify({ PageIndex: 1, PageSize: 1, RequestId: id, KindOfRequest: 254 }), false,
+                function (res) {
+                    if (res.isSuccess)
+                        userAccessSaveForm = (res.data[0].destLevelStepIndex < 105) && (res.data[0].destLevelStepAccessRole == 10)
+                }, false);
+
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
 
             makeDynamicForm("D", "TargetTabs288", true, "TabPaneTargetTabs288");
@@ -477,6 +549,7 @@
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";
+
         for (let i = 0; i < DataFormList.length; i++) {
             if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 if (is_first) {
@@ -558,30 +631,31 @@
             let title = DataFormDocumentList[i].title;
             let formId = "Doc" + DataFormDocumentList[i].dataFormDocumentId;
             let helpText = DataFormDocumentList[i].helpText;
+            let isRequierd = DataFormDocumentList[i].isRequierd
             switch (DataFormDocumentList[i].categoryId) {
                 case 287:
-                    _str287 += makeFileInput(title, formId, helpText, ID, description);
+                    _str287 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
                     break;
                 case 288:
-                    _str288 += makeFileInput(title, formId, helpText, ID, description);
+                    _str288 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
                     break;
                 case 289:
-                    _str289 += makeFileInput(title, formId, helpText, ID, description);
-                    break;
-                case 290:
-                    _str290 += makeFileInput(title, formId, helpText, ID, description);
-                    break;
-                case 291:
-                    _str291 += makeFileInput(title, formId, helpText, ID, description);
-                    break;
-                case 292:
-                    _str292 += makeFileInput(title, formId, helpText, ID, description);
-                    break;
-                case 293:
-                    _str293 += makeFileInput(title, formId, helpText, ID, description);
-                    break;
-                case 294:
-                    _str294 += makeFileInput(title, formId, helpText, ID, description);
+                    _str289 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
+                    break;                                                           
+                case 290:                                                            
+                    _str290 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
+                    break;                                                           
+                case 291:                                                            
+                    _str291 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
+                    break;                                                           
+                case 292:                                                            
+                    _str292 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
+                    break;                                                           
+                case 293:                                                            
+                    _str293 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
+                    break;                                                           
+                case 294:                                                            
+                    _str294 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
                     break;
                 default:
                     break;
@@ -656,14 +730,19 @@
         }
     }
 
-    function makeFileInput(inputTitle, inputName, helpText, RequestId, analaizeDescription = "") {
+    function makeFileInput(inputTitle, inputName, helpText, RequestId, analaizeDescription = "", isRequierd=true) {
         let _str = "<form id='frmDoc" + inputName + "'>";
         _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
-        _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
-        _str += "<input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" + inputName + "'";
+        if (!isEmpty(helpText))
+            _str += " <span title='" + helpText + "'><i class='fa'></i></span>";
+        if (isRequierd)
+            _str += "<span style='font-size: 25px;color: red;padding: 10px;'>*</span>"
+        _str += "</label><input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" + inputName + "'";
         _str += "onchange=\"checkUploadWithFileSiza(this, '" + inputTitle + "' , 5);\">";
-        _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
-        _str += "onclick=\"return Web.Corporate.Save_AnswersUpload(this, 'frmDoc" + inputName + "')\">";
+        if (userAccessSaveForm) {
+            _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
+            _str += "onclick=\"return Web.Corporate.Save_AnswersUpload(this, 'frmDoc" + inputName + "')\">";
+        }
         _str += "<a class='btn btn-success' style='margin-right: 10px;display:none;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         if (analaizeDescription != "") {
             _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a><br/><p style='color:blue;'> توضیحات کارشناس : " + analaizeDescription + "</p></div></div>";
@@ -679,7 +758,6 @@
     }
 
     function makeTabPane(FormCode, FormTitle, FormId, RequestId, FirstItemActive = true) {
-        let levelStepSetting = 105;
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
@@ -689,7 +767,7 @@
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
-        if (levelStepSetting >= 105) {
+        if (userAccessSaveForm) {
             strM += "<a class='btn btn-success' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a>";
         }
         strM += "</div><div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";

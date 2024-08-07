@@ -66,18 +66,40 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormDocument
                 }
                 else
                 {
-                    Ado_NetOperation.SqlUpdate(nameof(DataFormReport), new Dictionary<string, object>()
-                        {
+                    if (request.AnalizeScore != null)
+                    {
+                        Ado_NetOperation.SqlUpdate(nameof(DataFormReport), new Dictionary<string, object>()
                             {
-                                nameof(q_Entity.Entity.AnalizeScore),request.AnalizeScore
-                            },
+                                {
+                                    nameof(q_Entity.Entity.AnalizeScore),request.AnalizeScore
+                                },
+                                {
+                                    nameof(q_Entity.Entity.SystemScore),request.SystemScore
+                                },
+                                {
+                                    nameof(q_Entity.Entity.Description),request.Description
+                                },
+                                {
+                                    nameof(q_Entity.Entity.ManagerReport),request.ManagerReport
+                                },
+                            }, nameof(request.RequestId) + " = " + request.RequestId + " AND " + nameof(request.DataFormAnswerId) + $" = {request.DataFormAnswerId}");
+                    }
+                    else
+                    {
+                        Ado_NetOperation.SqlUpdate(nameof(DataFormReport), new Dictionary<string, object>()
                             {
-                                nameof(q_Entity.Entity.SystemScore),request.SystemScore
-                            },
-                            {
-                                nameof(q_Entity.Entity.Description),request.Description
-                            },
-                        }, nameof(request.RequestId) + " = " + request.RequestId + " AND " + nameof(request.DataFormAnswerId) + $" = {request.DataFormAnswerId}");
+                                {
+                                    nameof(q_Entity.Entity.SystemScore),request.SystemScore
+                                },
+                                {
+                                    nameof(q_Entity.Entity.Description),request.Description
+                                },
+                                {
+                                    nameof(q_Entity.Entity.ManagerReport),request.ManagerReport
+                                },
+                            }, nameof(request.RequestId) + " = " + request.RequestId + " AND " + nameof(request.DataFormAnswerId) + $" = {request.DataFormAnswerId}");
+                    }
+
                 }
 
                 return new ResultDto<DataFormReportDto>()

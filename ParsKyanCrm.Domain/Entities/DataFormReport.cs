@@ -15,5 +15,6 @@ namespace ParsKyanCrm.Domain.Entities
         public double? AnalizeScore { get; set; }
         public string Description { get; set; }
         public byte IsActive { get; set; }
+        public string ManagerReport { get; set; } = string.Empty;
     }
 }

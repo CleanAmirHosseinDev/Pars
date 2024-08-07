@@ -148,7 +148,7 @@
                 goToUrl("/SuperVisor/RequestForRating/Referral/" + id);
 
             });
-            
+
         });
     }
 
@@ -254,6 +254,7 @@
 
             if (!isEmpty(report)) {
                 let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
+                let value_manager_report = !isEmpty(report.managerReport) ? report.managerReport : "ندارد ...";
                 if (questionIsNotInReturnCustomer) {
 
                     _str_tag += "<div class='form-group' style='border: 2px solid red;'><div class='col-12'><h4 style='line-height: 1.5;'>" + (i + 1) + " - " + QuestionData[i].questionText;
@@ -286,15 +287,17 @@
                 else {
                     _str_tag += "max='0' min='" + QuestionData[i].score + "' value='" + report.analizeScore + "' >";
                 }
-                _str_tag += "<span style='padding:5px;' id='range_" + answer.answerId + "'>" + report.analizeScore + "</span>" 
-                _str_tag += "</p></div><div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
-                _str_tag += "<textarea rows='3' cols='100' type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value +"</textarea></p>";
+                _str_tag += "<span style='padding:5px;' id='range_" + answer.answerId + "'>" + report.analizeScore + "</span></p></div>"
+                _str_tag += "<div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
+                _str_tag += "<textarea rows='3' cols='100' type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value + "</textarea></p>";
+                _str_tag += "<br/><label>توضیحات مدیر حاکمیت شرکتی</label><p style='display: inline-block;margin-right: 20px;'>";
+                _str_tag += "<textarea rows='3' cols='100' type='text' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea></p>";
                 _str_tag += '<div class="col-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
                 _str_tag += report.dataReportId + ", '" + answer.description + "'," + "''";
-                _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div></div>'
-                _str_tag += "<input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div></div>"
+                _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div>'
+                _str_tag += "</div><input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div></div>"
             }
 
         }
@@ -358,7 +361,7 @@
 
         $("#" + PutPlace).append(li_option);
 
-        tabPane += makeDocumentTabPane("Document287","سهامداران",ID,true);
+        tabPane += makeDocumentTabPane("Document287", "سهامداران", ID, true);
         tabPane += makeDocumentTabPane("Document288", "نقش ذینفعان", ID, true);
         tabPane += makeDocumentTabPane("Document289", "افشاء و شفافیت", ID, true);
         tabPane += makeDocumentTabPane("Document290", "هیئت مدیره", ID, true);
@@ -560,16 +563,32 @@
         let counter = ListOfAnswers.length;
         showWait();
         try {
-            for (let i = 0; i < counter && counter % 3 == 0; i += 3) {
-                let SingleQuestion = ListOfAnswers.slice(0, 3);
-                let question_score = SingleQuestion[2].split("=")[1]
-                let report_id = SingleQuestion[1].split("=")[0].split("_")[1]
-                let description = decodeURIComponent(SingleQuestion[1].split("=")[1]);
-                let answer_id = SingleQuestion[0].split("=")[0].split("_")[1]
-                let score = SingleQuestion[0].split("=")[1]
-                ListOfAnswers = ListOfAnswers.slice(3, ListOfAnswers.length)
-                if (!isEmpty(score)) {
-                    saveSingelAnswerForm(formId, answer_id, score, question_score, description, report_id);
+            if (getlstor("loginName") == 11) {
+                for (let i = 0; i < counter && counter % 3 == 0; i += 3) {
+                    let SingleQuestion = ListOfAnswers.slice(0, 3);
+                    let question_score = SingleQuestion[2].split("=")[1]
+                    let report_id = SingleQuestion[1].split("=")[0].split("_")[1]
+                    let description = decodeURIComponent(SingleQuestion[0].split("=")[1]);
+                    let answer_id = SingleQuestion[1].split("_")[3].split("=")[0];
+                    let score = null;
+                    let manager_report = decodeURIComponent(SingleQuestion[1].split("=")[1]);
+                    ListOfAnswers = ListOfAnswers.slice(3, ListOfAnswers.length)
+                    saveSingelAnswerForm(formId, answer_id, score, question_score, description, report_id, manager_report);
+                }
+            }
+            else if (getlstor("loginName") == 12){
+                for (let i = 0; i < counter && counter % 4 == 0; i += 4) {
+                    let SingleQuestion = ListOfAnswers.slice(0, 4);
+                    let question_score = SingleQuestion[3].split("=")[1]
+                    let report_id = SingleQuestion[1].split("=")[0].split("_")[1]
+                    let description = decodeURIComponent(SingleQuestion[1].split("=")[1]);
+                    let answer_id = SingleQuestion[0].split("=")[0].split("_")[1]
+                    let score = SingleQuestion[0].split("=")[1]
+                    let manager_report = decodeURIComponent(SingleQuestion[2].split("=")[1]);
+                    ListOfAnswers = ListOfAnswers.slice(4, ListOfAnswers.length)
+                    if (!isEmpty(score)) {
+                        saveSingelAnswerForm(formId, answer_id, score, question_score, description, report_id, manager_report);
+                    }
                 }
             }
             hideWait();
@@ -581,7 +600,7 @@
         }
         hideWait();
     }
-    function saveSingelAnswerForm(formId, answer_id, score, question_score, description, reportId) {
+    function saveSingelAnswerForm(formId, answer_id, score, question_score, description, reportId, manager_report) {
         var requestId = $("#RequestId").val();
         // ذخیره سوال در جدول آنالیز نمره
         AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFromReport", JSON.stringify({
@@ -592,7 +611,9 @@
             SystemScore: question_score,
             IsActive: 15,
             Description: description,
+            ManagerReport: manager_report,
         }), true, function (data) { }, true);
+        
     }
 
     function returnToCustomer(el,
@@ -619,7 +640,7 @@
                     CostumerDescriptionBeforEdit: CostumerDescriptionBeforEdit,
                     CostumerDescriptionAfterEdit: CostumerDescriptionAfterEdit,
                     IsActive: 15,
-                }), true, function (data) { console.log(p); p.css('border', 'solid red 2px'); }, true);
+                }), true, function (data) { p.css('border', 'solid red 2px'); }, true);
                 alertB("ثبت", "بعد از تایید نهایی سوالات انتخاب شده به مشتری باز گردانده خواهد شد", "success");
             }, function () {
             }, ["خیر", "بلی"]);
@@ -666,7 +687,7 @@
         }
         return false
     }
- 
+
 
     web.CorporateSuperVisor = {
         IntiForm: intiForm,
@@ -678,7 +699,7 @@
         Save_AnswersAnalize: save_AnswersAnalize,
         ReturnToCustomer: returnToCustomer,
         ReturnToCustomerDoc: returnToCustomerDoc,
-      
+
     };
 
 })(Web, jQuery);

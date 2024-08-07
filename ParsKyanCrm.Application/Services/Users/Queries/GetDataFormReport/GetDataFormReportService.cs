@@ -80,6 +80,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromReport
                     Description = "",
                     IsActive = 14,
                     SystemScore = 0,
+                    ManagerReport = "",
                 };
             }
             catch (Exception ex)

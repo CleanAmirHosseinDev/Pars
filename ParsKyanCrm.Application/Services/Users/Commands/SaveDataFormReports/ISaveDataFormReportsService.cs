@@ -9,6 +9,4 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormReports
     {
         Task<ResultDto<DataFormReportDto>> Execute(DataFormReportDto request);
     }
-
-    
 }

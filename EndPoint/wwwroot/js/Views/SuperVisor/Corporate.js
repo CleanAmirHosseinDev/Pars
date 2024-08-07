@@ -194,6 +194,7 @@
                 _DataAnswer = res.data;
             }
         }, true);
+        showWait();
         for (let i = 0; QuestionData.length > i; i++) {
             let questionIsNotInReturnCustomer = false;
             let questionReturnCustomer = null;
@@ -297,6 +298,7 @@
             }
 
         }
+        hideWait();
         return _str_tag;
     }
 

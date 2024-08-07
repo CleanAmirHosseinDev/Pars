@@ -801,6 +801,7 @@
         let fileInp = document.getElementById(
             "Inp" + FormName.slice(6, FormName.length)
         );
+        showWait();
         if (fileInp.files.length != 0) {
             AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Corporate/Save_DataFromAnswersUpload", fill_AjaxCallActionPostSaveFormWithUploadFile(FormName), true,
                 function (res) {
@@ -820,6 +821,7 @@
                             );
                         $("#Download_" + FormName.slice(9, FormName.length)).prop("href", res.data.fileName1Full);
                         $("#Download_" + FormName.slice(9, FormName.length)).css("display", "inline-block");
+                        hideWait();
                         alertB("ثبت", "اطلاعات ثبت شد", "success");
                     } else {
                         alertB("خطا", "ذخیره موفقیت آمیز نبود مجددا تلاش فرماید", "error");
@@ -828,9 +830,11 @@
                 true
             );
         } else {
+            hideWait();
             alertB("خطا", "ابتدا فایل را انتخاب نمایید!", "error");
             $(el).removeAttr("disabled");
         }
+        hideWait();
         return false;
     }
 
@@ -856,6 +860,7 @@
     function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
         var requestId = $("#RequestId").val();
         var dataFormQuestionScore = 0;
+        showWait();
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers",
             JSON.stringify({
                 Answer: answer,
@@ -900,11 +905,14 @@
                                 }
                             }, false);
                     }
+                    hideWait();
                     alertB("ثبت", res.message, "success");
                 } else {
+                    hideWait();
                     alertB("خطا", res.message, "error");
                 }
-            }, true);
+        }, true);
+        hideWait();
     }
 
     function initReferral(id = null, is_check=true) {
@@ -935,16 +943,17 @@
     function checkAnswerToAllQuestion(el, is_check = true) {
         if (is_check == true) {
             let countOfQuestion = 0;
-            let countOfReport = 0;
+            let countOfAnswer = 0;
             let ID = $("#RequestIdForms").val();
-            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReports", JSON.stringify({
+            showWait();
+            AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
                 PageIndex: 0,
                 PageSize: 0,
                 IsActive: 15,
-                RequestId: ID
+                RequestId: $("#RequestIdForms").val(),
             }), false, function (res) {
                 if (res.isSuccess) {
-                    countOfReport = res.data.length;
+                    countOfAnswer = res.data.length;
                 }
             }, false);
 
@@ -962,13 +971,13 @@
                 Web.RequestForRating.SaveReferralRequestForRating(el)
             }
             else {
+                hideWait();
                 alertB("خطا", "ابتدا باید به همه سوالات پاسخ بدهید سپس اقدام به ذخیره سازی نمایید", "error", "بله متوجه شدم", function () { });
             }
         }
         else {
             Web.RequestForRating.SaveReferralRequestForRating(el)
         }
-
     }
 
     function initCorporateScore(id) {

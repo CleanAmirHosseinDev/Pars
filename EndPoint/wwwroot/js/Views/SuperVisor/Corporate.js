@@ -558,6 +558,7 @@
         let formId = SerializerForm[0].split("=")[1];
         let ListOfAnswers = SerializerForm.slice(2, SerializerForm.length);
         let counter = ListOfAnswers.length;
+        showWait();
         try {
             for (let i = 0; i < counter && counter % 3 == 0; i += 3) {
                 let SingleQuestion = ListOfAnswers.slice(0, 3);
@@ -571,11 +572,14 @@
                     saveSingelAnswerForm(formId, answer_id, score, question_score, description, report_id);
                 }
             }
+            hideWait();
             alertB("ثبت", "ثبت فرم با موفقیت انجام شد", "success");
         }
         catch (e) {
+            hideWait();
             alertB("خطا", "عملیات ذخیره سازی با خطا مواجه شد", "error");
         }
+        hideWait();
     }
     function saveSingelAnswerForm(formId, answer_id, score, question_score, description, reportId) {
         var requestId = $("#RequestId").val();

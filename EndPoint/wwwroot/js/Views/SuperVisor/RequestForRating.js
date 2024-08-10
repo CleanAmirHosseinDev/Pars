@@ -67,7 +67,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
 
             }
             if (res.data[i].levelStepSettingIndexID >= 43) {
-                strM += "<a style='margin-right:5px;color:black' title='نمایج امتیازها' class='btn btn-success fontForAllPage' href='/SuperVisor/corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
+                strM += "<a style='margin-right:5px;color:black' title='نمایش امتیازها' class='btn btn-success fontForAllPage' href='/SuperVisor/corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
             }
             //  }
             strM += "</td></tr>";

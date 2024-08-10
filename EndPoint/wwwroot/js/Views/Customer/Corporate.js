@@ -217,13 +217,13 @@
 
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
 
-            makeDynamicForm("D", "TargetTabs288", true, "TabPaneTargetTabs288");
-
-            makeDynamicForm("E", "TargetTabs289", true, "TabPaneTargetTabs289");
-
             makeDynamicForm("B", "TargetTabs290", true, "TabPaneTargetTabs290");
 
             makeDynamicForm("C", "TargetTabs291", true, "TabPaneTargetTabs291");
+
+            makeDynamicForm("D", "TargetTabs288", true, "TabPaneTargetTabs288");
+
+            makeDynamicForm("E", "TargetTabs289", true, "TabPaneTargetTabs289");
 
             makeDynamicForm("F", "TargetTabs292", true, "TabPaneTargetTabs292");
 

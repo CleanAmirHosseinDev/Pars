@@ -116,22 +116,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormReportChec
                         Ado_NetOperation.SqlUpdate(nameof(DataFormReportCheck), new Dictionary<string, object>()
                             {
                                 {
-                                    nameof(q_Entity.Entity.AnswerBeforEdit),request.AnswerBeforEdit
-                                },
-                                {
-                                    nameof(q_Entity.Entity.AnswerAfterEdit),request.AnswerAfterEdit
-                                },
-                                {
                                     nameof(q_Entity.Entity.Document),request.Document
                                 },
                                 {
                                     nameof(q_Entity.Entity.SuperVisorDescription),request.SuperVisorDescription
-                                },
-                                {
-                                    nameof(q_Entity.Entity.CostumerDescriptionBeforEdit),request.CostumerDescriptionBeforEdit
-                                },
-                                {
-                                    nameof(q_Entity.Entity.CostumerDescriptionAfterEdit),request.CostumerDescriptionAfterEdit
                                 },
                             }, nameof(request.DocumentId) + " = " + request.DocumentId + " AND " + nameof(request.RequestId) + $" = {request.RequestId}");
                     }

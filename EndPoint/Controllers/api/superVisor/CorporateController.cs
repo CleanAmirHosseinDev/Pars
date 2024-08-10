@@ -22,6 +22,21 @@ namespace EndPoint.Controllers.api.superVisor
             _logger = logger;
             _userFacad = userFacad;
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<DataFormReportDto>>> Get_DataFormReports([FromBody] RequestDataFormReportDto request)
+        {
+            try
+            {
+                return await _userFacad.GetDataFormReportsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<DataFormDocumentsDto>>> Get_DataFormDocuments([FromBody] RequestDataFormDocumentsDto request)

@@ -17,38 +17,51 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
     {
 
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;        
+        private readonly IMapper _mapper;
         public GetDataFromAnswerssService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
         }
 
         public async Task<ResultDto<IEnumerable<DataFromAnswersDto>>> Execute(RequestDataFromAnswersDto request)
         {
             try
             {
-
                 var lists = (from s in _context.DataFromAnswers
                              where (s.FormId == request.FormId || request.FormId == null) &&
                              (s.RequestId == request.RequestId || request.RequestId == null)
                              select s);
-                if(request.DataFormQuestionId == null && request.FormId == null)
+                // Return Back All Question Except Document
+                if (request.DataFormQuestionId == null && request.FormId == null &&
+                    request.DataFormDocumentId == null && request.RequestId != null && request.IsActive == 15)
+                {
                     lists = (from s in _context.DataFromAnswers
-                        where (s.FormId == 0 && s.RequestId == request.RequestId && s.DataFormQuestionId == 0)
+                             where s.DataFormDocumentId == null && s.RequestId == request.RequestId
                              select s);
+                }
+                // Return Back All Document
+                else if (request.DataFormQuestionId == null && request.FormId == null)
+                {
+                    lists = (from s in _context.DataFromAnswers
+                             where (s.FormId == 0 && s.RequestId == request.RequestId && s.DataFormQuestionId == 0)
+                             select s);
+                }
 
+                // Filter By Search Query
                 if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.Answer.Contains(request.Search) || p.Description.Contains(request.Search));
 
+
+                // Return Back List Of Document
                 if (request.PageIndex == 0 && request.PageSize == 0 && request.FormId == 0 &&
                     request.DataFormQuestionId == 0)
                 {
                     lists = (from s in _context.DataFromAnswers
-                        where (s.FormId == 0) &&
-                        (s.RequestId == request.RequestId) &&
-                        (s.DataFormDocumentId != null) &&
-                        (s.DataFormQuestionId == 0) && (s.IsActive == 15)
-                        select s);
+                             where (s.FormId == 0) &&
+                             (s.RequestId == request.RequestId) &&
+                             (s.DataFormDocumentId != null) &&
+                             (s.DataFormQuestionId == 0) && (s.IsActive == 15)
+                             select s);
                 }
 
                 switch (request.SortOrder)
@@ -66,7 +79,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
 
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
-
                     var res_Lists = await lists.ToListAsync();
 
                     return new ResultDto<IEnumerable<DataFromAnswersDto>>
@@ -76,11 +88,9 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFromAnswerss
                         Message = string.Empty,
                         Rows = res_Lists.LongCount(),
                     };
-
                 }
                 else
                 {
-
                     var list_Res_Pageing = await Pagination<Domain.Entities.DataFromAnswers>.CreateAsync(lists.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<DataFromAnswersDto>>

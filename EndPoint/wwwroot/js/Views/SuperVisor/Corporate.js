@@ -112,7 +112,7 @@
     function initCorporate(id = null, makeQuestionForm = true) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
-        getCustomerInfo(id, dir = 'rtl');
+        //getCustomerInfo(id, dir = 'rtl');
 
         AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings",
             JSON.stringify({ PageIndex: 1, PageSize: 1, RequestId: id, KindOfRequest: 254 }), false,
@@ -628,7 +628,7 @@
     ) {
         try {
             const p = $($(el).parent().parent().parent());
-            confirmB("", "آیا از بازگرداند به مشتری مطمئن هستید توجه کنید امکان بازگشت وجود ندارد", 'error', function () {
+            confirmB("", "آیا از بازگرداندن سوال به مشتری مطمئن هستید؟", 'error', function () {
                 let SuperVisorDescription = $('#descriptoin_' + DataReportId).val();
                 AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFormReportCheck", JSON.stringify({
                     QuestionId: QuestionId,
@@ -663,7 +663,7 @@
     ) {
         try {
             const p = $($(el).parent().parent());
-            confirmB("", "آیا از بازگرداند به مشتری مطمئن هستید توجه کنید امکان بازگشت وجود ندارد", 'error', function () {
+            confirmB("", "آیا از بازگرداندن به مشتری مطمئن هستید؟", 'error', function () {
                 let SuperVisorDescription = $('#descriptoinDoc_' + DataReportId).val();
                 AjaxCallAction("POST", "/api/superVisor/Corporate/Save_DataFormReportCheck", JSON.stringify({
                     QuestionId: QuestionId,
@@ -694,6 +694,26 @@
     }
 
 
+    function initCorporateScore(id) {
+        let sum_score = 0;
+        let all_score = 0;
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReports", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            RequestId: id
+        }), false, function (res) {
+            if (res.isSuccess) {
+                console.log(res)
+                for (let i = 0; i < res.data.length; i++) {
+                    sum_score += res.data[i].analizeScore;
+                    all_score += res.data[i].systemScore;
+                }
+            }
+        }, true);
+        $("#msform").html('<p>نمره نهایی شما برابر است با ' + sum_score + ' از ' + all_score + ' نمره</p><br/>')
+    }
+
     web.CorporateSuperVisor = {
         IntiForm: intiForm,
         InitCorporate: initCorporate,
@@ -704,7 +724,7 @@
         Save_AnswersAnalize: save_AnswersAnalize,
         ReturnToCustomer: returnToCustomer,
         ReturnToCustomerDoc: returnToCustomerDoc,
-
+        InitCorporateScore: initCorporateScore,
     };
 
 })(Web, jQuery);

@@ -1,4 +1,6 @@
-﻿function checkAllDocUpload(el) {
+﻿const { cache } = require("npm");
+
+function checkAllDocUpload(el) {
     let count_of_requierd_doc = 0;
     let count_of_requierd_doc_answerd = 0;
     AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({
@@ -189,7 +191,7 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initCustomer();
-        
+
         makeTabProgresDynamic();
         if (makeQuestionForm) {
 
@@ -280,7 +282,7 @@
 
                     list_li_data = res.data.filter((arr, index, self) =>
                         index === self.findIndex((t) => (t.formCode === arr.formCode && t.formCode != "")))
-                    
+
                     for (let i = 0; i < list_li_data.length; i++) {
                         let dataForm = "";
                         let question = "";
@@ -656,20 +658,20 @@
                     break;
                 case 289:
                     _str289 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
-                    break;                                                           
-                case 290:                                                            
+                    break;
+                case 290:
                     _str290 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
-                    break;                                                           
-                case 291:                                                            
+                    break;
+                case 291:
                     _str291 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
-                    break;                                                           
-                case 292:                                                            
+                    break;
+                case 292:
                     _str292 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
-                    break;                                                           
-                case 293:                                                            
+                    break;
+                case 293:
                     _str293 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
-                    break;                                                           
-                case 294:                                                            
+                    break;
+                case 294:
                     _str294 += makeFileInput(title, formId, helpText, ID, description, isRequierd);
                     break;
                 default:
@@ -745,7 +747,7 @@
         }
     }
 
-    function makeFileInput(inputTitle, inputName, helpText, RequestId, analaizeDescription = "", isRequierd=true) {
+    function makeFileInput(inputTitle, inputName, helpText, RequestId, analaizeDescription = "", isRequierd = true) {
         let _str = "<form id='frmDoc" + inputName + "'>";
         _str += "<div class='form-group'><div class='col-md-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
         if (!isEmpty(helpText))
@@ -867,7 +869,12 @@
                 let answer = decodeURIComponent(SingleQuestion[0].split("=")[1]);
                 let description = decodeURIComponent(SingleQuestion[1].split("=")[1]);
                 if (!isEmpty(answer) && answer != "0") {
-                    saveSingelAnswerForm(formId, answer, description, question_id);
+                    try {
+                        saveSingelAnswerForm(formId, answer, description, question_id);
+                    }
+                    cache{
+                        alertB("خطا", "ابتدا به همه سوالات این صفحه پاسخ داده سپس اقدام به ذخیره سازی فرم نمایید", "error", "بله متوجه شدم", function () { });
+                    }
                 }
             }
         } catch (e) {
@@ -880,7 +887,7 @@
     function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
         var requestId = $("#RequestId").val();
         var dataFormQuestionScore = 0;
-       
+
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers",
             JSON.stringify({
                 Answer: answer,
@@ -925,19 +932,19 @@
                                 }
                             }, false);
                     }
-                 
+
                     alertB("ثبت", res.message, "success");
                 } else {
-                   
+
                     alertB("خطا", res.message, "error");
                 }
-        }, true);
-      
+            }, true);
+
     }
 
 
 
-    function initReferral(id = null, is_check=true) {
+    function initReferral(id = null, is_check = true) {
         AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
             if (res.isSuccess) {
 

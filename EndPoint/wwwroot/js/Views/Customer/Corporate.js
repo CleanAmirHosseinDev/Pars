@@ -625,6 +625,7 @@ function checkAllDocUpload(el) {
             PageIndex: 0,
             PageSize: 0,
             IsActive: 15,
+            SortOrder: "DataFormDocumentId_A",
         }), false, function (res) {
             if (res.isSuccess) {
                 DataFormDocumentList = res.data;

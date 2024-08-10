@@ -65,6 +65,7 @@
     var userAccessSaveForm = true
     var DataFormList = "";
     var LoadedDataFromDb = "";
+    var LoadedDataFromDbDocument = "";
     var progresDynamicBar = [];
     var VersionQuestion = null; // تعیین ورژن سوالات
     //Document Ready
@@ -196,7 +197,7 @@
                 JSON.stringify({ PageIndex: 1, PageSize: 1, RequestId: id, KindOfRequest: 254 }), false,
                 function (res) {
                     if (res.isSuccess)
-                        userAccessSaveForm = (res.data[0].destLevelStepIndex < 105) && (res.data[0].destLevelStepAccessRole == 10)
+                        userAccessSaveForm = (res.data[0].destLevelStepIndex <= 105) && (res.data[0].destLevelStepAccessRole == 10)
                 }, false);
 
             makeDynamicForm("A", "TargetTabs287", true, "TabPaneTargetTabs287");
@@ -710,7 +711,7 @@
             $("#FormDocumentDocument294").append(_str294);
         }
 
-        if (isEmpty(LoadedDataFromDb))
+        if (isEmpty(LoadedDataFromDbDocument))
             AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswersDocuments", JSON.stringify({
                 PageIndex: 0,
                 PageSize: 0,
@@ -719,13 +720,13 @@
                 DataFormQuestionId: null,
             }), false, function (res) {
                 if (res.isSuccess) {
-                    LoadedDataFromDb = res.data;
+                    LoadedDataFromDbDocument = res.data;
                 }
             }, true);
-        for (let i = 0; i < LoadedDataFromDb.length; i++) {
+        for (let i = 0; i < LoadedDataFromDbDocument.length; i++) {
             try {
-                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
-                $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css("display", "inline-block");
+                $("#Download_" + LoadedDataFromDbDocument[i].dataFormDocumentId).prop("href", LoadedDataFromDbDocument[i].fileName1Full);
+                $("#Download_" + LoadedDataFromDbDocument[i].dataFormDocumentId).css("display", "inline-block");
             } catch { }
         }
     }
@@ -740,10 +741,10 @@
         _str += "</label><input type='file' name='Result_Final_FileName1' accept='image/*,.pdf,.xlsx,' id='Inp" + inputName + "'";
         _str += "onchange=\"checkUploadWithFileSiza(this, '" + inputTitle + "' , 5);\">";
         if (userAccessSaveForm) {
-            _str += '<input type="submit" value="ذخیره سازی ' + inputTitle + '" class="btn btn-success" ';
+            _str += '<input type="submit" value="ذخیره فایل" class="btn btn-success" ';
             _str += "onclick=\"return Web.Corporate.Save_AnswersUpload(this, 'frmDoc" + inputName + "')\">";
         }
-        _str += "<a class='btn btn-success' style='margin-right: 10px;display:none;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
+        _str += "<a class='btn btn-primary' style='margin-right: 10px;display:none;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         if (analaizeDescription != "") {
             _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a><br/><p style='color:blue;'> توضیحات کارشناس : " + analaizeDescription + "</p></div></div>";
         } else {
@@ -843,6 +844,7 @@
         let formId = SerializerForm[0].split("=")[1];
         let ListOfAnswers = SerializerForm.slice(2, SerializerForm.length);
         let counter = ListOfAnswers.length;
+        showWait();
         try {
             for (let i = 0; i < counter && counter % 2 == 0; i += 2) {
                 let SingleQuestion = ListOfAnswers.slice(0, 2);
@@ -854,13 +856,17 @@
                     saveSingelAnswerForm(formId, answer, description, question_id);
                 }
             }
-        } catch (e) { }
+        } catch (e) {
+        }
+        finally {
+            hideWait();
+        }
     }
 
     function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
         var requestId = $("#RequestId").val();
         var dataFormQuestionScore = 0;
-        showWait();
+       
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers",
             JSON.stringify({
                 Answer: answer,
@@ -905,14 +911,14 @@
                                 }
                             }, false);
                     }
-                    hideWait();
+                 
                     alertB("ثبت", res.message, "success");
                 } else {
-                    hideWait();
+                   
                     alertB("خطا", res.message, "error");
                 }
         }, true);
-        hideWait();
+      
     }
 
     function initReferral(id = null, is_check=true) {

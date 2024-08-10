@@ -15,7 +15,8 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             }
 
             strM += "<tr><td>" + (i + 1) + "</td><td>"
-                + res.data[i].requestNo + "</td><td>"
+                + res.data[i].requestNo + "</td><td>" 
+                + res.data[i].kindOfRequestName + "</td><td>"
                 + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
                 + res.data[i].nationalCode + "</td><td>"
 
@@ -61,7 +62,13 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
                 strM += "<a style='margin-right:5px;color:black' title='نمایج امتیازها' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
             }
             //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
-            strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+            else if (res.data[i].kindOfRequest == "254" && res.data[i].destLevelStepIndex >= 102 ) {
+
+                strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+            } else if((res.data[i].kindOfRequest == "66" ) && (res.data[i].destLevelStepIndex >= 4)) {
+                strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+
+            }
             //  }
             strM += "</td></tr>";
             //if (res.data[i].levelStepIndex >= 7) {
@@ -977,7 +984,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (!res.isSuccess && ($(objE).attr("data-LSSII") != "2" && $(objE).attr("data-LSSII") != "46")) {
+                if (!res.isSuccess && ($(objE).attr("data-LSSII") != "2" && $(objE).attr("data-LSSII") == "4" && $(objE).attr("data-LSSII") == "34")) {
                     alertB("خطا", " کاربر گرامی شما قرارداد را تایید نکرده اید", "error");
                 } else {
                     $(".ButtonOpperationLSSlss").attr("disabled", "");

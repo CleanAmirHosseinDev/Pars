@@ -872,7 +872,7 @@ function checkAllDocUpload(el) {
                     try {
                         saveSingelAnswerForm(formId, answer, description, question_id);
                     }
-                    catch (){
+                    catch (e) {
                         alertB("خطا", "ابتدا به همه سوالات این صفحه پاسخ داده سپس اقدام به ذخیره سازی فرم نمایید", "error", "بله متوجه شدم", function () { });
                     }
                 }

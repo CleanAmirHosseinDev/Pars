@@ -52,7 +52,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             //if ((n == res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole == "5") || (n == "5" && res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7")) {
             //    strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
             //}
-            if ((n == 8 || n == 1 || n == 5 || n == 4 || n == 9) && Number(res.data[i].levelStepSettingIndexID) >= 12 && res.data[i].kindOfRequest=="66") {
+            if ((n == 8 || n == 1 || n == 5 || n == 4 || n == 9) && Number(res.data[i].levelStepSettingIndexID) >= 12 && Number(res.data[i].levelStepSettingIndexID) != 31 && Number(res.data[i].levelStepSettingIndexID) != 29 && res.data[i].kindOfRequest=="66") {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
             if ((n == 12 || n == 11 ) && Number(res.data[i].destLevelStepIndex) >= 104 && res.data[i].kindOfRequest == "254") {
@@ -979,7 +979,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
             AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
 
-                if (!res.isSuccess && ($(objE).attr("data-LSSII") != "2" && $(objE).attr("data-LSSII") == "4" && $(objE).attr("data-LSSII") == "34")) {
+                if (!res.isSuccess && ($(objE).attr("data-LSSII") != "2" && (($(objE).attr("data-LSSII") == "4" || $(objE).attr("data-LSSII") == "34")))) {
                     alertB("خطا", " کاربر گرامی شما قرارداد را تایید نکرده اید", "error");
                 } else {
                     $(".ButtonOpperationLSSlss").attr("disabled", "");

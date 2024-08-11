@@ -1,6 +1,4 @@
-﻿const { cache } = require("npm");
-
-function checkAllDocUpload(el) {
+﻿function checkAllDocUpload(el) {
     let count_of_requierd_doc = 0;
     let count_of_requierd_doc_answerd = 0;
     AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({

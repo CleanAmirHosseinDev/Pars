@@ -62,7 +62,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             else if (res.data[i].kindOfRequest == "254" && res.data[i].destLevelStepIndex >= 102 ) {
 
                 strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
-            } else if((res.data[i].kindOfRequest == "66" ) && (res.data[i].destLevelStepIndex >= 4)) {
+            } else if ((res.data[i].kindOfRequest == "66") && (res.data[i].levelStepSettingIndexID >= 4)) {
                 strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
 
             }

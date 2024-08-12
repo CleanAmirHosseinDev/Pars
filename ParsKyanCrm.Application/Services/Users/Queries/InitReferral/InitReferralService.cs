@@ -176,7 +176,7 @@ order by cte.ChangeDate desc
 
                 }
 
-                var qLSI = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + q.Data.FirstOrDefault().DestLevelStepIndex + " and KindOfRequest =  " + q.Data.FirstOrDefault().KindOfRequest);
+                var qLSI = await DapperOperation.Run<LevelStepSettingDto>(@$"select * from {typeof(LevelStepSetting).Name} where LevelStepIndex = " + q.Data.FirstOrDefault().DestLevelStepIndex + " and KindOfRequest =  " + q.Data.FirstOrDefault().KindOfRequest + " order by LevelStepSettingIndexID");
                 foreach (var item in qLSI)
                 {
 

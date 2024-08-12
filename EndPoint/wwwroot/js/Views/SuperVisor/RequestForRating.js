@@ -55,7 +55,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             if ((n == 8 || n == 1 || n == 5 || n == 4 || n == 9) && Number(res.data[i].levelStepSettingIndexID) >= 12 && Number(res.data[i].levelStepSettingIndexID) != 31 && Number(res.data[i].levelStepSettingIndexID) != 29 && res.data[i].kindOfRequest=="66") {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
-            if ((n == 12 || n == 11 ) && Number(res.data[i].destLevelStepIndex) >= 104 && res.data[i].kindOfRequest == "254") {
+            if ((n == 12 || n == 11) && Number(res.data[i].levelStepSettingIndexID) > 39 && res.data[i].kindOfRequest == "254") {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده پرسشنامه' class='btn btn-default fontForAllPage' href='/SuperVisor/corporate/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
             //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {
@@ -381,9 +381,13 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
                         $("#svisorShowDocument").remove();
                     }
-                    if (!(getlstor("loginName") === "5" || getlstor("loginName") === "12" ||getlstor("loginName") === "8" || getlstor("loginName") === "6" || (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8))
+                    if (!(getlstor("loginName") === "5"  ||getlstor("loginName") === "8" || getlstor("loginName") === "6" || (getlstor("loginName") === "1" && res.data[0].levelStepIndex >= 8))
                        ) {
                         $("#svisorShowEvaluationFile").remove();
+                    }
+                    if (!((getlstor("loginName") === "12" || getlstor("loginName") === "11") && res.data[0].levelStepSettingIndexId <= 39))
+                    {
+                    $("#svisorShowScore").remove();
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {

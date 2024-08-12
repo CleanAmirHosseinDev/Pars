@@ -1,64 +1,79 @@
 ﻿function checkAllDocUpload(el) {
-    let count_of_requierd_doc = 0;
-    let count_of_requierd_doc_answerd = 0;
-    AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({
-        PageIndex: 0,
-        PageSize: 0,
-        IsActive: 15,
-        IsRequierd: true
-    }), false, function (res) {
-        if (res.isSuccess) {
-            count_of_requierd_doc = res.data.length;
+    let errorCounter = 0
+    document.querySelectorAll("#document_save_pane label span").forEach(function (it) {
+        let inputElement = it.parentNode.parentNode.querySelector("input");
+        let downloadBtn = it.parentNode.parentNode.querySelector("a");
+        if (inputElement.files.length == 0 && downloadBtn.href == "") {
+            it.style.fontSize = "15px";
+            it.innerHTML = "این مورد ضرروری است!";
+            errorCounter += 1;
+        } else {
+            it.style.fontSize = "25px";
+            it.innerHTML = "*";
         }
-    }, false);
+    })
+    if (errorCounter == 0) {
+        let count_of_requierd_doc = 0;
+        let count_of_requierd_doc_answerd = 0;
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormDocuments", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            IsRequierd: true
+        }), false, function (res) {
+            if (res.isSuccess) {
+                count_of_requierd_doc = res.data.length;
+            }
+        }, false);
 
-    AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
-        PageIndex: 0,
-        PageSize: 0,
-        IsActive: 15,
-        FormId: 0,
-        RequestId: $("#RequestIdForms").val(),
-        DataFormQuestionId: 0,
-    }), false, function (res) {
-        if (res.isSuccess) {
-            count_of_requierd_doc_answerd = res.data.length;
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFromAnswerss", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            FormId: 0,
+            RequestId: $("#RequestIdForms").val(),
+            DataFormQuestionId: 0,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                count_of_requierd_doc_answerd = res.data.length;
+            }
+        }, false);
+
+        if (count_of_requierd_doc <= count_of_requierd_doc_answerd) {
+            current_fs = $(el).parent();
+            next_fs = $(el).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0,
+            }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        display: "none",
+                        position: "relative",
+                    });
+                    next_fs.css({
+                        opacity: opacity,
+                    });
+                },
+                duration: 600,
+            });
+            return true;
         }
-    }, false);
-
-    if (count_of_requierd_doc == count_of_requierd_doc_answerd) {
-        current_fs = $(el).parent();
-        next_fs = $(el).parent().next();
-
-        //Add Class Active
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-        //show the next fieldset
-        next_fs.show();
-        //hide the current fieldset with style
-        current_fs.animate({
-            opacity: 0,
-        }, {
-            step: function (now) {
-                // for making fielset appear animation
-                opacity = 1 - now;
-
-                current_fs.css({
-                    display: "none",
-                    position: "relative",
-                });
-                next_fs.css({
-                    opacity: opacity,
-                });
-            },
-            duration: 600,
-        });
-        return true;
-    }
-    else {
-        alertB("خطا", "فایل هایی که در کنار آنها علامت * می باشد اجباری هستند توجه نمایید بعد از اپلود فایل باید بر روی ذخیره کلیک نمایید تا اپلود شود", "error", "بله متوجه شدم", function () { });
+        else {
+            alertB("خطا", "فایل هایی که در کنار آنها علامت * می باشد اجباری هستند توجه نمایید بعد از اپلود فایل باید بر روی ذخیره کلیک نمایید تا اپلود شود", "error", "بله متوجه شدم", function () { });
+            return false;
+        }
         return false;
     }
-    return false;
 }
 
 (function (web, $) {
@@ -205,8 +220,8 @@
                 let strmsg = "<div class='swal-overlay swal-overlay--show-modal' tabindex='-1' id='message_startsub'>" +
                     "<div class='swal-modal' role='dialog' aria-modal='true' style='width: 1000px!important;'>" +
                     "<div class='swal-text' style=''>" +
-                    "مشتری گرامی<br>با سلام و احترام<br>پیش از تکمیل و ثبت نهایی پرسشنامه ارزیابی حاکمیت شرکتی لطفا موارد ذیل دقت نمایید :<br>1 - جهت ارزیابی" + "پرسش های ثبت شده ، بارگذاری مدارک و مستندات طبق فیلدهای طراحی شده در بخش 'بارگذاری مدارک' الزامی است، لذا خواهشمند است نسبت به ارسال مدارک درخواستی بصورت خوانا و دقیق دقت فرمایید<br>2 - فرمت فایلهای قابل قبول جهت ارسال در بخش 'بارگذاری مدارک' ، PDF, Excel, image است.<br>3 - لطفا پس از پاسخ دادن به سوالات هر فرم ، دکمه 'ذخیره سازی' در آن فرم را کلیک کرده و سپس جهت پاسخ دهی به فرم بعدی بروید.<br>4 - با توجه به اینکه سوالات بصورت بلی / خیر طراحی شده است، در صورت عدم امکان پاسخ دهی دقیق به هر سوال، ضمن ارائه توضیحات کد در بخش 'توضیحات' پاسخ خود را از بین دو گزینه موجود انتخاب نمایید<br>5 - توجه کنید در صورت مغایرت پاسخ های ارسالی با مدارک بارگذاری شده، ضمن عدم تعلق نمره مربوطه ، آن سوال مجددا جهت اصلاح پاسخ یا باگذاری مدارک مربوطه بازگشت داده میشود.لذا خواهشمند است جهت تسریع در امر ارزیابی، با دقت نسبت به پاسخ دهی به سوالات و بارگذاری مدارک اقدام نمایید.<br>6 - در صورت بازگشت مجدد سوالات، جهت اصلاح ، به توضیحات کارشناس ارزیابی حاکمیت شرکتی توجه فرمایید و در صورت وجود هر گونه ابهام با شماره پشتیبانی کارشناس حاکمیت شرکتی تماس حاصل فرمایید.<br>" +
-                    " 7 - بارگذاری مدارک ستاره دار برای انجام ارزیابی، الزامی است.در صورت در دسترس نبودن مدرک مذکور یا عدم موضوعیت سوال مربوطه برای آن شرکت، لطفا پیام، 'مدرک درخواستی در دسترس نیست' یا 'عدم موضوعیت سوال' را در قالب یک فایل PDF برای مدارکی که ارسال آنها الزامی است، بارگذاری کنید.بدیهی است که در این صورت، امتیازی برای این سوال به شرکتی تعلق نمی گیرد.<br>" +
+                    "مشتری گرامی<br>با سلام و احترام<br>پیش از تکمیل و ثبت نهایی پرسشنامه ارزیابی حاکمیت شرکتی لطفا موارد ذیل دقت نمایید :<br>1 - جهت ارزیابی " + "پرسش های ثبت شده ، بارگذاری مدارک و مستندات طبق فیلدهای طراحی شده در بخش 'بارگذاری مدارک' الزامی است، لذا خواهشمند است نسبت به ارسال مدارک درخواستی بصورت خوانا و دقیق دقت فرمایید.<br>2 - فرمت فایلهای قابل قبول جهت ارسال در بخش 'بارگذاری مدارک' ، PDF, Excel, image است.<br>3 - لطفا پس از پاسخ دادن به سوالات هر فرم، دکمه 'ذخیره سازی' در آن فرم را کلیک کرده و سپس جهت پاسخ دهی به فرم بعدی بروید.<br>4 - با توجه به اینکه سوالات بصورت بلی / خیر طراحی شده است، در صورت عدم امکان پاسخ دهی دقیق به هر سوال، ضمن ارائه توضیحات کد در بخش 'توضیحات' پاسخ خود را از بین دو گزینه موجود انتخاب نمایید.<br>5 - توجه کنید در صورت مغایرت پاسخ های ارسالی با مدارک بارگذاری شده، ضمن عدم تعلق نمره مربوطه، آن سوال مجددا جهت اصلاح پاسخ یا باگذاری مدارک مربوطه بازگشت داده میشود. لذا خواهشمند است جهت تسریع در امر ارزیابی، با دقت نسبت به پاسخ دهی به سوالات و بارگذاری مدارک اقدام نمایید.<br>6 - در صورت بازگشت مجدد سوالات، جهت اصلاح، به توضیحات کارشناس ارزیابی حاکمیت شرکتی توجه فرمایید و در صورت وجود هر گونه ابهام با شماره پشتیبانی کارشناس حاکمیت شرکتی تماس حاصل فرمایید.<br> " +
+                    " 7 - بارگذاری مدارک ستاره دار برای انجام ارزیابی، الزامی است. در صورت در دسترس نبودن مدرک مذکور یا عدم موضوعیت سوال مربوطه برای آن شرکت، لطفا پیام، 'مدرک درخواستی در دسترس نیست' یا 'عدم موضوعیت سوال' را در قالب یک فایل PDF برای مدارکی که ارسال آنها الزامی است، بارگذاری کنید. بدیهی است که در این صورت، امتیازی برای این سوال به شرکتی تعلق نمی گیرد.<br>" +
                     " </div> <div class='swal-footer'>" +
                     " <div class='swal-button-container'>" +
                     " <button onclick=\"$('#message_startsub').remove()\" class='swal-button swal-button--confirm'>بله متوجه شدم</button><div class='swal-button__loader'><div></div><div></div><div></div></div>" +
@@ -502,7 +517,7 @@
                 strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.dataFormQuestionId + "' value='No' />";
             }
             strFormId += "</div><div class='col-md-8'>";
-            strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />";
+            strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.dataFormQuestionId + "' onfocus='select();' type='text' value='' />";
             strFormId += "</div><div class='col-md-8'>";
             strFormId += "<p style='color: blue;'>توضیح کارشناس : " + analizeDescription + "</p>";
             strFormId += "</div ></div ></div ></div >";
@@ -522,8 +537,8 @@
                     strFormId += "<label class='control-label'>خیر</label><input type='radio' required name='Q_" + res.data[i].dataFormQuestionId + "' value='No' />";
                 }
                 strFormId += "</div><div class='col-md-8'>";
-                strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' onfocus='select();' type='text' value='توضیحات را وارد کنید...' />";
-                strFormId += "</div ></div ></div ></div >";
+                strFormId += "<input placeholder='توضیحات' class='form-control' name='Description_Q" + res.data[i].dataFormQuestionId + "' onfocus='select();' type='text' value='' />";
+                strFormId += "</div ></div ></div ></div >"
             }
             strFormId += "</div>";
         }
@@ -855,38 +870,38 @@
     }
 
     function saveSerializedForm(FormId) {
-        let SerializerForm = $("#frmFrom" + FormId).serialize().split("&");
-        let formId = SerializerForm[0].split("=")[1];
-        let ListOfAnswers = SerializerForm.slice(2, SerializerForm.length);
-        let counter = ListOfAnswers.length;
         showWait();
-        try {
+        let SerializerForm = $("#frmFrom" + FormId).serializeArray();
+        let formId = SerializerForm[0]["value"];
+        let SerializerAnswers = SerializerForm.slice(2, SerializerForm.length);
+        let list_of_answer = SerializerAnswers.filter(s => s.name.startsWith("Q_"))
+        let list_of_description = SerializerAnswers.filter(s => s.name.startsWith("Description_"))
+        let counter = SerializerAnswers.length;
+
+        if (list_of_answer.length == list_of_description.length) {
             for (let i = 0; i < counter && counter % 2 == 0; i += 2) {
-                let SingleQuestion = ListOfAnswers.slice(0, 2);
-                ListOfAnswers = ListOfAnswers.slice(2, ListOfAnswers.length);
-                let question_id = SingleQuestion[0].split("_")[1].split("=")[0];
-                let answer = decodeURIComponent(SingleQuestion[0].split("=")[1]);
-                let description = decodeURIComponent(SingleQuestion[1].split("=")[1]);
+                let SingleQuestion = SerializerAnswers.slice(0, 2);
+                let question_id = SingleQuestion[0]["name"].split("_")[1];
+                let answer = SingleQuestion[0]["value"];
+                let description = SingleQuestion[1]["value"];
+
+                SerializerAnswers = SerializerAnswers.slice(2, SerializerAnswers.length);
+
                 if (!isEmpty(answer) && answer != "0") {
-                    try {
-                        saveSingelAnswerForm(formId, answer, description, question_id);
-                    }
-                    catch (e) {
-                        alertB("خطا", "ابتدا به همه سوالات این صفحه پاسخ داده سپس اقدام به ذخیره سازی فرم نمایید", "error", "بله متوجه شدم", function () { });
-                    }
+                    saveSingelAnswerForm(formId, answer, description, question_id);
                 }
             }
-        } catch (e) {
         }
-        finally {
-            hideWait();
+        else {
+            alertB("خطا", "ابتدا به همه سوالات این صفحه پاسخ داده سپس اقدام به ذخیره سازی فرم نمایید", "error", "بله متوجه شدم", function () { });
         }
+        hideWait();
     }
 
     function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
         var requestId = $("#RequestId").val();
         var dataFormQuestionScore = 0;
-
+        
         AjaxCallAction("POST", "/api/customer/Corporate/Save_DataFromAnswers",
             JSON.stringify({
                 Answer: answer,
@@ -934,13 +949,11 @@
 
                     alertB("ثبت", res.message, "success");
                 } else {
-
                     alertB("خطا", res.message, "error");
                 }
-            }, true);
-
+        }, true);
+        
     }
-
 
 
     function initReferral(id = null, is_check = true) {

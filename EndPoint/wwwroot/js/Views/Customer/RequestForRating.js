@@ -66,11 +66,11 @@
                             strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + "," + res.data[i].kindOfRequest + ");'>ارسال مجدد </button >";
 
                         }
-                        if (res.data[i].destLevelStepIndex == 105 || (res.data[i].levelStepSettingIndexID >= 45 && res.data[i].levelStepSettingIndexID != 47)) {
+                        if (res.data[i].destLevelStepIndex == 105 || (res.data[i].levelStepSettingIndexID >= 40)) {
                             //   strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
                             strM += "<a style='margin-right:5px;color:black' title='پرسشنامه' class='btn btn-success fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i>پرسشنامه</a>";
 
-                        } else if ((res.data[i].levelStepSettingIndexID == 47  ) ) {
+                        } else if ((res.data[i].levelStepSettingIndexID == 42  ) ) {
                             strM += "<a style='margin-right:5px;color:black' title='بررسی پرسشنامه' class='btn btn-default fontForAllPage' href='/Customer/Corporate/ReturnBackQuestion/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
 
                         }
@@ -954,7 +954,7 @@
             objJ.SmsType = null;
             objJ.DestLevelStepIndexButton = "در انتظار بررسی مشخصات اولیه مشتری توسط کارشناس امور قراردادها";
             objJ.ReciveUser = "146";// $("#sdklsslks3498sjdkxhjsd_823sdel").val();
-            objJ.LevelStepSettingIndexID = "100";
+            objJ.LevelStepSettingIndexID = "33";
 
         }
 

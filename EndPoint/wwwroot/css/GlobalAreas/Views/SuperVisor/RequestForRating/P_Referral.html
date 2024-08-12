@@ -32,7 +32,7 @@
                         <li class="" id="svisorShowContract"><a onclick="Web.RequestForRating.ShowContract()" href="#timeline_1" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
                         <li class="" id="svisorShowDocument"><a onclick="Web.RequestForRating.ShowDocument()" href="#timeline_2" data-toggle="tab" aria-expanded="false">  قرارداد و اسناد مشتری</a></li>
                         <li class="" id="svisorShowEvaluationFile"><a onclick="Web.RequestForRating.ShowEvaluationFile()" href="#timeline_3" data-toggle="tab" aria-expanded="false"> نتایج ارزیابی</a></li>
-
+                        <li class="" id="svisorShowScore"><a onclick="Web.RequestForRating.ShowScore()" href="#timeline_4" data-toggle="tab" aria-expanded="false">  فایل امتیاز</a></li>
                         <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="true">ارجاع</a></li>
                     </ul>
                     <div class="tab-content">
@@ -62,6 +62,11 @@
 
                         </div>
                         <!-- /.tab-pane -->
+                        <div class="tab-pane" id="timeline_4">
+                            <div id="showScore"></div>
+
+                        </div>
+                        <!-- /.tab-pane -->
                         <div class="tab-pane " id="timeline">
 
                             <div class="form-group">
@@ -71,7 +76,7 @@
 
                             <div id="bLLSS"></div>
                             <input type='hidden' id='hidSeSIRR' value='' />
-                            
+
 
                         </div>
                     </div>

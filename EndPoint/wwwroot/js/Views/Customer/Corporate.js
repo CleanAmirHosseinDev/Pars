@@ -12,6 +12,20 @@
             it.innerHTML = "*";
         }
     })
+
+    document.querySelectorAll("#document_save_pane label span").forEach(function (it) {
+        try {
+            if (it.innerHTML == "این مورد ضرروری است!") {
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: $(it).offset().top - 200
+                }, 2000);
+                throw Exception;
+            }
+        } catch (e) {
+            if (e !== Exception) throw e;
+        }
+    })
+
     if (errorCounter == 0) {
         let count_of_requierd_doc = 0;
         let count_of_requierd_doc_answerd = 0;

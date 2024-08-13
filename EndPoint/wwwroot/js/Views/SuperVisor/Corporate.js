@@ -7,6 +7,11 @@
     var DataFormList = "";
     var progresDynamicBar = []
     var userAccessSaveForm = true
+    var questionsReturnCustomer = null;
+    var _DataAnswer;
+    var _DataAllQuestion;
+    var _DataAllReport;
+    var QuestionVersion = null;
     //Document Ready
 
     function makeLiProgresBar(progresDynamicBar) {
@@ -112,15 +117,51 @@
     function initCorporate(id = null, makeQuestionForm = true) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
-        //getCustomerInfo(id, dir = 'rtl');
 
-        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings",
-            JSON.stringify({ PageIndex: 1, PageSize: 1, RequestId: id, KindOfRequest: 254 }), false,
-            function (res) {
-                if (res.isSuccess)
-                    userAccessSaveForm = (res.data[0].destLevelStepIndex < 105) && (res.data[0].destLevelStepAccessRole == 12)
-            }, false);
+        // دریافت همه زیر دسته های اصلی
+        if (isEmpty(DataFormList))
+            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2, SortOrder: "FormCode_A", }), false, function (res) {
+                if (res.isSuccess) {
+                    DataFormList = res.data;
+                }
+            }, true);
 
+        // دربافت همه سوالات ثبت شده در دیتا بیس
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormQuestionss", JSON.stringify({
+            PageIndex: 0, PageSize: 0, DataFormType: 2, IsActive: 15, Version: QuestionVersion,
+        }), true, function (res) {
+            if (res.isSuccess) {
+                _DataAllQuestion = res.data;
+                
+            }
+        }, true);
+
+        // دریافت همه سوالاتی که به سمت مشتری بازگشت داده شده است
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReportChecks", JSON.stringify({
+            RequestId: id, PageIndex: 0, PageSize: 0,
+        }), false, function (res) {
+            if (!isEmpty(res)) {
+                questionsReturnCustomer = res.data;
+            }
+        }, false);
+
+        // دریافت همه پاسخ های کاربر
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
+            PageIndex: 0, PageSize: 0, RequestId: id, IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                _DataAnswer = res.data;
+            }
+        }, true);
+
+        // دریافت همه ریپورت ها
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReports/", JSON.stringify({
+            PageIndex: 0, PageSize: 0, RequestId: id,
+        }), false, function (res) {
+            if (res != null) {
+                _DataAllReport = res.data;
+            }
+        }, true);
 
         makeTabProgresDynamic();
         if (makeQuestionForm) {
@@ -183,77 +224,100 @@
             }
         }, true);
     }
+
+
+    const createDiv = (className, innerHTML) => {
+        const div = document.createElement('div');
+        div.className = className;
+        div.innerHTML = innerHTML;
+        return div;
+    };
+
+    const createLabel = (text) => {
+        const label = document.createElement('label');
+        label.textContent = text;
+        return label;
+    };
+
+    const createParagraph = (text) => {
+        const p = document.createElement('p');
+        p.style.display = 'inline-block';
+        p.style.marginRight = '20px';
+        p.textContent = text;
+        return p;
+    };
+
+    const createInputRange = (name, min, max, value, disabled) => {
+        const input = document.createElement('input');
+        input.className = 'form-control';
+        input.name = name;
+        input.type = 'range';
+        input.min = min;
+        input.max = max;
+        input.value = value;
+        input.disabled = disabled;
+        return input;
+    };
+
+    const createTextarea = (name, rows, cols, value) => {
+        const textarea = document.createElement('textarea');
+        textarea.className = 'form-control';
+        textarea.name = name;
+        textarea.rows = rows;
+        textarea.cols = cols;
+        textarea.textContent = value;
+        return textarea;
+    };
+
+
+
     function generate_strFormId(QuestionData, RequestId, FormID) {
-        var _DataAnswer;
         var _str_tag = "";
 
-        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
-            PageIndex: 0, PageSize: 0, FormID: FormID, RequestId: RequestId
-        }), false, function (res) {
-            if (res.isSuccess) {
-                _DataAnswer = res.data;
-            }
-        }, true);
-        showWait();
         for (let i = 0; QuestionData.length > i; i++) {
             let questionIsNotInReturnCustomer = false;
-            let questionReturnCustomer = null;
+            let question = null;
             // بررسی اینکه آیا سوال به مشتری بازگردانده شده است یا خیر
-            try {
-                AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReportCheck", JSON.stringify({
-                    FormID: FormID, RequestId: RequestId, QuestionId: QuestionData[i].dataFormQuestionId
-                }), false, function (res) {
-                    if (res.isActive == 15 && res.requestId != 0 && res.checkId != 0) {
-                        questionIsNotInReturnCustomer = true;
-                        questionReturnCustomer = res;
-                    }
-                }, false);
-            } catch {
+                question = questionsReturnCustomer.find(it => it.formId === FormID && it.questionId === QuestionData[i].dataFormQuestionId)
 
+            if (!isEmpty(question)) {
+                questionIsNotInReturnCustomer = true;
             }
-
-            var report = "";
-            var answer = _DataAnswer.find(o => o.dataFormQuestionId === QuestionData[i].dataFormQuestionId)
+            
+            var answer = _DataAnswer.find(o => o.formId === FormID && o.dataFormQuestionId === QuestionData[i].dataFormQuestionId)
 
             var dataFormQuestionScore = 0;
+            let findQuestion;
             if (!isEmpty(answer)) {
+                var report = _DataAllReport.find(o => o.dataFormAnswerId === answer.answerId);
 
-                AjaxCallAction("GET", "/api/superVisor/Corporate/Get_DataFormQuestions/" + answer.dataFormQuestionId, null, false, function (res1) {
-                    if (!isEmpty(res1)) {
-                        dataFormQuestionScore = res1.score;
-                        if (res1.questionType == 'select')
-                            AjaxCallAction("GET", "/api/superVisor/Corporate/Get_Option/" + answer.answer.split("_")[0], null, false, function (datares) {
-                                if (!isEmpty(datares)) {
-                                    dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
-                                }
-                            }, true);
-                        if (res1.questionType == 'yesNo')
-                            if (answer.answer == "No")
-                                dataFormQuestionScore = 0;
-                    }
-                }, true);
+                findQuestion = _DataAllQuestion.find(o => o.dataFormQuestionId === answer.dataFormQuestionId)
 
-                AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReport/", JSON.stringify({
-                    DataFormAnswerId: !isEmpty(answer.answerId) ? answer.answerId : 0,
-                    RequestId: RequestId,
-                }), false, function (res) {
-                    if (res != null) {
-                        report = res;
-                    }
-                }, true);
+                if (!isEmpty(findQuestion))
+                    dataFormQuestionScore = findQuestion.score
+
+                if (findQuestion.questionType == 'yesNo')
+                    if (answer.answer == "No")
+                        dataFormQuestionScore = 0;
+
+                else if (findQuestion.questionType == 'select')
+                    AjaxCallAction("GET", "/api/superVisor/Corporate/Get_Option/" + answer.answer.split("_")[0], null, false, function (datares) {
+                        if (!isEmpty(datares)) {
+                            dataFormQuestionScore = dataFormQuestionScore * datares.ratio;
+                        }
+                    }, true);
             }
             var formDate = {
                 "formCode": "0",
                 "categoryId": "0",
             }
-            AjaxCallAction("GET", "/api/superVisor/Corporate/Get_DataForm/" + FormID, null, false, function (res) {
-                if (res != null) {
-                    formDate = res;
-                }
-            }, true);
+
+            let dataForm = DataFormList.find(o => o.formId === FormID)
+            if (!isEmpty(dataForm))
+                formDate = dataForm;
 
             if (!isEmpty(report)) {
-                let value = questionReturnCustomer != null ? questionReturnCustomer.superVisorDescription : "ندارد ...";
+                let value = !isEmpty(question) ? question.superVisorDescription : "ندارد ...";
                 let value_manager_report = !isEmpty(report.managerReport) ? report.managerReport : "ندارد ...";
                 if (questionIsNotInReturnCustomer) {
 
@@ -274,7 +338,7 @@
                 _str_tag += "</p></div><div class='col-12'><label>توضیحات: </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
                 _str_tag += "</p></div><div class='col-12'><label>امتیاز سیستم: </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
                 _str_tag += "</p></div><div class='col-12'><label>امتیاز کارشناس:</label>";
-                _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
+                _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input style='width: 500px;height: 50px; ' name='AnalizeScore_" + answer.answerId + "' ";
                 if (getlstor("loginName") == "11") {
                     _str_tag += "type='range' disabled='disabled' "
                 }
@@ -291,34 +355,26 @@
                 _str_tag += "<div class='col-12'><label>توضیحات کارشناس:</label>";
                 _str_tag += "<br><textarea rows='3' cols='100' type='text' class='form-control' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value + "</textarea>";
                 _str_tag += "<br/><label>توضیحات مدیر:</label>";
-                //if (value_manager_report == "ندارد ...") {
-                //    _str_tag += "<p style='display: inline-block;margin-right: 20px;'>";
-                //} else {
-                //    _str_tag += "<p style='display: inline-block;margin-right: 20px;border: blue 5px dotted;'>";
-                //}
-                _str_tag += "<br/><textarea rows='3' cols='100' type='text' class='form-control' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea>";
+                if (value_manager_report == "ندارد ...") {
+                    _str_tag += "<br/><textarea rows='3' cols='100' type='text' class='form-control' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea>";
+                } else {
+                    _str_tag += "<br/><textarea style='border: blue 5px dotted;' rows='3' cols='100' type='text' class='form-control' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea>";
+                }
+                
                 _str_tag += '<div class="col-12"><a class="btn btn-warning" style="margin-top:20px" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
                 _str_tag += report.dataReportId + ", '" + answer.description + "'," + "''";
                 _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div>'
-                _str_tag += "</div><input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div><hr></div>"
+                _str_tag += "</div><input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div><hr></div>";
             }
 
         }
-        hideWait();
         return _str_tag;
     }
 
     function makeDynamicForm(SubCategoryName, PutPlace, FirstItemActive = true, PutTabPane) {
         let ID = $("#RequestIdForms").val();
-        if (isEmpty(DataFormList))
-            AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, DataFormType: 2, SortOrder: "FormCode_A", }), false, function (res) {
-                if (res.isSuccess) {
-                    DataFormList = res.data;
-                }
-            }, true);
-
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";
@@ -338,6 +394,7 @@
         }
         $("#" + PutPlace).append(li_option);
         $("#" + PutTabPane).append(tabPane);
+
         for (let i = 0; i < DataFormList.length; i++) {
             if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
                 intiForm(DataFormList[i].formId, ID);
@@ -444,15 +501,15 @@
     }
     function makeFileInput(inputTitle, inputName, helpText, categoryId, documentId) {
         let RequestId = $("#RequestIdForms").val();
-        var _DataAnswer;
+        var _DataAnswerDoc;
         AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
             PageIndex: 0, PageSize: 0, FormID: null, RequestId: RequestId
         }), false, function (res) {
             if (res.isSuccess) {
-                _DataAnswer = res.data;
+                _DataAnswerDoc = res.data;
             }
         }, true);
-        var answer = _DataAnswer.find(o => o.requestId == RequestId && o.dataFormDocumentId == documentId)
+        var answer = _DataAnswerDoc.find(o => o.requestId == RequestId && o.dataFormDocumentId == documentId)
         if (isEmpty(answer)) {
             answer = {
                 "description": "",

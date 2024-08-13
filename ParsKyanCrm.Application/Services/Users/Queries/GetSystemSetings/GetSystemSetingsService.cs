@@ -51,6 +51,12 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetSystemSetings
                     case "SystemSetingId_A":
                         lists = lists.OrderBy(s => s.SystemSetingId);
                         break;
+                    case "Value_A":
+                        lists = lists.OrderByDescending(s => s.Value);
+                        break;
+                    case "Value_D":
+                        lists = lists.OrderBy(s => s.Value);
+                        break;
                     default:
                         lists = lists.OrderByDescending(s => s.SystemSetingId);
                         break;

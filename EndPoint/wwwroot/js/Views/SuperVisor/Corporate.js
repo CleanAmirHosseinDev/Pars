@@ -43,7 +43,7 @@
     function makeTabProgresDynamic() {
         if (progresDynamicBar.length == 0)
             AjaxCallAction("POST", "/api/superVisor/SystemSeting/Get_SystemSetings/", JSON.stringify({
-                PageIndex: 0, PageSize: 0, ParentCode: 286, SortOrder: "SystemSetingId_A",
+                PageIndex: 0, PageSize: 0, ParentCode: 286, SortOrder: "Value_D",
             }), false, function (result) { progresDynamicBar = result.data; }, false);
         let _strM = "";
         if (progresDynamicBar.length > 1)

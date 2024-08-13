@@ -89,6 +89,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
 
             // EditStatuse = 13 , کنسل شدن قرارداد
 
+            // EditStatuse = 254  , ثبت فایل ارزیابی
+
             #region Upload Image
             //
 
@@ -124,7 +126,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
               //  request.LeaderEvaluationFile = con != null && !string.IsNullOrEmpty(con.LeaderEvaluationFile) ? con.LeaderEvaluationFile : string.Empty;
 
                 EntityEntry<ContractAndFinancialDocuments> q_Entity;
-                if (request.FinancialId == 0)
+                if (request.FinancialId == 0 && request.EditStatuse!=254)
                 {
                     request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
                     request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
@@ -140,8 +142,55 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                     await _context.SaveChangesAsync();
                     request = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Entity.Entity);
                 }
+                else if(request.FinancialId == 0 && request.EditStatuse == 254)
+                {
+                    request.SaveDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
+                    request.IsActive = (byte)Common.Enums.TablesGeneralIsActive.Active;
+                   
+                     request.EvaluationFile = con != null && !string.IsNullOrEmpty(con.EvaluationFile) ? con.EvaluationFile : string.Empty;
+
+                        if (request.Result_Final_EvaluationFile != null)
+                        {
+                            fileNameOldPic_EvaluationFile = request.EvaluationFile;
+                            request.EvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_EvaluationFile.FileName);
+                            path_EvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.EvaluationFile;
+                            await ServiceFileUploader.SaveFile(request.Result_Final_EvaluationFile, path_EvaluationFile, "فایل ارزیابی کارشناس");
+                        }
+
+
+                    q_Entity = _context.ContractAndFinancialDocuments.Add(_mapper.Map<ContractAndFinancialDocuments>(request));
+                    await _context.SaveChangesAsync();
+                    request = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Entity.Entity);
+                }
                 else
                 {
+                    if (request.EditStatuse == 254)
+                    {
+                        request.EvaluationFile = con != null && !string.IsNullOrEmpty(con.EvaluationFile) ? con.EvaluationFile : string.Empty;
+
+                        if (request.Result_Final_EvaluationFile != null)
+                        {
+                            fileNameOldPic_EvaluationFile = request.EvaluationFile;
+                            request.EvaluationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_EvaluationFile.FileName);
+                            path_EvaluationFile = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.EvaluationFile;
+                            await ServiceFileUploader.SaveFile(request.Result_Final_EvaluationFile, path_EvaluationFile, "فایل ارزیابی کارشناس");
+                        }
+
+
+                        var dicSqlUpdate = new Dictionary<string, object>()
+                    {
+                        {
+                            nameof(q_Entity.Entity.EvaluationFile),request.EvaluationFile
+                        }
+
+                    };
+                        Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
+
+                        if (request.Result_Final_EvaluationFile != null)
+                            FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_EvaluationFile);
+                        path_EvaluationFile = string.Empty;
+                    }
+
                     if (request.EditStatuse==1 || request.EditStatuse==2 || request.EditStatuse==7)
                     {
                         var dicSqlUpdate = new Dictionary<string, object>()
@@ -207,6 +256,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.FinancialId) + " = {0} ", request.FinancialId));
 
                     }
+
+               
 
                     if (request.EditStatuse == 4)
                     {

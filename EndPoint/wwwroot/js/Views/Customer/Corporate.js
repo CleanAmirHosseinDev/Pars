@@ -1051,9 +1051,11 @@
                     sum_score += res.data[i].analizeScore;
                     all_score += res.data[i].systemScore;
                 }
+
             }
         }, true);
         $("#msform").html('<p>نمره نهایی شما برابر است با ' + sum_score + ' از ' + all_score + ' نمره</p>')
+        getDocumentScore(id);
     }
 
     //function getDocument(id = null) {
@@ -1119,6 +1121,32 @@
     //    }
     //}
 
+    function getDocumentScore(id = null) {
+        if (!isEmpty(id) && id != 0) {
+
+            if (!isEmpty(id) && id != 0) {
+
+                AjaxCallAction("GET", "/api/customer/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                    if (res.isSuccess) {
+                        if (res.data.evaluationFile != null && res.data.evaluationFile != "")
+                        {
+                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                        } else
+                        {
+                        $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                        }
+                    }
+
+                }, true);
+            }
+
+
+          
+        }
+    }
+
+
     web.Corporate = {
         IntiForm: intiForm,
         InitCorporate: initCorporate,
@@ -1131,5 +1159,6 @@
         InitReferral: initReferral,
         InitCorporateScore: initCorporateScore,
         CheckAnswerToAllQuestion: checkAnswerToAllQuestion,
+        GetDocumentScore: getDocumentScore
     };
 })(Web, jQuery);

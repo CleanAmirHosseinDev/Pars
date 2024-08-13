@@ -66,7 +66,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
                 strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-success fontForAllPage' href='/SuperVisor/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
 
             }
-            if (res.data[i].levelStepSettingIndexID >= 43) {
+            if (res.data[i].levelStepSettingIndexID >= 43 && (n=="12" || n=="11")) {
                 strM += "<a style='margin-right:5px;color:black' title='نمایش امتیازها' class='btn btn-success fontForAllPage' href='/SuperVisor/corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
             }
             //  }
@@ -1058,6 +1058,27 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     }
 
+    function showScoreFile() {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+       
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_RequestForRatings", JSON.stringify({ RequestId: id, Search: null, PageIndex: 1, PageSize: 1, }), true, function (res) {
+
+                if (res.isSuccess) {
+                    for (var i = 0; i < res.data.length; i++) {
+
+                        if (res.data[i].destLevelStepIndex >= 3) {
+                            getShowScoreFile(id, res);
+                        }
+                    }
+                }
+
+            }, true);
+        }
+
+
+    }
+
     function showDocument() {
         var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
         //var stepIndex = decrypt($(e).attr("data-DLSI"), keyMaker());
@@ -1208,6 +1229,28 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             }, true);
         }
     }
+
+     function getDocumentScore(id = null) {
+        if (!isEmpty(id) && id != 0) {
+            $("#RequestID").val(id);
+            AjaxCallAction("GET", "/api/superVisor/RequestForRating/Get_ContractAndFinancialDocuments/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+                if (res.isSuccess) {
+
+                    $("#FinancialID").val(res.data.financialId);                  
+                 //   $("#EvaluationFile").val(res.data.evaluationFile);
+                    if (res.data.evaluationFile != null && res.data.evaluationFile != "") {
+                        $("#divDownload_EvaluationFile").html("<a class='btn btn-success' href='" + res.data.evaluationFileFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                    } else {
+                        $("#divDownload_EvaluationFile").html("<p style='color:silver'>فایلی وجود ندارد</p>");
+                    }
+                   
+                }
+
+            }, true);
+        }
+    }
+
 
     function getDocumentArzyab(id = null) {
         if (!isEmpty(id) && id != 0) {
@@ -1780,8 +1823,25 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
     }
 
+    function getShowScoreFile(id = null, res = null) {
+        if (!isEmpty(id) && id != 0) {
+            getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_Score.html", function (resG) {
+
+                $("#showScore").html(resG);
+                if (getlstor("loginName") === "11") {
+                    $("#frmFormMain2").remove();
+                }
+                getDocumentScore(id);
+
+            });
+        }
+    }
+
 
     web.RequestForRating = {
+        GetShowScoreFile: getShowScoreFile,
+        GetDocumentScore: getDocumentScore,
+        ShowScoreFile: showScoreFile,
         TempSaveRFR: tempSaveRFR,
         FilterGrid: filterGrid,
         TextSearchOnKeyDown: textSearchOnKeyDown,

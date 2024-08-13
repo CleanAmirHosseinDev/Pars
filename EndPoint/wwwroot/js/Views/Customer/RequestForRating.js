@@ -77,8 +77,8 @@
 
                         }
 
-                        else if ((res.data[i].levelStepSettingIndexID >= 42)) {
-                            strM += "<a style='margin-right:5px;color:black' title='بررسی پرسشنامه' class='btn btn-default fontForAllPage' href='/Customer/Corporate/ReturnBackQuestion/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
+                        else if ((res.data[i].levelStepSettingIndexID == 42)) {
+                            strM += "<a style='margin-right:5px;color:black' title='بررسی پرسشنامه' class='btn btn-warning fontForAllPage' href='/Customer/Corporate/ReturnBackQuestion/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
 
                         }
                         else if (res.data[i].destLevelStepIndex == 110) {

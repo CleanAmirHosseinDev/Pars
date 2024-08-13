@@ -139,7 +139,7 @@
                 PageIndex: 0,
                 PageSize: 0,
                 ParentCode: 286,
-                SortOrder: "SystemSetingId_A",
+                SortOrder: "Value_D",
             }), false, function (result) {
                 progresDynamicBar = result.data;
             }, false);

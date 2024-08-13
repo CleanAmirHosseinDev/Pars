@@ -271,9 +271,9 @@
                 _str_tag += "<div class='col-12'>";
                 _str_tag += "<label>پاسخ مشتری : </label><p style='display: inline-block;margin-right: 20px;'>";
                 _str_tag += answer.answer == "Yes" || answer.answer == "No" ? answer.answer : answer.answer.split("_")[1]
-                _str_tag += "</p></div><div class='col-12'><label>توضیحات : </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
-                _str_tag += "</p></div><div class='col-12'><label>امتیاز سیستم : </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
-                _str_tag += "</p></div><div class='col-12'><label>امتیاز کارشناس</label>";
+                _str_tag += "</p></div><div class='col-12'><label>توضیحات: </label><p style='display: inline-block;margin-right: 20px;'>" + answer.description;
+                _str_tag += "</p></div><div class='col-12'><label>امتیاز سیستم: </label><p style='display: inline-block;margin-right: 20px;'>" + dataFormQuestionScore;
+                _str_tag += "</p></div><div class='col-12'><label>امتیاز کارشناس:</label>";
                 _str_tag += "<p style='display: inline-block;margin-right: 20px;'><input class='form-control' name='AnalizeScore_" + answer.answerId + "' ";
                 if (getlstor("loginName") == "11") {
                     _str_tag += "type='range' disabled='disabled' "
@@ -288,21 +288,21 @@
                     _str_tag += "max='0' min='" + QuestionData[i].score + "' value='" + report.analizeScore + "' >";
                 }
                 _str_tag += "<span style='padding:5px;' id='range_" + answer.answerId + "'>" + report.analizeScore + "</span></p></div>"
-                _str_tag += "<div class='col-12'><label>توضیحات کارشناس</label><p style='display: inline-block;margin-right: 20px;'>";
-                _str_tag += "<textarea rows='3' cols='100' type='text' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value + "</textarea></p>";
-                _str_tag += "<br/><label>توضیحات مدیر حاکمیت شرکتی</label>";
-                if (value_manager_report == "ندارد ...") {
-                    _str_tag += "<p style='display: inline-block;margin-right: 20px;'>";
-                } else {
-                    _str_tag += "<p style='display: inline-block;margin-right: 20px;border: blue 5px dotted;'>";
-                }
-                _str_tag += "<textarea rows='3' cols='100' type='text' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea>";
-                _str_tag += '</p><div class="col-12"><a class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
+                _str_tag += "<div class='col-12'><label>توضیحات کارشناس:</label>";
+                _str_tag += "<br><textarea rows='3' cols='100' type='text' class='form-control' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value + "</textarea>";
+                _str_tag += "<br/><label>توضیحات مدیر:</label>";
+                //if (value_manager_report == "ندارد ...") {
+                //    _str_tag += "<p style='display: inline-block;margin-right: 20px;'>";
+                //} else {
+                //    _str_tag += "<p style='display: inline-block;margin-right: 20px;border: blue 5px dotted;'>";
+                //}
+                _str_tag += "<br/><textarea rows='3' cols='100' type='text' class='form-control' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea>";
+                _str_tag += '<div class="col-12"><a class="btn btn-warning" style="margin-top:20px" onclick="return Web.CorporateSuperVisor.ReturnToCustomer(this,';
                 _str_tag += QuestionData[i].dataFormQuestionId + "," + answer.answerId + "," + FormID + "," + RequestId + "," + formDate.categoryId + ", '";
                 _str_tag += formDate.formCode + "', '" + QuestionData[i].questionType + "', '" + answer.answer + "'," + "''" + "," + dataFormQuestionScore + ",";
                 _str_tag += report.dataReportId + ", '" + answer.description + "'," + "''";
                 _str_tag += ');">بازگشت به مشتری برای اصلاح</a></div>'
-                _str_tag += "</div><input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div></div>"
+                _str_tag += "</div><input type='hidden' name='QuestionScore' value='" + QuestionData[i].score + "'></div><hr></div>"
             }
 
         }

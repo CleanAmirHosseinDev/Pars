@@ -385,9 +385,9 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
                        ) {
                         $("#svisorShowEvaluationFile").remove();
                     }
-                    if (!((getlstor("loginName") === "12" || getlstor("loginName") === "11") && res.data[0].levelStepSettingIndexId <= 39))
+                    if (((getlstor("loginName") !== "12" && getlstor("loginName") !== "11") || res.data[0].levelStepSettingIndexId <= 39))
                     {
-                    $("#svisorShowScore").remove();
+                        $("#svisorShowScore").remove();
                     }
                     var htmlB = "";
                     for (var i = 0; i < res.data.length; i++) {

@@ -534,8 +534,9 @@
         let _str = "";
         value != "" ? value : "ندارد ..."
         _str += "<div class='form-group'><div class='col-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
-        _str += " <span title='" + helpText + "'><i class='fa'></i></span></label>";
-        _str += "<a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
+        if (!isEmpty(helpText))
+            _str += " <span title='" + helpText + "'><i class='fa'></i></span>";
+        _str += "</label><a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a></div>";
         if (DocumentIsNotInReturnCustomer)
             _str += "<div class='col-12' style='border: 2px solid red;'><label>توضیحات کارشناس</label>";

@@ -149,9 +149,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
 
                 }
                 #region Upload Image
-                //if (request.Result_Final_FileName1 != null)
+                if (request.Result_Final_FileName1 != null)
 
-                    //FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1);
+                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1);
 
                 path_FileName1 = string.Empty;
 

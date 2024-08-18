@@ -71,7 +71,7 @@
                             strM += "<a style='margin-right:5px;color:black' title='پرسشنامه' class='btn btn-success fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i>پرسشنامه</a>";
 
                         }
-                        if ((res.data[i].levelStepSettingIndexID == 44)) {
+                        if ((res.data[i].levelStepSettingIndexID >= 43)) {
                             //   strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
                             strM += "<a style='margin-right:5px;color:black' title='پرسشنامه' class='btn btn-default fontForAllPage' href='/Customer/Corporate/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i>پرسشنامه</a>";
 
@@ -81,6 +81,7 @@
                             strM += "<a style='margin-right:5px;color:black' title='بررسی پرسشنامه' class='btn btn-warning fontForAllPage' href='/Customer/Corporate/ReturnBackQuestion/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> پرسشنامه </a>";
 
                         }
+
                         else if (res.data[i].destLevelStepIndex == 110) {
                             strM += "<a style='margin-right:5px;color:black' title='نمایش امتیازها' class='btn btn-success fontForAllPage' href='/Customer/Corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
                         }

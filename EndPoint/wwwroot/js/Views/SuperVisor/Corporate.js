@@ -352,9 +352,9 @@
                     _str_tag += "max='0' min='" + QuestionData[i].score + "' value='" + report.analizeScore + "' >";
                 }
                 _str_tag += "<span style='padding:5px;' id='range_" + answer.answerId + "'>" + report.analizeScore + "</span></p></div>"
-                _str_tag += "<div class='col-12'><label>توضیحات کارشناس:</label>";
+                _str_tag += "<div class='col-12'><label>توضیحات کارشناس به مشتری :</label>";
                 _str_tag += "<br><textarea rows='3' cols='100' type='text' class='form-control' name='descriptoin_" + report.dataReportId + "' id='descriptoin_" + report.dataReportId + "'>" + value + "</textarea>";
-                _str_tag += "<br/><label>توضیحات مدیر:</label>";
+                _str_tag += "<br/><label>توضیحات مدیر به کارشناس:</label>";
                 if (value_manager_report == "ندارد ...") {
                     _str_tag += "<br/><textarea rows='3' cols='100' type='text' class='form-control' name='managerReport_" + report.dataReportId + "_AnalizeScore_" + answer.answerId + "'>" + value_manager_report + "</textarea>";
                 } else {
@@ -404,7 +404,9 @@
     function makeDynamicDocumentForm(PutPlace, PutTabPane) {
         var DataFormDocumentList = [];
         let ID = $("#RequestIdForms").val();
-        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormDocuments", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormDocuments", JSON.stringify({
+            PageIndex: 0, PageSize: 0, IsActive: 15, SortOrder: "DataFormDocumentId_A",
+        }), false, function (res) {
             if (res.isSuccess) {
                 DataFormDocumentList = res.data;
             }
@@ -446,30 +448,31 @@
             let formId = "Doc" + DataFormDocumentList[i].dataFormDocumentId;
             let helpText = DataFormDocumentList[i].helpText;
             let categoryId = DataFormDocumentList[i].categoryId;
+            let isRequierd = DataFormDocumentList[i].isRequierd
             switch (DataFormDocumentList[i].categoryId) {
                 case 287:
-                    _str287 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str287 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 288:
-                    _str288 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str288 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 289:
-                    _str289 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str289 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 290:
-                    _str290 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str290 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 291:
-                    _str291 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str291 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 292:
-                    _str292 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str292 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 293:
-                    _str293 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str293 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 case 294:
-                    _str294 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId);
+                    _str294 += makeFileInput(title, formId, helpText, categoryId, DataFormDocumentList[i].dataFormDocumentId, isRequierd);
                     break;
                 default:
                     break;
@@ -492,6 +495,7 @@
                 for (let i = 0; i < LoadedDataFromDb.length; i++) {
                     try {
                         $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
+                        $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css("display", 'inline-block');
                     } catch { }
 
                 }
@@ -499,7 +503,7 @@
         }, true);
 
     }
-    function makeFileInput(inputTitle, inputName, helpText, categoryId, documentId) {
+    function makeFileInput(inputTitle, inputName, helpText, categoryId, documentId, isRequierd = true) {
         let RequestId = $("#RequestIdForms").val();
         var _DataAnswerDoc;
         AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFromAnswerss", JSON.stringify({
@@ -536,12 +540,14 @@
         _str += "<div class='form-group'><div class='col-12' style='margin-bottom:10px'><label class='control-label'>" + inputTitle;
         if (!isEmpty(helpText))
             _str += " <span title='" + helpText + "'><i class='fa'></i></span>";
-        _str += "</label><a class='btn btn-success' style='margin-right: 10px;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
+        if (isRequierd)
+            _str += "<span style='font-size: 25px;color: red;padding: 10px;'>*</span>"
+        _str += "</label><a class='btn btn-success' style='margin-right: 10px;display:none;' target='_blank' id='Download_" + inputName.slice(3, inputName.length) + "'>";
         _str += "<i class='fa fa-download'></i> &nbsp;دانلود</a></div>";
         if (DocumentIsNotInReturnCustomer)
-            _str += "<div class='col-12' style='border: 2px solid red;'><label>توضیحات کارشناس</label>";
+            _str += "<div class='col-12' style='border: 2px solid red;'><label>توضیحات کارشناس به مشتری</label>";
         else {
-            _str += "<div class='col-12'><label>توضیحات کارشناس</label>";
+            _str += "<div class='col-12'><label>توضیحات کارشناس به مشتری</label>";
         }
         _str += "<input style='width: 100%;margin: 10px;' type='text' id='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' name='descriptoinDoc_" + inputName.slice(3, inputName.length) + "' ";
         _str += 'value="' + value + '" onfocus="select();"><a style="margin: 10px;" class="btn btn-warning" onclick="return Web.CorporateSuperVisor.ReturnToCustomerDoc(this,';

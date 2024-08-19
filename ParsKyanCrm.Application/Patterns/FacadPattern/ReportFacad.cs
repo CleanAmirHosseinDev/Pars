@@ -5,6 +5,7 @@ using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluati
 using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne2;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCorporateRequest;
+using ParsKyanCrm.Application.Services.Reports.Queries.CustomerDataFormReport;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
 using System;
@@ -28,6 +29,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         ITotalNumberApplicationsAssessmentMinistryPrivacyService TotalNumberApplicationsAssessmentMinistryPrivacyService { get; }
         ITotalNumberCorporateRequestService TotalNumberCorporateRequestService { get; }
+        ICustomerDataFormReportService CustomerDataFormReportService { get; }
 
         INumberCodedFilesService NumberCodedFilesService { get; }
 
@@ -98,6 +100,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _totalNumberCorporateRequestService = _totalNumberCorporateRequestService ?? new TotalNumberCorporateRequestService();
+            }
+        }
+
+        private ICustomerDataFormReportService _customerDataFormReportService;
+        public ICustomerDataFormReportService CustomerDataFormReportService
+        {
+            get
+            {
+                return _customerDataFormReportService = _customerDataFormReportService ?? new CustomerDataFormReportService(_userFacad);
             }
         }
 

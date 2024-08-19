@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Patterns.FacadPattern;
+using ParsKyanCrm.Application.Services.Reports.Queries.CustomerDataFormReport;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Common.Enums;
 using ParsKyanCrm.Infrastructure;
@@ -17,10 +18,26 @@ namespace EndPoint.Controllers.api.superVisor
     {
         private readonly ILogger<CorporateController> _logger;
         private readonly IUserFacad _userFacad;
-        public CorporateController(ILogger<CorporateController> logger, IUserFacad userFacad)
+        private readonly IReportFacad _reportFacad;
+        public CorporateController(ILogger<CorporateController> logger, IUserFacad userFacad, IReportFacad reportFacad)
         {
             _logger = logger;
             _userFacad = userFacad;
+            _reportFacad = reportFacad;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<ResultCustomerDataFormReportDto>> Get_CustomerDataFormReport([FromBody] RequestCustomerDataFormReportDto request)
+        {
+            try
+            {
+                return await _reportFacad.CustomerDataFormReportService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         [Route("[action]")]

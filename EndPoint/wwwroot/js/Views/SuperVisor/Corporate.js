@@ -3,6 +3,10 @@
     $("#" + showItemID).text(value);
 }
 
+//AjaxCallAction("POST", "/api/superVisor/Corporate/Get_CustomerDataFormReport", JSON.stringify({ RequestId: 1328 }), true, function (res) {
+//    console.log(res);
+//}, false)
+
 (function (web, $) {
     var DataFormList = "";
     var progresDynamicBar = []

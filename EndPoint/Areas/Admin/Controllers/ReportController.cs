@@ -7,6 +7,7 @@ using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
 using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne;
 using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne2;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
+using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCorporateRequest;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
 using System;
@@ -216,6 +217,39 @@ namespace EndPoint.Areas.Admin.Controllers
 
         }
 
+        #endregion
+
+        #region تعداد کل پرونده های حاکمیت شرکتی
+
+        public IActionResult TotalNumberCorporateRequest()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetTotalNumberCorporateRequest([FromBody] RequestTotalNumberCorporateRequestDto request)
+        {
+            try
+            {
+                return Json(await _reportFacad.TotalNumberCorporateRequestService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<ActionResult> GetExcelTotalNumberCorporateRequest(RequestTotalNumberCorporateRequestDto request)
+        {
+            try
+            {
+                return File(await _reportFacad.TotalNumberCorporateRequestService.Execute1(request), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         #endregion
 
         #region گزارش عملکرد کارکنان ارزیابی با جزئیات )گزارش یک(

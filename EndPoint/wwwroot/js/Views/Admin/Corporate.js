@@ -1,26 +1,26 @@
-﻿(function (web, $) {
+﻿function go_prev(filterGrid) {
+    let current_page = $("#current_page")
+    let page = current_page.data("page");
+    if (page > 1) {
+        current_page.text(String(page - 1))
+        current_page.data("page", page - 1)
+        filterGrid(page - 1);
+    }
+}
+
+function go_next(filterGrid) {
+    let current_page = $("#current_page")
+    let page = current_page.data("page");
+    if (page) {
+        current_page.text(String(page + 1))
+        current_page.data("page", page + 1)
+        filterGrid(page + 1);
+    }
+}
+
+(function (web, $) {
     var DataFormList = null;
     var DataFormQuestionsList = null;
-
-    function go_prev(filterGrid) {
-        let current_page = $("#current_page")
-        let page = current_page.data("page");
-        if (page > 1) {
-            current_page.text(String(page - 1))
-            current_page.data("page", page - 1)
-            filterGrid(page - 1);
-        }
-    }
-
-    function go_next(filterGrid) {
-        let current_page = $("#current_page")
-        let page = current_page.data("page");
-        if (page) {
-            current_page.text(String(page + 1))
-            current_page.data("page", page + 1)
-            filterGrid(page + 1);
-        }
-    }
 
     //function createTotalInput(value, putPlace) {
     //    var inp = document.createElement("input");

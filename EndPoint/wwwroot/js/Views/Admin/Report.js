@@ -71,7 +71,30 @@ function successCallBack_divPageingList_TotalNumberApplicationsAssessmentMinistr
     }
 
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var divPageingList_TotalNumberCorporateRequest_pageG = 1;
+function successCallBack_divPageingList_TotalNumberCorporateRequest(res) {
+
+    if (res.isSuccess) {
+
+        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+        var strM = '';
+        for (var i = 0; i < res.data.length; i++) {
+
+            strM += "<tr><td>" + (i + 1) + "</td><td>"
+                + res.data[i].requestNo + "</td><td>"
+                + res.data[i].dateOfRequestStr + "</td><td>"
+                + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
+                + (!isEmpty(res.data[i].agentName) ? res.data[i].agentName : '') + "</td><td>"
+                + res.data[i].nationalCode + "</td><td>"
+                + res.data[i].agentMobile + "</td><td>" + res.data[i].finalPriceContract + "</td></tr>";
+        }
+
+        $("#tBodyList").html(strM);
+    }
+
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var divPageingList_NumberCodedFiles_pageG = 1;
@@ -547,6 +570,19 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
     }
 
+    function init_TotalNumberCorporateRequest() {
+        PersianDatePicker(".DatePicker");
+        filterReportGrid_TotalNumberCorporateRequest();
+    }
+
+    function filterReportGrid_TotalNumberCorporateRequest() {
+        pageingGrid("divPageingList_TotalNumberCorporateRequest", "/Admin/Report/GetTotalNumberCorporateRequest", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: 1, PageSize: $("#cboSelectCount").val(), FromDateStr: $("#FromDateStr").val(), ToDateStr: $("#ToDateStr").val() }));
+    }
+
+    function excelTotalNumberCorporateRequest() {
+        window.open('/Admin/Report/GetExcelTotalNumberCorporateRequest?FromDateStr=' + $("#FromDateStr").val() + '&ToDateStr=' + $("#ToDateStr").val() + "&Search=" + $("#txtSearch").val(), '_blank');
+    }
+
     web.Report = {
         OnchangeKindOfRequest: onchangeKindOfRequest,
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
@@ -572,8 +608,11 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         InitPerformanceReportEvaluationStaffInDetail_ReportOne: initPerformanceReportEvaluationStaffInDetail_ReportOne,
         FilterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne: filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne,
         InitPerformanceReportEvaluationStaffInDetail_ReportOne2: initPerformanceReportEvaluationStaffInDetail_ReportOne2,
-        FilterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2: filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2
+        FilterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2: filterReportGrid_PerformanceReportEvaluationStaffInDetail_ReportOne2,
 
+        Init_TotalNumberCorporateRequest: init_TotalNumberCorporateRequest,
+        FilterReportGrid_TotalNumberCorporateRequest: filterReportGrid_TotalNumberCorporateRequest,
+        ExcelTotalNumberCorporateRequest: excelTotalNumberCorporateRequest,
     };
 
 })(Web, jQuery);

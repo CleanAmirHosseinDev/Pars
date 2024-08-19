@@ -4,6 +4,7 @@ using ParsKyanCrm.Application.Services.Reports.Queries.NumberCodedFiles;
 using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne;
 using ParsKyanCrm.Application.Services.Reports.Queries.PerformanceReportEvaluationStaffInDetail_ReportOne2;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAssessmentMinistryPrivacy;
+using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCorporateRequest;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
 using System;
@@ -26,6 +27,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ITotalNumberCustomersWithoutRegistrationService TotalNumberCustomersWithoutRegistrationService { get; }
 
         ITotalNumberApplicationsAssessmentMinistryPrivacyService TotalNumberApplicationsAssessmentMinistryPrivacyService { get; }
+        ITotalNumberCorporateRequestService TotalNumberCorporateRequestService { get; }
 
         INumberCodedFilesService NumberCodedFilesService { get; }
 
@@ -87,6 +89,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _totalNumberApplicationsAssessmentMinistryPrivacyService = _totalNumberApplicationsAssessmentMinistryPrivacyService ?? new TotalNumberApplicationsAssessmentMinistryPrivacyService();
+            }
+        }
+
+        private ITotalNumberCorporateRequestService _totalNumberCorporateRequestService;
+        public ITotalNumberCorporateRequestService TotalNumberCorporateRequestService
+        {
+            get
+            {
+                return _totalNumberCorporateRequestService = _totalNumberCorporateRequestService ?? new TotalNumberCorporateRequestService();
             }
         }
 

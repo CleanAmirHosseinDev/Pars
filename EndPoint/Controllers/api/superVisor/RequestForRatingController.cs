@@ -31,6 +31,15 @@ namespace EndPoint.Controllers.api.superVisor
             {
                 request.CustomerId = null;
                 request.LoginName = User.Claims.FirstOrDefault(c => c.Type == "LoginName").Value;
+                if (request.LoginName=="11" || request.LoginName=="12")
+                {
+                    request.IsCorporate = 1;
+                }
+                else if (request.LoginName == "1" || request.LoginName == "5" || request.LoginName == "6" || request.LoginName == "8")
+                {
+                    request.IsCorporate = 2;
+
+                }
                 if (!request.ForTimeLine)
                 {
                     request.UserID = User.Claims.FirstOrDefault(c => c.Type == "UserID").Value;

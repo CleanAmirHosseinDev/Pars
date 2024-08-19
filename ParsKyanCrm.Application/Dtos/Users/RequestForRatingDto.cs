@@ -31,7 +31,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
 
-
+        public int IsCorporate { get; set; }
         public string FromSendTimeDateStr { get; set; }
 
         public DateTime? FromSendTimeDate

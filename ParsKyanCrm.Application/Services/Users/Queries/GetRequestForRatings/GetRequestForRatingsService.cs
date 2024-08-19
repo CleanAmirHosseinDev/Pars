@@ -38,7 +38,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
                 {
                     cons = "  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.DateOfRequest))  between N'" + request.FromDate.Value.ToShortDateString() + "' and N'" + request.ToDate.Value.ToShortDateString() + "'";
                 }
-
+              
                 if (request.TypeGroupCompanies.HasValue)
                 {
                     if (cons == "")
@@ -51,6 +51,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
                     }
 
                 }
+
                 if (request.FromSendTimeDate.HasValue)
                 {
                     if (cons == "")
@@ -127,14 +128,17 @@ OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize
 FETCH NEXT {request.PageSize} ROWS ONLY
 
 ");
-                if (request.KindOfRequest == 254)
+
+                if (request.IsCorporate == 1)
                 {
                     data = data.Where(p => p.KindOfRequest == 254);
                 }
-                else if (request.KindOfRequest == 66)
+                else if (request.IsCorporate == 2)
                 {
                     data = data.Where(p => p.KindOfRequest == 66);
                 }
+
+              
                 request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>

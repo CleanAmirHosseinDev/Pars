@@ -241,16 +241,14 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                             break;
                         case false:
+                            var requestForRating = await _context.RequestForRating.FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
+                            var cust = await _context.Customers.FirstOrDefaultAsync(p => p.CustomerId == requestForRating.CustomerId);
+                            if (request.SmsContent.Contains("{0}"))
+                                request.SmsContent = "مشتری محترم،" + cus.CompanyName + "\n" + string.Format(request.SmsContent, request.Request.RequestId).Replace("\\n", System.Environment.NewLine)
+                                    + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
+                            else request.SmsContent = "مشتری محترم،" + cust.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + request.Request.RequestNo + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
 
-                           
-                            //var requestForRating = await _context.RequestForRating.FirstOrDefaultAsync(p => p.RequestId == request.Request.RequestId);
-                            //var cust = await _context.Customers.FirstOrDefaultAsync(p => p.CustomerId == requestForRating.CustomerId);
-                            //if (request.SmsContent.Contains("{0}"))
-                            //    request.SmsContent = "مشتری محترم،" + cus.CompanyName + "\n" + string.Format(request.SmsContent, request.Request.RequestId).Replace("\\n", System.Environment.NewLine)
-                            //        + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
-                            //else request.SmsContent = "مشتری محترم،" + cust.CompanyName + "\n" + request.SmsContent + "\n" + "شماره درخواست:" + request.Request.RequestNo + "\n" + "شرکت رتبه بندی اعتباری پارس کیان";
-
-                            //await WebService.SMSService.Execute(cust.AgentMobile, request.SmsContent);
+                            await WebService.SMSService.Execute(cust.AgentMobile, request.SmsContent);
 
                             break;
 

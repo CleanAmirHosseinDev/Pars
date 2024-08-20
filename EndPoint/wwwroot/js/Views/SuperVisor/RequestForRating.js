@@ -56,6 +56,10 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
             if ((n == 12 || n == 11) && Number(res.data[i].levelStepSettingIndexID) > 39 && res.data[i].kindOfRequest == "254") {
+                if (Number(res.data[i].levelStepSettingIndexID) >=43) {
+                    strM += "<a style='margin-right:5px;color:black' title='خروجی اکسل' class='btn btn-default fontForAllPage' href='/SuperVisor/corporate/Excel_CustomerDataFormReport/" + res.data[i].requestId + "'><i class='fa fa-file-excel-o'></i> </a>";
+
+                }
                 strM += "<a style='margin-right:5px;color:black' title='مشاهده پرسشنامه' class='btn btn-default fontForAllPage' href='/SuperVisor/corporate/Index/" + res.data[i].requestId + "'><i class='fa fa-id-card-o'></i> </a>";
             }
             //if ((n == 8 || n == 1 || n == 4 || n == 6 || n == 9) && res.data[i].destLevelStepIndex >= "4" && getlstor("loginName") != res.data[i].destLevelStepAccessRole) {

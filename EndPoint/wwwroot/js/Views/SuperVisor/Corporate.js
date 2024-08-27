@@ -16,6 +16,7 @@
     var _DataAllQuestion;
     var _DataAllReport;
     var QuestionVersion = null;
+    var VersionQuestion = null; // تعیین ورژن سوالات
     //Document Ready
 
     function makeLiProgresBar(progresDynamicBar) {
@@ -765,6 +766,19 @@
     function initCorporateScore(id) {
         let sum_score = 0;
         let all_score = 0;
+
+        AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormQuestionss", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            DataFormType: 2,
+            Version: VersionQuestion,
+        }), false, function (res) {
+            for (let i = 0; i < res.data.length; i++) {
+                all_score += res.data[i].score;
+            }
+        }, false);
+
         AjaxCallAction("POST", "/api/superVisor/Corporate/Get_DataFormReports", JSON.stringify({
             PageIndex: 0,
             PageSize: 0,
@@ -775,7 +789,6 @@
                 console.log(res)
                 for (let i = 0; i < res.data.length; i++) {
                     sum_score += res.data[i].analizeScore;
-                    all_score += res.data[i].systemScore;
                 }
             }
         }, true);

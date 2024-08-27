@@ -1039,6 +1039,19 @@
     function initCorporateScore(id) {
         let sum_score = 0;
         let all_score = 0;
+
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormQuestionss", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+            DataFormType: 2,
+            Version: VersionQuestion,
+        }), false, function (res) {
+            for (let i = 0; i < res.data.length; i++){
+                all_score += res.data[i].score;
+            }
+        }, false);
+
         AjaxCallAction("POST", "/api/customer/Corporate/Get_DataFormReports", JSON.stringify({
             PageIndex: 0,
             PageSize: 0,
@@ -1049,9 +1062,7 @@
                 console.log(res)
                 for (let i = 0; i < res.data.length; i++) {
                     sum_score += res.data[i].analizeScore;
-                    all_score += res.data[i].systemScore;
                 }
-
             }
         }, true);
         $("#msform").html('<p>نمره نهایی شما برابر است با ' + sum_score + ' از ' + all_score + ' نمره</p>')

@@ -944,10 +944,6 @@
                                                         dataFormQuestionScore * datares.ratio;
                                                 }
                                             }, false);
-                                    } else if (res1.questionType == "yesNo") {
-                                        if (answer == "No") {
-                                            dataFormQuestionScore = 0;
-                                        }
                                     }
                                     // اگر با موفقیت پاسخ ذخیره شد
                                     if (res.dataId != 0)

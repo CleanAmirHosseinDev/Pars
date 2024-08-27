@@ -14,6 +14,8 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetAccessLevels;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAccessLevels;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCustomers;
 using ParsKyanCrm.Application.Services.Users.Queries.GetCustomers;
+using ParsKyanCrm.Application.Services.Users.Queries.GetCustomerRequestInformation;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInformation;
 using FluentValidation;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveBoardOfDirectors;
@@ -140,6 +142,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         ISaveBasicInformationCustomersService SaveBasicInformationCustomersService { get; }
 
         IGetCustomersService GetCustomersService { get; }
+        IGetCustomerRequestInformationService GetCustomerRequestInformationService { get; }
 
         IGetRequestForRatingsService GetRequestForRatingsService { get; }
 
@@ -211,6 +214,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IGetCustomerssService GetCustomerssService { get; }
 
         ISaveCustomersService SaveCustomersService { get; }
+        ISaveCustomerRequestInformationService SaveCustomerRequestInformationService { get; }
 
         IDeleteCustomersService DeleteCustomersService { get; }
 
@@ -457,6 +461,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _getCustomersService = _getCustomersService ?? new GetCustomersService(_context, _mapper);
+            }
+        }
+
+        private IGetCustomerRequestInformationService _getCustomerRequestInformationService;
+        public IGetCustomerRequestInformationService GetCustomerRequestInformationService
+        {
+            get
+            {
+                return _getCustomerRequestInformationService = _getCustomerRequestInformationService ?? new GetCustomerRequestInformationService(_context, _mapper);
             }
         }
 
@@ -860,6 +873,15 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveCustomersService = _saveCustomersService ?? new SaveCustomersService(_context, _mapper, _env);
+            }
+        }
+
+        private ISaveCustomerRequestInformationService _saveCustomerRequestInformationService;
+        public ISaveCustomerRequestInformationService SaveCustomerRequestInformationService
+        {
+            get
+            {
+                return _saveCustomerRequestInformationService = _saveCustomerRequestInformationService ?? new SaveCustomerRequestInformationService(_context, _mapper, _env);
             }
         }
 

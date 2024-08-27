@@ -30,6 +30,7 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<ContractAndFinancialDocuments> ContractAndFinancialDocuments { get; set; }
         DbSet<CorporateGovernance> CorporateGovernance { get; set; }
         DbSet<Customers> Customers { get; set; }
+        DbSet<CustomerRequestInformation> CustomerRequestInformation { get; set; }
         DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
         DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
@@ -97,6 +98,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<CorporateGovernance> CorporateGovernance { get; set; }
 
         public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<CustomerRequestInformation> CustomerRequestInformation { get; set; }
         public virtual DbSet<Customers_RegisterLanding> Customers_RegisterLanding { get; set; }
         public virtual DbSet<LevelStepSetting> LevelStepSetting { get; set; }
         public virtual DbSet<LicensesAndHonors> LicensesAndHonors { get; set; }
@@ -116,8 +118,6 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<ValueChain> ValueChain { get; set; }
         public virtual DbSet<PublicActivities> PublicActivities { get; set; }
         public virtual DbSet<ContractPages> ContractPages { get; set; }
-        
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -654,6 +654,11 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.CustomersTypeServiceRequested)
                     .HasForeignKey(d => d.TypeServiceRequestedId)
                     .HasConstraintName("FK_Customers_SystemSeting1");
+            });
+
+            modelBuilder.Entity<CustomerRequestInformation>(entity =>
+            {
+                entity.HasKey(e => e.Id);
             });
 
             modelBuilder.Entity<Customers_RegisterLanding>(entity =>

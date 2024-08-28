@@ -28,9 +28,19 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerRequestInfor
             {
                 CustomerRequestInformationsDto res = new CustomerRequestInformationsDto();
 
-                if (request.Id != null && request.CustomerId != 0 && request.RequestId != null)
+                if (request.RequestId != null)
+                {
+                    var q_Find = await _context.CustomerRequestInformation.FirstOrDefaultAsync(s => s.RequestId == request.RequestId);
+                    res = _mapper.Map<CustomerRequestInformationsDto>(q_Find);
+                }
+                else if (request.Id != null)
                 {
                     var q_Find = await _context.CustomerRequestInformation.FirstOrDefaultAsync(s => s.Id == request.Id);
+                    res = _mapper.Map<CustomerRequestInformationsDto>(q_Find);
+                }
+                else if (request.CustomerId != null)
+                {
+                    var q_Find = await _context.CustomerRequestInformation.FirstOrDefaultAsync(s => s.CustomerId == request.CustomerId);
                     res = _mapper.Map<CustomerRequestInformationsDto>(q_Find);
                 }
 

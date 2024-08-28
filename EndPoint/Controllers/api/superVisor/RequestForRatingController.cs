@@ -235,5 +235,19 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<CustomerRequestInformationsDto> Get_CustomerRequestInformationsDto([FromBody] RequestCustomerRequestInformationDto request)
+        {
+            try
+            {
+                return await _userFacad.GetCustomerRequestInformationService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -1841,6 +1841,27 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         }
     }
 
+    function getCustomerRequestInformation(id) {
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/Get_CustomerRequestInformationsDto", JSON.stringify(
+            { RequestId: id}
+        ), true, function (res) {
+            if (!isEmpty(res)) {
+                $("#CountOfPersonal1").val(res.countOfPersonel);
+                $("#AmountOsLastSales1").val(moneyCommaSepWithReturn(!isEmpty(res.amountOfLastSale) ? res.amountOfLastSale.toString() : ''));
+                $("#divDownload1").html("<a class='btn btn-success' href='" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                $("#divDownload_AuditedFinancialStatements1").html("<a class='btn btn-success' href='" + res.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+            }
+        }, true);
+    }
+
+
+    function showCustomerRequestInformation() {
+        var id = decrypt($("#sdklsslks3498sjdkxhjsd_823sa").val(), keyMaker());
+        getU("/css/GlobalAreas/Views/SuperVisor/RequestForRating/P_CustomerRequestInformation.html", function (resG) {
+            $("#showCustomerRequestInformation").html(resG);
+            getCustomerRequestInformation(id);
+        });
+    }
 
     web.RequestForRating = {
         GetShowScoreFile: getShowScoreFile,
@@ -1891,8 +1912,9 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         UpdateContract: updateContract,
         OnchangeKindOfRequest: onchangeKindOfRequest,
         FilterGridA: filterGridA,
-        ExcelTotalFilterGridA: excelTotalFilterGridA
+        ExcelTotalFilterGridA: excelTotalFilterGridA,
 
+        ShowCustomerRequestInformation: showCustomerRequestInformation,
     };
 
 })(Web, jQuery);

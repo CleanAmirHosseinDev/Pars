@@ -100,10 +100,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
                         nameof(request.LastInsuranceList),request.LastInsuranceList
                     },
                     {
-                        nameof(request.CountOfPersonal),request.CountOfPersonal
+                        nameof(request.CountOfPersonel),request.CountOfPersonel
                     },
                     {
-                        nameof(request.AmountOsLastSales),request.AmountOsLastSales
+                        nameof(request.AmountOfLastSale),request.AmountOfLastSale
                     },
                     {
                         "LastAuditingTaxList",request.LastAuditingTaxList

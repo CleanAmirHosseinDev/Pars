@@ -10,10 +10,9 @@ namespace ParsKyanCrm.Domain.Entities
         public int Id { get; set; }
         public int? CustomerId { get; set; }
         public int? RequestId { get; set; }
-        public int? CountOfPersonal { get; set; }
-        public decimal? AmountOsLastSales { get; set; }
+        public int? CountOfPersonel { get; set; }
+        public decimal? AmountOfLastSale { get; set; }
         public byte? IsActive { get; set; }
-        public string Ip { get; set; }
         public string LastAuditingTaxList { get; set; }
         public string LastInsuranceList { get; set; }
     }

@@ -162,5 +162,20 @@ namespace EndPoint.Controllers.api.customer
         }
 
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<CustomerRequestInformationsDto>> Save_SaveCustomerRequestInformation([FromForm] CustomerRequestInformationsDto request)
+        {
+            try
+            {
+                request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.SaveCustomerRequestInformationService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

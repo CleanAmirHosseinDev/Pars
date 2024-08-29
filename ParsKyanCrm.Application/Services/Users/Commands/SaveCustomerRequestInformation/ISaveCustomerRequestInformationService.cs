@@ -6,6 +6,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
 {
     public interface ISaveCustomerRequestInformationService
     {
-        Task<ResultDto> Execute(CustomerRequestInformationsDto request);
+        Task<ResultDto<CustomerRequestInformationsDto>> Execute(CustomerRequestInformationsDto request);
     }
 }

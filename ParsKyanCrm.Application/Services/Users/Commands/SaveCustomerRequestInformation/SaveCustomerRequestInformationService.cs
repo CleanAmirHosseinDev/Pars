@@ -37,9 +37,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
             {
                 string strCondition = string.Empty;
 
-                if (request.Id != 0)
+                if (request.RequestId != 0)
                 {
-                    strCondition = " " + nameof(request.Id) + " = " + request.Id;
+                    strCondition = " " + nameof(request.RequestId) + " = " + request.RequestId;
                 }
 
                 if (!string.IsNullOrEmpty(strCondition))
@@ -54,13 +54,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
                 throw ex;
             }
         }
-        public async Task<ResultDto> Execute(CustomerRequestInformationsDto request)
+        public async Task<ResultDto<CustomerRequestInformationsDto>> Execute(CustomerRequestInformationsDto request)
         {
             #region Upload Image Check
             string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
             string fileNameOldPic_LastAuditingTaxList = string.Empty, path_LastAuditingTaxList = string.Empty;
 
-            var cus = await _context.CustomerRequestInformation.FindAsync(request.Id);
+            var cus = await _context.CustomerRequestInformation.FindAsync(request.RequestId);
             request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
             request.LastAuditingTaxList = cus != null && !string.IsNullOrEmpty(cus.LastAuditingTaxList) ? cus.LastAuditingTaxList : string.Empty;
 
@@ -123,9 +123,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
 
             #endregion
 
-            return new ResultDto()
+            return new ResultDto<CustomerRequestInformationsDto>()
             {
                 IsSuccess = true,
+                Data = request,
                 Message = "مشتری موردنظر با موفقیت ثبت شد"
             };
         }

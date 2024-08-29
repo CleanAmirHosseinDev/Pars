@@ -65,6 +65,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
         public async Task<ResultDto> Execute(RequestReferencesDto request)
         {
+            var req_id = 0;
             try
             {
                 string smsmessage = "";
@@ -156,6 +157,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                     });
                     await _context.SaveChangesAsync();
+                    req_id = (int)rr.Entity.Requestid;
 
                     //_context.RequestReferences.Add(new RequestReferences()
                     //{
@@ -268,6 +270,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
 
                 return new ResultDto()
                 {
+                    ResultId = req_id,
                     IsSuccess = true,
                     Message = "اطلاعات شما با موفقیت ثبت شد",
                 };

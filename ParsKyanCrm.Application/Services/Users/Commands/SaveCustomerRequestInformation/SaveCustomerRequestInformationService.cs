@@ -63,7 +63,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
             var cus = await _context.CustomerRequestInformation.FindAsync(request.RequestId);
             request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
             request.LastAuditingTaxList = cus != null && !string.IsNullOrEmpty(cus.LastAuditingTaxList) ? cus.LastAuditingTaxList : string.Empty;
-
             #endregion
 
             #region Upload Image
@@ -108,10 +107,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
                     {
                         "LastAuditingTaxList",request.LastAuditingTaxList
                     },
-                    {
-                        "LastInsuranceList",request.LastInsuranceList
-                    }
-                }, string.Format(nameof(q_Entity.Entity.Id) + $" = {request.Id}"));
+                }, string.Format(nameof(q_Entity.Entity.RequestId) + $" = {request.RequestId}"));
             }
             #region Upload Image
 

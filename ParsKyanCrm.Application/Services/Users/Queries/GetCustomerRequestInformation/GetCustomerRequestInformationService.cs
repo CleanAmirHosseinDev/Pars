@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerRequestInformation
 {
@@ -44,7 +45,24 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerRequestInfor
                     res = _mapper.Map<CustomerRequestInformationsDto>(q_Find);
                 }
 
-                return res;
+                if (res != null)
+                {
+                    return res;
+                }
+                else
+                {
+                    return new CustomerRequestInformationsDto()
+                    {
+                        RequestId = request.RequestId,
+                        CustomerId = request.CustomerId,
+                        AmountOfLastSale = 0,
+                        CountOfPersonel = 0,
+                        IsActive = 15,
+                        LastAuditingTaxList = "",
+                        LastInsuranceList = "",
+                        Id = 0
+                    };
+                }
 
             }
             catch (Exception ex)

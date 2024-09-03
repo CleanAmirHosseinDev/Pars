@@ -316,6 +316,17 @@
 
     }
 
+
+    function editCustomerRequestInformation(e) {
+        $(e).attr("disabled", "");
+        let req_id = $("#RequestId").val();
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+            goToUrl("/Customer/RequestForRating/Index");
+        }, false);
+        $(e).removeAttr("disabled");
+        goToUrl("/Customer/RequestForRating/Index");
+    }
+
     function saveRequestForRating(e) {
 
         $(e).attr("disabled", "");
@@ -331,8 +342,8 @@
         AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
             goToUrl("/Customer/RequestForRating/Index");
         }, false);
-
         $(e).removeAttr("disabled");
+        goToUrl("/Customer/RequestForRating/Index");
     }
 
     function saveContractAndFinancialDocument(e) {
@@ -1059,6 +1070,7 @@
         TextSearchOnKeyDown: textSearchOnKeyDown,
         SaveRequestForRating: saveRequestForRating,
         InitRequestForRating: initRequestForRating,
+        EditCustomerRequestInformation: editCustomerRequestInformation,
         FilterGrid: filterGrid,
         Get_Detail: get_Detail,
         SystemSeting_ComboRequestForRating: systemSeting_ComboRequestForRating,

@@ -37,7 +37,12 @@ namespace EndPoint.Areas.Customer.Controllers
             ViewBag.id = id;
             return View();
         }
-        
+
+        public IActionResult EditCustomerRequestInformation(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
 
         public IActionResult EditContract(int? id = null)
         {

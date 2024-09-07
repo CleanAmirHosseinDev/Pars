@@ -24,13 +24,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
     public class SaveBasicInformationCustomersService : ISaveBasicInformationCustomersService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _mapper;        
+        private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
 
         public SaveBasicInformationCustomersService(IDataBaseContext context, IMapper mapper, IWebHostEnvironment env)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
             _env = env;
         }
 
@@ -114,7 +114,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
         public async Task<ResultDto> Execute(RequestSaveBasicInformationCustomersDto request)
         {
-
+            var req_id = 0;
             #region Upload Image
 
             string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
@@ -253,101 +253,102 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     //    DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
                     //});
                     //await _context.SaveChangesAsync();
+                    req_id = (int)rr.Entity.Requestid;
 
                     var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
-                  await  WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                  await  WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
+                    await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
+                    await WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
 
                 }
 
 
                 Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.Customers).Name, new Dictionary<string, object>()
                     {
-                    {
-                        "EmailRepresentative",request.EmailRepresentative
-                    },
-                    {
-                        "NationalCodeRepresentative",request.NationalCodeRepresentative
-                    },
-                    {
-                        "CustomerPersonalityType",request.CustomerPersonalityType
-                    },
-                    {
-                        "TypeGroupCompanies",request.TypeGroupCompanies
-                    }
-                    ,
-                    {
-                       nameof(request.EconomicCodeReal),request.EconomicCodeReal
-                    },
-                    {
-                        "SaveDate",dt
-                    },
-                    {
-                        nameof(request.LastInsuranceList),request.LastInsuranceList
-                    },
-                    {
-                        nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
-                    },
-                    {
-                        "IsProfileComplete",true
-                    },
+                        {
+                            "EmailRepresentative",request.EmailRepresentative
+                        },
+                        {
+                            "NationalCodeRepresentative",request.NationalCodeRepresentative
+                        },
+                        {
+                            "CustomerPersonalityType",request.CustomerPersonalityType
+                        },
+                        {
+                            "TypeGroupCompanies",request.TypeGroupCompanies
+                        }
+                        ,
+                        {
+                           nameof(request.EconomicCodeReal),request.EconomicCodeReal
+                        },
+                        {
+                            "SaveDate",dt
+                        },
+                        {
+                            nameof(request.LastInsuranceList),request.LastInsuranceList
+                        },
+                        {
+                            nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
+                        },
+                        {
+                            "IsProfileComplete",true
+                        },
                         {
                             nameof(request.AgentName),request.AgentName
                         },
-                    {
+                        {
                             nameof(request.CompanyName),request.CompanyName
                         },
-                     {
+                        {
                             nameof(request.CeoNationalCode),request.CeoNationalCode
                         },
-                    {
+                        {
                             nameof(request.KindOfCompanyId),request.KindOfCompanyId
                         },
-                    {
+                        {
                             nameof(request.NationalCode),request.NationalCode
                         },
-                    {
+                        {
                             nameof(request.EconomicCode),request.EconomicCode
                         },
-                    {
+                        {
                             nameof(request.Tel),request.Tel
                         },
-                    {
+                        {
                             nameof(request.AddressCompany),request.AddressCompany
                         },
-                     {
+                        {
                             nameof(request.PostalCode),request.PostalCode
                         },
-                    {
+                        {
                             nameof(request.NamesAuthorizedSignatories),request.NamesAuthorizedSignatories
                         },
-                    {
+                        {
                             nameof(request.CountOfPersonal),request.CountOfPersonal
                         },
-                    {
+                        {
                             nameof(request.AmountOsLastSales),request.AmountOsLastSales
                         },
-                    {
+                        {
                             nameof(request.Email),request.Email
                         },
-                    {
+                        {
                             nameof(request.CeoName),request.CeoName
                         },
-                    {
+                        {
                             nameof(request.CeoMobile),request.CeoMobile
                         },
-                    {
+                        {
                             nameof(request.TypeServiceRequestedId),request.TypeServiceRequestedId
                         },
-                    {
+                        {
                             nameof(request.HowGetKnowCompanyId),request.HowGetKnowCompanyId
                         },
-                    {
-                        "ScanCustomerNationalCard",request.ScanCustomerNationalCard
-                    },
-                    {
-                        "ScanManagerNationalCard",request.ScanManagerNationalCard
-                    }
+                        {
+                            "ScanCustomerNationalCard",request.ScanCustomerNationalCard
+                        },
+                        {
+                            "ScanManagerNationalCard",request.ScanManagerNationalCard
+                        }
                     }, string.Format(nameof(request.CustomerId) + " = '{0}' ", request.CustomerId));
 
                 #region Upload Image
@@ -379,12 +380,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 return new ResultDto()
                 {
                     IsSuccess = true,
+                    ResultId = req_id,
                     Message = "کاربر محترم اطلاعات اولیه شما با موفقیت ثبت گردید از طریق همین ناحیه وضعیت درخواست خود را پیگیری بفرمایید"
                 };
             }
             catch (Exception ex)
             {
-
                 #region Upload Image
 
                 FileOperation.DeleteFile(path_LastInsuranceList);
@@ -397,6 +398,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 return new ResultDto()
                 {
                     IsSuccess = false,
+                    ResultId = req_id,
                     Message = ex.Message
                 };
 

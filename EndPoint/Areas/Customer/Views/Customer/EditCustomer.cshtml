@@ -2,12 +2,12 @@
     ViewData["Title"] = "پروفایل کاربر";
 }
 
-@section Styles{
+@section Styles {
     <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
     <link href="~/lib/TagsInput/bootstrap-tagsinput.css" rel="stylesheet" />
 }
 
-@section PageHeader{
+@section PageHeader {
     <section class="content-header">
         <h1>
             پروفایل کاربر
@@ -68,7 +68,6 @@
                             </div>
                         </div>
                         <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group FormIsShow">
@@ -136,21 +135,21 @@
                                         </div>
                                     </div>
                                     @*<div class="form-group">
-        <label class="control-label col-md-4" for="">
-        شهر
-        <span class="RequiredLabel">*</span>
-        </label>
-        <div class="col-md-4">
-        <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
-        </div>
+                                    <label class="control-label col-md-4" for="">
+                                    شهر
+                                    <span class="RequiredLabel">*</span>
+                                    </label>
+                                    <div class="col-md-4">
+                                    <select name="StateId" id="StateId" class="form-control select2" style="width:100% !important;"></select>
+                                    </div>
 
-        <div class="col-md-4">
-        <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
-        </div>
-        </div>*@
+                                    <div class="col-md-4">
+                                    <select name="CityId" id="CityId" class="form-control select2" style="width:100% !important;"></select>
+                                    </div>
+                                    </div>*@
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
-                                            <span id="LabelAgentName">نام نماینده شرکت/ مشاور شرکت</span>                                            
+                                            <span id="LabelAgentName">نام نماینده شرکت/ مشاور شرکت</span>
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
@@ -197,15 +196,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            تعداد کارکنان <span class="NotShowRequiredLabel">شرکت</span>
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input type="text" maxlength="9" name="CountOfPersonal" id="CountOfPersonal" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="Web.Customer.OnKeyPressInCountOfPersonal(this);" />
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -256,7 +246,7 @@
                                             <input type="text" maxlength="11" name="Tel" id="Tel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" />
                                         </div>
                                     </div>
-                                    <div class="form-group FormIsShow" >
+                                    <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             کد پستی
                                             <span class="RequiredLabel">*</span>
@@ -276,45 +266,6 @@
                                             <span>نکته :  اسامی این افراد در قرارداد ذکر خواهد شد، اسامی امضاکنندگان مجاز را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
                                         </div>
                                     </div>
-
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده(ریال)
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <div>
-                                                <input type="text" name="AmountOsLastSales" id="AmountOsLastSales" maxlength="18" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="Web.Customer.OnkeuUpInAmountOsLastSales(this);" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                            <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_AuditedFinancialStatements">*</span>
-                                            <input type="hidden" name="AuditedFinancialStatements" value="" />
-                                        </label>
-                                        <div class="col-md-8">
-
-                                            <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);" />
-                                            <div id="divDownload_AuditedFinancialStatements"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            لیست آخرین بیمه
-                                            <span id="spanListLastBimeReq" class="RequiredLabel NotShowRequiredLabel">*</span>
-                                            <input type="hidden" name="LastInsuranceList" value="" />
-                                        </label>
-                                        <div class="col-md-8">
-
-                                            <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'لیست آخرین بیمه',5);" />
-                                            <div id="divDownload"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="form-group FormIsShow">
                                         <label class="control-label col-md-4" for="">
                                             اسکن کارت ملی نماینده
@@ -342,16 +293,81 @@
                                             <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
+                        </div>
+                        <div id="hide_information">
+                            <p>اطلاعات تکمیلی</p>
+                            <div style=" border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; text-align: center; margin-bottom: 20px">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                تعداد کارکنان <span class="NotShowRequiredLabel">شرکت</span>
+                                                <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input type="text" maxlength="9" name="CountOfPersonal" id="CountOfPersonal" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="Web.Customer.OnKeyPressInCountOfPersonal(this);" onchange="$('#CountOfPersonel').val(this.value);" />
+                                                <input type="hidden" name="CountOfPersonel" id="CountOfPersonel" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده(ریال)
+                                                <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <div>
+                                                    <input type="text" name="AmountOsLastSales" id="AmountOsLastSales" maxlength="18" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" onkeyup="Web.Customer.OnkeuUpInAmountOsLastSales(this);" onchange="$('#AmountOfLastSale').val(this.value);" />
+                                                    <input type="hidden" name="AmountOfLastSale" id="AmountOfLastSale" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
 
-                            <div class="row">
-                                <button title="ثبت" class="btn btn-info fontForAllPage" type="submit" id="btnOpperationRun">
-                                    ثبت اطلاعات  <i class="fa fa-save"></i>
-                                </button>
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
+                                                <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_AuditedFinancialStatements">*</span>
+                                                <input type="hidden" name="AuditedFinancialStatements" value="" />
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);$('#LastAuditingTaxList')[0].files = $('#AuditedFinancialStatements')[0].files;" />
+                                                <div id="divDownload_AuditedFinancialStatements"></div>
+                                                <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group FormIsShow">
+                                            <div class="col-md-8">
+                                                <input style="display:none" type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" />
+                                            </div>
+                                        </div>                                        
+
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                لیست آخرین بیمه
+                                                <span id="spanListLastBimeReq" class="RequiredLabel NotShowRequiredLabel">*</span>
+                                                <input type="hidden" name="LastInsuranceList" value="" />
+                                            </label>
+                                            <div class="col-md-8">
+
+                                                <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'لیست آخرین بیمه',5);" />
+                                                <div id="divDownload"></div>
+                                                <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-
+                        </div>
+                        <input type="hidden" name="RequestId" id="RequestId" value="0" />
+                        <div class="row text-center">
+                            <button title="ثبت" class="btn btn-info fontForAllPage" type="submit" id="btnOpperationRun">
+                                ثبت اطلاعات  <i class="fa fa-save"></i>
+                            </button>
                         </div>
                     </div>
 

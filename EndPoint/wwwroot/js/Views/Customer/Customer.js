@@ -17,16 +17,14 @@
     }
 
     function saveCustomer(e) {
-
+        let req_id = 0;
         $("#btnOpperationRun").attr("disabled", "");
 
         RemoveAllCharForPrice("AmountOsLastSales");
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
-
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
             $("#btnOpperationRun").removeAttr("disabled");
-
             if (res.isSuccess) {
-              
+                req_id = res.resultId;
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
                 setlstor("fullName", $("#CompanyName").val());
@@ -36,53 +34,45 @@
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
-                        goToUrl("/Customer/RequestForRating/Index");
                     });
-                   
                 } else {
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
-
-                        goToUrl("/Customer/RequestForRating/Index");
-
                     });
-                   
                 }
-
             }
             else {
-
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
-
                 alertB("خطا", res.message, "error");
             }
-
         }, true);
-
-
-
+        if (req_id != 0) {
+            $("#RequestId").val(req_id);
+            AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+            }, true);
+        }
+        goToUrl("/Customer/RequestForRating/Index");
     }
 
     function saveMobileUser(e) {
-
+        let req_id = 0;
         $("#btnSaveMobileUser").attr("disabled", "");
-       
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
-
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
             $("#btnSaveMobileUser").removeAttr("disabled");
-
             if (res.isSuccess) {
-
+                req_id = res.resultId;
+                $("#RequestId").val(req_id);
                 alertB("ثبت", res.message, "success");
-             
-
             }
             else {
                 alertB("خطا", res.message, "error");
             }
-
         }, true);
 
-
+        if (req_id != 0) {
+            AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+                goToUrl("/Customer/RequestForRating/Index");
+            }, false);
+        }
     }
 
 
@@ -492,6 +482,7 @@
                 if (res.data.length > 0) {
                     $("#divTypeServiceRequestedId").hide();
                     systemSeting_Combo(resSingle, false);
+                    $('#hide_information').hide();
                 }
 
                 else {
@@ -504,12 +495,9 @@
     }
 
     function initCustomer(dir = 'rtl') {
-
         ComboBoxWithSearch('.select2', dir);
 
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
-
-
             if (res != null) {
                 $("#AddressCompany").val(res.addressCompany);
                 $("#CompanyName").val(res.companyName);
@@ -558,16 +546,12 @@
                 }
                 checkForFirstRequest(res);
                 // systemSeting_Combo(res);
-
-
-
             }
             else {
                 Tagsinput("NamesAuthorizedSignatories");
             }
 
         }, true);
-
     }
 
     function onChangeCustomerPersonalityType(e) {

@@ -497,7 +497,7 @@
                     try {
                         $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).prop("href", LoadedDataFromDb[i].fileName1Full);
                         $("#Download_" + LoadedDataFromDb[i].dataFormDocumentId).css("display", 'inline-block');
-                    } catch { }
+                    } catch (e) { }
 
                 }
             }
@@ -533,7 +533,7 @@
                     value = res.superVisorDescription;
                 }
             }, true);
-        } catch {
+        } catch (e) {
 
         }
         let _str = "";
@@ -720,7 +720,7 @@
             }, function () {
             }, ["خیر", "بلی"]);
         }
-        catch {
+        catch (e) {
             alertB("خطا", "ذخیره موفقیت آمیز نبود مجددا تلاش فرماید", "error");
         }
         return false
@@ -757,7 +757,7 @@
             }, function () {
             }, ["خیر", "بلی"]);
         }
-        catch {
+        catch (e) {
             alertB("خطا", "ذخیره موفقیت آمیز نبود مجددا تلاش فرماید", "error");
         }
         return false

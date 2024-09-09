@@ -774,7 +774,7 @@
             try {
                 $("#Download_" + LoadedDataFromDbDocument[i].dataFormDocumentId).prop("href", LoadedDataFromDbDocument[i].fileName1Full);
                 $("#Download_" + LoadedDataFromDbDocument[i].dataFormDocumentId).css("display", "inline-block");
-            } catch { }
+            } catch (e) { }
         }
     }
 

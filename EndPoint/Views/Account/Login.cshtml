@@ -53,8 +53,8 @@
                     <input type="radio" name="RadioSelectSha" id="RadioSelectSha" value="0" checked="checked" onchange="Web.AccountController.OnChangeCSh(this);" />حقوقی
                     <input type="radio" name="RadioSelectSha" id="RadioSelectSha" value="1" onchange="Web.AccountController.OnChangeCSh(this);" />حقیقی
                 </div>
-                <input type="text" class="input" placeholder="شماره تلفن همراه" id="User" maxlength="11" onkeypress="return TextBoxOnlyNumber(event);" />
-                <input type="text" class="input" placeholder="شناسه ملی شرکت" id="NationalCode" maxlength="11" onkeypress="return TextBoxOnlyNumber(event);" />
+                <input type="text" class="input" placeholder="شماره تلفن همراه" id="User" maxlength="11" pattern="^((0?9)|(\+?989))\d{9}$" oninput="var e=(this.event)?this.event:window.event;var c=(e.which)?e.which:e.keyCode;if(c>31&amp;&amp;(c<48||c>57)){return false;}return true;" />
+                <input type="text" class="input" placeholder="شناسه ملی شرکت" id="NationalCode" maxlength="11" onkeypress="return TextBoxOnlyNumber(event)" oninput="return TextBoxOnlyNumber(event)";" />
                 <partial name="~/Views/Shared/_CaptchaLayout.cshtml" />
             </div>
             <button class="submit-btn" type="button" onclick="Web.AccountController.LoginC(this);">ارسال کد احراز ورود</button>

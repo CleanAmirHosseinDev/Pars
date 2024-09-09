@@ -2044,18 +2044,8 @@ function RemoveAllTagsinput(id) {
 
 function TextBoxOnlyNumber(e) {
 
-    try {
-
-        e = (e) ? e : window.event;
-        var charCode = (e.which) ? e.which : e.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            return false;
-        }
-        return true;
-
-    } catch (e) {
-
-    }
+    const inp = e.target;
+    inp.value = inp.value.replace(/[^0-9]/g, '');
 
 }
 

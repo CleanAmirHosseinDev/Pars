@@ -147,6 +147,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public string CodalNumber { get; set; }
 
         public DateTime? CodalDate { get; set; }
+        public int? CustomerRequestInformationId { get; set; }
 
     }
 }

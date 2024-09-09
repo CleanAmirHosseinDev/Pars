@@ -83,8 +83,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
 select * from (
 
         select cte.Assessment,cte.ReasonAssessment1,cte.ChangeDate,cte.RequestNo,cte.EvaluationExpert,cte.NationalCode,cte.TypeGroupCompanies,cte.AgentMobile,cte.AgentName,cte.CustomerID,cte.DateOfConfirmed,cte.DateOfRequest,cte.IsFinished,cte.KindOfRequest,cte.KindOfRequestName,cte.RequestID,cte.ContractDocument,(select  distinct top 1 LevelStepAccessRole from LevelStepSetting where LevelStepIndex=(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) )) as DestLevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',1) as LevelStepStatus,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',2) as LevelStepAccessRole,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',3) as DestLevelStepIndex,cte.CompanyName,(select top 1 RequestReferences.Comment from RequestReferences where RequestReferences.Requestid = cte.RequestID order by RequestReferences.ReferenceID desc) as Comment,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',5) as DestLevelStepIndexButton,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6) as ReciveUser,dbo.fn_GetAllNameUsers(dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',6)) as ReciveUserName,dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',7) as SendUser ,
-dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID,
-		dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',9) as SendTime from (
+         dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingIndexID,
+		dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',9) as SendTime,CustomerRequestInformationId from (
 
 	select rfr.CustomerID,
                 rfr.DateOfConfirmed,
@@ -104,11 +104,13 @@ dbo.fn_String_Split_with_Index(cte.RequestReferences,'|',8) as LevelStepSettingI
                  cus.TypeGroupCompanies,
                  doc.ContractDocument,
                  rfr.Assessment,
-                 rfr.ReasonAssessment1
+                 rfr.ReasonAssessment1,
+				 cri.id as CustomerRequestInformationId
                  from {typeof(RequestForRating).Name} as rfr
                  left join {typeof(SystemSeting).Name} as ss on ss.SystemSetingID = rfr.KindOfRequest
                  left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
                  left join {typeof(ContractAndFinancialDocuments).Name}  as doc on doc.RequestID=rfr.RequestID
+                 left join [dbo].[CustomerRequestInformation] as cri on rfr.RequestID=cri.RequestId
                  {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
                  {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}                                    
 ) as cte

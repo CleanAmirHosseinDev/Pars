@@ -28,12 +28,12 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#activity" onclick="Web.RequestForRating.ShowCustomerInfo()" data-toggle="tab" aria-expanded="false">مشخصات اولیه مشتری</a></li>
-                        <li class=""><a onclick="Web.RequestForRating.ShowCustomerRequestInformation()" href="#timeline_1" data-toggle="tab" aria-expanded="false">مشخصات قرارداد مشتری</a></li>
-                        <li class="" id="svisorShowContract"><a onclick="Web.RequestForRating.ShowContract()" href="#timeline_2" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
-                        <li class="" id="svisorShowDocument"><a onclick="Web.RequestForRating.ShowDocument()" href="#timeline_3" data-toggle="tab" aria-expanded="false">  قرارداد و اسناد مشتری</a></li>
-                        <li class="" id="svisorShowEvaluationFile"><a onclick="Web.RequestForRating.ShowEvaluationFile()" href="#timeline_4" data-toggle="tab" aria-expanded="false"> نتایج ارزیابی</a></li>
-                        <li class="" id="svisorShowScore"><a onclick="Web.RequestForRating.ShowScoreFile()" href="#timeline_5" data-toggle="tab" aria-expanded="false">فایل امتیاز</a></li>
+                        <li class="active"><a href="#activity" onclick="Web.RequestForRating.ShowCustomerInfo()" data-toggle="tab" aria-expanded="false">مشخصات مشتری</a></li>
+                        <li class="" id="svisorCustomerRequestInformation"><a onclick="Web.RequestForRating.ShowCustomerRequestInformation()" href="#timeline_5" data-toggle="tab" aria-expanded="false">مشخصات قرارداد مشتری</a></li>
+                        <li class="" id="svisorShowContract"><a onclick="Web.RequestForRating.ShowContract()" href="#timeline_1" data-toggle="tab" aria-expanded="false">قرارداد</a></li>
+                        <li class="" id="svisorShowDocument"><a onclick="Web.RequestForRating.ShowDocument()" href="#timeline_2" data-toggle="tab" aria-expanded="false">  قرارداد و اسناد مشتری</a></li>
+                        <li class="" id="svisorShowEvaluationFile"><a onclick="Web.RequestForRating.ShowEvaluationFile()" href="#timeline_3" data-toggle="tab" aria-expanded="false"> نتایج ارزیابی</a></li>
+                        <li class="" id="svisorShowScore"><a onclick="Web.RequestForRating.ShowScoreFile()" href="#timeline_4" data-toggle="tab" aria-expanded="false">فایل امتیاز</a></li>
                         <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="true">ارجاع</a></li>
                     </ul>
                     <div class="tab-content">
@@ -48,7 +48,7 @@
                         <!-- /.tab-pane -->
 
                         <div class="tab-pane" id="timeline_1">
-                            <div id="showCustomerRequestInformation"></div>
+                            <div id="contractInfo"></div>
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="timeline_2">
@@ -68,7 +68,7 @@
 
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="timeline_5">
-                            <div id="showScore"></div>
+                            <div id="showCustomerRequestInformation"></div>
 
                         </div>
                         <!-- /.tab-pane -->

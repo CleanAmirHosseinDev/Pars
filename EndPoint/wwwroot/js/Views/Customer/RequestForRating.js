@@ -1070,6 +1070,20 @@
 
     }
 
+    function initCustomerRequestInformation(id) {
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations", JSON.stringify(
+            { RequestId: id }
+        ), true, function (res) {
+            if (!isEmpty(res)) {
+                $("#CountOfPersonel").val(res.countOfPersonel);
+                $("#AmountOfLastSale").val(moneyCommaSepWithReturn(!isEmpty(res.amountOfLastSale) ? res.amountOfLastSale.toString() : ''));
+                if (res.lastInsuranceListFull != "/FileUpload/Customers/no-photo.png")
+                    $("#divDownload").html("<a class='btn btn-success' href='" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                if (res.lastAuditingTaxListFull != "/FileUpload/Customers/no-photo.png")
+                    $("#divDownload_LastAuditingTaxList").html("<a class='btn btn-success' href='" + res.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+            }
+        }, true);
+    }
 
     web.RequestForRating = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
@@ -1103,8 +1117,9 @@
         SaveReferralRequestForRatingCancel: saveReferralRequestForRatingCancel,
         DashboardInformation: dashboardInformation,       
         CopyFurtherInfo: copyFurtherInfo,
-        ShowFurtherInfo: showFurtherInfo
-        
+        ShowFurtherInfo: showFurtherInfo,
+
+        InitCustomerRequestInformation: initCustomerRequestInformation,
     };
 
 })(Web, jQuery);

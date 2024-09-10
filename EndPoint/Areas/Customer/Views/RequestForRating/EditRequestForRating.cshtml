@@ -143,6 +143,6 @@
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
-        Web.RequestForRating.InitRequestForRating();
+        Web.RequestForRating.InitRequestForRating(@ViewBag.id);
     </script>
 }

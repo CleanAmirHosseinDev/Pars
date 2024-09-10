@@ -130,6 +130,11 @@
     </section>
 </div>
 
+
+
 @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script>
+        Web.RequestForRating.InitCustomerRequestInformation(@ViewBag.id);
+    </script>
 }

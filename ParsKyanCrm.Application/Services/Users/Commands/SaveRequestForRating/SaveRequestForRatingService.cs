@@ -183,7 +183,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                 else
                 {
                     //In Bollow
-                    _context.RequestReferences.Add(new RequestReferences()
+                    var rr1 = _context.RequestReferences.Add(new RequestReferences()
                     {
                         DestLevelStepIndex = request.DestLevelStepIndex,
                         Comment = request.Comment,
@@ -199,7 +199,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveRequestForRating
                         LevelStepSettingIndexID = request.LevelStepSettingIndexID
                     });
                     await _context.SaveChangesAsync();
-
+                    req_id = (int)rr1.Entity.Requestid;
                     if (request.DestLevelStepIndex == "0")
                     {
                         DateTime CodalDate = DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(request.CodalDate));

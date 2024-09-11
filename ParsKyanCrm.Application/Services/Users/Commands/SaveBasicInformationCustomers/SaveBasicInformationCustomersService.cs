@@ -238,7 +238,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         ReciveUser = strArrConfigKindOfRequest[6],
                     });
                     await _context.SaveChangesAsync();
-
+                    req_id = (int)rr.Entity.Requestid;
                     //_context.RequestReferences.Add(new RequestReferences()
                     //{
                     //    Requestid = rr.Entity.Requestid,
@@ -253,7 +253,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     //    DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
                     //});
                     //await _context.SaveChangesAsync();
-                    req_id = (int)rr.Entity.Requestid;
 
                     var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
                     await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);

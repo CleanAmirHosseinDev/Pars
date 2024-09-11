@@ -90,7 +90,7 @@
                         }
                        
                         if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null ) {
-                            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-file-pdf-o'></i> بروزرسانی اطلاعات مالی  بیمه</a>";
+                            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> بروزرسانی اطلاعات مالی  بیمه</a>";
                         }
                         strM += "</td></tr>";
                     }
@@ -147,7 +147,7 @@
                             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
                         if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null) {
-                            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-edit'></i> بروزرسانی اطلاعات مالی  بیمه </a>";
+                            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> بروزرسانی اطلاعات مالی  بیمه </a>";
                         }
 
                         strM += "</td></tr>";

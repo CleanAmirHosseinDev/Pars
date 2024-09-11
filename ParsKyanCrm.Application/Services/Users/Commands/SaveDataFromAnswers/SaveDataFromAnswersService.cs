@@ -198,16 +198,16 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFromAnswers
                     request.DataFormQuestionId = item.DataFormQuestionId;
                     request.Answer = item.Answer;
                     request.Description = item.Description;
-                    #region Upload Image
+                    //#region Upload Image
 
-                    if (request.FileName1 != null)
-                    {
-                        fileNameOldPic_FileName1 = request.FileName1;
-                        request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName1);
-                        path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1, path_FileName1, "فایل یک");
-                    }
-                    #endregion
+                    //if (request.FileName1 != null)
+                    //{
+                    //    fileNameOldPic_FileName1 = request.FileName1;
+                    //    request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName1);
+                    //    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1, path_FileName1, "فایل یک");
+                    //}
+                    //#endregion
 
                     EntityEntry<DataFromAnswers> q_Entity;
                     if (Check_Remote(request) == false)

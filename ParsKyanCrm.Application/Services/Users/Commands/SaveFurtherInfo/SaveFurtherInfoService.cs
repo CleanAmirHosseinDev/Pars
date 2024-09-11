@@ -222,49 +222,49 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveFurtherInfo
                     request.OfficialNewspaper = con != null && !string.IsNullOrEmpty(item.OfficialNewspaper) ? item.OfficialNewspaper : string.Empty;
                     request.StatementTaxList = con != null && !string.IsNullOrEmpty(item.StatementTaxList) ? item.StatementTaxList : string.Empty;
 
-                    #region Upload Image
+                    //#region Upload Image
 
-                    if (request.LastAuditingTaxList != null)
-                    {
-                        fileNameOldPic_LastAuditingTaxList = request.LastAuditingTaxList;
-                        request.LastAuditingTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LastAuditingTaxList);
-                        path_LastAuditingTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastAuditingTaxList;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastAuditingTaxList, path_LastAuditingTaxList, "صورتهای مالی حسابرسی شده");
-                    }
+                    //if (request.LastAuditingTaxList != null)
+                    //{
+                    //    fileNameOldPic_LastAuditingTaxList = request.LastAuditingTaxList;
+                    //    request.LastAuditingTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LastAuditingTaxList);
+                    //    path_LastAuditingTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastAuditingTaxList;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastAuditingTaxList, path_LastAuditingTaxList, "صورتهای مالی حسابرسی شده");
+                    //}
 
-                    if (request.LastChangeOfficialNewspaper != null)
-                    {
-                        fileNameOldPic_LastChangeOfficialNewspaper = request.LastChangeOfficialNewspaper;
-                        request.LastChangeOfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LastChangeOfficialNewspaper);
-                        path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastChangeOfficialNewspaper;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastChangeOfficialNewspaper, path_LastChangeOfficialNewspaper, "آخرین تغییرات روزنامه رسمی");
-                    }
+                    //if (request.LastChangeOfficialNewspaper != null)
+                    //{
+                    //    fileNameOldPic_LastChangeOfficialNewspaper = request.LastChangeOfficialNewspaper;
+                    //    request.LastChangeOfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LastChangeOfficialNewspaper);
+                    //    path_LastChangeOfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastChangeOfficialNewspaper;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastChangeOfficialNewspaper, path_LastChangeOfficialNewspaper, "آخرین تغییرات روزنامه رسمی");
+                    //}
 
-                    if (request.Result_Final_StatuteDoc != null)
-                    {
-                        fileNameOldPic_StatuteDoc = request.StatuteDoc;
-                        request.StatuteDoc = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_StatuteDoc);
-                        path_StatuteDoc = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatuteDoc;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_StatuteDoc, path_StatuteDoc, "اساسنامه");
-                    }
+                    //if (request.Result_Final_StatuteDoc != null)
+                    //{
+                    //    fileNameOldPic_StatuteDoc = request.StatuteDoc;
+                    //    request.StatuteDoc = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_StatuteDoc);
+                    //    path_StatuteDoc = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatuteDoc;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_StatuteDoc, path_StatuteDoc, "اساسنامه");
+                    //}
 
-                    if (request.Result_Final_OfficialNewspaper != null)
-                    {
-                        fileNameOldPic_OfficialNewspaper = request.OfficialNewspaper;
-                        request.OfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OfficialNewspaper);
-                        path_OfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.OfficialNewspaper;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_OfficialNewspaper, path_OfficialNewspaper, " روزنامه رسمی");
-                    }
+                    //if (request.Result_Final_OfficialNewspaper != null)
+                    //{
+                    //    fileNameOldPic_OfficialNewspaper = request.OfficialNewspaper;
+                    //    request.OfficialNewspaper = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OfficialNewspaper);
+                    //    path_OfficialNewspaper = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.OfficialNewspaper;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_OfficialNewspaper, path_OfficialNewspaper, " روزنامه رسمی");
+                    //}
 
-                    if (request.Result_Final_StatementTaxList != null)
-                    {
-                        fileNameOldPic_StatementTaxList = request.StatementTaxList;
-                        request.StatementTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_StatementTaxList);
-                        path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatementTaxList;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_StatementTaxList, path_StatementTaxList, " اظهارنامه مالیاتی");
-                    }
+                    //if (request.Result_Final_StatementTaxList != null)
+                    //{
+                    //    fileNameOldPic_StatementTaxList = request.StatementTaxList;
+                    //    request.StatementTaxList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_StatementTaxList);
+                    //    path_StatementTaxList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.StatementTaxList;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot+ fileNameOldPic_StatementTaxList, path_StatementTaxList, " اظهارنامه مالیاتی");
+                    //}
 
-                    #endregion
+                    //#endregion
 
                     EntityEntry<FurtherInfo> q_Entity;
                     if (request.FurtherInfoId == 0)

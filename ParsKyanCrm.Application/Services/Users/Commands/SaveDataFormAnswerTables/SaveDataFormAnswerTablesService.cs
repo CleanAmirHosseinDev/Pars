@@ -248,38 +248,38 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveDataFormAnswerTabl
                    
                     #region Upload Image
 
-                    if (!string.IsNullOrEmpty(request.FileName1) )
-                    {
-                        fileNameOldPic_FileName1 = request.FileName1;
-                        request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName1);
-                        path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1, path_FileName1, "فایل یک");
+                    //if (!string.IsNullOrEmpty(request.FileName1) )
+                    //{
+                    //    fileNameOldPic_FileName1 = request.FileName1;
+                    //    request.FileName1 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName1);
+                    //    path_FileName1 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName1;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName1, path_FileName1, "فایل یک");
                     
-                    }
+                    //}
 
-                    if (!string.IsNullOrEmpty(request.FileName2))
-                    {
-                        fileNameOldPic_FileName2 = request.FileName2;
-                        request.FileName2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName2);
-                        path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName2;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName2, path_FileName2, "فایل دو");
-                    }
+                    //if (!string.IsNullOrEmpty(request.FileName2))
+                    //{
+                    //    fileNameOldPic_FileName2 = request.FileName2;
+                    //    request.FileName2 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName2);
+                    //    path_FileName2 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName2;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName2, path_FileName2, "فایل دو");
+                    //}
 
-                    if (!string.IsNullOrEmpty(request.FileName3))
-                    {
-                        fileNameOldPic_FileName3 = request.FileName3;
-                        request.FileName3 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName3);
-                        path_FileName3 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName3;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName3, path_FileName3, "فایل سه");
-                    }
+                    //if (!string.IsNullOrEmpty(request.FileName3))
+                    //{
+                    //    fileNameOldPic_FileName3 = request.FileName3;
+                    //    request.FileName3 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName3);
+                    //    path_FileName3 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName3;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName3, path_FileName3, "فایل سه");
+                    //}
 
-                    if (!string.IsNullOrEmpty(request.FileName4))
-                    {
-                        fileNameOldPic_FileName4 = request.FileName4;
-                        request.FileName4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName4);
-                        path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName4;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName4, path_FileName4, "فایل چهار");
-                    }
+                    //if (!string.IsNullOrEmpty(request.FileName4))
+                    //{
+                    //    fileNameOldPic_FileName4 = request.FileName4;
+                    //    request.FileName4 = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_FileName4);
+                    //    path_FileName4 = _env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + request.FileName4;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomerFurtherInfoFolderWithwwwroot + fileNameOldPic_FileName4, path_FileName4, "فایل چهار");
+                    //}
 
                     #endregion
 

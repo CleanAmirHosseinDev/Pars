@@ -90,7 +90,7 @@
                         }
                        
                         if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null ) {
-                            strM += "<a style='margin-right:5px;color:black' title='مشخصات وضعیت مالی' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+                            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-file-pdf-o'></i> بروزرسانی اطلاعات مالی  بیمه</a>";
                         }
                         strM += "</td></tr>";
                     }
@@ -147,66 +147,11 @@
                             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
                         if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null) {
-                            strM += "<a style='margin-right:5px;color:black' title='مشخصات وضعیت مالی ' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-edit'></i> </a>";
+                            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-edit'></i> بروزرسانی اطلاعات مالی  بیمه </a>";
                         }
 
                         strM += "</td></tr>";
                     }
-
-                    
-                    //if (res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7") {
-
-                    //    st2 = "<span style='font-size:1.5em'> &#128194;</span> ";
-                    //}
-                    //strM += "<tr><td>" + (i + 1) + "</td><td>"
-                    //    + res.data[i].kindOfRequestName + "</td><td>"
-                    //    + res.data[i].dateOfRequestStr + "</td>";
-                    //if (res.data[i].sendUser!=null  ) {
-                    //    strM += "<td style='font-size:x-small'>" + (res.data[i].comment == null ? "" : res.data[i].comment) + "</td>";
-                    //} else {
-                    //    strM += "<td></td>";
-                    //}
-                    
-                    //if (res.data[i].levelStepSettingIndexID == "29") {
-                    //    strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
-                    //} else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
-                    //    strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
-                    //}
-                    //else {
-                    //    strM += "<td>" + st2
-                    //        + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
-                    //        + res.data[i].levelStepStatus + "</td><td>";
-                    //}
-                    //strM += "<a style='margin-right:5px;color:black' href='/Customer/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'> </a>";
-                    //if (getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
-                    //    if (res.data[i].destLevelStepIndex == 4) {
-                    //        strM += "<a style='margin-right:5px;' title='تایید قرارداد و بارگذاری قرارداد ' class='btn btn-success fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward'></i> تایید قرارداد و بارگذاری قرارداد </a>";
-
-                    //    }
-
-                    //    if (res.data[i].destLevelStepIndex == 11 && getlstor("loginName") === res.data[i].destLevelStepAccessRole) {
-                    //        strM += "<a style='margin-right:5px;color:black' title='بارگذاری سند تسویه نهایی ' class='btn btn-info fontForAllPage' href='/Customer/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i> بارگذاری سند تسویه نهایی </a>";
-
-                    //    }
-                    //}
-                    //if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
-                    //    strM += "<a style='margin-right:5px;color:black' title='اصلاح/ تکمیل اطلاعات'  class='btn btn-edit fontForAllPage' href='/Customer/Customer/EditCustomer/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اصلاح/ تکمیل اطلاعات اولیه</a>";
-                    //    strM += "<button style='margin-right:5px;color:black' class='btn btn-info fontForAllPage' type='button'  onclick='Web.RequestForRating.SaveReferralRequestForRatingAgain(this," + res.data[i].requestId + ");'>ارسال مجدد </button >";
-
-                    //}
-                    //if (res.data[i].destLevelStepIndex == 7) {
-                    // //   strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
-                    //    strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
-
-                    //} else if (res.data[i].destLevelStepIndex >= 7 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده اطلاعات تکمیلی") {
-                    //    strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
-
-                    //}
-                    //if (res.data[i].contractDocument != null && res.data[i].contractDocument!="") {
-                    //    strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
-                    //}
-                  
-                    //strM += "</td></tr>";
                 }
 
                 $("#tBodyList").html(strM);

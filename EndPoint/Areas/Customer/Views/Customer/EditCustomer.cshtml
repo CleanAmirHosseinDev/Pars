@@ -327,26 +327,19 @@
                                     <div class="col-md-6">
 
                                         <div class="form-group FormIsShow">
-                                            <label class="control-label col-md-4" for="">
+                                                <label class="control-label col-md-4" for="LastAuditingTaxList">
                                                 آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                                <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_AuditedFinancialStatements">*</span>
-                                                <input type="hidden" name="AuditedFinancialStatements" value="" />
+                                                    <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_LastAuditingTaxList">*</span>
                                             </label>
                                             <div class="col-md-8">
-                                                <input type="file" name="Result_Final_AuditedFinancialStatements" id="AuditedFinancialStatements" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);$('#LastAuditingTaxList')[0].files = $('#AuditedFinancialStatements')[0].files;" />
+                                                <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);" />
                                                 <div id="divDownload_AuditedFinancialStatements"></div>
                                                 <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="form-group FormIsShow">
-                                            <div class="col-md-8">
-                                                <input style="display:none" type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" />
-                                            </div>
-                                        </div>                                        
+                                        </div>     
 
                                         <div class="form-group FormIsShow">
-                                            <label class="control-label col-md-4" for="">
+                                            <label class="control-label col-md-4" for="LastInsuranceList">
                                                 لیست آخرین بیمه
                                                 <span id="spanListLastBimeReq" class="RequiredLabel NotShowRequiredLabel">*</span>
                                                 <input type="hidden" name="LastInsuranceList" value="" />

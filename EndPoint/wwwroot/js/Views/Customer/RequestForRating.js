@@ -89,8 +89,8 @@
                             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
                        
-                        if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == "" ) {
-                            strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-file-pdf-o'></i> </a>";
+                        if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null ) {
+                            strM += "<a style='margin-right:5px;color:black' title='مشخصات وضعیت مالی' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
                         strM += "</td></tr>";
                     }
@@ -144,10 +144,10 @@
 
                         }
                         if (res.data[i].contractDocument != null && res.data[i].contractDocument != "") {
-                            strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> </a>";
+                            strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
-                        if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == "") {
-                            strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-edit'></i> </a>";
+                        if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null) {
+                            strM += "<a style='margin-right:5px;color:black' title='مشخصات وضعیت مالی ' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].customerRequestInformationId + "'><i class='fa fa-edit'></i> </a>";
                         }
 
                         strM += "</td></tr>";

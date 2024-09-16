@@ -352,7 +352,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 if (  OldReq != 0)
                 {
                     var con = await _context.CorporateGovernance.FirstOrDefaultAsync(p => p.RequestId == OldReq);
-                    request.CompanyWebSite = con.CompanyWebSite;
+                    request.CompanyWebSite = con != null && !string.IsNullOrEmpty(con.CompanyWebSite) ? con.CompanyWebSite : string.Empty ;
                     request.CustomerId = con.CustomerId;
                     request.HaveAuditCommittee = con.HaveAuditCommittee.Value;
                     request.HaveRepresentative = con.HaveRepresentative.Value;

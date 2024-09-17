@@ -816,13 +816,19 @@
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
         if (userAccessSaveForm) {
-            strM += "<a class='btn btn-success changeData' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a>";
+            strM += "<a class='btn btn-success changeData' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a></div>";
         }
-        strM += "</div><div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
+        strM += "<div style=' border: 2px solid #00c0ef; padding: 30px; border-radius: 5px; margin-bottom: 20px'><form id='frmFrom";
         strM += FormId + "' class='changeData'>";
         strM += "<input type='hidden' id='FormID' name='FormID' value='" + FormId + "' />";
         strM += "<input type='hidden' id='RequestId' name='RequestId' value='" + RequestId + "' />";
-        strM += "<div class='row' id='FormDetail" + FormId + "'></div></form></div></div>";
+        strM += "<div class='row' id='FormDetail" + FormId + "'></div></form></div>";
+        strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
+        strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
+        if (userAccessSaveForm) {
+            strM += "<a class='btn btn-success changeData' style='height: 35px;' onclick='Web.Corporate.SaveSerializedForm(" + FormId + ");'>ذخیره تغییرات " + FormCode + "</a></div>";
+        }
+        strM += "</div>";
         return strM;
     }
 
@@ -913,6 +919,7 @@
             alertB("خطا", "ابتدا به همه سوالات این صفحه پاسخ داده سپس اقدام به ذخیره سازی فرم نمایید", "error", "بله متوجه شدم", function () { });
         }
         hideWait();
+        alertB("ثبت", "ثبت فرم با موفقیت انجام شد", "success");
     }
 
     function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
@@ -943,7 +950,7 @@
                                                     dataFormQuestionScore =
                                                         dataFormQuestionScore * datares.ratio;
                                                 }
-                                            }, false);
+                                            }, true);
                                     }
                                     // اگر با موفقیت پاسخ ذخیره شد
                                     if (res.dataId != 0)
@@ -955,12 +962,11 @@
                                                 SystemScore: dataFormQuestionScore,
                                                 AnalizeScore: 0,
                                                 IsActive: 15,
-                                            }), false, function (reee) { }, false);
+                                            }), false, function (reee) { }, true);
                                 }
-                            }, false);
+                            }, true);
                     }
-
-                    alertB("ثبت", res.message, "success");
+                    showWait();
                 } else {
                     alertB("خطا", res.message, "error");
                 }

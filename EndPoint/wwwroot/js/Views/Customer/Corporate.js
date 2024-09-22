@@ -460,13 +460,18 @@
     function makeLiAndPan(formCode, formTitle, formId, reqid, isActive) {
         let li_option = "";
         let tabPane = "";
+        let backgroung = JSON.parse(getlstor("bg"))["FormDetailTab" + formCode];
+        if (isEmpty(backgroung)) {
+            backgroung = "red";
+            setlstor("bg", JSON.stringify({ 'FormDetailTab'+formCode:backgroung }));
+        }
         if (isActive) {
-            li_option = "<li class='active'><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
+            li_option = "<li style='background: " + backgroung + ";' class='active'><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
             tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive);
             isActive = false;
         } else {
             tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive);
-            li_option = "<li class=''><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
+            li_option = "<li style='background: " + backgroung + ";' class=''><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
         }
         return [li_option, tabPane];
     }
@@ -974,7 +979,6 @@
         
     }
 
-
     function initReferral(id = null, is_check = true) {
         AjaxCallAction("GET", "/api/Customer/RequestForRating/InitReferral/" + id, null, true, function (res) {
             if (res.isSuccess) {
@@ -1025,7 +1029,7 @@
                 countOfQuestion = res.data.length;
             }, false);
 
-            if (countOfAnswer == countOfQuestion) {
+            if (countOfAnswer >= countOfQuestion) {
                 Web.RequestForRating.SaveReferralRequestForRating(el)
             }
             else {
@@ -1158,7 +1162,6 @@
           
         }
     }
-
 
     web.Corporate = {
         IntiForm: intiForm,

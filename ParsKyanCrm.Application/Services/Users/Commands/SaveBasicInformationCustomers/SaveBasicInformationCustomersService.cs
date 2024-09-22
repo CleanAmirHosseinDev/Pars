@@ -144,7 +144,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 var cus = await _context.Customers.FindAsync(request.CustomerId);
                 request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
-                request.AuditedFinancialStatements = cus != null && !string.IsNullOrEmpty(cus.AuditedFinancialStatements) ? cus.AuditedFinancialStatements : string.Empty;
+                //request.AuditedFinancialStatements = cus != null && !string.IsNullOrEmpty(cus.AuditedFinancialStatements) ? cus.AuditedFinancialStatements : string.Empty;
 
                 request.ScanCustomerNationalCard = cus != null && !string.IsNullOrEmpty(cus.ScanCustomerNationalCard) ? cus.ScanCustomerNationalCard : string.Empty;
                 request.ScanManagerNationalCard = cus != null && !string.IsNullOrEmpty(cus.ScanManagerNationalCard) ? cus.ScanManagerNationalCard : string.Empty;
@@ -160,13 +160,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "آخرین لیست بیمه");
                 }
 
-                if (request.Result_Final_AuditedFinancialStatements != null)
-                {
-                    fileNameOldPic_AuditedFinancialStatements = request.AuditedFinancialStatements;
-                    request.AuditedFinancialStatements = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_AuditedFinancialStatements.FileName);
-                    path_AuditedFinancialStatements = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.AuditedFinancialStatements;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_AuditedFinancialStatements, path_AuditedFinancialStatements, "آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی");
-                }
+                //if (request.Result_Final_AuditedFinancialStatements != null)
+                //{
+                //    fileNameOldPic_AuditedFinancialStatements = request.AuditedFinancialStatements;
+                //    request.AuditedFinancialStatements = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_AuditedFinancialStatements.FileName);
+                //    path_AuditedFinancialStatements = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.AuditedFinancialStatements;
+                //    await ServiceFileUploader.SaveFile(request.Result_Final_AuditedFinancialStatements, path_AuditedFinancialStatements, "آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی");
+                //}
 
                 if (request.Result_Final_ScanCustomerNationalCard != null)
                 {
@@ -238,7 +238,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         ReciveUser = strArrConfigKindOfRequest[6],
                     });
                     await _context.SaveChangesAsync();
-
+                    req_id = (int)rr.Entity.Requestid;
                     //_context.RequestReferences.Add(new RequestReferences()
                     //{
                     //    Requestid = rr.Entity.Requestid,
@@ -253,7 +253,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     //    DestLevelStepIndexButton = VaribleForName.DestLevelStepIndexButton1,
                     //});
                     //await _context.SaveChangesAsync();
-                    req_id = (int)rr.Entity.Requestid;
 
                     var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
                     await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
@@ -286,9 +285,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         {
                             nameof(request.LastInsuranceList),request.LastInsuranceList
                         },
-                        {
-                            nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
-                        },
+                        //{
+                        //    nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
+                        //},
                         {
                             "IsProfileComplete",true
                         },
@@ -356,8 +355,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 if (request.Result_Final_LastInsuranceList != null)
                     FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastInsuranceList);
 
-                if (request.Result_Final_AuditedFinancialStatements != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_AuditedFinancialStatements);
+                //if (request.Result_Final_AuditedFinancialStatements != null)
+                //    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_AuditedFinancialStatements);
 
                 if (request.Result_Final_ScanCustomerNationalCard != null)
                     FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_ScanCustomerNationalCard);

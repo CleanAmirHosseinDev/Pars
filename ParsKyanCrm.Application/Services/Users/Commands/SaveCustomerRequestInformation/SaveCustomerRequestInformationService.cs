@@ -93,21 +93,31 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
             }
             else
             {
+                if (request.LastInsuranceList != "")
+                    Ado_NetOperation.SqlUpdate(typeof(CustomerRequestInformation).Name, new Dictionary<string, object>()
+                    {
+                        {
+                            nameof(request.LastInsuranceList),request.LastInsuranceList
+                        },
+                    }, string.Format(nameof(q_Entity.Entity.RequestId) + $" = {request.RequestId}"));
+                if (request.LastAuditingTaxList != "")
+                    Ado_NetOperation.SqlUpdate(typeof(CustomerRequestInformation).Name, new Dictionary<string, object>()
+                    {
+                        {
+                            "LastAuditingTaxList",request.LastAuditingTaxList
+                        },
+                    }, string.Format(nameof(q_Entity.Entity.RequestId) + $" = {request.RequestId}"));
+
                 Ado_NetOperation.SqlUpdate(typeof(CustomerRequestInformation).Name, new Dictionary<string, object>()
-                {
                     {
-                        nameof(request.LastInsuranceList),request.LastInsuranceList
-                    },
-                    {
-                        nameof(request.CountOfPersonel),request.CountOfPersonel
-                    },
-                    {
-                        nameof(request.AmountOfLastSale),request.AmountOfLastSale
-                    },
-                    {
-                        "LastAuditingTaxList",request.LastAuditingTaxList
-                    },
-                }, string.Format(nameof(q_Entity.Entity.RequestId) + $" = {request.RequestId}"));
+                        {
+                            nameof(request.CountOfPersonel),request.CountOfPersonel
+                        },
+                        {
+                            nameof(request.AmountOfLastSale),request.AmountOfLastSale
+                        },
+
+                    }, string.Format(nameof(q_Entity.Entity.RequestId) + $" = {request.RequestId}"));
             }
             #region Upload Image
 

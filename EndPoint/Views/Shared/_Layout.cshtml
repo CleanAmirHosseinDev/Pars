@@ -37,9 +37,9 @@
     <script type="text/javascript">
         !function () { var i = "Usr5XD", d = document, g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.type = "text/javascript", g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); }();
         window.addEventListener('goftino_ready', function () {
-            setTimeout(function () {
-                Goftino.open();
-            }, 5000);
+            //setTimeout(function () {
+            //    Goftino.open();
+            //}, 5000);
             window.addEventListener('goftino_sendMessage', function (d) {
                 var message_type = d.detail.type;
                 var message_content = d.detail.content;

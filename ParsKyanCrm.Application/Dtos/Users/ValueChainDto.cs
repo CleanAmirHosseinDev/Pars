@@ -23,7 +23,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int ValueChainId { get; set; }
         public int? RequestId { get; set; }
         public string vc1 { get; set; }
-
+        public DateTime? SaveDate { get; set; }
         
         public string vc2 { get; set; }
         public string vc3 { get; set; }

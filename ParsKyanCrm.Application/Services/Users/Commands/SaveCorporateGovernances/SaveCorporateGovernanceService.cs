@@ -373,83 +373,83 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                   
                     #region Copy Image
 
-                    if (request.OrganazationChart != null)
-                    {
-                        fileNameOldPic_OrganazationChart = request.OrganazationChart;
-                        request.OrganazationChart = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OrganazationChart);
-                        path_OrganazationChart = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OrganazationChart;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OrganazationChart, path_OrganazationChart, "چارت سازمانی");
+                    //if (request.OrganazationChart != null)
+                    //{
+                    //    fileNameOldPic_OrganazationChart = request.OrganazationChart;
+                    //    request.OrganazationChart = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OrganazationChart);
+                    //    path_OrganazationChart = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OrganazationChart;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OrganazationChart, path_OrganazationChart, "چارت سازمانی");
 
-                    }
+                    //}
 
-                    if (request.OrganizationalDuties != null)
-                    {
-                        fileNameOldPic_OrganizationalDuties = request.OrganizationalDuties;
-                        request.OrganizationalDuties = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OrganizationalDuties);
-                        path_OrganizationalDuties = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OrganizationalDuties;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OrganizationalDuties, path_OrganizationalDuties, "  فایل شرح وظایف شغلی پرسنل");
-                    }
+                    //if (request.OrganizationalDuties != null)
+                    //{
+                    //    fileNameOldPic_OrganizationalDuties = request.OrganizationalDuties;
+                    //    request.OrganizationalDuties = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_OrganizationalDuties);
+                    //    path_OrganizationalDuties = _env.ContentRootPath + VaribleForName.CustomersFolder + request.OrganizationalDuties;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_OrganizationalDuties, path_OrganizationalDuties, "  فایل شرح وظایف شغلی پرسنل");
+                    //}
 
-                    if (request.RiskManagementGuidelines != null)
-                    {
-                        fileNameOldPic_RiskManagementGuidelines = request.RiskManagementGuidelines;
-                        request.RiskManagementGuidelines = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_RiskManagementGuidelines);
-                        path_RiskManagementGuidelines = _env.ContentRootPath + VaribleForName.CustomersFolder + request.RiskManagementGuidelines;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_RiskManagementGuidelines, path_RiskManagementGuidelines, " دستورالعمل مدیریت ریسک");
-                    }
+                    //if (request.RiskManagementGuidelines != null)
+                    //{
+                    //    fileNameOldPic_RiskManagementGuidelines = request.RiskManagementGuidelines;
+                    //    request.RiskManagementGuidelines = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_RiskManagementGuidelines);
+                    //    path_RiskManagementGuidelines = _env.ContentRootPath + VaribleForName.CustomersFolder + request.RiskManagementGuidelines;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_RiskManagementGuidelines, path_RiskManagementGuidelines, " دستورالعمل مدیریت ریسک");
+                    //}
 
-                    if (request.TransactionRegulations != null)
-                    {
-                        fileNameOldPic_TransactionRegulations = request.TransactionRegulations;
-                        request.TransactionRegulations = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_TransactionRegulations);
-                        path_TransactionRegulations = _env.ContentRootPath + VaribleForName.CustomersFolder + request.TransactionRegulations;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_TransactionRegulations, path_TransactionRegulations, "  آیین نامه معاملات");
-                    }
+                    //if (request.TransactionRegulations != null)
+                    //{
+                    //    fileNameOldPic_TransactionRegulations = request.TransactionRegulations;
+                    //    request.TransactionRegulations = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_TransactionRegulations);
+                    //    path_TransactionRegulations = _env.ContentRootPath + VaribleForName.CustomersFolder + request.TransactionRegulations;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_TransactionRegulations, path_TransactionRegulations, "  آیین نامه معاملات");
+                    //}
 
-                    if (request.DeductionTaxAccount != null)
-                    {
-                        fileNameOldPic_DeductionTaxAccount = request.DeductionTaxAccount;
-                        request.DeductionTaxAccount = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_DeductionTaxAccount);
-                        path_DeductionTaxAccount = _env.ContentRootPath + VaribleForName.CustomersFolder + request.DeductionTaxAccount;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_DeductionTaxAccount, path_DeductionTaxAccount, "بارگذاری مفاصا حساب مالیاتی");
-                    }
+                    //if (request.DeductionTaxAccount != null)
+                    //{
+                    //    fileNameOldPic_DeductionTaxAccount = request.DeductionTaxAccount;
+                    //    request.DeductionTaxAccount = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_DeductionTaxAccount);
+                    //    path_DeductionTaxAccount = _env.ContentRootPath + VaribleForName.CustomersFolder + request.DeductionTaxAccount;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_DeductionTaxAccount, path_DeductionTaxAccount, "بارگذاری مفاصا حساب مالیاتی");
+                    //}
 
-                    if (request.RepresentativeFile != null)
-                    {
-                        fileNameOldPic_RepresentativeFile = request.RepresentativeFile;
-                        request.RepresentativeFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_RepresentativeFile);
-                        path_RepresentativeFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.RepresentativeFile;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_RepresentativeFile, path_RepresentativeFile, " مستندات نمایندگی");
-                    }
-                    if (request.LetterOfCommendation != null)
-                    {
-                        fileNameOldPic_LetterOfCommendation = request.LetterOfCommendation;
-                        request.LetterOfCommendation = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LetterOfCommendation);
-                        path_LetterOfCommendation = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LetterOfCommendation;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LetterOfCommendation, path_LetterOfCommendation, "تقدیر نامه از تامین کنندگان یا مشتریان خود ");
-                    }
-                    if (request.CrmSoftwareContract != null)
-                    {
-                        fileNameOldPic_CrmSoftwareContract = request.CrmSoftwareContract;
-                        request.CrmSoftwareContract = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_CrmSoftwareContract);
-                        path_CrmSoftwareContract = _env.ContentRootPath + VaribleForName.CustomersFolder + request.CrmSoftwareContract;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_CrmSoftwareContract, path_CrmSoftwareContract, "   تصویرقراداد نرم افزار امور مشتریان");
-                    }
+                    //if (request.RepresentativeFile != null)
+                    //{
+                    //    fileNameOldPic_RepresentativeFile = request.RepresentativeFile;
+                    //    request.RepresentativeFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_RepresentativeFile);
+                    //    path_RepresentativeFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.RepresentativeFile;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_RepresentativeFile, path_RepresentativeFile, " مستندات نمایندگی");
+                    //}
+                    //if (request.LetterOfCommendation != null)
+                    //{
+                    //    fileNameOldPic_LetterOfCommendation = request.LetterOfCommendation;
+                    //    request.LetterOfCommendation = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_LetterOfCommendation);
+                    //    path_LetterOfCommendation = _env.ContentRootPath + VaribleForName.CustomersFolder + request.LetterOfCommendation;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_LetterOfCommendation, path_LetterOfCommendation, "تقدیر نامه از تامین کنندگان یا مشتریان خود ");
+                    //}
+                    //if (request.CrmSoftwareContract != null)
+                    //{
+                    //    fileNameOldPic_CrmSoftwareContract = request.CrmSoftwareContract;
+                    //    request.CrmSoftwareContract = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_CrmSoftwareContract);
+                    //    path_CrmSoftwareContract = _env.ContentRootPath + VaribleForName.CustomersFolder + request.CrmSoftwareContract;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_CrmSoftwareContract, path_CrmSoftwareContract, "   تصویرقراداد نرم افزار امور مشتریان");
+                    //}
 
-                    if (request.InovationFile != null)
-                    {
-                        fileNameOldPic_InovationFile = request.InovationFile;
-                        request.InovationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_InovationFile);
-                        path_InovationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.InovationFile;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_InovationFile, path_InovationFile, " اختراع");
-                    }
-                    if (request.Proceedings != null)
-                    {
-                        fileNameOldPic_Proceedings = request.Proceedings;
-                        request.Proceedings = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Proceedings);
-                        path_Proceedings = _env.ContentRootPath + VaribleForName.CustomersFolder + request.Proceedings;
-                        await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_Proceedings, path_Proceedings, " نمونه صورتجلسه حسابرسی");
-                    }
+                    //if (request.InovationFile != null)
+                    //{
+                    //    fileNameOldPic_InovationFile = request.InovationFile;
+                    //    request.InovationFile = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_InovationFile);
+                    //    path_InovationFile = _env.ContentRootPath + VaribleForName.CustomersFolder + request.InovationFile;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_InovationFile, path_InovationFile, " اختراع");
+                    //}
+                    //if (request.Proceedings != null)
+                    //{
+                    //    fileNameOldPic_Proceedings = request.Proceedings;
+                    //    request.Proceedings = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(fileNameOldPic_Proceedings);
+                    //    path_Proceedings = _env.ContentRootPath + VaribleForName.CustomersFolder + request.Proceedings;
+                    //    await ServiceFileUploader.CopyFile(_env.ContentRootPath + VaribleForName.CustomersFolder + fileNameOldPic_Proceedings, path_Proceedings, " نمونه صورتجلسه حسابرسی");
+                    //}
 
                     #endregion                                
 

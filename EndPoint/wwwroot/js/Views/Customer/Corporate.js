@@ -460,18 +460,13 @@
     function makeLiAndPan(formCode, formTitle, formId, reqid, isActive) {
         let li_option = "";
         let tabPane = "";
-        let backgroung = JSON.parse(getlstor("bg"))["FormDetailTab" + formCode];
-        if (isEmpty(backgroung)) {
-            backgroung = "red";
-            setlstor("bg", JSON.stringify({ 'FormDetailTab'+formCode:backgroung }));
-        }
         if (isActive) {
-            li_option = "<li style='background: " + backgroung + ";' class='active'><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
+            li_option = "<li class='active'><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
             tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive);
             isActive = false;
         } else {
             tabPane = makeTabPane(formCode, formTitle, formId, reqid, isActive);
-            li_option = "<li style='background: " + backgroung + ";' class=''><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
+            li_option = "<li class=''><a href='#FormDetailTab" + formCode + "' data-toggle='tab' aria-expanded='false' >" + formCode + "</a></li>";
         }
         return [li_option, tabPane];
     }
@@ -601,16 +596,22 @@
         let is_first = FirstItemActive;
         let li_option = "";
         let tabPane = "";
-
         for (let i = 0; i < DataFormList.length; i++) {
             if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
+                let background = getlstor("bg") != '' ? JSON.parse(getlstor("bg"))[DataFormList[i].formId] : '';
+                if (isEmpty(background)) {
+                    background = "#8d8d8d";
+                    let obj = getlstor("bg") != '' ? JSON.parse(getlstor("bg")) : {};
+                    obj[[`${DataFormList[i].formId}`]] = background;
+                    setlstor("bg", JSON.stringify(obj));
+                }
                 if (is_first) {
-                    li_option += "<li class='active'><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
+                    li_option += "<li class='active'><a style='background:" + background + ";' href='#FormDetailTab" + DataFormList[i].formId + "' id='FDT" + DataFormList[i].formId + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
                     tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first);
                     is_first = false;
                 } else {
                     tabPane += makeTabPane(DataFormList[i].formCode, DataFormList[i].formTitle, DataFormList[i].formId, ID, is_first);
-                    li_option += "<li class=''><a href='#FormDetailTab" + DataFormList[i].formCode + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
+                    li_option += "<li class=''><a style='background:" + background + ";' href='#FormDetailTab" + DataFormList[i].formId + "' id='FDT" + DataFormList[i].formId + "' data-toggle='tab' aria-expanded='false' >" + DataFormList[i].formCode + "</a></li>";
                 }
             }
         }
@@ -814,9 +815,9 @@
         let is_first = FirstItemActive;
         let strM = "";
         if (is_first) {
-            strM = "<div class='tab-pane active' id='FormDetailTab" + FormCode + "'>";
+            strM = "<div class='tab-pane active' id='FormDetailTab" + FormId + "'>";
         } else {
-            strM = "<div class='tab-pane' id='FormDetailTab" + FormCode + "'>";
+            strM = "<div class='tab-pane' id='FormDetailTab" + FormId + "'>";
         }
         strM += "<div style='display:flex;justify-content: space-between;align-items: center;'>";
         strM += "<h2 class='fs-title'>" + FormTitle + "</h2>";
@@ -904,27 +905,29 @@
         let SerializerAnswers = SerializerForm.slice(2, SerializerForm.length);
         let list_of_answer = SerializerAnswers.filter(s => s.name.startsWith("Q_"))
         let list_of_description = SerializerAnswers.filter(s => s.name.startsWith("Description_"))
-        let counter = SerializerAnswers.length;
 
-        if (list_of_answer.length == list_of_description.length) {
-            for (let i = 0; i < counter && counter % 2 == 0; i += 2) {
-                let SingleQuestion = SerializerAnswers.slice(0, 2);
-                let question_id = SingleQuestion[0]["name"].split("_")[1];
-                let answer = SingleQuestion[0]["value"];
-                let description = SingleQuestion[1]["value"];
-
-                SerializerAnswers = SerializerAnswers.slice(2, SerializerAnswers.length);
-
-                if (!isEmpty(answer) && answer != "0") {
-                    saveSingelAnswerForm(formId, answer, description, question_id);
-                }
+        for (let i = 0; i < list_of_answer.length; i++) {
+            let question_id = list_of_answer[i]["name"].replace("Q_", "");
+            let answer = list_of_answer[i]["value"];
+            let description = list_of_description.find(n => n.name == "Description_Q" + question_id)["value"];
+            if (!isEmpty(answer) && answer != "0") {
+                saveSingelAnswerForm(formId, answer, description, question_id);
             }
         }
-        else {
-            alertB("خطا", "ابتدا به همه سوالات این صفحه پاسخ داده سپس اقدام به ذخیره سازی فرم نمایید", "error", "بله متوجه شدم", function () { });
+        if (list_of_answer.length == list_of_description.length) {
+            $("#FDT" + FormId).css("background", "#30f930");
+            let obj = JSON.parse(getlstor("bg"));
+            obj[FormId] = "#30f930";
+            setlstor("bg", JSON.stringify(obj));
         }
-        hideWait();
+        else {
+            $("#FDT" + FormId).css("background", "yellow");
+            let obj = JSON.parse(getlstor("bg"));
+            obj[FormId] = "yellow";
+            setlstor("bg", JSON.stringify(obj));
+        }
         alertB("ثبت", "ثبت فرم با موفقیت انجام شد", "success");
+        hideWait();
     }
 
     function saveSingelAnswerForm(formId = "0", answer = "0", description = "", dataFormQuestionId = "0", fileName = "") {
@@ -955,7 +958,7 @@
                                                     dataFormQuestionScore =
                                                         dataFormQuestionScore * datares.ratio;
                                                 }
-                                            }, true);
+                                            }, false);
                                     }
                                     // اگر با موفقیت پاسخ ذخیره شد
                                     if (res.dataId != 0)
@@ -967,15 +970,14 @@
                                                 SystemScore: dataFormQuestionScore,
                                                 AnalizeScore: 0,
                                                 IsActive: 15,
-                                            }), false, function (reee) { }, true);
+                                            }), false, function (reee) { }, false);
                                 }
-                            }, true);
+                            }, false);
                     }
-                    showWait();
                 } else {
                     alertB("خطا", res.message, "error");
                 }
-        }, true);
+        }, false);
         
     }
 

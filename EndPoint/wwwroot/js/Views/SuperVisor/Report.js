@@ -283,13 +283,12 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         let CorporateAccess = ["11", "12"];
         let ContractAccess = ["4", "9", "11", "12"];
 
-        //if (CorporateAccess.includes(getlstor("loginName"))) {
-        //    $(".ShowBox").remove();
-        //}
-
-        //if (!ContractAccess.includes(getlstor("loginName"))) {
-        //    $("#ShowBoxCorporate").remove();
-        //}
+        if (CorporateAccess.includes(getlstor("loginName"))) {
+            $("#ShowBoxSamt").remove();
+        }
+        if (!ContractAccess.includes(getlstor("loginName"))) {
+            $("#ShowBoxCorporate").remove();
+        }
     }
 
     function initPerformanceReportEvaluationStaffInDetail_ReportOne(id = 0) {

@@ -47,7 +47,9 @@
                 <form action="/Customer/Customer/EditCustomer" id="frmFormMain" method="post">
 
                     <div class="form-horizontal">
+
                         <div class="row" id="divTypeServiceRequestedId">
+                            <p class="text-center" style="color:red;font-size:20px">لطفا نوع خدمت مورد تقاضای خود را انتخاب نمایید</p>
                             <div class="col-md-12">
                                 <div style="background-color:#c2dae1; max-width: 600px; margin: auto; border: 2px solid #00c0ef; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px">
                                     <h4> نوع خدمت مورد تقاضا</h4>
@@ -127,7 +129,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-4" for="">
-                                            شناسه ملی  شرکت
+                                            شناسه ملی شرکت
                                             <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
@@ -263,7 +265,7 @@
                                         </label>
                                         <div class="col-md-8">
                                             <input type="text" id="NamesAuthorizedSignatories" name="NamesAuthorizedSignatories" class="form-control" />
-                                            <span>نکته :  اسامی این افراد در قرارداد ذکر خواهد شد، اسامی امضاکنندگان مجاز را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
+                                            <span style="color:red">نکته : اسامی این افراد در قرارداد ذکر خواهد شد، اسامی امضاکنندگان مجاز را با دکمه Enter از یکدیگر متمایز کنید به عنوان مثال : </span><span class="tag label label-info">تست&nbsp;<i class="fa fa-remove"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-group FormIsShow">
@@ -327,16 +329,16 @@
                                     <div class="col-md-6">
 
                                         <div class="form-group FormIsShow">
-                                                <label class="control-label col-md-4" for="LastAuditingTaxList">
+                                            <label class="control-label col-md-4" for="LastAuditingTaxList">
                                                 آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                                    <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_LastAuditingTaxList">*</span>
+                                                <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_LastAuditingTaxList">*</span>
                                             </label>
                                             <div class="col-md-8">
                                                 <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);" />
                                                 <div id="divDownload_AuditedFinancialStatements"></div>
                                                 <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
                                             </div>
-                                        </div>     
+                                        </div>
 
                                         <div class="form-group FormIsShow">
                                             <label class="control-label col-md-4" for="LastInsuranceList">
@@ -359,7 +361,7 @@
                         <input type="hidden" name="RequestId" id="RequestId" value="0" />
                         <div class="row text-center">
                             <button title="ثبت" class="btn btn-info fontForAllPage" type="submit" id="btnOpperationRun">
-                                ثبت اطلاعات  <i class="fa fa-save"></i>
+                                ثبت اطلاعات <i class="fa fa-save"></i>
                             </button>
                         </div>
                     </div>
@@ -378,6 +380,14 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script>
         Web.Customer.InitCustomer();
+        $('#TypeServiceRequestedId').on('select2:select', function (e) {
+            let _select_id = e.params.data.id;
+            if (_select_id == 254) {
+
+            } else if (_select_id == 67 || _select_id == 66) {
+
+            }
+        });
     </script>
 
 }

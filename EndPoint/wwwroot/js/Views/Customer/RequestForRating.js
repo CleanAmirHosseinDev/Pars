@@ -284,15 +284,16 @@
             $(e).removeAttr("disabled");
             req_id = res.resultId;
             if (!res.isSuccess) {
-                alertB("هشدار", res.message, "warning");
+                alertB("هشدار", res.message, "warning", "بله متوجه شدم", null);
+            }
+            else {
+                $("#RequestId").val(req_id);
+                AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+                    goToUrl("/Customer/RequestForRating/Index");
+                }, false);
+                $(e).removeAttr("disabled");
             }
         }, true);
-        $("#RequestId").val(req_id);
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
-            goToUrl("/Customer/RequestForRating/Index");
-        }, false);
-        $(e).removeAttr("disabled");
-        goToUrl("/Customer/RequestForRating/Index");
     }
 
     function saveContractAndFinancialDocument(e) {

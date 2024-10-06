@@ -103,6 +103,7 @@ function go_next(filterGrid) {
         } catch (e) {
         }
     }
+
     function dataFormQuestionsFilterGrid(page = 1) {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
@@ -217,6 +218,7 @@ function go_next(filterGrid) {
         } catch (e) {
         }
     }
+
     function getDataFormQuestionsList() {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15, DataFormType: 2 }), false, function (res) {
             if (res.isSuccess)
@@ -438,7 +440,6 @@ function go_next(filterGrid) {
     function getObjectWithDataFormQuestionsId(object_list, id) {
         return object_list.find(o => o.dataFormQuestionId === parseInt(id));
     }
-
     function getCategoryName(id) {
         switch (id) {
             case 287:
@@ -472,6 +473,76 @@ function go_next(filterGrid) {
         return category;
     }
 
+
+    function questionLevelFilterGrid(page = 1) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_QuestionLevels", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), false, function (res) {
+            if (res.isSuccess) {
+                DataFormList = res.data;
+                $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+                var strM = '';
+                for (let i = 0; i < res.data.length; i++) {
+                    let category = getCategoryName(res.data[i].categoryId);
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + res.data[i].levelTitle + "</td><td>" + "<a title='ویرایش' href='/Admin/Corporate/EditQuestionLevel?id=" + res.data[i].questionLevelId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteQuestionLevel(" + res.data[i].questionLevelId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                }
+                $("#tBodyList").html(strM);
+            }
+        }, true);
+    }
+    function initQuestionLevel(id = null, dir = 'rtl') {
+        if (!isEmpty(id) && id != 0) {
+            AjaxCallAction("GET", "/api/admin/Corporate/Get_QuestionLevel/" + id, null, true, function (res) {
+                if (res != null) {
+                    $("#QuestionLevelId").val(res.questionLevelId);
+                    $("#LevelTitle").val(res.levelTitle);
+                    $("#LevelDescription").val(res.levelDescription);
+                }
+            }, true);
+        }
+    }
+    function saveQuestionLevel(e) {
+
+        $(e).attr("disabled", "");
+        let QuestionLevelId = $("#QuestionLevelId").val();
+        let LevelTitle = $("#LevelTitle").val();
+        let LevelDescription = $("#LevelDescription").val();
+        AjaxCallAction("POST", "/api/admin/Corporate/Save_QuestionLevel", JSON.stringify(
+            {
+                QuestionLevelId: !isEmpty(QuestionLevelId) ? QuestionLevelId : 0,
+                LevelTitle: LevelTitle,
+                LevelDescription: LevelDescription,
+                isActive: 15,
+            }), true, function (res) {
+
+                $(e).removeAttr("disabled");
+
+                if (res.isSuccess) {
+                    goToUrl("/Admin/Corporate/QuestionLevel");
+                }
+                else {
+                    alertB("خطا", res.message, "error");
+                }
+            }, true);
+    }
+    function deleteQuestionLevel(id) {
+        try {
+            confirmB("", "آیا تمایل به حذف دارید؟", 'error', function () {
+                AjaxCallAction("GET", "/api/admin/Corporate/Delete_QuestionLevel/" + (isEmpty(id) ? '0' : id),
+                    null, true, function (result) {
+                        if (result.isSuccess) {
+                            questionLevelFilterGrid();
+                            alertB("", result.message, "success");
+                        }
+                        else {
+                            alertB("خطا", result.message, "error");
+                        }
+                    }, true);
+            }, function () {
+            }, ["خیر", "بلی"]);
+        } catch (e) {
+        }
+    }
+
+
     web.Corporate = {
         DataFormFilterGrid: dataFormFilterGrid,
         InitDataForm: initDataForm,
@@ -496,6 +567,11 @@ function go_next(filterGrid) {
 
         TextSearchOnKeyDown: textSearchOnKeyDown,
         MakeDataFormComboBoxForSelectSubCategory: makeDataFormComboBoxForSelectSubCategory,
+
+        QuestionLevelFilterGrid: questionLevelFilterGrid,
+        InitQuestionLevel: initQuestionLevel,
+        SaveQuestionLevel: saveQuestionLevel,
+        DeleteQuestionLevel: deleteQuestionLevel,
 
         PrevLits: go_prev,
         NextList: go_next,

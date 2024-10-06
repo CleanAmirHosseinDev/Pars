@@ -283,10 +283,11 @@ namespace EndPoint.Controllers.api.admin
         [Route("[action]/{id}/")]
         [HttpGet]
         [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateQuestionLevel_Save })]
-        public async Task<QuestionLevelDto> Get_QuestionLevel(RequestQuestionLevelDto request)
+        public async Task<QuestionLevelDto> Get_QuestionLevel(int id)
         {
             try
             {
+                var request = new RequestQuestionLevelDto() { QuestionLevelId = id };
                 return await _userFacad.GetQuestionLevelService.Execute(request);
             }
             catch (Exception)

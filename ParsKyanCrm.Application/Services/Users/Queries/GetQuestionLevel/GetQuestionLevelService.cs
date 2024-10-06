@@ -32,7 +32,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevel
                 var res = await (from s in _context.QuestionLevel
                                  where (s.QuestionLevelId == request.QuestionLevelId)
                                  select s).FirstOrDefaultAsync();
-                if (res == null)
+                if (res != null)
                 {
                     return new QuestionLevelDto()
                     {

@@ -36,16 +36,19 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                     where (s.DataFormId == request.DataFormId || request.DataFormId == null)
                     select s
                 );
+
+                var new_list = lists;
+
                 if (request.DataFormType == 2)
                 {
-                    lists = (
+                    new_list = (
                         from s in _context.DataFormQuestions
                         where (s.DataFormType == 2 && s.IsActive == 15)
                         select s
                     );
                     if (request.DataFormId != null)
                     {
-                        lists = (
+                        new_list = (
                             from s in _context.DataFormQuestions
                             where (s.DataFormType == 2 && s.DataFormId == request.DataFormId && s.IsActive == 15)
                             select s
@@ -53,33 +56,34 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                     }
                 }
 
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.QuestionName.Contains(request.Search) ||
+                if (!string.IsNullOrEmpty(request.Search)) new_list = lists.Where(p => p.QuestionName.Contains(request.Search) ||
                     p.QuestionText.Contains(request.Search) ||
                     p.QuestionType.Contains(request.Search)
                 );
 
-                if (request.Version != null) lists = lists.Where(p => p.Version == request.Version);
+                if (request.Version != null) new_list = lists.Where(p => p.Version == request.Version);
+
 
                 if (request.PageIndex == 0 && request.PageSize == 0 && request.IsActive == 15 && request.DataFormType == 2)
                 {
-                    if (request.Version != null)
+                    if (request.QuestionLevel != null)
                     {
-                        lists = (
+                        new_list = (
                             from s in _context.DataFormQuestions
-                            where (s.DataFormType == 2 && s.IsActive == 15 && s.Version == request.Version)
+                            where (s.DataFormType == 2 && s.IsActive == 15 && s.QuestionLevel == request.QuestionLevel)
                             select s
                         );
                     }
                     else
                     {
-                        lists = from s in _context.DataFormQuestions
+                        new_list = from s in _context.DataFormQuestions
                                 where (s.DataFormType == 2 && s.IsActive == 15)
                                 select s;
                     }
                 }
                 if (request.PageIndex == 0 && request.PageSize == 0 && request.IsActive == 15 && request.DataFormType == 2 && request.DataFormId != null)
                 {
-                    lists = from s in _context.DataFormQuestions
+                    new_list = from s in _context.DataFormQuestions
                             where (s.DataFormType == 2 && s.IsActive == 15 && s.DataFormId == request.DataFormId)
                             select s;
                 }
@@ -87,20 +91,20 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                 switch (request.SortOrder)
                 {
                     case "DataFormQuestionId_D":
-                        lists = lists.OrderByDescending(s => s.DataFormQuestionId);
+                        new_list = new_list.OrderByDescending(s => s.DataFormQuestionId);
                         break;
                     case "DataFormQuestionId_A":
-                        lists = lists.OrderBy(s => s.DataFormQuestionId);
+                        new_list = new_list.OrderBy(s => s.DataFormQuestionId);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.DataFormQuestionId);
+                        new_list = new_list.OrderByDescending(s => s.DataFormQuestionId);
                         break;
                 }
 
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
 
-                    var res_Lists = await lists.ToListAsync();
+                    var res_Lists = await new_list.ToListAsync();
 
                     return new ResultDto<IEnumerable<DataFormQuestionsDto>>
                     {
@@ -114,7 +118,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                 else
                 {
 
-                    var list_Res_Pageing = await Pagination<Domain.Entities.DataFormQuestions>.CreateAsync(lists.AsNoTracking(), request);
+                    var list_Res_Pageing = await Pagination<Domain.Entities.DataFormQuestions>.CreateAsync(new_list.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<DataFormQuestionsDto>>
                     {

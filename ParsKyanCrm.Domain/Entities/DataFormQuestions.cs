@@ -19,5 +19,7 @@ namespace ParsKyanCrm.Domain.Entities
         public byte IsActive { get; set; }
         //public virtual DataForms DataForms { get; set; }
         public int? Version { get; set; }
+        public int? QuestionLevel { get; set; }
+        
     }
 }

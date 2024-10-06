@@ -48,5 +48,15 @@ namespace EndPoint.Areas.Admin.Controllers
             ViewBag.id = id;
             return View();
         }
+
+        public IActionResult QuestionLevel()
+        {
+            return View();
+        }
+        public IActionResult EditQuestionLevel(int? id = null)
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }

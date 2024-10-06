@@ -264,5 +264,65 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateQuestionLevel })]
+        public async Task<ResultDto<IEnumerable<QuestionLevelDto>>> Get_QuestionLevels([FromBody] RequestQuestionLevelDto request)
+        {
+            try
+            {
+                return await _userFacad.GetQuestionLevelsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateQuestionLevel_Save })]
+        public async Task<QuestionLevelDto> Get_QuestionLevel(RequestQuestionLevelDto request)
+        {
+            try
+            {
+                return await _userFacad.GetQuestionLevelService.Execute(request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateQuestionLevel_Save })]
+        public async Task<ResultDto<QuestionLevelDto>> Save_QuestionLevel([FromBody] QuestionLevelDto request)
+        {
+            try
+            {
+                return await _userFacad.SaveQuestionLevelService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [Route("[action]/{id}/")]
+        [HttpGet]
+        [UserRoleAdminRolesFilter(Role = new[] { UserRoleAdminRoles.CorporateQuestionLevel_Delete })]
+        public ResultDto Delete_QuestionLevel(int id)
+        {
+            try
+            {
+                return _userFacad.DeleteQuestionLevelService.Execute(id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Dtos.Users
 {
-    public class RequestCQuestionLevelDto : PageingParamerDto
+    public class RequestQuestionLevelDto : PageingParamerDto
     {
         public int? QuestionLevelId { get; set; }
     }

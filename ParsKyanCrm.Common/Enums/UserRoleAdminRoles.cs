@@ -560,6 +560,33 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 5)]
         CorporateDataFormDocument_Delete = 803,
 
+        [Display(Name = "مشاهده")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "/Admin/Corporate/DataFormDocument")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "سطح سوالات")]
+        [OrderAttribute(Order = 5)]
+        CorporateQuestionLevel = 127,
+
+        [Display(Name = "ویرایش و افزودن")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "سطح سوالات")]
+        [OrderAttribute(Order = 5)]
+        CorporateQuestionLevel_Save = 907,
+
+        [Display(Name = "حذف")]
+        [Category("BaseInfo")]
+        [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
+        [DisplayFiledAttribute1(Name = "")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "سطح سوالات")]
+        [OrderAttribute(Order = 5)]
+        CorporateQuestionLevel_Delete = 807,
+
         //[Display(Name = "مشاهده درخواست ها")]
         //[Category("BaseInfo")]
         //[DisplayFiledAttribute(Name = "حاکمیت شرکتی")]

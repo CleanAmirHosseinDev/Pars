@@ -7,6 +7,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevels
 {
     public interface IGetQuestionLevelsService
     {
-        Task<ResultDto<IEnumerable<QuestionLevelDto>>> Execute(RequestCQuestionLevelDto request);
+        Task<ResultDto<IEnumerable<QuestionLevelDto>>> Execute(RequestQuestionLevelDto request);
     }
 }

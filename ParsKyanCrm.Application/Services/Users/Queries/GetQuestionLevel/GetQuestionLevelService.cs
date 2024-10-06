@@ -24,7 +24,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevel
             _mapper = mapper;
         }
 
-        public async Task<QuestionLevelDto> Execute(RequestCQuestionLevelDto request)
+        public async Task<QuestionLevelDto> Execute(RequestQuestionLevelDto request)
         {
             try
             {

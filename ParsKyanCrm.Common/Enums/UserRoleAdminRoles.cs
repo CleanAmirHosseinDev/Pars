@@ -563,7 +563,7 @@ namespace ParsKyanCrm.Common.Enums
         [Display(Name = "مشاهده")]
         [Category("BaseInfo")]
         [DisplayFiledAttribute(Name = "حاکمیت شرکتی")]
-        [DisplayFiledAttribute1(Name = "/Admin/Corporate/DataFormDocument")]
+        [DisplayFiledAttribute1(Name = "/Admin/Corporate/QuestionLevel")]
         [DisplayFiledAttribute2(Name = "fa fa-th-large")]
         [DisplayFiledAttribute3(Name = "سطح سوالات")]
         [OrderAttribute(Order = 5)]

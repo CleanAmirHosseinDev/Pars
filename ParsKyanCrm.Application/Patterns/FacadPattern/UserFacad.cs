@@ -122,7 +122,10 @@ using ParsKyanCrm.Application.Services.Users.Commands.InsertLoginLog;
 using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
-
+using ParsKyanCrm.Application.Services.Users.Commands.DeleteQuestionLevel;
+using ParsKyanCrm.Application.Services.Users.Commands.SaveQuestionLevel;
+using ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevel;
+using ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevels;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -337,6 +340,10 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         ISaveAssessmentService SaveAssessmentService { get; }
 
+        ISaveQuestionLevelService SaveQuestionLevelService { get; }
+        IDeleteQuestionLevelService DeleteQuestionLevelService { get; }
+        IGetQuestionLevelService GetQuestionLevelService { get; }
+        IGetQuestionLevelsService GetQuestionLevelsService { get; }
     }
 
     public class UserFacad : IUserFacad
@@ -1390,6 +1397,42 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             get
             {
                 return _saveAssessmentService = _saveAssessmentService ?? new SaveAssessmentService(_context);
+            }
+        }
+
+        private IGetQuestionLevelService _getQuestionLevelService;
+        public IGetQuestionLevelService GetQuestionLevelService
+        {
+            get
+            {
+                return _getQuestionLevelService = _getQuestionLevelService ?? new GetQuestionLevelService(_context, _mapper);
+            }
+        }
+
+        private IGetQuestionLevelsService _getQuestionLevelsService;
+        public IGetQuestionLevelsService GetQuestionLevelsService
+        {
+            get
+            {
+                return _getQuestionLevelsService = _getQuestionLevelsService ?? new GetQuestionLevelsService(_context, _mapper);
+            }
+        }
+
+        private ISaveQuestionLevelService _saveQuestionLevelService;
+        public ISaveQuestionLevelService SaveQuestionLevelService
+        {
+            get
+            {
+                return _saveQuestionLevelService = _saveQuestionLevelService ?? new SaveQuestionLevelService(_context, _mapper);
+            }
+        }
+
+        private IDeleteQuestionLevelService _deleteQuestionLevelService;
+        public IDeleteQuestionLevelService DeleteQuestionLevelService
+        {
+            get
+            {
+                return _deleteQuestionLevelService = _deleteQuestionLevelService ?? new DeleteQuestionLevelService(_context, _mapper, _env);
             }
         }
 

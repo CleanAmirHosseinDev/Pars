@@ -57,6 +57,7 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<ValueChain> ValueChain { get; set; }
         DbSet<PublicActivities> PublicActivities { get; set; }
         DbSet<ContractPages> ContractPages { get; set; }
+        DbSet<QuestionLevel> QuestionLevel { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +119,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<ValueChain> ValueChain { get; set; }
         public virtual DbSet<PublicActivities> PublicActivities { get; set; }
         public virtual DbSet<ContractPages> ContractPages { get; set; }
+        public virtual DbSet<QuestionLevel> QuestionLevel { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1105,6 +1107,17 @@ namespace ParsKyanCrm.Domain.Contexts
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_Users_Customers");
+            });
+
+            modelBuilder.Entity<QuestionLevel>(entity =>
+            {
+                entity.HasKey(e => e.QuestionLevelId);
+                entity.Property(e => e.LevelTitle)
+                    .HasMaxLength(150)
+                    .HasComment("عنوان سطح");
+                entity.Property(e => e.LevelDescription)
+                    .HasMaxLength(350)
+                    .HasComment("توضیحات سطح");
             });
 
         }

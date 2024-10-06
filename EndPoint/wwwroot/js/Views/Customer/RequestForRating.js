@@ -281,16 +281,15 @@
         $(e).attr("disabled", "");
         let req_id = 0;
         AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify({ Request: { KindOfRequest: isEmpty($("#TypeServiceRequestedId").val()) ? null : $("#TypeServiceRequestedId").val() } }), false, function (res) {
-            $(e).removeAttr("disabled");
             req_id = res.resultId;
             if (!res.isSuccess) {
-                alertB("هشدار", res.message, "warning", "بله متوجه شدم", null);
+                alertB("هشدار", res.message, "warning", "بله متوجه شدم", undefined);
             }
             else {
                 $("#RequestId").val(req_id);
                 AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
                     goToUrl("/Customer/RequestForRating/Index");
-                }, false);
+                }, true);
                 $(e).removeAttr("disabled");
             }
         }, true);
@@ -376,7 +375,18 @@
 
         ComboBoxWithSearch('.select2', 'dir');
         systemSeting_ComboRequestForRating();
-
+        $('#TypeServiceRequestedId').on('select2:select', function (e) {
+            let _select_id = e.params.data.id;
+            if (_select_id == 254) {
+                $("#CountOfPersonel").val(0);
+                $("#AmountOfLastSale").val(0);
+                $("#CompanyInformation").hide();
+            } else if (_select_id == 67 || _select_id == 66) {
+                $("#CompanyInformation").show();
+                $("#CountOfPersonel").val("");
+                $("#AmountOfLastSale").val("");
+            }
+        });
     }
 
     function initRequestReferences(id = null) {
@@ -1030,6 +1040,19 @@
             }
 
         }, true);
+        $('#TypeServiceRequestedId').on('select2:select', function (e) {
+            let _select_id = e.params.data.id;
+            console.log(_select_id)
+            if (_select_id == 254) {
+                $("#CountOfPersonel").val(0);
+                $("#AmountOfLastSale").val(0);
+                $("#hide_information").hide();
+            } else if (_select_id == 67 || _select_id == 66) {
+                $("#hide_information").show();
+                $("#CountOfPersonel").val("");
+                $("#AmountOfLastSale").val("");
+            }
+        });
     }
 
     web.RequestForRating = {

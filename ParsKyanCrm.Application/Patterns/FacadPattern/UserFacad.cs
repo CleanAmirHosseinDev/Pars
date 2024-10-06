@@ -123,6 +123,7 @@ using ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs;
 using ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveAssessment;
 
+
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
     public interface IUserFacad

@@ -35,6 +35,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 var qCustomer = await _context.Customers.FindAsync(qRequest.CustomerId);
 
+                var qCustomerRequestInformation = await _context.CustomerRequestInformation.FirstOrDefaultAsync(m => m.RequestId == ri);
+
                 var qContract = await _context.Contract.FirstOrDefaultAsync(m => m.KinfOfRequest == qRequest.KindOfRequest && m.IsActive == 15);
 
                 if (qContract == null)
@@ -49,7 +51,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                 List<ContractPages> contractPage = await _context.ContractPages.Where(m=>m.ContractId==qContract.ContractId).ToListAsync();
 
-                int cOP = qCustomer.CountOfPersonal.HasValue ? qCustomer.CountOfPersonal.Value : 0;
+                int cOP = qCustomerRequestInformation.CountOfPersonel.HasValue ? qCustomerRequestInformation.CountOfPersonel.Value : 0;
 
                 var qServiceFee = await _context.ServiceFee.FirstOrDefaultAsync(p => p.IsActive == (byte)Common.Enums.TablesGeneralIsActive.Active && p.KindOfService == qRequest.KindOfRequest && (cOP >= p.FromCompanyRange && cOP <= p.ToCompanyRange));
  
@@ -110,11 +112,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                         strContract = strContract.Replace("CompanyName4Value", (qCustomer.CompanyName == null ? "" : qCustomer.CompanyName));
 
                         strContract = strContract.Replace("NamesAuthorizedSignatories2Value", (qCustomer.NamesAuthorizedSignatories == null ? "" : qCustomer.NamesAuthorizedSignatories));
-                        strContract = strContract.Replace("CountOfPersonalValue", qCustomer.CountOfPersonal.Value.ToString());
+                        strContract = strContract.Replace("CountOfPersonalValue", qCustomerRequestInformation.CountOfPersonel.Value.ToString());
                         strContract = strContract.Replace("TelValue", qCustomer.Tel);
                         
                         decimal tax = 0;
-                        decimal Price = (qServiceFee != null ? Convert.ToDecimal(CalcContractPrice(qCustomer, qServiceFee)) : 0);
+                        decimal Price = (qServiceFee != null ? Convert.ToDecimal(CalcContractPrice(qCustomerRequestInformation, qServiceFee)) : 0);
                         decimal FinalPrice=(Price-Convert.ToDecimal(Price.ToString().Substring(Price.ToString().Length - 5)));
                         //tax = Math.Round((Price!=0 ? FinalPrice * 9 : 0) / 100, 0);
                         // مالیات به 10 درصد تغییر یافت
@@ -122,7 +124,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
                        
                         // مبلع فرمول
-                        strContract = strContract.Replace("ServiceFeePriceValue", qServiceFee != null ? CalcContractPrice(qCustomer, qServiceFee) : "0");
+                        strContract = strContract.Replace("ServiceFeePriceValue", qServiceFee != null ? CalcContractPrice(qCustomerRequestInformation, qServiceFee) : "0");
                         qContract.ContractText = strContract;
 
                         strContract = strContract.Replace("TaxValue", double.Parse((tax.ToString()).ToString()).ToString("N0"));
@@ -144,6 +146,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                             Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract()),
                             Customers = _mapper.Map<CustomersDto>(qCustomer),
                             ServiceFee = null,
+                            customerRequestInformation= _mapper.Map<CustomerRequestInformationsDto>(qCustomerRequestInformation)
                     };
                    }
                 return new ResultGetServiceFeeAndCustomerByRequestDto()
@@ -151,7 +154,8 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
                     
                     Customers = _mapper.Map<CustomersDto>(qCustomer),
                     ServiceFee = _mapper.Map<ServiceFeeDto>(qServiceFee != null ? qServiceFee : new ServiceFee()),
-                    Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract())
+                    Contract = _mapper.Map<ContractDto>(qContract != null ? qContract : new Contract()),
+                    customerRequestInformation = _mapper.Map<CustomerRequestInformationsDto>(qCustomerRequestInformation)
                 };
 
             }
@@ -162,12 +166,12 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetServiceFeeAndCustome
 
         }
 
-        private string CalcContractPrice(Customers customers, ServiceFee serviceFee)
+        private string CalcContractPrice(CustomerRequestInformation customerRequestInformation, ServiceFee serviceFee)
         {
             try
             {
-                decimal Yek10000 = (customers.AmountOsLastSales.HasValue ? customers.AmountOsLastSales.Value : 0) / 10000;
-                int countOfPer = customers.CountOfPersonal.HasValue ? customers.CountOfPersonal.Value : 0;
+                decimal Yek10000 = (customerRequestInformation.AmountOfLastSale.HasValue ? customerRequestInformation.AmountOfLastSale.Value : 0) / 10000;
+                int countOfPer = customerRequestInformation.CountOfPersonel.HasValue ? customerRequestInformation.CountOfPersonel.Value : 0;
                 if (serviceFee.Fee2 == null || serviceFee.Fee2 == 0)
                 {
 

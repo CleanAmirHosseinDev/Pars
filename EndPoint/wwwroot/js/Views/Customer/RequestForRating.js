@@ -280,19 +280,27 @@
 
         $(e).attr("disabled", "");
         let req_id = 0;
-        AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify({ Request: { KindOfRequest: isEmpty($("#TypeServiceRequestedId").val()) ? null : $("#TypeServiceRequestedId").val() } }), false, function (res) {
-            req_id = res.resultId;
-            if (!res.isSuccess) {
-                alertB("هشدار", res.message, "warning", "بله متوجه شدم", undefined);
-            }
-            else {
-                $("#RequestId").val(req_id);
-                AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
-                    goToUrl("/Customer/RequestForRating/Index");
-                }, true);
-                $(e).removeAttr("disabled");
-            }
-        }, true);
+
+        if ($("#TypeServiceRequestedId").val() == '254' && $("#QuestionLevel").val() == '0') {
+            alertB("خطا", "لطفا سطح سوالات قرار داد را تنظیم نمایید", "warning", "بله متوجه شدم", function () {
+                $("#save_req").removeAttr("disabled");
+            });
+        }
+        else {
+            AjaxCallAction("POST", "/api/customer/RequestForRating/Save_Request", JSON.stringify({ Request: { KindOfRequest: isEmpty($("#TypeServiceRequestedId").val()) ? null : $("#TypeServiceRequestedId").val() } }), false, function (res) {
+                req_id = res.resultId;
+                if (!res.isSuccess) {
+                    alertB("هشدار", res.message, "warning", "بله متوجه شدم", undefined);
+                }
+                else {
+                    $("#RequestId").val(req_id);
+                    AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+                        goToUrl("/Customer/RequestForRating/Index");
+                    }, true);
+                    $(e).removeAttr("disabled");
+                }
+            }, true);
+        }
     }
 
     function saveContractAndFinancialDocument(e) {
@@ -388,6 +396,7 @@
             }
             else {
                 $("#TypeOfRequestLevel").hide();
+                $("#CompanyInformation").show();
             }
         });
     }

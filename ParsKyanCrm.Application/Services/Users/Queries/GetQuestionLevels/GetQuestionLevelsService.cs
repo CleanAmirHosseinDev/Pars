@@ -34,34 +34,36 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevels
                     from s in _context.QuestionLevel
                     select s).AsQueryable();
 
-                if (request.IsActive == 15) lists = lists.Where(p => p.IsActive == 15);
+                var new_list = lists;
 
-                if (request.IsActive == 14) lists = lists.Where(p => p.IsActive == 14);
+                if (request.IsActive == 15) new_list = new_list.Where(p => p.IsActive == 15);
 
-                if (!string.IsNullOrEmpty(request.Search)) lists = lists.Where(p => p.LevelDescription.Contains(request.Search) || p.LevelTitle.Contains(request.Search));
+                else if (request.IsActive == 14) new_list = new_list.Where(p => p.IsActive == 14);
+
+                if (!string.IsNullOrEmpty(request.Search)) new_list = new_list.Where(p => p.LevelDescription.Contains(request.Search) || p.LevelTitle.Contains(request.Search));
 
                 switch (request.SortOrder)
                 {
                     case "QuestionLevelId_D":
-                        lists = lists.OrderByDescending(s => s.QuestionLevelId);
+                        new_list = new_list.OrderByDescending(s => s.QuestionLevelId);
                         break;
                     case "QuestionLevelId_A":
-                        lists = lists.OrderBy(s => s.QuestionLevelId);
+                        new_list = new_list.OrderBy(s => s.QuestionLevelId);
                         break;
                     case "LevelTitle_D":
-                        lists = lists.OrderByDescending(s => s.LevelTitle);
+                        new_list = new_list.OrderByDescending(s => s.LevelTitle);
                         break;
                     case "LevelTitle_A":
-                        lists = lists.OrderBy(s => s.LevelTitle);
+                        new_list = new_list.OrderBy(s => s.LevelTitle);
                         break;
                     default:
-                        lists = lists.OrderByDescending(s => s.QuestionLevelId);
+                        new_list = new_list.OrderByDescending(s => s.QuestionLevelId);
                         break;
                 }
 
                 if (request.PageIndex == 0 && request.PageSize == 0)
                 {
-                    var res_Lists = await lists.ToListAsync();
+                    var res_Lists = await new_list.ToListAsync();
 
                     return new ResultDto<IEnumerable<QuestionLevelDto>>
                     {
@@ -74,7 +76,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevels
                 else
                 {
                     var lists_Res_Pageing =
-                        await Pagination<Domain.Entities.QuestionLevel>.CreateAsync(lists.AsNoTracking(), request);
+                        await Pagination<Domain.Entities.QuestionLevel>.CreateAsync(new_list.AsNoTracking(), request);
 
                     return new ResultDto<IEnumerable<QuestionLevelDto>>
                     {

@@ -15,5 +15,7 @@ namespace ParsKyanCrm.Domain.Entities
         public byte? IsActive { get; set; }
         public string LastAuditingTaxList { get; set; }
         public string LastInsuranceList { get; set; }
+        public int? QuestionLevelId { get; set; }
+        
     }
 }

@@ -19,10 +19,11 @@
     function saveCustomer(e) {
         let req_id = 0;
         $("#btnOpperationRun").attr("disabled", "");
-
+        //if ($("#TypeServiceRequestedId").val() == '254' && $("#QuestionLevel").val() == '0')
+        //    alertB("خطا", "لطفا سطح سوالات قرار داد را تنظیم نمایید", "warning", "بله متوجه شدم", function () {});
+        //else {
         RemoveAllCharForPrice("AmountOsLastSales");
         AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
-            $("#btnOpperationRun").removeAttr("disabled");
             if (res.isSuccess) {
                 req_id = res.resultId;
                 /*alertB("ثبت", res.message, "success");*/
@@ -35,22 +36,27 @@
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
                     });
+                    $("#btnOpperationRun").removeAttr("disabled");
                 } else {
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
                     });
+                    $("#btnOpperationRun").removeAttr("disabled");
                 }
             }
             else {
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                 alertB("خطا", res.message, "error");
+                $("#btnOpperationRun").removeAttr("disabled");
             }
         }, true);
+
         if (req_id != 0) {
             $("#RequestId").val(req_id);
             AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
             }, true);
         }
         goToUrl("/Customer/RequestForRating/Index");
+        //}
     }
 
     function saveMobileUser(e) {
@@ -170,7 +176,7 @@
         $.validator.addMethod(
             "AmountOsLastSalesValidation",
             function (value, element) {
-                return value.indexOf("/") !== -1 ? false: true;
+                return value.indexOf("/") !== -1 ? false : true;
             },
             function () {
                 return "مبلغ وارد شده نامعتبر می باشد لطفا مبلغ را دستی وارد کنید";
@@ -310,9 +316,23 @@
                     maxlength: 18,
                     AmountOsLastSalesValidation: $("#AmountOsLastSales").val(),
                 },
+                "QuestionLevel": {
+                    required: function () {
+                        if ($("#TypeServiceRequestedId").val() == '254' && $("#QuestionLevel").val() == '0')
+                            return true;
+                        else {
+                            return false;
+                        }
+                    },
+                },
             },
             // Specify validation error messages
             messages: {
+                "QuestionLevel": {
+                    required: function () {
+                        return "لطفا " + "سطح سوالات مورد تقاضا" + " را وارد کنید";
+                    },
+                },
                 "CompanyName": {
                     required: function () {
                         return "لطفا " + $("#LabelCompanyName").text() + " را وارد کنید";
@@ -443,33 +463,26 @@
                     required: function () {
                         return "لطفا درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید";
                     },
-                    maxlength: "درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده باید حداکثر 18 رقم باشد"                    
+                    maxlength: "درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده باید حداکثر 18 رقم باشد"
                 },
             },
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function (form) {
-
-                if ($("#divTypeServiceRequestedId:hidden").length === 0) {
-
-                    confirmB("", "مشتری محترم در نظر داشته باشید چون معیار و مبنای شروع ارزیابی بر اساس اطلاعات پایه شما می باشد لذا در صورت اطمینان از صحت ورود اطلاعات تایید کنید پس از تایید امکان ویرایش وجود ندارد", "warning", function () {
-
-                        Web.Customer.SaveCustomer(this);
-
-                    }, function () {
-
-                    }, ["انصراف از ثبت", "بله مطمئنم"]);
-
-                }
+                if ($("#TypeServiceRequestedId").val() == '254' && $("#QuestionLevel").val() == '0')
+                    alertB("خطا", "لطفا سطح سوالات قرار داد را تنظیم نمایید", "warning", "بله متوجه شدم", function () { });
                 else {
+                    
+                    if ($("#divTypeServiceRequestedId:hidden").length === 0) {
+                        confirmB("", "مشتری محترم در نظر داشته باشید چون معیار و مبنای شروع ارزیابی بر اساس اطلاعات پایه شما می باشد لذا در صورت اطمینان از صحت ورود اطلاعات تایید کنید پس از تایید امکان ویرایش وجود ندارد", "warning", function () {
+                            Web.Customer.SaveCustomer(this);
+                        }, function () {
 
-                    Web.Customer.SaveCustomer(this);
-
+                        }, ["انصراف از ثبت", "بله مطمئنم"]);
+                    } else {
+                        Web.Customer.SaveCustomer(this);
+                    }
                 }
-
-
-
-
             }
         });
 
@@ -483,6 +496,7 @@
                     $("#divTypeServiceRequestedId").hide();
                     systemSeting_Combo(resSingle, false);
                     $('#hide_information').hide();
+                    $('#TypeOfRequestLevel').hide();
                 }
 
                 else {
@@ -494,9 +508,42 @@
         });
     }
 
+    function makeComboForQuestionLevel() {
+        let strM = "";
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_QuestionLevels", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                strM = '<option value="0">انتخاب کنید</option>';
+                for (var i = 0; i < res.data.length; i++) {
+                    strM += "<option value='" + res.data[i].questionLevelId + "'>" + res.data[i].levelTitle + "</option>";
+                }
+            }
+        }, false);
+        return strM;
+    }
+
     function initCustomer(dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
 
+        let selecet_item = makeComboForQuestionLevel();
+        $("#QuestionLevel").html(selecet_item);
+        $('#TypeServiceRequestedId').on('select2:select', function (e) {
+            let _select_id = e.params.data.id;
+            if (_select_id == 254) {
+                $("#CountOfPersonel").val(0);
+                $("#AmountOfLastSale").val(0);
+                $("#hide_information").hide();
+                $("#TypeOfRequestLevel").show();
+            } else {
+                $("#hide_information").show();
+                $("#CountOfPersonel").val("");
+                $("#AmountOfLastSale").val("");
+                $("#TypeOfRequestLevel").hide();
+            }
+        });
         AjaxCallAction("GET", "/api/customer/Customers/Get_Customers/", null, true, function (res) {
             if (res != null) {
                 $("#AddressCompany").val(res.addressCompany);

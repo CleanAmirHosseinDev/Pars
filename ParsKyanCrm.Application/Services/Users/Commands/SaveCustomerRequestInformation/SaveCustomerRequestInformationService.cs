@@ -116,6 +116,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCustomerRequestInf
                         {
                             nameof(request.AmountOfLastSale),request.AmountOfLastSale
                         },
+                        {
+                            nameof(request.QuestionLevelId),request.QuestionLevelId
+                        },
 
                     }, string.Format(nameof(q_Entity.Entity.RequestId) + $" = {request.RequestId}"));
             }

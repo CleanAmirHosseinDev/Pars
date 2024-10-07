@@ -130,13 +130,21 @@ function go_next(filterGrid) {
                         dataFormTitle = "حذف شده";
                     }
                     let questionText = res.data[i].questionText.length > 79 ? res.data[i].questionText.slice(0, 75) + " ..." : res.data[i].questionText;
-                    strM += "<tr><td>" + (i + 1) + "</td><td>" + questionText + "</td><td>" + dataFormTitle + "</td><td>" + type + "</td><td>" + res.data[i].score + "</td><td>" + res.data[i].questionOrder + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestions?id=" + res.data[i].dataFormQuestionId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormQuestions(" + res.data[i].dataFormQuestionId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
+                    let questionLevel = "بدون سطح";
+                    AjaxCallAction("GET", "/api/admin/Corporate/Get_QuestionLevel/" + res.data[i].questionLevel, null, false, function (res) {
+                        if (res != null) {
+                            questionLevel = res.levelTitle;
+                        }
+                    }, false);
+                    strM += "<tr><td>" + (i + 1) + "</td><td>" + questionText + "</td><td>" + dataFormTitle + "</td><td>" + type + "</td><td>" + res.data[i].score + "</td><td>" + res.data[i].questionOrder + "</td><td>" + questionLevel + "</td><td><a title='ویرایش' href='/Admin/Corporate/EditDataFormQuestions?id=" + res.data[i].dataFormQuestionId + "' class='btn btn-edit fontForAllPage'><i class='fa fa-edit'></i></a><a title='حذف' onclick='Web.Corporate.DeleteDataFormQuestions(" + res.data[i].dataFormQuestionId + ");' class='btn btn-danger fontForAllPage'><i class='fa fa-remove'></i></a></td></tr>";
                 }
                 $("#tBodyList").html(strM);
             }
         }, true);
     }
     function initDataFormQuestions(id = null, dir = 'rtl') {
+        let selecet_item = makeComboForQuestionLevel();
+        $("#QuestionLevel").html(selecet_item);
         if (!isEmpty(id) && id != 0) {
             AjaxCallAction("GET", "/api/admin/Corporate/Get_DataFormQuestions/" + id, null, true, function (res) {
                 if (res != null) {
@@ -155,6 +163,7 @@ function go_next(filterGrid) {
                     makeDataFormComboBoxForSelectSubCategory(res.dataFormId);
                     comboBoxWithSearchUpdateText("QuestionType", type);
                     comboBoxWithSearchUpdateText("DataForms", getObjectWithFormId(DataFormList, res.dataFormId).formTitle);
+                    $("#QuestionLevel" + " option[value='" + res.questionLevel + "']").prop("selected", true);
                     $("#QuestionOrder").val(res.questionOrder);
                     $("#Score").val(res.score);
                     $("#HelpText").val(res.helpText);
@@ -176,6 +185,7 @@ function go_next(filterGrid) {
         let QuestionOrder = $("#QuestionOrder").val();
         let Score = $("#Score").val();
         let HelpText = $("#HelpText").val();
+        let QuestionLevel = $("#QuestionLevel").val();
 
         AjaxCallAction("POST", "/api/admin/Corporate/Save_DataFormQuestions", JSON.stringify(
             {
@@ -189,6 +199,7 @@ function go_next(filterGrid) {
                 Score: !isEmpty(Score) ? Score : 0,
                 HelpText: HelpText,
                 IsActive: 15,
+                QuestionLevel: QuestionLevel,
             }), true, function (res) {
 
                 $(e).removeAttr("disabled");
@@ -217,6 +228,22 @@ function go_next(filterGrid) {
             }, ["خیر", "بلی"]);
         } catch (e) {
         }
+    }
+    function makeComboForQuestionLevel() {
+        let strM = "";
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_QuestionLevels", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                strM = '<option value="0">انتخاب کنید</option>';
+                for (var i = 0; i < res.data.length; i++) {
+                    strM += "<option value='" + res.data[i].questionLevelId + "'>" + res.data[i].levelTitle + "</option>";
+                }
+            }
+        }, false);
+        return strM;
     }
 
     function getDataFormQuestionsList() {

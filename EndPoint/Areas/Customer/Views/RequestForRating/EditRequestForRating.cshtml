@@ -8,7 +8,7 @@
 
 }
 
-@section PageHeader {
+    @section PageHeader {
     <section class="content-header">
         <h1>
             ثبت درخواست
@@ -21,129 +21,142 @@
     </section>
 }
 
-<div class="row">
-    <section class="col-lg-12 col-md-12">
-        <div class="box box-info">
-            <div class="box-header">
-                @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
-                    <div class="portlet-title">
-                        <div class="caption font-green-haze">
-                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+    <div class="row">
+        <section class="col-lg-12 col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    @*<i class="fa fa-cloud"></i>*@
+                    <h3 class="box-title">
+                        <div class="portlet-title">
+                            <div class="caption font-green-haze">
+                                @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+                            </div>
+                            <div class="tools">
+                                <a href="" class="collapse" data-original-title="" title="">
+                                </a>
+                            </div>
                         </div>
-                        <div class="tools">
-                            <a href="" class="collapse" data-original-title="" title="">
-                            </a>
-                        </div>
+                    </h3>
+                    <!-- tools box -->
+                    <div class="pull-left box-tools">
+                        <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
-                </h3>
-                <!-- tools box -->
-                <div class="pull-left box-tools">
-                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <!-- /. tools -->
                 </div>
-                <!-- /. tools -->
-            </div>
-            <div class="box-body" style="">
+                <div class="box-body" style="">
 
 
-                <form action="/Customer/RequestForRating/Index" id="frmFormMain" method="post">
-                    <div class="form-horizontal">
+                    <form action="/Customer/RequestForRating/Index" id="frmFormMain" method="post">
+                        <div class="form-horizontal">
 
-                        <section>
-                            <h3>درخواست خدمات</h3>
-                            <p class="text-center" style="color:red;font-size:20px">لطفا نوع خدمت مورد تقاضای خود را انتخاب نمایید</p>
+                            <section>
+                                <h3>درخواست خدمات</h3>
+                                <p class="text-center" style="color:red;font-size:20px">لطفا نوع خدمت مورد تقاضای خود را انتخاب نمایید</p>
 
-                        </section>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4" for="">
-                                        نوع درخواست
-                                        <span class="RequiredLabel">*</span>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select name="TypeServiceRequestedId" id="TypeServiceRequestedId" class="form-control select2" style="width:100% !important;"></select>
-                                    </div>
-                                </div>
-
-                                <div id="CompanyInformation">
-                                    <div class="form-group FormIsShow">
+                            </section>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="control-label col-md-4" for="">
-                                            تعداد کارکنان <span class="NotShowRequiredLabel">شرکت</span>
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            نوع درخواست
+                                            <span class="RequiredLabel">*</span>
                                         </label>
                                         <div class="col-md-8">
-                                            <input type="text" maxlength="9" name="CountOfPersonel" id="CountOfPersonel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" oninput="return TextBoxOnlyNumber(event);" />
+                                            <select name="TypeServiceRequestedId" id="TypeServiceRequestedId" class="form-control select2" style="width:100% !important;"></select>
                                         </div>
                                     </div>
 
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده(ریال)
-                                            <span class="RequiredLabel NotShowRequiredLabel">*</span>
-                                        </label>
-                                        <div class="col-md-8">
-                                            <div>
-                                                <input type="text" name="AmountOfLastSale" id="AmountOfLastSale" maxlength="18" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" oninput="return TextBoxOnlyNumber(event);" />
+                                    <div id="TypeOfRequestLevel" style="display:none;">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="">
+                                                سطح سوال
+                                                <span class="RequiredLabel">*</span>
+                                            </label>
+                                            <div class="col-md-9">
+                                                <select name="QuestionLevel" id="QuestionLevel" class="form-control select2" style="width:100% !important;">
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
-                                            <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_LastAuditingTaxList">*</span>
-                                            <input type="hidden" name="LastAuditingTaxList" value="" />
-                                        </label>
-                                        <div class="col-md-8">
-                                            <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);" />
-                                            <div id="divDownload_LastAuditingTaxList"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
+                                    <div id="CompanyInformation">
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                تعداد کارکنان <span class="NotShowRequiredLabel">شرکت</span>
+                                                <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input type="text" maxlength="9" name="CountOfPersonel" id="CountOfPersonel" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" oninput="return TextBoxOnlyNumber(event);" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده(ریال)
+                                                <span class="RequiredLabel NotShowRequiredLabel">*</span>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <div>
+                                                    <input type="text" name="AmountOfLastSale" id="AmountOfLastSale" maxlength="18" class="form-control" onkeypress="return TextBoxOnlyNumber(event);" oninput="return TextBoxOnlyNumber(event);" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی
+                                                <span class="RequiredLabel NotShowRequiredLabel" id="Span_Label_Result_Final_LastAuditingTaxList">*</span>
+                                                <input type="hidden" name="LastAuditingTaxList" value="" />
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input type="file" name="Result_Final_LastAuditingTaxList" id="LastAuditingTaxList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی',5);" />
+                                                <div id="divDownload_LastAuditingTaxList"></div>
+                                                <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsx , حداکثر 5 مگابایت</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group FormIsShow">
+                                            <label class="control-label col-md-4" for="">
+                                                لیست آخرین بیمه
+                                                <span id="spanListLastBimeReq" class="RequiredLabel NotShowRequiredLabel">*</span>
+                                                <input type="hidden" name="LastInsuranceList" value="" />
+                                            </label>
+                                            <div class="col-md-8">
+                                                <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'لیست آخرین بیمه',5);" />
+                                                <div id="divDownload"></div>
+                                                <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group FormIsShow">
-                                        <label class="control-label col-md-4" for="">
-                                            لیست آخرین بیمه
-                                            <span id="spanListLastBimeReq" class="RequiredLabel NotShowRequiredLabel">*</span>
-                                            <input type="hidden" name="LastInsuranceList" value="" />
-                                        </label>
+                                    <input type="hidden" value="0" id="RequestId" name="RequestId" />
+                                    <input type="hidden" name="IsActive" value="15" />
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                        </div>
                                         <div class="col-md-8">
-                                            <input type="file" name="Result_Final_LastInsuranceList" id="LastInsuranceList" accept="image/*,.pdf,.xlsx," onchange="checkUploadWithFileSiza(this,'لیست آخرین بیمه',5);" />
-                                            <div id="divDownload"></div>
-                                            <span>پسوندهای مجاز: All Images, Pdf, xls Or xlsxو , حداکثر 5 مگابایت</span>
+                                            <button title="ثبت " class="btn btn-info fontForAllPage" onclick="Web.RequestForRating.SaveRequestForRating(this);">
+                                                ثبت   <i class="fa fa-print"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
 
-                                <input type="hidden" value="0" id="RequestId" name="RequestId" />
-                                <input type="hidden" name="IsActive" value="15" />
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <button title="ثبت " class="btn btn-info fontForAllPage" onclick="Web.RequestForRating.SaveRequestForRating(this);">
-                                            ثبت   <i class="fa fa-print"></i>
-                                        </button>
-                                    </div>
                                 </div>
-
+                                <div class="col-md-6"></div>
                             </div>
-                            <div class="col-md-6"></div>
+
                         </div>
-
-                    </div>
-                </form>
+                    </form>
 
 
+                </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
-@section Scripts {
+    @section Scripts {
     <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
     <script>
         Web.RequestForRating.InitRequestForRating(@ViewBag.id);

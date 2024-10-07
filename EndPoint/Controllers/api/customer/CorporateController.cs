@@ -332,5 +332,20 @@ namespace EndPoint.Controllers.api.customer
             }
         }
 
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResultDto<IEnumerable<QuestionLevelDto>>> Get_QuestionLevels([FromBody] RequestQuestionLevelDto request)
+        {
+            try
+            {
+                return await _userFacad.GetQuestionLevelsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

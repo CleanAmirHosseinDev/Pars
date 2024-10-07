@@ -18,6 +18,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? Id { get; set; }
         public int? CustomerId { get; set; }
         public int? RequestId { get; set; }
+        public int? QuestionLevelId { get; set; }
     }
 
     public class CustomerRequestInformationsDto : BaseEntityDto
@@ -46,5 +47,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
         public IFormFile Result_Final_LastInsuranceList { get; set; }
+        public int? QuestionLevelId { get; set; }
     }    
 }

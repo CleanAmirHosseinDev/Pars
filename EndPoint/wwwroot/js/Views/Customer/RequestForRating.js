@@ -88,8 +88,8 @@
                         if (res.data[i].contractDocument != null && res.data[i].contractDocument != "") {
                             strM += "<a style='margin-right:5px;color:black' title='اسناد مشتری' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/RequestDocument/" + res.data[i].requestId + "'><i class='fa fa-file-pdf-o'></i> </a>";
                         }
-                       
-                        if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null ) {
+
+                        if (res.data[i].customerRequestInformationId != null && res.data[i].contractDocument == null) {
                             strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/Customer/RequestForRating/EditCustomerRequestInformation/" + res.data[i].requestId + "'><i class='fa fa fa-edit'></i> بروزرسانی اطلاعات مالی  بیمه</a>";
                         }
                         strM += "</td></tr>";
@@ -136,8 +136,8 @@
 
                         }
                         if (res.data[i].destLevelStepIndex == 7) {
-                              strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
-                           // strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
+                            strM += "<button type='button' style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage'  onclick='Web.RequestForRating.ShowFurtherInfo(this," + res.data[i].requestId + ");'><i class='fa fa-edit'></i> اطلاعات تکمیلی</button>";
+                            // strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-success fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> اطلاعات تکمیلی</a>";
 
                         } else if (res.data[i].destLevelStepIndex >= 7 || res.data[i].destLevelStepIndexButton === "ارجاع به کارشناس ارزیاب جهت مشاهده اطلاعات تکمیلی") {
                             strM += "<a style='margin-right:5px;color:black' title='اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/Customer/FurtherInfo/index/" + res.data[i].requestId + "'><i class='fa fa-eye'></i> اطلاعات تکمیلی</a>";
@@ -371,20 +371,23 @@
     }
 
     function initRequestForRating() {
-
-
         ComboBoxWithSearch('.select2', 'dir');
         systemSeting_ComboRequestForRating();
+
+        let selecet_item = makeComboForQuestionLevel();
+        $("#QuestionLevel").html(selecet_item);
+
         $('#TypeServiceRequestedId').on('select2:select', function (e) {
             let _select_id = e.params.data.id;
             if (_select_id == 254) {
                 $("#CountOfPersonel").val(0);
                 $("#AmountOfLastSale").val(0);
                 $("#CompanyInformation").hide();
-            } else if (_select_id == 67 || _select_id == 66) {
-                $("#CompanyInformation").show();
-                $("#CountOfPersonel").val("");
                 $("#AmountOfLastSale").val("");
+                $("#TypeOfRequestLevel").show();
+            }
+            else {
+                $("#TypeOfRequestLevel").hide();
             }
         });
     }
@@ -1011,7 +1014,7 @@
                 if (res.data.length > 0) {
 
                     alertB("ثبت", "به دلیل وجود سابقه اطلاعاتی یک کپی از اطلاعات درست می شود تا شما بتوانید آنها را ویرایش کنید", "success", "بله متوجه شدم", function () {
-                        copyFurtherInfo(RequestId,res.data[0].requestId);
+                        copyFurtherInfo(RequestId, res.data[0].requestId);
                         // tempSaveRFR(e);
                     });
                 }
@@ -1025,6 +1028,9 @@
     }
 
     function initCustomerRequestInformation(id) {
+        let selecet_item = makeComboForQuestionLevel();
+        $("#QuestionLevel").html(selecet_item);
+
         AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations", JSON.stringify(
             { RequestId: id }
         ), true, function (res) {
@@ -1037,22 +1043,42 @@
                 if (res.lastAuditingTaxListFull != "/FileUpload/Customers/no-photo.png") {
                     $("#divDownload_LastAuditingTaxList").html("<a class='btn btn-success' href='" + res.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
                 }
+                if (res.questionLevelId != 0 && !isEmpty(res.questionLevelI))
+                    $("#QuestionLevel" + " option[value='" + res.questionLevelId + "']").prop("selected", true);
             }
 
         }, true);
         $('#TypeServiceRequestedId').on('select2:select', function (e) {
             let _select_id = e.params.data.id;
-            console.log(_select_id)
             if (_select_id == 254) {
                 $("#CountOfPersonel").val(0);
                 $("#AmountOfLastSale").val(0);
                 $("#hide_information").hide();
-            } else if (_select_id == 67 || _select_id == 66) {
+                $("#TypeOfRequestLevel").show();
+            } else {
                 $("#hide_information").show();
                 $("#CountOfPersonel").val("");
                 $("#AmountOfLastSale").val("");
+                $("#TypeOfRequestLevel").hide();
             }
         });
+    }
+
+    function makeComboForQuestionLevel() {
+        let strM = "";
+        AjaxCallAction("POST", "/api/customer/Corporate/Get_QuestionLevels", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                strM = '<option value="0">انتخاب کنید</option>';
+                for (var i = 0; i < res.data.length; i++) {
+                    strM += "<option value='" + res.data[i].questionLevelId + "'>" + res.data[i].levelTitle + "</option>";
+                }
+            }
+        }, false);
+        return strM;
     }
 
     web.RequestForRating = {

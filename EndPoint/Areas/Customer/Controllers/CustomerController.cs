@@ -10,7 +10,6 @@ namespace EndPoint.Areas.Customer.Controllers
     {
         public IActionResult EditCustomer()
         {
-            
             return View();
         }
     }

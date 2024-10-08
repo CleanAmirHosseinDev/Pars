@@ -353,10 +353,10 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveCorporateGovernanc
                 {
                     var con = await _context.CorporateGovernance.FirstOrDefaultAsync(p => p.RequestId == OldReq);
                     request.CompanyWebSite = con != null && !string.IsNullOrEmpty(con.CompanyWebSite) ? con.CompanyWebSite : string.Empty ;
-                    request.CustomerId = con.CustomerId;
-                    request.HaveAuditCommittee = con.HaveAuditCommittee.Value;
-                    request.HaveRepresentative = con.HaveRepresentative.Value;
-                    request.HighProductKnowledge = con.HighProductKnowledge;
+                  //  request.CustomerId = con.CustomerId;
+                    request.HaveAuditCommittee = con != null  ? con.HaveAuditCommittee.Value : false;
+                    request.HaveRepresentative = con != null ? con.HaveRepresentative.Value : false ;
+                    request.HighProductKnowledge = con != null ? con.HighProductKnowledge:null;
                     
 
                     request.OrganazationChart = con != null && !string.IsNullOrEmpty(con.OrganazationChart) ? con.OrganazationChart : string.Empty;

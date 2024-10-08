@@ -202,7 +202,7 @@
     }
 
     function dashboardInformation() {
-        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1 }), true, function (res) {
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_RequestForRatings", JSON.stringify({ Search: null, PageIndex: 1, PageSize: 1000 }), true, function (res) {
 
             if (res.isSuccess) {
 

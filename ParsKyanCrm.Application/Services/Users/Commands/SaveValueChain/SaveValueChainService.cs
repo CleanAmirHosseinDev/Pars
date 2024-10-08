@@ -68,7 +68,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveValueChainService
 
 
 
-                var con = await Infrastructure.DapperOperation.Run<ValueChainDto>("select * from DataFromAnswers where RequestId=" + request.RequestId);
+                var con = await Infrastructure.DapperOperation.Run<ValueChainDto>("select * from ValueChain where RequestId=" + request.RequestId);
 
                 foreach (var item in con)
                 {

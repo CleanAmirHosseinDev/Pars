@@ -19,6 +19,13 @@
     var VersionQuestion = null; // تعیین ورژن سوالات
     //Document Ready
 
+    AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations/", JSON.stringify({
+        RequestId: $("#RequestIdForms").val(),
+    }), false, function (result) {
+        QuestionVersion = result.questionLevelId;
+        VersionQuestion = result.questionLevelId;
+    }, false);
+
     function makeLiProgresBar(progresDynamicBar) {
         let _strM = "";
         for (let i = 0; i < progresDynamicBar.length; i++) {

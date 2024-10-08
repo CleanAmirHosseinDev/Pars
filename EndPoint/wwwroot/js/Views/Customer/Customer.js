@@ -29,34 +29,29 @@
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
                 setlstor("fullName", $("#CompanyName").val());
-
+                if (req_id != 0) {
+                    $("#RequestId").val(req_id);
+                    AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+                    }, false);
+                }
                 if ($("#TypeServiceRequestedId").val() == null) {
                     $(".fullNameInLayout").html(getlstor("fullName"));
                     $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
                     });
-                    $("#btnOpperationRun").removeAttr("disabled");
                 } else {
                     alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
                     });
-                    $("#btnOpperationRun").removeAttr("disabled");
                 }
+                goToUrl("/Customer/RequestForRating/Index");
             }
             else {
                 $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                 alertB("خطا", res.message, "error");
                 $("#btnOpperationRun").removeAttr("disabled");
             }
-        }, true);
-
-        if (req_id != 0) {
-            $("#RequestId").val(req_id);
-            AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
-            }, true);
-        }
-        goToUrl("/Customer/RequestForRating/Index");
-        //}
+        }, false);
     }
 
     function saveMobileUser(e) {

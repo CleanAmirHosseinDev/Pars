@@ -105,7 +105,7 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
                     {
                         new Claim(ClaimTypes.Role,LoginName)
                     }),
-                    Expires = LoginName == "Supervisor" ? DateTime.UtcNow.AddMinutes(680) : DateTime.UtcNow.AddMinutes(120),
+                    Expires = LoginName == "Supervisor" ? DateTime.UtcNow.AddMinutes(3600) : DateTime.UtcNow.AddMinutes(3600),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
 

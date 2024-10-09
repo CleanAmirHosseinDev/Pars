@@ -89,7 +89,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 }
 
-
                 return string.Empty;
             }
             catch (Exception ex)

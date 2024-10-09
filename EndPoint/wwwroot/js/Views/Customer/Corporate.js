@@ -100,6 +100,13 @@
     var LoadedDataFromDbDocument = "";
     var progresDynamicBar = [];
     var VersionQuestion = null; // تعیین ورژن سوالات
+
+    AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations/", JSON.stringify({
+        RequestId: $("#RequestIdForms").val(),
+    }), false, function (result) {
+        VersionQuestion = result.questionLevelId;
+    }, false);
+
     //Document Ready
 
     function makeLiProgresBar(progresDynamicBar) {

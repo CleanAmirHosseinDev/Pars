@@ -116,8 +116,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             var req_id = 0;
             #region Upload Image
 
-            string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
-            string fileNameOldPic_AuditedFinancialStatements = string.Empty, path_AuditedFinancialStatements = string.Empty;
+          //  string fileNameOldPic_LastInsuranceList = string.Empty, path_LastInsuranceList = string.Empty;
+          //  string fileNameOldPic_AuditedFinancialStatements = string.Empty, path_AuditedFinancialStatements = string.Empty;
 
             string fileNameOldPic_ScanCustomerNationalCard = string.Empty, path_ScanCustomerNationalCard = string.Empty;
             string fileNameOldPic_ScanManagerNationalCard = string.Empty, path_ScanManagerNationalCard = string.Empty;
@@ -142,7 +142,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 #endregion                                
 
                 var cus = await _context.Customers.FindAsync(request.CustomerId);
-                request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
+              //  request.LastInsuranceList = cus != null && !string.IsNullOrEmpty(cus.LastInsuranceList) ? cus.LastInsuranceList : string.Empty;
                 //request.AuditedFinancialStatements = cus != null && !string.IsNullOrEmpty(cus.AuditedFinancialStatements) ? cus.AuditedFinancialStatements : string.Empty;
 
                 request.ScanCustomerNationalCard = cus != null && !string.IsNullOrEmpty(cus.ScanCustomerNationalCard) ? cus.ScanCustomerNationalCard : string.Empty;
@@ -151,13 +151,13 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 #region Upload Image
 
-                if (request.Result_Final_LastInsuranceList != null)
-                {
-                    fileNameOldPic_LastInsuranceList = request.LastInsuranceList;
-                    request.LastInsuranceList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastInsuranceList.FileName);
-                    path_LastInsuranceList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastInsuranceList;
-                    await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "آخرین لیست بیمه");
-                }
+                //if (request.Result_Final_LastInsuranceList != null)
+                //{
+                //    fileNameOldPic_LastInsuranceList = request.LastInsuranceList;
+                //    request.LastInsuranceList = Guid.NewGuid().ToString().Replace("-", "") + System.IO.Path.GetExtension(request.Result_Final_LastInsuranceList.FileName);
+                //    path_LastInsuranceList = _env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + request.LastInsuranceList;
+                //    await ServiceFileUploader.SaveFile(request.Result_Final_LastInsuranceList, path_LastInsuranceList, "آخرین لیست بیمه");
+                //}
 
                 //if (request.Result_Final_AuditedFinancialStatements != null)
                 //{
@@ -183,61 +183,61 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                 }
 
                 #endregion
-                request.CountOfPersonal = (request.CountOfPersonal == 0 ? 1 : request.CountOfPersonal.Value);
+                //request.CountOfPersonal = (request.CountOfPersonal == 0 ? 1 : request.CountOfPersonal.Value);
 
                 DateTime dt = DateTimeOperation.InsertFieldDataTimeInTables(DateTime.Now);
 
                 if (!cus.IsProfileComplete)
                 {
 
-                    if (!request.TypeServiceRequestedId.HasValue)
-                    {
-                        return new ResultDto()
-                        {
-                            IsSuccess = false,
-                            Message = "نوع خدمت مورد تقاضا را انتخاب کنید"
-                        };
-                    }
+                    //if (!request.TypeServiceRequestedId.HasValue)
+                    //{
+                    //    return new ResultDto()
+                    //    {
+                    //        IsSuccess = false,
+                    //        Message = "نوع خدمت مورد تقاضا را انتخاب کنید"
+                    //    };
+                    //}
 
-                    var qSystemSetting = await _context.SystemSeting.FindAsync(request.TypeServiceRequestedId.Value);
-                    if (string.IsNullOrEmpty(qSystemSetting.ConfigKindOfRequestInitilizeOne))
-                    {
-                        return new ResultDto()
-                        {
-                            IsSuccess = false,
-                            Message = "تنظیمات نوع خدمت مورد تقاضا تنظیم نشده است لطفا با پشتیبانی تماس حاصل فرمایید"
-                        };
-                    }
+                    //var qSystemSetting = await _context.SystemSeting.FindAsync(request.TypeServiceRequestedId.Value);
+                    //if (string.IsNullOrEmpty(qSystemSetting.ConfigKindOfRequestInitilizeOne))
+                    //{
+                    //    return new ResultDto()
+                    //    {
+                    //        IsSuccess = false,
+                    //        Message = "تنظیمات نوع خدمت مورد تقاضا تنظیم نشده است لطفا با پشتیبانی تماس حاصل فرمایید"
+                    //    };
+                    //}
 
-                    string[] strArrConfigKindOfRequest = qSystemSetting.ConfigKindOfRequestInitilizeOne.Split("-");
+                    //string[] strArrConfigKindOfRequest = qSystemSetting.ConfigKindOfRequestInitilizeOne.Split("-");
 
-                    var rr = _context.RequestReferences.Add(new RequestReferences()
-                    {
+                    //var rr = _context.RequestReferences.Add(new RequestReferences()
+                    //{
 
-                        DestLevelStepIndex = strArrConfigKindOfRequest[0],
-                        LevelStepAccessRole = strArrConfigKindOfRequest[1],
-                        LevelStepStatus = strArrConfigKindOfRequest[2],
-                        DestLevelStepIndexButton = strArrConfigKindOfRequest[3],
-                        Request = new Domain.Entities.RequestForRating()
-                        {
+                    //    DestLevelStepIndex = strArrConfigKindOfRequest[0],
+                    //    LevelStepAccessRole = strArrConfigKindOfRequest[1],
+                    //    LevelStepStatus = strArrConfigKindOfRequest[2],
+                    //    DestLevelStepIndexButton = strArrConfigKindOfRequest[3],
+                    //    Request = new Domain.Entities.RequestForRating()
+                    //    {
 
-                            RequestNo = int.Parse(MaxAllRequestNo()),
-                            DateOfRequest = dt,
-                            KindOfRequest = request.TypeServiceRequestedId,
-                            CustomerId = cus.CustomerId,
-                            IsFinished = false,
-                            ChangeDate = dt
-                        },
-                        SmsContent = strArrConfigKindOfRequest[4],
-                        SmsType = bool.Parse(strArrConfigKindOfRequest[5]),
-                        Comment = null,
-                        SendUser = null,
-                        SendTime = dt,
-                        LevelStepSettingIndexID = 1,
-                        ReciveUser = strArrConfigKindOfRequest[6],
-                    });
-                    await _context.SaveChangesAsync();
-                    req_id = (int)rr.Entity.Requestid;
+                    //        RequestNo = int.Parse(MaxAllRequestNo()),
+                    //        DateOfRequest = dt,
+                    //        KindOfRequest = request.TypeServiceRequestedId,
+                    //        CustomerId = cus.CustomerId,
+                    //        IsFinished = false,
+                    //        ChangeDate = dt
+                    //    },
+                    //    SmsContent = strArrConfigKindOfRequest[4],
+                    //    SmsType = bool.Parse(strArrConfigKindOfRequest[5]),
+                    //    Comment = null,
+                    //    SendUser = null,
+                    //    SendTime = dt,
+                    //    LevelStepSettingIndexID = 1,
+                    //    ReciveUser = strArrConfigKindOfRequest[6],
+                    //});
+                    //await _context.SaveChangesAsync();
+                    //req_id = (int)rr.Entity.Requestid;
                     //_context.RequestReferences.Add(new RequestReferences()
                     //{
                     //    Requestid = rr.Entity.Requestid,
@@ -281,9 +281,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         {
                             "SaveDate",dt
                         },
-                        {
-                            nameof(request.LastInsuranceList),request.LastInsuranceList
-                        },
+                        //{
+                        //    nameof(request.LastInsuranceList),request.LastInsuranceList
+                        //},
                         //{
                         //    nameof(request.AuditedFinancialStatements),request.AuditedFinancialStatements
                         //},
@@ -323,9 +323,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         {
                             nameof(request.CountOfPersonal),request.CountOfPersonal
                         },
-                        {
-                            nameof(request.AmountOsLastSales),request.AmountOsLastSales
-                        },
+                        //{
+                        //    nameof(request.AmountOsLastSales),request.AmountOsLastSales
+                        //},
                         {
                             nameof(request.Email),request.Email
                         },
@@ -335,9 +335,9 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                         {
                             nameof(request.CeoMobile),request.CeoMobile
                         },
-                        {
-                            nameof(request.TypeServiceRequestedId),request.TypeServiceRequestedId
-                        },
+                        //{
+                        //    nameof(request.TypeServiceRequestedId),request.TypeServiceRequestedId
+                        //},
                         {
                             nameof(request.HowGetKnowCompanyId),request.HowGetKnowCompanyId
                         },
@@ -351,8 +351,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                 #region Upload Image
 
-                if (request.Result_Final_LastInsuranceList != null)
-                    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastInsuranceList);
+                //if (request.Result_Final_LastInsuranceList != null)
+                //    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_LastInsuranceList);
 
                 //if (request.Result_Final_AuditedFinancialStatements != null)
                 //    FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_AuditedFinancialStatements);
@@ -365,8 +365,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     FileOperation.DeleteFile(_env.ContentRootPath + VaribleForName.CustomersFolderWithwwwroot + fileNameOldPic_ScanManagerNationalCard);
 
 
-                path_LastInsuranceList = string.Empty;
-                path_AuditedFinancialStatements = string.Empty;
+                //path_LastInsuranceList = string.Empty;
+                //path_AuditedFinancialStatements = string.Empty;
 
                 path_ScanCustomerNationalCard = string.Empty;
 
@@ -386,8 +386,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
             {
                 #region Upload Image
 
-                FileOperation.DeleteFile(path_LastInsuranceList);
-                FileOperation.DeleteFile(path_AuditedFinancialStatements);
+                //FileOperation.DeleteFile(path_LastInsuranceList);
+                //FileOperation.DeleteFile(path_AuditedFinancialStatements);
                 FileOperation.DeleteFile(path_ScanCustomerNationalCard);
                 FileOperation.DeleteFile(path_ScanManagerNationalCard);
 

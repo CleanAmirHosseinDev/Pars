@@ -204,7 +204,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.AddressCompany).NotEmpty().WithMessage("آدرس را وارد کنید");
 
-                  RuleFor(p => p.CountOfPersonal).NotEmpty().WithMessage("تعداد کارکنان شرکت را وارد کنید");
+               //   RuleFor(p => p.CountOfPersonal).NotEmpty().WithMessage("تعداد کارکنان شرکت را وارد کنید");
 
                   RuleFor(p => p.HowGetKnowCompanyId).NotEmpty().WithMessage("نحوه آشنایی با شرکت را انتخاب کنید");
 
@@ -220,7 +220,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
 
                   RuleFor(p => p.PostalCode).NotEmpty().WithMessage("کد پستی را وارد کنید").Length(10).WithMessage("کد پستی باید 10 حرف باشد");
 
-                  RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
+                  //RuleFor(p => p.AmountOsLastSales).NotEmpty().WithMessage("درآمد عملیاتی بر اساس صورت های مالی حسابرسی شده را وارد کنید");
 
                   RuleFor(p => p.NamesAuthorizedSignatories).NotEmpty().WithMessage("اسامی امضاکنندگان مجاز را وارد کنید");
 
@@ -231,12 +231,12 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                   //       RuleFor(p => p.Result_Final_AuditedFinancialStatements).NotNull().WithMessage("آخرین صورت مالی حسابرسی شده یا اظهار نامه مالیاتی را بارگذاری کنید");
                   //   });
 
-                  When(c => (c.CountOfPersonal != null && c.CountOfPersonal != 0) && string.IsNullOrEmpty(c.LastInsuranceList), () =>
-                    {
+                  //When(c => (c.CountOfPersonal != null && c.CountOfPersonal != 0) && string.IsNullOrEmpty(c.LastInsuranceList), () =>
+                  //  {
 
-                        RuleFor(p => p.Result_Final_LastInsuranceList).NotNull().WithMessage("لیست آخرین بیمه را بارگذاری کنید");
+                  //      RuleFor(p => p.Result_Final_LastInsuranceList).NotNull().WithMessage("لیست آخرین بیمه را بارگذاری کنید");
 
-                    });
+                  //  });
 
               });
 

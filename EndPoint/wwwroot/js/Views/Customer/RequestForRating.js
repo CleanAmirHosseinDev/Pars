@@ -1090,6 +1090,15 @@
         return strM;
     }
 
+    function saveCustomerRequestInformation(e) {
+
+        $(e).attr("disabled", "");
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+            goToUrl("/Customer/RequestForRating/Index");
+        }, true);
+        $(e).removeAttr("disabled");
+    }
+
     web.RequestForRating = {
         TextSearchOnKeyDown: textSearchOnKeyDown,
         SaveRequestForRating: saveRequestForRating,
@@ -1124,6 +1133,7 @@
         CopyFurtherInfo: copyFurtherInfo,
         ShowFurtherInfo: showFurtherInfo,
         InitCustomerRequestInformation: initCustomerRequestInformation,
+        SaveCustomerRequestInformation: saveCustomerRequestInformation
     };
 
 })(Web, jQuery);

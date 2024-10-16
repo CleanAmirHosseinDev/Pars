@@ -22,32 +22,38 @@
         //if ($("#TypeServiceRequestedId").val() == '254' && $("#QuestionLevel").val() == '0')
         //    alertB("خطا", "لطفا سطح سوالات قرار داد را تنظیم نمایید", "warning", "بله متوجه شدم", function () {});
         //else {
-        RemoveAllCharForPrice("AmountOsLastSales");
-        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+       // RemoveAllCharForPrice("AmountOsLastSales");
+        AjaxCallActionPostSaveFormWithUploadFile("/api/customer/Customers/Save_BasicInformationCustomers", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), true, function (res) {
             if (res.isSuccess) {
-                req_id = res.resultId;
+                //req_id = res.resultId;
+                //$("#frmFormMain").hide();
+                //$("#frmFormInfo").show();
+                if ($("#NewRequest").val()!=1) {
+                    goToUrl("/Customer/RequestForRating/EditRequestForRating");
+                }
+               
                 /*alertB("ثبت", res.message, "success");*/
                 /*$("SeeAllRequest").show();*/
                 setlstor("fullName", $("#CompanyName").val());
-                if (req_id != 0) {
-                    $("#RequestId").val(req_id);
-                    AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
-                    }, false);
-                }
+                //if (req_id != 0) {
+                //    $("#RequestId").val(req_id);
+                //    //AjaxCallActionPostSaveFormWithUploadFile("/api/customer/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+                //    //}, false);
+                //}
                 if ($("#TypeServiceRequestedId").val() == null) {
                     $(".fullNameInLayout").html(getlstor("fullName"));
-                    $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
+                 //   $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                     /*alertB("ثبت", "پروفایل شما ویرایش شد.", "success");*/
-                    alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
-                    });
+                    alertB("ثبت", "پروفایل شما ویرایش شد", "success");
+                    
+                   
                 } else {
-                    alertB("ثبت", "پروفایل شما ویرایش شد", "success", "بله متوجه شدم", function () {
-                    });
+                    alertB("ثبت", "پروفایل شما ویرایش شد", "success");
                 }
-                goToUrl("/Customer/RequestForRating/Index");
+                
             }
             else {
-                $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
+               // $("#AmountOsLastSales").val(moneyCommaSepWithReturn($("#AmountOsLastSales").val()));
                 alertB("خطا", res.message, "error");
                 $("#btnOpperationRun").removeAttr("disabled");
             }
@@ -492,8 +498,8 @@
                     systemSeting_Combo(resSingle, false);
                     $('#hide_information').hide();
                     $('#TypeOfRequestLevel').hide();
+                    $('#NewRequest').val('1');
                 }
-
                 else {
                     $("#divTypeServiceRequestedId").show();
                     systemSeting_Combo(resSingle, true);
@@ -522,7 +528,7 @@
 
     function initCustomer(dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
-
+        $("#frmFormMain").show();
         let selecet_item = makeComboForQuestionLevel();
         $("#QuestionLevel").html(selecet_item);
         $('#TypeServiceRequestedId').on('select2:select', function (e) {

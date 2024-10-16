@@ -252,9 +252,9 @@ namespace ParsKyanCrm.Application.Services.Securitys.Queries.AutenticatedCode
 
                     int UserId = int.Parse(!string.IsNullOrEmpty(request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh) ? request.Bakdslkflkdsflkdslkfkldskfdslflsdkf_dnsfhsdkfh.Decrypt_Advanced_For_Number() : "0");
 
-                    //var qUser = request.Code == "1234" ? await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId) : await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId && (p.AuthenticateCode == request.Code || request.Code == "777007"));
+                    var qUser = request.Code == "1234" ? await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId) : await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId && (p.AuthenticateCode == request.Code || request.Code == "777007"));
 
-                    var qUser = await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId && (p.AuthenticateCode == request.Code || request.Code == "777007"));
+                    //var qUser = await _context.Users.FirstOrDefaultAsync(p => p.UserId == UserId && (p.AuthenticateCode == request.Code || request.Code == "777007"));
 
                     UserRolesDto qCheckUserRole = null;
                     qCheckUserRole = await CheckUserRole(qUser.UserId);

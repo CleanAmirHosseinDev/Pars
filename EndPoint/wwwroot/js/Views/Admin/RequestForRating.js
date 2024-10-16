@@ -98,7 +98,9 @@ function successCallBack_divPageingList_RequestForRatingsAdmin(res) {
           
                 strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + ");'><i class='fa fa-remove'></i></a>";
             
-
+            if (res.data[i].customerRequestInformationId != 0 && res.data[i].contractDocument == null) {
+                strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/admin/RequestForRating/EditCustomerRequestInformation/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> بروزرسانی اطلاعات مالی  بیمه </a>";
+            }
             strM += "<a style='margin-right:5px; color:black' href='/admin/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
             strM += "</td></tr>";
 
@@ -377,13 +379,80 @@ function generateAssessment(qe) {
 
     }
 
+    function initCustomerRequestInformation(id) {
+        let selecet_item = makeComboForQuestionLevel();
+        $("#QuestionLevel").html(selecet_item);
+
+        AjaxCallAction("POST", "/api/admin/RequestForRating/Get_CustomerRequestInformations", JSON.stringify(
+            { RequestId: id }
+        ), true, function (res) {
+            if (!isEmpty(res)) {
+                $("#CustomerId").val(res.CustomerId);
+                $("#CountOfPersonel").val(res.countOfPersonel);
+                $("#AmountOfLastSale").val(moneyCommaSepWithReturn(!isEmpty(res.amountOfLastSale) ? res.amountOfLastSale.toString() : ''));
+                if (res.lastInsuranceListFull != "/FileUpload/Customers/no-photo.png") {
+                    $("#divDownload").html("<a class='btn btn-success' href='" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                }
+                if (res.lastAuditingTaxListFull != "/FileUpload/Customers/no-photo.png") {
+                    $("#divDownload_LastAuditingTaxList").html("<a class='btn btn-success' href='" + res.lastAuditingTaxListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+                }
+                if (res.questionLevelId != 0 && !isEmpty(res.questionLevelI))
+                    $("#QuestionLevel" + " option[value='" + res.questionLevelId + "']").prop("selected", true);
+            }
+
+        }, true);
+        $('#TypeServiceRequestedId').on('select2:select', function (e) {
+            let _select_id = e.params.data.id;
+            if (_select_id == 254) {
+                $("#CountOfPersonel").val(0);
+                $("#AmountOfLastSale").val(0);
+                $("#hide_information").hide();
+                $("#TypeOfRequestLevel").show();
+            } else {
+                $("#hide_information").show();
+                $("#CountOfPersonel").val("");
+                $("#AmountOfLastSale").val("");
+                $("#TypeOfRequestLevel").hide();
+            }
+        });
+    }
+
+    function editCustomerRequestInformation(e) {
+        $(e).attr("disabled", "");
+        //let req_id = $("#RequestId").val();
+        AjaxCallActionPostSaveFormWithUploadFile("/api/admin/RequestForRating/Save_SaveCustomerRequestInformation", fill_AjaxCallActionPostSaveFormWithUploadFile("frmFormMain"), false, function (res) {
+            alertB("اطلاعات به روز شد.");
+        }, false);
+        $(e).removeAttr("disabled");
+        //goToUrl("/admin/RequestForRating/Index/" + req_id);
+    }
+
+    function makeComboForQuestionLevel() {
+        let strM = "";
+        AjaxCallAction("POST", "/api/Admin/Corporate/Get_QuestionLevels", JSON.stringify({
+            PageIndex: 0,
+            PageSize: 0,
+            IsActive: 15,
+        }), false, function (res) {
+            if (res.isSuccess) {
+                strM = '<option value="0">انتخاب کنید</option>';
+                for (var i = 0; i < res.data.length; i++) {
+                    strM += "<option value='" + res.data[i].questionLevelId + "'>" + res.data[i].levelTitle + "</option>";
+                }
+            }
+        }, false);
+        return strM;
+    }
+
     web.RequestForRating = {
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         FilterGrid: filterGrid,
         CancelRequest: cancelRequest,
         InitRequestReferences: initRequestReferences,
         CreateTimeLine: createTimeLine,
-        OnchangeKindOfRequest: onchangeKindOfRequest
+        OnchangeKindOfRequest: onchangeKindOfRequest,
+        InitCustomerRequestInformation: initCustomerRequestInformation,
+        EditCustomerRequestInformation: editCustomerRequestInformation
 
     };
 

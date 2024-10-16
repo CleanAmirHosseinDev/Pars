@@ -14,9 +14,9 @@
             ویرایش اطلاعات قرار داد درخواست
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/Customer"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-            <li><a href="/Customer/RequestForRating/Index"><i></i>مشاهده درخواست ها</a></li>
-            <li class="active"><a href="/Customer/RequestForRating/EditRequestForRating@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i>ویرایش اطلاعات قرار داد درخواست</a></li>
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/RequestForRating/Index"><i></i>مشاهده درخواست ها</a></li>
+            <li class="active"><a href="/Admin/RequestForRating/EditRequestForRating@(ViewBag.id == null || ViewBag.id == 0 ?"":"?id="+ViewBag.id)"><i></i>ویرایش اطلاعات قرار داد درخواست</a></li>
         </ol>
     </section>
 }
@@ -50,12 +50,8 @@
 
                 <form action="#" id="frmFormMain" method="post">
                     <div class="form-horizontal">
-
-                        <section >
-                            <h3>درخواست خدمات</h3>
-                            <p> لطفا از گزینه های زیر درخواست خدمات خود را انتخاب کنید.</p>
-                            
-                        </section>
+                        <input type="hidden" id="CustomerId" name="CustomerId" />
+                       
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group FormIsShow">

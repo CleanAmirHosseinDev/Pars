@@ -120,7 +120,34 @@ namespace EndPoint.Controllers.api.admin
                 throw;
             }
         }
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<CustomerRequestInformationsDto>> Save_SaveCustomerRequestInformation([FromForm] CustomerRequestInformationsDto request)
+        {
+            try
+            {
+               // request.CustomerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID").Value);
+                return await _userFacad.SaveCustomerRequestInformationService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<CustomerRequestInformationsDto> Get_CustomerRequestInformations([FromBody] RequestCustomerRequestInformationDto request)
+        {
+            try
+            {
+                return await _userFacad.GetCustomerRequestInformationService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
 

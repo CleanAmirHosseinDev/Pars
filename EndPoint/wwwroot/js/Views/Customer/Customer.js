@@ -129,13 +129,17 @@
 
                 if (showdrp) {
                     $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
-                    $("#TypeServiceRequestedId").val('66');
+                    let selected = getlstor("code");
+                    $("#TypeServiceRequestedId").val(selected);
+                    if (selected != '')
+                        $("#TypeServiceRequestedId").prop("disabled", "disabled");
                 }
 
                 validate();
 
                 $("#CountOfPersonal").keyup();
                 $("#AmountOsLastSales").keyup();
+                dellstor("code");
             }
         }, true);
     }

@@ -1039,7 +1039,8 @@
             }, false);
 
             if (countOfAnswer >= countOfQuestion) {
-                Web.RequestForRating.SaveReferralRequestForRating(el)
+                Web.RequestForRating.SaveReferralRequestForRating(el);
+                dellstor("bg");
             }
             else {
                 hideWait();
@@ -1047,7 +1048,8 @@
             }
         }
         else {
-            Web.RequestForRating.SaveReferralRequestForRating(el)
+            Web.RequestForRating.SaveReferralRequestForRating(el);
+            dellstor("bg");
         }
     }
 

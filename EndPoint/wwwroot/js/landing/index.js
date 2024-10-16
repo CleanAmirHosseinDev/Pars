@@ -1,4 +1,10 @@
-﻿function resizeSlider() {
+﻿$('.request_user').on('click', function () {
+    var link = $(this);
+    var RequestCode = link.data('code');
+    setlstor("code", RequestCode);
+});
+
+function resizeSlider() {
     var w = $(".main").width();
     if (w > 1600) { w = 1600; }
     $(".slider").css("width", (w - 0.01) + "px");

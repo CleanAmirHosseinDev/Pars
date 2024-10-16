@@ -101,12 +101,6 @@
     var progresDynamicBar = [];
     var VersionQuestion = null; // تعیین ورژن سوالات
 
-    AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations/", JSON.stringify({
-        RequestId: $("#RequestIdForms").val(),
-    }), false, function (result) {
-        VersionQuestion = result.questionLevelId;
-    }, false);
-
     //Document Ready
 
     function makeLiProgresBar(progresDynamicBar) {
@@ -228,6 +222,12 @@
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
         initCustomer();
+
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations/", JSON.stringify({
+            RequestId: $("#RequestIdForms").val(),
+        }), false, function (result) {
+            VersionQuestion = result.questionLevelId;
+        }, false);
 
         makeTabProgresDynamic();
         if (makeQuestionForm) {
@@ -497,7 +497,8 @@
             PageSize: 0,
             DataFormType: 2,
             IsActive: 15,
-            Version: VersionQuestion,
+            Version: null,
+            QuestionLevel: VersionQuestion,
         }), false, function (res) {
             if (res.isSuccess) {
                 let strFormId = generate_strFormId(res, RequestId, FormID);
@@ -605,7 +606,11 @@
         let tabPane = "";
         for (let i = 0; i < DataFormList.length; i++) {
             if (DataFormList[i].formCode.slice(0, 1) === SubCategoryName) {
-                let background = getlstor("bg") != '' ? JSON.parse(getlstor("bg"))[DataFormList[i].formId] : '';
+                let background = '';
+                if (getlstor("bg") != '') {
+                    let bgJson = JSON.parse(getlstor("bg"));
+                    background = bgJson[DataFormList[i].formId];
+                }
                 if (isEmpty(background)) {
                     background = "#8d8d8d";
                     let obj = getlstor("bg") != '' ? JSON.parse(getlstor("bg")) : {};
@@ -1033,7 +1038,8 @@
                 PageSize: 0,
                 IsActive: 15,
                 DataFormType: 2,
-                Version: VersionQuestion,
+                Version: null,
+                QuestionLevel: VersionQuestion,
             }), false, function (res) {
                 countOfQuestion = res.data.length;
             }, false);
@@ -1062,7 +1068,8 @@
             PageSize: 0,
             IsActive: 15,
             DataFormType: 2,
-            Version: VersionQuestion,
+            Version: null,
+            QuestionLevel: VersionQuestion,
         }), false, function (res) {
             for (let i = 0; i < res.data.length; i++){
                 all_score += res.data[i].score;

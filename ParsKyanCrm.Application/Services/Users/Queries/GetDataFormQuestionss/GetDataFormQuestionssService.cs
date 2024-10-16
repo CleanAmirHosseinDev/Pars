@@ -81,10 +81,10 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetDataFormQuestionss
                                 select s;
                     }
                 }
-                if (request.PageIndex == 0 && request.PageSize == 0 && request.IsActive == 15 && request.DataFormType == 2 && request.DataFormId != null)
+                if (request.PageIndex == 0 && request.PageSize == 0 && request.IsActive == 15 && request.DataFormType == 2 && request.DataFormId != null && request.Version == null && request.QuestionLevel != null)
                 {
                     new_list = from s in _context.DataFormQuestions
-                            where (s.DataFormType == 2 && s.IsActive == 15 && s.DataFormId == request.DataFormId)
+                            where (s.DataFormType == 2 && s.IsActive == 15 && s.DataFormId == request.DataFormId && s.QuestionLevel == request.QuestionLevel)
                             select s;
                 }
 

@@ -131,15 +131,21 @@
                     $("#TypeServiceRequestedId").html(strTypeServiceRequestedId);
                     let selected = getlstor("code");
                     $("#TypeServiceRequestedId").val(selected);
-                    if (selected != '')
-                        $("#TypeServiceRequestedId").prop("disabled", "disabled");
+                    if (selected == 254) {
+                        $("#CountOfPersonel").val(0);
+                        $("#CountOfPersonal").val(0);
+                        $("#AmountOfLastSale").val(0);
+                        $("#AmountOsLastSales").val(0);
+                        $("#hide_information").hide();
+                        $("#TypeOfRequestLevel").show();
+                        dellstor("code");
+                    }
                 }
 
                 validate();
 
                 $("#CountOfPersonal").keyup();
                 $("#AmountOsLastSales").keyup();
-                dellstor("code");
             }
         }, true);
     }
@@ -526,9 +532,10 @@
 
     function initCustomer(dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
-
+        
         let selecet_item = makeComboForQuestionLevel();
         $("#QuestionLevel").html(selecet_item);
+        
         $('#TypeServiceRequestedId').on('select2:select', function (e) {
             let _select_id = e.params.data.id;
             if (_select_id == 254) {

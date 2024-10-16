@@ -19,12 +19,6 @@
     var VersionQuestion = null; // تعیین ورژن سوالات
     //Document Ready
 
-    AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations/", JSON.stringify({
-        RequestId: $("#RequestIdForms").val(),
-    }), false, function (result) {
-        QuestionVersion = result.questionLevelId;
-        VersionQuestion = result.questionLevelId;
-    }, false);
 
     function makeLiProgresBar(progresDynamicBar) {
         let _strM = "";
@@ -129,6 +123,13 @@
     function initCorporate(id = null, makeQuestionForm = true) {
         PersianDatePicker(".DatePicker");
         $("#RequestIdForms").val(id);
+
+        AjaxCallAction("POST", "/api/customer/RequestForRating/Get_CustomerRequestInformations/", JSON.stringify({
+            RequestId: $("#RequestIdForms").val(),
+        }), false, function (result) {
+            QuestionVersion = result.questionLevelId;
+            VersionQuestion = result.questionLevelId;
+        }, false);
 
         // دریافت همه زیر دسته های اصلی
         if (isEmpty(DataFormList))
@@ -780,7 +781,8 @@
             PageSize: 0,
             IsActive: 15,
             DataFormType: 2,
-            Version: VersionQuestion,
+            Version: null,
+            QuestionLevel: VersionQuestion,
         }), false, function (res) {
             for (let i = 0; i < res.data.length; i++) {
                 all_score += res.data[i].score;

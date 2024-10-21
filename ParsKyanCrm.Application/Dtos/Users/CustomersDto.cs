@@ -193,6 +193,8 @@ namespace ParsKyanCrm.Application.Dtos.Users
             }
         }
 
+        public bool HaveRequest { get; set; }
+
     }    
 
 }

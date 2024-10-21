@@ -254,9 +254,7 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveBasicInformationCu
                     //await _context.SaveChangesAsync();
 
                     var aboutEntity = await _context.AboutUs.FirstOrDefaultAsync();
-                    await WebService.SMSService.Execute(aboutEntity.Mobile1, VaribleForName.SmsContent1);
-                    await WebService.SMSService.Execute(aboutEntity.Mobile2, VaribleForName.SmsContent1);
-
+                
                 }
 
 

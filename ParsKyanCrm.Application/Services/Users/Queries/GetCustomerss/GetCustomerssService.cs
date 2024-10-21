@@ -43,7 +43,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss
                 p.EconomicCode.Contains(request.Search)||
                 p.PostalCode.Contains(request.Search)            
                 );
-
+              
                 switch (request.SortOrder)
                 {
                     case "CustomerId_D":
@@ -61,10 +61,16 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss
                 {
 
                     var res_Lists = await lists.ToListAsync();
+                    var res_= _mapper.Map<IEnumerable<CustomersDto>>(res_Lists);
+
+                    foreach (var item in res_)
+                    {
+                        item.HaveRequest = _context.RequestForRating.Where(m => m.CustomerId == item.CustomerId).FirstOrDefault() != null ? true : false;
+                    }
 
                     return new ResultDto<IEnumerable<CustomersDto>>
                     {
-                        Data = _mapper.Map<IEnumerable<CustomersDto>>(res_Lists),
+                        Data = res_,
                         IsSuccess = true,
                         Message = string.Empty,
                         Rows = res_Lists.LongCount(),
@@ -76,9 +82,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomerss
 
                     var list_Res_Pageing = await Pagination<Domain.Entities.Customers>.CreateAsync(lists.AsNoTracking(), request);
 
+                    var res_ = _mapper.Map<IEnumerable<CustomersDto>>(list_Res_Pageing);
+
+                    foreach (var item in res_)
+                    {
+                        item.HaveRequest = _context.RequestForRating.Where(m => m.CustomerId == item.CustomerId).FirstOrDefault() != null ? true : false;
+                    }
                     return new ResultDto<IEnumerable<CustomersDto>>
                     {
-                        Data = _mapper.Map<IEnumerable<CustomersDto>>(list_Res_Pageing),
+                        Data = res_,
                         IsSuccess = true,
                         Message = string.Empty,
                         Rows = list_Res_Pageing.Rows,

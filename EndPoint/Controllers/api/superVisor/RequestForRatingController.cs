@@ -207,6 +207,21 @@ namespace EndPoint.Controllers.api.superVisor
             }
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ResultDto<ContractAndFinancialDocumentsDto>> Save_Remaining([FromBody] ContractAndFinancialDocumentsDto request)
+        {
+            try
+            {
+                request.EditStatuse = 14;
+                return await _userFacad.SaveContractAndFinancialDocumentsService.Execute(request);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         [Route("[action]")]
         [HttpPost]
         public async Task<ResultDto<IEnumerable<LevelStepSettingDto>>> Get_LevelStepSetings([FromBody] RequestLevelStepSettingDto request)

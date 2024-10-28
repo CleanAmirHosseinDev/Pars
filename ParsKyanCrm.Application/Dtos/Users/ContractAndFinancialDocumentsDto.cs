@@ -125,6 +125,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public bool CanSeePreFactor { get; set; }
         public string CanSeePreFactorStr { get; set; }
         public int EditStatuse { get; set; }
+        public decimal? RemainingMoney { get; set; }
 
     }
 }

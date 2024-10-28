@@ -91,6 +91,8 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
 
             // EditStatuse = 254  , ثبت فایل ارزیابی
 
+            // EditStatuse = 14  , ثبت مبلغ باقی قرارداد
+
             #region Upload Image
             //
 
@@ -442,6 +444,17 @@ namespace ParsKyanCrm.Application.Services.Users.Commands.SaveContractAndFinanci
                         path_LastFinancialDocument = string.Empty;
                     }
 
+                    if (request.EditStatuse == 14)
+                    {
+                        var dicSqlUpdate = new Dictionary<string, object>()
+                    {
+                        {
+                            nameof(q_Entity.Entity.RemainingMoney),request.RemainingMoney.Value
+                        }
+                        };
+                        Ado_NetOperation.SqlUpdate(typeof(Domain.Entities.ContractAndFinancialDocuments).Name, dicSqlUpdate, string.Format(nameof(q_Entity.Entity.RequestID) + " = {0} ", request.RequestID));
+
+                    }
                     //if (request.IsCustomer && string.IsNullOrEmpty(con.ContractCode))
                     //{
                     //    dicSqlUpdate.Add("ContractCode", MaxAllContractCode());

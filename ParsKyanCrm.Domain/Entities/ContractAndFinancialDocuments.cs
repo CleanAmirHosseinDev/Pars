@@ -19,12 +19,9 @@ namespace ParsKyanCrm.Domain.Entities
         public string EvaluationFile { get; set; }
         public decimal? DisCountMoney { get; set; }
         public double? DicCountPerecent { get; set; }
-
         public string ContractCode { get; set; }
-
         public string ContractMainCode { get; set; }
         public decimal? FinalPriceContract { get; set; }
-
         public string ContractDocumentCustomer { get; set; }
         public string CommitteeEvaluationFile { get; set; }
         public string LastFinancialDocument { get; set; }
@@ -32,6 +29,7 @@ namespace ParsKyanCrm.Domain.Entities
         public bool ConfirmCommitteeEvaluation { get; set; }
         public byte IsActive { get; set; }
         public bool CanSeePreFactor { get; set; }
+        public decimal? RemainingMoney { get; set; }
 
 
     }

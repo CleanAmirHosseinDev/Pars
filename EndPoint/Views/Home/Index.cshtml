@@ -13,7 +13,22 @@
     <link rel="stylesheet" href="~/lib/magic-card/magic_card.css" asp-append-version="true" />
 }
 <div class="main">
+    <div class="floatAlert" onclick="handleOkAlert()">
+        <div>
+            <span>بازدید کننده محترم</span>
+            <p>در نظر داشته باشید آدرس و شماره تلفن های شرکت رتبه بندی اعتباری پارس کیان به شرح زیر تغییر یافت: </p>
+            </br>
+            <p>
+                <span>آدرس: </span>تهران، خیابان گاندی، خیابان نوزدهم، پلاک ،23
+                طبقه ،5 واحد 13
+            </p>
+            <p><span>تلفن: </span> 3-88872291 _ 3-88872261 _ 88880192 (021)</p>
 
+            <div class="alertOkBtn">
+                <p>متوجه شدم</p>
+            </div>
+        </div>
+    </div>
     <section class="sec1">
         <div class="slider topslider">
             <div class="slider_pages">
@@ -434,6 +449,18 @@
 
         }
         $("#top_rating_button .btn[toprateid ='0']").click();
+
+       
+        if(JSON.parse(localStorage.getItem("firstTimeReload")) === false){
+              document.querySelector(".floatAlert").style.display = "none"
+        }
+
+        function handleOkAlert(){
+            document.querySelector(".floatAlert").style.display = "none"
+            localStorage.setItem("firstTimeReload", false)
+        }
+
+        
 
     </script>
     <script src="~/js/landing/index.js" asp-append-version="true"></script>

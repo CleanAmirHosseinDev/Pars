@@ -312,32 +312,32 @@ namespace ParsKyanCrm.Common.Enums
         [OrderAttribute(Order = 3)]
         RankingOfCompanies_Delete = 607,
 
-        [Display(Name = "مشاهده")]
-        [Category("Landing")]
-        [DisplayFiledAttribute(Name = "امور سایت")]
-        [DisplayFiledAttribute1(Name = "/Admin/Activity/Index")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
-        [OrderAttribute(Order = 3)]
-        Activity = 179,
+        //[Display(Name = "مشاهده")]
+        //[Category("Landing")]
+        //[DisplayFiledAttribute(Name = "امور سایت")]
+        //[DisplayFiledAttribute1(Name = "/Admin/Activity/Index")]
+        //DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
+        //[OrderAttribute(Order = 3)]
+        //Activity = 179,
 
-        [Display(Name = "ویرایش و افزودن")]
-        [Category("Landing")]
-        [DisplayFiledAttribute(Name = "امور سایت")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
-        [OrderAttribute(Order = 3)]
-        Activity_Save = 189,
+        //[Display(Name = "ویرایش و افزودن")]
+        //[Category("Landing")]
+        //[DisplayFiledAttribute(Name = "امور سایت")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
+        //[OrderAttribute(Order = 3)]
+        //Activity_Save = 189,
 
-        [Display(Name = "حذف")]
-        [Category("Landing")]
-        [DisplayFiledAttribute(Name = "امور سایت")]
-        [DisplayFiledAttribute1(Name = "")]
-        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
-        [DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
-        [OrderAttribute(Order = 3)]
-        Activity_Delete = 981,
+        //[Display(Name = "حذف")]
+        //[Category("Landing")]
+        //[DisplayFiledAttribute(Name = "امور سایت")]
+        //[DisplayFiledAttribute1(Name = "")]
+        //[DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        //[DisplayFiledAttribute3(Name = "فعالیتهای شرکت")]
+        //[OrderAttribute(Order = 3)]
+        //Activity_Delete = 981,
 
         [Display(Name = "مشاهده")]
         [Category("Landing")]

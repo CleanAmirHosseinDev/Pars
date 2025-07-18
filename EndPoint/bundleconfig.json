@@ -56,7 +56,7 @@
       "wwwroot/js/Views/Admin/State.js",
       "wwwroot/js/Views/Admin/SystemSeting.js",
       "wwwroot/js/Views/Admin/Users.js",
-      "wwwroot/js/Views/Admin/Activity.js",
+      //"wwwroot/js/Views/Admin/Activity.js",
       "wwwroot/js/Views/Admin/Companies.js",
       "wwwroot/js/Views/Admin/ServiceFee.js",
       "wwwroot/js/Views/Admin/Contract.js",

@@ -1,17 +1,1 @@
-﻿@{
-    var ActivityData = (ParsKyanCrm.Application.Dtos.Users.ActivityDto)ViewData["data"];
-    ViewData["Title"] = @ActivityData.ActivityTitleNavigation.Label;
-    Layout = "_ArticleBase";
-}
-
-@if(!string.IsNullOrEmpty(ActivityData.Picture1)) {
-    <img class="article_img" src="@ActivityData.Picture1" alt="@ActivityData.ActivityTitleNavigation.Label" title="@ActivityData.ActivityTitleNavigation.Label" />
-}
-<div class="article_title_div">
-    <p class="article_titile_p">@ActivityData.ActivityTitleNavigation.Label</p>
-    <div class="article_title_info_parrent">
-    </div>
-</div>
-<p class="article_text">
-    @Html.Raw(ActivityData.ActivityComment);
-</p>
+﻿

@@ -1,118 +1,72 @@
 ﻿
 var divPageingList_RequestForRatingsAdmin_pageG = 1;
 function successCallBack_divPageingList_RequestForRatingsAdmin(res) {
+    if (!res.isSuccess) return;
 
-    
-    if (res.isSuccess) {
-        var n = getlstor("loginName");
-        var strM = '';
-        for (var i = 0; i < res.data.length; i++) {
+    var strM = '';
+    for (var i = 0; i < res.data.length; i++) {
+        var row = res.data[i];
+        var st2 = (row.destLevelStepAccessRole == "10" && row.destLevelStepIndex == "7")
+            ? "<span style='font-size:1.5em'>&#128194;</span>"
+            : "";
 
-            var st = "", st2 = "";
-            if (res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7") {
+        strM += "<tr>";
 
-                st2 = "<span style='font-size:1.5em'> &#128194;</span> ";
+        strM += "<td>" + (i + 1) + "</td>";
+        strM += "<td>" + row.requestNo + "</td>";
+        strM += "<td>" + (isEmpty(row.companyName) ? '' : row.companyName) + "</td>";
+        strM += "<td>" + row.agentMobile + "</td>";
+        strM += "<td>" + row.dateOfRequestStr + "</td>";
+        strM += "<td>" + row.reciveUserName + "</td>";
+
+        strM += "<td>";
+        if (!isEmpty(row.assessment)) {
+            var qe = row.assessment.split(",");
+            strM += generateAssessment(qe[0]);
+            if (qe.length == 2) {
+                strM += "<hr/>";
+                strM += {
+                    "0": "امتیاز",
+                    "1": "مدت زمان فرایند",
+                    "2": "کارشناس ارزیابی",
+                    "3": "فرایند صدور قرارداد",
+                    "4": "فرایند صدور فاکتور"
+                }[qe[1]] || "";
             }
+        }
+        strM += "</td>";
 
-            strM += "<tr><td>" + (i + 1) + "</td><td>"
-                + res.data[i].requestNo + "</td><td>"
-                + (!isEmpty(res.data[i].companyName) ? res.data[i].companyName : '') + "</td><td>"
-                + res.data[i].agentMobile + "</td><td>"
-                + res.data[i].dateOfRequestStr + "</td>";
+        strM += "<td>" + (isEmpty(row.reasonAssessment1) ? '' : row.reasonAssessment1) + "</td>";
 
-            strM += "<td>" + res.data[i].reciveUserName + "</td>"
+        strM += "<td>";
+        if (row.levelStepSettingIndexID == "29") {
+            strM += "<span style='color:red'>&#10060; عدم تایید قرارداد</span>";
+        } else if (row.destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
+            strM += "<span style='color:red'>&#10060; " + row.destLevelStepIndexButton + "</span>";
+        } else {
+            strM += st2;
+            if (row.levelStepSettingIndexID == "13") strM += " &#x2705; ";
+            strM += row.levelStepStatus;
+        }
+        strM += "</td>";
+         
+        strM += "<td>" + row.lastStatusChangeDateStr + "</td>";
 
-            strM += "<td>";
+        strM += "<td>";
+        strM += "<a title='حذف درخواست' class='btn btn-danger fontForAllPage' style='margin-left:5px' onclick='Web.RequestForRating.CancelRequest(" + row.requestId + ");'><i class='fa fa-remove'></i></a>";
 
-            if (!isEmpty(res.data[i].assessment)) {
-
-                var qe = res.data[i].assessment.split(",");
-
-                if (qe.length == 1) {
-
-                    strM += generateAssessment(qe[0]);
-
-                }
-                else if (qe.length == 2) {
-
-                    strM += generateAssessment(qe[0]);
-
-                    strM += "\n" + "<hr/>";
-
-                    switch (qe[1]) {
-
-                        case "0":
-
-                            strM += "<span>امتیاز</span>";
-
-                            break;
-                        case "1":
-
-                            strM += "<span>مدت زمان فرایند</span>";
-
-                            break;
-                        case "2":
-
-                            strM += "<span>کارشناس ارزیابی</span>";
-
-                            break;
-                        case "3":
-
-                            strM += "<span>فرایند صدور قرارداد</span>";
-
-                            break;
-                        case "4":
-
-                            strM += "<span>فرایند صدور فاکتور</span>";
-
-                            break;
-
-                    }
-
-                }
-
-            }
-
-            strM += "</td>";
-
-            strM += "<td>";
-
-            if (!isEmpty(res.data[i].reasonAssessment1)) {
-
-                strM += res.data[i].reasonAssessment1;
-
-            }
-
-            strM += "</td>"
-
-            if (res.data[i].levelStepSettingIndexID == "29") {
-                strM += "<td>" + "<span style='color:red'>&#10060;" + "عدم تایید قرارداد" + "</span>" + "</td><td>";
-            } else if (res.data[i].destLevelStepIndexButton == "ارجاع به مشتری جهت اصلاح مشخصات اولیه توسط مشتری") {
-                strM += "<td>" + "<span style='color:red'> &#10060; " + res.data[i].destLevelStepIndexButton + "</span>" + "</td><td>";
-            }
-            else {
-                strM += "<td>" + st2
-                    + (res.data[i].levelStepSettingIndexID == "13" ? " &#x2705; " : "")
-                    + res.data[i].levelStepStatus + "</td><td>";
-            }
-          
-                strM += "<a title='حذف درخواست' class='btn btn-danger style='margin-left:5px' fontForAllPage' onclick='Web.RequestForRating.CancelRequest(" + res.data[i].requestId + ");'><i class='fa fa-remove'></i></a>";
-            
-            if (res.data[i].customerRequestInformationId != 0 && res.data[i].contractDocument == null) {
-                strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی  بیمه' class='btn btn-default fontForAllPage' href='/admin/RequestForRating/EditCustomerRequestInformation/" + res.data[i].requestId + "'><i class='fa fa-edit'></i> بروزرسانی اطلاعات مالی  بیمه </a>";
-            }
-            strM += "<a style='margin-right:5px; color:black' href='/admin/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
-            strM += "</td></tr>";
-
+        if (row.customerRequestInformationId != 0 && row.contractDocument == null) {
+            strM += "<a style='margin-right:5px;color:black' title='بروزرسانی اطلاعات مالی بیمه' class='btn btn-default fontForAllPage' href='/admin/RequestForRating/EditCustomerRequestInformation/" + row.requestId + "'><i class='fa fa-edit'></i> بروزرسانی اطلاعات مالی بیمه</a>";
         }
 
-        $("#tBodyList").html(strM);
-
-
-
+        strM += "<a style='margin-right:5px;color:black' href='/admin/RequestForRating/RequestReferences?id=" + row.requestId + "' class='btn btn-info fontForAllPage'>";
+        strM += "<img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'></a>";
+        strM += "</td>";
+         
+        strM += "</tr>";
     }
-    
 
+    $("#tBodyList").html(strM);
 }
 
 function generateAssessment(qe) {
@@ -139,13 +93,13 @@ function generateAssessment(qe) {
 }
 
 (function (web, $) {
-    
 
-    function filterGrid(id=null) {
+
+    function filterGrid(id = null) {
 
         ComboBoxWithSearch('.select2', 'rtl');
 
-        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ CustomerId:id, PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
+        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ CustomerId: id, PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
 
     }
 
@@ -228,6 +182,10 @@ function generateAssessment(qe) {
 
                     strTimeLine += "<div class='timeline-label'>";
                     if (i == 0) {
+                        var titleText = res.data[i].companyName == null ? res.data[i].agentName : res.data[i].companyName;
+
+                        $("#CutomerName").html("<h3 style='font-size:20px;font-weight:bold;text-align:right;margin:10px'>گردش کار - " + titleText + "</h3>");
+
                         strTimeLine += "<span class='smallFontSize' style='font-weight:bold'>";
                         strTimeLine += (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " : [" + res.data[i].kindOfRequestName + "]</span >";
 
@@ -373,6 +331,59 @@ function generateAssessment(qe) {
 
 
 
+            }
+
+        }, true);
+
+    }
+    function initCustomer(id, dir = 'rtl') {
+
+        ComboBoxWithSearch('.select2', dir);
+        AjaxCallAction("GET", "/api/admin/Customers/Get_Customers/" + (isEmpty(id) ? '0' : id), null, true, function (res) {
+
+
+            if (res != null) {
+
+                $("#CustomerId").val(res.customerId);
+                $("#AddressCompany").val(res.addressCompany);
+                $("#CompanyName").val(res.companyName);
+                $("#CeoName").val(res.ceoName);
+                $("#EconomicCode").val(res.economicCode);
+                $("#NationalCode").val(res.nationalCode);
+                $("#CeoNationalCode").val(res.ceoNationalCode);
+                $("#CeoMobile").val(res.ceoMobile);
+                $("#AgentMobile").val(res.agentMobile);
+                $("#AgentName").val(res.agentName);
+                $("#NamesAuthorizedSignatories").val(res.namesAuthorizedSignatories);
+                $("#CountOfPersonal").val(res.countOfPersonal);
+                $("#Email").val(res.email);
+                $("#Tel").val(res.tel);
+                $("#EconomicCodeReal").val(res.economicCodeReal);
+                $("#PostalCode").val(res.postalCode);
+                $("#AmountOsLastSales").val(moneyCommaSepWithReturn(!isEmpty(res.amountOsLastSales) ? res.amountOsLastSales.toString() : ''));
+
+                $("#EmailRepresentative").val(res.emailRepresentative);
+                $("#NationalCodeRepresentative").val(res.nationalCodeRepresentative);
+
+                if (res.lastInsuranceList != null && res.lastInsuranceList != "") {
+                    $("#divDownload").html("<a class='btn btn-success' href='" + res.lastInsuranceListFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+                if (res.auditedFinancialStatements != null && res.auditedFinancialStatements != "") {
+                    $("#divDownload_AuditedFinancialStatements").html("<a class='btn btn-success' href='" + res.auditedFinancialStatementsFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+                $("input[name='ScanCustomerNationalCard']").val(res.scanCustomerNationalCard);
+                $("input[name='ScanManagerNationalCard']").val(res.scanManagerNationalCard);
+                if (res.scanCustomerNationalCard != null && res.scanCustomerNationalCard != "") {
+                    $("#divDownload_ScanCustomerNationalCard").html("<a class='btn btn-success' href='" + res.scanCustomerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+                if (res.scanManagerNationalCard != null && res.scanManagerNationalCard != "") {
+                    $("#divDownload_ScanManagerNationalCard").html("<a class='btn btn-success' href='" + res.scanManagerNationalCardFull + "' target='_blank'><i class='fa fa-download'></i>&nbsp;دانلود</a>");
+
+                }
+                systemSeting_Combo(res);
             }
 
         }, true);

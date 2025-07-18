@@ -60,13 +60,13 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 dt.Columns.AddRange(new DataColumn[9] {
                 new DataColumn("ردیف"),
                 new DataColumn("شماره درخواست"),
-                new DataColumn("تاریخ ثبت درخواست "),
+                new DataColumn("تاریخ ثبت درخواست"),
                 new DataColumn("نام شرکت"),
                 new DataColumn("نام رابط"),
                 new DataColumn("شناسه/کد ملی"),
-                new DataColumn("موبایل رابط	"),
-                new DataColumn("تاریخ کدال	"),
-                new DataColumn("کد رهگیری	")
+                new DataColumn("موبایل رابط"),
+                new DataColumn("تاریخ کدال"),
+                new DataColumn("کد رهگیری کدال")
             });
                 int rowcount = 1;
                 foreach (var item in q.Data)

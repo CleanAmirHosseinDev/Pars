@@ -5888,13 +5888,59 @@ table.text-center th {
         padding: 0;
     }
 
+    .grid-container {
+        overflow: auto;
+        max-height: 400px;
+    }
+
+        .grid-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grid-container th {
+            position: sticky;
+            top: 0;
+            background-color: #f2f2f2;
+            z-index: 1;
+        }
+
     .invoice-col {
         float: right;
         width: 33.3333333%;
     }
 
     .table-responsive {
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+
+    .table-scroll-wrapper {
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: auto;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    .table th, .table td {
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f5f5f5;
+        z-index: 10;
+        border-bottom: 2px solid #999;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #fcfcfc;
     }
 
         .table-responsive > .table tr th,
@@ -5929,6 +5975,21 @@ table.text-center th {
 
 
 .btn i { font-size: 16px; }
+.table-scroll-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+}
+
+table th, table td {
+    white-space: nowrap;
+}
+
+td {
+    vertical-align: middle;
+}
+
 
 @media (max-width: 767px) {
     #goftino_w { bottom: 0 !important; left: 0px !important; margin-left: -10px; margin-bottom: -8px; }

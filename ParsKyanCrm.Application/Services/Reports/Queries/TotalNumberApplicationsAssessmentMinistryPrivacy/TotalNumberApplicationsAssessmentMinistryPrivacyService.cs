@@ -20,15 +20,30 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicatio
             {
 
                 string strQuery = @$"
-select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile,(select top 1 ISNULL(REPLACE(REPLACE(FORMAT(ContractAndFinancialDocuments.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ','), 0) from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.RequestID = rfr.RequestID order by ContractAndFinancialDocuments.FinancialID desc) as FinalPriceContract from Customers as cus
-inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
-where cus.IsActive = 15 and cus.IsProfileComplete = 1 and rfr.KindOfRequest = 66
-               
-{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rfr.DateOfRequest as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
-{(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
-        ORDER BY cus.CustomerID desc
-
+SELECT 
+    rfr.RequestNo,
+    FORMAT(CAST(rfr.DateOfRequest AS date), 'yyyy/MM/dd', 'fa') AS DateOfRequestStr,
+    cus.CompanyName,
+    cus.AgentName,
+    cus.NationalCode,
+    cus.AgentMobile,
+    ISNULL((
+        SELECT TOP 1 
+            REPLACE(REPLACE(FORMAT(cfd.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ',')
+        FROM ContractAndFinancialDocuments AS cfd
+        WHERE cfd.IsActive = 15 AND cfd.RequestID = rfr.RequestID
+        ORDER BY cfd.FinancialID DESC
+    ), '0') AS FinalPriceContract
+FROM Customers AS cus
+INNER JOIN RequestForRating AS rfr ON rfr.CustomerID = cus.CustomerID
+WHERE cus.IsActive = 15 
+  AND cus.IsProfileComplete = 1 
+  AND rfr.KindOfRequest = 66
+{(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " AND CAST(rfr.DateOfRequest AS date) BETWEEN " + request.FromDateStr1 + " AND " + request.ToDateStr1 : "")}
+{(!string.IsNullOrEmpty(request.Search) ? " AND ( cus.CompanyName LIKE N'%" + request.Search + "%'" + " OR cus.AgentName LIKE N'%" + request.Search + "%' OR rfr.RequestNo LIKE N'%" + request.Search + "%' OR cus.NationalCode LIKE N'%" + request.Search + "%' OR cus.AgentMobile LIKE N'%" + request.Search + "%')" : "")}
+ORDER BY cus.CustomerID DESC
 ";
+
                 if (!request.IsExcel) strQuery += @$" OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
 FETCH NEXT { request.PageSize} ROWS ONLY";
 
@@ -56,14 +71,15 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 var q = await Execute(request);
 
                 DataTable dt = new DataTable("Grid");
-                dt.Columns.AddRange(new DataColumn[7] {
+                dt.Columns.AddRange(new DataColumn[8] {
                 new DataColumn("ردیف"),
                 new DataColumn("شماره درخواست"),
-                new DataColumn("تاریخ ثبت درخواست "),
+                new DataColumn("تاریخ ثبت درخواست"),
                 new DataColumn("نام شرکت"),
                 new DataColumn("نام رابط"),
                 new DataColumn("شناسه/کد ملی"),
-                new DataColumn("موبایل رابط	")
+                new DataColumn("موبایل رابط"),
+                new DataColumn("مبلغ قرارداد")
             });
                 int rowcount = 1;
                 foreach (var item in q.Data)
@@ -75,7 +91,8 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                           item.CompanyName,
                           item.AgentName,
                           item.NationalCode,
-                          item.AgentMobile
+                          item.AgentMobile,
+                          item.FinalPriceContract
                         );
                     rowcount++;
                 }

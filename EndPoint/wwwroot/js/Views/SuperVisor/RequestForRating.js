@@ -47,7 +47,10 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             }
 
             strM += "<a style='margin-right:5px; color:black' href='/superVisor/RequestForRating/RequestReferences?id=" + res.data[i].requestId + "'" + " class='btn btn-info fontForAllPage'> <img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'>  </a>"
-                + (getlstor("loginName") === res.data[i].destLevelStepAccessRole && getlstor("userID") == res.data[i].reciveUser ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/" + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px;' title='نمایش پروفایل' href='/SuperVisor/Customers/ShowCustomers?id=" + res.data[i].customerId + "' class='btn btn-default fontForAllPage'><i class='fa fa-eye'></i> </a>");
+                + (getlstor("loginName") === res.data[i].destLevelStepAccessRole
+                    && getlstor("userID") == res.data[i].reciveUser
+                    ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/"
+                    + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px; ><i class='fa fa-eye'></i> </a>");
 
             //if ((n == res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole == "5") || (n == "5" && res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7")) {
             //    strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
@@ -1473,13 +1476,17 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
 
                     strTimeLine += "<div class='timeline-label'>";
                     if (i == 0) {
-                        $("#CutomerName").html("<h4> 'گردش کار   " + res.data[i].companyName == null ? res.data[i].agentName : res.data[i].companyName + "</h4>");
+                        var titleText = res.data[i].companyName == null ? res.data[i].agentName : res.data[i].companyName;
+                        //var titleTextAgentMobile = res.data[i].agentMobile == null;
+
+                        $("#CutomerName").html("<h3 style='font-size:20px;font-weight:bold;text-align:right;margin:10px'>گردش کار - " + titleText + "</h3>");
+                        //$("#AgentMobile").html("<h4 style='font-size:20px;font-weight:bold;text-align:right;margin:10px'> " + titleTextAgentMobile + "</h4>");
+
                         strTimeLine += "<span class='smallFontSize' style='font-weight:bold'>";
                         strTimeLine += (res.data[i].agentName == null ? res.data[i].companyName : res.data[i].agentName) + " : [" + res.data[i].kindOfRequestName + "]</span >";
 
                         strTimeLine += "<div style='float:left;color:green'><span class='date smallFontSize'>( تاریخ: " + res.data[i].sendTimeStr + "</span>";
                         strTimeLine += "<span class='LTRDirection smallFontSize'> ساعت: " + res.data[i].sendTimeTimeStr + " )</span></div>";
-
                     }
                     else {
                         if (res.data[i].sendUser == null) {

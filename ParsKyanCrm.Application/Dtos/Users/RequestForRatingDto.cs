@@ -149,5 +149,16 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public DateTime? CodalDate { get; set; }
         public int? CustomerRequestInformationId { get; set; }
 
+        public DateTime? LastStatusChangeDate { get; set; }
+        public string LastStatusChangeDateStr
+        {
+            get
+            {
+                if (LastStatusChangeDate.HasValue) return DateTimeOperation.ToPersianDate(LastStatusChangeDate.Value);
+                return string.Empty;
+            }
+        }
+        public string SortColumn { get; set; }
+
     }
 }

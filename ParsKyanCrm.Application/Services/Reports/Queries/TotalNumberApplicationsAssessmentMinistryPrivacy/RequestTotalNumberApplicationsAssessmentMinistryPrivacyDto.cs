@@ -38,7 +38,6 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicatio
                 return "''";
             }
         }
-
         public bool IsExcel { get; set; }
     }
 }

@@ -22,18 +22,41 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersA
 
                 string strQuery = @$"
 
-                select rfr.RequestNo,FORMAT(cast(rfr.DateOfRequest as date), 'yyyy/MM/dd', 'fa') as DateOfRequestStr,
-				FORMAT(cast(rrs.SendTime  as date), 'yyyy/MM/dd', 'fa') as SendTimeStr,cus.CompanyName,cus.AgentName,cus.NationalCode,cus.AgentMobile,(select top 1 ISNULL(REPLACE(REPLACE(FORMAT(ContractAndFinancialDocuments.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ','), 0) from ContractAndFinancialDocuments where ContractAndFinancialDocuments.IsActive = 15 and ContractAndFinancialDocuments.RequestID = rfr.RequestID order by ContractAndFinancialDocuments.FinancialID desc) as FinalPriceContract from Customers as cus
-                inner join RequestForRating as rfr on rfr.CustomerID = cus.CustomerID
-                inner join RequestReferences as rrs on rfr.RequestID=rrs.Requestid and rrs.LevelStepSettingIndexID=7
-                where cus.IsActive = 15 
-                {(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " and cast(rrs.SendTime as date) between  " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}               
-                {(!string.IsNullOrEmpty(request.Search) ? " and ( cus.CompanyName like N'%" + request.Search + "%'" + " or cus.AgentName like N'%" + request.Search + "%' or rfr.RequestNo like N'%" + request.Search + "%' or cus.NationalCode like N'%" + request.Search + "%' or cus.AgentMobile like N'%" + request.Search + "%' )" : string.Empty)}
-                ORDER BY cus.CustomerID desc
+WITH ResultCTE AS (
+    SELECT 
+        rfr.RequestNo,
+        FORMAT(CAST(rfr.DateOfRequest AS date), 'yyyy/MM/dd', 'fa') AS DateOfRequestStr,
+        FORMAT(CAST(rrs.SendTime AS date), 'yyyy/MM/dd', 'fa') AS SendTimeStr,
+        cus.CompanyName,
+        cus.AgentName,
+        cus.NationalCode,
+        cus.AgentMobile,
+        ISNULL(REPLACE(REPLACE(FORMAT(cfd.FinalPriceContract, 'C0', 'en-US'), '$', ''), '.', ','), 0) AS FinalPriceContract,
+        cus.CustomerID
+    FROM Customers AS cus
+    INNER JOIN RequestForRating AS rfr ON rfr.CustomerID = cus.CustomerID
+    CROSS APPLY (
+        SELECT TOP 1 SendTime
+        FROM RequestReferences AS rrs2
+        WHERE rrs2.RequestID = rfr.RequestID AND rrs2.LevelStepSettingIndexID = 7
+        ORDER BY rrs2.SendTime DESC
+    ) AS rrs
+    OUTER APPLY (
+        SELECT TOP 1 FinalPriceContract
+        FROM ContractAndFinancialDocuments AS cfd2
+        WHERE cfd2.IsActive = 15 AND cfd2.RequestID = rfr.RequestID
+        ORDER BY cfd2.FinancialID DESC
+    ) AS cfd
+    WHERE cus.IsActive = 15
+    {(!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr) ? " AND CAST(rrs.SendTime AS date) BETWEEN " + request.FromDateStr1 + " AND " + request.ToDateStr1 : "")}
+    {(!string.IsNullOrEmpty(request.Search) ? " AND (cus.CompanyName LIKE N'%" + request.Search + "%'" + " OR cus.AgentName LIKE N'%" + request.Search + "%' OR rfr.RequestNo LIKE N'%" + request.Search + "%' OR cus.NationalCode LIKE N'%" + request.Search + "%' OR cus.AgentMobile LIKE N'%" + request.Search + "%')" : "")}
+)
 
+SELECT *
+FROM ResultCTE
+ORDER BY CustomerID DESC
+{(request.IsExcel ? "" : $" OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS FETCH NEXT {request.PageSize} ROWS ONLY")}
 ";
-                if (!request.IsExcel) strQuery += @$" OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
-FETCH NEXT { request.PageSize} ROWS ONLY";
 
                 var data = await DapperOperation.Run<ResultTotalNumberCustomersApprovedContractDto>(strQuery);
 
@@ -43,6 +66,7 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                     Rows = data.Count(),
                     IsSuccess = true
                 };
+
 
             }
             catch (Exception ex)
@@ -59,14 +83,15 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                 var q = await Execute(request);
 
                 DataTable dt = new DataTable("Grid");
-                dt.Columns.AddRange(new DataColumn[7] {
+                dt.Columns.AddRange(new DataColumn[8] {
                 new DataColumn("ردیف"),
                 new DataColumn("شماره درخواست"),
-                new DataColumn("تاریخ ثبت درخواست "),
+                new DataColumn("تاریخ ثبت درخواست"),
                 new DataColumn("نام شرکت"),
-                new DataColumn("نام رابط	 "),
+                new DataColumn("نام رابط"),
                 new DataColumn("شناسه/کد ملی"),
-                new DataColumn("موبایل رابط	")
+                new DataColumn("موبایل رابط"),
+                new DataColumn("مبلغ قرارداد")
             });
                 int rowcount = 1;
                 foreach (var item in q.Data)
@@ -78,7 +103,8 @@ FETCH NEXT { request.PageSize} ROWS ONLY";
                           item.CompanyName,
                           item.AgentName,
                           item.NationalCode,
-                          item.AgentMobile
+                          item.AgentMobile,
+                          item.FinalPriceContract
                         );
                     rowcount++;
                 }

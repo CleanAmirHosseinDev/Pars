@@ -67,6 +67,10 @@ body {
     z-index: 820;
 }
 
+.cursorPointer {
+    cursor: pointer !important;
+}
+
 .layout-top-nav .content-wrapper,
 .layout-top-nav .main-footer {
     margin-right: 0;

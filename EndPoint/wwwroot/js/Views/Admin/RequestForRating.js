@@ -455,6 +455,14 @@ function generateAssessment(qe) {
         return strM;
     }
 
+    function clickSortingGrid(e) {
+
+        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_RequestForRatingsAdmin");
+
+        filterGrid(true);
+
+    }
+
     web.RequestForRating = {
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         FilterGrid: filterGrid,
@@ -463,7 +471,8 @@ function generateAssessment(qe) {
         CreateTimeLine: createTimeLine,
         OnchangeKindOfRequest: onchangeKindOfRequest,
         InitCustomerRequestInformation: initCustomerRequestInformation,
-        EditCustomerRequestInformation: editCustomerRequestInformation
+        EditCustomerRequestInformation: editCustomerRequestInformation,
+        ClickSortingGrid: clickSortingGrid
 
     };
 

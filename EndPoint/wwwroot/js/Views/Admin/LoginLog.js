@@ -34,11 +34,16 @@
         }, true);
 
     }
+    function clickSortingGridLoginLog(e) {
 
+        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_LoginLog_tBodyList");
+        filterGrid();
+    }
     web.LoginLog = {
         FilterGrid: filterGrid,
         InitLoginLog: initLoginLog,
-        TextSearchOnKeyDown: textSearchOnKeyDown
+        TextSearchOnKeyDown: textSearchOnKeyDown,
+        ClickSortingGridLoginLog: clickSortingGridLoginLog
     };
 
 })(Web, jQuery);

@@ -1,4 +1,5 @@
-﻿using ParsKyanCrm.Infrastructure.Consts;
+﻿using ParsKyanCrm.Common;
+using ParsKyanCrm.Infrastructure.Consts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,6 +13,28 @@ namespace ParsKyanCrm.Infrastructure
 {
     public class Ado_NetOperation
     {
+
+        public static string GetSortOrderWithPageing(PageingParamerDto request, string strObjAdo = "s", string id = "Id")
+        {
+
+            if (string.IsNullOrEmpty(request.SortOrder)) return string.Empty;
+            var qSplit = request.SortOrder.Split("_");
+
+            string strResSortOrder = (qSplit.Length > 0 ? " order by " + strObjAdo + "." + qSplit[0] + " " + (qSplit[1] == "A" ? "asc" : "desc") : " order by " + strObjAdo + "." + id + " desc ");
+
+            string strRes = @$"{(request.PageIndex == 0 && request.PageSize == 0 ? strResSortOrder : @$"
+
+{strResSortOrder}
+
+OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
+FETCH NEXT {request.PageSize} ROWS ONLY
+
+")}";
+
+            return strRes;
+
+        }
+
         public static SqlConnectionStringBuilder InstanceSqlConnectionStringBuilder()
         {
             try

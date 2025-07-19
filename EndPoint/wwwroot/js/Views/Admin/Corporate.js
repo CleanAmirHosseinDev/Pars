@@ -22,16 +22,8 @@ function go_next(filterGrid) {
     var DataFormList = null;
     var DataFormQuestionsList = null;
 
-    //function createTotalInput(value, putPlace) {
-    //    var inp = document.createElement("input");
-    //    inp.setAttribute("type", "hidden");
-    //    inp.setAttribute("value", value);
-    //    inp.setAttribute("id", "TotalSearchCount");
-    //    document.getElementById("putPlace").appendChild(inp)
-    //}
-
     function dataFormFilterGrid(page=1) {
-        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), false, function (res) {
+        AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ SortOrder: $(".thtrtheadtableSortingGrid_DataForm_tBodyList[data-Selected]").attr("data-Selected"), Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), DataFormType: 2, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
                 DataFormList = res.data;
                 $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
@@ -43,6 +35,11 @@ function go_next(filterGrid) {
                 $("#tBodyList").html(strM);
             }
         }, true);
+    }
+    function clickSortingGrid(e) {
+
+        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_DataForm_tBodyList");
+        dataFormFilterGrid();
     }
     function initDataForm(id = null, dir = 'rtl') {
         ComboBoxWithSearch('.select2', dir);
@@ -103,7 +100,6 @@ function go_next(filterGrid) {
         } catch (e) {
         }
     }
-
     function dataFormQuestionsFilterGrid(page = 1) {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataForms", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
@@ -245,7 +241,6 @@ function go_next(filterGrid) {
         }, false);
         return strM;
     }
-
     function getDataFormQuestionsList() {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_DataFormQuestionss", JSON.stringify({ PageIndex: 0, PageSize: 0, IsActive: 15, DataFormType: 2 }), false, function (res) {
             if (res.isSuccess)
@@ -499,8 +494,6 @@ function go_next(filterGrid) {
         }
         return category;
     }
-
-
     function questionLevelFilterGrid(page = 1) {
         AjaxCallAction("POST", "/api/admin/Corporate/Get_QuestionLevels", JSON.stringify({ Search: $("#txtSearch").val(), PageIndex: page, PageSize: $("#cboSelectCount").val(), IsActive: 15 }), false, function (res) {
             if (res.isSuccess) {
@@ -569,7 +562,6 @@ function go_next(filterGrid) {
         }
     }
 
-
     web.Corporate = {
         DataFormFilterGrid: dataFormFilterGrid,
         InitDataForm: initDataForm,
@@ -602,6 +594,7 @@ function go_next(filterGrid) {
 
         PrevLits: go_prev,
         NextList: go_next,
+        ClickSortingGrid: clickSortingGrid
     };
 
 })(Web, jQuery);

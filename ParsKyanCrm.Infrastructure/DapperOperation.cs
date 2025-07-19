@@ -30,5 +30,13 @@ namespace ParsKyanCrm.Infrastructure
             }
         }
 
+        public static async Task<IEnumerable<T>> Run<T>(string sql, object parameters = null)
+        {
+            using (var connection = new SqlConnection(VaribleForName.MainConnectionString))
+            {
+                await connection.OpenAsync();
+                return await connection.QueryAsync<T>(sql, parameters);
+            }
+        }
     }
 }

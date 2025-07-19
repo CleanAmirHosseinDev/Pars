@@ -2,43 +2,38 @@
     ViewData["Title"] = "ورود و خروج کاربران";
 }
 
-@section PageHeader{
-<section class="content-header">
-    <h1>
+@section PageHeader {
+    <section class="content-header">
+        <h1>
             ورود و خروج کاربران
         </h1>
-    <ol class="breadcrumb">
-        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/LoginLog/Index"><i></i> ورود و خروج کاربران</a></li>
-    </ol>
-</section>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/LoginLog/Index"><i></i> ورود و خروج کاربران</a></li>
+        </ol>
+    </section>
 }
 
 <div class="row">
     <section class="col-lg-12 col-md-12">
         <div class="box box-info">
             <div class="box-header">
-                @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
-                    <div class="portlet-title">
-                        <div class="caption font-green-haze">
-                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
-                        </div>
-                        <div class="tools">
-                            <a href="" class="collapse" data-original-title="" title="">
-                            </a>
-                        </div>
+                <div class="portlet-title">
+                    <div class="tools">
+                        <a href="#" class="collapse" title="Collapse">
+                            <i class="fa fa-minus"></i>
+                        </a>
                     </div>
-                </h3>
-                <!-- tools box -->
+                </div>
+
                 <div class="pull-left box-tools">
                     <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
-                <!-- /. tools -->
             </div>
-            <div class="box-body" style="">
+
+            <div class="box-body">
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -47,47 +42,31 @@
                     <div class="panel-body">
                         <div class="row" style="margin-bottom: 5px;">
                             <div class="col-md-6">
-                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.LoginLog.TextSearchOnKeyDown(event);" />
+                                <input type="text" id="txtSearch" class="form-control fontForAllPage BorderRadius_30" placeholder="جستجو" onkeydown="Web.LoginLog.TextSearchOnKeyDown(event);" />
                             </div>
                             <div class="col-md-6">
-                                <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
-                                    <option value="5">
-                                        5
-                                    </option>
-                                    <option value="10" selected="selected">
-                                        10
-                                    </option>
-                                    <option value="20">
-                                        20
-                                    </option>
-                                    <option value="50">
-                                        50
-                                    </option>
-                                    <option value="100">
-                                        100
-                                    </option>
-                                    <option value="150">
-                                        150
-                                    </option>
-                                    <option value="200">
-                                        200
-                                    </option>
+                                <select class="form-control BorderRadius_30" id="cboSelectCount">
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="150">150</option>
+                                    <option value="200">200</option>
                                 </select>
-                            </div>
-                            <div class="col-md-4">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="control-label" for="">از تاریخ:</label>
-                                <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
+                                <label>از تاریخ:</label>
+                                <input type="text" id="FromDateStr" name="FromDateStr" class="form-control DatePicker" />
                             </div>
                             <div class="col-md-6">
-                                <label class="control-label" for="">تا تاریخ:</label>
-                                <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
+                                <label>تا تاریخ:</label>
+                                <input type="text" id="ToDateStr" name="ToDateStr" class="form-control DatePicker" />
                             </div>
                         </div>
-                        <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.LoginLog.FilterGrid();" title="جستجو">
+                        <button class="btn btn-primary fontForAllPage mt-2" type="button" onclick="Web.LoginLog.FilterGrid();" title="جستجو">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -95,44 +74,47 @@
 
                 <div class="table-scroll-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; margin-top: 15px; border-radius: 6px;">
                     <table class="table table-bordered table-striped" style="min-width: 800px;">
-                        <thead">
+                        <thead>
                             <tr>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGrid(this);" data-A="FullName_A" data-D="FullName_D">
+                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGridLoginLog(this);" data-A="FullName_A" data-D="FullName_D">
                                     کاربر
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
                                 </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGrid(this);" data-A="LoginDate_A" data-D="LoginDate_D">
+                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGridLoginLog(this);" data-A="LoginDate_A" data-D="LoginDate_D">
                                     تاریخ ورود
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
                                 </th>
                                 <th>تاریخ خروج</th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGrid(this);" data-A="Ip_A" data-D="Ip_D">
+                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGridLoginLog(this);" data-A="Ip_A" data-D="Ip_D">
                                     آیپی
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
                                 </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGrid(this);" data-A="AreaName_A" data-D="AreaName_D">
+                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGridLoginLog(this);" data-A="AreaName_A" data-D="AreaName_D">
                                     نقش کاربر
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="tBodyList">
-                        </tbody>
+                        <tbody id="tBodyList"></tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </section>
 </div>
 
-@section Styles{
-<link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
+@section Styles {
+    <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
 }
 
 @section Scripts {
-<script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
-<script>
-    Web.LoginLog.FilterGrid();
-    Web.LoginLog.InitLoginLog();
-</script>
+    <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            Web.LoginLog.FilterGrid();
+            Web.LoginLog.InitLoginLog();
+        });
+    </script>
+}
 }

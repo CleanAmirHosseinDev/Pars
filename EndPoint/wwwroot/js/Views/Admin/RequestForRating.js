@@ -102,7 +102,10 @@ function generateAssessment(qe) {
         pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ CustomerId: id, PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
 
     }
-
+    function clickSortingGridRequestForRatings(e) {
+        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_RequestForRatings_tBodyList");
+        filterGrid();
+    }
     function cancelRequest(id) {
 
         try {

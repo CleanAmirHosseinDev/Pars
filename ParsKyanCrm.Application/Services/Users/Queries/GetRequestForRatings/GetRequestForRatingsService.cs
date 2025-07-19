@@ -30,49 +30,42 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetRequestForRatings
         {
             try
             {
-                string cons = "";
+                // لیست شرایط WHERE برای فیلتر داینامیک
+                List<string> conditions = new();
+
+                // فیلتر تاریخ درخواست
                 if (request.FromDate.HasValue && request.ToDate.HasValue)
                 {
-                    cons = "  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.DateOfRequest))  between N'" + request.FromDate.Value.ToShortDateString() + "' and N'" + request.ToDate.Value.ToShortDateString() + "'";
+                    conditions.Add($"DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.DateOfRequest)) BETWEEN N'{request.FromDate.Value:yyyy-MM-dd}' AND N'{request.ToDate.Value:yyyy-MM-dd}'");
                 }
-              
+
+                // فیلتر نوع گروه شرکت‌ها
                 if (request.TypeGroupCompanies.HasValue)
                 {
-                    if (cons == "")
-                    {
-                        cons += "cteMain.TypeGroupCompanies=" + request.TypeGroupCompanies.Value;
-                    }
-                    else
-                    {
-                        cons += " and cteMain.TypeGroupCompanies=" + request.TypeGroupCompanies.Value;
-                    }
-
+                    conditions.Add($"cteMain.TypeGroupCompanies = {request.TypeGroupCompanies.Value}");
                 }
 
-                if (request.FromSendTimeDate.HasValue)
+                // فیلتر بازه ارسال (SendTime)
+                if (request.FromSendTimeDate.HasValue && request.ToSendTimeDate.HasValue)
                 {
-                    if (cons == "")
-                    {
-                        cons = "  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.SendTime))  between N'" + request.FromSendTimeDate.Value.ToShortDateString() + "' and N'" + request.ToSendTimeDate.Value.ToShortDateString() + "'";
-                    }
-                    else
-                    {
-                        cons = "and  DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.SendTime))  between N'" + request.FromSendTimeDate.Value.ToShortDateString() + "' and N'" + request.ToSendTimeDate.Value.ToShortDateString() + "'";
-
-                    }
-
+                    conditions.Add($"DATEADD(dd, 0, DATEDIFF(dd, 0, cteMain.SendTime)) BETWEEN N'{request.FromSendTimeDate.Value:yyyy-MM-dd}' AND N'{request.ToSendTimeDate.Value:yyyy-MM-dd}'");
                 }
 
-                if (request.ReciveUser != null)
+                // فیلتر ReciveUser
+                if (request.ReciveUser.HasValue)
                 {
-                    if (cons == "")
-                    {
-                        cons += "cteMain.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
-                    }
-                    else
-                    {
-                        cons += " and cteMain.RequestID in (select distinct Requestid from RequestReferences where ReciveUser = " + request.ReciveUser + ")";
-                    }
+                    conditions.Add($"cteMain.RequestID IN (SELECT DISTINCT RequestID FROM RequestReferences WHERE ReciveUser = N'{request.ReciveUser.Value}')");
+                }
+
+                // فیلتر CustomerId و RequestId که در زیر کوئری داخلی استفاده شده‌اند
+                string innerWhere = "";
+                if (request.CustomerId.HasValue)
+                {
+                    innerWhere += $" WHERE rfr.CustomerID = {request.CustomerId.Value}";
+                }
+                if (request.RequestId.HasValue)
+                {
+                    innerWhere += (string.IsNullOrEmpty(innerWhere) ? " WHERE " : " AND ") + $"rfr.RequestID = {request.RequestId.Value}";
                 }
 
                 var queryStr = @$"
@@ -151,25 +144,31 @@ select * from (
         left join {typeof(Customers).Name} as cus on cus.CustomerID = rfr.CustomerID
         left join {typeof(ContractAndFinancialDocuments).Name} as doc on doc.RequestID = rfr.RequestID
         left join [dbo].[CustomerRequestInformation] as cri on rfr.RequestID = cri.RequestId
-        {(request.CustomerId.HasValue ? " where rfr.CustomerID = " + request.CustomerId.Value : string.Empty)}
-        {(request.RequestId.HasValue ? (request.CustomerId.HasValue ? " and" : " where") + " rfr.RequestID = " + request.RequestId.Value : string.Empty)}
-
+        {innerWhere}
     ) as cte
 
 ) as cteMain
-{(request.DestLevelStepIndex.HasValue ? " where cteMain.DestLevelStepIndex = " + request.DestLevelStepIndex.Value : string.Empty)}
-{(!string.IsNullOrEmpty(request.Search) ? (request.DestLevelStepIndex.HasValue ? " and " : " where ") + "(cteMain.CompanyName like N'%" + request.Search + "%' or cteMain.AgentMobile like N'%" + request.Search + "%')" : string.Empty)}
-{(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " cteMain.LevelStepAccessRole = " + request.LoginName : string.Empty)}
-{(request.IsMyRequests ? " and ((cteMain.ReciveUser = " + request.UserID + " or cteMain.ReciveUser = N''))" : string.Empty)}
-{(request.KindOfRequest.HasValue ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " cteMain.KindOfRequest = " + request.KindOfRequest.Value : string.Empty)}
-{(!string.IsNullOrEmpty(request.UserID) ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue ? " and " : " where ") + " cteMain.ReciveUser like N'%" + request.UserID + "%'" : string.Empty)}
-{(cons != "" ? (request.DestLevelStepIndex.HasValue || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue || !string.IsNullOrEmpty(request.UserID) ? " and " : " where ") + cons : string.Empty)}
+
+{(conditions.Count > 0 ? "WHERE " + string.Join(" AND ", conditions) : string.Empty)}
+
+{(!string.IsNullOrEmpty(request.DestLevelStepIndex?.ToString()) ? (conditions.Count > 0 ? " AND " : " WHERE ") + $"cteMain.DestLevelStepIndex = {request.DestLevelStepIndex}" : string.Empty)}
+
+{(!string.IsNullOrEmpty(request.Search) ? (conditions.Count > 0 || !string.IsNullOrEmpty(request.DestLevelStepIndex?.ToString()) ? " AND " : " WHERE ") + $"(cteMain.CompanyName LIKE N'%{request.Search}%' OR cteMain.AgentMobile LIKE N'%{request.Search}%')" : string.Empty)}
+
+{(!string.IsNullOrEmpty(request.LoginName) && request.IsMyRequests ? ((conditions.Count > 0 || !string.IsNullOrEmpty(request.DestLevelStepIndex?.ToString()) || !string.IsNullOrEmpty(request.Search)) ? " AND " : " WHERE ") + $"cteMain.LevelStepAccessRole = N'{request.LoginName}'" : string.Empty)}
+
+{(request.IsMyRequests ? " AND ((cteMain.ReciveUser = N'" + request.UserID + "' OR cteMain.ReciveUser = N''))" : string.Empty)}
+
+{(request.KindOfRequest.HasValue ? ((conditions.Count > 0 || !string.IsNullOrEmpty(request.DestLevelStepIndex?.ToString()) || !string.IsNullOrEmpty(request.Search) || !string.IsNullOrEmpty(request.LoginName)) ? " AND " : " WHERE ") + $"cteMain.KindOfRequest = {request.KindOfRequest.Value}" : string.Empty)}
+
+{(!string.IsNullOrEmpty(request.UserID) ? ((conditions.Count > 0 || !string.IsNullOrEmpty(request.DestLevelStepIndex?.ToString()) || !string.IsNullOrEmpty(request.Search) || request.KindOfRequest.HasValue) ? " AND " : " WHERE ") + $"cteMain.ReciveUser LIKE N'%{request.UserID}%'" : string.Empty)}
 
 order by cteMain.ChangeDate desc
 
-OFFSET {(request.PageIndex == 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
+OFFSET {(request.PageIndex <= 1 ? 0 : (request.PageIndex - 1) * request.PageSize)} ROWS
 FETCH NEXT {request.PageSize} ROWS ONLY
 ";
+
                 var data = await DapperOperation.Run<RequestForRatingDto>(queryStr);
 
                 if (request.IsCorporate == 1)
@@ -181,7 +180,6 @@ FETCH NEXT {request.PageSize} ROWS ONLY
                     data = data.Where(p => p.KindOfRequest == 66);
                 }
 
-              
                 request.PageSize = (request.IsExcelReport == true ? data.Count() : request.PageSize);
 
                 return new ResultDto<IEnumerable<RequestForRatingDto>>
@@ -191,15 +189,14 @@ FETCH NEXT {request.PageSize} ROWS ONLY
                     Message = string.Empty,
                     Rows = data.LongCount(),
                 };
-
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
-       
+
         public async Task<byte[]> Execute1(RequestRequestForRatingDto request)
         {
             try

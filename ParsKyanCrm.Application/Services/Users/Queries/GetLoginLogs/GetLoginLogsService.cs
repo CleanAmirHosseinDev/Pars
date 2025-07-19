@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dapper;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Common.Dto;
 using ParsKyanCrm.Domain.Contexts;
@@ -6,6 +7,7 @@ using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
@@ -25,16 +27,51 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
         {
             try
             {
+                var sqlBuilder = new StringBuilder();
+                var parameters = new DynamicParameters();
 
-                var q = await DapperOperation.Run<LoginLogDto>(@$"
+                sqlBuilder.AppendLine(@"
+            SELECT ll.*,
+                CASE 
+                    WHEN us.CustomerID IS NOT NULL THEN
+                        ISNULL(NULLIF(cus.AgentName, ''), N'ثبت نشده') + 
+                        N' - ' + 
+                        ISNULL(NULLIF(cus.CompanyName, ''), N'ثبت نشده')
+                    ELSE
+                        ISNULL(NULLIF(us.RealName, ''), ISNULL(us.UserName, N'ثبت نشده'))
+                END AS FullName
+            FROM LoginLog AS ll
+            LEFT JOIN Users AS us ON us.UserID = ll.UserID
+            LEFT JOIN Customers AS cus ON cus.CustomerID = us.CustomerID
+            WHERE 1 = 1
+        ");
 
-                select top {request.PageSize} ll.*,iif(us.CustomerID is not null,isnull(cus.AgentName,N'ثبت نشده')+' - '+isnull(cus.CompanyName,N'ثبت نشده'),isnull(us.RealName,us.UserName)) as FullName from LoginLog as ll 
-                left join Users as us on us.UserID = ll.Userid
-                left join Customers as cus on cus.CustomerID = us.CustomerID
-{(!string.IsNullOrEmpty(request.Search) ? " where (isnull(cus.AgentName,us.RealName)) like N'%" + request.Search + "%' " : string.Empty)}
-{((!string.IsNullOrEmpty(request.FromDateStr) && !string.IsNullOrEmpty(request.ToDateStr)) ? (!string.IsNullOrEmpty(request.Search) ? " and " : " where ") + " cast(ll.LoginDate as date) between " + request.FromDateStr1 + " and " + request.ToDateStr1 : string.Empty)}
-order by ll.LoginLogID desc
-");
+                parameters.Add("PageSize", request.PageSize);
+
+                if (!string.IsNullOrWhiteSpace(request.Search))
+                {
+                    sqlBuilder.AppendLine("AND (ISNULL(cus.AgentName, us.RealName) LIKE @Search)");
+                    parameters.Add("Search", $"%{request.Search}%");
+                }
+
+                if (request.FromDateStr1.HasValue && request.ToDateStr1.HasValue)
+                {
+                    sqlBuilder.AppendLine("AND CAST(ll.LoginDate AS DATE) BETWEEN @FromDate AND @ToDate");
+                    parameters.Add("FromDate", request.FromDateStr1.Value.Date);
+                    parameters.Add("ToDate", request.ToDateStr1.Value.Date);
+                }
+
+
+                var orderByClause = BuildOrderByClause(request.SortOrder);
+                sqlBuilder.AppendLine(orderByClause);
+
+                sqlBuilder.AppendLine(@"
+            OFFSET @Offset ROWS
+            FETCH NEXT @PageSize ROWS ONLY
+        ");
+                parameters.Add("Offset", (request.PageIndex - 1) * request.PageSize);
+
+                var q = await DapperOperation.Run<LoginLogDto>(sqlBuilder.ToString(), parameters);
 
                 return new ResultDto<IEnumerable<LoginLogDto>>
                 {
@@ -43,7 +80,6 @@ order by ll.LoginLogID desc
                     Message = string.Empty,
                     Rows = q.LongCount(),
                 };
-
             }
             catch (Exception ex)
             {
@@ -51,5 +87,28 @@ order by ll.LoginLogID desc
             }
         }
 
+        private string BuildOrderByClause(string sortOrder)
+        {
+            if (string.IsNullOrEmpty(sortOrder))
+                return "ORDER BY ll.LoginLogID DESC"; 
+
+            var parts = sortOrder.Split('_');
+            if (parts.Length != 2)
+                return "ORDER BY ll.LoginLogID DESC";
+
+            string column = parts[0];
+            string direction = parts[1] == "A" ? "ASC" : "DESC";
+
+            string sqlColumn = column switch
+            {
+                "FullName" => "FullName",
+                "LoginDate" => "ll.LoginDate",
+                "Ip" => "ll.Ip",
+                "AreaName" => "ll.AreaName",
+                _ => "ll.LoginLogID"
+            };
+
+            return $"ORDER BY {sqlColumn} {direction}";
+        }
     }
 }

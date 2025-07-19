@@ -103,30 +103,77 @@
                 </div>
 
 
-                <div class="table-scroll-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; margin-top: 15px;">
+                                <div class="table-scroll-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; margin-top: 15px;">
                     <table class="table table-bordered table-striped" style="min-width: 1000px;">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>شماره درخواست</th>
-                                <th>نام مشتری / شرکت</th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin" onclick="Web.RequestForRating.ClickSortingGrid(this);" data-A="AgentMobile_A" data-D="AgentMobile_D">
-                                   موبایل مشتری
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="RowNumber_A" data-D="RowNumber_D">
+                                    #
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
                                 </th>
-                                <th>تاریخ درخواست</th>
-                                <th>اقدام کننده</th>
-                                <th>نظرسنجی</th>
-                                <th>پیشنهاد و یا انتقاد</th>
-                                <th>وضعیت</th>
-                                <th>تاریخ آخرین وضعیت</th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="RequestNumber_A" data-D="RequestNumber_D">
+                                    شماره درخواست
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="CustomerName_A" data-D="CustomerName_D">
+                                    نام مشتری / شرکت
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="AgentMobile_A" data-D="AgentMobile_D">
+                                    موبایل مشتری
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="RequestDate_A" data-D="RequestDate_D">
+                                    تاریخ درخواست
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="ActorName_A" data-D="ActorName_D">
+                                    اقدام کننده
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="RatingScore_A" data-D="RatingScore_D">
+                                    نظرسنجی
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="Suggestion_A" data-D="Suggestion_D">
+                                    پیشنهاد و یا انتقاد
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="StatusTitle_A" data-D="StatusTitle_D">
+                                    وضعیت
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
+                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                    data-A="LastStatusDate_A" data-D="LastStatusDate_D">
+                                    تاریخ آخرین وضعیت
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
                                 <th style="min-width:250px;">عملیات</th>
                             </tr>
                         </thead>
-                        <tbody id="tBodyList">
-                        </tbody>
+                        <tbody id="tBodyList"></tbody>
                     </table>
                 </div>
+
 
                 <div id="divPageingList_RequestForRatingsAdmin">
 

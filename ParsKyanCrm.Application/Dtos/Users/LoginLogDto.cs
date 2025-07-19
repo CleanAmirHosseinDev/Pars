@@ -57,39 +57,26 @@ namespace ParsKyanCrm.Application.Dtos.Users
 
     public class RequestLoginLogDto : PageingParamerDto
     {
-
         public string FromDateStr { get; set; }
-        public string FromDateStr1
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(FromDateStr))
-                {
-                    DateTime dtFromDate = DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(FromDateStr)));
-                    return "'" + dtFromDate.Year +
-                              "/" + dtFromDate.Month +
-                              "/" + dtFromDate.Day + "'";
-                }
-                return "''";
-            }
-
-        }
-
         public string ToDateStr { get; set; }
-        public string ToDateStr1
+
+        public DateTime? FromDateStr1 =>
+            string.IsNullOrWhiteSpace(FromDateStr) ? (DateTime?)null :
+            ConvertShamsiToMiladi(FromDateStr);
+
+        public DateTime? ToDateStr1 =>
+            string.IsNullOrWhiteSpace(ToDateStr) ? (DateTime?)null :
+            ConvertShamsiToMiladi(ToDateStr);
+
+        private DateTime ConvertShamsiToMiladi(string persianDate)
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(ToDateStr))
-                {
-                    DateTime dtFromDate = DateTimeOperation.ToMiladiDate(DateTimeOperation.InsertFieldDataTimeInTables(DateTimeOperation.ConvertStringToDateTime(ToDateStr)));
-                    return "'" + dtFromDate.Year +
-                              "/" + dtFromDate.Month +
-                              "/" + dtFromDate.Day + "'";
-                }
-                return "''";
-            }
+            var pc = new System.Globalization.PersianCalendar();
+            var parts = persianDate.Split('/');
+            int year = int.Parse(parts[0]);
+            int month = int.Parse(parts[1]);
+            int day = int.Parse(parts[2]);
+
+            return pc.ToDateTime(year, month, day, 0, 0, 0, 0);
         }
     }
-
 }

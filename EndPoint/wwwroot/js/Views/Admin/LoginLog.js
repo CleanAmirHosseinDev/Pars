@@ -4,13 +4,15 @@
     function textSearchOnKeyDown(event) {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(function() {
-            filterGrid(1);
+            const currentPage = $("#pagination li.active a").text() || 1;
+            filterGrid(currentPage);
         }, 500); // 500ms delay
     }
 
     function initLoginLog() {
         PersianDatePicker(".DatePicker");
         $("#txtSearch").on("keydown", textSearchOnKeyDown);
+        filterGrid();
     }
 
     function filterGrid(pageIndex = 1) {
@@ -39,9 +41,39 @@
                 }
 
                 $("#tBodyList").html(strM);
-                // Update pagination controls if necessary
+                updatePagination(pageIndex, res.rows, requestData.PageSize);
             }
         }, true);
+    }
+
+    function updatePagination(currentPage, totalRows, pageSize) {
+        const totalPages = Math.ceil(totalRows / pageSize);
+        const pagination = $("#pagination");
+        pagination.empty();
+
+        if (totalPages <= 1) return;
+
+        // Previous button
+        pagination.append(
+            `<li class="${currentPage === 1 ? 'disabled' : ''}">
+                <a href="#" onclick="Web.LoginLog.FilterGrid(${currentPage - 1})">&laquo;</a>
+            </li>`
+        );
+
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.append(
+                `<li class="${currentPage === i ? 'active' : ''}">
+                    <a href="#" onclick="Web.LoginLog.FilterGrid(${i})">${i}</a>
+                </li>`
+            );
+        }
+
+        // Next button
+        pagination.append(
+            `<li class="${currentPage === totalPages ? 'disabled' : ''}">
+                <a href="#" onclick="Web.LoginLog.FilterGrid(${currentPage + 1})">&raquo;</a>
+            </li>`
+        );
     }
 
     function clickSortingGridLoginLog(e) {

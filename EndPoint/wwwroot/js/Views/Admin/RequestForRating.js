@@ -475,7 +475,7 @@ function generateAssessment(qe) {
         OnchangeKindOfRequest: onchangeKindOfRequest,
         InitCustomerRequestInformation: initCustomerRequestInformation,
         EditCustomerRequestInformation: editCustomerRequestInformation,
-        ClickSortingGrid: clickSortingGrid
+        ClickSortingGridRequestForRatings: clickSortingGridRequestForRatings
 
     };
 

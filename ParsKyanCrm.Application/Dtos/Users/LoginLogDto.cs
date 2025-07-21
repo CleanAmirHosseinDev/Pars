@@ -53,6 +53,7 @@ namespace ParsKyanCrm.Application.Dtos.Users
         }
 
         public string AreaName { get; set; }
+        public int TotalRows { get; set; }
     }
 
     public class RequestLoginLogDto : PageingParamerDto

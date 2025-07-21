@@ -1,28 +1,42 @@
 ﻿(function (web, $) {
     let searchTimeout;
 
-    function textSearchOnKeyDown(event) {
+    function textSearchOnKeyUp(event) {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(function() {
-            const currentPage = $("#pagination li.active a").text() || 1;
-            filterGrid(currentPage);
-        }, 500); // 500ms delay
+        searchTimeout = setTimeout(function () {
+            filterGrid(1); 
+        }, 500);
     }
 
     function initLoginLog() {
         PersianDatePicker(".DatePicker");
-        $("#txtSearch").on("keydown", textSearchOnKeyDown);
-        filterGrid();
+        $("#txtSearch").on("keyup", textSearchOnKeyUp);
+        $("#cboSelectCount").on("change", function () {
+            filterGrid(1);
+        });
+
+        $("#btnSearch").on("click", function () {
+            filterGrid(1);
+        });
+
+        filterGrid(1);
     }
 
+
     function filterGrid(pageIndex = 1) {
+        const pageSize = parseInt($("#cboSelectCount").val()) || 10;
+        const sortOrder = $(".thtrtheadtableSortingGrid_LoginLog_tBodyList[data-Selected]").attr("data-Selected") || "";
+
+        const fromDateStr = $("#FromDateStr").val();
+        const toDateStr = $("#ToDateStr").val();
+
         const requestData = {
-            SortOrder: $(".thtrtheadtableSortingGrid_LoginLog_tBodyList[data-Selected]").attr("data-Selected"),
+            SortOrder: sortOrder,
             Search: $("#txtSearch").val(),
             PageIndex: pageIndex,
-            PageSize: $("#cboSelectCount").val(),
-            FromDateStr: $("#FromDateStr").val(),
-            ToDateStr: $("#ToDateStr").val()
+            PageSize: pageSize,
+            FromDateStr1: fromDateStr,
+            ToDateStr1: toDateStr
         };
 
         AjaxCallAction("POST", "/api/admin/LoginLog/Get_LoginLogs", JSON.stringify(requestData), true, function (res) {
@@ -31,19 +45,25 @@
 
                 let strM = "";
                 for (let i = 0; i < res.data.length; i++) {
+                    const rowNumber = ((pageIndex - 1) * pageSize) + i + 1;
                     strM += `<tr>
-                        <td>${res.data[i].fullName}</td>
-                        <td>${res.data[i].loginDateStr} - ${res.data[i].loginTimeStr}</td>
-                        <td>${res.data[i].signOutDateStr} - ${res.data[i].signOutTimeStr}</td>
-                        <td>${res.data[i].ip}</td>
-                        <td>${res.data[i].areaName}</td>
-                    </tr>`;
+                    <td>${rowNumber}</td>
+                    <td>${res.data[i].fullName}</td>
+                    <td>${res.data[i].loginDateStr} - ${res.data[i].loginTimeStr}</td>
+                    <td>${res.data[i].signOutDateStr} - ${res.data[i].signOutTimeStr}</td>
+                    <td>${res.data[i].ip}</td>
+                    <td>${res.data[i].areaName}</td>
+                </tr>`;
                 }
 
                 $("#tBodyList").html(strM);
-                updatePagination(pageIndex, res.rows, requestData.PageSize);
+                updatePagination(pageIndex, res.rows, pageSize);
+            } else {
+                alert("خطا در دریافت اطلاعات");
             }
-        }, true);
+        }, function () {
+            alert("خطا در ارتباط با سرور");
+        });
     }
 
     function updatePagination(currentPage, totalRows, pageSize) {
@@ -53,14 +73,44 @@
 
         if (totalPages <= 1) return;
 
-        // Previous button
         pagination.append(
             `<li class="${currentPage === 1 ? 'disabled' : ''}">
-                <a href="#" onclick="Web.LoginLog.FilterGrid(${currentPage - 1})">&laquo;</a>
+                <a href="#" onclick="Web.LoginLog.FilterGrid(${currentPage - 1 > 0 ? currentPage - 1 : 1})">صفحه قبل</a>
             </li>`
         );
 
-        for (let i = 1; i <= totalPages; i++) {
+        const maxPagesToShow = 4;
+        let startPage = 1;
+        let endPage = totalPages;
+
+        if (totalPages > maxPagesToShow) {
+            if (currentPage <= 2) {
+                startPage = 1;
+                endPage = maxPagesToShow;
+            } else if (currentPage >= totalPages - 1) {
+                startPage = totalPages - (maxPagesToShow - 1);
+                endPage = totalPages;
+            } else {
+                startPage = currentPage - 1;
+                endPage = currentPage + 2 > totalPages ? totalPages : currentPage + 2;
+                if (endPage - startPage + 1 < maxPagesToShow) {
+                    startPage = endPage - maxPagesToShow + 1;
+                }
+            }
+        }
+
+        if (startPage > 1) {
+            pagination.append(
+                `<li>
+                    <a href="#" onclick="Web.LoginLog.FilterGrid(1)">1</a>
+                </li>`
+            );
+            if (startPage > 2) {
+                pagination.append(`<li><span>...</span></li>`);
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
             pagination.append(
                 `<li class="${currentPage === i ? 'active' : ''}">
                     <a href="#" onclick="Web.LoginLog.FilterGrid(${i})">${i}</a>
@@ -68,23 +118,52 @@
             );
         }
 
-        // Next button
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                pagination.append(`<li><span>...</span></li>`);
+            }
+            pagination.append(
+                `<li>
+                    <a href="#" onclick="Web.LoginLog.FilterGrid(${totalPages})">${totalPages}</a>
+                </li>`
+            );
+        }
+
         pagination.append(
             `<li class="${currentPage === totalPages ? 'disabled' : ''}">
-                <a href="#" onclick="Web.LoginLog.FilterGrid(${currentPage + 1})">&raquo;</a>
+                <a href="#" onclick="Web.LoginLog.FilterGrid(${currentPage + 1 <= totalPages ? currentPage + 1 : totalPages})">صفحه بعد</a>
             </li>`
         );
     }
 
     function clickSortingGridLoginLog(e) {
-        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_LoginLog_tBodyList");
-        filterGrid();
+        const th = $(e.currentTarget);
+        const column = th.data("column");
+        if (!column) return;
+
+        let currentSortOrder = th.attr("data-sort-order") || "";
+
+        if (currentSortOrder === "asc") {
+            currentSortOrder = "desc";
+        } else {
+            currentSortOrder = "asc";
+        }
+        $(".sortable").attr("data-sort-order", "");
+
+        th.attr("data-sort-order", currentSortOrder);
+
+        const sortOrder = `${column} ${currentSortOrder}`;
+
+        $("#SortOrderHidden").val(sortOrder);
+
+        filterGrid(1); 
     }
 
     web.LoginLog = {
         FilterGrid: filterGrid,
         InitLoginLog: initLoginLog,
-        ClickSortingGridLoginLog: clickSortingGridLoginLog
+        ClickSortingGridLoginLog: clickSortingGridLoginLog,
+        TextSearchOnKeyUp: textSearchOnKeyUp
     };
 
 })(Web, jQuery);

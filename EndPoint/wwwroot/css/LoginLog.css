@@ -1,4 +1,4 @@
-/* General styling */
+﻿/* General styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
@@ -127,47 +127,45 @@ body {
     color: #007bff;
 }
 
-/* Pagination */
 .pagination-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    text-align: center; /* وسط‌چین کردن کل pagination */
+    margin-top: 10px; /* فاصله از جدول */
 }
 
 .pagination {
-    display: flex;
+    display: inline-block; /* نمایش افقی لیست */
     padding-left: 0;
-    list-style: none;
-    border-radius: .25rem;
+    margin: 0;
+    border-radius: 4px;
 }
 
-.pagination li {
-    margin: 0 2px;
-}
+    .pagination li {
+        display: inline-block;
+        margin: 0 3px; /* فاصله بین آیتم‌ها */
+    }
 
-.pagination li a {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: .25rem;
-}
+        .pagination li.disabled a,
+        .pagination li.disabled a:hover {
+            pointer-events: none; /* غیر فعال کردن کلیک */
+            color: #ccc; /* رنگ خاکستری برای غیر فعال */
+            cursor: default;
+        }
 
-.pagination li.active a {
-    z-index: 1;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
+        .pagination li.active a {
+            background-color: #007bff; /* رنگ پس‌زمینه دکمه فعال */
+            color: white;
+            border-radius: 4px;
+        }
 
-.pagination li.disabled a {
-    color: #6c757d;
-    pointer-events: none;
-    cursor: auto;
-    background-color: #fff;
-    border-color: #dee2e6;
-}
+        .pagination li a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .pagination li a:hover {
+                background-color: #eee;
+            }

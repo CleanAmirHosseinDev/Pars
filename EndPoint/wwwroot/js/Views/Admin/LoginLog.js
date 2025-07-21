@@ -1,20 +1,23 @@
 ﻿(function (web, $) {
+    let searchTimeout;
 
     function textSearchOnKeyDown(event) {
-        if (event.keyCode == 13) {
-            $("button[title='جستجو']").click();
-        }
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            filterGrid(1);
+        }, 500); // 500ms delay
     }
 
     function initLoginLog() {
-        PersianDatePicker(".DatePicker"); 
+        PersianDatePicker(".DatePicker");
+        $("#txtSearch").on("keydown", textSearchOnKeyDown);
     }
 
-    function filterGrid() {
+    function filterGrid(pageIndex = 1) {
         const requestData = {
             SortOrder: $(".thtrtheadtableSortingGrid_LoginLog_tBodyList[data-Selected]").attr("data-Selected"),
             Search: $("#txtSearch").val(),
-            PageIndex: 1,
+            PageIndex: pageIndex,
             PageSize: $("#cboSelectCount").val(),
             FromDateStr: $("#FromDateStr").val(),
             ToDateStr: $("#ToDateStr").val()
@@ -36,6 +39,7 @@
                 }
 
                 $("#tBodyList").html(strM);
+                // Update pagination controls if necessary
             }
         }, true);
     }
@@ -48,7 +52,6 @@
     web.LoginLog = {
         FilterGrid: filterGrid,
         InitLoginLog: initLoginLog,
-        TextSearchOnKeyDown: textSearchOnKeyDown,
         ClickSortingGridLoginLog: clickSortingGridLoginLog
     };
 

@@ -32,14 +32,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
 
                 sqlBuilder.AppendLine(@"
             SELECT ll.*,
-                CASE 
-                    WHEN us.CustomerID IS NOT NULL THEN
-                        ISNULL(NULLIF(cus.AgentName, ''), N'ثبت نشده') + 
-                        N' - ' + 
-                        ISNULL(NULLIF(cus.CompanyName, ''), N'ثبت نشده')
-                    ELSE
-                        ISNULL(NULLIF(us.RealName, ''), ISNULL(us.UserName, N'ثبت نشده'))
-                END AS FullName
+                   CASE
+                       WHEN us.CustomerID IS NOT NULL THEN
+                           ISNULL(NULLIF(cus.AgentName, ''), N'ثبت نشده') +
+                           N' - ' +
+                           ISNULL(NULLIF(cus.CompanyName, ''), N'ثبت نشده')
+                       ELSE
+                           ISNULL(NULLIF(us.RealName, ''), ISNULL(us.UserName, N'ثبت نشده'))
+                   END AS FullName,
+                   COUNT(*) OVER() AS TotalRows
             FROM LoginLog AS ll
             LEFT JOIN Users AS us ON us.UserID = ll.UserID
             LEFT JOIN Customers AS cus ON cus.CustomerID = us.CustomerID
@@ -50,7 +51,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
 
                 if (!string.IsNullOrWhiteSpace(request.Search))
                 {
-                    sqlBuilder.AppendLine("AND (ISNULL(cus.AgentName, us.RealName) LIKE @Search)");
+                    sqlBuilder.AppendLine("AND (cus.AgentName LIKE @Search OR us.RealName LIKE @Search OR cus.CompanyName LIKE @Search OR us.UserName LIKE @Search)");
                     parameters.Add("Search", $"%{request.Search}%");
                 }
 
@@ -61,7 +62,6 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
                     parameters.Add("ToDate", request.ToDateStr1.Value.Date);
                 }
 
-
                 var orderByClause = BuildOrderByClause(request.SortOrder);
                 sqlBuilder.AppendLine(orderByClause);
 
@@ -71,14 +71,15 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
         ");
                 parameters.Add("Offset", (request.PageIndex - 1) * request.PageSize);
 
-                var q = await DapperOperation.Run<LoginLogDto>(sqlBuilder.ToString(), parameters);
+                var result = await DapperOperation.Run<LoginLogDto>(sqlBuilder.ToString(), parameters);
+                var totalRows = result.FirstOrDefault()?.TotalRows ?? 0;
 
                 return new ResultDto<IEnumerable<LoginLogDto>>
                 {
-                    Data = q,
+                    Data = result,
                     IsSuccess = true,
                     Message = string.Empty,
-                    Rows = q.LongCount(),
+                    Rows = totalRows,
                 };
             }
             catch (Exception ex)
@@ -103,6 +104,7 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
             {
                 "FullName" => "FullName",
                 "LoginDate" => "ll.LoginDate",
+                "SignOutDate" => "ll.SignOutDate",
                 "Ip" => "ll.Ip",
                 "AreaName" => "ll.AreaName",
                 _ => "ll.LoginLogID"

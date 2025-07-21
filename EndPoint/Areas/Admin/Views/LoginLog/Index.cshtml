@@ -84,7 +84,10 @@
                                     تاریخ ورود
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
                                 </th>
-                                <th>تاریخ خروج</th>
+                                <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGridLoginLog(this);" data-A="SignOutDate_A" data-D="SignOutDate_D">
+                                    تاریخ خروج
+                                    <i class="fa fa-arrow-down" style="display:none;"></i>
+                                </th>
                                 <th class="cursorPointer thtrtheadtableSortingGrid_LoginLog_tBodyList" onclick="Web.LoginLog.ClickSortingGridLoginLog(this);" data-A="Ip_A" data-D="Ip_D">
                                     آیپی
                                     <i class="fa fa-arrow-down" style="display:none;"></i>
@@ -106,6 +109,7 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/lib/JQueryDatePickerPluginForPersian/css/persianDatepicker-default.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/LoginLog.css" asp-append-version="true">
 }
 
 @section Scripts {
@@ -114,6 +118,10 @@
         $(document).ready(function () {
             Web.LoginLog.FilterGrid();
             Web.LoginLog.InitLoginLog();
+
+        $("#cboSelectCount").on("change", function () {
+            Web.LoginLog.FilterGrid();
+        });
         });
     </script>
 }

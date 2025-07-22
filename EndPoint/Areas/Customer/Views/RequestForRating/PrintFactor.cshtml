@@ -6,8 +6,6 @@
 
 <html>
 <head>
-
-
     <!-- jQuery 3 -->
     <script src="~/css/GlobalAreas/bower_components/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/js/iu.min.js" asp-append-version="true"></script>
@@ -195,18 +193,36 @@
             text-align: center;
             font-family: Nazanin;
         }
-        td{
-            padding:5px;
+
+        td {
+            padding: 5px;
         }
-        table.righta td{
-            text-align:right;
+
+        .Noborder {
+            border: none;
         }
+
+        table.righta td {
+            text-align: right;
+        }
+
+        .info-label {
+            font-weight: bold;
+            margin-left: 4px;
+        }
+
+        .info-value {
+            margin-left: 8px;
+            display: inline-block;
+            min-width: 80px;
+        }
+
 
         .Detail {
         }
 
         .graph-7 {
-          background-color:white;
+            background-color: white;
             color: black;
             border: 1px solid silver;
         }
@@ -262,9 +278,10 @@
 
         /* override styles when printing */
         @@media print {
-            #ptr{
-                display:none;
+            #ptr {
+                display: none;
             }
+
             body {
                 margin: 0;
                 color: #000;
@@ -280,7 +297,7 @@
 </head>
 <body>
     <div id="ptr" style="background-color: white; color: white; max-width: 210mm; margin: auto; padding: 5px; margin-bottom: 10px; box-sizing: border-box; border: 2px solid orangered;border-radius:5px">
-        <a class="btn btn-default" style="font-family:IranNastaliq" value='بازگشت' href="~/customer/RequestForRating/Referral/@ViewBag.id">بازگشت</a>
+        <a class="btn btn-default" style="font-family:IranNastaliq" value='بازگشت' href="~/supervisor/RequestForRating/RequestDocument/@ViewBag.id">بازگشت</a>
     </div>
     <div class="graph-image graph-7" style=" width: 297mm;margin:auto;" id="divPrint">
         <section class="sheet padding-10mm">
@@ -313,64 +330,73 @@
                     </tr>
 
                 </table>
-                <table style="width: 100%; border-collapse: collapse; direction: rtl" class="righta">
+                <table style="width: 100%; border-collapse: collapse; direction: rtl;" class="righta">
                     <tr class="Noborder">
-                        <td colspan="4" style="text-align:center"><span style="font-family:NazaninBold;"> خريدار</span></td>
+                        <td colspan="4" style="text-align:center">
+                            <span style="font-family:NazaninBold;">خریدار</span>
+                        </td>
                     </tr>
                     <tr class="Noborder">
-                        <td class="Noborder">نام شخص حقیقی / حقوقی: <span id="CustomerName"></span></td>
-                        <td class="Noborder">کد اقتصادی: <span id="EconomicCodeReal"></span></td>
-                        <td class="Noborder">کد پستی: <span id="PostalCode"></span></td>
-                        <td class="Noborder">شماره/ شناسه ملی <span id="EconomicCode"></span> / <span id="NationalCode"></span></td>
+                        <td class="Noborder">نام شخص حقیقی / حقوقی: <span id="CustomerName" class="info-value"></span></td>
+                        <td class="Noborder">کد اقتصادی: <span id="EconomicCodeReal" class="info-value"></span></td>
+                        <td class="Noborder">کد پستی: <span id="PostalCode" class="info-value"></span></td>
+                        <td class="Noborder">
+                            شماره/ شناسه ملی:
+                            <span id="EconomicCode" class="info-value"></span> /
+                            <span id="NationalCode" class="info-value"></span>
+                        </td>
                     </tr>
                     <tr class="Noborder">
-                        <td class="Noborder" style="max-width:200px">نشانی:<span id="AddressCompany"></span> </td>
-                        <td class="Noborder">شماره ثبت:  </td>
-                        <td class="Noborder">شهر:</td>
-                        <td class="Noborder">تلفن:<span id="Tel"></span></td>
+                        <td class="Noborder" style="max-width: 200px;">
+                            نشانی: <span id="AddressCompany" class="info-value"></span>
+                        </td>
+                        <td class="Noborder">
+                            شماره ثبت: <span id="RegistrationNumber" class="info-value"></span>
+                        </td>
+                        <td class="Noborder">
+                            شهر: <span id="City" class="info-value"></span>
+                        </td>
+                        <td class="Noborder">
+                            تلفن: <span id="Tel" class="info-value"></span>
+                        </td>
                     </tr>
                 </table>
                 <table style="width: 100%; border-collapse: collapse; direction: rtl">
                     <tr>
-                        <td colspan="10"><span style="font-family:NazaninBold;">مشخصات مورد معامله</span> </td>
-                    </tr>
-                    <tr>
-                        <td>رديف</td>
-                        <td>شرح </td>
-                        <td>تعداد/ مقدار</td>
-                        <td>مبلغ واحد (ریال)</td>
-                        <td>مبلغ کل (ریال)</td>
-                        <td> جمع ماليات وعوارض 10% (ریال)</td>
-                        <td>
-                            جمع مبلغ کل بعلاوه 10% ماليات و عوارض
-                            (ریال)
+                        <td colspan="10">
+                            <span style="font-family:NazaninBold;">مشخصات مورد معامله</span>
                         </td>
                     </tr>
                     <tr>
+                        <td>رديف</td>
+                        <td>شرح</td>
+                        <td>تعداد/ مقدار</td>
+                        <td>مبلغ واحد (ریال)</td>
+                        <td>مبلغ کل (ریال)</td>
+                        <td>جمع ماليات و عوارض 10% (ریال)</td>
+                        <td>جمع مبلغ کل بعلاوه 10% ماليات و عوارض (ریال)</td>
+                    </tr>
+                    <tr>
                         <td>1</td>
-                        <td>بسته ارزیابی <span id="CustomerName2"></span></td>
-                        <td>1</td>
-                        <td><span id="PriceFee1"></span></td>
-                        <td><span id="PriceFee2"></span></td>
-                        <td><span id="TaxPrice1"></span></td>
-                        <td><span id="TotalPrice"></span></td>
+                        <td>بسته ارزیابی <span id="CustomerName2" class="info-value"></span></td>
+                        <td><span class="info-value">1</span></td>
+                        <td><span id="PriceFee1" class="info-value"></span></td>
+                        <td><span id="PriceFee2" class="info-value"></span></td>
+                        <td><span id="TaxPrice1" class="info-value"></span></td>
+                        <td><span id="TotalPrice" class="info-value"></span></td>
                     </tr>
                     <tr>
                         <td colspan="4">جمع کل</td>
-                        <td><span id="PriceFee3"></span></td>
-
-
-                        <td><span id="TaxPrice2"></span></td>
-                        <td><span id="TotalPrice2"></span></td>
+                        <td><span id="PriceFee3" class="info-value"></span></td>
+                        <td><span id="TaxPrice2" class="info-value"></span></td>
+                        <td><span id="TotalPrice2" class="info-value"></span></td>
                     </tr>
-
                     <tr class="Noborder">
                         <td colspan="5" class="Noborder"></td>
                         <td>مبلغ قابل پرداخت (ریال)</td>
-                        <td><span id="TotalPrice3"></span></td>
+                        <td><span id="TotalPrice3" class="info-value"></span></td>
                     </tr>
-                </table>
-                <br />
+                </table>                <br />
                 <p>
                     <span style="font-family:NazaninBold"> توضيحات:</span>
                     این پیش فاکتور صرفا جهت اطلاع از مبلغ پیش پرداخت آن شرکت محترم می باشد و <span style="font-family:NazaninBold">قابل ثبت در دفاتر قانونی نمی باشد</span>.
@@ -386,12 +412,11 @@
         </section>
     </div>
 
-
     <script src="~/lib/Noty/jquery.noty.js" asp-append-version="true"></script>
 
     <script src="~/lib/Loader/Loader.js" asp-append-version="true"></script>
 
-    <script src="~/js/Views/Customer/all.min.js" asp-append-version="true"></script>
+    <script src="~/js/Views/SuperVisor/all.min.js" asp-append-version="true"></script>
 
     <script>
         Web.Layout.InitLayout();

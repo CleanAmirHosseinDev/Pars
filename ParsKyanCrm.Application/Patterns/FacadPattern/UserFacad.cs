@@ -126,6 +126,7 @@ using ParsKyanCrm.Application.Services.Users.Commands.DeleteQuestionLevel;
 using ParsKyanCrm.Application.Services.Users.Commands.SaveQuestionLevel;
 using ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevel;
 using ParsKyanCrm.Application.Services.Users.Queries.GetQuestionLevels;
+using ParsKyanCrm.Application.Services.Users.Commands;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -344,6 +345,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         IDeleteQuestionLevelService DeleteQuestionLevelService { get; }
         IGetQuestionLevelService GetQuestionLevelService { get; }
         IGetQuestionLevelsService GetQuestionLevelsService { get; }
+        IAddRequestCommentService AddRequestCommentService { get; }
     }
 
     public class UserFacad : IUserFacad
@@ -1436,6 +1438,14 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private IAddRequestCommentService _addRequestCommentService;
+        public IAddRequestCommentService AddRequestCommentService
+        {
+            get
+            {
+                return _addRequestCommentService = _addRequestCommentService ?? new AddRequestCommentService(_context);
+            }
+        }
     }
 
 

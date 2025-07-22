@@ -264,5 +264,25 @@ namespace EndPoint.Controllers.api.superVisor
                 throw;
             }
         }
+
+        [HttpPost("requests/{id}/comment")]
+        public async Task<ResultDto> AddComment(int id, [FromBody] CommentDto comment)
+        {
+            try
+            {
+                // For simplicity, let's assume you have a service method to update the comment.
+                // You would need to add this to your IUserFacad and its implementation.
+                return await _userFacad.AddRequestCommentService.Execute(id, comment.Comment);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error adding comment for request {RequestId}", id);
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "خطایی در هنگام ثبت کامنت رخ داد."
+                };
+            }
+        }
     }
 }

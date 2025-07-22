@@ -77,6 +77,8 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
                 strM += "<a style='margin-right:5px;color:black' title='نمایش امتیازها' class='btn btn-success fontForAllPage' href='/SuperVisor/corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
             }
             //  }
+            strM += "<a style='margin-right:5px;cursor:pointer;' title='ثبت کامنت' class='btn btn-warning fontForAllPage open-comment-modal' data-requestid='" + res.data[i].requestId + "'><i class='fa fa-eye'></i></a>";
+
             strM += "</td></tr>";
             //if (res.data[i].levelStepIndex >= 7) {
 
@@ -1904,6 +1906,32 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             }, true);
         }
     }
+
+    $(document).on('click', '.open-comment-modal', function () {
+        var requestId = $(this).data('requestid');
+        $('#modalRequestId').val(requestId);
+        $('#supervisorComment').val(''); // Clear previous comment
+        $('#commentModal').modal('show');
+    });
+
+    $('#saveCommentBtn').on('click', function () {
+        var requestId = $('#modalRequestId').val();
+        var comment = $('#supervisorComment').val();
+
+        if (!comment) {
+            alertB("خطا", "لطفاً کامنت را وارد کنید.", "error");
+            return;
+        }
+
+        AjaxCallAction("POST", "/api/supervisor/requests/" + requestId + "/comment", JSON.stringify({ comment: comment }), true, function (res) {
+            if (res.isSuccess) {
+                $('#commentModal').modal('hide');
+                alertB("موفق", "کامنت با موفقیت ثبت شد.", "success");
+            } else {
+                alertB("خطا", res.message, "error");
+            }
+        }, true);
+    });
 
     web.RequestForRating = {
         GetShowScoreFile: getShowScoreFile,

@@ -1,4 +1,6 @@
 ﻿
+
+
 var divPageingList_RequestForRatingsAdmin_pageG = 1;
 function successCallBack_divPageingList_RequestForRatingsAdmin(res) {
     if (!res.isSuccess) return;
@@ -49,7 +51,7 @@ function successCallBack_divPageingList_RequestForRatingsAdmin(res) {
             strM += row.levelStepStatus;
         }
         strM += "</td>";
-         
+
         strM += "<td>" + row.lastStatusChangeDateStr + "</td>";
 
         strM += "<td>";
@@ -62,7 +64,7 @@ function successCallBack_divPageingList_RequestForRatingsAdmin(res) {
         strM += "<a style='margin-right:5px;color:black' href='/admin/RequestForRating/RequestReferences?id=" + row.requestId + "' class='btn btn-info fontForAllPage'>";
         strM += "<img src='/css/GlobalAreas/dist/img/timeline-icon.png' style='width:20px' title='مشاهده گردش کار'></a>";
         strM += "</td>";
-         
+
         strM += "</tr>";
     }
 
@@ -93,19 +95,61 @@ function generateAssessment(qe) {
 }
 
 (function (web, $) {
-
+    function textSearchOnKeyDown(event) {
+        if (event.keyCode == 13) $(`button[title='جستجو']`).click();
+    }
 
     function filterGrid(id = null) {
-
         ComboBoxWithSearch('.select2', 'rtl');
 
-        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify({ CustomerId: id, PageIndex: 1, PageSize: $("#cboSelectCount").val(), Search: $("#txtSearch").val(), DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(), KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null }));
+        const request = {
+            CustomerId: id,
+            PageIndex: 1,
+            PageSize: $("#cboSelectCount").val(),
+            Search: $("#txtSearch").val(),
+            DestLevelStepIndex: isEmpty($("#cboSelectLS").val()) ? null : $("#cboSelectLS").val(),
+            KindOfRequest: !isEmpty($("#cboKindOfRequest").val()) ? $("#cboKindOfRequest").val() : null,
+            SortColumn: currentSortColumn,
+            SortDirection: currentSortDirection
+        };
 
+        pageingGrid("divPageingList_RequestForRatingsAdmin", "/api/admin/RequestForRating/Get_RequestForRatings", JSON.stringify(request));
     }
-    function clickSortingGridRequestForRatings(e) {
-        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_RequestForRatings_tBodyList");
+
+    let currentSortColumn = null;
+    let currentSortDirection = null;
+    function clickSortingRequestForRatingGrid(e) {
+        const $th = $(e);
+        const sortFieldAsc = $th.attr("data-A");
+        const sortFieldDesc = $th.attr("data-D");
+
+        let columnBaseName = sortFieldAsc ? sortFieldAsc.replace("_A", "") : null;
+        if (!columnBaseName) return;
+
+        if (currentSortColumn === columnBaseName) {
+            currentSortDirection = currentSortDirection === "ASC" ? "DESC" : "ASC";
+        } else {
+            currentSortColumn = columnBaseName;
+            currentSortDirection = "ASC";
+        }
+
+        $(".sortable").removeAttr("data-sort-order");
+        $(".sortable .sort-icon")
+            .removeClass("fa-arrow-up fa-arrow-down")
+            .css("transform", "");
+
+        $th.attr("data-sort-order", currentSortDirection.toLowerCase());
+
+        const $icon = $th.find(".sort-icon");
+        if (currentSortDirection === "ASC") {
+            $icon.addClass("fa-arrow-up").css("transform", "rotate(180deg)");
+        } else {
+            $icon.addClass("fa-arrow-down").css("transform", "rotate(0deg)");
+        }
+
         filterGrid();
     }
+
     function cancelRequest(id) {
 
         try {
@@ -458,15 +502,8 @@ function generateAssessment(qe) {
         return strM;
     }
 
-    function clickSortingGrid(e) {
-
-        clickSortingGridWithConfig(e, "thtrtheadtableSortingGrid_RequestForRatingsAdmin");
-
-        filterGrid(true);
-
-    }
-
     web.RequestForRating = {
+        TextSearchOnKeyDown: textSearchOnKeyDown,
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
         FilterGrid: filterGrid,
         CancelRequest: cancelRequest,
@@ -475,8 +512,8 @@ function generateAssessment(qe) {
         OnchangeKindOfRequest: onchangeKindOfRequest,
         InitCustomerRequestInformation: initCustomerRequestInformation,
         EditCustomerRequestInformation: editCustomerRequestInformation,
-        ClickSortingGrid: clickSortingGrid
-
+        ClickSortingRequestForRatingGrid: clickSortingRequestForRatingGrid,
+        TextSearchOnKeyDown: textSearchOnKeyDown
     };
 
 })(Web, jQuery);

@@ -38,5 +38,11 @@ namespace ParsKyanCrm.Infrastructure
                 return await connection.QueryAsync<T>(sql, parameters);
             }
         }
+
+        public static async Task<T> RunScalar<T>(string query, DynamicParameters parameters)
+        {
+            using var connection = new SqlConnection(VaribleForName.MainConnectionString);
+            return await connection.ExecuteScalarAsync<T>(query, parameters);
+        }
     }
 }

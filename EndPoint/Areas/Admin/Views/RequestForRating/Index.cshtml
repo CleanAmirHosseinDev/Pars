@@ -2,201 +2,140 @@
     ViewData["Title"] = "درخواست ها";
 }
 
-@section PageHeader{
-<section class="content-header">
-    <h1>
-        درخواست ها
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/RequestForRating/Index"><i></i> درخواست ها</a></li>
-    </ol>
-</section>
+@section PageHeader {
+    <section class="content-header">
+        <h1>
+            درخواست ها
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Admin/RequestForRating/Index"><i></i> درخواست ها</a></li>
+        </ol>
+    </section>
 }
 
 <input type="hidden" id="MyCustomerID" name="MyCustomerID" value="@ViewBag.id" />
+
 <div class="row">
     <section class="col-lg-12 col-md-12">
-        <div class="box box-info">
-            <div class="box-header">
-                @*<i class="fa fa-cloud"></i>*@
-                <h3 class="box-title">
-                    <div class="portlet-title">
-                        <div class="caption font-green-haze">
-                            @*<span class="caption-subject bold uppercase">آب و هوا</span>*@
+        <div class="box-rounded">
+            <div class="panel-rounded">
+                <div class="panel-heading">کادر جستجو</div>
+                <div class="panel-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-2">
+                            <input type="text" id="txtSearch" name="txtSearch" class="form-control"
+                                   placeholder="جستجو"
+                                   onkeydown="Web.RequestForRating.TextSearchOnKeyDown(event);" />
                         </div>
-                        <div class="tools">
-                            <a href="" class="collapse" data-original-title="" title="">
-                            </a>
+                        <div class="col-md-6 mb-2">
+                            <select class="form-control" id="cboSelectCount" name="cboSelectCount">
+                                <option value="5">5</option>
+                                <option value="10" selected="selected">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                            </select>
                         </div>
                     </div>
-                </h3>
-                <!-- tools box -->
-                <div class="pull-left box-tools">
-                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-2">
+                            <label>نوع درخواست</label>
+                            <select class="form-control select2" id="cboKindOfRequest" name="cboKindOfRequest"
+                                    onchange="Web.RequestForRating.OnchangeKindOfRequest(this);">
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label>مرحله درخواست</label>
+                            <select class="form-control select2" id="cboSelectLS" name="cboSelectLS">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-end">
+                            <button class="btn btn-primary btn-custom-search" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <!-- /. tools -->
             </div>
-            <div class="box-body" style="">
 
-                <div class="panel panel-primary">
-                    <div class="panel-heading">کادر جستجو</div>
-                    <div class="panel-body">
-                        <div class="row" style="margin-bottom: 5px;">
-                            <div class="col-md-6">
-                                <input type="text" id="txtSearch" name="txtSearch" class="form-control fontForAllPage BorderRadius_30" style="width:100%;" placeholder="جستجو" onkeydown="Web.RequestForRating.TextSearchOnKeyDown(event);" />
-                            </div>
-                            <div class="col-md-6">
-                                <select class="form-control BorderRadius_30" id="cboSelectCount" name="cboSelectCount">
-                                    <option value="5">
-                                        5
-                                    </option>
-                                    <option value="10" selected="selected">
-                                        10
-                                    </option>
-                                    <option value="20">
-                                        20
-                                    </option>
-                                    <option value="50">
-                                        50
-                                    </option>
-                                    <option value="100">
-                                        100
-                                    </option>
-                                    <option value="150">
-                                        150
-                                    </option>
-                                    <option value="200">
-                                        200
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div>
-                                    <label class="">نوع درخواست</label>
-                                    <select class="form-control BorderRadius_30 select2" id="cboKindOfRequest" name="cboKindOfRequest" onchange="Web.RequestForRating.OnchangeKindOfRequest(this);">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div>
-                                    <label>مرحله درخواست</label>
-                                    <select class="form-control BorderRadius_30 select2" id="cboSelectLS" name="cboSelectLS">
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.RequestForRating.FilterGrid();" title="جستجو">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                                <div class="table-scroll-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; margin-top: 15px;">
-                    <table class="table table-bordered table-striped" style="min-width: 1000px;">
-                        <thead>
-                            <tr>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="RowNumber_A" data-D="RowNumber_D">
-                                    #
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="RequestNumber_A" data-D="RequestNumber_D">
-                                    شماره درخواست
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="CustomerName_A" data-D="CustomerName_D">
-                                    نام مشتری / شرکت
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="AgentMobile_A" data-D="AgentMobile_D">
-                                    موبایل مشتری
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="RequestDate_A" data-D="RequestDate_D">
-                                    تاریخ درخواست
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="ActorName_A" data-D="ActorName_D">
-                                    اقدام کننده
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="RatingScore_A" data-D="RatingScore_D">
-                                    نظرسنجی
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="Suggestion_A" data-D="Suggestion_D">
-                                    پیشنهاد و یا انتقاد
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="StatusTitle_A" data-D="StatusTitle_D">
-                                    وضعیت
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th class="cursorPointer thtrtheadtableSortingGrid_RequestForRatingsAdmin"
-                                    onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
-                                    data-A="LastStatusDate_A" data-D="LastStatusDate_D">
-                                    تاریخ آخرین وضعیت
-                                    <i class="fa fa-arrow-down" style="display:none;"></i>
-                                </th>
-                                <th style="min-width:250px;">عملیات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tBodyList"></tbody>
-                    </table>
-                </div>
-
-
-                <div id="divPageingList_RequestForRatingsAdmin">
-
-                </div>
-
+            <div class="table-scroll-wrapper" style="max-height: 500px; overflow-y: auto; overflow-x: auto; border: 1px solid #ccc; margin-top: 15px; border-radius: 6px;">
+                <table class="table table-bordered table-striped mb-0" style="min-width: 1000px;">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th class="cursorPointer sortable" onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                data-A="RequestNumber_A" data-D="RequestNumber_D">
+                                شماره درخواست
+                                <i class="sort-icon fa" style="margin-right: 5px;"></i>
+                            </th>
+                            <th class="cursorPointer sortable" onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                data-A="CustomerName_A" data-D="CustomerName_D">
+                                نام مشتری / شرکت
+                                <i class="sort-icon fa" style="margin-right: 5px;"></i>
+                            </th>
+                            <th>
+                                موبایل مشتری
+                            </th>
+                            <th class="cursorPointer sortable" onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                data-A="RequestDate_A" data-D="RequestDate_D">
+                                تاریخ درخواست
+                                <i class="sort-icon fa" style="margin-right: 5px;"></i>
+                            </th>
+                            <th class="cursorPointer sortable" onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                data-A="ActorName_A" data-D="ActorName_D">
+                                اقدام کننده
+                                <i class="sort-icon fa" style="margin-right: 5px;"></i>
+                            </th>
+                            <th>
+                                نظرسنجی
+                            </th>
+                            <th>
+                                پیشنهاد و یا انتقاد
+                            </th>
+                            <th class="cursorPointer sortable" onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                data-A="StatusTitle_A" data-D="StatusTitle_D">
+                                وضعیت
+                                <i class="sort-icon fa" style="margin-right: 5px;"></i>
+                            </th>
+                            <th class="cursorPointer sortable" onclick="Web.RequestForRating.ClickSortingRequestForRatingGrid(this);"
+                                data-A="LastStatusDate_A" data-D="LastStatusDate_D">
+                                تاریخ آخرین وضعیت
+                                <i class="sort-icon fa" style="margin-right: 5px;"></i>
+                            </th>
+                            <th style="min-width: 250px;">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyList"></tbody>
+                </table>
+            </div>
+            <div id="divPageingList_RequestForRatingsAdmin" class="mt-3">
             </div>
         </div>
     </section>
 </div>
 
-@section Styles{
-<link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
-<style>
-    td {
-        vertical-align: central;
-    }
-</style>
+@section Styles {
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+    <style>
+        td {
+            vertical-align: central;
+        }
+    </style>
 }
 
 @section Scripts {
-<script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
-<script>
-    Web.RequestForRating.FilterGrid(@ViewBag.id);
-    Web.RequestForRating.FillComboLevelStepSettingList();
-</script>
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script>
+        Web.RequestForRating.FilterGrid(@ViewBag.id);
+        Web.RequestForRating.FillComboLevelStepSettingList();
+    </script>
 }

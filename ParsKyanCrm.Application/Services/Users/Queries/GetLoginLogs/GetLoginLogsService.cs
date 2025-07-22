@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Dapper;
 using ParsKyanCrm.Application.Dtos.Users;
 using ParsKyanCrm.Common.Dto;
@@ -6,8 +7,6 @@ using ParsKyanCrm.Domain.Contexts;
 using ParsKyanCrm.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
@@ -27,85 +26,115 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetLoginLogs
         {
             try
             {
-                var sqlBuilder = new StringBuilder();
                 var parameters = new DynamicParameters();
-
-                sqlBuilder.AppendLine(@"
-            SELECT ll.*,
-                CASE 
-                    WHEN us.CustomerID IS NOT NULL THEN
-                        ISNULL(NULLIF(cus.AgentName, ''), N'ثبت نشده') + 
-                        N' - ' + 
-                        ISNULL(NULLIF(cus.CompanyName, ''), N'ثبت نشده')
-                    ELSE
-                        ISNULL(NULLIF(us.RealName, ''), ISNULL(us.UserName, N'ثبت نشده'))
-                END AS FullName
-            FROM LoginLog AS ll
-            LEFT JOIN Users AS us ON us.UserID = ll.UserID
-            LEFT JOIN Customers AS cus ON cus.CustomerID = us.CustomerID
-            WHERE 1 = 1
-        ");
-
-                parameters.Add("PageSize", request.PageSize);
+                var baseQuery = @"
+                                  WITH FilteredLogs AS (
+                                      SELECT 
+                                          ll.LoginLogID,
+                                          ll.UserID,
+                                          ll.LoginDate,
+                                          ll.SignOutDate,
+                                          ll.Ip,
+                                          ll.AreaName,
+                                          CASE 
+                                              WHEN us.CustomerID IS NOT NULL THEN
+                                                  COALESCE(NULLIF(cus.AgentName, ''), N'ثبت نشده') 
+                                              ELSE
+                                                  COALESCE(NULLIF(us.RealName, ''), us.UserName, N'ثبت نشده')
+                                          END AS NamePart1,
+                                          CASE 
+                                              WHEN us.CustomerID IS NOT NULL THEN
+                                                  COALESCE(NULLIF(cus.CompanyName, ''), N'ثبت نشده')
+                                              ELSE NULL
+                                          END AS NamePart2
+                                      FROM LoginLog AS ll WITH (NOLOCK)
+                                      LEFT JOIN Users AS us WITH (NOLOCK) ON us.UserID = ll.UserID
+                                      LEFT JOIN Customers AS cus WITH (NOLOCK) ON cus.CustomerID = us.CustomerID
+                                      WHERE 1 = 1
+                                  ";
 
                 if (!string.IsNullOrWhiteSpace(request.Search))
                 {
-                    sqlBuilder.AppendLine("AND (ISNULL(cus.AgentName, us.RealName) LIKE @Search)");
+                    baseQuery += @"
+                                    AND (
+                                        (us.CustomerID IS NOT NULL AND (cus.AgentName LIKE @Search OR cus.CompanyName LIKE @Search))
+                                        OR
+                                        (us.CustomerID IS NULL AND (us.RealName LIKE @Search OR us.UserName LIKE @Search))
+                                    )";
                     parameters.Add("Search", $"%{request.Search}%");
                 }
 
                 if (request.FromDateStr1.HasValue && request.ToDateStr1.HasValue)
                 {
-                    sqlBuilder.AppendLine("AND CAST(ll.LoginDate AS DATE) BETWEEN @FromDate AND @ToDate");
+                    baseQuery += @"
+                                    AND ll.LoginDate >= @FromDate AND ll.LoginDate < DATEADD(day, 1, @ToDate)";
                     parameters.Add("FromDate", request.FromDateStr1.Value.Date);
                     parameters.Add("ToDate", request.ToDateStr1.Value.Date);
                 }
 
+                var countQuery = baseQuery + @")
+                                                SELECT COUNT(*) FROM FilteredLogs";
 
                 var orderByClause = BuildOrderByClause(request.SortOrder);
-                sqlBuilder.AppendLine(orderByClause);
+                var pagedQuery = baseQuery + @")
+                                               SELECT 
+                                                   LoginLogID,
+                                                   UserID,
+                                                   LoginDate,
+                                                   SignOutDate,
+                                                   Ip,
+                                                   AreaName,
+                                                   CASE 
+                                                       WHEN NamePart2 IS NOT NULL THEN NamePart1 + N' - ' + NamePart2
+                                                       ELSE NamePart1
+                                                   END AS FullName
+                                               FROM FilteredLogs
+                                               " + orderByClause + @"
+                                               OFFSET @Offset ROWS
+                                               FETCH NEXT @PageSize ROWS ONLY";
 
-                sqlBuilder.AppendLine(@"
-            OFFSET @Offset ROWS
-            FETCH NEXT @PageSize ROWS ONLY
-        ");
+                parameters.Add("PageSize", request.PageSize);
                 parameters.Add("Offset", (request.PageIndex - 1) * request.PageSize);
 
-                var q = await DapperOperation.Run<LoginLogDto>(sqlBuilder.ToString(), parameters);
+                var dataTask = DapperOperation.Run<LoginLogDto>(pagedQuery, parameters);
+                var countTask = DapperOperation.RunScalar<long>(countQuery, parameters);
+
+                await Task.WhenAll(dataTask, countTask);
 
                 return new ResultDto<IEnumerable<LoginLogDto>>
                 {
-                    Data = q,
+                    Data = await dataTask,
                     IsSuccess = true,
                     Message = string.Empty,
-                    Rows = q.LongCount(),
+                    Rows = await countTask
                 };
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 
-        private string BuildOrderByClause(string sortOrder)
+        public string BuildOrderByClause(string sortOrder)
         {
             if (string.IsNullOrEmpty(sortOrder))
-                return "ORDER BY ll.LoginLogID DESC"; 
+                return "ORDER BY LoginLogID DESC";
 
-            var parts = sortOrder.Split('_');
+            var parts = sortOrder.Split(' ');
             if (parts.Length != 2)
-                return "ORDER BY ll.LoginLogID DESC";
+                return "ORDER BY LoginLogID DESC";
 
             string column = parts[0];
-            string direction = parts[1] == "A" ? "ASC" : "DESC";
+            string direction = parts[1].ToLower() == "asc" ? "ASC" : "DESC";
 
             string sqlColumn = column switch
             {
-                "FullName" => "FullName",
-                "LoginDate" => "ll.LoginDate",
-                "Ip" => "ll.Ip",
-                "AreaName" => "ll.AreaName",
-                _ => "ll.LoginLogID"
+                "LoginDate" => "LoginDate",
+                "SignOutDate" => "SignOutDate",
+                "Ip" => "Ip",
+                "AreaName" => "AreaName",
+                "FullName" => "NamePart1",
+                _ => "LoginLogID"
             };
 
             return $"ORDER BY {sqlColumn} {direction}";

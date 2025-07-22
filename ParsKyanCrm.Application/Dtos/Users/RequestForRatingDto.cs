@@ -63,9 +63,9 @@ namespace ParsKyanCrm.Application.Dtos.Users
         public int? TypeGroupCompanies { get; set; }
         public int? ReciveUser { get; set; }
         public bool IsFinished { get; set; }
-
+        public string SortColumn { get; set; }
+        public string SortDirection { get; set; }
         public bool IsExcel { get; set; }
-
     }
 
     public class RequestForRatingDto
@@ -158,7 +158,6 @@ namespace ParsKyanCrm.Application.Dtos.Users
                 return string.Empty;
             }
         }
-        public string SortColumn { get; set; }
 
     }
 }

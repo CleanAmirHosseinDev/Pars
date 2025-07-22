@@ -18,7 +18,7 @@ namespace ParsKyanCrm.Infrastructure.Consts
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -27,12 +27,14 @@ namespace ParsKyanCrm.Infrastructure.Consts
             get
             {
                 if (IsDebug == null)
-                    return "data source=172.16.21.6;initial catalog=TestParsKyanCrmDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
+                    return "data source=AMIREDAALTI;initial catalog=ParsKyanCrmDB;MultipleActiveResultSets=True";
+                //"data source=172.16.21.6;initial catalog=TestParsKyanCrmDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
                 else if (IsDebug == true)
-                    return "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=sa;password=sa@10155!@;MultipleActiveResultSets=True";
-                // return "data source=172.16.21.6;initial catalog=DeveloperParsDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
+                    //return "data source=77.238.123.197;initial catalog=ParsKyanCrmDB;user id=sa;password=sa@10155!@;MultipleActiveResultSets=True";
+                    return "data source=AMIREDAALTI;initial catalog=ParsKyanCrmDB;user id=sa;password=sa;MultipleActiveResultSets=True";
                 else
-                    return "data source=172.16.21.6;initial catalog=ParsKyanCrmDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
+                    return "data source=AMIREDAALTI;initial catalog=ParsKyanCrmDB;MultipleActiveResultSets=True";
+                //return "data source=172.16.21.6;initial catalog=ParsKyanCrmDB;user id=pars;password=Pars@10155;MultipleActiveResultSets=True";
 
             }
         }

@@ -799,6 +799,7 @@
                     $("#TotalPrice").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
                     $("#TotalPrice2").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
                     $("#TotalPrice3").html(moneyCommaSepWithReturn((res.data.finalPriceContract + res.data.tax).toString()));
+                    $("#City").html(res.data.cityName);
                     initCustomer();
 
                 }

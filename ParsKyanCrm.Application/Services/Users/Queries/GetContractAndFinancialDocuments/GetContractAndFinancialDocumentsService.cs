@@ -29,11 +29,11 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
         {
             try
             {
-                ContractAndFinancialDocumentsDto res = new ContractAndFinancialDocumentsDto();                
+                ContractAndFinancialDocumentsDto res = new ContractAndFinancialDocumentsDto();
 
                 if (request.RequestID != null && request.RequestID != 0)
                 {
-                    var q_Find = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == request.RequestID && p.IsActive==15);
+                    var q_Find = await _context.ContractAndFinancialDocuments.FirstOrDefaultAsync(p => p.RequestID == request.RequestID && p.IsActive == 15);
 
                     res = _mapper.Map<ContractAndFinancialDocumentsDto>(q_Find);
 
@@ -47,13 +47,24 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetContractAndFinancial
                         };
                     }
 
+                    var customer = await _context.RequestForRating
+                        .Include(p => p.Customer)
+                        .ThenInclude(c => c.City)
+                        .Where(p => p.RequestId == request.RequestID)
+                        .Select(p => p.Customer)
+                        .FirstOrDefaultAsync();
+
+                    if (customer != null && customer.City != null)
+                    {
+                        res.CityName = customer.City.CityName;
+                    }
                 }
 
                 return new ResultDto<ContractAndFinancialDocumentsDto>
                 {
                     Data = res,
                     IsSuccess = true,
-                    Message = string.Empty,                    
+                    Message = string.Empty,
                 };
 
             }

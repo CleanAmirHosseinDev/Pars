@@ -36,6 +36,19 @@ namespace ParsKyanCrm.Application.Services.Users.Queries.GetCustomers
                     var q_Find = await _context.Customers.Include(p => p.HowGetKnowCompany).Include(p => p.KindOfCompany).Include(p => p.TypeServiceRequested).FirstOrDefaultAsync(p => p.CustomerId == request.CustomerId && (p.IsActive == request.IsActive || request.IsActive == null));
 
                     res = _mapper.Map<CustomersDto>(q_Find);
+                    if (q_Find.CityId != null)
+                    {
+                        var city = await _context.City.FirstOrDefaultAsync(c => c.CityId == q_Find.CityId);
+                        if (city != null)
+                        {
+                            res.City = new CityDto
+                            {
+                                CityId = city.CityId,
+                                CityName = city.CityName,
+                                StateId = city.StateId
+                            };
+                        }
+                    }
                     res.HowGetKnowCompany = q_Find.HowGetKnowCompany != null ? _mapper.Map<Dtos.Users.SystemSetingDto>(q_Find.HowGetKnowCompany) : new Dtos.Users.SystemSetingDto();
                     res.KindOfCompany = q_Find.KindOfCompany != null ? _mapper.Map<Dtos.Users.SystemSetingDto>(q_Find.KindOfCompany) : new Dtos.Users.SystemSetingDto();
                     res.TypeServiceRequested = q_Find.TypeServiceRequested != null ? _mapper.Map<Dtos.Users.SystemSetingDto>(q_Find.TypeServiceRequested) : new Dtos.Users.SystemSetingDto();

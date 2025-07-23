@@ -34,5 +34,6 @@ namespace ParsKyanCrm.Domain.Entities
         public string CodalNumber { get; set; }
 
         public DateTime? CodalDate { get; set; }
+        public string Comment { get; set; }
     }
 }

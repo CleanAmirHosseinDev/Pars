@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  *   AdminLTE v2.4.0
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <https://adminlte.io>
@@ -6017,3 +6017,31 @@ td {
     .table tfoot tr { display: grid; }
 }
 
+.modal-content {
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header, .modal-footer {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-color: #f7f7f7;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 15px 15px;
+}
+
+#commentModal .form-control {
+    border-radius: 10px;
+    resize: vertical;
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 1rem;
+    }
+}

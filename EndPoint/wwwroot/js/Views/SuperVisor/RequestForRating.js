@@ -3,6 +3,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
 
 
     if (res.isSuccess) {
+        debugger;
         var n = getlstor("loginName");
         $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
         var strM = '';
@@ -52,6 +53,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
                     ? "<a style='margin-right:5px;color:black' title='مشاهده و اقدام' class='btn btn-edit fontForAllPage' href='/SuperVisor/RequestForRating/Referral/"
                     + res.data[i].requestId + "'> <i class='fa fa-mail-forward' style='color:black'></i>  </a>" : "<a style='color:black;margin-right:5px; ><i class='fa fa-eye'></i> </a>");
 
+
             //if ((n == res.data[i].destLevelStepAccessRole && res.data[i].destLevelStepAccessRole == "5") || (n == "5" && res.data[i].destLevelStepAccessRole == "10" && res.data[i].destLevelStepIndex == "7")) {
             //    strM += "<a style='margin-right:5px;color:black' title='مشاهده اطلاعات تکمیلی' class='btn btn-default fontForAllPage' href='/SuperVisor/FutherInfo/Index/" + res.data[i].requestId + "'><i class='fa fa-file'></i> </a>";
             //}
@@ -76,9 +78,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
             if (res.data[i].levelStepSettingIndexID >= 43 && (n=="12" || n=="11")) {
                 strM += "<a style='margin-right:5px;color:black' title='نمایش امتیازها' class='btn btn-success fontForAllPage' href='/SuperVisor/corporate/ShowScore/" + res.data[i].requestId + "'><i class='fa fa-star'></i> </a>";
             }
-            //  }
-            strM += "<a style='margin-right:5px;cursor:pointer;' title='ثبت کامنت' class='btn btn-warning fontForAllPage open-comment-modal' data-requestid='" + res.data[i].requestId + "'><i class='fa fa-eye'></i></a>";
-
+            strM += "<a style='margin-right:5px;color:black' title='ثبت کامنت' class='btn btn-info fontForAllPage btn-open-comment-modal' data-requestid='" + res.data[i].requestId + "'><i class='fa fa-comment'></i></a>";
             strM += "</td></tr>";
             //if (res.data[i].levelStepIndex >= 7) {
 
@@ -88,11 +88,7 @@ function successCallBack_divPageingList_RequestForRatingsSupervisor(res) {
 
         $("#tBodyList").html(strM);
 
-
-
     }
-
-
 }
 
 var divPageingList_RequestForRatingsASuperVisor_pageG = 1;
@@ -1434,25 +1430,6 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
             }, true);
         }
     }
-    //function saveContractAndFinancialDocuments(RequestID = null, ContentContract = null, FeePrice = null, DicCountPerecent = null, DisCountMoney=null) {
-
-    //    AjaxCallAction("POST", "/api/superVisor/RequestForRating/Save_ContractAndFinancialDocuments", JSON.stringify({ RequestID: RequestID, ContentContract: ContentContract, PriceContractStr: FeePrice }), true, function (res) {
-
-    //        if (res.isSuccess) {
-
-    //            // goToUrl("/SuperVisor/RequestForRating/Index");
-
-    //        }
-    //        else {
-
-    //            alertB("هشدار", res.message, "warning");
-
-    //        }
-
-    //    }, true);
-
-    //}
-
 
     function createTimeLine(id = null, isFinish) {
 
@@ -1883,7 +1860,6 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         });
     }
 
-
     function saveRemainingMoney(e) {
         if ($("#Remaining").val() == null || $("#Remaining").val() == "" ) {
             alertB("هشدار", "لطفا مبلغ را وارد نمایید.", "warning");
@@ -1907,30 +1883,59 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         }
     }
 
-    $(document).on('click', '.open-comment-modal', function () {
-        var requestId = $(this).data('requestid');
-        $('#modalRequestId').val(requestId);
-        $('#supervisorComment').val(''); // Clear previous comment
-        $('#commentModal').modal('show');
-    });
-
-    $('#saveCommentBtn').on('click', function () {
-        var requestId = $('#modalRequestId').val();
-        var comment = $('#supervisorComment').val();
+    function saveComment(e) {
+        var comment = $('#commentText').val().trim();
+        var requestId = $('#requestIdInput').val();
 
         if (!comment) {
-            alertB("خطا", "لطفاً کامنت را وارد کنید.", "error");
+            alertB("هشدار", "لطفا کامنت را وارد کنید.", "warning");
             return;
         }
 
-        AjaxCallAction("POST", "/api/supervisor/requests/" + requestId + "/comment", JSON.stringify({ comment: comment }), true, function (res) {
+        $(e).attr("disabled", "disabled");
+
+        var userId = getlstor("userID");
+        var userName = getlstor("loginName");
+
+        var commentDto = {
+            RequestId: Number(requestId),
+            UserId: Number(userId),
+            CommentText: comment,
+            UserFullName: userName,
+            CreatedAt: new Date().toISOString()
+        };
+
+        AjaxCallAction("POST", "/api/superVisor/RequestForRating/AddComment", JSON.stringify(commentDto), true, function (res) {
+            $(e).removeAttr("disabled");
+
             if (res.isSuccess) {
-                $('#commentModal').modal('hide');
-                alertB("موفق", "کامنت با موفقیت ثبت شد.", "success");
+                alertB("ثبت", "کامنت با موفقیت ثبت شد.", "success");
+                $('#commentModal').modal('hide'); 
             } else {
-                alertB("خطا", res.message, "error");
+                alertB("خطا", res.message, "warning");
             }
-        }, true);
+        }, function () {
+            $(e).removeAttr("disabled");
+            alertB("خطا", "خطا در ارسال درخواست.", "danger");
+        });
+    }
+
+    $(document).ready(function () {
+        $(document).on('click', '.btn-open-comment-modal', function () {
+            var requestId = $(this).data('requestid');
+            $('#requestIdInput').val(requestId);
+            $('#commentText').val('');
+            $('#commentModal').modal('show'); 
+        });
+
+        $('#saveComment').on('click', function () {
+            saveComment(this);
+        });
+
+        $('#commentForm').submit(function (e) {
+            e.preventDefault();
+            saveComment($('#saveComment'));
+        });
     });
 
     web.RequestForRating = {
@@ -1985,7 +1990,7 @@ function successCallBack_divPageingList_RequestForRatingsASuperVisor(res) {
         ExcelTotalFilterGridA: excelTotalFilterGridA,
         SaveRemainingMoney: saveRemainingMoney,
         ShowCustomerRequestInformation: showCustomerRequestInformation,
-
+        SaveComment: saveComment
     };
 
 })(Web, jQuery);

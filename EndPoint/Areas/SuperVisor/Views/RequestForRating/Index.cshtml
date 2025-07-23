@@ -2,20 +2,28 @@
     ViewData["Title"] = "درخواست ها";
 }
 
-@section PageHeader{
-<section class="content-header">
-    <h1>
-        درخواست ها
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/SuperVisor/RequestForRating/Index"><i></i> درخواست ها</a></li>
-    </ol>
-</section>
+@section PageHeader {
+    <section class="content-header">
+        <h1>
+            درخواست ها
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/SuperVisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/SuperVisor/RequestForRating/Index"><i></i> درخواست ها</a></li>
+        </ol>
+    </section>
 }
 <style>
     td {
         vertical-align: central;
+    }
+
+    .btn-sm {
+        margin-left: 5px;
+    }
+
+    .fa-comment {
+        margin-left: 5px;
     }
 </style>
 
@@ -154,7 +162,6 @@
                 </div>
 
                 <div id="divPageingList_RequestForRatingsSupervisor">
-
                 </div>
 
             </div>
@@ -162,19 +169,27 @@
     </section>
 </div>
 
-@section Styles{
-<link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
+@section Styles {
+    <link rel="stylesheet" href="~/css/GlobalAreas/bower_components/select2/dist/css/select2.min.css" asp-append-version="true">
 }
 
 @section Scripts {
-<script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
-<script>
-    Web.RequestForRating.FilterGrid();
-    Web.RequestForRating.FillComboLevelStepSettingList();
-</script>
-}
+    <script src="~/css/GlobalAreas/bower_components/select2/dist/js/select2.full.min.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap.min.js"></script>
 
-<!-- Comment Modal -->
+    <script>
+        Web.RequestForRating.FilterGrid();
+        Web.RequestForRating.FillComboLevelStepSettingList();
+    </script>
+}
+<style>
+    #commentText {
+        max-height: 150px;
+        overflow-y: auto;
+        resize: vertical;
+    }
+</style>
+
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -185,16 +200,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="hidden" id="modalRequestId" value="" />
-                <div class="form-group">
-                    <label for="supervisorComment">کامنت</label>
-                    <textarea class="form-control" id="supervisorComment" rows="4"></textarea>
-                </div>
+                <form id="commentForm">
+                    <textarea id="commentText" class="form-control" rows="4" placeholder="کامنت خود را وارد کنید..."></textarea>
+                    <input type="hidden" id="requestIdInput" />
+                </form>
             </div>
             <div class="modal-footer">
+                <button type="button" id="saveComment" class="btn btn-primary" onclick="saveComment(this)">ثبت</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary" id="saveCommentBtn">ثبت</button>
             </div>
         </div>
     </div>
 </div>
+

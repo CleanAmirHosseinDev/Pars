@@ -58,6 +58,7 @@ namespace ParsKyanCrm.Domain.Contexts
         DbSet<PublicActivities> PublicActivities { get; set; }
         DbSet<ContractPages> ContractPages { get; set; }
         DbSet<QuestionLevel> QuestionLevel { get; set; }
+        DbSet<Comment> Comments { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -120,6 +121,7 @@ namespace ParsKyanCrm.Domain.Contexts
         public virtual DbSet<PublicActivities> PublicActivities { get; set; }
         public virtual DbSet<ContractPages> ContractPages { get; set; }
         public virtual DbSet<QuestionLevel> QuestionLevel { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1120,8 +1122,39 @@ namespace ParsKyanCrm.Domain.Contexts
                     .HasComment("توضیحات سطح");
             });
 
+
+            modelBuilder.Entity<Comment>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.RequestId)
+                    .IsRequired()
+                    .HasComment("آیدی درخواست");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasComment("آیدی کاربر ثبت‌کننده");
+
+                entity.Property(e => e.CommentText)
+                    .IsRequired()
+                    .HasMaxLength(2000)
+                    .HasComment("متن کامنت");
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(200)
+                    .HasComment("نام کاربری");
+
+                entity.Property(e => e.CreatedAt)
+                    .IsRequired()
+                    .HasComment("تاریخ");
+
+                entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_Comment_CreatedAt");
+
+                entity.HasOne<Users>() 
+                    .WithMany()
+                    .HasForeignKey(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
-
-
     }
 }

@@ -1125,7 +1125,9 @@ namespace ParsKyanCrm.Domain.Contexts
 
             modelBuilder.Entity<Comment>(entity =>
             {
-                entity.HasKey(e => e.Id);
+                entity.ToTable("Comment");
+
+                entity.HasKey(e => e.Id); 
 
                 entity.Property(e => e.RequestId)
                     .IsRequired()
@@ -1137,23 +1139,25 @@ namespace ParsKyanCrm.Domain.Contexts
 
                 entity.Property(e => e.CommentText)
                     .IsRequired()
-                    .HasMaxLength(2000)
+                    .HasMaxLength(2000) 
                     .HasComment("متن کامنت");
 
                 entity.Property(e => e.UserName)
-                    .HasMaxLength(200)
+                    .IsRequired()
+                    .HasMaxLength(100)
                     .HasComment("نام کاربری");
 
                 entity.Property(e => e.CreatedAt)
                     .IsRequired()
                     .HasComment("تاریخ");
 
-                entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_Comment_CreatedAt");
+                entity.HasIndex(e => e.CreatedAt)
+                    .HasDatabaseName("IX_Comment_CreatedAt");
 
-                entity.HasOne<Users>() 
+                entity.HasOne(e => e.User)
                     .WithMany()
                     .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Restrict); 
             });
         }
     }

@@ -267,16 +267,15 @@ namespace EndPoint.Controllers.api.superVisor
         }
 
         [HttpPost("[action]")]
-        public async Task<ResultDto> AddComment([FromBody] CommentDto comment)
+        public async Task<ResultDto<CommentDto>> AddComment([FromBody] CommentDto comment)
         {
             try
             {
                 return await _userFacad.AddRequestCommentService.Execute(comment);
-
             }
             catch (Exception ex)
             {
-                throw;
+                throw; 
             }
         }
     }

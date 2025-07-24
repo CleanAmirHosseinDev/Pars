@@ -6,6 +6,6 @@ namespace ParsKyanCrm.Application.Services.Users.Commands
 {
     public interface IAddRequestCommentService
     {
-        Task<ResultDto> Execute(CommentDto commentDto);
+        Task<ResultDto<CommentDto>> Execute(CommentDto commentDto);
     }
 }

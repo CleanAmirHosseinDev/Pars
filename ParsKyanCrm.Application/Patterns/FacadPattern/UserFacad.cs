@@ -1443,7 +1443,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _addRequestCommentService = _addRequestCommentService ?? new AddRequestCommentService(_context);
+                return _addRequestCommentService = _addRequestCommentService ?? new AddRequestCommentService(_context, _mapper);
             }
         }
     }

@@ -131,7 +131,18 @@
                     <li class='active'><a href='/SuperVisor'><i class='fa fa-dashboard'></i> <span>داشبورد</span></a></li>
                     <li><a href='/SuperVisor/Customers/Index'><i class='fa fa-th-large'></i> <span>مشتریان</span></a></li>
                     <li><a href='/SuperVisor/RequestForRating/Index'><i class='fa fa-th-large'></i> <span>مشاهده درخواستها</span></a></li>
-                    <li><a href='/SuperVisor/Report/Index'><i class='fa fa-th-large'></i> <span>گزارشات</span></a></li>
+                    <li class='treeview'>
+                        <a href='#'>
+                            <i class='fa fa-th-large'></i> <span>گزارشات</span>
+                            <span class='pull-left-container'>
+                                <i class='fa fa-angle-right pull-left'></i>
+                            </span>
+                        </a>
+                        <ul class='treeview-menu'>
+                            <li><a href='/SuperVisor/Report/Index'><i class='fa fa-plus'></i>گزارش اصلی</a></li>
+                            <li><a href='/SuperVisor/Report/PerformanceReportEvaluationStaffInDetail_ReportOne2'><i class='fa fa-plus'></i>گزارش عملکرد کارکنان (جزئیات)</a></li>
+                        </ul>
+                    </li>
                     <li><a href='#' onclick='Web.Layout.SignOutForExitToLogin();'><i class='fa fa-sign-out'></i> <span>خروج</span></a></li>
                 </ul>
             </section>

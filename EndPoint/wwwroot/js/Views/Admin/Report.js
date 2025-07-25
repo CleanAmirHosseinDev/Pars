@@ -622,15 +622,14 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
             $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
             var strM = '';
             for (var i = 0; i < res.data.length; i++) {
-                strM += '<div class="col-md-4"><div class="card"><div class="card-body">' +
-                    '<h5 class="card-title">' + res.data[i].companyName + '</h5>' +
-                    '<p class="card-text">شماره درخواست: ' + res.data[i].requestNo + '</p>' +
-                    '<p class="card-text">تاریخ درخواست: ' + res.data[i].dateOfRequestStr + '</p>' +
-                    '<p class="card-text">وضعیت: ' + res.data[i].status + '</p>' +
-                    '<p class="card-text">تعداد روز تاخیر: ' + res.data[i].delayInDays + '</p>' +
-                    '</div></div></div>';
+                strM += "<tr><td>" + (i + 1) + "</td><td>"
+                    + res.data[i].companyName + "</td><td>"
+                    + res.data[i].requestNo + "</td><td>"
+                    + res.data[i].dateOfRequestStr + "</td><td>"
+                    + res.data[i].status + "</td><td>"
+                    + res.data[i].delayInDays + "</td></tr>";
             }
-            $("#divStalledRequests").html(strM);
+            $("#tBodyList").html(strM);
         }
     }
 

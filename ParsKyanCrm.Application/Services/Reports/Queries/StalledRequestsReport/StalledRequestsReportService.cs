@@ -1,9 +1,12 @@
-using ParsKyanCrm.Domain.Contexts;
+﻿using ParsKyanCrm.Domain.Contexts;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ParsKyanCrm.Common;
 using System;
+using ParsKyanCrm.Infrastructure;
+using ParsKyanCrm.Common.Dto;
+using System.Collections.Generic;
 
 namespace ParsKyanCrm.Application.Services.Reports.Queries.StalledRequestsReport
 {
@@ -16,66 +19,109 @@ namespace ParsKyanCrm.Application.Services.Reports.Queries.StalledRequestsReport
             _context = context;
         }
 
-        public async Task<StalledRequestsReportDto> Execute(RequestStalledRequestsReportDto request)
+        public async Task<ResultDto<IEnumerable<StalledRequestDto>>> Execute(RequestStalledRequestsReportDto request)
         {
-            var query = _context.RequestForRating.AsQueryable();
+            if (request.Category == null)
+                request.Category = StalledRequestCategory.UnconfirmedContracts;
 
-            if (!string.IsNullOrEmpty(request.FromDateStr))
+            var query = _context.RequestForRating
+                .Include(r => r.Customer)
+                .AsQueryable();
+
+            var category = request?.Category ?? StalledRequestCategory.UnconfirmedContracts;
+
+            if (request != null)
             {
-                var fromDate = Convert.ToDateTime(request.FromDateStr);
-                query = query.Where(p => p.DateOfRequest >= fromDate);
-            }
-
-            if (!string.IsNullOrEmpty(request.ToDateStr))
-            {
-                var toDate = Convert.ToDateTime(request.ToDateStr);
-                query = query.Where(p => p.DateOfRequest <= toDate);
-            }
-
-            switch (request.Category)
-            {
-                case StalledRequestCategory.UnconfirmedContracts:
-                    query = query.Where(p => p.DateOfConfirm == null && DbFunctions.DateDiffDay(p.DateOfRequest, DateTime.Now) > 14);
-                    break;
-                case StalledRequestCategory.IncompleteInfo:
-                    // This logic will be more complex and might require joining with RequestReferences
-                    // For now, I'll use a placeholder
-                    query = query.Where(p => p.IsDeleted == true); // Placeholder
-                    break;
-                case StalledRequestCategory.StalledWithAssessor:
-                    query = query.Join(_context.RequestReferences,
-                                       rfr => rfr.Id,
-                                       rr => rr.RequestForRatingId,
-                                       (rfr, rr) => new { rfr, rr })
-                                 .Where(x => x.rr.UserRole.Role.Name == "Assessor" && x.rr.ReciveDate != null && x.rr.SendDate == null && DbFunctions.DateDiffDay(x.rr.ReciveDate, DateTime.Now) > 7)
-                                 .Select(x => x.rfr);
-                    break;
-                case StalledRequestCategory.StalledInEvaluationCommittee:
-                    query = query.Join(_context.RequestReferences,
-                                       rfr => rfr.Id,
-                                       rr => rr.RequestForRatingId,
-                                       (rfr, rr) => new { rfr, rr })
-                                 .Where(x => x.rr.UserRole.Role.Name == "EvaluationCommittee" && x.rr.ReciveDate != null && x.rr.SendDate == null && DbFunctions.DateDiffDay(x.rr.ReciveDate, DateTime.Now) > 14)
-                                 .Select(x => x.rfr);
-                    break;
-            }
-
-            int rowsCount = await query.CountAsync();
-            var data = await query.Skip(request.PageIndex * request.PageSize).Take(request.PageSize)
-                .Select(p => new StalledRequestDto
+                switch (category)
                 {
-                    CompanyName = p.Company.Name,
-                    RequestNo = p.RequestNo,
-                    DateOfRequestStr = p.DateOfRequest.ToPersianDate(),
-                    Status = "Stalled", // Placeholder
-                    DelayInDays = 0 // Placeholder
-                }).ToListAsync();
+                    case StalledRequestCategory.UnconfirmedContracts:
+                        query = query.Where(r =>
+                            r.DateOfConfirmed == null &&
+                            r.DateOfRequest.HasValue);
+                        break;
 
-            return new StalledRequestsReportDto
+                    case StalledRequestCategory.IncompleteInfo:
+                        query = query.Where(r =>
+                            r.IsFinished &&
+                            !r.ChangeDate.HasValue);
+                        break;
+
+                    case StalledRequestCategory.StalledWithAssessor:
+                        query = query.Where(r =>
+                            _context.RequestReferences.Any(refItem =>
+                                refItem.Requestid == r.RequestId &&
+                                refItem.LevelStepAccessRole == "Assessor" &&
+                                refItem.ReciveUser != null &&
+                                refItem.SendTime == null));
+                        break;
+
+                    case StalledRequestCategory.StalledInEvaluationCommittee:
+                        query = query.Where(r =>
+                            _context.RequestReferences.Any(refItem =>
+                                refItem.Requestid == r.RequestId &&
+                                refItem.LevelStepAccessRole == "EvaluationCommittee" &&
+                                refItem.ReciveUser != null &&
+                                refItem.SendTime == null));
+                        break;
+                }
+            }
+
+            var allData = await query
+                .OrderByDescending(x => x.DateOfRequest)
+                .ToListAsync();
+
+            var filtered = category switch
             {
-                Data = data,
+                StalledRequestCategory.UnconfirmedContracts => allData
+                    .Where(r => (DateTime.Now - r.DateOfRequest.Value).TotalDays > 14).ToList(),
+
+                StalledRequestCategory.IncompleteInfo => allData
+                    .Where(r => r.ChangeDate.HasValue &&
+                                (DateTime.Now - r.ChangeDate.Value).TotalDays > 14).ToList(),
+
+                StalledRequestCategory.StalledWithAssessor => allData
+                    .Where(r => _context.RequestReferences.Any(refItem =>
+                                refItem.Requestid == r.RequestId &&
+                                refItem.LevelStepAccessRole == "Assessor" &&
+                                refItem.ReciveUser != null &&
+                                refItem.SendTime == null &&
+                                (DateTime.Now - DateTime.Now).TotalDays > 7)) 
+                    .ToList(),
+
+                StalledRequestCategory.StalledInEvaluationCommittee => allData
+                    .Where(r => _context.RequestReferences.Any(refItem =>
+                                refItem.Requestid == r.RequestId &&
+                                refItem.LevelStepAccessRole == "EvaluationCommittee" &&
+                                refItem.ReciveUser != null &&
+                                refItem.SendTime == null &&
+                                (DateTime.Now - DateTime.Now).TotalDays > 14)) 
+                    .ToList(),
+
+                _ => allData
+            };
+
+            var pagedData = filtered
+                .Skip(request.PageIndex * request.PageSize)
+                .Take(request.PageSize)
+                .Select(r => new StalledRequestDto
+                {
+                    CompanyName = !string.IsNullOrEmpty(r.Customer?.CompanyName) ? r.Customer.CompanyName : "فاقد نام",
+                    RequestNo = r.RequestNo,
+                    DateOfRequestStr = r.DateOfRequest.HasValue
+                        ? DateTimeOperation.ToPersianDate(r.DateOfRequest.Value)
+                        : "تاریخ نامشخص",
+                    Status = "Stalled",
+                    DelayInDays = r.DateOfRequest.HasValue
+                        ? (int)(DateTime.Now - r.DateOfRequest.Value).TotalDays
+                        : 0
+                }).ToList();
+
+            return new ResultDto<IEnumerable<StalledRequestDto>>
+            {
+                Data = pagedData,
                 IsSuccess = true,
-                Rows = rowsCount
+                Message = $"تعداد {filtered.Count} رکورد یافت شد",
+                Rows = filtered.Count
             };
         }
     }

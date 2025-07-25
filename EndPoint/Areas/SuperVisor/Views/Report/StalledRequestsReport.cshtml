@@ -2,17 +2,43 @@
     ViewData["Title"] = "گزارش درخواست‌های متوقف شده";
 }
 
-@section PageHeader{
-<section class="content-header">
-    <h1>
-        گزارش درخواست‌های متوقف شده
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
-        <li><a href="/Admin/Report/StalledRequestsReport"><i></i> گزارش درخواست‌های متوقف شده</a></li>
-    </ol>
-</section>
+@section PageHeader {
+    <section class="content-header">
+        <h1>
+            گزارش درخواست‌های متوقف شده
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/Supervisor"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+            <li><a href="/Supervisor/Report/StalledRequestsReport"><i></i> گزارش درخواست‌های متوقف شده</a></li>
+        </ol>
+    </section>
 }
+<style>
+    .panel, .box, .table, .form-control, .btn {
+        border-radius: 12px !important;
+    }
+
+    .panel-primary > .panel-heading {
+        border-top-right-radius: 12px !important;
+        border-top-left-radius: 12px !important;
+    }
+
+    .table > thead > tr > th {
+        background-color: #f3f3f3;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .DatePicker {
+        direction: ltr;
+        text-align: left;
+    }
+</style>
 
 <div class="row">
     <section class="col-lg-12 col-md-12">
@@ -50,11 +76,11 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="control-label" for="">دسته بندی:</label>
-                                <select class="form-control" id="cboCategory" name="cboCategory">
-                                    <option value="0">قراردادهای تایید نشده</option>
+                                <select class="form-control" id="cboCategory" name="Category">
+                                    <option value="0" selected>قراردادهای تایید نشده</option>
                                     <option value="1">اطلاعات ناقص</option>
-                                    <option value="2">متوقف شده در دست ارزیاب</option>
-                                    <option value="3">متوقف شده در کمیته ارزیابی</option>
+                                    <option value="2">متوقف در ارزیاب</option>
+                                    <option value="3">متوقف در کمیته</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -118,11 +144,12 @@
 </div>
 
 @section Scripts {
-<script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
-<script>
-    $(document).ready(function () {
-        PersianDatePicker(".DatePicker");
-        Web.Report.FilterStalledRequestsReport();
-    });
-</script>
+    <script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            PersianDatePicker(".DatePicker");
+            Web.Report.FilterStalledRequestsReport();
+        });
+    </script>
 }
+

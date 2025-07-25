@@ -175,6 +175,27 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
 
 }
 
+var divPageingList_StalledRequestsReport_pageG = 1;
+function successCallBack_divPageingList_StalledRequestsReport(res) {
+    if (res.isSuccess) {
+        $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+        var strM = '';
+        var rowStart = (divPageingList_StalledRequestsReport_pageG - 1) * parseInt($("#cboSelectCount").val());
+
+        for (var i = 0; i < res.data.length; i++) {
+            strM += "<tr><td>" + (rowStart + i + 1) + "</td><td>"
+                + res.data[i].companyName + "</td><td>"
+                + res.data[i].requestNo + "</td><td>"
+                + res.data[i].dateOfRequestStr + "</td><td>"
+                + res.data[i].status + "</td><td>"
+                + res.data[i].delayInDays + "</td></tr>";
+        }
+
+        $("#tBodyList").html(strM);
+    }
+}
+
+
 (function (web, $) {
 
     //Document Ready  
@@ -409,6 +430,24 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         window.open('/SuperVisor/Report/GetExcelTotalNumberCorporateRequest?FromDateStr=' + $("#FromDateStr").val() + '&ToDateStr=' + $("#ToDateStr").val() + "&Search=" + $("#txtSearch").val(), '_blank');
     }
 
+    function filterStalledRequestsReport(pageIndex = 1) {
+        divPageingList_StalledRequestsReport_pageG = pageIndex;
+
+        const pageSize = parseInt($("#cboSelectCount").val()) || 10;
+        const category = parseInt($("#cboCategory").val()) || 0;
+        const fromDate = $("#FromDateStr").val().trim();
+        const toDate = $("#ToDateStr").val().trim();
+
+        pageingGrid("divPageingList_StalledRequestsReport", "/SuperVisor/Report/GetStalledRequestsReport", JSON.stringify({
+            PageIndex: pageIndex,
+            PageSize: pageSize,
+            FromDateStr: fromDate !== "" ? fromDate : null,
+            ToDateStr: toDate !== "" ? toDate : null,
+            Category: category
+        }));
+    }
+
+     
     web.Report = {
         OnchangeKindOfRequest: onchangeKindOfRequest,
         FillComboLevelStepSettingList: fillComboLevelStepSettingList,
@@ -436,32 +475,5 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         ExcelTotalNumberCorporateRequest: excelTotalNumberCorporateRequest,
         FilterStalledRequestsReport: filterStalledRequestsReport,
     };
-
-    var divPageingList_StalledRequestsReport_pageG = 1;
-    function successCallBack_divPageingList_StalledRequestsReport(res) {
-        if (res.isSuccess) {
-            $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
-            var strM = '';
-            for (var i = 0; i < res.data.length; i++) {
-                strM += "<tr><td>" + (i + 1) + "</td><td>"
-                    + res.data[i].companyName + "</td><td>"
-                    + res.data[i].requestNo + "</td><td>"
-                    + res.data[i].dateOfRequestStr + "</td><td>"
-                    + res.data[i].status + "</td><td>"
-                    + res.data[i].delayInDays + "</td></tr>";
-            }
-            $("#tBodyList").html(strM);
-        }
-    }
-
-    function filterStalledRequestsReport() {
-        pageingGrid("divPageingList_StalledRequestsReport", "/SuperVisor/Report/GetStalledRequestsReport", JSON.stringify({
-            PageIndex: 1,
-            PageSize: $("#cboSelectCount").val(),
-            FromDateStr: $("#FromDateStr").val(),
-            ToDateStr: $("#ToDateStr").val(),
-            Category: $("#cboCategory").val()
-        }));
-    }
 
 })(Web, jQuery);

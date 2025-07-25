@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParsKyanCrm.Domain.Contexts;
 
 namespace ParsKyanCrm.Application.Patterns.FacadPattern
 {
@@ -45,10 +46,11 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
     {
 
         private readonly IUserFacad _userFacad;
-
-        public ReportFacad(IUserFacad userFacad)
+        private readonly IDataBaseContext _context;
+        public ReportFacad(IUserFacad userFacad, IDataBaseContext context)
         {
             _userFacad = userFacad;
+            _context = context;
         }
 
         private IGeneralPerformanceReportService _generalPerformanceReportService;
@@ -146,7 +148,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
         {
             get
             {
-                return _stalledRequestsReportService = _stalledRequestsReportService ?? new StalledRequestsReportService(_userFacad.GetDatabaseContext());
+                return _stalledRequestsReportService = _stalledRequestsReportService ?? new StalledRequestsReportService(_context);
             }
         }
     }

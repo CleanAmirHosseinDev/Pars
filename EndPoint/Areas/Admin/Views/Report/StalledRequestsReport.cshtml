@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "گزارش درخواست‌های متوقف شده";
+}
+
+@section PageHeader{
+<section class="content-header">
+    <h1>
+        گزارش درخواست‌های متوقف شده
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Admin"><i class="fa fa-dashboard"></i> داشبورد</a></li>
+        <li><a href="/Admin/Report/StalledRequestsReport"><i></i> گزارش درخواست‌های متوقف شده</a></li>
+    </ol>
+</section>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <div class="portlet-title">
+                        <div class="caption font-green-haze">
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse" data-original-title="" title="">
+                            </a>
+                        </div>
+                    </div>
+                </h3>
+                <div class="pull-left box-tools">
+                    <button type="button" class="btn bg-info btn-sm" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body" style="">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> <span id="TotalRowRep" name="TotalRowRep"> کادر جستجو </span></div>
+                    <div class="panel-body">
+                        <div class="row" style="margin-bottom: 5px;">
+                            <div class="col-md-3">
+                                <label class="control-label" for="">از تاریخ:</label>
+                                <input type="text" name="FromDateStr" id="FromDateStr" class="form-control DatePicker" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="">تا تاریخ:</label>
+                                <input type="text" name="ToDateStr" id="ToDateStr" class="form-control DatePicker" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="">دسته بندی:</label>
+                                <select class="form-control" id="cboCategory" name="cboCategory">
+                                    <option value="0">قراردادهای تایید نشده</option>
+                                    <option value="1">اطلاعات ناقص</option>
+                                    <option value="2">متوقف شده در دست ارزیاب</option>
+                                    <option value="3">متوقف شده در کمیته ارزیابی</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="">تعداد نمایش:</label>
+                                <select class="form-control" id="cboSelectCount" name="cboSelectCount">
+                                    <option value="5">5</option>
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary fontForAllPage" type="button" onclick="Web.Report.FilterStalledRequestsReport();" title="جستجو">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="divStalledRequests">
+                    <!-- Report data will be loaded here -->
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+<script src="~/lib/JQueryDatePickerPluginForPersian/js/persianDatepicker.js" asp-append-version="true"></script>
+<script>
+    $(document).ready(function () {
+        PersianDatePicker(".DatePicker");
+        Web.Report.FilterStalledRequestsReport();
+    });
+</script>
+}

@@ -448,6 +448,15 @@ namespace ParsKyanCrm.Common.Enums
         [DisplayFiledAttribute3(Name = "درخواست ها و گزارشات حاکمیت شرکتی")]
         [OrderAttribute(Order = 4)]
         CopReportVisitor = 549,
+
+        [Display(Name = "مشاهده")]
+        [Category("Report")]
+        [DisplayFiledAttribute(Name = "درخواست ها و گزارش ها")]
+        [DisplayFiledAttribute1(Name = "/Admin/Report/StalledRequestsReport")]
+        [DisplayFiledAttribute2(Name = "fa fa-th-large")]
+        [DisplayFiledAttribute3(Name = "گزارش درخواست‌های متوقف شده")]
+        [OrderAttribute(Order = 4)]
+        StalledRequestsReport = 550,
         #endregion
 
         #region حاکمیت شرکتی

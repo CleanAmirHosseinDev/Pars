@@ -10,6 +10,7 @@ using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberApplicationsAs
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCorporateRequest;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
+using ParsKyanCrm.Application.Services.Reports.Queries.StalledRequestsReport;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -304,5 +305,26 @@ namespace EndPoint.Areas.Admin.Controllers
             return View();
         }
 
+        #region Stalled Requests Report
+
+        public IActionResult StalledRequestsReport()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetStalledRequestsReport([FromBody] RequestStalledRequestsReportDto request)
+        {
+            try
+            {
+                return Json(await _reportFacad.StalledRequestsReportService.Execute(request));
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        #endregion
     }
 }

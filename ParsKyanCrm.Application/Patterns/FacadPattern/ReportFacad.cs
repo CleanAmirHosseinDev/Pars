@@ -8,6 +8,7 @@ using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCorporateReque
 using ParsKyanCrm.Application.Services.Reports.Queries.CustomerDataFormReport;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersApprovedContract;
 using ParsKyanCrm.Application.Services.Reports.Queries.TotalNumberCustomersWithoutRegistration;
+using ParsKyanCrm.Application.Services.Reports.Queries.StalledRequestsReport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
 
         IPerformanceReportEvaluationStaffInDetail_ReportOne2Service PerformanceReportEvaluationStaffInDetail_ReportOne2Service { get; }
 
+        IStalledRequestsReportService StalledRequestsReportService { get; }
     }
 
     public class ReportFacad : IReportFacad
@@ -139,5 +141,13 @@ namespace ParsKyanCrm.Application.Patterns.FacadPattern
             }
         }
 
+        private IStalledRequestsReportService _stalledRequestsReportService;
+        public IStalledRequestsReportService StalledRequestsReportService
+        {
+            get
+            {
+                return _stalledRequestsReportService = _stalledRequestsReportService ?? new StalledRequestsReportService(_userFacad.GetDatabaseContext());
+            }
+        }
     }
 }

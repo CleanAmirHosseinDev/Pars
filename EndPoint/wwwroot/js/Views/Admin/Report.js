@@ -613,6 +613,35 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         Init_TotalNumberCorporateRequest: init_TotalNumberCorporateRequest,
         FilterReportGrid_TotalNumberCorporateRequest: filterReportGrid_TotalNumberCorporateRequest,
         ExcelTotalNumberCorporateRequest: excelTotalNumberCorporateRequest,
+        FilterStalledRequestsReport: filterStalledRequestsReport,
     };
+
+    var divPageingList_StalledRequestsReport_pageG = 1;
+    function successCallBack_divPageingList_StalledRequestsReport(res) {
+        if (res.isSuccess) {
+            $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+            var strM = '';
+            for (var i = 0; i < res.data.length; i++) {
+                strM += '<div class="col-md-4"><div class="card"><div class="card-body">' +
+                    '<h5 class="card-title">' + res.data[i].companyName + '</h5>' +
+                    '<p class="card-text">شماره درخواست: ' + res.data[i].requestNo + '</p>' +
+                    '<p class="card-text">تاریخ درخواست: ' + res.data[i].dateOfRequestStr + '</p>' +
+                    '<p class="card-text">وضعیت: ' + res.data[i].status + '</p>' +
+                    '<p class="card-text">تعداد روز تاخیر: ' + res.data[i].delayInDays + '</p>' +
+                    '</div></div></div>';
+            }
+            $("#divStalledRequests").html(strM);
+        }
+    }
+
+    function filterStalledRequestsReport() {
+        pageingGrid("divPageingList_StalledRequestsReport", "/Admin/Report/GetStalledRequestsReport", JSON.stringify({
+            PageIndex: 1,
+            PageSize: $("#cboSelectCount").val(),
+            FromDateStr: $("#FromDateStr").val(),
+            ToDateStr: $("#ToDateStr").val(),
+            Category: $("#cboCategory").val()
+        }));
+    }
 
 })(Web, jQuery);

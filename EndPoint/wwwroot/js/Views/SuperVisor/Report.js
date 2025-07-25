@@ -434,6 +434,34 @@ function successCallBack_divPageingList_PerformanceReportEvaluationStaffInDetail
         Init_TotalNumberCorporateRequest: init_TotalNumberCorporateRequest,
         FilterReportGrid_TotalNumberCorporateRequest: filterReportGrid_TotalNumberCorporateRequest,
         ExcelTotalNumberCorporateRequest: excelTotalNumberCorporateRequest,
+        FilterStalledRequestsReport: filterStalledRequestsReport,
     };
+
+    var divPageingList_StalledRequestsReport_pageG = 1;
+    function successCallBack_divPageingList_StalledRequestsReport(res) {
+        if (res.isSuccess) {
+            $("#TotalRowRep").text("جستجو در " + res.rows + " مورد");
+            var strM = '';
+            for (var i = 0; i < res.data.length; i++) {
+                strM += "<tr><td>" + (i + 1) + "</td><td>"
+                    + res.data[i].companyName + "</td><td>"
+                    + res.data[i].requestNo + "</td><td>"
+                    + res.data[i].dateOfRequestStr + "</td><td>"
+                    + res.data[i].status + "</td><td>"
+                    + res.data[i].delayInDays + "</td></tr>";
+            }
+            $("#tBodyList").html(strM);
+        }
+    }
+
+    function filterStalledRequestsReport() {
+        pageingGrid("divPageingList_StalledRequestsReport", "/SuperVisor/Report/GetStalledRequestsReport", JSON.stringify({
+            PageIndex: 1,
+            PageSize: $("#cboSelectCount").val(),
+            FromDateStr: $("#FromDateStr").val(),
+            ToDateStr: $("#ToDateStr").val(),
+            Category: $("#cboCategory").val()
+        }));
+    }
 
 })(Web, jQuery);
